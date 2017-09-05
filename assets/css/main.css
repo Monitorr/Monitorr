@@ -6,9 +6,10 @@ body {
     font-weight: 300;
     font-size: 16px;
     color: #555;
+    position: center;
+    overflow-y: hidden;
 
     -webkit-font-smoothing: antialiased;
-    -webkit-overflow-scrolling: touch;
 }
 
 /* Titles */
@@ -97,7 +98,7 @@ a:after {
 /* Helpers */
 
 .mt {
-	margin-top: 50px;
+	margin-top: 10px;
 	margin-bottom: 50px;
 }
 
