@@ -780,6 +780,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  vertical-align: top;
 }
 
 .container:before,
@@ -1458,7 +1459,7 @@ pre code {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 400px) {
   .col-lg-1,
   .col-lg-2,
   .col-lg-3,
@@ -1499,6 +1500,7 @@ pre code {
   }
   .col-lg-4 {
     width: 33.33333333333333%;
+    vertical-align: top;
   }
   .col-lg-3 {
     width: 25%;
