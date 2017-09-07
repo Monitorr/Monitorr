@@ -3,7 +3,6 @@
 
 <head>
     <link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />`
-    <meta http-equiv="refresh" content="10">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,14 +17,62 @@
             display: block;
         }
         
-        span {
-            color: green;
+        .auto-style1 {
+            float: left;
+            text-align: center;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="assets/js/ajax.js"></script>
+    <script type='text/javascript'>
+        function statusCheck() {
+            var p = new AReq();
+            var timeout = 20000; //Milliseconds
+            var body = document.getElementsByTagName("body")[0];
+            p.ajaxreq("https://YOUR_URL_HERE", function(status) {
+                // var statusMsg = document.getElementById( "plex-status-msg" );
+                var statusImg = document.getElementById("plex-status-img");
+                if (status === 200) {
+                    //	statusMsg.innerHTML = 'Up ' +  status;
+                    statusImg.src = "assets/img/online.png";
+                } else if (status === 401) {
+                    //	statusMsg.innerHTML = 'Up ' +  status;
+                    statusImg.src = "assets/img/online.png";
+                } else {
+                    //	statusMsg.innerHTML = 'Down ' + status;
+                    statusImg.src = "assets/img/offline.png";
+                }
+            }, timeout);
 
-    <script src="/monitorr/assets/js/ping.js"></script>
+            p.ajaxreq("https://YOUR_URL_HERE", function(status) {
+                // var statusMsg = document.getElementById( "requests-status-msg" );
+                var statusImg = document.getElementById("requests-status-img");
+                if (status === 200) {
+                    //    statusMsg.innerHTML = 'Up ' +  status;
+                    statusImg.src = "assets/img/online.png";
+                } else {
+                    //    statusMsg.innerHTML = 'Down ' + status;
+                    statusImg.src = "assets/img/offline.png";
+                }
+            }, timeout);
 
-    <title>VREE's PLEX</title>
+            p.ajaxreq("https://YOUR_URL_HERE", function(status) {
+                // var statusMsg = document.getElementById( "sonarr-status-msg" );
+                var statusImg = document.getElementById("sonarr-status-img");
+                if (status === 200) {
+                    //    statusMsg.innerHTML = 'Up ' +  status;
+                    statusImg.src = "assets/img/online.png";
+                } else {
+                    //    statusMsg.innerHTML = 'Down ' + status;
+                    statusImg.src = "assets/img/offline.png";
+                }
+            }, timeout);
+        }
+        setInterval(statusCheck, 3000);
+    </script>
+
+
+    <title>YOUR SERVER NAME HERE</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -37,55 +84,63 @@
     <!-- Fonts from Google Fonts -->
     <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
 
+
 </head>
 
-<body>
+<body onload="statusCheck()">
 
-
-    <div class="container" id="link-bar">
-
-        <div class="col-lg-4">
-            <a href="https://yourdomain.com/plexrequest" target="_blank">
-                <img src="assets/img/s02.png" width="55" alt="">
-            </a>
-
-            <br>&nbsp;
-
-            <a href="https://yourdomain.com/plexrequest" target="_blank">
-                <p><strong>PLEX Request</strong>
-            </a>
-            <p>
-                <span id="ping-plexrequest"></span>
+    <!-- Fixed navbar -->
+    <br>
+    <a class="navbar-brand" href="#" style="width: 100%">
+        <div class="text-center">
+            <b>YOUR SERVER NAME HERE</b>
         </div>
+    </a>
+    <br>
+    <br>
+    <div class="container">
+        <div class="auto-style1">
+            <a href="http://YOURSERVERURLHERE.com">
+            </a>
+        </div>
+        <!-- /row -->
+
+        <div class="row mt centered">
+            <div class="col-lg-4">
+                <a href="http://app.plex.tv/web/app" target="_top">
+                    <img src="assets/img/s01.png" width="180" alt="">
+                    <h4>PLEX</h4>
+                    <p><img id="plex-status-img" src="assets/img/puff.svg"></p>
+                    <p>Access the YOUR SERVER NAME HERE library with over X Movies & X TV Shows available instantly.
+                        <p>
+                </a>
+            </div>
+            <!--/col-lg-4 -->
+
+            <div class="col-lg-4">
+                <a href="PLEXREQUESTS LINK HERE" target="_top">
+                    <img src="assets/img/s02.png" width="180" alt="">
+                    <h4>Request</h4>
+                    <p><img id="requests-status-img" src="assets/img/puff.svg"></p>
+                    <p>Want to watch a Movie or TV Show but it's not currently on YOUR SERVER NAME HERE? Request it here!</p>
+                </a>
+            </div>
+            <!--/col-lg-4 -->
+
+            <div class="col-lg-4">
+                <a href="PLEXEMAIL LINK HERE" target="_top">
+                    <img src="assets/img/s03.png" width="180" alt="">
+                    <h4>What's New</h4>
+                    <p><img id="sonarr-status-img" src="assets/img/puff.svg"></p>
+                    <p>See what has been recently added to YOUR SERVER NAME HERE without having to log in.</p>
+                </a>
+            </div>
+            <!--/col-lg-4 -->
+        </div>
+        <!-- /row -->
     </div>
-
-
-    <script>
-        function checkServer() {
-            var p = new Ping();
-            var timeout = 2000; //Milliseconds
-
-            //  var server = document.domain; //Try to get it automagically, but you can manually specify this
-            // var body = document.getElementsByTagName("body")[0];
-
-            p.ping("http://yourdomain.com:3579/plexrequest", function(data) {
-                //p.ping(server + ":3579", function(data) {
-                // var serverMsg = document.getElementById("server-status-msg");
-                // var serverImg = document.getElementById("server-status-img");
-                if (data < 1000) {
-                    " <a href='https://stats.uptimerobot.com/' target='_blank'> <img src='/monitorr/assets/img/offline.png' width='115'> </a>";
-                    // serverMsg.innerHTML = 'Up and reachable';
-                    //    serverImg.src = "assets/img/ipad-hand-on.png";
-                    //    body.addClass('online').removeClass("offline");
-                } else {
-                    " <a href='https://yourdomain.com/plexrequest' target='_blank'> <img src='/monitorr/assets/img/online.png' width='115'> </a>";
-                    // serverMsg.innerHTML = 'Down and unreachable';
-                    // serverImg.src = "assets/img/ipad-hand-off.png";
-                }
-                document.getElementById("ping-plexrequest").innerHTML = data;
-            }, timeout);
-        }
-    </script>
+    <!-- /container -->
+    <p>
 
 </body>
 
