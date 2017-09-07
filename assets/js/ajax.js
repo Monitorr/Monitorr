@@ -8,4 +8,15 @@
  */
 
 var AReq = function() { this._version = "0.0.1" };
-AReq.prototype.ajaxreq = function(url, cb) { jQuery.ajax({ url: url, cache: false, dataType: 'text', type: 'GET', complete: function(xhr) { if (typeof cb === 'function') cb.apply(this, [xhr.status]); } }); }
+AReq.prototype.ajaxreq = function(url, cb) {
+  jQuery.ajax({
+    url: url,
+    cache: false,
+    dataType: 'text',
+    type: 'head',
+    complete: function(xhr) {
+      if (typeof cb === 'function')
+        cb.apply(this, [xhr.status]);
+    }
+  });
+}

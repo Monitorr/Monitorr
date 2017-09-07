@@ -12,11 +12,11 @@
         body.offline #link-bar {
             display: none;
         }
-        
+
         body.online #link-bar {
             display: block;
         }
-        
+
         .auto-style1 {
             float: left;
             text-align: center;
@@ -30,41 +30,49 @@
             var timeout = 20000; //Milliseconds
             var body = document.getElementsByTagName("body")[0];
             p.ajaxreq("https://YOUR_URL_HERE", function(status) {
-                // var statusMsg = document.getElementById( "plex-status-msg" );
                 var statusImg = document.getElementById("plex-status-img");
+                var statusLink = document.getElementById( "plex-status-link" );
                 if (status === 200) {
-                    //	statusMsg.innerHTML = 'Up ' +  status;
                     statusImg.src = "assets/img/online.png";
+                    statusImg.style.width = '150px';
+                    statusLink.href = "http://app.plex.tv/web/app";
                 } else if (status === 401) {
-                    //	statusMsg.innerHTML = 'Up ' +  status;
                     statusImg.src = "assets/img/online.png";
+                    statusImg.style.width = '150px';
+                    statusLink.href = "http://app.plex.tv/web/app";
                 } else {
-                    //	statusMsg.innerHTML = 'Down ' + status;
                     statusImg.src = "assets/img/offline.png";
+                    statusImg.style.width = '150px';
+                    statusLink.href = "YOUR DOWN LINK HERE";
+
                 }
             }, timeout);
 
             p.ajaxreq("https://YOUR_URL_HERE", function(status) {
-                // var statusMsg = document.getElementById( "requests-status-msg" );
                 var statusImg = document.getElementById("requests-status-img");
+                var statusLink = document.getElementById( "requests-status-link" );
                 if (status === 200) {
-                    //    statusMsg.innerHTML = 'Up ' +  status;
                     statusImg.src = "assets/img/online.png";
+                    statusImg.style.width = '150px';
+                    statusLink.href = "YOUR UP LINK HERE";
                 } else {
-                    //    statusMsg.innerHTML = 'Down ' + status;
                     statusImg.src = "assets/img/offline.png";
+                    statusImg.style.width = '150px';
+                    statusLink.href = "YOUR DOWN LINK HERE";
                 }
             }, timeout);
 
             p.ajaxreq("https://YOUR_URL_HERE", function(status) {
-                // var statusMsg = document.getElementById( "sonarr-status-msg" );
-                var statusImg = document.getElementById("sonarr-status-img");
+                var statusImg = document.getElementById("YOUR_SERVICE-status-img");
+                var statusLink = document.getElementById( "YOUR_SERVICE-status-link" );
                 if (status === 200) {
-                    //    statusMsg.innerHTML = 'Up ' +  status;
                     statusImg.src = "assets/img/online.png";
+                    statusImg.style.width = '150px';
+                    statusLink.href = "YOUR UP LINK HERE";
                 } else {
-                    //    statusMsg.innerHTML = 'Down ' + status;
                     statusImg.src = "assets/img/offline.png";
+                    statusImg.style.width = '150px';
+                    statusLink.href = "YOUR DOWN LINK HERE";
                 }
             }, timeout);
         }
@@ -107,18 +115,17 @@
 
         <div class="row mt centered">
             <div class="col-lg-4">
-                <a href="http://app.plex.tv/web/app" target="_top">
+                <a id="plex-status-link" href="" target="_top">
                     <img src="assets/img/s01.png" width="180" alt="">
                     <h4>PLEX</h4>
                     <p><img id="plex-status-img" src="assets/img/puff.svg"></p>
-                    <p>Access the YOUR SERVER NAME HERE library with over X Movies & X TV Shows available instantly.
-                        <p>
+                    <p>Access the YOUR SERVER NAME HERE library with over X Movies & X TV Shows available instantly.<p>
                 </a>
             </div>
             <!--/col-lg-4 -->
 
             <div class="col-lg-4">
-                <a href="PLEXREQUESTS LINK HERE" target="_top">
+                <a id="requests-status-link" href="" target="_top">
                     <img src="assets/img/s02.png" width="180" alt="">
                     <h4>Request</h4>
                     <p><img id="requests-status-img" src="assets/img/puff.svg"></p>
@@ -128,10 +135,10 @@
             <!--/col-lg-4 -->
 
             <div class="col-lg-4">
-                <a href="PLEXEMAIL LINK HERE" target="_top">
+                <a id="YOUR_SERVICE-status-link" href="" target="_top">
                     <img src="assets/img/s03.png" width="180" alt="">
                     <h4>What's New</h4>
-                    <p><img id="sonarr-status-img" src="assets/img/puff.svg"></p>
+                    <p><img id="YOUR_SERVICE-status-img" src="assets/img/puff.svg"></p>
                     <p>See what has been recently added to YOUR SERVER NAME HERE without having to log in.</p>
                 </a>
             </div>
