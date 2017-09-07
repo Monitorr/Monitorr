@@ -1,5 +1,6 @@
 
-
+## MONITORR
+<br>
 Version:  ALPHA
 
 
@@ -15,7 +16,7 @@ Version:  ALPHA
 ## Configuration:
 1) Clone/download repository to your webserver (Suggested a Sub DIR)
 2) Replace all "YOUR SERVER NAME HERE" variables.
-3) Set " setInterval(statusCheck, 3000); " to how frequentthe page should check for status. 
+3) Set " setInterval(statusCheck, 3000); " to how frequent the page should check for status. 
 
 Considerations:
 
