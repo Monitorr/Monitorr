@@ -1,7 +1,7 @@
 
 ## MONITORR
 <br>
-Webfront to live display any webapp on your domain. 
+<b>Webfront to live display any webapp on your domain. </b>
 <br>
 Version:  ALPHA
 
