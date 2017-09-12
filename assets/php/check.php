@@ -13,6 +13,7 @@ function url_test( $url ) {
   curl_setopt ( $ch, CURLOPT_URL, $url );
   curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
   curl_setopt ( $ch, CURLOPT_TIMEOUT, $timeout );
+  curl_setopt ($ch,CURLOPT_SSL_VERIFYPEER, false);
   $http_respond = curl_exec($ch);
   $http_respond = trim( strip_tags( $http_respond ) );
   $http_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
