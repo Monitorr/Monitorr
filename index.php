@@ -219,13 +219,11 @@
                     <img id="sonarr-service-img" src="" alt="">
                     <h4>Sonarr</h4>
                     <p><img id="sonarr-status-img" src="assets/img/puff.svg"></p>
-                    <p>Status: <?php $domain = 'http://sonarr.beckeflix.com';
-                        $avi = isDomainAvailible($domain);
-                            if ($avi == "1") {
-                                echo "UP!";
-                            } else {
-                                echo "Down!";
-                            }
+                    <p>Status: <?php $domain = 'https://requests.beckeflix.com';
+                        if( !url_test( $domain ) ) {
+                          echo $domain ." is down!";
+                        }
+                        else { echo $domain ." functions correctly."; }
                         ?></p>
                 </a>
             </div>
