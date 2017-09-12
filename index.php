@@ -221,7 +221,10 @@
                     <p><img id="sonarr-status-img" src="assets/img/puff.svg"></p>
                     <p>Status: <?php $domain = 'http://sonarr.beckeflix.com';
                         $avi = isDomainAvailible($domain);
-                        echo $avi;
+                            if $avi == '1' {
+                                echo 'up!';
+                            else 
+                                echo 'Down!'
                         ?></p>
                 </a>
             </div>
