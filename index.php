@@ -221,9 +221,10 @@
                     <p>Status:<?php $domain = 'http://sonarr.beckeflix.com';
                         $avi = isDomainAvailible($domain);
                         if $avi == 1 {
-                            echo 'Up!'
+                            echo 'Up!';
                         else 
-                            echo 'Down!'
+                            echo 'Down!';
+                        }
                         ?></p>
                 </a>
             </div>
