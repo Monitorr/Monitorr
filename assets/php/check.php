@@ -20,9 +20,9 @@ function urlExists($url) {
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
         if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401) {
-            return true;
+            echo 'Up!';
         } else {
-            return false;
+            echo 'Down!';
         }
 
         curl_close($handle);
