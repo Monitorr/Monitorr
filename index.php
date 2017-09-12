@@ -219,12 +219,7 @@
                     <img id="sonarr-service-img" src="" alt="">
                     <h4>Sonarr</h4>
                     <p><img id="sonarr-status-img" src="assets/img/puff.svg"></p>
-                    <p>Status: <?php $domain = 'https://requests.beckeflix.com';
-                        if( !url_test( $domain ) ) {
-                          echo $domain ." is down!";
-                        }
-                        else { echo $domain ." functions correctly."; }
-                        ?></p>
+                    <p>Status: <?php urlExists('https://sonarr.beckeflix.com') ;?></p>
                 </a>
             </div>
             <!--/col-lg-4 -->
