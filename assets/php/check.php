@@ -28,7 +28,7 @@ function urlExists($url) {
         curl_close($handle);
     } 
 
-$sonarrURL='https://sonarr.beckeflix.com';
-$requestsURL='https://requests.beckeflix.com';
-$jackettURL='https://jackett.beckeflix.com';
+$sonarrURL='https://URL_HERE';
+$requestsURL='https://URL_HERE';
+$jackettURL='https://URL_HERE';
 ?>
