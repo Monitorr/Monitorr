@@ -26,8 +26,7 @@ function urlExists($url) {
         }
 
         curl_close($handle);
-    } 
-
+    };
 $sonarrURL='https://URL_HERE';
 $requestsURL='https://URL_HERE';
 $jackettURL='https://URL_HERE';

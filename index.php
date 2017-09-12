@@ -23,11 +23,12 @@
         }
     </style>
     <?php include ('assets/php/check.php') ;?>
+    <?php include ('assets/config.php'); ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="assets/js/ajax.js"></script>
   
 
-    <title>YOUR SERVER NAME HERE</title>
+    <title><?php echo $config['title']; ?></title>
 
 
     <!-- Bootstrap core CSS -->
@@ -48,14 +49,14 @@
     <br>
     <a class="navbar-brand" href="#" style="width: 100%">
         <div class="text-center">
-            <b>YOUR SERVER NAME HERE</b>
+            <b><?php echo $config['title']; ?></b>
         </div>
     </a>
     <br>
     <br>
     <div class="container">
         <div class="auto-style1">
-            <a href="http://YOURSERVERURLHERE.com">
+            <a href="<?php echo $config['siteurl']; ?>">
             </a>
         </div>
         <!-- /row -->
