@@ -22,6 +22,7 @@
             text-align: center;
         }
     </style>
+    <?php include ('assets/php/check.php') ;?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="assets/js/ajax.js"></script>
     <script type='text/javascript'>
@@ -218,13 +219,9 @@
                     <img id="sonarr-service-img" src="" alt="">
                     <h4>Sonarr</h4>
                     <p><img id="sonarr-status-img" src="assets/img/puff.svg"></p>
-                    <p>Status:<?php $domain = 'http://sonarr.beckeflix.com';
+                    <p>Status: <?php $domain = 'http://sonarr.beckeflix.com';
                         $avi = isDomainAvailible($domain);
-                        if $avi == 1 {
-                            echo 'Up!';
-                        else 
-                            echo 'Down!';
-                        }
+                        echo $avi;
                         ?></p>
                 </a>
             </div>

@@ -25,7 +25,5 @@ curl_close($curlInit);
     return 0;
    }
 }
-$domain = 'https://www.facebook.com';
-$avi = isDomainAvailible($domain);
-echo $avi;
+
 ?>
