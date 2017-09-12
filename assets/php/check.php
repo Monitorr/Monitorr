@@ -29,4 +29,6 @@ function urlExists($url) {
     } 
 
 $sonarrURL='https://sonarr.beckeflix.com';
+$requestsURL='https://requests.beckeflix.com';
+$jackettURL='https://jackett.beckeflix.com';
 ?>

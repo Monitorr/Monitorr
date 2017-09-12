@@ -189,6 +189,7 @@
                     <img id="requests-service-img" src="" alt="">
                     <h4>Request</h4>
                     <p><img id="requests-status-img" src="assets/img/puff.svg"></p>
+                    <p>Status: <?php urlExists($requestsURL) ;?></p>
                 </a>
             </div>
             <!--/col-lg-4 -->
@@ -198,6 +199,7 @@
                     <img id="jackett-service-img" src="" alt="">
                     <h4>Jackett</h4>
                     <p><img id="jackett-status-img" src="assets/img/puff.svg"></p>
+                    <p>Status: <?php urlExists($jackettURL) ;?></p>
                 </a>
             </div>
             <!--/col-lg-4 -->
