@@ -19,7 +19,7 @@ function urlExists($url) {
         $response = curl_exec($handle);
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
-        if($httpCode >= 200 && $httpCode < 400) {
+        if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401) {
             return true;
         } else {
             return false;
@@ -27,4 +27,6 @@ function urlExists($url) {
 
         curl_close($handle);
     } 
+
+$sonarrURL='https://sonarr.beckeflix.com';
 ?>
