@@ -26,24 +26,19 @@
     <?php include ('assets/config.php'); ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="assets/js/ajax.js"></script>
-  
 
     <title><?php echo $config['title']; ?></title>
 
-
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-
     <!-- Custom styles -->
     <link href="assets/css/main.css" rel="stylesheet">
-
     <!-- Fonts from Google Fonts -->
     <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
 
-
 </head>
 
-<body onload="statusCheck()">
+<body>
 
     <!-- Fixed navbar -->
     <br>
@@ -62,71 +57,21 @@
         <!-- /row -->
 
         <div class="row mt centered">
+            <?php foreach ($links as $t => $k) { ?>
             <div class="col-lg-4">
-                <a id="plex-status-link" href="" target="_top">
-                    <img id="plex-service-img" src="" alt="">
-                    <h4>PLEX</h4>
-                    <p><img id="plex-status-img" src="assets/img/puff.svg"></p>
+                <a id="<?php echo $t ;?>-status-link" href="<?php echo $k ;?>" target="_top">
+                    <img id="<?php echo $t ;?>-service-img" src="assets/img/<?php echo $t ;?>.png" style="width:55px" alt="">
+                    <h4><?php echo $t; ?></h4>
+                    <p><img id="<?php echo $t ;?>-status-img" src="assets/img/puff.svg"></p>
+                    <p><?php urlExists($k); ?></p>
                 </a>
             </div>
-            <!--/col-lg-4 -->
-
-            <div class="col-lg-4">
-                <a id="requests-status-link" href="" target="_top">
-                    <img id="requests-service-img" src="" alt="">
-                    <h4>Request</h4>
-                    <p><img id="requests-status-img" src="assets/img/puff.svg"></p>
-                    <p>Status: <?php urlExists($requestsURL) ;?></p>
-                </a>
-            </div>
-            <!--/col-lg-4 -->
-
-            <div class="col-lg-4">
-                <a id="jackett-status-link" href="" target="_top">
-                    <img id="jackett-service-img" src="" alt="">
-                    <h4>Jackett</h4>
-                    <p><img id="jackett-status-img" src="assets/img/puff.svg"></p>
-                    <p>Status: <?php urlExists($jackettURL) ;?></p>
-                </a>
-            </div>
-            <!--/col-lg-4 -->
+            <?php } ?>
         </div>
-        <!-- /row -->
 
-        <div class="row mt centered">
-            <div class="col-lg-4">
-                <a id="deluge-status-link" href="" target="_top">
-                    <img id="deluge-service-img" src="" alt="">
-                    <h4>Deluge</h4>
-                    <p><img id="deluge-status-img" src="assets/img/puff.svg"></p>
-                </a>
-            </div>
-            <!--/col-lg-4 -->
-
-            <div class="col-lg-4">
-                <a id="sonarr-status-link" href="" target="_top">
-                    <img id="sonarr-service-img" src="" alt="">
-                    <h4>Sonarr</h4>
-                    <p><img id="sonarr-status-img" src="assets/img/puff.svg"></p>
-                    <p>Status: <?php urlExists($sonarrURL) ;?></p>
-                </a>
-            </div>
-            <!--/col-lg-4 -->
-
-            <div class="col-lg-4">
-                <a id="radarr-status-link" href="" target="_top">
-                    <img id="radarr-service-img" src="" alt="">
-                    <h4>Radarr</h4>
-                    <p><img id="radarr-status-img" src="assets/img/puff.svg"></p>
-                </a>
-            </div>
-            <!--/col-lg-4 -->
-        </div>
     </div>
     <!-- /container -->
-    <p>
 
 </body>
 
 </html>
-

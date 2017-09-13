@@ -20,14 +20,11 @@ function urlExists($url) {
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
         if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401) {
-            echo 'Up!';
+            echo '<img src=assets/img/online.png style=width:100px>';
         } else {
-            echo 'Down!';
+            echo '<img src=assets/img/offline.png style=width:100px>';
         }
 
         curl_close($handle);
     };
-$sonarrURL='https://URL_HERE';
-$requestsURL='https://URL_HERE';
-$jackettURL='https://URL_HERE';
 ?>
