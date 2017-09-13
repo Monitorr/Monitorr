@@ -24,16 +24,8 @@
     </style>
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/config.php'); ?>
-    <?php include ('assets/php/loop.php'); ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="assets/js/ajax.js"></script>
-    <script type="text/javascript">
-    function autoRefresh_div() {
-        $("#statusloop").load("assets/php/loop.php", function() {
-            setTimeout(autoRefresh_div, 5000);
-        });
-    }
-    </script>
 
     <title><?php echo $config['title']; ?></title>
 
@@ -46,7 +38,7 @@
 
 </head>
 
-<body onload="autoRefresh_div()">
+<body>
 
     <!-- Fixed navbar -->
     <br>
@@ -64,8 +56,17 @@
         </div>
         <!-- /row -->
 
-        <div id="statusloop" class="row mt centered">
-            
+        <div class="row mt centered">
+            <?php foreach ($links as $t => $k) { ?>
+            <div class="col-lg-4">
+                <a id="<?php echo $t ;?>-status-link" href="<?php echo $k ;?>" target="_top">
+                    <img id="<?php echo $t ;?>-service-img" src="assets/img/<?php echo $t ;?>.png" style="width:55px" alt="">
+                    <h4><?php echo $t; ?></h4>
+                    <p><img id="<?php echo $t ;?>-status-img" src="assets/img/puff.svg"></p>
+                    <p><?php urlExists($k); ?></p>
+                </a>
+            </div>
+            <?php } ?>
         </div>
 
     </div>
