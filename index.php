@@ -26,7 +26,15 @@
     <?php include ('assets/config.php'); ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="assets/js/ajax.js"></script>
-
+    <script type="text/javascript">
+     $(document).ready(function() {
+       $("#statusloop").load('loop.php');
+       var refreshId = setInterval(function() {
+          $("#statusloop").load('loop.php');
+        }, 3000);
+       $.ajaxSetup({ cache: false });
+    });
+    </script>
     <title><?php echo $config['title']; ?></title>
 
     <!-- Bootstrap core CSS -->
