@@ -44,7 +44,7 @@
     <br>
     <a class="navbar-brand" href="#" style="width: 100%">
         <div class="text-center">
-            <b><?php echo $config['title']; ?></b>
+            <h1><?php echo $config['title']; ?></h1>
         </div>
     </a>
     <br>
