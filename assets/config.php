@@ -10,8 +10,8 @@ $config = array(
 $links = array(
 //  EXAMPLE ** WORK IN PROGRESS **
 //  'NAMEOFLINK' => 'http://APP.COM'
-//  'SONARR' => 'https://URL_HERE',
-//  'REQUESTS' =>'https://URL_HERE',
-//  'JACKETT' => 'https://URL_HERE'
+//  'Sonarr' => 'https://URL_HERE',
+//  'Requests' =>'https://URL_HERE',
+//  'Jackett' => 'https://URL_HERE'
 );
 ?>
