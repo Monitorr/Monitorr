@@ -9,8 +9,8 @@ $config = array(
 
 $links = array(
 //             EXAMPLE 
-  'Nameoflink' => 'http://APP.COM'
-  'TeSTSite' => 'https://google.com',
+//  'Nameoflink' => 'http://APP.COM'
+  'PLEX' => 'https://plex.tv',
 //  'Requests' =>'https://URL_HERE',
 //  'Jackett' => 'https://URL_HERE'
 );
