@@ -8,9 +8,9 @@ $config = array(
 );
 
 $links = array(
-//  EXAMPLE ** WORK IN PROGRESS **
-//  'NAMEOFLINK' => 'http://APP.COM'
-//  'Sonarr' => 'https://URL_HERE',
+//             EXAMPLE 
+  'Nameoflink' => 'http://APP.COM'
+  'TeSTSite' => 'https://google.com',
 //  'Requests' =>'https://URL_HERE',
 //  'Jackett' => 'https://URL_HERE'
 );
