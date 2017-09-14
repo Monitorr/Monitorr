@@ -2,10 +2,8 @@
 <?php include ('assets/config.php'); ?>
 <?php foreach ($links as $t => $k) { ?>
     <div class="col-lg-4">
-        <a id="<?php echo $t ;?>-status-link" href="<?php echo $k ;?>" target="_top">
-            <img id="<?php echo strtolower($t) ;?>-service-img" src="assets/img/<?php echo strtolower($t) ;?>.png" style="width:55px" alt="">
-            <h4><?php echo $t; ?></h4>
-            <p><img id="<?php echo strtolower($t) ;?>-status-img" src="assets/img/puff.svg"></p>
+        <a id="<?php echo strtolower($t) ;?>-status-link" href="<?php echo $k ;?>" target="_top">
+            
             <p><?php urlExists($k); ?></p>
         </a>
     </div>
