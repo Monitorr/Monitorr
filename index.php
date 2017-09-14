@@ -27,13 +27,10 @@
     <?php include ('assets/config.php'); ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">
-     $(document).ready(function() {
+     function statusCheck() {
        $("#statusloop").load('loop.php');
-       var refreshId = setInterval(function() {
-          $("#statusloop").load('loop.php');
-        }, 5000);
-       $.ajaxSetup({ cache: false });
-    });
+     }
+     setInterval(statusCheck, 5000);
     </script>
     <title><?php echo $config['title']; ?></title>
 
@@ -46,7 +43,7 @@
 
 </head>
 
-<body>
+<body onload="statusCheck()">
 
     <!-- Fixed navbar -->
     <br>
