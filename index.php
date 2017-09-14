@@ -50,7 +50,7 @@
 
     <!-- Fixed navbar -->
     <br>
-    <a class="navbar-brand" href="#" style="width: 100%">
+    <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>" style="width: 100%">
         <div class="text-center">
             <h1><?php echo $config['title']; ?></h1>
         </div>
