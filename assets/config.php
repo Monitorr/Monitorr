@@ -3,15 +3,16 @@
 //          EXAMPLE
 //  'dontedit' => 'EDITHERE'
 $config = array(
-    'title' => 'YOURSERVERNAMEHERE', // Site Title
-    'siteurl' => 'http://SERVERURL.COM'
+    'title' => 'YOUR SERVER NAME HERE', // Site Title
+    'siteurl' => 'http://github.com/seanvree/monitorr', // SITE URL
 );
 
 $links = array(
 //             EXAMPLE 
-//  'Nameoflink' => 'http://APP.COM'
+//  'Nameoflink' => 'http://APP.COM', 
   'PLEX' => 'https://plex.tv',
-//  'Requests' =>'https://URL_HERE',
-//  'Jackett' => 'https://URL_HERE'
+  'Github' =>'https://github.com',
+  'SAMPLE BROKEN' => 'https://doesntexist.net',
+
 );
 ?>
