@@ -10,9 +10,9 @@ $config = array(
 $links = array(
 //             EXAMPLE 
 //  'Nameoflink' => 'http://APP.COM', 
-  'PLEX' => 'https://plex.tv',
-  'Github' =>'https://github.com',
-  'SAMPLE BROKEN' => 'https://doesntexist.net',
+	'PLEX' => 'https://plex.tv',
+	'Github' =>'https://github.com',
+	'doesnt exist' => 'http://doesntexist.tv',
 
 );
 ?>
