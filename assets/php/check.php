@@ -22,13 +22,9 @@ function urlExists($url) {
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
         if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401) {
-            echo '<img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($t) .'.png" style="width:55px" alt="">';
-            echo '<h4>'. ucfirst($t) .'</h4>';
-            echo '<p><img id="'. strtolower($t) .'-status-img" src="assets/img/online.png" style="width:100px"></p>';
+	    echo '<p class="btnonline">Online</p>';
         } else {
-            echo '<img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($t) .'.png" style="width:55px" alt="">';
-            echo '<h4>'. ucfirst($t) .'</h4>';
-            echo '<p><img id="'. strtolower($t) .'-status-img" src="assets/img/offline.png" style="width:100px"></p>';
+	    echo '<p class="btnoffline">Offline</p>';
         }
 
         curl_close($handle);
