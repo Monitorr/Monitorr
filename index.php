@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--
+  __  __             _ _                  
+ |  \/  |           (_) |                 
+ | \  / | ___  _ __  _| |_ ___  _ __ _ __ 
+ | |\/| |/ _ \| '_ \| | __/ _ \| '__| '__|
+ | |  | | (_) | | | | | || (_) | |  | |   
+ |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|  
+          made for the community
+by @seanvree, @wjbeckett, and @jonfinley -->  
 <head>
     <link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />`
     <meta charset="utf-8">
@@ -28,7 +36,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">
      function statusCheck() {
-       $("#statusloop").load('loop.php');
+       $("#statusloop").load('assets/php/loop.php');
      }
      setInterval(statusCheck, 5000);
     </script>
