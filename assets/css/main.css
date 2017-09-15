@@ -7,7 +7,7 @@ body {
     font-size: 16px;
     color: #555;
     position: center;
-    overflow-y: hidden;
+    overflow-y: auto;
 
     -webkit-font-smoothing: antialiased;
 }
@@ -16,7 +16,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    color: #333;
+    color: white;
 }
 
 h1 {
@@ -143,4 +143,52 @@ i {
 	font-size: 45px;
 	font-weight: 300;
 	letter-spacing: 1px;
+}
+
+/* BUTTONS!!!! */ 
+.col-lg-4 {
+    vertical-align: top;
+    background-color: #3d3d3d;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px black;
+    margin: 10px;
+    padding: 20px 10px 5px 10px;
+    width: 250px;
+}
+.btnonline {
+    width: 179px;
+    margin: auto;
+    -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    background-color: #42e846;
+    -webkit-box-shadow: 0 5px 20px rgba(66,232,70,.7);
+    -moz-box-shadow: 0 5px 20px rgba(66,232,70,.7);
+    box-shadow: 0 5px 20px rgba(66,232,70,.7);
+    
+    /*font-family: Courier New;*/
+
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+.btnoffline {
+    width: 179px;
+    margin: auto;
+    -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    background-color: #e84242;
+    -webkit-box-shadow: 0 5px 20px rgba(232,66,66,.7);
+    -moz-box-shadow: 0 5px 20px rgba(232,66,66,.7);
+    box-shadow: 0 5px 20px rgba(232,66,66,.7);
+
+    /*font-family: Courier New;*/
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
 }
