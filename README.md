@@ -3,17 +3,17 @@
 <br>
 <b>Webfront that will live display the status of any webapp on your domain. </b>
 <br>
-Version:  PHP
-
+Version:  PHP [BETA]
 
 
 
 ## Screenshot :
  (in use as a practical application)
 
-![preview thumb] <img src="https://i.imgur.com/95EwyGG.png[/img]">
+<img src="https://i.imgur.com/I5fkX5Y.png[/img]">
 
-
+## Prerequisites:
+1) php-curl
 
 ## Configuration:
 1) Clone/download repository to your webserver (Suggested a Sub DIR),
@@ -22,10 +22,9 @@ Version:  PHP
 4) Add your Services also in `assets/config.php`
 5) Enjoy! Have a Donut. Drink a Coffee. 
 
-Considerations:
+Possible future implementations:
 1) Database instead of config file.
 2) Settings page.
-3) updated images.
 
 ## About Us:
 - Maintained by [seanvree](https://github.com/seanvree) (Windows Wizard),  [jonfinley](https://github.com/jonfinley) (Linux Dude) &  [wjbeckett](https://github.com/wjbeckett)
