@@ -8,7 +8,9 @@
  | |  | | (_) | | | | | || (_) | |  | |   
  |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|  
           made for the community
-by @seanvree, @wjbeckett, and @jonfinley -->  
+by @seanvree, @wjbeckett, and @jonfinley 
+https://github.com/seanvree/Monitorr 
+--> 
 <head>
     <link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />`
     <meta charset="utf-8">
@@ -33,13 +35,35 @@ by @seanvree, @wjbeckett, and @jonfinley -->
     </style>
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/config.php'); ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script type= "text/javascript" src="assets/js/jquery.min.js"> </script>
+        <script type= "text/javascript">
+            $(document).ready(function() {
+
+                function update() {
+                $.ajax({
+                type: 'POST',
+                url: 'assets/php/timestamp.php',
+                timeout: 10000,
+                success: function(data) {
+                    $("#timer").html(data); 
+                  window.setTimeout(update, 2000);
+                }
+                });
+                }
+                update();
+            });
+
+        </script>
+
+    <script src="assets/js/jquery.min.js"></script>
     <script type="text/javascript">
      function statusCheck() {
-       $("#statusloop").load('assets/php/loop.php');
-     }
-     setInterval(statusCheck, 5000);
+        $("#statusloop").load('assets/php/loop.php');
+        }
+        setInterval(statusCheck, 5000);
     </script>
+
     <title><?php echo $config['title']; ?></title>
 
     <!-- Bootstrap core CSS -->
@@ -62,6 +86,7 @@ by @seanvree, @wjbeckett, and @jonfinley -->
     </a>
     <br>
     <br>
+
     <div class="container">
         <div class="auto-style1">
             <a href="<?php echo $config['siteurl']; ?>">
@@ -72,7 +97,6 @@ by @seanvree, @wjbeckett, and @jonfinley -->
         <div id="statusloop" class="row mt centered">
             <!-- loop data goes here -->
         </div>
-
     </div>
     <!-- /container -->
 
