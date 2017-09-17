@@ -1,3 +1,5 @@
+include_once: 'assets\config.php';
+
 var radius = 65;
 var outerRadius = radius - 10;
 var dtg = new Date();
@@ -45,4 +47,28 @@ for (var i = 0; i < 12; i++) {
     for (j = 1; j < 5; j++) {
         createMark(ticks, outerRadius, 8, rotation + j * 6);
     }
+};
+
+$timezone = $config['timezone'];
+if (is_link('/etc/localtime')) {
+    $filename = readlink('/etc/localtime');
+    if (strpos($filename, '/usr/share/zoneinfo/') === 0) {
+        $timezone = substr($filename, 20);
+    }
 }
+elseif(file_exists('/etc/timezone')); {
+    $data = file_get_contents('/etc/timezone');
+    if ($data) {
+        $timezone = $data;
+    }
+}
+elseif(file_exists('/etc/sysconfig/clock')); {
+    $data = parse_ini_file('/etc/sysconfig/clock');
+    if (!empty($data['ZONE'])) {
+        $timezone = $data['ZONE'];
+    }
+}
+
+date_default_timezone_set($timezone);
+$timestamp = time();
+$server_date = date("D, d M Y");
