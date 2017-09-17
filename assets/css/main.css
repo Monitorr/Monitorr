@@ -5,7 +5,7 @@ body {
     font-size: 16px;
     color: #555;
     align-items: center;
-    position: center;
+    align-content: center;
     overflow-y: auto;
     -webkit-font-smoothing: antialiased;
 }
@@ -26,6 +26,7 @@ h6 {
 
 h1 {
     font-size: 40px;
+    font-weight: 400;
 }
 
 h3 {
@@ -36,6 +37,7 @@ h3 {
 h4 {
     color: #FFFFFF;
     font-size: 20px;
+    font-weight: 500;
 }
 
 
@@ -153,11 +155,11 @@ i {
 }
 
 
-/* BUTTONS!!!! */
+/* BUTTONS */
 
 .col-lg-4 {
     vertical-align: top;
-    align-content: center;
+    float: center;
     background-color: #3d3d3d;
     border-radius: 25px;
     box-shadow: 5px 5px 5px black;
@@ -205,16 +207,12 @@ i {
 
 /* CLOCK */
 
-html,
-body {
-    height: 100%;
-    margin: 0;
-}
-
 svg {
     width: 225px;
     height: 225px;
     align-content: center;
+    align-self: center;
+    align-items: center;
 }
 
 svg>g {
@@ -224,6 +222,12 @@ svg>g {
 circle {
     stroke: white;
     stroke-width: 2px;
+}
+
+.dtg {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 100;
 }
 
 #numbers {
