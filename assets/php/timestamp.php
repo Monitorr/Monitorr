@@ -1,4 +1,3 @@
-
 <?php // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
 include_once 'config.php';
 
@@ -29,9 +28,9 @@ if (is_link('/etc/localtime')) {
     $server_date = date("D, d M Y");
 ?>
 
-<?php 
+<?php
     echo "$server_date"?>
-    <br>
+<br>
 <?php
     $msg = date("H:i:s T");
     echo $msg;
