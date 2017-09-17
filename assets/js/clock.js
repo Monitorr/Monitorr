@@ -1,4 +1,4 @@
-var radius = 80;
+var radius = 65;
 var outerRadius = radius - 10;
 var dtg = new Date();
 var hands = {};
