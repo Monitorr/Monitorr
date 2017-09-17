@@ -1,4 +1,4 @@
-normalize.css v2.1.3 | MIT License | git.io/normalize */
+normalize.css v213  MIT License  git.io/normalize */
 
 article,
 aside,
@@ -781,6 +781,8 @@ pre code {
   margin-right: auto;
   margin-left: auto;
   vertical-align: top;
+  align-content: center;
+  align-items: center;
 }
 
 .container:before,
@@ -1920,7 +1922,7 @@ output {
   font-size: 14px;
   line-height: 1.428571429;
   color: #555555;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .form-control {
@@ -1931,7 +1933,7 @@ output {
   font-size: 14px;
   line-height: 1.428571429;
   color: #555555;
-  vertical-align: middle;
+  /* vertical-align: middle; */
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;
@@ -1988,13 +1990,13 @@ textarea.form-control {
   padding-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .radio label,
 .checkbox label {
   display: inline;
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
   font-weight: normal;
   cursor: pointer;
 }
