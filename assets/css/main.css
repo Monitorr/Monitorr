@@ -157,16 +157,17 @@ i {
 
 .col-lg-4 {
     vertical-align: top;
+    align-content: center;
     background-color: #3d3d3d;
     border-radius: 25px;
     box-shadow: 5px 5px 5px black;
-    margin: 10px;
-    padding: 0px 5px 10px 0px;
-    width: 250px;
+    margin: 20px;
+    padding: 0px 0px 5px 0px;
+    width: 200px;
 }
 
 .btnonline {
-    width: 179px;
+    width: 150px;
     margin: auto;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -184,7 +185,7 @@ i {
 }
 
 .btnoffline {
-    width: 179px;
+    width: 150px;
     margin: auto;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -211,8 +212,9 @@ body {
 }
 
 svg {
-    width: 250px;
-    height: 250px;
+    width: 225px;
+    height: 225px;
+    align-content: center;
 }
 
 svg>g {
