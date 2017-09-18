@@ -81,49 +81,46 @@ by @seanvree, @wjbeckett, and @jonfinley
 <body onload="statusCheck()">
 
     <!-- Fixed navbar -->
-    <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>" style="width: 100%">
-        <div class="text-center">
-            <h1><?php echo $config['title']; ?></h1>
-        </div>
-    </a>
+    <div class="navbar-brand">
+        <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>">
+            <?php echo $config['title']; ?>
+        </a>
+    </div>
 
     <div class="container">
-        <div class="auto-style1">
-            <a href="<?php echo $config['siteurl']; ?>">
-            </a>
-        </div>
-
         <!-- /row -->
         <div class="row mt centered"> 
             <div class="col-lg-4">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
-                    <g>
-                        <circle r="80"/>
-                        <g id="numbers"/>
-                        <g id="ticks"/>
-                        <g id="hands">
-                            <g id="hour">
-                                <line x1="-2" y1="0" x2="30" y2="0"/>
-                            </g>
-                            <g id="minute">
-                                <line x1="-3" y1="0" x2="55" y2="0"/>
-                            </g>
-                            <g id="second">
-                                <line x1="-4" y1="0" x2="75" y2="0"/>
+                <div class="clock">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
+                        <g>
+                            <circle r="55"/>
+                            <g id="numbers"/>
+                            <g id="ticks"/>
+                            <g id="hands">
+                                <g id="hour">
+                                    <line x1="-2" y1="0" x2="15" y2="0"/>
+                                </g>
+                                <g id="minute">
+                                    <line x1="-3" y1="0" x2="35" y2="0"/>
+                                </g>
+                                <g id="second">
+                                    <line x1="-4" y1="0" x2="50" y2="0"/>
+                                </g>
                             </g>
                         </g>
-                    </g>
-                </svg>
-                <h4><strong>Server local DTG:</strong></h4>
+                    </svg>
+                </div>
+
                 <div class="dtg" id="timer"></div>
+
+                <script src="assets/js/clock.js"></script>
+
             </div> 
 
-            <script  src="assets/js/clock.js"></script>
-        
             <div id="statusloop">            
                 <!-- loop data goes here -->
             </div>
-            
         </div>
 
     </div>
