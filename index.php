@@ -96,7 +96,7 @@ by @seanvree, @wjbeckett, and @jonfinley
         <!-- /row -->
         <div class="row mt centered"> 
             <div class="col-lg-4">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
                     <g>
                         <circle r="80"/>
                         <g id="numbers"/>
