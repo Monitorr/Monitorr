@@ -213,6 +213,8 @@ svg {
     align-content: center;
     align-self: center;
     align-items: center;
+    float: right;
+    Margin-top: -25px
 }
 
 svg>g {
@@ -228,6 +230,7 @@ circle {
     color: #ffffff;
     font-size: 15px;
     font-weight: 100;
+    margin: 18px;
 }
 
 #numbers {
