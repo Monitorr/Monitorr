@@ -1,6 +1,6 @@
-include_once: 'assets\config.php';
+// include_once('../config.php');
 
-var radius = 65;
+var radius = 45;
 var outerRadius = radius - 10;
 var dtg = new Date();
 var hands = {};
@@ -47,7 +47,7 @@ for (var i = 0; i < 12; i++) {
     for (j = 1; j < 5; j++) {
         createMark(ticks, outerRadius, 8, rotation + j * 6);
     }
-};
+}
 
 $timezone = $config['timezone'];
 if (is_link('/etc/localtime')) {
