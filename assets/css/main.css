@@ -43,14 +43,20 @@ h4 {
 
 /* Paragraph & Typographic */
 
+
+/* 
 p {
     line-height: 28px;
     margin-bottom: 25px;
     font-size: 25px;
-}
+} */
 
 .centered {
     text-align: center;
+}
+
+br {
+    line-height: 5px;
 }
 
 
@@ -109,7 +115,7 @@ hr {
 
 .mt {
     margin-top: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .form-control {
@@ -159,18 +165,20 @@ i {
 
 .col-lg-4 {
     vertical-align: top;
-    float: center;
     background-color: #3d3d3d;
     border-radius: 25px;
     box-shadow: 5px 5px 5px black;
-    margin: 20px;
-    padding: 0px 0px 5px 0px;
-    width: 200px;
+    margin: 10px;
+    padding: 10px 0px 5px 0px;
+    width: 130px;
+    height: 190px;
 }
 
 .btnonline {
-    width: 150px;
-    margin: auto;
+    width: 85px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -179,16 +187,17 @@ i {
     -moz-box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
     box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
     /*font-family: Courier New;*/
-    color: #ffffff;
-    font-size: 30px;
-    font-weight: 400;
-    padding: 10px 20px 10px 20px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 500;
     text-decoration: none;
 }
 
 .btnoffline {
-    width: 150px;
-    margin: auto;
+    width: 85px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -198,9 +207,8 @@ i {
     box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
     /*font-family: Courier New;*/
     color: #ffffff;
-    font-size: 30px;
+    font-size: 15px;
     font-weight: 400;
-    padding: 10px 20px 10px 20px;
     text-decoration: none;
 }
 
@@ -208,29 +216,36 @@ i {
 /* CLOCK */
 
 svg {
-    width: 225px;
-    height: 225px;
+    width: 135px;
+    height: 135px;
     align-content: center;
     align-self: center;
     align-items: center;
     float: right;
-    Margin-top: -25px
+    Margin-top: -10px
 }
 
 svg>g {
-    transform: translate(128px, 128px);
+    transform: translate(75px, 64px);
 }
 
 circle {
-    stroke: white;
-    stroke-width: 2px;
+    stroke: #FFFFFF;
+    stroke-width: 1.5px;
 }
 
 .dtg {
     color: #ffffff;
-    font-size: 15px;
-    font-weight: 100;
-    margin: 18px;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 5px;
+}
+
+.clock {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 5px;
 }
 
 #numbers {
@@ -248,7 +263,7 @@ circle {
 
 #hands {
     stroke: white;
-    stroke-width: 4px;
+    stroke-width: 3px;
     transform: rotate(-90deg);
 }
 
