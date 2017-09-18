@@ -803,21 +803,39 @@ pre code {
     clear: both;
 }
 
-@media (min-width: 360px) {
+@media (max-width: 399px) {
     .container {
-        width: 250px;
+	width: 170px;
+    }
+}
+
+@media (min-width: 400px) {
+    .container {
+        width: 300px;
+    }
+}
+
+@media (min-width: 450px) {
+    .container {
+        width: 450px;
+    }
+}
+
+@media (min-width: 600px) {
+    .container {
+	width: 600px;
     }
 }
 
 @media (min-width: 768px) {
     .container {
-        width: 750px;
+        width: 600px;
     }
 }
 
 @media (min-width: 992px) {
     .container {
-        width: 970px;
+        width: 600px;
     }
 }
 
@@ -4479,6 +4497,12 @@ textarea.input-group-sm>.input-group-btn>.btn {
     bottom: 0;
     margin-bottom: 0;
     border-width: 1px 0 0;
+}
+
+@media only screen and (max-width: 436px) {
+    .navbar-brand {
+        line-height: 30px !important;
+    }
 }
 
 .navbar-brand {
