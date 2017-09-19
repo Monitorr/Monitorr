@@ -45,7 +45,7 @@ by @seanvree, @wjbeckett, and @jonfinley
     </style>
 
     <?php include ('assets/php/check.php') ;?>
-
+    <?php include ('assets/php/gitinfo.php'); ?>
     <?php include ('assets/config.php'); ?>
 
     <script src="assets/js/jquery.min.js"> </script>
@@ -125,7 +125,8 @@ by @seanvree, @wjbeckett, and @jonfinley
 
     </div>
     <!-- /container -->
-
+    <div class="footer">
+        <p><a href="https://github.com/seanvree/Monitorr/tree/develop"><?php echo $branch; ?></a>-<a href="<?php echo $commiturl; ?>"><?php echo $commit; ?></a></p>
 </body>
 
 </html>

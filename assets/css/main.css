@@ -290,3 +290,14 @@ line {
         transform: rotate(1turn);
     }
 }
+
+
+/* Footer */
+.footer {
+    text-align: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color:#555555;
+}
