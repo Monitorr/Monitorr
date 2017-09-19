@@ -1,55 +1,70 @@
-
-
 body {
-  background-color: #1F1F1F;
+    background-color: #1F1F1F;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 16px;
     color: #555;
-    position: center;
+    align-items: center;
+    align-content: center;
     overflow-y: auto;
-
     -webkit-font-smoothing: antialiased;
 }
 
+
 /* Titles */
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     color: white;
 }
 
 h1 {
-	font-size: 40px;
+    font-size: 40px;
+    font-weight: 400;
 }
 
 h3 {
-	color: #95a5a6;
-	font-weight: 400;
+    color: #95a5a6;
+    font-weight: 400;
 }
 
 h4 {
-	color: #95a5a6;
-	font-weight: 400;
-	font-size: 30px;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 500;
 }
 
+
 /* Paragraph & Typographic */
+
+
+/* 
 p {
     line-height: 28px;
     margin-bottom: 25px;
     font-size: 25px;
-}
+} */
 
 .centered {
     text-align: center;
 }
 
+br {
+    line-height: 5px;
+}
+
+
 /* Links */
+
 a {
     color: #f2f2f2;
     word-wrap: break-word;
-
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
     -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
     -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -73,7 +88,7 @@ a:after {
     transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
- hr {
+hr {
     display: block;
     height: 1px;
     border: 0;
@@ -83,53 +98,53 @@ a:after {
 }
 
 .navbar-default {
-	background-color: #1F1F1F;
-	border-color: transparent;
+    background-color: #1F1F1F;
+    border-color: transparent;
 }
 
 .navbar-default .navbar-brand {
-	color: white;
+    color: white;
 }
 
-.navbar-default .navbar-nav > li > a {
-	color: white;
+.navbar-default .navbar-nav>li>a {
+    color: white;
 }
+
 
 /* Helpers */
 
 .mt {
-	margin-top: 10px;
-	margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .form-control {
-	height: 42px;
-	font-size: 18px;
-	width: 280px;
+    height: 42px;
+    font-size: 18px;
+    width: 280px;
 }
 
 i {
-	margin: 8px;
-	color: #3498db; 
+    margin: 8px;
+    color: #3498db;
 }
 
 
 /* HeaderWrap */
+
 #headerwrap {
-	/* background: url(../img/bg01.jpg) no-repeat center top; */
-	background-color: #333332;
-	margin-top: -20px;
-	padding-top:80px;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 0px;
-	width: 100%;
-	
+    /* background: url(../img/bg01.jpg) no-repeat center top; */
+    background-color: #333332;
+    margin-top: -20px;
+    padding-top: 80px;
+    background-attachment: relative;
+    background-position: center center;
+    min-height: 0px;
+    width: 100%;
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
-
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -137,58 +152,152 @@ i {
 }
 
 #headerwrap h1 {
-	margin-top: 60px;
-	margin-bottom: 15px;
-	color: white;
-	font-size: 45px;
-	font-weight: 300;
-	letter-spacing: 1px;
+    margin-top: 60px;
+    margin-bottom: 15px;
+    color: white;
+    font-size: 45px;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
-/* BUTTONS!!!! */ 
+
+/* BUTTONS */
+
 .col-lg-4 {
     vertical-align: top;
     background-color: #3d3d3d;
     border-radius: 25px;
     box-shadow: 5px 5px 5px black;
     margin: 10px;
-    padding: 20px 10px 5px 10px;
-    width: 250px;
+    padding: 10px 0px 5px 0px;
+    width: 130px;
+    height: 190px;
 }
+
 .btnonline {
-    width: 179px;
-    margin: auto;
+    width: 85px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     background-color: #42e846;
-    -webkit-box-shadow: 0 5px 20px rgba(66,232,70,.7);
-    -moz-box-shadow: 0 5px 20px rgba(66,232,70,.7);
-    box-shadow: 0 5px 20px rgba(66,232,70,.7);
-    
+    -webkit-box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
+    -moz-box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
+    box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
     /*font-family: Courier New;*/
-
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 400;
-    padding: 10px 20px 10px 20px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 500;
     text-decoration: none;
 }
+
 .btnoffline {
-    width: 179px;
-    margin: auto;
+    width: 85px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     background-color: #e84242;
-    -webkit-box-shadow: 0 5px 20px rgba(232,66,66,.7);
-    -moz-box-shadow: 0 5px 20px rgba(232,66,66,.7);
-    box-shadow: 0 5px 20px rgba(232,66,66,.7);
-
+    -webkit-box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
+    -moz-box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
+    box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
     /*font-family: Courier New;*/
     color: #ffffff;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 400;
-    padding: 10px 20px 10px 20px;
     text-decoration: none;
+}
+
+
+/* CLOCK */
+
+svg {
+    width: 135px;
+    height: 135px;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    float: right;
+    Margin-top: -10px
+}
+
+svg>g {
+    transform: translate(75px, 64px);
+}
+
+circle {
+    stroke: #FFFFFF;
+    stroke-width: 1.5px;
+}
+
+.dtg {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 5px;
+}
+
+.clock {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 5px;
+}
+
+#numbers {
+    transform: translate(0, 6px);
+}
+
+#numbers>text {
+    fill: white;
+    text-anchor: middle;
+}
+
+#ticks>line {
+    stroke: white;
+}
+
+#hands {
+    stroke: white;
+    stroke-width: 3px;
+    transform: rotate(-90deg);
+}
+
+line {
+    animation: handrotation infinite linear;
+}
+
+#hour>line {
+    animation-duration: 86400s;
+}
+
+#minute>line {
+    animation-duration: 3600s;
+}
+
+#second>line {
+    animation-duration: 60s;
+    stroke: red;
+    stroke-width: 2px;
+}
+
+@keyframes handrotation {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+
+/* Footer */
+.footer {
+    text-align: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color:#555555;
 }
