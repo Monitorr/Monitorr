@@ -124,9 +124,16 @@ by @seanvree, @wjbeckett, and @jonfinley
         </div>
 
     </div>
+
+    <div id="systemstats" class="row mt centered">
+    	<div id="cpu">
+    		<img https://img.shields.io/badge/cpu-<?php $system->getCpuLoadPercentage() ;?>%25-brightgreen.svg>
+    	</div>
+    </div>
     <!-- /container -->
     <div class="footer">
         <p><a href="https://github.com/seanvree/Monitorr/tree/develop"><?php echo $branch; ?></a>-<a href="<?php echo $commiturl; ?>"><?php echo $commit; ?></a></p>
+    </div>
 </body>
 
 </html>
