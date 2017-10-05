@@ -9,7 +9,7 @@
   <span><?php echo round($system->getCpuLoadPercentage(), 2) ;?>%</span>
 </div>
 <div class="double-val-label">
-  <span class="success">RAM</span>
+  <span class="warning">RAM</span>
   <span><?php echo round(getServerMemoryUsage(true), 2); ?>%</span>
 </div>
 <div class="double-val-label">
