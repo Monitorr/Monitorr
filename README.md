@@ -1,7 +1,7 @@
 
 ## MONITORR
-<br>
 <b>Webfront that will live display the status of any webapp on your domain. </b>
+<br>
 <br>
 Version:  PHP [BETA]
 
@@ -10,7 +10,9 @@ Version:  PHP [BETA]
 ## Screenshot :
  (in use as a practical application)
 
-<img src="https://i.imgur.com/I5fkX5Y.png[/img]">
+<img src="https://i.imgur.com/88eAAKK.png[/img]">
+
+
 
 ## Prerequisites:
 1) php-curl
@@ -27,6 +29,10 @@ Possible future implementations:
 2) Settings page.
 
 ## About Us:
-- Maintained by [seanvree](https://github.com/seanvree) (Windows Wizard),  [jonfinley](https://github.com/jonfinley) (Linux Dude) &  [wjbeckett](https://github.com/wjbeckett)
+- [seanvree](https://github.com/seanvree) (Windows Wizard)
+- [jonfinley](https://github.com/jonfinley) (Linux Dude)
+- [wjbeckett](https://github.com/wjbeckett)
 
-- We usually hang out here:   [![Gitter](https://img.shields.io/badge/Gitter-Organizr-ed1965.svg?style=flat-square)](https://gitter.im/Organizrr/Lobby)
+<br>
+
+We usually hang out here:   [![Gitter](https://img.shields.io/badge/Gitter-Organizr-ed1965.svg?style=flat-square)](https://gitter.im/Organizrr/Lobby)
