@@ -302,7 +302,53 @@ line {
     color:#555555;
 }
 
-/* Shields */
-.shields {
-    padding-right: 10px;
+
+/* BADGES */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
+
+#main-title {
+    font-family: 'Roboto', sans-serif;
+    font-size : 3em;
+    margin: 0.1em;
+}
+.double-val-label {
+    display: table;
+    font-family: 'Roboto', sans-serif;
+    margin: 0.4em;
+}
+.double-val-label>span {
+    background-color: #656565;
+    color: #ffffff;
+    display: table-cell;
+    font-size: 0.9em;
+    font-weight: 400;
+    line-height: 1;
+    padding: .3em .6em;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+    &:first-child {
+        border-bottom-left-radius: 0.25em;
+        border-top-left-radius: .25em;
+    }
+    &:nth-child(2) {
+        border-bottom-right-radius: 0.25em;
+        border-top-right-radius: .25em;
+    }
+}
+.double-val-label>span.primary {
+    background-color: #337ab7;
+}
+.double-val-label>span.success {
+    background-color: #5cb85c;
+}
+.double-val-label>span.info {
+    background-color: #5bc0de;
+}
+.double-val-label>span.warning {
+    background-color: #f0ad4e;
+}
+.double-val-label>span.danger {
+    background-color: #d9534f;
 }
