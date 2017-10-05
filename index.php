@@ -47,6 +47,10 @@ by @seanvree, @wjbeckett, and @jonfinley
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/php/gitinfo.php'); ?>
     <?php include ('assets/config.php'); ?>
+    <?php include ('assets/php/sysinfo.php'); ?>
+    <?php include ('assets/php/meminfo.php'); ?>
+    <?php include ('assets/php/uptime.php'); ?>
+
 
     <script src="assets/js/jquery.min.js"> </script>
         <script type= "text/javascript">
@@ -124,9 +128,19 @@ by @seanvree, @wjbeckett, and @jonfinley
         </div>
 
     </div>
+
+    <div id="systemstats" class="row mt centered">
+        <div id="stats">
+                <img class="shields" src="https://img.shields.io/badge/CPU-<?php echo round($system->getCpuLoadPercentage(), 2) ;?>%25-brightgreen.svg">
+                <img class="shields" src="https://img.shields.io/badge/RAM-<?php echo round(getServerMemoryUsage(true), 2); ?>%25-brightgreen.svg">
+                <img class="shields" src="https://img.shields.io/badge/uptime-<?php echo $total_uptime ;?>-blue.svg">
+        </div>
+    </div>
+
     <!-- /container -->
     <div class="footer">
         <p><a href="https://github.com/seanvree/Monitorr/tree/develop"><?php echo $branch; ?></a>-<a href="<?php echo $commiturl; ?>"><?php echo $commit; ?></a></p>
+    </div>
 </body>
 
 </html>

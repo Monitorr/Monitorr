@@ -301,3 +301,8 @@ line {
     text-decoration: none;
     color:#555555;
 }
+
+/* Shields */
+.shields {
+    padding-right: 10px;
+}
