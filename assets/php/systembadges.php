@@ -1,6 +1,6 @@
-<?php include ('assets/php/sysinfo.php'); ?>
-<?php include ('assets/php/meminfo.php'); ?>
-<?php include ('assets/php/uptime.php'); ?>
+<?php include ('sysinfo.php'); ?>
+<?php include ('meminfo.php'); ?>
+<?php include ('uptime.php'); ?>
 
 <link rel="stylesheet" href="assets/css/main.css">
 
