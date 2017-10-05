@@ -1,4 +1,4 @@
-<?php
+ <?php
     // Returns used memory (either in percent (without percent sign) or free and overall in bytes)
     function getServerMemoryUsage($getPercentage=true)
     {
@@ -86,11 +86,5 @@
             return @round($bytes/pow(1000,($i=floor(log($bytes,1000)))),2) .' '. (isset($unit[$i]) ? $unit[$i] : 'B');
         }
     }
-    // Memory usage: 4.55 GiB / 23.91 GiB (19.013557664178%)
-    $memUsage = getServerMemoryUsage(false);
-    echo sprintf("Memory usage: %s / %s (%s%%)",
-        getNiceFileSize($memUsage["total"] - $memUsage["free"]),
-        getNiceFileSize($memUsage["total"]),
-        getServerMemoryUsage(true)
-    );
+
 ?>
