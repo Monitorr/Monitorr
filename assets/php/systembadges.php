@@ -2,6 +2,8 @@
 <?php include ('assets/php/meminfo.php'); ?>
 <?php include ('assets/php/uptime.php'); ?>
 
+<link rel="stylesheet" href="assets/css/main.css">
+
 <div class="double-val-label">
   <span class="success">CPU</span>
   <span><?php echo round($system->getCpuLoadPercentage(), 2) ;?>%</span>

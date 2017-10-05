@@ -302,14 +302,8 @@ line {
     color:#555555;
 }
 
-/* Shields */
-.shields {
-    padding-right: 10px;
-}
 
-
-
-
+/* BADGES */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
 
