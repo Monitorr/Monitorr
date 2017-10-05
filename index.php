@@ -14,7 +14,7 @@ by @seanvree, @wjbeckett, and @jonfinley
 --> 
 
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />`
+    <link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,6 +47,8 @@ by @seanvree, @wjbeckett, and @jonfinley
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/php/gitinfo.php'); ?>
     <?php include ('assets/config.php'); ?>
+    
+
 
     <script src="assets/js/jquery.min.js"> </script>
         <script type= "text/javascript">
@@ -70,6 +72,7 @@ by @seanvree, @wjbeckett, and @jonfinley
         <script type="text/javascript">
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
+                $("#stats").load('assets/php/systembadges.php');
                 }
                 setInterval(statusCheck, 5000);
         </script>
@@ -124,9 +127,15 @@ by @seanvree, @wjbeckett, and @jonfinley
         </div>
 
     </div>
+
+    <div id="stats" class="row mt centered" style="display:flex;justify-content:center;align-items:center;">
+        <!-- system badges go here -->
+    </div>
+
     <!-- /container -->
     <div class="footer">
         <p><a href="https://github.com/seanvree/Monitorr/tree/develop"><?php echo $branch; ?></a>-<a href="<?php echo $commiturl; ?>"><?php echo $commit; ?></a></p>
+    </div>
 </body>
 
 </html>
