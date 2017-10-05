@@ -47,9 +47,7 @@ by @seanvree, @wjbeckett, and @jonfinley
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/php/gitinfo.php'); ?>
     <?php include ('assets/config.php'); ?>
-    <?php include ('assets/php/sysinfo.php'); ?>
-    <?php include ('assets/php/meminfo.php'); ?>
-    <?php include ('assets/php/uptime.php'); ?>
+    
 
 
     <script src="assets/js/jquery.min.js"> </script>
@@ -74,6 +72,7 @@ by @seanvree, @wjbeckett, and @jonfinley
         <script type="text/javascript">
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
+                $("#stats").load('assets/php/systembadges.php');
                 }
                 setInterval(statusCheck, 5000);
         </script>
@@ -129,11 +128,9 @@ by @seanvree, @wjbeckett, and @jonfinley
 
     </div>
 
-    <div id="systemstats" class="row mt centered">
+    <div class="row mt centered">
         <div id="stats">
-                <img class="shields" src="https://img.shields.io/badge/CPU-<?php echo round($system->getCpuLoadPercentage(), 2) ;?>%25-brightgreen.svg">
-                <img class="shields" src="https://img.shields.io/badge/RAM-<?php echo round(getServerMemoryUsage(true), 2); ?>%25-brightgreen.svg">
-                <img class="shields" src="https://img.shields.io/badge/uptime-<?php echo $total_uptime ;?>-blue.svg">
+                <!-- system badges go here -->
         </div>
     </div>
 
