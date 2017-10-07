@@ -24,7 +24,7 @@ function urlExists($url) {
 
         if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401) {
             echo '<div class="col-lg-4">';
-            echo '<a href="'. $k .'" style="display: block">';
+            echo '<a href="'. $k .'" target="_blank" style="display: block">';
             echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($t) .'.png" style="width:85px" alt=""></p>';
             echo '<p><strong style="text-decoration:none">'. ucfirst($t) .'</strong></p>';
             echo '<p class="btnonline">Online</p>';
