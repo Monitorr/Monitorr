@@ -36,6 +36,5 @@ Possible future implementations:
 - [wjbeckett](https://github.com/wjbeckett)
 
 <br>
-[![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
-Need live help?  Join here: 
-We usually hang out here:   [![Gitter](https://img.shields.io/badge/Gitter-Organizr-ed1965.svg?style=flat-square)](https://gitter.im/Organizrr/Lobby)
+
+
