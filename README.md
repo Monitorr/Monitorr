@@ -39,4 +39,7 @@ Possible future implementations:
 
 We usually hang out here:   [![Gitter](https://img.shields.io/badge/Gitter-Organizr-ed1965.svg?style=flat-square)](https://gitter.im/Organizrr/Lobby)
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/Seanvree)
+Need live help?  Join here: [![Gitter chat](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
+
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/gitterHQ/gitter)
+
