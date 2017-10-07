@@ -1,5 +1,7 @@
 
 ## MONITORR
+
+
 <b>Webfront that will live display the status of any webapp on your domain. </b>
 <br>
 <br>
@@ -37,6 +39,12 @@ Possible future implementations:
 
 <br>
 
+
+
 Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
+
+
+
+
 
 
