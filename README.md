@@ -1,7 +1,7 @@
 
 ## MONITORR
 
-[![Join the chat at https://gitter.im/Monitorr-chat/Lobby](https://badges.gitter.im/Monitorr-chat/Lobby.svg)](https://gitter.im/Monitorr-chat/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <b>Webfront that will live display the status of any webapp on your domain. </b>
 <br>
 <br>
@@ -36,5 +36,6 @@ Possible future implementations:
 - [wjbeckett](https://github.com/wjbeckett)
 
 <br>
-
+[![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
+Need live help?  Join here: 
 We usually hang out here:   [![Gitter](https://img.shields.io/badge/Gitter-Organizr-ed1965.svg?style=flat-square)](https://gitter.im/Organizrr/Lobby)
