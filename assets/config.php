@@ -7,7 +7,7 @@ $config = array(
 // For Windows, set the timezone. Default is UTC Time.
 // I.E. ($timezone = 'America/Los_Angeles',)
     'timezone' => 'UTC',
-    'title' => 'YOUR SERVER NAME HERE', // Site Title
+    'title' => 'Monitorr', // Site Title
     'siteurl' => 'http://localhost', // SITE URL
 );
 
