@@ -23,9 +23,11 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 ## Configuration:
 1) Clone/download repository to your webserver (Suggested a Sub DIR),
+2) Copy `assets/config.php.sample` to `assets/config.php`,
 2) Replace  "YOUR SERVER NAME HERE" in `assets/config.php`, 
 3) Replace  "http://github.com/seanvree/monitorr" in `assets/config.php`, 
 4) Add your Services also in `assets/config.php`
+	eg. `"Nameoflink" => 'http://APP.COM',`
 5) Enjoy! Have a Donut. Drink a Coffee. 
 
 Possible future implementations:
