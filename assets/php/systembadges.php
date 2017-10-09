@@ -1,16 +1,14 @@
-<?php include ('sysinfo.php'); ?>
-<?php include ('meminfo.php'); ?>
-<?php include ('uptime.php'); ?>
+<?php include ('functions.php'); ?>
 
 <link rel="stylesheet" href="assets/css/main.css">
 
 <div class="double-val-label">
   <span class="success">CPU</span>
-  <span><?php echo round($system->getCpuLoadPercentage(), 2) ;?>%</span>
+  <span><?php echo $cpuLoad; ?>%</span>
 </div>
 <div class="double-val-label">
   <span class="warning">RAM</span>
-  <span><?php echo round(getServerMemoryUsage(true), 2); ?>%</span>
+  <span><?php echo round(getRamFree() / 1024 / 1024); ?>%</span>
 </div>
 <div class="double-val-label">
   <span class="primary">uptime</span>
