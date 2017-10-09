@@ -16,9 +16,11 @@ $links = array(
 //  Add your services here           
 //	EXAMPLE 
 //  "Nameoflink" => 'http://APP.COM', 
+"monitorr" => 'http://localhost/monitorr',
 "PLEX" => 'http://localhost:32400/web/',
 "OMBI" => 'http://localhost:3579',
-"Sonarr" => 'http://localhost:38084',
+"Sonarr" => 'http://localhost:8989',
+"radarr" => 'http://localhost:7878',
 
 );
 ?>
