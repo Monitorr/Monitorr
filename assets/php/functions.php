@@ -105,6 +105,37 @@ $cpuLoad = getServerLoad();
 
 
 // getRAM function
+
+function getRamTotal()
+{
+    $result = 0;
+    if (PHP_OS == 'WINNT') {
+        $lines = null;
+        $matches = null;
+        exec('wmic ComputerSystem get TotalPhysicalMemory /Value', $lines);
+        if (preg_match('/^TotalPhysicalMemory\=(\d+)$/', $lines[2], $matches)) {
+            $result = $matches[1];
+        }
+    } else {
+        $fh = fopen('/proc/meminfo', 'r');
+        while ($line = fgets($fh)) {
+            $pieces = array();
+            if (preg_match('/^MemTotal:\s+(\d+)\skB$/', $line, $pieces)) {
+                $result = $pieces[1];
+                // KB to Bytes
+                $result = $result * 1024;
+                break;
+            }
+        }
+        fclose($fh);
+    }
+    // KB RAM Total
+    return (int) $result;
+}
+
+//define totalRam variable
+$totalRam = getRamTotal();
+
 function getRamFree()
 {
     $result = 0;
@@ -131,6 +162,8 @@ function getRamFree()
     return (int) $result;
 }
 
+//define free ram variable
+$freeRam = getRamFree();
 
 //uptime
 $uptime = shell_exec("cut -d. -f1 /proc/uptime");

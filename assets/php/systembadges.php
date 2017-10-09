@@ -4,11 +4,11 @@
 
 <div class="double-val-label">
   <span class="success">CPU</span>
-  <span><?php echo $cpuLoad; ?>%</span>
+  <span><?php echo round($cpuLoad, 2); ?>%</span>
 </div>
 <div class="double-val-label">
   <span class="warning">RAM</span>
-  <span><?php echo round(getRamFree() / 1024 / 1024); ?>%</span>
+  <span><?php echo round(($freeRam / $totalRam)*100); ?>%</span>
 </div>
 <div class="double-val-label">
   <span class="primary">uptime</span>
