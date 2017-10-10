@@ -117,17 +117,14 @@ function getRamTotal()
             $result = $matches[1];
         }
     } else {
-        $fh = fopen('/proc/meminfo', 'r');
-        while ($line = fgets($fh)) {
-            $pieces = array();
-            if (preg_match('/^MemTotal:\s+(\d+)\skB$/', $line, $pieces)) {
-                $result = $pieces[1];
-                // KB to Bytes
-                $result = $result * 1024;
-                break;
+        $top = shell_exec('free -m');
+        $output = preg_split('/[\s]/', $top);
+            for ($i=count($output)-1; $i>=0; $i--) {
+            if ($output[$i] == '') unset ($output[$i]);
             }
-        }
-        fclose($fh);
+        $output = array_values($output);
+        $ramTotal = $output[7]/1000; // GB
+        $result = $ramTotal;
     }
     // KB RAM Total
     return (int) $result;
@@ -147,16 +144,14 @@ function getRamFree()
             $result = $matches[1] * 1024;
         }
     } else {
-        $fh = fopen('/proc/meminfo', 'r');
-        while ($line = fgets($fh)) {
-            $pieces = array();
-            if (preg_match('/^MemFree:\s+(\d+)\skB$/', $line, $pieces)) {
-                // KB to Bytes
-                $result = $pieces[1] * 1024;
-                break;
+        $top = shell_exec('free -m');
+        $output = preg_split('/[\s]/', $top);
+            for ($i=count($output)-1; $i>=0; $i--) {
+            if ($output[$i] == '') unset ($output[$i]);
             }
-        }
-        fclose($fh);
+        $output = array_values($output);
+        $ramFree = $output[16]/1000; // GB
+        $result = $ramFree;
     }
     // KB RAM Total
     return (int) $result;
@@ -164,6 +159,9 @@ function getRamFree()
 
 //define free ram variable
 $freeRam = getRamFree();
+
+//get Used RAM
+$usedRam = $totalRam - $freeRam;
 
 //uptime
 $uptime = shell_exec("cut -d. -f1 /proc/uptime");
