@@ -8,7 +8,7 @@
 </div>
 <div class="double-val-label">
   <span class="warning">RAM</span>
-  <span><?php echo round(($usedRam / $totalRam)*100); ?>%</span>
+  <span><?php echo round(($usedRam / $totalRam) * 100); ?>%</span>
 </div>
 <div class="double-val-label">
   <span class="primary">uptime</span>
