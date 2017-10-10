@@ -13,18 +13,18 @@ function urlExists($url) {
 
         $handle = curl_init($url);
         curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($c, CURLOPT_HEADER, true);
-        curl_setopt($c, CURLOPT_NOBODY, true);
-        curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($c, CURLOPT_SSL_VERIFYHOST, true);
-        curl_setopt($c, CURLOPT_URL, $url);
+        curl_setopt($handle, CURLOPT_HEADER, true);
+        curl_setopt($handle, CURLOPT_NOBODY, true);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($handle, CURLOPT_URL, $url);
 
         $response = curl_exec($handle);
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
         if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401) {
             echo '<div class="col-lg-4">';
-            echo '<a href="'. $k .'" style="display: block">';
+            echo '<a href="'. $k .'" target="_blank" style="display: block">';
             echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($t) .'.png" style="width:85px" alt=""></p>';
             echo '<p><strong style="text-decoration:none">'. ucfirst($t) .'</strong></p>';
             echo '<p class="btnonline">Online</p>';

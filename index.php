@@ -10,11 +10,11 @@
  |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|  
           made for the community
 by @seanvree, @wjbeckett, and @jonfinley 
-  https://github.com/seanvree/Monitorr 
+  https://github.com/Monitorr/Monitorr 
 --> 
 
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,37 +92,41 @@ by @seanvree, @wjbeckett, and @jonfinley
 
     <div class="container">
         <!-- /row -->
-        <div class="row mt centered"> 
-            <div class="col-lg-4">
-                <div class="clock">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
-                        <g>
-                            <circle r="55"/>
-                            <g id="numbers"/>
-                            <g id="ticks"/>
-                            <g id="hands">
-                                <g id="hour">
-                                    <line x1="-2" y1="0" x2="15" y2="0"/>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row mt centered"> 
+                    <div class="col-lg-4">
+                        <div class="clock">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
+                                <g>
+                                    <circle r="55"/>
+                                    <g id="numbers"/>
+                                    <g id="ticks"/>
+                                    <g id="hands">
+                                        <g id="hour">
+                                            <line x1="-2" y1="0" x2="15" y2="0"/>
+                                        </g>
+                                        <g id="minute">
+                                            <line x1="-3" y1="0" x2="35" y2="0"/>
+                                        </g>
+                                        <g id="second">
+                                            <line x1="-4" y1="0" x2="50" y2="0"/>
+                                        </g>
+                                    </g>
                                 </g>
-                                <g id="minute">
-                                    <line x1="-3" y1="0" x2="35" y2="0"/>
-                                </g>
-                                <g id="second">
-                                    <line x1="-4" y1="0" x2="50" y2="0"/>
-                                </g>
-                            </g>
-                        </g>
-                    </svg>
+                            </svg>
+                        </div>
+
+                        <div class="dtg" id="timer"></div>
+
+                        <script src="assets/js/clock.js"></script>
+
+                    </div> 
+
+                    <div id="statusloop">            
+                        <!-- loop data goes here -->
+                    </div>
                 </div>
-
-                <div class="dtg" id="timer"></div>
-
-                <script src="assets/js/clock.js"></script>
-
-            </div> 
-
-            <div id="statusloop">            
-                <!-- loop data goes here -->
             </div>
         </div>
 
@@ -134,7 +138,7 @@ by @seanvree, @wjbeckett, and @jonfinley
 
     <!-- /container -->
     <div class="footer">
-        <p><a href="https://github.com/seanvree/Monitorr/tree/develop"><?php echo $branch; ?></a>-<a href="<?php echo $commiturl; ?>"><?php echo $commit; ?></a></p>
+        <p><a href="https://github.com/monitorr/Monitorr/tree/develop"><?php echo $branch; ?></a>-<a href="<?php echo $commiturl; ?>"><?php echo $commit; ?></a></p>
     </div>
 </body>
 
