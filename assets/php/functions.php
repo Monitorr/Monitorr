@@ -117,13 +117,13 @@ function getRamTotal()
             $result = $matches[1];
         }
     } else {
-        $top = shell_exec('free -m');
+        $top = shell_exec('free');
         $output = preg_split('/[\s]/', $top);
             for ($i=count($output)-1; $i>=0; $i--) {
             if ($output[$i] == '') unset ($output[$i]);
             }
         $output = array_values($output);
-        $ramTotal = $output[7]/1000; // GB
+        $ramTotal = $output[7];
         $result = $ramTotal;
     }
     // KB RAM Total
@@ -144,13 +144,13 @@ function getRamFree()
             $result = $matches[1] * 1024;
         }
     } else {
-        $top = shell_exec('free -m');
+        $top = shell_exec('free');
         $output = preg_split('/[\s]/', $top);
             for ($i=count($output)-1; $i>=0; $i--) {
             if ($output[$i] == '') unset ($output[$i]);
             }
         $output = array_values($output);
-        $ramFree = $output[16]/1000; // GB
+        $ramFree = $output[9];
         $result = $ramFree;
     }
     // KB RAM Total
