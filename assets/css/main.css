@@ -296,11 +296,14 @@ line {
 /* Footer */
 .footer {
     text-align: center;
+    color: #555555;
+    font-size: 12px;
 }
 
 .footer a {
     text-decoration: none;
-    color:#555555;
+    color: #555555;
+    font-size: 12px;
 }
 
 
