@@ -138,7 +138,8 @@ by @seanvree, @wjbeckett, and @jonfinley
 
     <!-- /container -->
     <div class="footer">
-        <p><a href="https://github.com/monitorr/Monitorr/tree/develop"><?php echo $branch; ?></a>-<a href="<?php echo $commiturl; ?>"><?php echo $commit; ?></a></p>
+        <p><a href="https://github.com/monitorr/Monitorr/tree/develop" target="_blank" >Repo: Monitorr </a></p>
+        <p>Branch: <?php echo $branch; ?> - <a href="<?php echo $commiturl; ?>"><?php echo $commit; ?> </a></p>
     </div>
 </body>
 
