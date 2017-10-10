@@ -150,7 +150,7 @@ function getRamFree()
         $fh = fopen('/proc/meminfo', 'r');
         while ($line = fgets($fh)) {
             $pieces = array();
-            if (preg_match('/^MemFree:\s+(\d+)\skB$/', $line, $pieces)) {
+            if (preg_match('/^MemAvailable:\s+(\d+)\skB$/', $line, $pieces)) {
                 // KB to Bytes
                 $result = $pieces[1] * 1024;
                 break;
@@ -164,6 +164,9 @@ function getRamFree()
 
 //define free ram variable
 $freeRam = getRamFree();
+
+//get Used RAM
+$usedRam = $totalRam - $freeRam;
 
 //uptime
 $uptime = shell_exec("cut -d. -f1 /proc/uptime");
