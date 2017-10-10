@@ -182,4 +182,45 @@ foreach($file_db->query('SELECT * FROM tabs ORDER BY `order` asc') as $key => $r
                         </div>
                     </div>
                 </div>
-                <div class="email-content color-box white-bg">
+                <div class="email-content color-box white-bg">\
+
+
+
+                <div class="container">
+                <!-- /row -->
+                
+        <?php /*from ja v a 2s.c  o  m*/
+           $myBooks = array( 
+             array( 
+               "title" => "Learn PHP from java2s.com", 
+               "author" => "java2s.com", 
+               "pubYear" => 2000 
+             ), 
+             array( 
+               "title" => "Learn Java from java2s.com", 
+               "author" => "JavaAuthor", 
+               "pubYear" => 2001 
+             ), 
+             array( 
+               "title" => "Learn HTML from java2s.com", 
+               "author" => "HTMLAuthor", 
+               "pubYear" => 2002 
+             ), 
+             array( 
+               "title" => "Learn CSS from java2s.com", 
+               "author" => "CSSAuthor", 
+               "pubYear" => 2003 
+             ), 
+            ); 
+        
+            $bookNum = 0; 
+        
+            foreach ( $myBooks as $book ) { 
+             $bookNum++; 
+             //echo "Book $bookNum:"; 
+             foreach ( $book as $key => $value ) { 
+               echo "$key :$value \n"; 
+             } 
+            } 
+         ?> 
+        </div>

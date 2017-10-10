@@ -33,7 +33,7 @@ function urlExists($url) {
         } else {
             echo '<div class="col-lg-4">';
             echo '<a href="#" style="display: block">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($t) .'.png" style="width:85px" alt=""></p>';
+            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
             echo '<p><strong>'. ucfirst($t) .'</strong></p>';
             echo '<p class="btnoffline">Offline</p>';
             echo '</a>';
