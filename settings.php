@@ -92,30 +92,7 @@ by @seanvree, @wjbeckett, and @jonfinley
 
     <div class="container">
     <div>
-    <?php
-$myServices = array( 
-    "monitorr1" => array( 
-        "link" => "https://finflix.net/monitorr", 
-        "image" => "monitorr.png"
-        ), 
-    "plex2" => array( 
-        "link" => "https://plex.finflix.net", 
-        "image" => "plex.png"
-        ), 
-    "sonarr" => array(  
-        "link" => "https://finflix.net/sonarr", 
-        "image" => "sonarr.png"
-        ), 
-    "radarr4" => array( 
-        "link" => "https://finflix.net/radarr", 
-        "image" => "radarr.png"
-        ), 
-   ); 
 
-   foreach ( $myServices as $k => $v ) { 
-       echo "<p>".$k."</p><p>".$v['link']."</p></p>".$v['image']."</p></p>";
-   };
-?>
         </div>
         <!-- /row -->
         <div class="row">

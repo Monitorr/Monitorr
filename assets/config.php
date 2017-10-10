@@ -43,6 +43,10 @@ $myServices = array(
         "link" => "https://finflix.net/radarr", 
         "image" => "radarr.png"
         ), 
+    "Plexpy" => array( 
+        "link" => "https://finflix.net/status", 
+        "image" => "plexpy.png"
+        ), 
    ); 
 
 
