@@ -22,5 +22,8 @@ $links = array(
 "Sonarr" => 'http://localhost:8989',
 "radarr" => 'http://localhost:7878',
 
+// MAX colums is 6 - so anything you add below this line will be on a NEW ROW. 
+
+
 );
 ?>
