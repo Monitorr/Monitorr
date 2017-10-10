@@ -22,8 +22,28 @@ $links = array(
 "Sonarr" => 'http://localhost:8989',
 "radarr" => 'http://localhost:7878',
 
-// MAX colums is 6 - so anything you add below this line will be on a NEW ROW. 
-
 
 );
+// MAX colums is 6 - so anything you add below this line will be on a NEW ROW. 
+
+$myServices = array( 
+    "monitorr" => array( 
+        "link" => "https://finflix.net/monitorr", 
+        "image" => "monitorr.png"
+        ), 
+    "plex" => array( 
+        "link" => "https://plex.finflix.net", 
+        "image" => "plex.png"
+        ), 
+    "sonarr" => array(  
+        "link" => "https://finflix.net/sonarr", 
+        "image" => "sonarr.png"
+        ), 
+    "radarr" => array( 
+        "link" => "https://finflix.net/radarr", 
+        "image" => "radarr.png"
+        ), 
+   ); 
+
+
 ?>
