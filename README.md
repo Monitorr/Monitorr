@@ -51,6 +51,6 @@ Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.sv
 
 
 
-## Support o
+
 
 
