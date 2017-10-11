@@ -45,6 +45,9 @@ Possible future implementations:
 
 Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
 
+## Feature Requests
+[![Feature Requests](https://feathub.com/Monitorr/Monitorrr?format=svg)](https://feathub.com/Monitorr/Monitorr)
+
 
 
 
