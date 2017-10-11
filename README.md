@@ -1,21 +1,24 @@
 
-## <p align="center"><b> MONITORR </b></p>
+# <p align="center"><b> MONITORR </b></p>
 
 
-<p align="center"><b>Webfront that will live display the status of any webapp on your domain </b></p>
+<p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 
 <br>
 Version:  PHP [BETA]
 
 ## Features:
 
-1) Self-hosted
-2) Monitor any app on any domain (new)
-3) Host system resources display
-4) Server DTG data
+- LIVE!
+- Self-hosted
+- Monitor any app on any domain (new)
+- Host system resources display
+- Server DTG data
 
 Features in development:
-1) Settings page
+- Settings page
+- Dran 'n drop tiles
+- Custom refresh times (Currently 5 seconds)
 
 
 ## Screenshot :
@@ -34,13 +37,14 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 1) php-curl
 
 ## Configuration:
-1) Clone/download repository to your webserver (Suggested a Sub DIR)
+1) Clone/download repository to your webserver (Suggested Sub DIR)
+
 2) Edit `assets/config.php`:
  - timezone
  - Site Title
  - Site URL
  - Services you want to monitor
-5) Enjoy! Have a Donut. Drink a Coffee. 
+3) Enjoy! Have a Donut. Drink a Coffee. 
 
 
 ## Feature Requests:
