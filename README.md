@@ -46,9 +46,9 @@ In use with [Organizr](https://github.com/causefx/Organizr)
  - Site URL
  - Services you want to monitor
 3) Enjoy! Have a Donut. Drink a Coffee. 
-
 <br>
 
+##  
  [![Feature Requests](https://cloud.githubusercontent.com/assets/390379/10127973/045b3a96-6560-11e5-9b20-31a2032956b2.png)](https://feathub.com/Monitorr/Monitorr)
 
 Current feature requests:
