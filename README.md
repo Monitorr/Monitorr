@@ -34,10 +34,6 @@ Possible future implementations:
 1) Database instead of config file.
 2) Settings page.
 
-## About Us:
-- [seanvree](https://github.com/seanvree) (Windows Wizard)
-- [jonfinley](https://github.com/jonfinley) (Linux Dude)
-- [wjbeckett](https://github.com/wjbeckett)
 
 <br>
 
@@ -51,5 +47,8 @@ Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.sv
 
 
 
-
+## About Us:
+- [seanvree](https://github.com/seanvree) (Windows Wizard)
+- [jonfinley](https://github.com/jonfinley) (Linux Dude)
+- [wjbeckett](https://github.com/wjbeckett)
 
