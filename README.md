@@ -39,12 +39,15 @@ Possible future implementations:
 
 
 
-Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
+
 
 ## Feature Requests
 [![Feature Requests](https://feathub.com/Monitorr/Monitorr?format=svg)](https://feathub.com/Monitorr/Monitorr)
 
-
+## Connect
+Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
+<br>
+monitorrapp@gmail.com
 
 
 ## About Us:
