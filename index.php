@@ -95,7 +95,7 @@ by @seanvree, @wjbeckett, and @jonfinley
         <div class="row">
             <div class="col-md-12">
                 <div class="row mt centered"> 
-                    <div class="col-lg-4">
+                    <div class="col-lg-6 col-lg-4 col-lg-3">
                         <div class="clock">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
                                 <g>
