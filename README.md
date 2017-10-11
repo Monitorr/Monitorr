@@ -1,17 +1,31 @@
 
-## MONITORR
+# <p align="center"><b> MONITORR </b></p>
 
 
-<b>Webfront that will live display the status of any webapp on your domain. </b>
-<br>
+<p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
+
 <br>
 Version:  PHP [BETA]
 
+## Features:
+
+- LIVE!
+- Self-hosted
+- Monitor any app on any domain (NEW)
+- Host system resources display
+- Server DTG data
+
+Features in development:
+- Settings page
+- Drag 'n drop tiles
+- Custom refresh times (Currently 5 seconds)
 
 
 ## Screenshot :
 
-<img src="https://i.imgur.com/88eAAKK.png[/img]">
+<img src="https://i.imgur.com/6fn9mMc.png[/img]">
+
+<br>
 
 In use with [Organizr](https://github.com/causefx/Organizr)
 
@@ -19,36 +33,34 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 
 ## Prerequisites:
+1) php
 1) php-curl
+<br>
 
 ## Configuration:
-1) Clone/download repository to your webserver (Suggested a Sub DIR),
-2) Copy `assets/config.php.sample` to `assets/config.php`,
-2) Replace  "YOUR SERVER NAME HERE" in `assets/config.php`, 
-3) Replace  "http://github.com/seanvree/monitorr" in `assets/config.php`, 
-4) Add your Services also in `assets/config.php`
-	eg. `"Nameoflink" => 'http://APP.COM',`
-5) Enjoy! Have a Donut. Drink a Coffee. 
+1) Clone/download repository to your webserver (Suggested Sub DIR)
 
-Possible future implementations:
-1) Database instead of config file.
-2) Settings page.
-
+2) Edit `assets/config.php`:
+ - timezone
+ - Site Title
+ - Site URL
+ - Services you want to monitor
+3) Enjoy! Have a Donut. Drink a Coffee. 
 
 <br>
 
+ [![Feature Requests](https://cloud.githubusercontent.com/assets/390379/10127973/045b3a96-6560-11e5-9b20-31a2032956b2.png)](https://feathub.com/Monitorr/Monitorr)
 
+Current feature requests:
 
-
-
-## Feature Requests
 [![Feature Requests](https://feathub.com/Monitorr/Monitorr?format=svg)](https://feathub.com/Monitorr/Monitorr)
-
-## Connect
-Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
 <br>
-monitorrapp@gmail.com
 
+## Connect:
+Need live help?  Join here:   [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
+<br>
+E-mail: monitorrapp@gmail.com
+<br>
 
 ## About Us:
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
