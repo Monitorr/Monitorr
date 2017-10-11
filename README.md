@@ -11,7 +11,7 @@ Version:  PHP [BETA]
 
 - LIVE!
 - Self-hosted
-- Monitor any app on any domain (new)
+- Monitor any app on any domain (NEW)
 - Host system resources display
 - Server DTG data
 
@@ -23,7 +23,7 @@ Features in development:
 
 ## Screenshot :
 
-<img src="https://i.imgur.com/88eAAKK.png[/img]">
+<img src="https://i.imgur.com/6fn9mMc.png[/img]">
 
 <br>
 
@@ -61,4 +61,3 @@ E-mail: monitorrapp@gmail.com
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
 - [jonfinley](https://github.com/jonfinley) (Linux Dude)
 - [wjbeckett](https://github.com/wjbeckett)
-
