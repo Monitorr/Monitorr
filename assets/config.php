@@ -12,7 +12,7 @@ $config = array(
     'timezone' => 'UTC',
     'timestandard' => '12', // 12 or 24
     'rftime' => '', // time refresh
-    'frsysinfo' => '5000', // system info refresh in milliseconds
+    'rfsysinfo' => '5000', // system info refresh in milliseconds
 );
 // thanks @causefx for the assist <3
 // supports http, https, domain, ip, 
