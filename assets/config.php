@@ -12,21 +12,12 @@ $config = array(
     'title' => 'Monitorr', // Site Title
     'siteurl' => 'http://localhost', // SITE URL
 );
-
-$links = array(
-//  Add your services here           
-//	EXAMPLE 
-//  "Nameoflink" => 'http://APP.COM', 
-"monitorr" => 'http://localhost/monitorr',
-"PLEX" => 'http://localhost:32400/web/',
-"OMBI" => 'http://localhost:3579',
-"Sonarr" => 'http://localhost:8989',
-"radarr" => 'http://localhost:7878',
-
-
-);
-// MAX colums is 6 - so anything you add below this line will be on a NEW ROW. 
-
+// thanks @causefx for the assist <3
+// supports http, https, domain, ip, 
+//  "NAMEOFAPP" => array( 
+//      "link" => "http://linktoyourapp.com", 
+//      "image" => "ACTUALAPPNAME.png"
+//    ), 
 $myServices = array( 
     "monitorr" => array( 
         "link" => "https://finflix.net/monitorr", 
