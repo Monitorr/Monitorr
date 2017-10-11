@@ -1,7 +1,8 @@
 <?php // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
-include_once 'config.php';
+include_once '../config.php';
 
 $timezone = $config['timezone']; // set in config.php
+$timestandard = strtolower($config['timestandard']); // set in config.php
 if (is_link('/etc/localtime')) {
     // Mac OS X (and older Linuxes)
     // /etc/localtime is a symlink to the
@@ -32,10 +33,22 @@ if (is_link('/etc/localtime')) {
     echo "$server_date"?>
 <br>
 <?php
-if ($config['timestandard'] == 'True') {
+if ($timestandard=='True') {
     $msg = date("h:i:sa T");
     echo $msg;
-} else {
+} elseif ($timestandard=='true') {
+    $msg = date("h:i:sa T");
+    echo $msg;
+} elseif ($timestandard=='t') {
+    $msg = date("h:i:sa T");
+    echo $msg;
+} elseif ($timestandard=='False') {
+    $msg = date("H:i:s T");
+    echo $msg;
+} elseif ($timestandard=='false') {
+    $msg = date("H:i:s T");
+    echo $msg;
+} elseif ($timestandard=='f') {
     $msg = date("H:i:s T");
     echo $msg;
 }
