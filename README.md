@@ -1,17 +1,28 @@
 
-## MONITORR
+## <p align="center"><b> MONITORR </b></p>
 
 
-<b>Webfront that will live display the status of any webapp on your domain. </b>
-<br>
+<p align="center"><b>Webfront that will live display the status of any webapp on your domain </b></p>
+
 <br>
 Version:  PHP [BETA]
 
+## Features:
+
+1) Self-hosted
+2) Monitor any app on any domain (new)
+3) Host system resources display
+4) Server DTG data
+
+Features in development:
+1) Settings page
 
 
 ## Screenshot :
 
 <img src="https://i.imgur.com/88eAAKK.png[/img]">
+
+<br>
 
 In use with [Organizr](https://github.com/causefx/Organizr)
 
@@ -19,34 +30,31 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 
 ## Prerequisites:
+1) php
 1) php-curl
 
 ## Configuration:
-1) Clone/download repository to your webserver (Suggested a Sub DIR),
-2) Copy `assets/config.php.sample` to `assets/config.php`,
-2) Replace  "YOUR SERVER NAME HERE" in `assets/config.php`, 
-3) Replace  "http://github.com/seanvree/monitorr" in `assets/config.php`, 
-4) Add your Services also in `assets/config.php`
-	eg. `"Nameoflink" => 'http://APP.COM',`
+1) Clone/download repository to your webserver (Suggested a Sub DIR)
+2) Edit `assets/config.php`:
+ - timezone
+ - Site Title
+ - Site URL
+ - Services you want to monitor
 5) Enjoy! Have a Donut. Drink a Coffee. 
 
-Possible future implementations:
-1) Database instead of config file.
-2) Settings page.
+
+## Feature Requests:
+[![Feature Requests](https://feathub.com/Monitorr/Monitorr?format=svg)](https://feathub.com/Monitorr/Monitorr)
+
+
+## Connect:
+Need live help?  Join here:   [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
+<br>
+E-mail: monitorrapp@gmail.com
+
 
 ## About Us:
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
 - [jonfinley](https://github.com/jonfinley) (Linux Dude)
 - [wjbeckett](https://github.com/wjbeckett)
-
-<br>
-
-
-
-Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
-
-
-
-
-
 
