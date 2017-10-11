@@ -4,13 +4,15 @@
 //  'dontedit' => 'EDITHERE'
 
 $config = array(
+    'title' => 'Monitorr', // Site Title
+    'siteurl' => 'http://localhost', // SITE URL
 // if on Linux, the timezone script will automatically select your timezone
 // For Windows, set the timezone. Default is UTC Time.
 // I.E. ($timezone = 'America/Los_Angeles',)
     'timezone' => 'UTC',
     'timestandard' => '12', // 12 or 24
-    'title' => 'Monitorr', // Site Title
-    'siteurl' => 'http://localhost', // SITE URL
+    'rftime' => '', // time refresh
+    'frsysinfo' => '5000', // system info refresh in milliseconds
 );
 // thanks @causefx for the assist <3
 // supports http, https, domain, ip, 

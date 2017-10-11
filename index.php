@@ -74,7 +74,7 @@ by @seanvree, @wjbeckett, and @jonfinley
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
                 }
-                setInterval(statusCheck, 5000);
+                setInterval(statusCheck, <?php echo $config['frsysinfo']; ?>);
         </script>
         
     <title><?php echo $config['title']; ?></title>
