@@ -8,7 +8,7 @@ $config = array(
 // For Windows, set the timezone. Default is UTC Time.
 // I.E. ($timezone = 'America/Los_Angeles',)
     'timezone' => 'UTC',
-    'timestandard' => '12' // 12 or 24
+    'timestandard' => '12', // 12 or 24
     'title' => 'Monitorr', // Site Title
     'siteurl' => 'http://localhost', // SITE URL
 );
