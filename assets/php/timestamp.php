@@ -32,7 +32,7 @@ if (is_link('/etc/localtime')) {
     echo "$server_date"?>
 <br>
 <?php
-if ($config['timestandard'] = '12') {
+if ($config['timestandard'] = 'True') {
     $msg = date("h:i:sa T");
     echo $msg;
 } else {

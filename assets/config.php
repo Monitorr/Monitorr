@@ -10,9 +10,11 @@ $config = array(
 // For Windows, set the timezone. Default is UTC Time.
 // I.E. ($timezone = 'America/Los_Angeles',)
     'timezone' => 'UTC',
-    'timestandard' => '12', // 12 or 24
+    'timestandard' => 'True', // True for 12,
     'rftime' => '', // time refresh
     'rfsysinfo' => '5000', // system info refresh in milliseconds
+//    'coloron' => '', // color for online, WIP
+//    'coloroff' => '', // color for offline, WIP
 );
 // thanks @causefx for the assist <3
 // supports http, https, domain, ip, 
