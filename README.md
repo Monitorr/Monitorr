@@ -51,7 +51,6 @@ Need live help?  Join here: [![Gitter](https://badges.gitter.im/Monitorr/chat.sv
 
 
 
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
+## Support o
 
-[![Beerpay](https://beerpay.io/Monitorr/Monitorr/badge.svg?style=beer-square)](https://beerpay.io/Monitorr/Monitorr)  [![Beerpay](https://beerpay.io/Monitorr/Monitorr/make-wish.svg?style=flat-square)](https://beerpay.io/Monitorr/Monitorr?focus=wish)
+
