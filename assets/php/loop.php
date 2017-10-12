@@ -2,8 +2,8 @@
 <?php include ('../config.php'); ?>
 <link rel="stylesheet" href="assets/css/main.css">
 
-<?php foreach ($links as $t => $k) { ?>
+<?php foreach ( $myServices as $t => $k ) { ?>
     <div>
-    	<?php urlExists($k); ?>
+    	<?php urlExists($k['link']); ?>
     </div>
 <?php } ?>
