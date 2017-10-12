@@ -1,4 +1,5 @@
 <?php
+include_once '../config.php';
 
 // get CPUload function
 function _getServerLoadLinuxData()
@@ -179,6 +180,30 @@ $mins_padded = sprintf("%02d", $mins);
 $secs = $uptime%60;
 $secs_padded = sprintf("%02d", $secs);
 $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
+
+/**
+* Returns ping in milliseconds
+* Returns false if host is unavailable
+*
+* @param $host
+* @param int $port
+* @param int $timeout
+* @return bool|float
+*/ 
+
+$pinghost = $config['pinghost']; //set in config.php
+$pingport = $config['pingport']; //set in config.php
+
+function ping($host, $port = 443, $timeout = 1) {
+    $start = microtime(true);
+    if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
+        return false;
+    }
+    $end = microtime(true);
+    return round((($end - $start) * 1000));
+ }
+ 
+ $pingTime = ping($pinghost, $pingport);
 
 
 ?>

@@ -13,6 +13,8 @@ $config = array(
     'timestandard' => 'False', // True for Standard Time, DEFAULT = False
     'rftime' => '', // time refresh
     'rfsysinfo' => '5000', // system info refresh in milliseconds
+    'pinghost'  => '8.8.8.8', // URL or IP to ping
+    'pingport'  => '443', // port to ping (defaults to 443)
 //    'coloron' => '', // color for online, WIP
 //    'coloroff' => '', // color for offline, WIP
 );

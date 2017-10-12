@@ -129,9 +129,10 @@ by @seanvree, @wjbeckett, and @jonfinley
         </div>
 
     </div>
-
-    <div id="stats" class="row mt centered" style="display:flex;justify-content:center;align-items:center;">
-        <!-- system badges go here -->
+    <div class="row">
+        <div id="stats" class="container centered">
+            <!-- system badges go here -->
+        </div>
     </div>
 
     <!-- /container -->

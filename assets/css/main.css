@@ -111,6 +111,13 @@ hr {
     color: white;
 }
 
+.col-centered {
+    display: inline-block !important;
+    float: none;
+    text-align: left;
+    margin-right: -4px !important;
+}
+
 
 /* Helpers */
 
