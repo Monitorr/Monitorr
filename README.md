@@ -48,14 +48,12 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 3) Enjoy! Have a Donut. Drink a Coffee. 
 <br>
 
-##  
+## Feature Requests:
  [![Feature Requests](https://cloud.githubusercontent.com/assets/390379/10127973/045b3a96-6560-11e5-9b20-31a2032956b2.png)](https://feathub.com/Monitorr/Monitorr)
 
 Current feature requests:
-
 [![Feature Requests](https://feathub.com/Monitorr/Monitorr?format=svg)](https://feathub.com/Monitorr/Monitorr)
 <br>
-
 
 ## Connect:
 Need live help?  Join here:   [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
