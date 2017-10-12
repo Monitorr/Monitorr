@@ -24,23 +24,23 @@ $config = array(
 //    ), 
 $myServices = array( 
     "monitorr" => array( 
-        "link" => "https://finflix.net/monitorr", 
+        "link" => "http://localhost/monitorr", 
         "image" => "monitorr.png"
         ), 
     "plex" => array( 
-        "link" => "https://plex.finflix.net", 
+        "link" => "http://localhost:32400t", 
         "image" => "plex.png"
         ), 
     "sonarr" => array(  
-        "link" => "https://finflix.net/sonarr", 
+        "link" => "http://localhost:8989", 
         "image" => "sonarr.png"
         ), 
     "radarr" => array( 
-        "link" => "https://finflix.net/radarr", 
+        "link" => "http://localhost:7878", 
         "image" => "radarr.png"
         ), 
     "Plexpy" => array( 
-        "link" => "https://finflix.net/status", 
+        "link" => "http://localhost:8181", 
         "image" => "plexpy.png"
         ), 
    ); 
