@@ -48,9 +48,8 @@ by @seanvree, @wjbeckett, and @jonfinley
     <?php include ('assets/php/gitinfo.php'); ?>
     <?php include ('assets/config.php'); ?>
     
+    <script src="assets/js/jquery.min.js"></script>
 
-
-    <script src="assets/js/jquery.min.js"> </script>
         <script type= "text/javascript">
             $(document).ready(function() {
                 function update() {
@@ -68,7 +67,6 @@ by @seanvree, @wjbeckett, and @jonfinley
             });
         </script>
 
-    <script src="assets/js/jquery.min.js"></script>
         <script type="text/javascript">
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
