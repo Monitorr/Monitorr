@@ -28,7 +28,7 @@ $myServices = array(
         "image" => "monitorr.png"
         ), 
     "plex" => array( 
-        "link" => "http://localhost:32400t", 
+        "link" => "http://localhost:32400", 
         "image" => "plex.png"
         ), 
     "sonarr" => array(  
