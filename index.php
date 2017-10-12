@@ -48,9 +48,8 @@ by @seanvree, @wjbeckett, and @jonfinley
     <?php include ('assets/php/gitinfo.php'); ?>
     <?php include ('assets/config.php'); ?>
     
+    <script src="assets/js/jquery.min.js"></script>
 
-
-    <script src="assets/js/jquery.min.js"> </script>
         <script type= "text/javascript">
             $(document).ready(function() {
                 function update() {
@@ -68,13 +67,12 @@ by @seanvree, @wjbeckett, and @jonfinley
             });
         </script>
 
-    <script src="assets/js/jquery.min.js"></script>
         <script type="text/javascript">
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
                 }
-                setInterval(statusCheck, 5000);
+                setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
         </script>
         
     <title><?php echo $config['title']; ?></title>
@@ -95,7 +93,7 @@ by @seanvree, @wjbeckett, and @jonfinley
         <div class="row">
             <div class="col-md-12">
                 <div class="row mt centered"> 
-                    <div class="col-lg-4">
+                    <div class="col-lg-6 col-lg-4 col-lg-3">
                         <div class="clock">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
                                 <g>
@@ -138,7 +136,8 @@ by @seanvree, @wjbeckett, and @jonfinley
 
     <!-- /container -->
     <div class="footer">
-        <p><a href="https://github.com/monitorr/Monitorr/tree/develop"><?php echo $branch; ?></a>-<a href="<?php echo $commiturl; ?>"><?php echo $commit; ?></a></p>
+        <p><a href="https://github.com/monitorr/Monitorr" target="_blank" >Repo: Monitorr </a></p>
+        <p>Branch: <?php echo $branch; ?> - <a href="<?php echo $commiturl; ?>"><?php echo $commit; ?> </a></p>
     </div>
 </body>
 
