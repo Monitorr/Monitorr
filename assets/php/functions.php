@@ -185,17 +185,24 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
 
 
 // Dynamic icon colors for badges
-if ($ramPercent < 85) {
+$ramok = $config['ramok']; //set in config.php
+$ramwarn = $config['ramwarn']; //set in config.php
+
+if ($ramPercent < $ramok) {
     $ramClass = 'success';
-} elseif (($ramPercent >= 85) && ($ramPercent < 90)) {
+} elseif (($ramPercent >= $ramok) && ($ramPercent < $ramwarn)) {
     $ramClass = 'warning';
 } else {
     $ramClass = 'danger';
 }
 
-if ($cpuPercent < 85) {
+
+$cpuok = $config['cpuok']; //set in config.php
+$cpuwarn = $config['cpuwarn']; //set in config.php
+
+if ($cpuPercent < $cpuok) {
     $cpuClass = 'success';
-} elseif (($cpuPercent >= 85) && ($cpuPercent < 90)) {
+} elseif (($cpuPercent >= $cpuok) && ($cpuPercent < $cpuwarn)) {
     $cpuClass = 'warning';
 } else {
     $cpuClass = 'danger';
