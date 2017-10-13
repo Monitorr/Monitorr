@@ -185,35 +185,22 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
 
 
 // Dynamic icon colors for badges
-function displayRam()
-{
-    if ($ramPercent < '85') {
-        $class = 'success';
-    } elseif (($ramPercent >= '85') && ($ramPercent < '95')) {
-        $class = 'warning';
-    } else {
-        $class = 'danger';
-    }
-
-    return $class;
+if ($ramPercent < 85) {
+    $ramClass = 'success';
+} elseif (($ramPercent >= 85) && ($ramPercent < 90)) {
+    $ramClass = 'warning';
+} else {
+    $ramClass = 'danger';
 }
 
-$ramClass = displayRam();
-
-function displayCPU()
-{
-    if ($cpuPercent < '85') {
-        $class = 'success';
-    } elseif (($cpuPercent >= '85') && ($cpuPercent < '95')) {
-        $class = 'warning';
-    } else {
-        $class = 'danger';
-    }
-
-    return $class;
+if ($cpuPercent < 85) {
+    $cpuClass = 'success';
+} elseif (($cpuPercent >= 85) && ($cpuPercent < 90)) {
+    $cpuClass = 'warning';
+} else {
+    $cpuClass = 'danger';
 }
 
-$cpuClass = displayCPU();
 
 
 /**
@@ -228,7 +215,7 @@ $cpuClass = displayCPU();
 $pinghost = $config['pinghost']; //set in config.php
 $pingport = $config['pingport']; //set in config.php
 
-function ping($host, $port = 443, $timeout = 1) {
+function ping($host, $port = 80, $timeout = 1) {
     $start = microtime(true);
     if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
         return false;
