@@ -102,6 +102,7 @@ function getServerLoad()
 
 // register variable for getServerLoad()
 $cpuLoad = getServerLoad();
+$cpuPercent = round($cpuLoad, 2);
 
 
 
@@ -168,6 +169,7 @@ $freeRam = getRamFree();
 
 //get Used RAM
 $usedRam = $totalRam - $freeRam;
+$ramPercent = round(($usedRam / $totalRam) * 100);
 
 //uptime
 $uptime = shell_exec("cut -d. -f1 /proc/uptime");
@@ -181,6 +183,39 @@ $secs = $uptime%60;
 $secs_padded = sprintf("%02d", $secs);
 $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
 
+
+// Dynamic icon colors for badges
+function displayRam()
+{
+    if ($ramPercent < 85) {
+        $class = 'success';
+    } else if (($ramPercent >= 85) && ($ramPercent < 95)) {
+        $class = 'warning';
+    } else {
+        $class = 'danger';
+    }
+
+    return $class;
+}
+
+$ramClass = displayRam();
+
+function displayCPU()
+{
+    if ($cpuPercent < 85) {
+        $class = 'success';
+    } else if (($cpuPercent >= 85) && ($cpuPercent < 95)) {
+        $class = 'warning';
+    } else {
+        $class = 'danger';
+    }
+
+    return $class;
+}
+
+$cpuClass = displayCPU();
+
+
 /**
 * Returns ping in milliseconds
 * Returns false if host is unavailable
@@ -190,7 +225,6 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
 * @param int $timeout
 * @return bool|float
 */ 
-
 $pinghost = $config['pinghost']; //set in config.php
 $pingport = $config['pingport']; //set in config.php
 

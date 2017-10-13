@@ -3,12 +3,12 @@
 <link rel="stylesheet" href="assets/css/main.css">
 
 <div class="col-md-2 col-centered double-val-label">
-  <span class="success">CPU</span>
-  <span><?php echo round($cpuLoad, 2); ?>%</span>
+  <span class="<?php print($cpuClass); ?>">CPU</span>
+  <span><?php echo $cpuPercent; ?>%</span>
 </div>
 <div class="col-md-2 col-centered double-val-label">
-  <span class="warning">RAM</span>
-  <span><?php echo round(($usedRam / $totalRam) * 100); ?>%</span>
+  <span class="<?php echo $ramClass; ?>">RAM</span>
+  <span><?php echo $ramPercent; ?>%</span>
 </div>
 <div class="col-md-2 col-centered double-val-label">
   <span class="primary">ping</span>
