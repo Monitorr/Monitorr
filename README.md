@@ -29,8 +29,10 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 
 ## Prerequisites:
-1) php
-1) php-curl
+1) [PHP](https://secure.php.net/downloads.php)
+
+2) [PHP cURL](http://php.net/manual/en/book.curl.php)
+
 <br>
 
 ## Configuration:
@@ -60,7 +62,7 @@ Need live help?  Join here:   [![Gitter](https://badges.gitter.im/Monitorr/chat.
 <br>
 E-mail: monitorrapp@gmail.com
 <br>
-Buy us a beer!                 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/monitorrapp)
+Buy us a beer! Donate:        [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/monitorrapp)
 
 ## About Us:
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
