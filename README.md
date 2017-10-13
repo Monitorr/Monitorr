@@ -31,7 +31,7 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 ## Prerequisites:
 1) [PHP](https://secure.php.net/downloads.php)
 
-2) [PHP cURL](http://php.net/manual/en/book.curl.php)
+2) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
 
 <br>
 
