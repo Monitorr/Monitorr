@@ -187,9 +187,9 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
 // Dynamic icon colors for badges
 function displayRam()
 {
-    if ($ramPercent < 85) {
+    if ($ramPercent < '85') {
         $class = 'success';
-    } else if (($ramPercent >= 85) && ($ramPercent < 95)) {
+    } elseif (($ramPercent >= '85') && ($ramPercent < '95')) {
         $class = 'warning';
     } else {
         $class = 'danger';
@@ -202,9 +202,9 @@ $ramClass = displayRam();
 
 function displayCPU()
 {
-    if ($cpuPercent < 85) {
+    if ($cpuPercent < '85') {
         $class = 'success';
-    } else if (($cpuPercent >= 85) && ($cpuPercent < 95)) {
+    } elseif (($cpuPercent >= '85') && ($cpuPercent < '95')) {
         $class = 'warning';
     } else {
         $class = 'danger';

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 
 <div class="col-md-2 col-centered double-val-label">
-  <span class="<?php print($cpuClass); ?>">CPU</span>
+  <span class="<?php echo $cpuClass; ?>">CPU</span>
   <span><?php echo $cpuPercent; ?>%</span>
 </div>
 <div class="col-md-2 col-centered double-val-label">
