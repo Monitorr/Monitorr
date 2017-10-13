@@ -1,4 +1,5 @@
 <?php
+include_once '../config.php';
 
 // get CPUload function
 function _getServerLoadLinuxData()
@@ -101,6 +102,7 @@ function getServerLoad()
 
 // register variable for getServerLoad()
 $cpuLoad = getServerLoad();
+$cpuPercent = round($cpuLoad, 2);
 
 
 
@@ -167,6 +169,7 @@ $freeRam = getRamFree();
 
 //get Used RAM
 $usedRam = $totalRam - $freeRam;
+$ramPercent = round(($usedRam / $totalRam) * 100);
 
 //uptime
 $uptime = shell_exec("cut -d. -f1 /proc/uptime");
@@ -179,6 +182,56 @@ $mins_padded = sprintf("%02d", $mins);
 $secs = $uptime%60;
 $secs_padded = sprintf("%02d", $secs);
 $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
+
+
+// Dynamic icon colors for badges
+$ramok = $config['ramok']; //set in config.php
+$ramwarn = $config['ramwarn']; //set in config.php
+
+if ($ramPercent < $ramok) {
+    $ramClass = 'success';
+} elseif (($ramPercent >= $ramok) && ($ramPercent < $ramwarn)) {
+    $ramClass = 'warning';
+} else {
+    $ramClass = 'danger';
+}
+
+
+$cpuok = $config['cpuok']; //set in config.php
+$cpuwarn = $config['cpuwarn']; //set in config.php
+
+if ($cpuPercent < $cpuok) {
+    $cpuClass = 'success';
+} elseif (($cpuPercent >= $cpuok) && ($cpuPercent < $cpuwarn)) {
+    $cpuClass = 'warning';
+} else {
+    $cpuClass = 'danger';
+}
+
+
+
+/**
+* Returns ping in milliseconds
+* Returns false if host is unavailable
+*
+* @param $host
+* @param int $port
+* @param int $timeout
+* @return bool|float
+*/ 
+$pinghost = $config['pinghost']; //set in config.php
+$pingport = $config['pingport']; //set in config.php
+
+function ping($host, $port = 80, $timeout = 1) {
+    $start = microtime(true);
+    if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
+        return false;
+    }
+    $end = microtime(true);
+    return round((($end - $start) * 1000));
+ }
+ 
+ $pingTime = ping($pinghost, $pingport);
 
 
 ?>
