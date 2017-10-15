@@ -2,9 +2,9 @@
 
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
-Version:  PHP [BETA]
+<b>Version:</b>  PHP [BETA]
 
-Latest major change:  Added top loading bar indicator
+<b>Latest major change:</b>  Added top loading bar indicator
 
 ## Features:
 
