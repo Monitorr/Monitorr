@@ -2,9 +2,10 @@
 
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
-<b>Version:</b>  PHP [BETA]
 
-<b>Latest major change:</b>  Added top loading bar indicator
+<b> Version:</b> PHP [BETA]
+
+<b> Latest major change: </b>  Added top loading bar indicator
 
 ## Features:
 
@@ -14,7 +15,7 @@
 - Host system resources display (CPU, MEM, PING, Uptime)(NEW)
 - Server DTG data
 
-Features in development:
+<b> Features in development: </b>
 - Settings page
 - Drag 'n drop tiles
 
@@ -54,7 +55,7 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 ## Feature Requests:
  [![Feature Requests](https://cloud.githubusercontent.com/assets/390379/10127973/045b3a96-6560-11e5-9b20-31a2032956b2.png)](https://feathub.com/Monitorr/Monitorr)
 
-Current feature requests:
+<b> Current feature requests: </b>
 
 [![Feature Requests](https://feathub.com/Monitorr/Monitorr?format=svg)](https://feathub.com/Monitorr/Monitorr)
 <br>
