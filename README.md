@@ -4,6 +4,8 @@
 <br>
 Version:  PHP [BETA]
 
+Latest major change:  Added top loading bar indicator
+
 ## Features:
 
 - LIVE!
