@@ -243,9 +243,9 @@ function ping($host, $port = 80, $timeout = 1) {
 
 // New version download information
 // location to download new version zip
-$remote_file_url = './b0.5.zip';
+$remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/master';
 // rename version location/name
-$local_file = './monitorr.zip'; #example: version/new-version.zip
+$local_file = '../../monitorr.zip'; #example: version/new-version.zip
 //
 // version check information
 //
