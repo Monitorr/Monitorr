@@ -50,6 +50,8 @@ by @seanvree, @wjbeckett, and @jonfinley
     
     <script src="assets/js/jquery.min.js"></script>
 
+    <script src="assets/js/pace.js"></script>
+
         <script type= "text/javascript">
             $(document).ready(function() {
                 function update() {

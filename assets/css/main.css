@@ -7,7 +7,7 @@ body {
     align-items: center;
     align-content: center;
     overflow-y: auto;
-    overflow-x: hidden;    
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -301,6 +301,7 @@ line {
 
 
 /* Footer */
+
 .footer {
     text-align: center;
     color: #555555;
@@ -316,19 +317,34 @@ line {
 
 
 /* BADGES */
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
-
 #main-title {
     font-family: 'Roboto', sans-serif;
-    font-size : 3em;
+    font-size: 3em;
     margin: 0.1em;
 }
+
 .double-val-label {
     display: table;
     font-family: 'Roboto', sans-serif;
     margin: 0.4em;
 }
+
+.double-val-label>span {
+    background-color: #656565;
+    color: #ffffff;
+    display: table-cell;
+    font-size: 0.9em;
+    font-weight: 400;
+    line-height: 1;
+    padding: .3em .6em;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
 .double-val-label>span {
     background-color: #656565;
     color: #ffffff;
@@ -349,18 +365,142 @@ line {
         border-top-right-radius: .25em;
     }
 }
+
 .double-val-label>span.primary {
     background-color: #337ab7;
 }
+
 .double-val-label>span.success {
     background-color: #5cb85c;
 }
+
 .double-val-label>span.info {
     background-color: #5bc0de;
 }
+
 .double-val-label>span.warning {
     background-color: #f0ad4e;
 }
+
 .double-val-label>span.danger {
     background-color: #d9534f;
 }
+
+
+/* Progress Bar */
+
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #680233;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 5px;
+}
+
+.pace .pace-progress-inner {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #680233, 0 0 5px #680233;
+    opacity: 1.0;
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+    -moz-transform: rotate(3deg) translate(0px, -4px);
+    -ms-transform: rotate(3deg) translate(0px, -4px);
+    -o-transform: rotate(3deg) translate(0px, -4px);
+    transform: rotate(3deg) translate(0px, -4px);
+}
+
+
+/* Activity circle  */
+
+
+/* .pace .pace-activity {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    top: 15px;
+    right: 15px;
+    width: 14px;
+    height: 14px;
+    border: solid 2px transparent;
+    border-top-color: #680233;
+    border-left-color: #680233;
+    border-radius: 10px;
+    -webkit-animation: pace-spinner 400ms linear infinite;
+    -moz-animation: pace-spinner 400ms linear infinite;
+    -ms-animation: pace-spinner 400ms linear infinite;
+    -o-animation: pace-spinner 400ms linear infinite;
+    animation: pace-spinner 400ms linear infinite;
+} */
+
+
+/* @-webkit-keyframes pace-spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes pace-spinner {
+    0% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes pace-spinner {
+    0% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes pace-spinner {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pace-spinner {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+} */
