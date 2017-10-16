@@ -254,6 +254,6 @@ $ext_version_loc = "https://mon.beckeflix.com/current_version.txt";
 // users local version number
 // added the 'uid' just to show that you can verify from an external server the 
 // users information. But it can be replaced with something more simple
-$vnum_loc = "assets/version.txt"; #example: version/vnum_1.txt
+$vnum_loc = "../version.txt"; #example: version/vnum_1.txt
 
 ?>

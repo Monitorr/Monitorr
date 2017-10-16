@@ -34,10 +34,10 @@ $(document).ready(function(){
 							       // clear loading information
 						   		   $('#version_check').html("");
 							       // successful update
-						   	   	   $('#loading').html("Successful Update!");
+						   	   	   $('#loading').html("Update Successful!");
 							   }else{
 								   // error during update/unzip   
-								   $('#loading').html("<br>Sorry, there was an error with the update.");
+								   $('#loading').html("<br>Sorry, there was an error while extracting the files.");
 							   }
                            }
                            else {
