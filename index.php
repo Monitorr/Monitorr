@@ -145,7 +145,6 @@ by @seanvree, @wjbeckett, and @jonfinley
         <script src="assets/js/update.js" type="text/javascript"></script>
         <div>
             <a class="version_check" id="version_check" style="cursor: pointer;">Check for update</a>
-            <span id="loading" class="loading"></span>
         </div>
     </div>
 </body>

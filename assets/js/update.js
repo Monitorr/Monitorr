@@ -7,7 +7,7 @@ $(document).ready(function(){
 		var info = "uid="+uid+"&vcheck=1";
 		$.ajax({
 		   beforeSend: function(){
-			   $('#version_check').html('<br><img src="assets/img/loader.gif" width="16" height="16" />');
+			   $('#version_check').html('<img src="assets/img/loader.gif" width="16" height="16" />');
 		   },
 		   type: "POST",
 		   url: "assets/php/version_check.php",
@@ -21,7 +21,7 @@ $(document).ready(function(){
 				   var uInfo = "uid="+uid+"&version="+data.version
 			    	$.ajax({
 					   beforeSend: function(){
-						   $('#version_check').html('<br><img src="assets/img/loader.gif" width="16" height="16" />');
+						   $('#version_check').html('<img src="assets/img/loader.gif" width="16" height="16" />');
 					   },
 					   type: "POST",
 					   url: "assets/php/update-functions.php",
@@ -38,15 +38,15 @@ $(document).ready(function(){
                                    location.reload();
 							   }else{
 								   // error during update/unzip   
-								   $('#version_check').html("<br>Sorry, there was an error while extracting the files.");
+								   $('#version_check').html("Sorry, there was an error while extracting the files.");
 							   }
                            } else {
-                                $('#version_check').html("<br>There was an error copying the files.");
+                                $('#version_check').html("There was an error copying the files.");
                            }
 					   },
 					   error: function() {
 						   // error
-						   $('#version_check').html('<br>There was an error updating your files.');
+						   $('#version_check').html('There was an error updating your files.');
 					   }
 					});
 			   }else{
@@ -57,7 +57,7 @@ $(document).ready(function(){
 		   },
 		   error: function() {
 			   // error
-			   $('#version_check').html('<br>There was an error checking your latest version.');
+			   $('#version_check').html('There was an error checking your latest version.');
 		   }
 		});
 	});
