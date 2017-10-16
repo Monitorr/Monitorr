@@ -14,10 +14,10 @@ if(!$copy){
 // check for verification
 if($copy == 1){
 	
-	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
+	$path = $_SERVER['DOCUMENT_ROOT'];
 	// unzip update
 	$zip = new ZipArchive;
-    $res = $zip->open($local_file, ZIPARCHIVE::OVERWRITE);
+    $res = $zip->open($local_file);
 	if($res === TRUE){
 		$zip->extractTo( $path );
 		$zip->close();

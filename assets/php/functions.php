@@ -234,13 +234,6 @@ function ping($host, $port = 80, $timeout = 1) {
  $pingTime = ping($pinghost, $pingport);
 
 
-
-
-
-
-/* Update functions */
-
-
 // New version download information
 // location to download new version zip
 $remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/master';
