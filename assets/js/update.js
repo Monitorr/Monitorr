@@ -41,7 +41,7 @@ $(document).ready(function(){
 							   }
                            }
                            else {
-                                $('#loading').html("<br>Sorry, there was an error with the update.");
+                                $('#loading').html("<br>There was an error copying the files.");
                            }
 					   },
 					   error: function() {
