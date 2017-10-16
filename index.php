@@ -144,8 +144,8 @@ by @seanvree, @wjbeckett, and @jonfinley
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="assets/js/update.js" type="text/javascript"></script>
         <div>
-            Update Program. <a class="version_check" id="1" style="cursor: pointer;">Click here.</a>
-            <span class="loading"></span>
+            Check for update. <a class="version_check" id="version_check" style="cursor: pointer;">Click here.</a>
+            <span id="loading" class="loading"></span>
         </div>
     </div>
 </body>
