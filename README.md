@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> PHP [BETA]
+<b> Version:</b> v0.8.6d [BETA]
 
 <b> Latest major change: </b>  Added top loading bar indicator
 
