@@ -234,4 +234,70 @@ function ping($host, $port = 80, $timeout = 1) {
  $pingTime = ping($pinghost, $pingport);
 
 
+
+
+
+
+/* Update functions */
+
+
+// New version download information
+// location to download new version zip
+$remote_file_url = 'https://github.com/monitorr/monitorr/zipball/master';
+// rename version location/name
+$local_file = 'monitorr.zip'; #example: version/new-version.zip
+//
+// version check information
+//
+// url to external verification of version number as a .TXT file
+$ext_version_loc = "https://mon.beckeflix.com/current_version.txt";
+// users local version number
+// added the 'uid' just to show that you can verify from an external server the 
+// users information. But it can be replaced with something more simple
+$vnum_loc = "assets/version.txt"; #example: version/vnum_1.txt
+
+
+/* execute update functions */
+// download latest zip to tmp
+//wget -O /tmp/monitorr.zip 'https://github.com/monitorr/monitorr/zipball/master';
+//$remote_file = 'https://github.com/monitorr/monitorr/zipball/master';
+// copy the file from source server
+$copy = copy($remote_file_url, $local_file);
+// check for success or fail
+if(!$copy){
+    // data message if failed to copy from external server
+	$data = array("copy" => 0);
+}else{
+	// success message, continue to unzip
+    $copy = 1;
+}
+// check for verification
+if($copy == 1){
+	
+	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
+	// unzip update
+	$zip = new ZipArchive;
+	$res = $zip->open($local_file);
+	if($res === TRUE){
+		$zip->extractTo( $path );
+		$zip->close();
+		// success updating files
+		$data = array("unzip" => 1);
+		// delete zip file
+		unlink($local_file);
+		// update users local version number file
+		$userfile = fopen ("assets/version.txt", "w");
+		$user_vnum = fgets($userfile);  
+		fwrite($userfile, $_POST['version']);  
+		fclose($userfile);
+	}else{
+		// error updating files
+		$data = array("unzip" => 0);
+		// delete potentially corrupt file
+		unlink($local_file);
+	}
+}
+// send the json data
+echo json_encode($data);
+
 ?>
