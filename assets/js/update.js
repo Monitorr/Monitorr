@@ -10,7 +10,7 @@ $(document).ready(function(){
 			   $(".loading").html('<br><img src="assets/img/loader.gif" width="16" height="16" />');
 		   },
 		   type: "POST",
-		   url: "asstes/php/version_check.php",
+		   url: "assets/php/version_check.php",
 		   data: info,
 		   dataType: "json",
 		   success: function(data){
