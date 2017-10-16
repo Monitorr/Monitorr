@@ -39,7 +39,10 @@ $(document).ready(function(){
 								   // error during update/unzip   
 								   $('#loading').html("<br>Sorry, there was an error with the update.");
 							   }
-						   }
+                           }
+                           else {
+                                $('#loading').html("<br>Sorry, there was an error with the update.");
+                           }
 					   },
 					   error: function() {
 						   // error
