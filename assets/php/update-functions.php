@@ -14,7 +14,7 @@ if(!$copy){
 // check for verification
 if($copy == 1){
 	
-	$path = $_SERVER['DOCUMENT_ROOT'];
+	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
 	// unzip update
 	$zip = new ZipArchive;
     $res = $zip->open($local_file);
