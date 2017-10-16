@@ -243,7 +243,7 @@ function ping($host, $port = 80, $timeout = 1) {
 
 // New version download information
 // location to download new version zip
-$remote_file_url = 'https://github.com/monitorr/monitorr/zipball/master';
+$remote_file_url = 'https://github.com/Monitorr/Monitorr/archive/b0.5.zip';
 // rename version location/name
 $local_file = 'monitorr.zip'; #example: version/new-version.zip
 //
