@@ -16,17 +16,16 @@ if($copy == 1){
 	
 	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
 	$extractPath = $path.'/tmp/';
-	$scanPath = array_diff(scandir($extractPath.'/*'), array('..','.'));
-	$fullPath = $extractPath . $scanPath[2];
+	
 	// unzip update
 	$zip = new ZipArchive;
     $res = $zip->open($local_file);
 	if($res === TRUE){
 		$zip->extractTo($extractPath);
 		$zip->close();
-		// success updating files
-		$data = array("unzip" => 1);
 		// copy files from temp to monitorr root
+		$scanPath = array_diff(scandir($extractPath), array('..','.'));
+		$fullPath = $extractPath . $scanPath[2];
 		recurse_copy($fullPath,$path);
 		// delete zip file
 		unlink($local_file);
@@ -35,6 +34,8 @@ if($copy == 1){
 		$user_vnum = fgets($userfile);  
 		fwrite($userfile, $_POST['version']);  
 		fclose($userfile);
+		// success updating files
+		$data = array("unzip" => 1);
 	}else{
 		// error updating files
 		$data = array("unzip" => 0);
