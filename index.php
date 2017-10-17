@@ -82,7 +82,7 @@ by @seanvree, @wjbeckett, and @jonfinley
 </head>
 
 <body onload="statusCheck()">
-
+    <br>
     <!-- Fixed navbar -->
     <div class="navbar-brand">
         <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>">
@@ -138,9 +138,16 @@ by @seanvree, @wjbeckett, and @jonfinley
     </div>
 
     <!-- /container -->
+
     <div class="footer">
-        <p><a href="https://github.com/monitorr/Monitorr" target="_blank" >Repo: Monitorr </a></p>
-        <p>Branch: <?php echo $branch; ?> - <a href="<?php echo $commiturl; ?>"><?php echo $commit; ?> </a></p>
+      
+       <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+
+        <!-- <script src="assets/js/update.js" type="text/javascript"></script> -->
+        
+        <div>
+            <!-- <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a> -->
+        </div>
     </div>
 </body>
 
