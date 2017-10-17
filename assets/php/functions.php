@@ -247,7 +247,7 @@ $ext_version_loc = "https://raw.githubusercontent.com/Monitorr/Monitorr/update_t
 // users local version number
 // added the 'uid' just to show that you can verify from an external server the 
 // users information. But it can be replaced with something more simple
-$vnum_loc = "../version.txt"; #example: version/vnum_1.txt
+$vnum_loc = "../js/version/version.txt"; #example: version/vnum_1.txt
 
 
 function recurse_copy($src,$dst) { 
