@@ -14,17 +14,20 @@ if(!$copy){
 // check for verification
 if($copy == 1){
 	
-	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
+	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME).'/tmp/';
 	// unzip update
 	$zip = new ZipArchive;
     $res = $zip->open($local_file);
 	if($res === TRUE){
-		$zip->extractTo( $path );
+		$zip->extractTo($path);
 		$zip->close();
 		// success updating files
 		$data = array("unzip" => 1);
+		// copy files from temp to monitorr root
+		recurse_copy($path,'./');
 		// delete zip file
-		//unlink($local_file);
+		unlink($local_file);
+		unlink($path);
 		// update users local version number file
 		$userfile = fopen ("../version.txt", "w");
 		$user_vnum = fgets($userfile);  

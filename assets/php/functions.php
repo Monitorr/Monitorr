@@ -249,4 +249,21 @@ $ext_version_loc = "https://raw.githubusercontent.com/Monitorr/Monitorr/update_t
 // users information. But it can be replaced with something more simple
 $vnum_loc = "../version.txt"; #example: version/vnum_1.txt
 
+
+function recurse_copy($src,$dst) { 
+    $dir = opendir($src); 
+    @mkdir($dst); 
+    while(false !== ( $file = readdir($dir)) ) { 
+        if (( $file != '.' ) && ( $file != '..' )) { 
+            if ( is_dir($src . '/' . $file) ) { 
+                recurse_copy($src . '/' . $file,$dst . '/' . $file); 
+            } 
+            else { 
+                copy($src . '/' . $file,$dst . '/' . $file); 
+            } 
+        } 
+    } 
+    closedir($dir); 
+}
+
 ?>
