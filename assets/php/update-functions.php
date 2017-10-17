@@ -16,7 +16,7 @@ if($copy == 1){
 	
 	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
 	$extractPath = $path.'/tmp/';
-	$scanPath = array_diff(scandir($extractPath), array('..','.'));
+	$scanPath = array_diff(scandir($extractPath.'/*'), array('..','.'));
 	$fullPath = $extractPath.$scanPath[2];
 	// unzip update
 	$zip = new ZipArchive;
