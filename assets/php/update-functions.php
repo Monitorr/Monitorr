@@ -25,10 +25,10 @@ if($copy == 1){
 		// success updating files
 		$data = array("unzip" => 1);
 		// copy files from temp to monitorr root
-		recurse_copy($extractPath,$path);
+		recurse_copy($extractPath.'/*/*/',$path);
 		// delete zip file
 		unlink($local_file);
-		unlink($extractPath);
+		rmdir($extractPath);
 		// update users local version number file
 		$userfile = fopen ("../version.txt", "w");
 		$user_vnum = fgets($userfile);  
