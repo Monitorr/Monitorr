@@ -140,7 +140,8 @@ by @seanvree, @wjbeckett, and @jonfinley
     <!-- /container -->
 
     <div class="footer">
-        <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/version.txt" );?> </a> </p>
+      
+       <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
         <!-- <p>Branch: <?php echo $branch; ?> - <a href="<?php echo $commiturl; ?>"><?php echo $commit; ?> </a></p> -->
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
