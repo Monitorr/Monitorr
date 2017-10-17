@@ -5,6 +5,7 @@
 
 <b> Version:</b> v0.9.1d [BETA]
 
+
 <b> Latest major change: </b>  Added top loading bar indicator
 
 ## Features:
