@@ -17,7 +17,7 @@ if($copy == 1){
 	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
 	$extractPath = $path.'/tmp/';
 	$scanPath = array_diff(scandir($extractPath.'/*'), array('..','.'));
-	$fullPath = $extractPath.$scanPath[2];
+	$fullPath = $extractPath . $scanPath[2];
 	// unzip update
 	$zip = new ZipArchive;
     $res = $zip->open($local_file);
@@ -31,7 +31,7 @@ if($copy == 1){
 		// delete zip file
 		unlink($local_file);
 		// update users local version number file
-		$userfile = fopen ("../version.txt", "w");
+		$userfile = fopen ("../js/version/version.txt", "w");
 		$user_vnum = fgets($userfile);  
 		fwrite($userfile, $_POST['version']);  
 		fclose($userfile);
