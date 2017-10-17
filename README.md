@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.8.6d [BETA]
+<b> Version:</b> v0.9.1d [BETA]
 
 <b> Latest major change: </b>  Added top loading bar indicator
 
@@ -16,6 +16,7 @@
 - Server DTG data
 
 <b> Features in development: </b>
+- Monitorr update via GUI
 - Settings page
 - Drag 'n drop tiles
 
