@@ -16,6 +16,8 @@ if($copy == 1){
 	
 	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
 	$extractPath = $path.'/tmp/';
+	$scanPath = array_diff(scandir($extractPath), array('..','.'));
+	$fullPath = $extractPath.$scanPath[2];
 	// unzip update
 	$zip = new ZipArchive;
     $res = $zip->open($local_file);
@@ -25,10 +27,9 @@ if($copy == 1){
 		// success updating files
 		$data = array("unzip" => 1);
 		// copy files from temp to monitorr root
-		recurse_copy($extractPath.'/*',$path);
+		recurse_copy($fullPath,$path);
 		// delete zip file
 		unlink($local_file);
-		rmdir($extractPath);
 		// update users local version number file
 		$userfile = fopen ("../version.txt", "w");
 		$user_vnum = fgets($userfile);  
@@ -43,5 +44,6 @@ if($copy == 1){
 }
 // send the json data
 echo json_encode($data);
+
 
 ?>
