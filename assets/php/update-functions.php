@@ -13,10 +13,11 @@ if(!$copy){
 }
 // check for verification
 if($copy == 1){
-	
-	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
+
+	//$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
+	$path = $_SERVER['DOCUMENT_ROOT'] . '/monitorr';
 	$extractPath = $path.'/tmp/';
-	
+
 	// unzip update
 	$zip = new ZipArchive;
     $res = $zip->open($local_file);
@@ -27,12 +28,13 @@ if($copy == 1){
 		$scanPath = array_diff(scandir($extractPath), array('..','.'));
 		$fullPath = $extractPath . $scanPath[2];
 		recurse_copy($fullPath,$path);
-		// delete zip file
-		unlink($local_file);
+		// delete unzipped files
+		delete_files($fullPath);
+		//unlink($local_file);
 		// update users local version number file
 		$userfile = fopen ("../js/version/version.txt", "w");
-		$user_vnum = fgets($userfile);  
-		fwrite($userfile, $_POST['version']);  
+		$user_vnum = fgets($userfile);
+		fwrite($userfile, $_POST['version']);
 		fclose($userfile);
 		// success updating files
 		$data = array("unzip" => 1);
