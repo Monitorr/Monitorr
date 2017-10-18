@@ -29,7 +29,7 @@ if($copy == 1){
 		$fullPath = $extractPath . $scanPath[2];
 		recurse_copy($fullPath,$path);
 		// delete unzipped files
-		delete_files($fullPath);
+		delete_files($extractPath);
 		//unlink($local_file);
 		// update users local version number file
 		$userfile = fopen ("../js/version/version.txt", "w");
