@@ -243,7 +243,7 @@ $local_file = '../../tmp/monitorr.zip'; #example: version/new-version.zip
 // version check information
 //
 // url to external verification of version number as a .TXT file
-$ext_version_loc = "https://raw.githubusercontent.com/Monitorr/Monitorr/master/assets/js/version/version.txt";
+$ext_version_loc = "https://raw.githubusercontent.com/Monitorr/Monitorr/update_test/assets/js/version/version.txt";
 // users local version number
 // added the 'uid' just to show that you can verify from an external server the
 // users information. But it can be replaced with something more simple
