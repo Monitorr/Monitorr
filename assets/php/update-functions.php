@@ -2,6 +2,7 @@
 
 require("functions.php");
 // copy the file from source server
+mkdir('../../tmp');
 $copy = copy($remote_file_url, $local_file);
 // check for success or fail
 if(!$copy){
