@@ -28,14 +28,13 @@ if($copy == 1){
 		$scanPath = array_diff(scandir($extractPath), array('..','.'));
 		$fullPath = $extractPath . $scanPath[2];
 		recurse_copy($fullPath,$path);
-		// delete unzipped files
-		delete_files($extractPath);
 		//unlink($local_file);
 		// update users local version number file
 		$userfile = fopen ("../js/version/version.txt", "w");
 		$user_vnum = fgets($userfile);
 		fwrite($userfile, $_POST['version']);
 		fclose($userfile);
+		//delete_files($extractPath);
 		// success updating files
 		$data = array("unzip" => 1);
 	}else{
