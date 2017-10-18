@@ -269,7 +269,7 @@ function recurse_copy($src,$dst) {
 // Function to recursively delete Files
 function delete_files($target) {
     if(is_dir($target)){
-        $files = glob( $target . '{,.}*', GLOB_MARK ); //GLOB_MARK adds a slash to directories returned
+        $files = glob( $target . '*', GLOB_MARK ); //GLOB_MARK adds a slash to directories returned
 
         foreach( $files as $file )
         {
