@@ -9,7 +9,7 @@ $config = array(
 // if on Linux, the timezone script will automatically select your timezone
 // For Windows, set the timezone. Default is UTC Time.
 // I.E. ($timezone = 'America/Los_Angeles',) list of timezone: https://php.net/manual/en/timezones.php
-    'updateBranch' => 'master', // update brach you wish to use
+    'updateBranch' => 'master', // update branch you wish to use // "master" or "develop"
     'timezone' => 'UTC',
     'timestandard' => 'False', // True for Standard Time, DEFAULT = False
     'rftime' => '', // time refresh
