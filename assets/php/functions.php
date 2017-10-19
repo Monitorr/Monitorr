@@ -222,7 +222,7 @@ if ($cpuPercent < $cpuok) {
 $pinghost = $config['pinghost']; //set in config.php
 $pingport = $config['pingport']; //set in config.php
 
-function ping($host, $port = 80, $timeout = 1) {
+function ping($host, $port = 53, $timeout = 1) {
     $start = microtime(true);
     if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
         return false;
@@ -266,6 +266,7 @@ function recurse_copy($src,$dst) {
     closedir($dir);
 }
 
+/*
 // Function to recursively delete Files
 function delete_files($target) {
     if(is_dir($target)){
@@ -280,6 +281,19 @@ function delete_files($target) {
     } elseif(is_file($target)) {
         unlink( $target );
     }
+}
+*/
+
+function removeDirectory($path) {
+    // The preg_replace is necessary in order to traverse certain types of folder paths (such as /dir/[[dir2]]/dir3.abc#/)
+    // The {,.}* with GLOB_BRACE is necessary to pull all hidden files (have to remove or get "Directory not empty" errors)
+    $files = glob(preg_replace('/(\*|\?|\[)/', '[$1]', $path).'/{,.}*', GLOB_BRACE);
+    foreach ($files as $file) {
+        if ($file == $path.'/.' || $file == $path.'/..') { continue; } // skip special dir entries
+        is_dir($file) ? removeDirectory($file) : unlink($file);
+    }
+    rmdir($path);
+    return;
 }
 
 ?>

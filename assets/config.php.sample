@@ -14,7 +14,7 @@ $config = array(
     'rftime' => '', // time refresh
     'rfsysinfo' => '5000', // system info refresh in milliseconds
     'pinghost' => '8.8.8.8', // URL or IP to ping
-    'pingport' => '443', // port to ping (defaults to 443)
+    'pingport' => '53', // port to ping (defaults to 53)
     'cpuok' => '50', //CPU% less than this will be green
     'cpuwarn' => '90', //CPU% less than this will be yellow
     'ramok' => '50', //RAM% below this is green
@@ -23,33 +23,33 @@ $config = array(
 //    'coloroff' => '', // color for offline, WIP
 );
 // thanks @causefx for the assist <3
-// supports http, https, domain, ip, 
-//  "NAMEOFAPP" => array( 
-//      "link" => "http://linktoyourapp.com", 
+// supports http, https, domain, ip,
+//  "NAMEOFAPP" => array(
+//      "link" => "http://linktoyourapp.com",
 //      "image" => "ACTUALAPPNAME.png"
-//    ), 
-$myServices = array( 
-    "Monitorr" => array( 
-        "link" => "http://localhost/monitorr", 
+//    ),
+$myServices = array(
+    "Monitorr" => array(
+        "link" => "http://localhost/monitorr",
         "image" => "monitorr.png"
-        ), 
-    "PLEX" => array( 
-        "link" => "http://localhost:32400", 
+        ),
+    "PLEX" => array(
+        "link" => "http://localhost:32400",
         "image" => "plex.png"
-        ), 
-    "Sonarr" => array(  
-        "link" => "http://localhost:8989", 
+        ),
+    "Sonarr" => array(
+        "link" => "http://localhost:8989",
         "image" => "sonarr.png"
-        ), 
-    "Radarr" => array( 
-        "link" => "http://localhost:7878", 
+        ),
+    "Radarr" => array(
+        "link" => "http://localhost:7878",
         "image" => "radarr.png"
-        ), 
-    "PlexPy" => array( 
-        "link" => "http://localhost:8181", 
+        ),
+    "PlexPy" => array(
+        "link" => "http://localhost:8181",
         "image" => "plexpy.png"
-        ), 
-   ); 
+        ),
+   );
 
 
 ?>
