@@ -6,11 +6,7 @@
 $config = array(
     'title' => 'Monitorr', // Site Title
     'siteurl' => 'http://localhost', // SITE URL
-// if on Linux, the timezone script will automatically select your timezone
-// For Windows, set the timezone. Default is UTC Time.
-// I.E. ($timezone = 'America/Los_Angeles',) list of timezone: https://php.net/manual/en/timezones.php
     'updateBranch' => 'master', // update branch you wish to use // "master" or "develop"
-    'timezone' => 'UTC',
     'timestandard' => 'False', // True for Standard Time, DEFAULT = False
     'rftime' => '', // time refresh
     'rfsysinfo' => '5000', // system info refresh in milliseconds
@@ -20,6 +16,11 @@ $config = array(
     'cpuwarn' => '90', //CPU% less than this will be yellow
     'ramok' => '50', //RAM% below this is green
     'ramwarn' => '90', //RAM% below this will be yellow
+    'timezone' => 'UTC',
+    // if on Linux, the timezone script will automatically select your timezone
+    // For Windows, set the timezone. Default is UTC Time.
+    // I.E. ($timezone = 'America/Los_Angeles',) list of timezone: https://php.net/manual/en/timezones.php
+
 //    'coloron' => '', // color for online, WIP
 //    'coloroff' => '', // color for offline, WIP
 );
