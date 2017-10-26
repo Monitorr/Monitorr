@@ -218,11 +218,11 @@ if ($cpuPercent < $cpuok) {
 * @param int $port
 * @param int $timeout
 * @return bool|float
-*/ 
+*/
 $pinghost = $config['pinghost']; //set in config.php
 $pingport = $config['pingport']; //set in config.php
 
-function ping($host, $port = 80, $timeout = 1) {
+function ping($host, $port = 53, $timeout = 1) {
     $start = microtime(true);
     if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
         return false;
@@ -230,8 +230,51 @@ function ping($host, $port = 80, $timeout = 1) {
     $end = microtime(true);
     return round((($end - $start) * 1000));
  }
- 
+
  $pingTime = ping($pinghost, $pingport);
 
+
+// New version download information
+
+$branch = $config['updateBranch'];
+
+// location to download new version zip
+$remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/' . $branch . '';
+// rename version location/name
+$local_file = '../../tmp/monitorr-' . $branch . '.zip'; #example: version/new-version.zip
+//
+// version check information
+//
+// url to external verification of version number as a .TXT file
+$ext_version_loc = 'https://raw.githubusercontent.com/Monitorr/Monitorr/' . $branch . '/assets/js/version/version.txt';
+// users local version number
+// added the 'uid' just to show that you can verify from an external server the
+// users information. But it can be replaced with something more simple
+$vnum_loc = "../js/version/version.txt"; #example: version/vnum_1.txt
+
+
+function recurse_copy($src,$dst) {
+    $dir = opendir($src);
+    @mkdir($dst);
+    while(false !== ( $file = readdir($dir)) ) {
+        if (( $file != '.' ) && ( $file != '..' )) {
+            if ( is_dir($src . '/' . $file) ) {
+                recurse_copy($src . '/' . $file,$dst . '/' . $file);
+            }
+            else {
+                copy($src . '/' . $file,$dst . '/' . $file);
+            }
+        }
+    }
+    closedir($dir);
+}
+
+function delTree($dir) {
+   $files = array_diff(scandir($dir), array('.','..'));
+    foreach ($files as $file) {
+      (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
+    }
+    return rmdir($dir);
+  }
 
 ?>
