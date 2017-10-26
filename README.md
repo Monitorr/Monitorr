@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.10.1d [BETA]
+<b> Version:</b> v0.10.1m [BETA]
 
 <b> Latest major change: </b>  Added update function (including branch switching)!
 
@@ -15,6 +15,7 @@
 - Host system resources display (CPU, MEM, PING, Uptime)(NEW)
 - Server DTG data
 - Update Monitorr via web UI.
+- User customizable system threshold colors
 
 <b> Features in development: </b>
 - Settings page
