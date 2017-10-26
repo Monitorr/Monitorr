@@ -15,28 +15,29 @@ if(!$copy){
 // check for verification
 if($copy == 1){
 
-	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
-	//$path = $_SERVER['DOCUMENT_ROOT'] . '/monitorr';
-	$base_path = '../../';
-	//$extractPath = $path.'/tmp/';
+	$base_path = dirname(__DIR__, 2);
+	$extractPath = $base_path.'/tmp/';
 
 	// unzip update
 	$zip = new ZipArchive;
     $res = $zip->open($local_file);
 	if($res === TRUE){
-		$zip->extractTo($path);
+		$zip->extractTo($extractPath);
 		$zip->close();
+		// copy config.php to safe place while we update
+		rename('../config.php', $extractPath.'config.php');
 		// copy files from temp to monitorr root
-		$scanPath = array_diff(scandir($path), array('..','.'));
-		$fullPath = $path . $scanPath[2];
+		$scanPath = array_diff(scandir($extractPath), array('..','.'));
+		$fullPath = $extractPath . $scanPath[2];
 		recurse_copy($fullPath,$base_path);
-		//unlink($local_file);
+		// restore config.php file
+		rename($extractPath.'config.php', '../config.php');
 		// update users local version number file
 		$userfile = fopen ("../js/version/version.txt", "w");
 		$user_vnum = fgets($userfile);
 		fwrite($userfile, $_POST['version']);
 		fclose($userfile);
-		//removeDirectory($fullPath);
+		removeDirectory($fullPath);
 		// success updating files
 		$data = array("unzip" => 1);
 	}else{
