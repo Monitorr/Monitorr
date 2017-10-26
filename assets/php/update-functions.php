@@ -37,7 +37,7 @@ if($copy == 1){
 		$user_vnum = fgets($userfile);
 		fwrite($userfile, $_POST['version']);
 		fclose($userfile);
-		removeDirectory($fullPath);
+		delTree($fullPath);
 		// success updating files
 		$data = array("unzip" => 1);
 	}else{

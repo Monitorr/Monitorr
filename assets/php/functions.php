@@ -269,34 +269,12 @@ function recurse_copy($src,$dst) {
     closedir($dir);
 }
 
-/*
-// Function to recursively delete Files
-function delete_files($target) {
-    if(is_dir($target)){
-        $files = glob( $target . '*', GLOB_MARK ); //GLOB_MARK adds a slash to directories returned
-
-        foreach( $files as $file )
-        {
-            delete_files( $file );
-        }
-
-        rmdir( $target );
-    } elseif(is_file($target)) {
-        unlink( $target );
-    }
-}
-*/
-
-function removeDirectory($path) {
-    // The preg_replace is necessary in order to traverse certain types of folder paths (such as /dir/[[dir2]]/dir3.abc#/)
-    // The {,.}* with GLOB_BRACE is necessary to pull all hidden files (have to remove or get "Directory not empty" errors)
-    $files = glob(preg_replace('/(\*|\?|\[)/', '[$1]', $path).'/{,.}*', GLOB_BRACE);
+function delTree($dir) {
+   $files = array_diff(scandir($dir), array('.','..'));
     foreach ($files as $file) {
-        if ($file == $path.'/.' || $file == $path.'/..') { continue; } // skip special dir entries
-        is_dir($file) ? removeDirectory($file) : unlink($file);
+      (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
     }
-    rmdir($path);
-    return;
-}
+    return rmdir($dir);
+  }
 
 ?>
