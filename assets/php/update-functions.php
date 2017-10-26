@@ -17,7 +17,7 @@ if($copy == 1){
 
 	$path = pathinfo(realpath($local_file), PATHINFO_DIRNAME);
 	//$path = $_SERVER['DOCUMENT_ROOT'] . '/monitorr';
-	$base_path = '../../'
+	$base_path = '../../';
 	//$extractPath = $path.'/tmp/';
 
 	// unzip update
