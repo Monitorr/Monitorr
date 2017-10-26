@@ -17,7 +17,6 @@
 - Update Monitorr via web UI.
 
 <b> Features in development: </b>
-- Monitorr update via GUI
 - Settings page
 - Drag 'n drop tiles
 
