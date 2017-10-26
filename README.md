@@ -5,7 +5,6 @@
 
 <b> Version:</b> v0.10.1d [BETA]
 
-
 <b> Latest major change: </b>  Added update function (including branch switching)!
 
 ## Features:
@@ -18,6 +17,7 @@
 - Update Monitorr via web UI.
 
 <b> Features in development: </b>
+- Monitorr update via GUI
 - Settings page
 - Drag 'n drop tiles
 
