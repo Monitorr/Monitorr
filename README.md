@@ -3,10 +3,9 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.9.4d [BETA]
+<b> Version:</b> v0.10.1d [BETA]
 
-
-<b> Latest major change: </b>  Added top loading bar indicator
+<b> Latest major change: </b>  Added update function (including branch switching)!
 
 ## Features:
 
@@ -15,6 +14,7 @@
 - Monitor any app on any domain (NEW)
 - Host system resources display (CPU, MEM, PING, Uptime)(NEW)
 - Server DTG data
+- Update Monitorr via web UI.
 
 <b> Features in development: </b>
 - Monitorr update via GUI
@@ -43,15 +43,18 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 ## Configuration:
 1) Clone/download repository to your webserver (Suggested Sub DIR)
 
-2) Edit `assets/config.php`:
+2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
+
+3) Edit `assets/config.php`:
  - timezone
  - Site Title
  - Site URL
  - Ping address
  - Sys info color thresholds
  - Services you want to monitor
- 
-3) Enjoy! Have a Donut. Drink a Coffee. 
+ - Branch you want to be on for updates (master/develop)
+
+4) Enjoy! Have a Donut. Drink a Coffee.
 <br>
 
 ## Feature Requests:
@@ -73,4 +76,3 @@ Buy us a beer! Donate:        [![Donate](https://img.shields.io/badge/Donate-Pay
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
 - [jonfinley](https://github.com/jonfinley) (Linux Dude)
 - [wjbeckett](https://github.com/wjbeckett)
-

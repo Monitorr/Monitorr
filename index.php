@@ -143,10 +143,10 @@ by @seanvree, @wjbeckett, and @jonfinley
       
        <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
-        <!-- <script src="assets/js/update.js" type="text/javascript"></script> -->
+        <script src="assets/js/update.js" type="text/javascript"></script>
         
         <div>
-            <!-- <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a> -->
+            <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a>
         </div>
     </div>
 </body>
