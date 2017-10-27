@@ -44,9 +44,9 @@ by @seanvree, @wjbeckett, and @jonfinley
         }
     </style>
 
+    <?php include ('assets/config.php'); ?>
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/php/gitinfo.php'); ?>
-    <?php include ('assets/config.php'); ?>
     
     <script src="assets/js/jquery.min.js"></script>
 
