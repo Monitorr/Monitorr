@@ -119,7 +119,7 @@ by @seanvree, @wjbeckett, and @jonfinley
 
                         <div class="dtg" id="timer"></div>
 
-                        <script src="assets/js/clock.js"></script>
+                        <script type="text/javascript" src="assets/js/clock.js"></script>
 
                     </div> 
 
