@@ -66,7 +66,7 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 <br>
 
 ## Connect:
-Need live help?  Join here:   [![Gitter](https://badges.gitter.im/Monitorr/chat.svg)](https://gitter.im/Monitorr/Chat)
+Need live help?  Join here :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
 <br>
 E-mail: monitorrapp@gmail.com
 <br>
