@@ -2,7 +2,7 @@
 // Speedtest
 $speedtimes = Array(microtime(true));
 $f = fsockopen("google.com",80);
-$times[] = microtime(true);
+$speedtimes[] = microtime(true);
 $speeddata = "POST / HTTP/1.0\r\n"
         ."Host: google.com\r\n"
         ."\r\n"
