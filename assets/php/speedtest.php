@@ -20,9 +20,9 @@ while(!feof($f)) {
 }
 $speedtimes[] = microtime(true);
 fclose($f);
-echo "RESULTS:\n"
+/*echo "RESULTS:\n"
     ."Connection: ".(($speedtimes[1]-$speedtimes[0])*1000)."ms\n"
     ."Upload: ".number_format($sent)." bytes in ".(($speedtimes[2]-$speedtimes[1]))."s (".($sent/($speedtimes[2]-$speedtimes[1])/1024)."kb/s)\n"
     ."Download: ".number_format($return)." bytes in ".(($speedtimes[3]-$speedtimes[2]))."s (".($return/($speedtimes[3]-$speedtimes[2])/1024)."kb/s)\n";
-
+*/
 ?>
