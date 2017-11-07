@@ -18,7 +18,7 @@
 
 <div class="col-md-2 col-centered double-val-label">
   <span class="primary">Download</span>
-  <span><?php echo round($return/($speedtimes[3]-$speedtimes[2])/1024) ;?>kb/s</span>
+  <span><?php echo round(($return/($speedtimes[3]-$speedtimes[2])/1024)/1024) ;?>kb/s</span>
 </div>
 
 <div class="col-md-2 col-centered double-val-label">
