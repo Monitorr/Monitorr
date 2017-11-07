@@ -18,12 +18,12 @@
 
 <div class="col-md-2 col-centered double-val-label">
   <span class="primary">Download</span>
-  <span><?php echo round(($return/($speedtimes[3]-$speedtimes[2])/1024)/1024) ;?>kb/s</span>
+  <span><?php echo round(($return/($speedtimes[3]-$speedtimes[2])/1024)/1024) ;?>mb/s</span>
 </div>
 
 <div class="col-md-2 col-centered double-val-label">
   <span class="primary">Upload</span>
-  <span><?php echo round($sent/($speedtimes[2]-$speedtimes[1])/1024) ;?>kb/s</span>
+  <span><?php echo round(($sent/($speedtimes[2]-$speedtimes[1])/1024)/1024) ;?>mb/s</span>
 </div>
 
 <div class="col-md-2 col-centered double-val-label">
