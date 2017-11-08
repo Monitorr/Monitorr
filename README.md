@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.10.1d [BETA]
+<b> Version:</b> v0.10.2d [BETA]
 
 <b> Latest major change: </b>  Added update function (including branch switching)!
 
@@ -18,6 +18,7 @@
 - User customizable system threshold colors
 
 <b> Features in development: </b>
+- UL/DL times via Speedtest
 - Settings page
 - Drag 'n drop tiles
 
