@@ -40,7 +40,7 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 <br>
 
-## Configuration:
+## Installation & Configuration:
 1) Clone/download repository to your webserver (Suggested Sub DIR)
 
 2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
@@ -56,6 +56,29 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 4) Enjoy! Have a Donut. Drink a Coffee.
 <br>
+
+### Docker
+#### Usage
+```
+docker create \
+  --name=monitorr \
+  --restart=on-failure \
+  -v <host path for config:/config \
+  -v <host path for logs>:/var/log \
+  -e TZ=<timezone> \
+  -p 80:80 \
+  tronyx/docker-monitorr
+```
+
+#### Parameters
+* `--name` - The name of the container - Call it whatever you want.
+* `--restart=on-failure` Container restart mode - Docker attempts to restarts the container if the container returns a non-zero exit code. More info [HERE](https://docs.docker.com/engine/admin/start-containers-automatically/ "HERE") on container restart policies.
+* `-v /home/monitorr/config:/config` - Your preferred app data config path, IE: where you're storing the Monitorr config files.
+* `-v /home/monitorr/config/log:/var/log` Your preferred app log path, IE: where you're storing the Monitorr, Nginx, and PHP logs.
+* `-e TZ` - Your timezone, IE: `America/New_York`.
+
+### Info
+* To monitor the logs of the container in realtime `docker logs -f monitorr`
 
 ## Feature Requests:
  [![Feature Requests](https://cloud.githubusercontent.com/assets/390379/10127973/045b3a96-6560-11e5-9b20-31a2032956b2.png)](https://feathub.com/Monitorr/Monitorr)
