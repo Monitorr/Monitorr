@@ -57,7 +57,7 @@ In use with [Organizr](https://github.com/causefx/Organizr)
  - Services you want to monitor
  - Branch you want to be on for updates (master/develop)
 
-4) Enjoy! Have a Donut. Drink a Coffee.
+5) Enjoy! Have a Donut. Drink a Coffee.
 <br>
 
 ## Feature Requests:
