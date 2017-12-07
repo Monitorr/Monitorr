@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.10.2d [BETA]
+<b> Version:</b> v0.10.4m [BETA]
 
 <b> Latest major change: </b>  Added update function (including branch switching)!
 
@@ -67,7 +67,7 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 <br>
 
 ## Connect:
-Need live help?  Join us on Discord:   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
+Need live help?  Join here :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
 <br>
 E-mail: monitorrapp@gmail.com
 <br>

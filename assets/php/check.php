@@ -22,7 +22,7 @@ function urlExists($url) {
         $response = curl_exec($handle);
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
-        if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401) {
+        if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401 || $httpCode == 405) {
             echo '<div class="col-lg-4">';
             echo '<a href="'. $k['link'] .'" target="_blank" style="display: block">';
             echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
