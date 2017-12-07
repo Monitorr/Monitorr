@@ -44,9 +44,9 @@ by @seanvree, @wjbeckett, and @jonfinley
         }
     </style>
 
+    <?php include ('assets/config.php'); ?>
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/php/gitinfo.php'); ?>
-    <?php include ('assets/config.php'); ?>
     
     <script src="assets/js/jquery.min.js"></script>
 
@@ -119,7 +119,7 @@ by @seanvree, @wjbeckett, and @jonfinley
 
                         <div class="dtg" id="timer"></div>
 
-                        <script src="assets/js/clock.js"></script>
+                        <script type="text/javascript" src="assets/js/clock.js"></script>
 
                     </div> 
 
