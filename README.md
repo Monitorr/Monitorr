@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.10.4m [BETA]
+<b> Version:</b> v0.10.5d [BETA]
 
 <b> Latest major change: </b>  Added update function (including branch switching)!
 
