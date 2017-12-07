@@ -5,16 +5,16 @@
 
 <b> Version:</b> v0.10.6d [BETA]
 
-<b> Latest major change: </b>  Added update function (including branch switching)!
+<b> Latest major change: </b> Config.php auto populates on first visit to index.php
 
 ## Features:
 
 - LIVE!
 - Self-hosted
-- Monitor any app on any domain (NEW)
-- Host system resources display (CPU, MEM, PING, Uptime)(NEW)
+- Monitor any app on any domain
+- Host system resources display (CPU, MEM, PING, Uptime)
 - Server DTG data
-- Update Monitorr via web UI.
+- Update Monitorr via web UI / branch switching (NEW)
 - User customizable system threshold colors
 
 <b> Features in development: </b>
@@ -46,7 +46,9 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
 
-3) Edit `assets/config.php`:
+3) Browse to <localhost\domain>/monitorr/index.php (config.php will be auto populated in /assets/config.php)
+
+4) Edit `assets/config.php`:
  - timezone
  - Site Title
  - Site URL
