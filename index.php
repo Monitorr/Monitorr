@@ -14,20 +14,25 @@ by @seanvree, @wjbeckett, and @jonfinley
 --> 
 
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico">
+    
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Monitorr">
+    <meta name="author" content="Monitorr">
     <meta name="version" content="php">
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles -->
-    <link href="assets/css/main.css" rel="stylesheet">
+
     <!-- Fonts from Google Fonts -->
     <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles -->
+    <link href="assets/css/main.css" rel="stylesheet">
 
     <style>
         body.offline #link-bar {
@@ -44,38 +49,45 @@ by @seanvree, @wjbeckett, and @jonfinley
         }
     </style>
 
+    <?php $file = 'assets/config.php';
+        //Use the function is_file to check if the config file already exists or not.
+        if(!is_file($file)){
+            copy('assets/config.php.sample', $file);
+        } 
+    ?>
+
     <?php include ('assets/config.php'); ?>
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/php/gitinfo.php'); ?>
     
     <script src="assets/js/jquery.min.js"></script>
 
-    <script src="assets/js/pace.js"></script>
+    <script src="assets/js/pace.js" async></script>
 
-        <script type= "text/javascript">
-            $(document).ready(function() {
-                function update() {
-                $.ajax({
-                type: 'POST',
-                url: 'assets/php/timestamp.php',
-                timeout: 5000,
-                success: function(data) {
-                    $("#timer").html(data); 
-                  window.setTimeout(update, 2000);
-                }
-                });
-                }
-                update();
+    <script type= "text/javascript" async>
+        $(document).ready(function() {
+            function update() {
+            $.ajax({
+            type: 'POST',
+            url: 'assets/php/timestamp.php',
+            timeout: 5000,
+            success: function(data) {
+                $("#timer").html(data); 
+                window.setTimeout(update, 2000);
+            }
             });
-        </script>
+            }
+            update();
+        });
+    </script>
 
-        <script type="text/javascript">
-            function statusCheck() {
-                $("#statusloop").load('assets/php/loop.php');
-                $("#stats").load('assets/php/systembadges.php');
-                }
-                setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
-        </script>
+    <script type="text/javascript">
+        function statusCheck() {
+            $("#statusloop").load('assets/php/loop.php');
+            $("#stats").load('assets/php/systembadges.php');
+            }
+            setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
+    </script>
         
     <title><?php echo $config['title']; ?></title>
 
@@ -131,6 +143,7 @@ by @seanvree, @wjbeckett, and @jonfinley
         </div>
 
     </div>
+
     <div class="row">
         <div id="stats" class="container centered">
             <!-- system badges go here -->
@@ -148,7 +161,9 @@ by @seanvree, @wjbeckett, and @jonfinley
         <div>
             <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a>
         </div>
+
     </div>
+
 </body>
 
 </html>
