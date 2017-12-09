@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.10.6d [BETA]
+<b> Version:</b> v0.10.7d [BETA]
 
 <b> Latest major change: </b> Config.php auto populates on first visit to index.php
 
