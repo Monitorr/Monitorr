@@ -1,6 +1,6 @@
 server {
 	listen 80 default_server;
-	root /config/www/Monitorr;
+	root /config/www/monitorr;
 	index index.html index.htm index.php;
 
 	server_name _;

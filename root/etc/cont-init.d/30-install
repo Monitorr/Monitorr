@@ -2,7 +2,7 @@
 
 # Clone Monitorr repo
 [[ ! -d /config/www/Monitorr/.git ]] && \
-git clone https://github.com/Monitorr/monitorr.git /config/www/Monitorr
+git clone https://github.com/Monitorr/monitorr.git /config/www/monitorr
 
 # Set permissions
 chown -R abc:abc \
