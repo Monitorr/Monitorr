@@ -3,7 +3,9 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.10.7d [BETA]
+<b> Version:</b> v0.10.8d [BETA]
+
+[![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
 <b> Latest major change: </b> Config.php auto populates on first visit to index.php
 
@@ -14,7 +16,8 @@
 - Monitor any app on any domain
 - Host system resources display (CPU, MEM, PING, Uptime)
 - Server DTG data
-- Update Monitorr via web UI / branch switching (NEW)
+- Update Monitorr via web UI / branch switching
+- Minimal UI for iFrame displays (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Integration:--Organizr))
 - User customizable system threshold colors
 
 <b> Features in development: </b>
