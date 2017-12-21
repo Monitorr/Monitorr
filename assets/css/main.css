@@ -1,7 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
+
 body {
+    opacity: 1;
+    transition: 2s opacity;
     background-color: #1F1F1F;
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
     font-size: 16px;
     color: #555;
     align-items: center;
@@ -9,8 +13,43 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    margin: 1em; 
 }
 
+body.fade-out {
+    opacity: 0;
+    transition: none;
+}
+
+@media (min-width: 858px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 780px) {
+    html {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 702px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 724px) {
+    html {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 623px) {
+    html {
+        font-size: 8px;
+    }
+}
 
 /* Titles */
 
@@ -50,7 +89,8 @@ p {
     line-height: 28px;
     margin-bottom: 25px;
     font-size: 25px;
-} */
+} 
+*/
 
 .centered {
     text-align: center;
@@ -60,11 +100,15 @@ br {
     line-height: 5px;
 }
 
+span {
+    cursor: default;
+}
 
 /* Links */
 
 a {
     color: #f2f2f2;
+    /* text-shadow: 0 0 15px #FF0104; */
     word-wrap: break-word;
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
     -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -75,9 +119,11 @@ a {
 
 a:hover,
 a:focus {
-    color: #add8e6;
+    color: #ffffff;
+    text-shadow: 0 0 15px #FF0104;
     text-decoration: none;
     outline: 0;
+    font-weight: 600;
 }
 
 a:before,
@@ -89,6 +135,7 @@ a:after {
     transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
+
 hr {
     display: block;
     height: 1px;
@@ -98,17 +145,26 @@ hr {
     padding: 0;
 }
 
+.navbar-brand {
+    background-color: #1F1F1F;
+    border-color: transparent;
+    font-weight: 500;
+}
+
 .navbar-default {
     background-color: #1F1F1F;
     border-color: transparent;
+    font-weight: 500;
 }
 
 .navbar-default .navbar-brand {
     color: white;
+    font-weight: 500;
 }
 
 .navbar-default .navbar-nav>li>a {
     color: white;
+    font-weight: 500;
 }
 
 .col-centered {
@@ -180,6 +236,8 @@ i {
     padding: 10px 0px 5px 0px;
     width: 130px;
     height: 190px;
+    font-weight: 500;
+    font-size: 1.2em;
 }
 
 .btnonline {
@@ -198,7 +256,7 @@ i {
     color: #FFFFFF;
     font-size: 15px;
     font-weight: 500;
-    text-decoration: none;
+    text-shadow: none;
 }
 
 .btnoffline {
@@ -216,8 +274,8 @@ i {
     /*font-family: Courier New;*/
     color: #ffffff;
     font-size: 15px;
-    font-weight: 400;
-    text-decoration: none;
+    font-weight: 500;
+    cursor: default;
 }
 
 
@@ -247,6 +305,7 @@ circle {
     font-size: 13px;
     font-weight: 400;
     margin: 5px;
+    cursor: default;
 }
 
 .clock {
@@ -254,6 +313,7 @@ circle {
     font-size: 12px;
     font-weight: 400;
     margin: 5px;
+    cursor: default;
 }
 
 #numbers {
@@ -310,16 +370,14 @@ line {
 }
 
 .footer a {
-    text-decoration: none;
     color: #555555;
     font-size: 12px;
-}
-
+    text-shadow: none;
+    font-weight: 300;
+}  
 
 /* BADGES */
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
 #main-title {
     font-family: 'Roboto', sans-serif;
     font-size: 3em;
@@ -360,30 +418,37 @@ line {
         border-bottom-left-radius: 0.25em;
         border-top-left-radius: .25em;
     }
+
     &:nth-child(2) {
         border-bottom-right-radius: 0.25em;
         border-top-right-radius: .25em;
     }
+
 }
 
 .double-val-label>span.primary {
     background-color: #337ab7;
+    cursor: default;
 }
 
 .double-val-label>span.success {
     background-color: #5cb85c;
+    cursor: default;
 }
 
 .double-val-label>span.info {
     background-color: #5bc0de;
+    cursor: default;
 }
 
 .double-val-label>span.warning {
     background-color: #f0ad4e;
+    cursor: default;
 }
 
 .double-val-label>span.danger {
     background-color: #d9534f;
+    cursor: default;
 }
 
 
