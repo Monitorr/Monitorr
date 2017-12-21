@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,7 @@
 by @seanvree, @wjbeckett, and @jonfinley 
   https://github.com/Monitorr/Monitorr 
 --> 
+
 
 <head>
     <meta charset="utf-8">
@@ -44,7 +46,6 @@ by @seanvree, @wjbeckett, and @jonfinley
         }
 
         .auto-style1 {
-            float: center;
             text-align: center;
         }
     </style>
@@ -64,7 +65,7 @@ by @seanvree, @wjbeckett, and @jonfinley
 
     <script src="assets/js/pace.js" async></script>
 
-    <script type= "text/javascript" async>
+    <script type= "text/javascript">
         $(document).ready(function() {
             function update() {
             $.ajax({
@@ -74,7 +75,7 @@ by @seanvree, @wjbeckett, and @jonfinley
             success: function(data) {
                 $("#timer").html(data); 
                 window.setTimeout(update, 2000);
-            }
+                }
             });
             }
             update();
@@ -94,14 +95,20 @@ by @seanvree, @wjbeckett, and @jonfinley
 </head>
 
 <body onload="statusCheck()">
-    <br>
-    <!-- Fixed navbar -->
+
+    <script>
+        document.body.className += ' fade-out';
+            $(function() { 
+                $('body').removeClass('fade-out'); 
+                });
+    </script>
+
     <div class="navbar-brand">
         <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>">
             <?php echo $config['title']; ?>
         </a>
     </div>
-
+    
     <div class="container">
         <!-- /row -->
         <div class="row">
@@ -131,7 +138,7 @@ by @seanvree, @wjbeckett, and @jonfinley
 
                         <div class="dtg" id="timer"></div>
 
-                        <script type="text/javascript" src="assets/js/clock.js"></script>
+                        <script src="assets/js/clock.js"></script>
 
                     </div> 
 
@@ -156,12 +163,10 @@ by @seanvree, @wjbeckett, and @jonfinley
       
        <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
-        <script src="assets/js/update.js" type="text/javascript"></script>
-        
-        <div>
-            <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a>
-        </div>
+        <script src="assets/js/update.js"></script>
 
+        <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a>
+        
     </div>
 
 </body>
