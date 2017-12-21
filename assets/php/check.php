@@ -26,7 +26,7 @@ function urlExists($url) {
             echo '<div class="col-lg-4">';
             echo '<a href="'. $k['link'] .'" target="_blank" style="display: block">';
             echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
-            echo '<p><strong style="text-decoration:none">'. ucfirst($t) .'</strong></p>';
+            echo '<p>'. ucfirst($t) .'</p>';
             echo '<p class="btnonline">Online</p>';
             echo '</a>';
             echo '</div>';
@@ -34,7 +34,7 @@ function urlExists($url) {
             echo '<div class="col-lg-4">';
             echo '<a href="#" style="display: block">';
             echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
-            echo '<p><strong>'. ucfirst($t) .'</strong></p>';
+            echo '<p>'. ucfirst($t) .'</p>';
             echo '<p class="btnoffline">Offline</p>';
             echo '</a>';
             echo '</div>';
