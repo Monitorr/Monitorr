@@ -60,6 +60,8 @@ by @seanvree, @wjbeckett, and @jonfinley
     <?php include ('assets/config.php'); ?>
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/php/gitinfo.php'); ?>
+
+    <title><?php echo $config['title']; ?></title>
     
     <script src="assets/js/jquery.min.js"></script>
 
@@ -89,8 +91,6 @@ by @seanvree, @wjbeckett, and @jonfinley
             }
             setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
     </script>
-        
-    <title><?php echo $config['title']; ?></title>
 
 </head>
 
@@ -102,6 +102,12 @@ by @seanvree, @wjbeckett, and @jonfinley
                 $('body').removeClass('fade-out'); 
                 });
     </script>
+
+    <div class="row">
+        <div id="stats" class="container centered">
+            <!-- system badges go here -->
+        </div>
+    </div>
     
     <div class="container">
         <!-- /row -->
@@ -143,12 +149,6 @@ by @seanvree, @wjbeckett, and @jonfinley
             </div>
         </div>
 
-    </div>
-
-    <div class="row">
-        <div id="stats" class="container centered">
-            <!-- system badges go here -->
-        </div>
     </div>
 
     <!-- /container -->
