@@ -7,7 +7,7 @@
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
-<b> Latest major change: </b> Config.php auto populates on first visit to index.php
+<b> Latest major change: </b> Added index.min.php for optimal display when using as iframe plug-in (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Integration:--Organizr))
 
 ## Features:
 
