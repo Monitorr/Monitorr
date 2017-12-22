@@ -20,8 +20,7 @@ by @seanvree, @wjbeckett, and @jonfinley
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="apple-touch-icon" href="favicon.ico">
-    
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Monitorr">
     <meta name="author" content="Monitorr">
@@ -60,6 +59,8 @@ by @seanvree, @wjbeckett, and @jonfinley
     <?php include ('assets/config.php'); ?>
     <?php include ('assets/php/check.php') ;?>
     <?php include ('assets/php/gitinfo.php'); ?>
+
+    <title><?php echo $config['title']; ?></title>
     
     <script src="assets/js/jquery.min.js"></script>
 
@@ -89,8 +90,6 @@ by @seanvree, @wjbeckett, and @jonfinley
             }
             setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
     </script>
-        
-    <title><?php echo $config['title']; ?></title>
 
 </head>
 
