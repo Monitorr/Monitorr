@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.11.0d [BETA]
+<b> Version:</b> v0.11.0m [BETA]
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
