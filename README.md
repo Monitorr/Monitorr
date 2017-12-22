@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.10.8d [BETA]
+<b> Version:</b> v0.11.0d [BETA]
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
@@ -34,7 +34,7 @@
 
 In use with [Organizr](https://github.com/causefx/Organizr)
 
-<img src="https://i.imgur.com/VdcgPHs.png[/img]">
+<img src="https://i.imgur.com/7vAZJbS.png[/img]">
 
 
 ## Prerequisites:
