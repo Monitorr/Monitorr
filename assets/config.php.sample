@@ -6,12 +6,12 @@
 $config = array(
     'title' => 'Monitorr', // Site Title
     'siteurl' => 'http://localhost', // SITE URL
-    'updateBranch' => 'master', // update branch you wish to use // "master" or "develop"
+    'updateBranch' => 'develop', // update branch you wish to use // "master" or "develop"
     'timestandard' => 'False', // True for Standard Time, DEFAULT = False
     'rftime' => '', // time refresh
     'rfsysinfo' => '5000', // system info refresh in milliseconds
     'pinghost' => '8.8.8.8', // URL or IP to ping
-    'pingport' => '443', // port to ping (defaults to 53)
+    'pingport' => '53', // port to ping (defaults to 53)
     'cpuok' => '50', //CPU% less than this will be green
     'cpuwarn' => '90', //CPU% less than this will be yellow
     'ramok' => '50', //RAM% below this is green
@@ -23,6 +23,7 @@ $config = array(
 
 //    'coloron' => '', // color for online, WIP
 //    'coloroff' => '', // color for offline, WIP
+    'githubtoken' => '', //OAuth2 token for access to github, to avoid 60/hr rate limit, see https://github.com/settings/tokens
 );
 // thanks @causefx for the assist <3
 // supports http, https, domain, ip,

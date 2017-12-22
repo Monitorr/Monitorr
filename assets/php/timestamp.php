@@ -1,7 +1,9 @@
 <?php // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
 include_once '../config.php';
 
-$timezone = $config['timezone']; // set in config.php
+if (!empty($config['timezone'])) {
+    $timezone = $config['timezone']; // set in config.php
+}
 $timestandard = strtolower($config['timestandard']); // set in config.php
 if (is_link('/etc/localtime')) {
     // Mac OS X (and older Linuxes)
