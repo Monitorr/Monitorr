@@ -84,22 +84,37 @@ by @seanvree, @wjbeckett, and @jonfinley
     </script>
 
     <script type="text/javascript">
+
+        var nIntervId;
+        var onload;
+
         function statusCheck() {
             $("#statusloop").load('assets/php/loop.php');
             $("#stats").load('assets/php/systembadges.php');
-            }
-            setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
-    </script>
+        };
+
+        $(document).ready(function () {
+            $(":checkbox").change(function () {
+                if ($(this).is(':checked')) {
+                    nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
+                } else {
+                    clearInterval(nIntervId);
+                }
+            });
+            $('#buttonStart :checkbox').attr('checked', 'checked').change();
+        });
+
+    </script> 
 
 </head>
 
 <body onload="statusCheck()">
-
+        
     <script>
         document.body.className += ' fade-out';
             $(function() { 
                 $('body').removeClass('fade-out'); 
-                });
+            });
     </script>
 
     <div class="navbar-brand">
@@ -108,6 +123,15 @@ by @seanvree, @wjbeckett, and @jonfinley
         </a>
     </div>
     
+    <center>Auto Refresh:</center>
+
+    <div id="slider">
+        <label class="switch" id="buttonStart">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+        
     <div class="container">
         <!-- /row -->
         <div class="row">
@@ -155,8 +179,6 @@ by @seanvree, @wjbeckett, and @jonfinley
             <!-- system badges go here -->
         </div>
     </div>
-
-    <!-- /container -->
 
     <div class="footer">
       
