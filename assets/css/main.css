@@ -6,7 +6,7 @@ body {
     transition: 2s opacity;
     background-color: #1F1F1F;
     font-family: 'Lato', sans-serif;
-    font-size: 16px;
+    /* font-size: 16px; */
     color: #555;
     align-items: center;
     align-content: center;
@@ -101,6 +101,49 @@ h4 {
     font-weight: 500;
 }
 
+/* Top Margin */
+
+.header {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 1px;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.Column {
+    display: table-cell;
+}
+
+table,
+th,
+td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+#left {
+    text-align: left;
+    vertical-align: middle;
+    width: 30%;
+    z-index: -1;
+}
+
+#center {
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 21%;
+}
+
+#right {
+    text-align: center;
+    vertical-align: middle;
+    width: 30%;
+    cursor: default;
+    font-size: .8em;
+}
 
 /* Paragraph & Typographic */
 
@@ -129,7 +172,7 @@ span {
 
 a {
     color: #f2f2f2;
-    word-wrap: break-word;
+    /* word-wrap: break-word; */
     -webkit-transition: all .2s ease-in;
     -moz-transition: all .2s ease-in;
     -ms-transition: all .2s ease-in;
@@ -169,11 +212,11 @@ hr {
 .navbar-brand {
     background-color: #1F1F1F;
     border-color: transparent;
-    font-weight: 500;
     color: #ffffff;
     text-shadow: 0 0 15px #FF0104;
     text-decoration: none;
     outline: 0;
+    font-size: 3em;
     font-weight: 500;
 }
 
@@ -264,14 +307,14 @@ i {
     width: 130px;
     height: 190px;
     font-weight: 500;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .btnonline {
     width: 85px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 15px;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -290,7 +333,7 @@ i {
     width: 85px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 15px;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -390,7 +433,7 @@ line {
 
 #slider {
     width: 35px;
-    padding-top: .5em;
+    padding-top: 10px;
     margin: auto;
 }
 
