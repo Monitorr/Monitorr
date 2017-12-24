@@ -5,6 +5,8 @@
 
 <b> Version:</b> v0.11.0d [BETA]
 
+[![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases)
+
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
 <b> Latest major change: </b> Added index.min.php for optimal display when using as iframe plug-in (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Integration:--Organizr))
