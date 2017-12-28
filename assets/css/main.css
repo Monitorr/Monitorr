@@ -40,8 +40,7 @@ body::-webkit-scrollbar-thumb {
     background-color: #8E8B8B;
 }
 
-
-@media (min-width: 858px) {
+ @media (min-width: 858px) {
     html {
         font-size: 12px;
     }
@@ -69,8 +68,61 @@ body::-webkit-scrollbar-thumb {
     html {
         font-size: 8px;
     }
+} 
+
+@media screen and (max-width: 2000px) {
+    html {
+        font-size: 15px;
+    }
 }
 
+@media screen and (max-width: 1800px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+ @media screen and (max-width: 1400px) {
+     html {
+         font-size: 15px;
+     }
+ }
+
+ @media screen and (max-width: 1200px) {
+    html {
+        font-size: 14px;
+    }
+} 
+
+@media screen and (max-width: 1024px) {
+        html {
+            font-size: 13px;
+        }
+}
+
+@media screen and (max-width: 950px) {
+    html {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+        html {
+            font-size: 9px;
+        }
+}
+
+@media screen and (max-width: 480px) {
+        html {
+            font-size: 7px;
+        }
+} 
 
 /* Titles */
 
@@ -109,7 +161,7 @@ h4 {
     table-layout: fixed;
     border-spacing: 1px;
     margin-top: 2%;
-    margin-bottom: 1%;
+    margin-bottom: .5%;
 }
 
 .Column {
@@ -127,22 +179,35 @@ td {
 #left {
     text-align: left;
     vertical-align: middle;
-    width: 30%;
-    z-index: -1;
+    width: 0%;
 }
 
 #center {
     text-align: center;
     vertical-align: middle;
-    margin-left: 21%;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: auto;
+    margin-left: 26%;
+    width: 100%;
 }
 
 #right {
     text-align: center;
     vertical-align: middle;
-    width: 30%;
+    width: 35%;
     cursor: default;
-    font-size: .8em;
+    font-size: 1rem;
+    padding-left: 10px;
+    padding-top: 15px;
+    color: #8E8B8B;
+}
+
+#bottom {
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 0px;
+    margin: auto;
 }
 
 /* Paragraph & Typographic */
@@ -216,7 +281,7 @@ hr {
     text-shadow: 0 0 15px #FF0104;
     text-decoration: none;
     outline: 0;
-    font-size: 3em;
+    font-size: 4rem;
     font-weight: 500;
 }
 
@@ -296,6 +361,15 @@ i {
 
 
 /* BUTTONS */
+
+.container {
+    margin: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    align-content: center;
+    align-items: center;
+}
+
 
 .col-lg-4 {
     vertical-align: top;

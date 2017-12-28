@@ -119,7 +119,8 @@
 
         <div class="header">
 
-            <!-- <div id="left" class="Column"> -->
+            <div id="left" class="Column">
+            </div>
 
             <div id="center" class="navbar-brand">
                 <a href="<?php echo $config['siteurl']; ?>">
@@ -131,7 +132,7 @@
                 <table>
                     <tr>
                         <th>
-                            <center>Auto Refresh<br>(<?php echo $config['rfsysinfo']; ?>ms):</center>
+                            <center>Auto Refresh:<br>(<?php echo $config['rfsysinfo']; ?>ms)</center>
                         </th>
 
                         <th id="slider">
