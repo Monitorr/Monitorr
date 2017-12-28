@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.11.2d [BETA]
+<b> Version:</b> v0.11.3d [BETA]
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
 
