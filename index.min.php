@@ -36,6 +36,11 @@
         <link href="assets/css/main.css" rel="stylesheet">
 
         <style>
+        
+            body {
+                overflow: hidden  !important;
+            }
+
             body.offline #link-bar {
                 display: none;
             }
@@ -47,6 +52,7 @@
             .auto-style1 {
                 text-align: center;
             }
+            
         </style>
 
         <?php $file = 'assets/config.php';
