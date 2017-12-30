@@ -36,6 +36,33 @@
         <link href="assets/css/main.css" rel="stylesheet">
 
         <style>
+
+            body {
+                margin-top: 2vw;
+                margin-bottom: 2vw;
+                overflow-y: auto; 
+                overflow-x: hidden; 
+            }
+
+            body::-webkit-scrollbar {
+                width: 10px;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            } 
+
             body.offline #link-bar {
                 display: none;
             }
@@ -47,6 +74,7 @@
             .auto-style1 {
                 text-align: center;
             }
+
         </style>
 
         <?php $file = 'assets/config.php';
@@ -117,38 +145,38 @@
             });
         </script>
 
-        <div class="header">
-
+        <div id="header">
+            
             <div id="left" class="Column">
-            </div>
+            </div> 
 
-            <div id="center" class="navbar-brand">
-                <a href="<?php echo $config['siteurl']; ?>">
-                    <?php echo $config['title']; ?>
-                </a>
+            <div id="center">
+                <div id="centerinner" class="navbar-brand">
+                    <div id="centertext" class="navbar-brand">
+                        <a href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
+                    </div>
+                </div>
             </div>
 
             <div id="right" class="Column">
-                <table>
+                <table id="slidertable">
                     <tr>
-                        <th>
-                            <center>Auto Refresh:<br>(<?php echo $config['rfsysinfo']; ?>ms)</center>
+                        <th id="textslider">
+                        Auto Refresh:
                         </th>
-
                         <th id="slider">
                             <label class="switch" id="buttonStart">
                                 <input type="checkbox">
                                 <span class="slider round"></span>
                             </label>
                         </th>
-                        
                     </tr>
                 </table>
-            </div>
+            </div> 
 
         </div>
             
-        <div class="container">
+        <div id="services" class="container">
             <!-- /row -->
             <div class="row">
                 <div class="col-md-12">
@@ -190,13 +218,13 @@
 
         </div>
 
-        <div class="row">
+        <div id="system" class="row">
             <div id="stats" class="container centered">
                 <!-- system badges go here -->
             </div>
         </div>
 
-        <div class="footer">
+        <div id="footer" class="footer">
         
             <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
