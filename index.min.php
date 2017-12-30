@@ -36,9 +36,15 @@
         <link href="assets/css/main.css" rel="stylesheet">
 
         <style>
-        
-            body {
-                overflow: hidden  !important;
+
+            html, body {
+                margin-bottom: 1vw;
+                overflow: scroll;
+            }
+
+            ::-webkit-scrollbar {
+                width: 0px;  /* remove scrollbar space */
+                background: transparent;  /* make scrollbar invisible */
             }
 
             body.offline #link-bar {
@@ -115,7 +121,7 @@
     </head>
 
     <body onload="statusCheck()">
-            
+
         <script>
             document.body.className += ' fade-out';
             $(function() { 
@@ -123,14 +129,13 @@
             });
         </script>
 
-        <div class="row">
+        <div id="system" class="row">
             <div id="stats" class="container centered">
                 <!-- system badges go here -->
             </div>
         </div>
 
-            
-        <div class="container">
+        <div id="services" class="container">
             <!-- /row -->
             <div class="row">
                 <div class="col-md-12">
@@ -171,16 +176,21 @@
             </div>
 
         </div>
-
+            
         <div id="bottom">
-
-            <div id="slider">
-                <label class="switch" id="buttonStart">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-
+            <table id="slidertable">
+                <tr>
+                    <th id="textslider">
+                    Auto Refresh:
+                    </th>
+                    <th id="slider">
+                        <label class="switch" id="buttonStart">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </th>
+                </tr>
+            </table>
         </div> 
 
         <div class="footer">
@@ -188,7 +198,6 @@
             <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
             <!-- <script src="assets/js/update.js"></script> -->
-
             <!-- <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a> -->
             
         </div>
