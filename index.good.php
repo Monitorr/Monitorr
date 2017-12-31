@@ -27,8 +27,7 @@
         <meta name="version" content="php">
 
         <!-- Bootstrap core CSS -->
-        <!-- <link href="assets/css/bootstrap.css" rel="stylesheet"> -->
-         <link href="assets/css/bluma.min.css" rel="stylesheet">
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
 
         <!-- Fonts from Google Fonts -->
         <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
@@ -38,15 +37,31 @@
 
         <style>
 
-            html, body {
-                margin-bottom: 1vw;
-                overflow: scroll;
+            body {
+                margin-top: 2vw;
+                margin-bottom: 2vw;
+                overflow-y: auto; 
+                overflow-x: hidden; 
             }
 
-            ::-webkit-scrollbar {
-                width: 0px;  /* remove scrollbar space */
-                background: transparent;  /* make scrollbar invisible */
+            body::-webkit-scrollbar {
+                width: 10px;
+                background-color: #252525;
             }
+
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            } 
 
             body.offline #link-bar {
                 display: none;
@@ -59,7 +74,7 @@
             .auto-style1 {
                 text-align: center;
             }
-            
+
         </style>
 
         <?php $file = 'assets/config.php';
@@ -122,7 +137,7 @@
     </head>
 
     <body onload="statusCheck()">
-
+            
         <script>
             document.body.className += ' fade-out';
             $(function() { 
@@ -130,19 +145,44 @@
             });
         </script>
 
-        <div id="system" class="row">
-            <div id="stats" class="container centered">
-                <!-- system badges go here -->
-            </div>
-        </div>
+        <div id="header">
+            
+            <div id="left" class="Column">
+            </div> 
 
+            <div id="center">
+                <div id="centerinner" class="navbar-brand">
+                    <div id="centertext" class="navbar-brand">
+                        <a href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="right" class="Column">
+                <table id="slidertable">
+                    <tr>
+                        <th id="textslider">
+                        Auto Refresh:
+                        </th>
+                        <th id="slider">
+                            <label class="switch" id="buttonStart">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </th>
+                    </tr>
+                </table>
+            </div> 
+
+        </div>
+            
         <div id="services" class="container">
             <!-- /row -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="row mt centered"> 
-                        <!-- <div class="col-lg-6 col-lg-4 col-lg-3"> -->
-                            <!-- <div class="clock">
+                        <div class="col-lg-6 col-lg-4 col-lg-3">
+                            <div class="clock">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
                                     <g>
                                         <circle r="55"/>
@@ -161,13 +201,13 @@
                                         </g>
                                     </g>
                                 </svg>
-                            </div> -->
+                            </div>
 
-                            <!-- <div class="dtg" id="timer"></div> -->
+                            <div class="dtg" id="timer"></div>
 
-                            <!-- <script src="assets/js/clock.js"></script> -->
+                            <script src="assets/js/clock.js"></script>
 
-                        <!-- </div>  -->
+                        </div> 
 
                         <div id="statusloop">            
                             <!-- loop data goes here -->
@@ -177,29 +217,20 @@
             </div>
 
         </div>
-            
-        <div id="bottom">
-            <table id="slidertable">
-                <tr>
-                    <th id="textslider">
-                    Auto Refresh:
-                    </th>
-                    <th id="slider">
-                        <label class="switch" id="buttonStart">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                    </th>
-                </tr>
-            </table>
-        </div> 
 
-        <div class="footer">
+        <div id="system" class="row">
+            <div id="stats" class="container centered">
+                <!-- system badges go here -->
+            </div>
+        </div>
+
+        <div id="footer" class="footer">
         
             <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
-            <!-- <script src="assets/js/update.js"></script> -->
-            <!-- <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a> -->
+            <script src="assets/js/update.js"></script>
+
+            <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a>
             
         </div>
 

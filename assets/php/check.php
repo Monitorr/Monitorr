@@ -23,18 +23,24 @@ function urlExists($url) {
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
         if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401 || $httpCode == 405) {
-            echo '<div class="col-lg-4">';
+            echo '<div>';
             echo '<a href="'. $k['link'] .'" target="_blank" style="display: block">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
+                // echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:6rem" alt=""></p>';
+            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:5.5rem" alt=""></p>';
+            echo '<div id="servicetitle">';
             echo '<p>'. ucfirst($t) .'</p>';
+            echo '</div>';
             echo '<p class="btnonline">Online</p>';
             echo '</a>';
             echo '</div>';
         } else {
-            echo '<div class="col-lg-4">';
+            echo '<div>';
             echo '<a href="#" style="display: block">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
+                // echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:6rem" alt=""></p>';
+            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:5.5rem" alt=""></p>';
+            echo '<div id="servicetitle">';
             echo '<p>'. ucfirst($t) .'</p>';
+            echo '</div>';
             echo '<p class="btnoffline">Offline</p>';
             echo '</a>';
             echo '</div>';
