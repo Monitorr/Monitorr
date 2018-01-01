@@ -218,7 +218,7 @@
 
         </div>
 
-        <div id="system" class="row">
+        <div id="system" class="system">
             <div id="stats" class="container centered">
                 <!-- system badges go here -->
             </div>
