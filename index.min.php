@@ -37,9 +37,10 @@
 
         <style>
 
-            html, body {
+            body {
                 margin-bottom: 1vw;
                 overflow: scroll;
+                overflow-x: hidden; 
             }
 
             ::-webkit-scrollbar {
@@ -129,7 +130,7 @@
             });
         </script>
 
-        <div id="system" class="row">
+        <div id="system" class="min system">
             <div id="stats" class="container centered">
                 <!-- system badges go here -->
             </div>
@@ -176,7 +177,7 @@
             </div>
 
         </div>
-            
+        
         <div id="bottom">
             <table id="slidertable">
                 <tr>
