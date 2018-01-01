@@ -180,16 +180,29 @@ h4 {
     width: 100%;
     table-layout: fixed;
     border-spacing: 1px;
+    margin-bottom: 1vw;
 }
 
 #services {
-    margin: 0 auto;
+    background: transparent;
+}
+
+.services {
     margin-top: 1vw;
 }
 
+
 #system {
-    margin: 0 auto;
+    background: transparent;
+}
+
+.system {
     margin-top: 1vw;
+}
+
+.min {
+    margin: 0 auto;
+    margin-top: 1em;
 }
 
 .Column {
@@ -262,7 +275,7 @@ tbody {
     vertical-align: middle;
     padding-right: 0px;
     margin: auto;
-    margin-top: 1vw;
+    margin-top: 2em;
     font-size: .75em;
     padding-bottom: 1em;
     color:#8E8B8B;
@@ -421,7 +434,6 @@ i {
 /* BUTTONS */
 
 .container {
-    margin: auto;
     padding-right: 15px;
     padding-left: 15px;
     align-content: center;
@@ -444,7 +456,7 @@ i {
  .row
 {
     background-color: transparent;
-} 
+}  
 
 
 .btnonline {
