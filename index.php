@@ -103,7 +103,7 @@
                 timeout: 5000,
                 success: function(data) {
                     $("#timer").html(data); 
-                    window.setTimeout(update, 2000);
+                    window.setTimeout(update, 3000);
                     }
                 });
                 }
@@ -153,7 +153,7 @@
             <div id="center">
                 <div id="centerinner" class="navbar-brand">
                     <div id="centertext" class="navbar-brand">
-                        <a href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
+                        <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
                     </div>
                 </div>
             </div>
@@ -224,13 +224,13 @@
             </div>
         </div>
 
-        <div id="footer" class="footer">
+        <div id="footer">
         
-            <p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
             <script src="assets/js/update.js"></script>
 
-            <a class="version_check" id="version_check" style="cursor: pointer;">Check for Update</a>
+            <a class="footer a" id="version_check" style="cursor: pointer;">Check for Update</a>
             
         </div>
 
