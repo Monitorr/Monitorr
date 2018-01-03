@@ -132,7 +132,11 @@ function getRamTotal()
         fclose($fh);
     }
     // KB RAM Total
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+		return (double) $result;
+	} else {
     return (int) $result;
+	}
 }
 
 //define totalRam variable
@@ -161,7 +165,11 @@ function getRamFree()
         fclose($fh);
     }
     // KB RAM Total
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+		return (double) $result;
+	} else {
     return (int) $result;
+	}
 }
 
 //define free ram variable
