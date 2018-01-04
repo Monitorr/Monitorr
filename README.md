@@ -3,11 +3,13 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.11.1m [BETA]
+<b> Version:</b> v0.11.9d [DEVELOP]
+
+[![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
-<b> Latest major change: </b> Added index.min.php for optimal display when using as iframe plug-in (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Integration:--Organizr))
+<b> Latest major change: </b> added refresh disable toggle switch
 
 ## Features:
 
@@ -23,18 +25,17 @@
 <b> Features in development: </b>
 - UL/DL times via Speedtest
 - Settings page
-- Drag 'n drop tiles
 
 
 ## Screenshot :
 
-<img src="https://i.imgur.com/6fn9mMc.png[/img]">
+<img src="https://i.imgur.com/ILm2UZL.png[/img]">
 
 <br>
 
 In use with [Organizr](https://github.com/causefx/Organizr)
 
-<img src="https://i.imgur.com/7vAZJbS.png[/img]">
+<img src="https://i.imgur.com/t5tzuR4.png[/img]">
 
 
 ## Prerequisites:
