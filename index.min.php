@@ -88,7 +88,7 @@
                 timeout: 5000,
                 success: function(data) {
                     $("#timer").html(data); 
-                    window.setTimeout(update, 2000);
+                    window.setTimeout(update, 5000);
                     }
                 });
                 }
