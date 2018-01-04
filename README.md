@@ -3,7 +3,7 @@
 <p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
 <br>
 
-<b> Version:</b> v0.11.7d [DEVELOP]
+<b> Version:</b> v0.11.9d [DEVELOP]
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
 
@@ -25,18 +25,17 @@
 <b> Features in development: </b>
 - UL/DL times via Speedtest
 - Settings page
-- Drag 'n drop tiles
 
 
 ## Screenshot :
 
-<img src="https://i.imgur.com/6fn9mMc.png[/img]">
+<img src="https://i.imgur.com/ILm2UZL.png[/img]">
 
 <br>
 
 In use with [Organizr](https://github.com/causefx/Organizr)
 
-<img src="https://i.imgur.com/7vAZJbS.png[/img]">
+<img src="https://i.imgur.com/t5tzuR4.png[/img]">
 
 
 ## Prerequisites:
