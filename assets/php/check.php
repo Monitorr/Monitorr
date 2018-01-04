@@ -26,7 +26,7 @@ function urlExists($url) {
             echo '<div class="col-lg-4">';
             echo '<a class="servicetext" href="'. $k['link'] .'" target="_blank" style="display: block">';
             echo '<div id="serviceimg">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
+            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
             echo '</div>';
             echo '<div id="servicetitle">';
             echo '<div id="servicetext">';
@@ -40,7 +40,7 @@ function urlExists($url) {
             echo '<div class="col-lg-4">';
             echo '<a class="servicetext" href="#" style="display: block">';
             echo '<div id="serviceimg">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
+            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
             echo '</div>';
             echo '<div id="servicetitle">';
             echo '<div id="servicetext">';
