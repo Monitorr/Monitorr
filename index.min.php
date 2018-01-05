@@ -38,30 +38,15 @@
         <style>
 
             body {
-                margin-top: 2vw;
-                margin-bottom: 2vw;
-                overflow-y: auto; 
+                margin-bottom: 1vw;
+                overflow: scroll;
                 overflow-x: hidden; 
             }
 
-            body::-webkit-scrollbar {
-                width: 10px;
-                background-color: #252525;
+            ::-webkit-scrollbar {
+                width: 0px;  /* remove scrollbar space */
+                background: transparent;  /* make scrollbar invisible */
             }
-
-            body::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
-                background-color: #252525;
-            }
-
-            body::-webkit-scrollbar-thumb {
-                border-radius: 10px;
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                background-color: #8E8B8B;
-            } 
 
             body.offline #link-bar {
                 display: none;
@@ -74,7 +59,7 @@
             .auto-style1 {
                 text-align: center;
             }
-
+            
         </style>
 
         <?php $file = 'assets/config.php';
@@ -103,7 +88,7 @@
                 timeout: 5000,
                 success: function(data) {
                     $("#timer").html(data); 
-                    window.setTimeout(update, 3000);
+                    window.setTimeout(update, 5000);
                     }
                 });
                 }
@@ -137,7 +122,7 @@
     </head>
 
     <body onload="statusCheck()">
-            
+
         <script>
             document.body.className += ' fade-out';
             $(function() { 
@@ -145,37 +130,12 @@
             });
         </script>
 
-        <div id="header">
-            
-            <div id="left" class="Column">
-            </div> 
-
-            <div id="center">
-                <div id="centerinner" class="navbar-brand">
-                    <div id="centertext" class="navbar-brand">
-                        <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
-                    </div>
-                </div>
+        <div id="system" class="min system">
+            <div id="stats" class="container centered">
+                <!-- system badges go here -->
             </div>
-
-            <div id="right" class="Column">
-                <table id="slidertable">
-                    <tr>
-                        <th id="textslider">
-                        Auto Refresh:
-                        </th>
-                        <th id="slider">
-                            <label class="switch" id="buttonStart">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </th>
-                    </tr>
-                </table>
-            </div> 
-
         </div>
-            
+
         <div id="services" class="container">
             <!-- /row -->
             <div class="row">
@@ -217,24 +177,31 @@
             </div>
 
         </div>
-
-        <div id="system" class="system">
-            <div id="stats" class="container centered">
-                <!-- system badges go here -->
-            </div>
-        </div>
+        
+        <div id="bottom">
+            <table id="slidertable">
+                <tr>
+                    <th id="textslider">
+                    Auto Refresh:
+                    </th>
+                    <th id="slider">
+                        <label class="switch" id="buttonStart">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </th>
+                </tr>
+            </table>
+        </div> 
 
         <div id="footer">
         
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
-
-            <script src="assets/js/update.js"></script>
-
-            <a class="footer a" id="version_check" style="cursor: pointer;">Check for Update</a>
             
+                <!-- <script src="assets/js/update.js"></script> -->
+                <!-- <a class="footer a" id="version_check" style="cursor: pointer;">Check for Update</a> -->
         </div>
 
     </body>
 
 </html>
-

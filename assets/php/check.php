@@ -22,19 +22,31 @@ function urlExists($url) {
         $response = curl_exec($handle);
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
-        if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401) {
+        if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401 || $httpCode == 405) {
             echo '<div class="col-lg-4">';
-            echo '<a href="'. $k['link'] .'" target="_blank" style="display: block">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
-            echo '<p><strong style="text-decoration:none">'. ucfirst($t) .'</strong></p>';
+            echo '<a class="servicetext" href="'. $k['link'] .'" target="_blank" style="display: block">';
+            echo '<div id="serviceimg">';
+            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
+            echo '</div>';
+            echo '<div id="servicetitle">';
+            echo '<div id="servicetext">';
+            echo '<p>'. ucfirst($t) .'</p>';
+            echo '</div>';
+            echo '</div>';
             echo '<p class="btnonline">Online</p>';
             echo '</a>';
             echo '</div>';
         } else {
             echo '<div class="col-lg-4">';
-            echo '<a href="#" style="display: block">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="width:85px" alt=""></p>';
-            echo '<p><strong>'. ucfirst($t) .'</strong></p>';
+            echo '<a class="servicetext" href="#" style="display: block">';
+            echo '<div id="serviceimg">';
+            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
+            echo '</div>';
+            echo '<div id="servicetitle">';
+            echo '<div id="servicetext">';
+            echo '<p>'. ucfirst($t) .'</p>';
+            echo '</div>';
+            echo '</div>';
             echo '<p class="btnoffline">Offline</p>';
             echo '</a>';
             echo '</div>';
@@ -44,3 +56,4 @@ function urlExists($url) {
         curl_close($handle);
     };
 ?>
+
