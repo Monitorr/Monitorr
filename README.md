@@ -1,15 +1,14 @@
-# <p align="center"><b> MONITORR </b></p>
+![](https://raw.githubusercontent.com/Monitorr/Monitorr/testdocker/assets/img/monitorrbanner.png)
 
-<p align="center"><b>Webfront to live display the status of any webapp or service  </b></p>
-<br>
+## - *Monitorr* is a webfront to live display the status of any webapp or service
 
-<b> Version:</b> v0.12.1d [DEVELOP]
+**Version:** v0.12.2d [DEVELOP]
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
-<b> Latest major change: </b> added refresh disable toggle switch
+**Latest major change:** added refresh disable toggle switch
 
 ## Features:
 
@@ -22,20 +21,18 @@
 - Minimal UI for iFrame displays (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Integration:--Organizr))
 - User customizable system threshold colors
 
-<b> Features in development: </b>
+**Features in development:**
 - UL/DL times via Speedtest
 - Settings page
 
 
 ## Screenshot :
 
-<img src="https://i.imgur.com/ILm2UZL.png[/img]">
-
-<br>
+![]( https://i.imgur.com/ILm2UZL.png)
 
 In use with [Organizr](https://github.com/causefx/Organizr)
 
-<img src="https://i.imgur.com/t5tzuR4.png[/img]">
+![]( https://i.imgur.com/t5tzuR4.png)
 
 
 ## Prerequisites:
@@ -43,7 +40,6 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 2) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
 
-<br>
 
 ## Configuration:
 1) Clone/download repository to your webserver (Suggested Sub DIR)
@@ -62,21 +58,21 @@ In use with [Organizr](https://github.com/causefx/Organizr)
  - Branch you want to be on for updates (master/develop)
 
 5) Enjoy! Have a Donut. Drink a Coffee.
-<br>
+
 
 ## Feature Requests:
  [![Feature Requests](https://cloud.githubusercontent.com/assets/390379/10127973/045b3a96-6560-11e5-9b20-31a2032956b2.png)](https://feathub.com/Monitorr/Monitorr)
 
-<b> Current feature requests: </b>
+**Current feature requests:**
 
 [![Feature Requests](https://feathub.com/Monitorr/Monitorr?format=svg)](https://feathub.com/Monitorr/Monitorr)
-<br>
+
 
 ## Connect:
 Need live help?  Join here :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
-<br>
+
 E-mail: monitorrapp@gmail.com
-<br>
+
 Buy us a beer! Donate:        [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/monitorrapp)
 
 ## About Us:
