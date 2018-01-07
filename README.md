@@ -69,11 +69,11 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 
 ## Connect:
-Need live help?  Join here :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
+- Need live help?  Join here :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
 
-E-mail: monitorrapp@gmail.com
+- E-mail: monitorrapp@gmail.com
 
-Buy us a beer! Donate:        [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/monitorrapp)
+- Buy us a beer! Donate:        [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/monitorrapp)
 
 ## About Us:
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
