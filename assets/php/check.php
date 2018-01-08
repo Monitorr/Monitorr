@@ -67,3 +67,4 @@ function urlExists($url) {
         curl_close($handle);
     };
 ?>
+
