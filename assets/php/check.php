@@ -23,32 +23,43 @@ function urlExists($url) {
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
         if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401 || $httpCode == 405) {
+
             echo '<div class="col-lg-4">';
-            echo '<a class="servicetext" href="'. $k['link'] .'" target="_blank" style="display: block">';
-            echo '<div id="serviceimg">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
+                echo '<a class="servicetile" href="'. $k['link'] .'" target="_blank" style="display: block">';
+            
+                    echo '<div id="serviceimg">';
+                        echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
+                    echo '</div>';
+                    
+                    echo '<div id="servicetitle">';
+                        echo '<div class="servicetext">';
+                            echo '<p>'. ucfirst($t) .'</p>';
+                        echo '</div>';
+                    echo '</div>'; 
+
+                    echo '<p class="btnonline">Online</p>';
+                    
+                echo '</a>'; 
             echo '</div>';
-            echo '<div id="servicetitle">';
-            echo '<div id="servicetext">';
-            echo '<p>'. ucfirst($t) .'</p>';
-            echo '</div>';
-            echo '</div>';
-            echo '<p class="btnonline">Online</p>';
-            echo '</a>';
-            echo '</div>';
-        } else {
+
+        } 
+
+        else {
+
             echo '<div class="col-lg-4">';
-            echo '<a class="servicetext" href="#" style="display: block">';
-            echo '<div id="serviceimg">';
-            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
-            echo '</div>';
-            echo '<div id="servicetitle">';
-            echo '<div id="servicetext">';
-            echo '<p>'. ucfirst($t) .'</p>';
-            echo '</div>';
-            echo '</div>';
-            echo '<p class="btnoffline">Offline</p>';
-            echo '</a>';
+
+                echo '<div id="serviceimg">';
+                    echo '<p class="offline"><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
+                echo '</div>';
+                
+                echo '<div id="servicetitle">';
+                    echo '<a class="servicetextoffline" href="'. $k['link'] .'" target="_blank" style="display: block">';
+                        echo '<p>'. ucfirst($t) .'</p>';
+                    echo '</a>';
+                echo '</div>'; 
+                
+                echo '<p class="btnoffline">Offline</p>';
+
             echo '</div>';
 
         }
