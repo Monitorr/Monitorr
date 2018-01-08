@@ -176,9 +176,6 @@ h4 {
 
 p {
     margin: 0
-    /* line-height: 28px;
-        margin-bottom: 25px;
-        font-size: 25px; */
 }
 
 .centered {
@@ -322,7 +319,6 @@ tbody {
     transition: all .2s ease-in;
 }
 
-
 .navbar-default {
     background-color: #1F1F1F;
     border-color: transparent;
@@ -359,46 +355,6 @@ tbody {
     font-size: 18px;
     width: 280px;
 }
-
-    /* i {
-        margin: 8px;
-        color: #3498db;
-    }
-    */
-
-    /* HeaderWrap */
-
-    /* 
-        #headerwrap {
-            background: url(../img/bg01.jpg) no-repeat center top; 
-            background-color: #333332;
-            margin-top: -20px;
-            padding-top: 80px;
-            background-attachment: relative;
-            background-position: center center;
-            min-height: 0px;
-            width: 100%;
-            -webkit-background-size: 100%;
-            -moz-background-size: 100%;
-            -o-background-size: 100%;
-            background-size: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        } 
-    */
-
-    /* 
-        #headerwrap h1 {
-            margin-top: 60px;
-            margin-bottom: 15px;
-            color: white;
-            font-size: 45px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        } 
-    */
 
 
 /* TILES */
@@ -454,22 +410,55 @@ tbody {
     margin-bottom: .4em;
 }
 
+.servicetile {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -ms-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.servicetile:hover,
+.servicetile:focus {
+    color: #ffffff;
+    text-shadow: 0 0 20px #FF0104;
+    text-decoration: none;
+    outline: 0;
+    font-weight: 600;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -ms-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
 #servicetitle {
     height: 2em;
     line-height: 100%;
     margin-bottom: .4em;
-    padding-left: .5em;
-    padding-right: .5em;
+    padding-left: .2em;
+    padding-right: .2em;
     vertical-align: middle;
 }
 
-#servicetext {
+.servicetext {
+    color: #ffffff;
     position: relative;
     float: left;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1em;
+    font-size: 1.1em;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -ms-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
 }
 
 .servicetext:hover,
@@ -479,15 +468,41 @@ tbody {
     text-decoration: none;
     outline: 0;
     font-weight: 600;
-}
-
-.servicetext:before,
-.servicetext:after {
     -webkit-transition: all .2s ease-in;
     -moz-transition: all .2s ease-in;
     -ms-transition: all .2s ease-in;
     -o-transition: all .2s ease-in;
     transition: all .2s ease-in;
+} 
+
+    /* 
+        .servicetext:before,
+        .servicetext:after {
+            color: #ffffff;
+            -webkit-transition: all .2s ease-in;
+            -moz-transition: all .2s ease-in;
+            -ms-transition: all .2s ease-in;
+            -o-transition: all .2s ease-in;
+            transition: all .2s ease-in;
+        } 
+    */
+
+.servicetextoffline {
+    color: #ffffff;
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1em;
+    cursor: no-drop;
+}
+
+.servicetextoffline:hover,
+.servicetextoffline:focus {
+    color: #ffffff;
+    text-decoration: none;
+    outline: 0;
 }
 
 .btnonline {
@@ -504,8 +519,13 @@ tbody {
     /*font-family: Courier New;*/
     color: #FFFFFF;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     text-shadow: none;
+    text-decoration: none;
+}
+
+.btonline:hover {
+    text-decoration: none;
 }
 
 .btnoffline {
@@ -522,8 +542,12 @@ tbody {
     /*font-family: Courier New;*/
     color: #ffffff;
     font-size: 15px;
-    font-weight: 500;
-    cursor: default;
+    font-weight: 600;
+    cursor: not-allowed;
+}
+
+.offline {
+    cursor: not-allowed;
 }
 
 
@@ -569,7 +593,6 @@ tbody {
         border-bottom-right-radius: 0.25em;
         border-top-right-radius: .25em;
     }
-
 }
 
 .double-val-label>span.primary {
@@ -827,26 +850,14 @@ input:checked+.slider:before {
     font-size: 1em;
 }
 
+.footer:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
 .a {
     color: #555555;
     font-size: 1em;
     text-shadow: none;
     font-weight: 300;
-}
-
-.a :hover,
-.a :focus {
-    color: #ffffff;
-    text-decoration: none;
-    outline: 0;
-    font-weight: 600;
-}
-
-.a :before,
-.a :after {
-    -webkit-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -ms-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    transition: all .2s ease-in;
 }
