@@ -9,7 +9,7 @@ $config = array(
     'updateBranch' => 'develop', // update branch you wish to use // "master" or "develop"
     'timestandard' => 'False', // True for Standard Time, DEFAULT = False
     'rftime' => '', // time refresh
-    'rfsysinfo' => '5000', // system info refresh in milliseconds
+    'rfsysinfo' => '10000', // system info refresh in milliseconds
     'pinghost' => '8.8.8.8', // URL or IP to ping
     'pingport' => '53', // port to ping (defaults to 53)
     'cpuok' => '50', //CPU% less than this will be green
