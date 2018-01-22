@@ -27,13 +27,15 @@ $config = array(
 );
 // thanks @causefx for the assist <3
 // supports http, https, domain, ip,
+// URL MUST contain a PORT after HOST
+// URL CAN include any protocol or sub-path
 //  "NAMEOFAPP" => array(
 //      "link" => "http://linktoyourapp.com",
 //      "image" => "ACTUALAPPNAME.png"
 //    ),
 $myServices = array(
     "Monitorr" => array(
-        "link" => "http://localhost/monitorr",
+        "link" => "http://localhost:80/monitorr",
         "image" => "monitorr.png"
         ),
     "PLEX" => array(
