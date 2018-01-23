@@ -475,18 +475,6 @@ tbody {
     transition: all .2s ease-in;
 } 
 
-    /* 
-        .servicetext:before,
-        .servicetext:after {
-            color: #ffffff;
-            -webkit-transition: all .2s ease-in;
-            -moz-transition: all .2s ease-in;
-            -ms-transition: all .2s ease-in;
-            -o-transition: all .2s ease-in;
-            transition: all .2s ease-in;
-        } 
-    */
-
 .servicetextoffline {
     color: #ffffff;
     position: relative;
@@ -520,7 +508,7 @@ tbody {
     color: #FFFFFF;
     font-size: 15px;
     font-weight: 600;
-    text-shadow: none;
+    text-shadow: 1px 1px grey;
     text-decoration: none;
 }
 
@@ -543,12 +531,38 @@ tbody {
     color: #ffffff;
     font-size: 15px;
     font-weight: 600;
+    text-shadow: 1px 1px grey;
     cursor: not-allowed;
 }
 
 .offline {
     cursor: not-allowed;
 }
+
+
+.btunknown {
+    width: 7.6em;
+    margin: auto;
+    padding: .1em;
+    -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
+    background-color: #ffcf4b;
+    -webkit-box-shadow: 0 5px 20px rgba(232, 188, 66, 0.7);
+    -moz-box-shadow: 0 5px 20px rgba(232, 188, 66, .7);
+    box-shadow: 0 5px 20px rgba(232, 188, 66, .7);
+    /*font-family: Courier New;*/
+    color: #ffffff;
+    font-size: .70em;
+    font-weight: 600;
+    text-shadow: 1px 1px grey;
+    text-decoration: none;
+}
+
+.btunknown:hover {
+    text-decoration: none;
+}
+
 
 
 /* BADGES */
