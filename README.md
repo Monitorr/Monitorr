@@ -3,19 +3,22 @@
 
 ## - *Monitorr* is a webfront to live display the status of any webapp or service
 
-**Version:** v0.12.3d [DEVELOP]
+**Version:** v0.12.5d [DEVELOP]
+
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
-**Latest major change:** added refresh disable toggle switch
+**Latest major change:** Added PING as a fallback check
+
+**NOTE**: If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mycomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Config:--Initial-configuration) for further explanation.
 
 ## Features:
 
 - LIVE!
 - Self-hosted
-- Monitor any app on any domain
+- Monitor any app on any domain (Curl as primary check, sockopen as fallback) (UPDATED)
 - Host system resources display (CPU, MEM, PING, Uptime)
 - Server DTG data
 - Update Monitorr via web UI / branch switching
@@ -29,7 +32,7 @@
 
 ## Screenshot :
 
-![]( https://i.imgur.com/ILm2UZL.png)
+![](https://i.imgur.com/Ui6oe6g.png)
 
 In use with [Organizr](https://github.com/causefx/Organizr)
 
@@ -42,23 +45,13 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 2) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
 
 
-## Configuration:
-1) Clone/download repository to your webserver (Suggested Sub DIR)
-
+## Quick Start:
+- See full configuration instructions in the WiKi: https://github.com/Monitorr/Monitorr/wiki
+1) Clone/download repository to your webserver
 2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
-
 3) Browse to <localhost\domain>/monitorr/index.php (config.php will be auto populated in /assets/config.php)
-
 4) Edit `assets/config.php`:
- - timezone
- - Site Title
- - Site URL
- - Ping address
- - Sys info color thresholds
- - Services you want to monitor
- - Branch you want to be on for updates (master/develop)
-
-5) Enjoy! Have a Donut. Drink a Coffee.
+5) Chill
 
 
 ## Feature Requests:
