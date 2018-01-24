@@ -3,8 +3,8 @@
 // Monitorr config file
 // https://github.com/Monitorr/Monitorr
 
-                            // Last updated: 22 JAN 2018 //
-                                    // v 0.12.5d  //
+                            // Last updated: 23 JAN 2018 //
+                                    // v 0.12.6d  //
 
 // This file will be automatically copied and used for your site settings when you first browse to /index.php
 // If there is not a "config.php" in /assets, copy this file in the same dir (/assets) and name it "config.php"
@@ -26,6 +26,7 @@ $config = array(
     'cpuwarn' => '90', //CPU% less than this will be yellow
     'ramok' => '50', //RAM% below this is green
     'ramwarn' => '90', //RAM% below this will be yellow
+    // HD values are NOT editable until settings version is published
     'timestandard' => 'False', // True for Standard Time, DEFAULT = False
     'timezone' => 'UTC',
         // if on Linux, the timezone script will automatically select your timezone
