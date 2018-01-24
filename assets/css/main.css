@@ -338,8 +338,8 @@ tbody {
 .col-centered {
     display: inline-block !important;
     float: none;
-    text-align: left;
-    margin-right: -4px !important;
+    /* text-align: left; */
+    /* margin-right: -4px !important; */
 }
 
 
@@ -421,6 +421,7 @@ tbody {
     -ms-transition: all .2s ease-in;
     -o-transition: all .2s ease-in;
     transition: all .2s ease-in;
+    text-shadow: 1px 1px black;
 }
 
 .servicetile:hover,
@@ -571,9 +572,10 @@ tbody {
     display: table;
     font-family: 'Roboto', sans-serif;
     margin: 0.4em;
+    text-align: -webkit-center;
 }
 
-.double-val-label>span {
+/* .double-val-label>span {
     background-color: #656565;
     color: #ffffff;
     display: table-cell;
@@ -585,7 +587,7 @@ tbody {
     vertical-align: baseline;
     white-space: nowrap;
     cursor: default;
-}
+} */
 
 .double-val-label>span {
     background-color: #656565;
@@ -597,7 +599,9 @@ tbody {
     padding: .3em .6em;
     text-align: center;
     vertical-align: baseline;
+    text-shadow: 1px 1px grey;
     white-space: nowrap;
+    cursor: default;
     &:first-child {
         border-bottom-left-radius: 0.25em;
         border-top-left-radius: .25em;
@@ -730,6 +734,9 @@ line {
     margin: auto;
     padding-right: .4em;
     padding-left: 1em;
+    font-size: 1em;
+    color: rgb(163, 163, 163);
+    text-shadow: 1px 1px black;
 }
 
 #slider {
