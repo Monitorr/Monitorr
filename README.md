@@ -3,7 +3,7 @@
 
 ## - *Monitorr* is a webfront to live display the status of any webapp or service
 
-**Version:** v0.12.5d [DEVELOP]
+**Version:** v0.12.6d [DEVELOP]
 
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
