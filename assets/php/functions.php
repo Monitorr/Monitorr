@@ -179,6 +179,41 @@ $freeRam = getRamFree();
 $usedRam = $totalRam - $freeRam;
 $ramPercent = round(($usedRam / $totalRam) * 100);
 
+
+
+
+// getHD function
+
+ $freeHD = getHDFree();
+
+function getHDFree()
+{
+        //hdd stat
+        $stat['hdd_free'] = round(disk_free_space("/") / 1024 / 1024 / 1024, 2);
+        $stat['hdd_total'] = round(disk_total_space("/") / 1024 / 1024/ 1024, 2);
+        $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
+        $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
+        $stat['hdd_percent'];
+
+      return  $stat['hdd_percent'];
+    
+}
+
+    // Dynamic icon colors for badges
+       // Manual values are set below until settings version is published
+
+    $hdok = "75";
+    $hdwarn = "95";
+
+        if ($freeHD < $hdok) {
+                $hdClass = 'success';
+        } elseif (($freeHD >= $hdok) && ($freeHD < $hdwarn)) {
+                $hdClass = 'warning';
+        } else {
+                $hdClass = 'danger';
+        }
+
+
 //uptime
 $uptime = shell_exec("cut -d. -f1 /proc/uptime");
 $days = floor($uptime/60/60/24);
@@ -189,7 +224,8 @@ $mins = $uptime/60%60;
 $mins_padded = sprintf("%02d", $mins);
 $secs = $uptime%60;
 $secs_padded = sprintf("%02d", $secs);
-$total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
+// $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
+$total_uptime = "$days_padded:$hours_padded:$mins_padded";
 
 
 // Dynamic icon colors for badges
