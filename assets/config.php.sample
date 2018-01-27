@@ -14,7 +14,7 @@
 
 $config = array(
 
-    'updateBranch' => 'master', // update branch you wish to use // "master" or "develop"
+    'updateBranch' => 'develop', // update branch you wish to use // "master" or "develop"
     'rfsysinfo' => '10000', // Service & system info refresh interval in milliseconds
         // rfsysinfo NOTE: The auto refresh disable toggle switch does NOT pause time refresh for the analog or digital clocks
     'rftime' => '5000', // time refresh
