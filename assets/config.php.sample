@@ -3,8 +3,8 @@
 // Monitorr config file
 // https://github.com/Monitorr/Monitorr
 
-                            // Last updated: 23 JAN 2018 //
-                                    // v 0.12.6d  //
+                            // Last updated: 25 JAN 2018 //
+                                    // v 0.12.7m  //
 
 // This file will be automatically copied and used for your site settings when you first browse to /index.php
 // If there is not a "config.php" in /assets, copy this file in the same dir (/assets) and name it "config.php"
@@ -14,7 +14,7 @@
 
 $config = array(
 
-    'updateBranch' => 'develop', // update branch you wish to use // "master" or "develop"
+    'updateBranch' => 'master', // update branch you wish to use // "master" or "develop"
     'rfsysinfo' => '10000', // Service & system info refresh interval in milliseconds
         // rfsysinfo NOTE: The auto refresh disable toggle switch does NOT pause time refresh for the analog or digital clocks
     'rftime' => '5000', // time refresh
