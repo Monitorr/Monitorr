@@ -1,4 +1,9 @@
 <?php
+
+             /// MONITORR ///
+    // https://github.com/monitorr/Monitorr
+
+
     /**
      * This script uses CURL to check if given HOST is serving a webpage. 
      * If CURL fails, use a PING (pfsockopen) function to check if anything is listening at given URL
@@ -20,7 +25,10 @@
         $path = parse_url($url, PHP_URL_PATH);
 
             if (!$host)
-                $host = $url;
+
+                echo "<b> ////// Invalid URL in config.php : $url ////// </b> <br />\n";
+
+                // $host = $url;
 
             if (substr($host, 0, 4) == "www.")
                 $host = substr($host, 4);
@@ -49,13 +57,15 @@
         curl_setopt($handle, CURLOPT_TCP_FASTOPEN, true);
         curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($handle, CURLOPT_TIMEOUT, 30);
-        curl_setopt($handle, CURLOPT_URL, $url);
+        //curl_setopt($handle, CURLOPT_URL, $url);
 
         $response = curl_exec($handle);
         $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
         $curlCode = curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
 
             if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401 || $httpCode == 403 || $httpCode == 405 || $curlCode == 8 || $curlCode == 67 || $curlCode == 530 || $curlCode == 60 ) {
+
+                //echo ONLINE;
 
                 echo '<div class="col-lg-4">';
                     echo '<a class="servicetile" href="'. $k['link'] .'" target="_blank" style="display: block">';
@@ -80,12 +90,11 @@
 
             else {
 
-
-                $fp = pfsockopen(url_to_domain($url), 5);
+                $fp = fsockopen(url_to_domain($url), $timeout = 5);
 
                     if (!$fp) {
 
-                        //echo CLOSED;
+                        //echo OFFLINE;
 
                         echo '<div class="col-lg-4">';
 
@@ -102,14 +111,12 @@
                             echo '<p class="btnoffline">Offline</p>';
 
                         echo '</div>';
-
-                        // fclose($fp);
                         
                     } 
                     
                     else {
                             
-                        //echo OPEN;
+                        //echo UNRESPONSIVE;
 
                         echo '<div class="col-lg-4">';
                             echo '<a class="servicetile" href="'. $k['link'] .'" target="_blank" style="display: block">';
@@ -129,14 +136,15 @@
                             echo '</a>'; 
                         echo '</div>'; 
 
-                        fclose($fp);
-
                     }
+
+                fclose($fp);
                 
             }
 
-            curl_close($handle);
-        };
+        curl_close($handle);
+
+    };
 
 ?>
 
