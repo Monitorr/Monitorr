@@ -12,7 +12,7 @@
 
 **Latest major change:** Added PING as a fallback check
 
-**NOTE**: If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Config:--Initial-configuration) for further explanation.
+**NOTE**: If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration) for further explanation.
 
 ## Features:
 
