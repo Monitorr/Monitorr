@@ -3,7 +3,7 @@
 
 ## - *Monitorr* is a webfront to live display the status of any webapp or service
 
-**Version:** v0.12.6d [DEVELOP]
+**Version:** v0.12.8d [DEVELOP]
 
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
@@ -19,7 +19,7 @@
 - LIVE!
 - Self-hosted
 - Monitor any app on any domain (Curl as primary check, sockopen as fallback) (UPDATED)
-- Host system resources display (CPU, MEM, PING, Uptime)
+- Host system resources display (CPU, MEM, HD, PING, Uptime)
 - Server DTG data
 - Update Monitorr via web UI / branch switching
 - Minimal UI for iFrame displays (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Integration:--Organizr))
