@@ -225,12 +225,17 @@
         </div>
 
         <div id="footer">
+
+            <script src="assets/js/update.js"></script>
+            <script src="assets/js/update_auto.js"></script>
         
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
-            <script src="assets/js/update.js"></script>
-
             <a class="footer a" id="version_check" style="cursor: pointer;">Check for Update</a>
+            
+                <br>
+            
+            <div id="version_check_auto"></div>
             
         </div>
 
