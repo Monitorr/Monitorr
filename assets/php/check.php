@@ -92,6 +92,13 @@
 
                 $fp = fsockopen(url_to_domain($url), $timeout = 5);
 
+                    stream_context_set_default( [
+                        'ssl' => [
+                            'verify_peer' => false,
+                            'verify_peer_name' => false,
+                        ],
+                    ]);
+
                     if (!$fp) {
 
                         //echo OFFLINE;
@@ -136,9 +143,9 @@
                             echo '</a>'; 
                         echo '</div>'; 
 
-                    }
+                    fclose($fp);
 
-                fclose($fp);
+                    }
                 
             }
 
