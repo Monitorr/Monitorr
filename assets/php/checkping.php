@@ -56,6 +56,7 @@
 
                 echo "Ping URL ............ $url <br />\n  ";
                 echo "PING ................... SUCCESS <br />\n ";
+                echo "PING Response ... $errstr ($errno) <br />\n";
                 echo "URL status .......... OPEN <br />\n";
                 echo "</br>";
                 echo "<b>Monitorr status .... UNRESPONSIVE </b><br />\n";        
@@ -70,7 +71,7 @@
                     // display header:  
 
                 $out = "GET / HTTP/1.1\r\n";
-                $out .= "$url\r\n";
+                $out .= "HOST: $url\r\n";
                 $out .= "Connection: Close\r\n\r\n";  
 
                 fwrite($fp, $out);
