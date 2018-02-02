@@ -575,20 +575,6 @@ tbody {
     text-align: -webkit-center;
 }
 
-/* .double-val-label>span {
-    background-color: #656565;
-    color: #ffffff;
-    display: table-cell;
-    font-size: 0.9em;
-    font-weight: 400;
-    line-height: 1;
-    padding: .3em .6em;
-    text-align: center;
-    vertical-align: baseline;
-    white-space: nowrap;
-    cursor: default;
-} */
-
 .double-val-label>span {
     background-color: #656565;
     color: #ffffff;
@@ -857,6 +843,10 @@ input:checked+.slider:before {
 
 
 /* Footer */
+
+#version_check_auto {
+    cursor: default;
+}
 
 #footer {
     margin: 0px;
