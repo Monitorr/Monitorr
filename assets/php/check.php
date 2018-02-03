@@ -152,9 +152,8 @@
                 
             }
 
-        curl_close($handle);
+      //curl_close($handle);
 
     };
 
 ?>
-
