@@ -1,50 +1,87 @@
-// include_once('../config.php');
-
-var radius = 45;
-var outerRadius = radius - 10;
-var dtg = new Date();
-var hands = {};
-var numbers = document.getElementById('numbers');
-var ticks = document.getElementById('ticks');
-var mark;
-var rotation;
-var number;
-var angle;
-
-hands.second = (dtg.getSeconds() + dtg.getMilliseconds() / 1000) / 60;
-hands.minute = (dtg.getMinutes() + hands.second) / 60;
-hands.hour = (dtg.getHours() % 12 + hands.minute) / 12;
-
-for (key in hands) {
-    document.getElementById(key).setAttribute('transform', "rotate(" + (hands[key] * 360) + ")");
+// inner variables
+var canvas, ctx;
+var clockRadius = 60; //changed
+var clockImage;
+// draw functions :
+function clear() { // clear canvas function
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
+function drawScene() { // main drawScene function
+    clear(); // clear canvas
+    // get current time
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    hours = hours > 12 ? hours - 12 : hours;
+    var hour = hours + minutes / 60;
+    var minute = minutes + seconds / 60;
+    // save current context
+    ctx.save();
+    // draw clock image (as background)
+    ctx.drawImage(clockImage, 0, 0, 120, 120);
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.beginPath();
 
-
-function cE(type) {
-    return document.createElementNS("http://www.w3.org/2000/svg", type);
-}
-
-function createMark(group, outerRadius, length, rotation) {
-    var mark = cE('line');
-    mark.setAttribute('x1', outerRadius - length);
-    mark.setAttribute('x2', outerRadius);
-    mark.setAttribute('y1', '0');
-    mark.setAttribute('y2', '0');
-    mark.setAttribute('transform', 'rotate(' + rotation + ')');
-    group.appendChild(mark);
-}
-
-for (var i = 0; i < 12; i++) {
-    number = cE('text');
-    angle = Math.PI / 6 * i;
-    number.setAttribute('x', radius * Math.cos(angle));
-    number.setAttribute('y', radius * Math.sin(angle));
-    number.innerHTML = ((i + 2) % 12 + 1);
-    numbers.appendChild(number);
-    rotation = i * 30;
-    createMark(ticks, outerRadius, 16, rotation);
-
-    for (j = 1; j < 5; j++) {
-        createMark(ticks, outerRadius, 8, rotation + j * 6);
+    // draw numbers
+    ctx.font = '.5em Arial'; //changed
+    ctx.fillStyle = '#C8C8C8';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (var n = 1; n <= 12; n++) {
+        var theta = (n - 3) * (Math.PI * 2) / 12;
+        var x = clockRadius * 0.60 * Math.cos(theta);
+        var y = clockRadius * 0.60 * Math.sin(theta);
+        ctx.fillText(n, x, y);
     }
+
+    // draw hour
+    ctx.save();
+    var theta = (hour - 3) * 2 * Math.PI / 12;
+    ctx.rotate(theta);
+    ctx.beginPath();
+    ctx.moveTo(-15, -3);
+    ctx.lineTo(-15, 1);
+    ctx.lineTo(clockRadius * 0.4, 1);
+    ctx.lineTo(clockRadius * 0.4, -1);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+    ctx.restore();
+
+    // draw minute
+    ctx.save();
+    var theta = (minute - 15) * 2 * Math.PI / 60;
+    ctx.rotate(theta);
+    ctx.beginPath();
+    ctx.moveTo(-15, -2);
+    ctx.lineTo(-15, 1);
+    ctx.lineTo(clockRadius * 0.75, 1);
+    ctx.lineTo(clockRadius * 0.75, -1);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+    ctx.restore();
+
+    // draw second
+    ctx.save();
+    var theta = (seconds - 15) * 2 * Math.PI / 60;
+    ctx.rotate(theta);
+    ctx.beginPath();
+    ctx.moveTo(-10, -1);
+    ctx.lineTo(-10, 1);
+    ctx.lineTo(clockRadius * .9, 1);
+    ctx.lineTo(clockRadius * .9, -1);
+    ctx.fillStyle = 'red';
+    ctx.fill();
+    ctx.restore();
+    ctx.restore();
 }
+// initialization
+$(function(){
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+    // var width = canvas.width;
+    // var height = canvas.height;
+clockImage = new Image();
+clockImage.src = 'images/cface.png';
+    setInterval(drawScene, 1000); // loop drawScene
+});

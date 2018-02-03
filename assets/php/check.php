@@ -72,16 +72,16 @@
                     echo '<a class="servicetile" href="'. $k['link'] .'" target="_blank" style="display: block">';
                 
                         echo '<div id="serviceimg">';
-                            echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
+                            echo '<div><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:5.5rem" alt=' . strtolower($t) . '></div>';
                         echo '</div>';
                         
                         echo '<div id="servicetitle">';
-                            echo '<div class="servicetext">';
-                                echo '<p>'. ucfirst($t) .'</p>';
-                            echo '</div>';
+                           // echo '<div class="servicetext">';
+                                echo '<div>'. ucfirst($t) .'</div>';
+                            // echo '</div>';
                         echo '</div>'; 
 
-                        echo '<p class="btnonline">Online</p>';
+                        echo '<div class="btnonline">Online</div>';
                         
                     echo '</a>'; 
                 echo '</div>';
@@ -107,18 +107,19 @@
                         //echo OFFLINE;
 
                         echo '<div class="col-lg-4">';
+                            echo '<div class="servicetileoffline">';
 
-                            echo '<div id="serviceimg">';
-                                echo '<p class="offline"><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
-                            echo '</div>';
-                            
-                            echo '<div id="servicetitle">';
-                                echo '<a class="servicetextoffline" href="'. $k['link'] .'" target="_blank" style="display: block">';
-                                    echo '<p>'. ucfirst($t) .'</p>';
+                                echo '<div id="serviceimg">';
+                                    echo '<div class="offline"><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:5.5rem" alt=' . strtolower($t) . '></div>';
+                                echo '</div>';
+                                
+                                echo '<a id="servicetitleoffline" href="'. $k['link'] .'" target="_blank" style="display: block">';
+                                    echo '<div>'. ucfirst($t) .'</div>';
                                 echo '</a>';
-                            echo '</div>'; 
-                            
-                            echo '<p class="btnoffline">Offline</p>';
+                                
+                                echo '<div class="btnoffline">Offline</div>';
+
+                            echo '</div>';
 
                         echo '</div>';
                         
@@ -132,16 +133,16 @@
                             echo '<a class="servicetile" href="'. $k['link'] .'" target="_blank" style="display: block">';
                         
                                 echo '<div id="serviceimg">';
-                                    echo '<p><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:85px" alt=""></p>';
+                                    echo '<div><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:5.5rem" alt=' . strtolower($t) . '></div>';
                                 echo '</div>';
                                 
                                 echo '<div id="servicetitle">';
-                                    echo '<div class="servicetext">';
-                                        echo '<p>'. ucfirst($t) .'</p>';
-                                    echo '</div>';
+                                    //echo '<div class="servicetext">';
+                                        echo '<div>'. ucfirst($t) .'</div>';
+                                    //echo '</div>';
                                 echo '</div>'; 
 
-                                echo '<p class="btunknown">Unresponsive</p>';
+                                echo '<div class="btunknown">Unresponsive</div>';
                                 
                             echo '</a>'; 
                         echo '</div>'; 
@@ -152,9 +153,8 @@
                 
             }
 
-        curl_close($handle);
+      //  curl_close($handle);
 
     };
 
 ?>
-

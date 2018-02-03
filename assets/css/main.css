@@ -359,22 +359,25 @@ tbody {
 
 /* TILES */
 
-.container {
+/* .container {
     padding-right: 15px;
     padding-left: 15px;
     align-content: center;
     align-items: center;
-}
+} */
 
 .col-lg-4 {
+    position: relative;
     vertical-align: top;
     background-color: #3d3d3d;
-    border-radius: 25px;
+    border-radius: 1rem;
     box-shadow: 5px 5px 5px black;
-    margin: 10px 10px 15px 10px;
-    padding: 10px 0px 5px 0px;
-    width: 130px;
-    height: 190px;
+    margin: 1rem 1rem 1.5rem 1rem;
+    /* padding: 1rem 0px 1rem 0px; */
+    padding-left: .5rem;
+    padding-right: .5rem;
+    width: 10rem;
+    height: 13rem;
     font-weight: 500;
     font-size: 1.4em;
     color: #ffffff;
@@ -383,38 +386,48 @@ tbody {
  .row
 {
     background-color: transparent;
+    margin-left: 0;
+    margin-right: 8%;
+    padding: 0;
+    text-align: center;
+    text-align: -webkit-center;
+   
 }  
 
 #services {
     background: transparent;
+    width: 100%;
+    margin-left: 10%;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .services {
     margin-top: 1vw;
 }
 
-#system {
+/* #system {
     background: transparent;
 }
 
 .system {
     margin-top: 1vw;
-}
+} */
 
 .min {
     margin: 0 auto;
     margin-top: 1em;
 }
 
-#serviceimg {
-    margin-bottom: .4em;
-}
+
 
 .servicetile {
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 50%;
-    height: 100%;
+    width: 100%;
+    /* height: 100%; */
     transform: translate(-50%, -50%);
     -webkit-transition: all .2s ease-in;
     -moz-transition: all .2s ease-in;
@@ -438,32 +451,75 @@ tbody {
     transition: all .2s ease-in;
 }
 
-#servicetitle {
-    height: 2em;
-    line-height: 100%;
-    margin-bottom: .4em;
-    padding-left: .2em;
-    padding-right: .2em;
-    vertical-align: middle;
+.servicetileoffline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    /* height: 100%; */
+    transform: translate(-50%, -50%);
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -ms-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    text-shadow: 1px 1px black;
 }
 
-.servicetext {
+/* .servicetileoffline:hover,
+.servicetileoffline:focus {
     color: #ffffff;
-    position: relative;
+    text-shadow: 0 0 20px #FF0104;
+    text-decoration: none;
+    outline: 0;
+    font-weight: 600;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -ms-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+} */
+
+
+#serviceimg {
+    margin-bottom: 10%;
+}
+
+ #servicetitle {
+    display: flex;
+    flex-direction: column;
+    height: 2rem;
+    line-height: 100%;
+    margin-bottom: 10%;
+    padding-left: .4rem;
+    padding-right: .4rem;
+    vertical-align: middle;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: rgb(200, 200, 200);
+}
+
+/* .servicetext {
+    position: fixed;
+    line-height: 100%;
+    padding-left: .1rem;
+    padding-right: .1rem;
+    vertical-align: middle;
+    color: white;
     float: left;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.1em;
+    font-size: 1.5rem;
     -webkit-transition: all .2s ease-in;
     -moz-transition: all .2s ease-in;
     -ms-transition: all .2s ease-in;
     -o-transition: all .2s ease-in;
     transition: all .2s ease-in;
 }
-
-.servicetext:hover,
-.servicetext:focus {
+ */
+#servicetitle:hover,
+#servicetitle:focus {
     color: #ffffff;
     text-shadow: 0 0 20px #FF0104;
     text-decoration: none;
@@ -476,28 +532,32 @@ tbody {
     transition: all .2s ease-in;
 } 
 
-.servicetextoffline {
-    color: #ffffff;
-    position: relative;
-    float: left;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.1em;
+#servicetitleoffline {
+    display: flex;
+    flex-direction: column;
+    height: 2rem;
+    line-height: 100%;
+    margin-bottom: 10%;
+    padding-left: .4rem;
+    padding-right: .4rem;
+    vertical-align: middle;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: rgb(200, 200, 200);
+    /* transform: translate(-50%, -50%); */
     cursor: no-drop;
 }
 
-.servicetextoffline:hover,
-.servicetextoffline:focus {
-    color: #ffffff;
+#servicetitleoffline:hover,
+#servicetitleoffline:focus {
+    color: rgb(200, 200, 200);
     text-decoration: none;
     outline: 0;
 }
 
 .btnonline {
-    width: 85px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -505,9 +565,8 @@ tbody {
     -webkit-box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
     -moz-box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
     box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
-    /*font-family: Courier New;*/
     color: #FFFFFF;
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 600;
     text-shadow: 1px 1px grey;
     text-decoration: none;
@@ -518,9 +577,8 @@ tbody {
 }
 
 .btnoffline {
-    width: 85px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -528,11 +586,11 @@ tbody {
     -webkit-box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
     -moz-box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
     box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
-    /*font-family: Courier New;*/
     color: #ffffff;
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 600;
     text-shadow: 1px 1px grey;
+    text-decoration: none;
     cursor: not-allowed;
 }
 
@@ -542,9 +600,8 @@ tbody {
 
 
 .btunknown {
-    width: 7.6em;
-    margin: auto;
-    padding: .1em;
+    margin-left: 1rem;
+    margin-right: 1rem;
     -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
     border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -552,9 +609,8 @@ tbody {
     -webkit-box-shadow: 0 5px 20px rgba(232, 188, 66, 0.7);
     -moz-box-shadow: 0 5px 20px rgba(232, 188, 66, .7);
     box-shadow: 0 5px 20px rgba(232, 188, 66, .7);
-    /*font-family: Courier New;*/
     color: #ffffff;
-    font-size: .70em;
+    font-size: 1rem;
     font-weight: 600;
     text-shadow: 1px 1px grey;
     text-decoration: none;
@@ -568,18 +624,37 @@ tbody {
 
 /* BADGES */
 
+#stats {
+    width: 75%;
+    margin-top: 1vw;
+    padding-left: 10%;
+    padding-right: 10%
+    /* position: relative; */
+    /* vertical-align: top; */
+    /* background-color: #3d3d3d; */
+    /* border-radius: 1rem; */
+    /* box-shadow: 5px 5px 5px black; */
+    /* margin: 1rem 1rem 1.5rem 1rem; */
+    /* padding-left: .5rem; */
+    /* padding-right: .5rem; */
+    /* color: #ffffff; */
+
+}
+
 .double-val-label {
     display: table;
     font-family: 'Roboto', sans-serif;
-    margin: 0.4em;
+    margin: 0.4rem;
     text-align: -webkit-center;
+    /* font-size: 0.9em; */
 }
 
 .double-val-label>span {
     background-color: #656565;
+    box-shadow: 3px 3px 3px black;
     color: #ffffff;
     display: table-cell;
-    font-size: 0.9em;
+    font-size: 0.9rem;
     font-weight: 400;
     line-height: 1;
     padding: .3em .6em;
@@ -625,9 +700,45 @@ tbody {
 }
 
 
-/* CLOCK */
+/* NEW CLOCK NEW*/
+#clock {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: transparent;
+    justify-content: center;
+    /* padding: 1rem; */
+    /* height: auto;  */
+    /* width: auto; */
+    /* margin: 0 auto; */
+    /* position: relative; */
+    /* font-size: 1em; */
+    /* width: 5em; */
+}
 
-svg {
+#canvas {
+    margin: 0 auto;
+    margin-bottom: .5rem;
+    width: 8rem;
+    height: 8rem;
+    padding: .1em;
+    font-size: 1.75em;
+    /* width: 5em; */
+    /* height: 5em; */
+}
+
+.dtg {
+    color: #C8C8C8;
+    font-size: 1rem;
+    font-weight: 400;
+    /* margin: 5px; */
+    cursor: default;
+}
+
+
+/* OLD CLOCK */
+
+/* svg {
     width: 135px;
     height: 135px;
     align-content: center;
@@ -646,21 +757,7 @@ circle {
     stroke-width: 1.5px;
 }
 
-.dtg {
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 400;
-    margin: 5px;
-    cursor: default;
-}
 
-.clock {
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    margin: 5px;
-    cursor: default;
-}
 
 #numbers {
     transform: translate(0, 6px);
@@ -704,7 +801,7 @@ line {
         transform: rotate(1turn);
     }
 }
-
+ */
 
 /* Refresh Switch */
 
@@ -853,12 +950,12 @@ input:checked+.slider:before {
     margin-top: 1vw;
     text-align: center;
     color: #555555;
-    font-size: 1em;
+    font-size: 1rem;
 }
 
  .footer {
     text-align: center;
-    font-size: 1em;
+    font-size: 1rem;
 }
 
 .footer:hover {
@@ -868,7 +965,7 @@ input:checked+.slider:before {
 
 .a {
     color: #555555;
-    font-size: 1em;
+    font-size: 1rem;
     text-shadow: none;
     font-weight: 300;
 }

@@ -25,6 +25,8 @@
         <meta name="description" content="Monitorr">
         <meta name="author" content="Monitorr">
         <meta name="version" content="php">
+        <meta name="theme-color" content="#464646" />
+        <meta name="theme_color" content="#464646" />
 
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.css" rel="stylesheet">

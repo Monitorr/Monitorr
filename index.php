@@ -25,6 +25,8 @@
         <meta name="description" content="Monitorr">
         <meta name="author" content="Monitorr">
         <meta name="version" content="php">
+        <meta name="theme-color" content="#464646" />
+        <meta name="theme_color" content="#464646" />
 
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -110,6 +112,13 @@
                 update();
             });
         </script>
+        
+
+        <!-- NEW CLOCK-->
+
+        <script src="assets/js/clock.js" async></script>
+
+
 
         <script type="text/javascript">
 
@@ -182,31 +191,10 @@
                 <div class="col-md-12">
                     <div class="row mt centered"> 
                         <div class="col-lg-6 col-lg-4 col-lg-3">
-                            <div class="clock">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
-                                    <g>
-                                        <circle r="55"/>
-                                        <g id="numbers"/>
-                                        <g id="ticks"/>
-                                        <g id="hands">
-                                            <g id="hour">
-                                                <line x1="-2" y1="0" x2="15" y2="0"/>
-                                            </g>
-                                            <g id="minute">
-                                                <line x1="-3" y1="0" x2="35" y2="0"/>
-                                            </g>
-                                            <g id="second">
-                                                <line x1="-4" y1="0" x2="50" y2="0"/>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
+                            <div id="clock">
+                                <canvas id="canvas" width="120" height="120"></canvas>
+                                <div class="dtg" id="timer"></div>
                             </div>
-
-                            <div class="dtg" id="timer"></div>
-
-                            <script src="assets/js/clock.js"></script>
-
                         </div> 
 
                         <div id="statusloop">            
@@ -218,11 +206,12 @@
 
         </div>
 
-        <div id="system" class="system">
+
+        <!-- <div id="system" class="system"> -->
             <div id="stats" class="container centered">
                 <!-- system badges go here -->
             </div>
-        </div>
+        <!-- </div> -->
 
         <div id="footer">
 
