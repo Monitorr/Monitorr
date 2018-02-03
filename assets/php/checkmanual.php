@@ -226,8 +226,6 @@
 
             }
 
-        curl_close($handle);
-
     echo "<br>";
     echo "<b> //////////////// check END /////////////// </b> <br />\n";
 
