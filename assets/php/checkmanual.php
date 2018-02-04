@@ -134,9 +134,7 @@
                curl_close($handle);
 
                 $headers=array();
-
-                $data=explode("\n",$output);
-
+                $data=explode("\n",$output); 
                 $headers=explode("\n",$output);
 
                 $headers['status']=$data[0];
@@ -145,7 +143,7 @@
 
                 foreach($data as $part){
                     $middle=explode(":",$part);
-                    $headers[trim($middle[0])] = trim($middle[0]);
+                    $headers[trim($middle[0])] = trim($middle[1]); 
                 }
 
                 //print all headers as array:
