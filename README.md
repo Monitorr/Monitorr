@@ -3,14 +3,14 @@
 
 ## - *Monitorr* is a webfront to live display the status of any webapp or service
 
-**Version:** v0.12.8d [DEVELOP]
+**Version:** v0.13.3d [DEVELOP]
 
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
 
-**Latest major change:** Added PING as a fallback check
+**Latest major change:** Added update notification
 
 **NOTE**: If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration) for further explanation.
 
@@ -26,8 +26,8 @@
 - User customizable system threshold colors
 
 **Features in development:**
-- UL/DL times via Speedtest
 - Settings page
+- Reverse proxy authentication
 
 
 ## Screenshot :
@@ -43,6 +43,8 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 1) [PHP](https://secure.php.net/downloads.php)
 
 2) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
+
+2) [GIT](https://git-scm.com/download/win) (Recommended for Windows hosts (see wiki)
 
 
 ## Quick Start:
@@ -63,13 +65,18 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 
 ## Connect:
-- Need live help?  Join here :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
+- Need live help?  Join us on Discord :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
 
 - E-mail: monitorrapp@gmail.com
 
 - Buy us a beer! Donate:        [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/monitorrapp)
 
+- Check out our sister app **Logarr**:  https://github.com/Monitorr/Logarr
+
 ## About Us:
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
 - [jonfinley](https://github.com/jonfinley) (Linux Dude)
 - [wjbeckett](https://github.com/wjbeckett)
+
+## Credits:
+- [Causefx](https://github.com/Causefx)
