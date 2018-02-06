@@ -98,6 +98,7 @@
             });
         </script>
 
+
         <script type="text/javascript">
 
             var nIntervId;
@@ -132,77 +133,69 @@
             });
         </script>
 
-        <div id="system" class="min system">
-            <div id="stats" class="container centered">
-                <!-- system badges go here -->
+
+        <div id="header" class="red">
+            
+            <div id="left" class="Column red">
+                <div id="time">
+                    <div class="dtg" id="timer"></div>
+                </div>
+            </div> 
+
+            <div id="center" class="red">
+                <div id="system" class="min system">
+                    <div id="stats" class="container centered min2">
+                        <!-- system badges go here -->
+                    </div>
+                </div>
+            </div> 
+
+
+            <div id="right" class="Column red">
+
+                <div id="togglemin">
+                    <table id="slidertable">
+                        <tr>
+                            <th id="textslider">
+                            Auto Refresh:
+                            </th>
+                            <th id="slider">
+                                <label class="switch" id="buttonStart">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </th>
+                        </tr>
+                    </table>
+                </div> 
+
             </div>
+
         </div>
 
         <div id="services" class="container">
-            <!-- /row -->
+
             <div class="row">
-                <div class="col-md-12">
-                    <div class="row mt centered"> 
-                        <div class="col-lg-6 col-lg-4 col-lg-3">
-                            <div class="clock">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
-                                    <g>
-                                        <circle r="55"/>
-                                        <g id="numbers"/>
-                                        <g id="ticks"/>
-                                        <g id="hands">
-                                            <g id="hour">
-                                                <line x1="-2" y1="0" x2="15" y2="0"/>
-                                            </g>
-                                            <g id="minute">
-                                                <line x1="-3" y1="0" x2="35" y2="0"/>
-                                            </g>
-                                            <g id="second">
-                                                <line x1="-4" y1="0" x2="50" y2="0"/>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </div>
 
-                            <div class="dtg" id="timer"></div>
-
-                            <script src="assets/js/clock.js"></script>
-
-                        </div> 
-
-                        <div id="statusloop">            
-                            <!-- loop data goes here -->
-                        </div>
-                    </div>
+                <div id="statusloop">
+                    <!-- loop data goes here -->
                 </div>
+
             </div>
 
         </div>
         
-        <div id="bottom">
-            <table id="slidertable">
-                <tr>
-                    <th id="textslider">
-                    Auto Refresh:
-                    </th>
-                    <th id="slider">
-                        <label class="switch" id="buttonStart">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                    </th>
-                </tr>
-            </table>
-        </div> 
 
         <div id="footer">
         
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
             
-                <!-- <script src="assets/js/update.js"></script> -->
-                <!-- <a class="footer a" id="version_check" style="cursor: pointer;">Check for Update</a> -->
+            <script src="assets/js/update_auto.js"></script>
+
+            <div id="version_check_auto"></div>
+            
         </div>
+
 
     </body>
 

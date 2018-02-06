@@ -114,10 +114,21 @@
         </script>
         
 
-        <!-- NEW CLOCK-->
+        <script>
+        
+            <?php $dt = new DateTime("now", new DateTimeZone($config['timezone'])); ?>   
+    
+            $servertimezone = "<?php echo $config['timezone']; ?>";
+            
+            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
+
+            var servertimezone = $servertimezone;
+
+            var servertime = $dt;
+                    
+        </script>
 
         <script src="assets/js/clock.js" async></script>
-
 
 
         <script type="text/javascript">
@@ -154,66 +165,62 @@
             });
         </script>
 
-        <div id="header">
+        <div id="header" class="red">
             
-            <div id="left" class="Column">
+            <div id="left" class="Column red">
+                <div id="clock">
+                    <canvas id="canvas" width="120" height="120"></canvas>
+                    <div class="dtg" id="timer"></div>
+                </div>
             </div> 
 
-            <div id="center">
-                <div id="centerinner" class="navbar-brand">
-                    <div id="centertext" class="navbar-brand">
-                        <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
-                    </div>
+            <div id="center" class="red">
+
+                <div id="centertext">
+                    <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
+                </div>
+
+                <div id="toggle" class="red">
+                    <table id="slidertable">
+                        <tr>
+                            <th id="textslider">
+                            Auto Refresh:
+                            </th>
+                            <th id="slider">
+                                <label class="switch" id="buttonStart">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </th>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
-            <div id="right" class="Column">
-                <table id="slidertable">
-                    <tr>
-                        <th id="textslider">
-                        Auto Refresh:
-                        </th>
-                        <th id="slider">
-                            <label class="switch" id="buttonStart">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </th>
-                    </tr>
-                </table>
+            <div id="right" class="Column red">
+
+                <div id="stats" class="container centered">
+                    <!-- system badges go here -->
+                </div>
+
             </div> 
 
         </div>
             
-        <div id="services" class="container">
-            <!-- /row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row mt centered"> 
-                        <div class="col-lg-6 col-lg-4 col-lg-3">
-                            <div id="clock">
-                                <canvas id="canvas" width="120" height="120"></canvas>
-                                <div class="dtg" id="timer"></div>
-                            </div>
-                        </div> 
 
-                        <div id="statusloop">            
-                            <!-- loop data goes here -->
-                        </div>
-                    </div>
+        <div id="services" class="container red">
+
+            <div class="row red">
+
+                <div id="statusloop" class="red">            
+                    <!-- loop data goes here -->
                 </div>
             </div>
 
         </div>
 
 
-        <!-- <div id="system" class="system"> -->
-            <div id="stats" class="container centered">
-                <!-- system badges go here -->
-            </div>
-        <!-- </div> -->
-
-        <div id="footer">
+        <div id="footer" class="red">
 
             <script src="assets/js/update.js"></script>
             <script src="assets/js/update_auto.js"></script>

@@ -152,9 +152,7 @@
                     }
                 
             }
-
-      //  curl_close($handle);
-
+            
     };
 
 ?>

@@ -1,7 +1,6 @@
 <?php // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
 include_once '../config.php';
 
-
 if (!empty($config['timezone'])) {
     $timezone = $config['timezone']; // set in config.php
 }
@@ -29,10 +28,21 @@ if (is_link('/etc/localtime')) {
 }
     date_default_timezone_set($timezone);
     $timestamp = time();
-    $server_date = date("D | d M <br> Y");
+    $server_date = date("D, d M Y");
 ?>
 
+<?php
+$dt = new DateTime("now", new DateTimeZone($config['timezone']));
 
+echo $dt->format("Y-m-d\TH:i:s\Z");
+
+echo "<br>";
+echo "<br>";
+?>
+
+<?php
+    echo "$server_date"?>
+<br>
 <?php
 if ($timestandard=='True') {
     $msg = date("h:i:sa T");
@@ -54,8 +64,3 @@ if ($timestandard=='True') {
     echo $msg;
 }
     ?>
-
-    <div id="line">__________</div>
-
-<?php echo "$server_date"?>
-

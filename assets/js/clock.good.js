@@ -1,43 +1,31 @@
-var servertime
-var servertimezone;
 
-date = servertime;
+alert(timezone);
 
-// inner variables:
+var timezone;
 
+// inner variables
 var canvas, ctx;
-var clockRadius = 60;
+var clockRadius = 60; //changed
 var clockImage;
-
 // draw functions :
-
 function clear() { // clear canvas function
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
-
-// Parse time from index.php:
-
-var date = new Date(servertime);
-
 function drawScene() { // main drawScene function
     clear(); // clear canvas
 
-    // get current time:
-
-date.setSeconds(date.getSeconds() + 1);
-
-var hours = date.getHours(); 
-var minutes = date.getMinutes(); 
-var seconds = date.getSeconds();
-
-
+    // get current time
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
     hours = hours > 12 ? hours - 12 : hours;
     var hour = hours + minutes / 60;
     var minute = minutes + seconds / 60;
 
     // save current context
     ctx.save();
-
+    
     // draw clock image (as background)
     ctx.drawImage(clockImage, 0, 0, 120, 120);
     ctx.translate(canvas.width / 2, canvas.height / 2);
@@ -96,12 +84,12 @@ var seconds = date.getSeconds();
     ctx.restore();
 }
 // initialization
-$(function () {
+$(function(){
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     // var width = canvas.width;
     // var height = canvas.height;
-    clockImage = new Image();
-    clockImage.src = 'images/cface.png';
+clockImage = new Image();
+clockImage.src = 'images/cface.png';
     setInterval(drawScene, 1000); // loop drawScene
 });
