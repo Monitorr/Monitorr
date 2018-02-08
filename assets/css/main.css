@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
 body {
     opacity: 1;
@@ -14,13 +14,6 @@ body {
         /* overflow-x: hidden; */
 }
 
-.red {
-
-    border-style: solid;
-    /* border-color: red;  */
-    border-color: transparent; 
-    border-radius: .5px;
-}
 
 body.fade-out {
     opacity: 0;
@@ -202,13 +195,14 @@ span {
 /* Links */
 
 a {
+    text-decoration: none;
     color: #f2f2f2;
     word-wrap: break-word;
-    -webkit-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -ms-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 hr {
@@ -221,7 +215,6 @@ hr {
 }
 
 
-
 /* Top Margin */
 
 #header {
@@ -230,10 +223,21 @@ hr {
     width: 100%;
     table-layout: fixed;
     border-spacing: 1px;
-
+    margin-bottom: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
 }
 
-
+#headermin {
+    position: relative;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 1px;
+    margin-top: .5em;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
 
 .Column {
     display: table-cell;
@@ -254,58 +258,54 @@ tbody {
 
 
 #left {
+    width: 40%;
     text-align: left;
     vertical-align: middle;
-    /* width: 0%; */
 }
 
 #center {
-
+    width: 20%;
     position: absolute;
     text-align: center;
     vertical-align: middle;
     left: 50%;
     transform: translate(-50%);
     z-index: 100;
-
 }
-
-/* #centerinner {
-  display: inline-block;
-  position: relative;
-  padding: 0px;
-  left: 50%;
-} */
 
 #centertext {
     display: flex;
-/* position: relative; */
-/* height: 8rem; */
     white-space: nowrap;
     justify-content: center;
     direction: rtl;
     padding: 0px;
-    padding-top: 1rem
-    /* height: 4rem */
+    padding-top: .5rem;
 }
 
 #right {
-    text-align: center;
+    width: 40%;
+    text-align: right;
     vertical-align: middle;
-    margin: auto;
     color: #8E8B8B;
 }
 
 .navbar-brand {
+    vertical-align: middle;
+    margin: 0;
     background-color: rgba(31, 31, 31, 0.500);
     padding: 0px;
     color: #ffffff;
     text-shadow: 0 0 15px #FF0104;
-    /* text-decoration: none; */
     outline: 0;
     font-size: 3vw;
     font-weight: 500;
-    vertical-align: middle;
+}
+
+
+@media screen and (min-width: 1024px) {
+    .navbar-brand {
+        font-size: 48px;
+    }
 }
 
 .navbar-brand:hover,
@@ -343,10 +343,7 @@ tbody {
 }
 
 .col-centered {
-    /* display: inline-block !important; */
     float: none;
-    /* text-align: left; */
-    /* margin-right: -4px !important; */
 }
 
 
@@ -366,12 +363,13 @@ tbody {
 
 /* TILES */
 
-/* .container {
-    padding-right: 15px;
-    padding-left: 15px;
+ .container {
+    padding-right: 1rem;
+    padding-left: 1rem;
     align-content: center;
     align-items: center;
-} */
+    max-width: 90%;
+} 
 
 #services {
     background: transparent;
@@ -382,16 +380,12 @@ tbody {
     margin-top: 1vw;
 }
 
-
  .row {
      background-color: transparent;
-     /* margin-left: 0; */
-     /* margin-right: 8%; */
      padding: 0;
      text-align: center;
      text-align: -webkit-center;
  }
-
 
 .col-lg-4 {
     position: relative;
@@ -400,7 +394,6 @@ tbody {
     border-radius: 1rem;
     box-shadow: 5px 5px 5px black;
     margin: 1rem 1rem 1.5rem 1rem;
-    /* padding: 1rem 0px 1rem 0px; */
     padding-left: .5rem;
     padding-right: .5rem;
     width: 10rem;
@@ -416,45 +409,34 @@ tbody {
 
  }
 
-
-
-/* #system {
-    background: transparent;
-}
-
-.system {
-    margin-top: 1vw;
-} */
-
 .min {
     margin: 0 auto;
     margin-top: 1em;
     margin-bottom: .5em;
-    /* float: left; */
+    width: 45rem !important;
 }
 
 .min2 {
     display: flex !important;
+    flex-direction: row !important;
     text-align: center !important;
-    /* padding-top: 1em; */
+    width: 40rem !important;
+    padding-right: 1.5rem !important;
     padding-bottom: .5rem;
 
 }
-
-
 
 .servicetile {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 100%;
-    /* height: 100%; */
     transform: translate(-50%, -50%);
-    -webkit-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -ms-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
     text-shadow: 1px 1px black;
 }
 
@@ -465,11 +447,11 @@ tbody {
     text-decoration: none;
     outline: 0;
     font-weight: 600;
-    -webkit-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -ms-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 .servicetileoffline {
@@ -477,16 +459,14 @@ tbody {
     top: 50%;
     left: 50%;
     width: 100%;
-    /* height: 100%; */
     transform: translate(-50%, -50%);
-    -webkit-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -ms-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
     text-shadow: 1px 1px black;
 }
-
 
 #serviceimg {
     margin-bottom: 10%;
@@ -514,11 +494,11 @@ tbody {
     text-decoration: none;
     outline: 0;
     font-weight: 600;
-    -webkit-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -ms-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 } 
 
 #servicetitleoffline {
@@ -533,7 +513,6 @@ tbody {
     justify-content: center;
     font-size: 1.5rem;
     color: rgb(200, 200, 200);
-    /* transform: translate(-50%, -50%); */
     cursor: no-drop;
 }
 
@@ -613,8 +592,12 @@ tbody {
 /* BADGES */
 
 #stats {
-    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
     height: auto;
+    justify-content: center;
+    align-content: center;
     text-align: center;
     text-align: -webkit-center;
     padding-left: 1rem;
@@ -630,16 +613,12 @@ tbody {
     display: flex;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
-    /* margin: 0.1rem; */
     padding-top: .5rem;
-
-    /* padding-bottom: .5rem; */
+    padding-left: .1rem;
+    padding-right: .1rem;
     margin-left: auto;
     margin-right: auto;
-    /* padding: 0; */
     text-align: -webkit-center;
-    /* float: left; */
-    /* font-size: 0.9em; */
 }
 
 .double-val-label>span {
@@ -647,16 +626,17 @@ tbody {
     box-shadow: 1px 1px 1px black;
     color: #ffffff;
     display: table-cell;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     font-weight: 400;
     line-height: 1;
     padding: .3em .6em;
     text-align: center;
-    vertical-align: baseline;
+    vertical-align: middle;
     text-shadow: 1px 1px grey;
     white-space: nowrap;
     cursor: default;
-    &:first-child {
+
+    &:first-child() {
         border-bottom-left-radius: 0.25em;
         border-top-left-radius: .25em;
     }
@@ -693,7 +673,8 @@ tbody {
 }
 
 
-/* NEW CLOCK NEW*/
+/* CLOCK */
+
 #clock {
     display: flex;
     flex-direction: row;
@@ -709,7 +690,6 @@ tbody {
     background-color: #3d3d3d;
     border-radius: 1rem;
     box-shadow: 5px 5px 5px black;
-    /* margin: 1rem 1rem 1.5rem 1rem; */
 }
 
 #canvas {
@@ -718,8 +698,7 @@ tbody {
     margin-right: .5rem;
     width: 8rem;
     height: 8rem;
-    padding: .1em;
-    font-size: 2rem;
+    font-size: 30px;
 
 }
 
@@ -738,17 +717,15 @@ tbody {
     border-radius: 8px;
     box-shadow: 3px 3px 3px black;
     font-size: .750rem;
-    /* margin: 1rem 1rem 1.5rem 1rem; */
 }
+
 
 .dtg {
     color: #C8C8C8;
-    /* font-size: 1rem; */
+    font-size: 1rem;
     font-weight: 400;
     margin: auto;
-    /* padding-left: .5rem; */
     text-align: center;
-    /* margin: 5px; */
     cursor: default;
 }
 
@@ -766,19 +743,17 @@ tbody {
     vertical-align: middle;
     padding-right: 0px;
     margin: auto;
-    margin-top: 3vw;
+    margin-top: 1rem;
     font-size: .75rem;
     color: #8E8B8B;
 }
-
 
 #togglemin {
     display: flex;
     float: right;
     text-align: center;
     vertical-align: middle;
-     margin-right: 3vw;
-    /* padding-right: 0px; */
+    margin-right: 3vw;
     font-size: .75rem;
     color: #8E8B8B;
 }
@@ -790,19 +765,27 @@ tbody {
     box-shadow: 3px 3px 3px black;
 }
 
+.tr {
+
+    padding: 1rem;
+} 
+
 #textslider {
     width: .2em;
     margin: auto;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
     padding-right: .4em;
     padding-left: 1em;
+    
     font-size: 1em;
     color: rgb(163, 163, 163);
     text-shadow: 1px 1px black;
 }
 
 #slider {
-    padding-top: 1em;
     margin: auto;
+    padding-top: .5rem;
     padding-right: 1em;
 }
 
@@ -811,6 +794,7 @@ tbody {
     display: inline-block;
     width: 24px;
     height: 17px;
+    margin-bottom: 0;
 }
 
 .switch input {
@@ -934,16 +918,20 @@ input:checked+.slider:before {
  .footer {
     text-align: center;
     font-size: 1rem;
+     text-decoration: none;
 }
 
 .footer:hover {
     text-decoration: none;
     color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 400;
 }
 
-.a {
+ .a {
     color: #555555;
     font-size: 1rem;
     text-shadow: none;
     font-weight: 300;
-}
+    text-decoration: none;
+ }

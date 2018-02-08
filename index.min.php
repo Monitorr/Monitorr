@@ -19,7 +19,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <link rel="apple-touch-icon" href="favicon.ico">
+        <!-- <link rel="apple-touch-icon" href="favicon.ico"> -->
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Monitorr">
@@ -29,7 +29,7 @@
         <meta name="theme_color" content="#464646" />
 
         <!-- Bootstrap core CSS -->
-        <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Fonts from Google Fonts -->
         <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
@@ -81,7 +81,7 @@
 
         <script src="assets/js/pace.js" async></script>
 
-        <script type= "text/javascript">
+        <script>
             $(document).ready(function() {
                 function update() {
                 $.ajax({
@@ -90,14 +90,13 @@
                 timeout: 5000,
                 success: function(data) {
                     $("#timer").html(data); 
-                    window.setTimeout(update, 5000);
+                    window.setTimeout(update, 10000);
                     }
                 });
                 }
                 update();
             });
         </script>
-
 
         <script type="text/javascript">
 
@@ -134,15 +133,15 @@
         </script>
 
 
-        <div id="header" class="red">
+        <div id="headermin">
             
-            <div id="left" class="Column red">
+            <div id="left" class="Column">
                 <div id="time">
                     <div class="dtg" id="timer"></div>
                 </div>
             </div> 
 
-            <div id="center" class="red">
+            <div id="center" class="min">
                 <div id="system" class="min system">
                     <div id="stats" class="container centered min2">
                         <!-- system badges go here -->
@@ -151,7 +150,7 @@
             </div> 
 
 
-            <div id="right" class="Column red">
+            <div id="right" class="Column">
 
                 <div id="togglemin">
                     <table id="slidertable">
@@ -176,11 +175,9 @@
         <div id="services" class="container">
 
             <div class="row">
-
                 <div id="statusloop">
                     <!-- loop data goes here -->
                 </div>
-
             </div>
 
         </div>
@@ -190,12 +187,11 @@
         
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
             
-            <script src="assets/js/update_auto.js"></script>
+            <script src="assets/js/update_auto.js" async></script>
 
             <div id="version_check_auto"></div>
             
         </div>
-
 
     </body>
 

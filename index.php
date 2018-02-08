@@ -18,6 +18,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="manifest" href="webmanifest.json">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <link rel="apple-touch-icon" href="favicon.ico">
 
@@ -29,18 +30,18 @@
         <meta name="theme_color" content="#464646" />
 
         <!-- Bootstrap core CSS -->
-        <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Fonts from Google Fonts -->
         <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
 
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
-
+       
         <style>
 
             body {
-                margin-top: 2vw;
+                margin-top: 2rem;
                 margin-bottom: 2vw;
                 overflow-y: auto; 
                 overflow-x: hidden; 
@@ -96,7 +97,8 @@
 
         <script src="assets/js/pace.js" async></script>
 
-        <script type= "text/javascript">
+        <script>
+
             $(document).ready(function() {
                 function update() {
                 $.ajax({
@@ -111,9 +113,9 @@
                 }
                 update();
             });
+            
         </script>
         
-
         <script>
         
             <?php $dt = new DateTime("now", new DateTimeZone($config['timezone'])); ?>   
@@ -129,7 +131,6 @@
         </script>
 
         <script src="assets/js/clock.js" async></script>
-
 
         <script type="text/javascript">
 
@@ -165,22 +166,22 @@
             });
         </script>
 
-        <div id="header" class="red">
+        <div id="header">
             
-            <div id="left" class="Column red">
+            <div id="left" class="Column">
                 <div id="clock">
                     <canvas id="canvas" width="120" height="120"></canvas>
                     <div class="dtg" id="timer"></div>
                 </div>
             </div> 
 
-            <div id="center" class="red">
+            <div id="center">
 
                 <div id="centertext">
                     <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
                 </div>
 
-                <div id="toggle" class="red">
+                <div id="toggle">
                     <table id="slidertable">
                         <tr>
                             <th id="textslider">
@@ -195,9 +196,10 @@
                         </tr>
                     </table>
                 </div>
+
             </div>
 
-            <div id="right" class="Column red">
+            <div id="right" class="Column">
 
                 <div id="stats" class="container centered">
                     <!-- system badges go here -->
@@ -207,27 +209,24 @@
 
         </div>
             
+        <div id="services" class="container">
 
-        <div id="services" class="container red">
-
-            <div class="row red">
-
-                <div id="statusloop" class="red">            
+            <div class="row">
+                <div id="statusloop">            
                     <!-- loop data goes here -->
                 </div>
             </div>
 
         </div>
 
+        <div id="footer">
 
-        <div id="footer" class="red">
-
-            <script src="assets/js/update.js"></script>
-            <script src="assets/js/update_auto.js"></script>
+            <script src="assets/js/update.js" async></script>
+            <script src="assets/js/update_auto.js" async></script>
         
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
-            <a class="footer a" id="version_check" style="cursor: pointer;">Check for Update</a>
+            <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a>
             
                 <br>
             

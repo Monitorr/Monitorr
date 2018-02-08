@@ -32,30 +32,34 @@ if (is_link('/etc/localtime')) {
     $server_date = date("D | d M <br> Y");
 ?>
 
-
-<?php
-if ($timestandard=='True') {
-    $msg = date("h:i:sa T");
-    echo $msg;
-} elseif ($timestandard=='true') {
-    $msg = date("h:i:sa T");
-    echo $msg;
-} elseif ($timestandard=='t') {
-    $msg = date("h:i:sa T");
-    echo $msg;
-} elseif ($timestandard=='False') {
-    $msg = date("H:i:s T");
-    echo $msg;
-} elseif ($timestandard=='false') {
-    $msg = date("H:i:s T");
-    echo $msg;
-} elseif ($timestandard=='f') {
-    $msg = date("H:i:s T");
-    echo $msg;
-}
-    ?>
+<div class="dtg"><strong>
+    
+    <?php
+    if ($timestandard=='True') {
+        $msg = date("h:i:sa T");
+        echo $msg;
+    } elseif ($timestandard=='true') {
+        $msg = date("h:i:sa T");
+        echo $msg;
+    } elseif ($timestandard=='t') {
+        $msg = date("h:i:sa T");
+        echo $msg;
+    } elseif ($timestandard=='False') {
+        $msg = date("H:i:s T");
+        echo $msg;
+    } elseif ($timestandard=='false') {
+        $msg = date("H:i:s T");
+        echo $msg;
+    } elseif ($timestandard=='f') {
+        $msg = date("H:i:s T");
+        echo $msg;
+    }
+        ?>
+        
+</strong></div>
 
     <div id="line">__________</div>
+
 
 <?php echo "$server_date"?>
 
