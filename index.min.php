@@ -42,7 +42,11 @@
             body {
                 margin-bottom: 1vw;
                 overflow: scroll;
-                overflow-x: hidden; 
+                overflow-x: hidden;
+            }
+
+            :root {
+                font-size: 12px !important;
             }
 
             ::-webkit-scrollbar {
@@ -61,6 +65,46 @@
             .auto-style1 {
                 text-align: center;
             }
+
+            #left {
+                width: 60% !important;
+                padding-top: .5rem;
+            }
+
+            #time {
+                margin-left: 2vw !important;
+            }
+
+            #center {
+                background-color: #1F1F1f;
+                position: absolute !important;
+                max-width: 50rem;
+                height: 5rem;
+                left: 51% !important;
+            }
+
+            #stats {
+                width: 100% !important;
+                max-width: 50rem;
+                padding-left: 0 !important;
+            }
+
+            #services {
+                width: 100% !important;
+            }
+
+            .container {
+                max-width: 95% !important;
+            }
+
+            #slider {
+                padding-top: .25rem !important;
+            }
+
+            #textslider {
+                padding-bottom: .50rem !important;
+            }
+
             
         </style>
 
@@ -147,7 +191,7 @@
                         <!-- system badges go here -->
                     </div>
                 </div>
-            </div> 
+            </div>  
 
 
             <div id="right" class="Column">
