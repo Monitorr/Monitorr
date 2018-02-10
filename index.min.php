@@ -76,11 +76,12 @@
             }
 
             #center {
-                background-color: #1F1F1f;
                 position: absolute !important;
                 max-width: 50rem;
-                height: 5rem;
+                height: 4.5rem;
                 left: 51% !important;
+                background-color: #1F1F1f;
+                box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F
             }
 
             #stats {
@@ -229,7 +230,7 @@
 
         <div id="footer">
         
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
             
             <script src="assets/js/update_auto.js" async></script>
 
