@@ -29,6 +29,13 @@
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
 
+        <?php $file = 'assets/config.php';
+            //Use the function is_file to check if the config file already exists or not.
+            if(!is_file($file)){
+                copy('assets/config.php.sample', $file);
+            } 
+        ?>
+
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,6 +45,7 @@
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
        
+
         <style>
 
             body {
@@ -79,13 +87,6 @@
             }
 
         </style>
-
-        <?php $file = 'assets/config.php';
-            //Use the function is_file to check if the config file already exists or not.
-            if(!is_file($file)){
-                copy('assets/config.php.sample', $file);
-            } 
-        ?>
 
         <?php include ('assets/config.php'); ?>
         <?php include ('assets/php/check.php') ;?>
@@ -224,7 +225,7 @@
             <script src="assets/js/update.js" async></script>
             <script src="assets/js/update_auto.js" async></script>
         
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
             <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a>
             
