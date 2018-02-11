@@ -225,8 +225,7 @@ hr {
     table-layout: fixed;
     border-spacing: 1px;
     margin-bottom: 1rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-left: .5rem
 }
 
 #headermin {
@@ -267,14 +266,14 @@ tbody {
 
 
 #left {
-    width: 40%;
+    width: auto;
     text-align: left;
     vertical-align: middle;
 }
 
 #center {
-    width: 20%;
-    position: absolute;
+    width: auto;
+    position: relative;
     text-align: center;
     vertical-align: middle;
     left: 50%;
@@ -292,8 +291,7 @@ tbody {
 }
 
 #right {
-    width: 40%;
-    text-align: right;
+    width: auto;
     vertical-align: middle;
     color: #8E8B8B;
 }
@@ -417,23 +415,6 @@ tbody {
     justify-content: center;
 
  }
-
-.min {
-    margin: 0 auto;
-    margin-top: .75em;
-    margin-bottom: .5em;
-    width: 100% !important;
-}
-
-.min2 {
-    display: flex !important;
-    flex-direction: row !important;
-    text-align: center !important;
-    width: 40rem !important;
-    padding-right: 1.5rem !important;
-    padding-bottom: .5rem;
-
-}
 
 .servicetile {
     position: absolute;
@@ -605,30 +586,53 @@ tbody {
 /* BADGES */
 
 #stats {
-    display: flex;
-    flex-direction: column;
-    width: 10rem;
-    height: auto;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto auto auto;
+    grid-auto-flow: column;
+    float: left;
+    width: 17rem;
+    height: 8rem;
+    justify-content: stretch;
     align-content: center;
     text-align: center;
     text-align: -webkit-center;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    padding-top: .5rem;
     padding-bottom: .5rem;
     background-color: #3d3d3d;
     border-radius: 1rem;
-    box-shadow: 5px 5px 5px black; 
-
+    box-shadow: 5px 5px 5px black;
 }
+
+
+#uptime {
+
+        grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: span 2;
+        width: 1rem;
+        padding-bottom: 1rem; 
+}
+
+#ping {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-row-end: x;
+    padding-top: 1rem;
+}
+
+/* changed */
 
 .double-val-label {
     display: flex;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
     padding-top: .5rem;
+    padding-bottom: .5rem;
     padding-left: .1rem;
-    padding-right: .1rem;
+    padding-right: .1rem;  
     margin-left: auto;
     margin-right: auto;
     text-align: -webkit-center;
@@ -642,7 +646,7 @@ tbody {
     font-size: 0.75rem;
     font-weight: 400;
     line-height: 1;
-    padding: .3em .6em;
+    padding: .4rem .4rem;
     text-align: center;
     vertical-align: middle;
     text-shadow: 1px 1px grey;
@@ -691,9 +695,10 @@ tbody {
 #clock {
     display: flex;
     flex-direction: row;
+    float: right;
     height: 9rem;;
     width: 17rem;
-    margin: auto;
+    margin: 0;
     padding-top: .5rem;
     padding-bottom: .5rem;
     padding-left: 1rem;
