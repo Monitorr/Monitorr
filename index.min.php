@@ -68,7 +68,6 @@
 
             #left {
                 width: 60% !important;
-                padding-top: .5rem;
             }
 
             #time {
@@ -77,25 +76,37 @@
 
             #center {
                 position: absolute !important;
-                max-width: 50rem;
-                height: 4.5rem;
+                 height: 5rem;
+                width: 100% !important;
+                max-width: 40rem;
                 left: 51% !important;
-                background-color: #1F1F1f;
-                box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F
+                padding-top: 1rem;
+                background-color: #1F1F1f; 
+                box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F; 
             }
 
             #stats {
-                width: 100% !important;
-                max-width: 50rem;
-                padding-left: 0 !important;
+                display: flex !important;
+                margin: 0 auto;
+                float: none !important;
+                box-sizing: content-box;
+                height: 2.5em !important;
+                width: 40em !important;
+
+            }
+
+            #uptime {
+                    width: auto !important;
+                    padding-bottom: .5rem !important;
+            }
+
+            #ping {
+
+                    padding-top: .5rem !important;
             }
 
             #services {
                 width: 100% !important;
-            }
-
-            .container {
-                max-width: 95% !important;
             }
 
             #slider {
@@ -103,9 +114,9 @@
             }
 
             #textslider {
+                padding-top: .50rem !important;
                 padding-bottom: .50rem !important;
             }
-
             
         </style>
 
@@ -186,11 +197,9 @@
                 </div>
             </div> 
 
-            <div id="center" class="min">
-                <div id="system" class="min system">
-                    <div id="stats" class="container centered min2">
-                        <!-- system badges go here -->
-                    </div>
+            <div id="center">
+                <div id="stats" class="container centered">
+                    <!-- system badges go here -->
                 </div>
             </div>  
 
