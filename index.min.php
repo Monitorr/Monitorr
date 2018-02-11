@@ -90,7 +90,7 @@
                 margin: 0 auto;
                 float: none !important;
                 box-sizing: content-box;
-                height: 2.5em !important;
+                height: 2em !important;
                 width: 40em !important;
 
             }
