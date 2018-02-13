@@ -35,7 +35,7 @@
 
 ## Screenshot :
 
-![](https://i.imgur.com/fmgq4xz.png)
+![](https://i.imgur.com/h8S1976.png)
 
 ### Mobile:
 
