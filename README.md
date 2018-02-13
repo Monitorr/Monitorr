@@ -35,11 +35,16 @@
 
 ## Screenshot :
 
-![](https://i.imgur.com/Ui6oe6g.png)
+![](https://i.imgur.com/fmgq4xz.png)
 
-In use with [Organizr](https://github.com/causefx/Organizr)
+### Mobile:
 
-![]( https://i.imgur.com/t5tzuR4.png)
+![](https://i.imgur.com/RKp2yiZ.jpg)
+
+
+### In use with [Organizr](https://github.com/causefx/Organizr) :
+
+![](https://i.imgur.com/SwevXaG.png)
 
 
 ## Prerequisites:
