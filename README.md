@@ -39,7 +39,7 @@
 
 ### Mobile:
 
-![](https://i.imgur.com/RKp2yiZ.jpg)
+![](https://i.imgur.com/RKp2yiZ.jpg?1)
 
 
 ### In use with [Organizr](https://github.com/causefx/Organizr) :
