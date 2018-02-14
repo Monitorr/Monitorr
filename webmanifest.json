@@ -1,0 +1,16 @@
+{
+    "short_name": "Monitorr",
+    "name": "Monitorr",
+    "start_url": "index.php",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "background_color": "#1F1F1F",
+    "theme_color": "#464646",
+    "display": "standalone",
+    "orientation": "portrait"
+}
