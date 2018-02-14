@@ -9,7 +9,7 @@
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) [DOCKER]
 
 
-**Version:** v0.13.9d [DEVELOP]
+**Version:** v0.14.0d [DEVELOP]
 
 
 **NOTICE** (25 jan 2018): If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration) for further explanation.
@@ -76,8 +76,6 @@
 ## Connect:
 
 - Need live help?  Join us on Discord:   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
-
-- Need live help?  Join us on Discord :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
 
 - E-mail: monitorrapp@gmail.com
 
