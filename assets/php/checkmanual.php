@@ -86,7 +86,6 @@
 
         $handle = curl_init($url);
 
-
         if($auth=="1"){
             curl_setopt($handle, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
             curl_setopt($handle, CURLOPT_USERPWD, $creds);
@@ -98,7 +97,6 @@
         curl_setopt($handle, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($handle, CURLOPT_HEADER, true);
-        curl_setopt($handle, CURLOPT_HTTPHEADER, $headers); 
         curl_setopt($handle, CURLOPT_NOBODY, true);
         curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
@@ -133,10 +131,11 @@
 
                 // close curl resource to free up system resources:
 
-            
-                $headers=array();
+               curl_close($handle);
 
-                $data=explode("\n",$output);
+                $headers=array();
+                $data=explode("\n",$output); 
+                $headers=explode("\n",$output);
 
                 $headers['status']=$data[0];
 
@@ -144,17 +143,15 @@
 
                 foreach($data as $part){
                     $middle=explode(":",$part);
-                    $headers[trim($middle[0])] = trim($middle[1]);
+                    $headers[trim($middle[0])] = trim($middle[1]); 
                 }
 
                 //print all headers as array:
 
                 echo "<pre>";
                 print_r($headers);
-                var_dump($data); 
+                //var_dump($data); 
                 echo "</pre>";
-
-                curl_close($handle);
 
             } 
 
@@ -225,8 +222,6 @@
                     }
 
             }
-
-        curl_close($handle);
 
     echo "<br>";
     echo "<b> //////////////// check END /////////////// </b> <br />\n";

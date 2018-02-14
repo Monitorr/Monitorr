@@ -5,6 +5,7 @@
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
 
+
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) [DOCKER]
 
 
@@ -73,7 +74,10 @@
 
 
 ## Connect:
+
 - Need live help?  Join us on Discord:   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
+
+- Need live help?  Join us on Discord :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
 
 - E-mail: monitorrapp@gmail.com
 

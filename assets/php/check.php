@@ -85,7 +85,7 @@
                         
                     echo '</a>'; 
                 echo '</div>';
-
+                
                 curl_close($handle);
 
             } 
@@ -152,7 +152,6 @@
                     }
                 
             }
-            
     };
 
 ?>
