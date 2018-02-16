@@ -5,41 +5,50 @@
 
 [![](https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat)](https://github.com/monitorr/monitorr/releases) [MASTER]
 
-[![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/)
+[![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) [DOCKER]
 
-**Version:** v0.13.3d [DEVELOP]
 
-**Latest major change:** Added update notification
+**Version:** v0.14.0d [DEVELOP]
 
-**NOTE**: If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration) for further explanation.
+
+**NOTICE** (25 jan 2018): If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration) for further explanation.
 
 ## Features:
 
-- LIVE!
+**Latest major change:** Complete overhaul of GUI, NEW mobile display....it's dope. 
+
+- LIVE! (w/ option to pause live updating)
 - Self-hosted
 - Monitor any app on any domain (Curl as primary check, sockopen as fallback) (UPDATED)
+- Responsive mobile display (NEW)
 - Host system resources display (CPU, MEM, HD, PING, Uptime)
 - Server DTG data
-- Update Monitorr via web UI / branch switching
+- Update Monitorr via web UI / branch switching w/ update notification (NEW)
 - Minimal UI for iFrame displays (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Integration:--Organizr))
 - User customizable system threshold colors
 
 **Features in development:**
 - Settings page
 - Reverse proxy authentication
+- Alternate hot links
 
 
 ## Screenshot :
 
-![](https://i.imgur.com/Ui6oe6g.png)
+![](https://i.imgur.com/h8S1976.png)
 
-In use with [Organizr](https://github.com/causefx/Organizr)
+### Mobile:
 
-![]( https://i.imgur.com/t5tzuR4.png)
+![](https://i.imgur.com/RKp2yiZ.jpg?1)
+
+
+### In use with [Organizr](https://github.com/causefx/Organizr) :
+
+![](https://i.imgur.com/SwevXaG.png)
 
 
 ## Prerequisites:
-1) [PHP](https://secure.php.net/downloads.php)
+1) [PHP](https://secure.php.net/downloads.php) (7.1+ recommended)
 
 2) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
 
@@ -64,7 +73,8 @@ In use with [Organizr](https://github.com/causefx/Organizr)
 
 
 ## Connect:
-- Need live help?  Join us on Discord :   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
+
+- Need live help?  Join us on Discord:   [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/YKbRXtt)
 
 - E-mail: monitorrapp@gmail.com
 
