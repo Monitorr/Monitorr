@@ -2,11 +2,11 @@
 
 - **Operating system**: Windows 10P x65 build: 1709
 
-- **Webserver**:       NGIX v. 3.8
+- **Webserver**:       NGINX v. 3.8
 
 - **PHP Version**:      7.2.1 x64 NTS
 
-- **Monitorr Branch**:   Develop
+- **Monitorr Version**:   0.21m  (in the footer of the Monitorr UI)
 
 ## Describe your issue:
 
