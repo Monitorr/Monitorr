@@ -32,7 +32,7 @@ $(document).ready(function(){
 		   },
 		   error: function() {
 			   // error
-			   $('#version_check_auto').html('There was an error checking the latest version.');
+			   $('#version_check_auto').html('<strong> An error occured while checking your Monitorr version </strong>');
 		   }
 		});
 	// });

@@ -1,0 +1,39 @@
+{
+	"type": "array",
+	"items": {
+		"type": "object",
+		"properties": {
+			"serviceTitle": {
+				"type": "string",
+				"title": "Service Title",
+				"default": "Service Title"
+			},
+			"image": {
+				"type": "string",
+				"title": "Serivce Image",
+				"format": "uri",
+				"default": "../img/monitorr.png"
+			},
+			"type": {
+				"type": "radio",
+				"title": "Check Type",
+				"enum": [
+					"Both",
+					"Curl Only",
+					"Ping Only"
+				],
+				"default": "Both"
+			},
+			"checkurl": {
+				"type": "string",
+				"format": "uri",
+				"default": "http://localhost:80"
+			},
+			"linkurl": {
+				"type": "string",
+				"format": "uri",
+				"default": "http://localhost:80"
+			}
+		}
+	}
+}

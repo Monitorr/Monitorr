@@ -1,6 +1,7 @@
 <?php // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
 include_once '../config.php';
 
+
 if (!empty($config['timezone'])) {
     $timezone = $config['timezone']; // set in config.php
 }
@@ -28,30 +29,37 @@ if (is_link('/etc/localtime')) {
 }
     date_default_timezone_set($timezone);
     $timestamp = time();
-    $server_date = date("D, d M Y");
+    $server_date = date("D | d M <br> Y");
 ?>
 
-<?php
-    echo "$server_date"?>
-<br>
-<?php
-if ($timestandard=='True') {
-    $msg = date("h:i:sa T");
-    echo $msg;
-} elseif ($timestandard=='true') {
-    $msg = date("h:i:sa T");
-    echo $msg;
-} elseif ($timestandard=='t') {
-    $msg = date("h:i:sa T");
-    echo $msg;
-} elseif ($timestandard=='False') {
-    $msg = date("H:i:s T");
-    echo $msg;
-} elseif ($timestandard=='false') {
-    $msg = date("H:i:s T");
-    echo $msg;
-} elseif ($timestandard=='f') {
-    $msg = date("H:i:s T");
-    echo $msg;
-}
-    ?>
+<div class="dtg"><strong>
+    
+    <?php
+    if ($timestandard=='True') {
+        $msg = date("h:i:sa T");
+        echo $msg;
+    } elseif ($timestandard=='true') {
+        $msg = date("h:i:sa T");
+        echo $msg;
+    } elseif ($timestandard=='t') {
+        $msg = date("h:i:sa T");
+        echo $msg;
+    } elseif ($timestandard=='False') {
+        $msg = date("H:i:s T");
+        echo $msg;
+    } elseif ($timestandard=='false') {
+        $msg = date("H:i:s T");
+        echo $msg;
+    } elseif ($timestandard=='f') {
+        $msg = date("H:i:s T");
+        echo $msg;
+    }
+        ?>
+        
+</strong></div>
+
+    <div id="line">__________</div>
+
+
+<?php echo "$server_date"?>
+

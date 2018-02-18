@@ -34,30 +34,31 @@ $(document).ready(function(){
 							       // clear loading information
 						   		   $('#version_check').html("");
 							       // successful update
-                                   $('#version_check').html("Update Successful!");
-                                   location.reload();
+									$('#version_check').html("<strong> Update Successful! <br> Reloading Monitorr in 5 seconds... <strong>");
+									setTimeout(location.reload.bind(location), 5000);
 							   }else{
 								   // error during update/unzip   
-								   $('#version_check').html("Sorry, there was an error while extracting the files.");
+									$('#version_check').html("<strong> An error occured while extracting the files. </strong>");
 							   }
                            } else {
-                                $('#version_check').html("There was an error copying the files.");
+								$('#version_check').html("<strong> An error occured while copying the files. </strong>");
                            }
 					   },
 					   error: function() {
 						   // error
-						   $('#version_check').html('There was an error updating your files.');
+						   $('#version_check').html('<strong> An error occured while updating your files. </strong>');
 					   }
 					});
 			   }else{
 				    // user has the latest version already installed
-					$('#version_check').html("");   
-					$('#version_check').html("You already have the latest version.");   
+					$('#version_check').html("");
+					$('#version_check').html('<strong> You have the latest version. <br> Reloading Monitorr in 5 seconds... </strong>');
+				   	setTimeout(location.reload.bind(location), 5000);   
 			   }
 		   },
 		   error: function() {
 			   // error
-			   $('#version_check').html('There was an error checking your latest version.');
+			   $('#version_check').html('<strong> An error occured while checking your Monitorr version. </strong>');
 		   }
 		});
 	});

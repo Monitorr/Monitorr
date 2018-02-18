@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "required": false,
+    "properties": {
+        "sitetitle": {
+            "type": "string",
+            "required": false,
+			"default":"Monitorr",
+            "properties": {}
+        },
+        "siteurl": {
+            "type": "string",
+            "required": false,
+            "pattern": {},
+            "format": "uri",
+			"default": "http://localhost/monitorr",
+            "properties": {}
+        },
+		"language": {
+            "type": "string",
+            "required": false,
+			"default":"EN",
+            "properties": {}
+        }
+    }
+}

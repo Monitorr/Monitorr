@@ -18,6 +18,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="manifest" href="webmanifest.json">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <link rel="apple-touch-icon" href="favicon.ico">
 
@@ -25,20 +26,30 @@
         <meta name="description" content="Monitorr">
         <meta name="author" content="Monitorr">
         <meta name="version" content="php">
+        <meta name="theme-color" content="#464646" />
+        <meta name="theme_color" content="#464646" />
+
+        <?php $file = 'assets/config.php';
+            //Use the function is_file to check if the config file already exists or not.
+            if(!is_file($file)){
+                copy('assets/config.php.sample', $file);
+            } 
+        ?>
 
         <!-- Bootstrap core CSS -->
-        <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Fonts from Google Fonts -->
         <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
 
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
+       
 
         <style>
 
             body {
-                margin-top: 2vw;
+                margin-top: 2rem;
                 margin-bottom: 2vw;
                 overflow-y: auto; 
                 overflow-x: hidden; 
@@ -77,24 +88,27 @@
 
         </style>
 
-        <?php $file = 'assets/config.php';
-            //Use the function is_file to check if the config file already exists or not.
-            if(!is_file($file)){
-                copy('assets/config.php.sample', $file);
-            } 
-        ?>
-
         <?php include ('assets/config.php'); ?>
         <?php include ('assets/php/check.php') ;?>
         <?php include ('assets/php/gitinfo.php'); ?>
 
-        <title><?php echo $config['title']; ?></title>
+        <!-- <title><?php echo $config['title']; ?></title> -->
+
+        <title>
+            <?php 
+                $str = file_get_contents('assets/data/site_settings-data.json');
+                $json = json_decode($str, true);
+                $title = $json['sitetitle'];
+                echo $title . PHP_EOL;
+            ?>
+        </title>
         
         <script src="assets/js/jquery.min.js"></script>
 
         <script src="assets/js/pace.js" async></script>
 
-        <script type= "text/javascript">
+        <script>
+
             $(document).ready(function() {
                 function update() {
                 $.ajax({
@@ -109,7 +123,24 @@
                 }
                 update();
             });
+            
         </script>
+        
+        <script>
+        
+            <?php $dt = new DateTime("now", new DateTimeZone($config['timezone'])); ?>   
+    
+            $servertimezone = "<?php echo $config['timezone']; ?>";
+            
+            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
+
+            var servertimezone = $servertimezone;
+
+            var servertime = $dt;
+                    
+        </script>
+
+        <script src="assets/js/clock.js" async></script>
 
         <script type="text/javascript">
 
@@ -148,90 +179,78 @@
         <div id="header">
             
             <div id="left" class="Column">
+                <div id="clock">
+                    <canvas id="canvas" width="120" height="120"></canvas>
+                    <div class="dtg" id="timer"></div>
+                </div>
             </div> 
 
             <div id="center">
-                <div id="centerinner" class="navbar-brand">
-                    <div id="centertext" class="navbar-brand">
-                        <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
-                    </div>
+
+                <div id="centertext">
+                    <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
+                    <a class="navbar-brand" href="
+                        <?php 
+                            $str = file_get_contents('assets/data/site_settings-data.json');
+                            $json = json_decode($str, true);
+                            $siteurl = $json['siteurl'];
+                            echo $siteurl . PHP_EOL;
+                        ?>"> 
+                        <?php
+                            $str = file_get_contents('assets/data/site_settings-data.json');
+                            $json = json_decode($str, true);
+                            $title = $json['sitetitle'];
+                            echo $title . PHP_EOL;
+                        ?>
+                    </a>
                 </div>
+
+                <div id="toggle">
+                    <table id="slidertable">
+                        <tr>
+                            <th id="textslider">
+                            Auto Refresh:
+                            </th>
+                            <th id="slider">
+                                <label class="switch" id="buttonStart">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+
             </div>
 
             <div id="right" class="Column">
-                <table id="slidertable">
-                    <tr>
-                        <th id="textslider">
-                        Auto Refresh:
-                        </th>
-                        <th id="slider">
-                            <label class="switch" id="buttonStart">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </th>
-                    </tr>
-                </table>
+
+                <div id="stats" class="container centered">
+                    <!-- system badges go here -->
+                </div>
+
             </div> 
 
         </div>
             
         <div id="services" class="container">
-            <!-- /row -->
+
             <div class="row">
-                <div class="col-md-12">
-                    <div class="row mt centered"> 
-                        <div class="col-lg-6 col-lg-4 col-lg-3">
-                            <div class="clock">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="float:right;">
-                                    <g>
-                                        <circle r="55"/>
-                                        <g id="numbers"/>
-                                        <g id="ticks"/>
-                                        <g id="hands">
-                                            <g id="hour">
-                                                <line x1="-2" y1="0" x2="15" y2="0"/>
-                                            </g>
-                                            <g id="minute">
-                                                <line x1="-3" y1="0" x2="35" y2="0"/>
-                                            </g>
-                                            <g id="second">
-                                                <line x1="-4" y1="0" x2="50" y2="0"/>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="dtg" id="timer"></div>
-
-                            <script src="assets/js/clock.js"></script>
-
-                        </div> 
-
-                        <div id="statusloop">            
-                            <!-- loop data goes here -->
-                        </div>
-                    </div>
+                <div id="statusloop">            
+                    <!-- loop data goes here -->
                 </div>
             </div>
 
         </div>
 
-        <div id="system" class="system">
-            <div id="stats" class="container centered">
-                <!-- system badges go here -->
-            </div>
-        </div>
-
         <div id="footer">
 
-            <script src="assets/js/update.js"></script>
-            <script src="assets/js/update_auto.js"></script>
+            <script src="assets/js/update.js" async></script>
+            <script src="assets/js/update_auto.js" async></script>
         
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
-            <a class="footer a" id="version_check" style="cursor: pointer;">Check for Update</a>
+            <!-- <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a> -->
             
                 <br>
             
