@@ -200,8 +200,14 @@
                                             data = $('#servicesettings').alpaca().getValue();
 
                                              $.post('post_receiver-services.php', {
-                                                data
+                                                data,
+                                                success: function(data) {
+                                                     alert("settings saved");
+                                                     console.log(JSON.stringify(data)); 
+                                                },
+                                                
                                             }) 
+
                                             //  $.post({
                                             //     url: 'post_receiver-services.php',
                                             //     contentType: 'application/json',
@@ -231,7 +237,6 @@
                     });
                 });
             </script>
-
 
 
 
