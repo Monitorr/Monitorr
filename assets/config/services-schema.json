@@ -10,7 +10,7 @@
 			},
 			"image": {
 				"type": "string",
-				"title": "Serivce Image",
+				"title": "Service Image",
 				"format": "uri",
 				"default": "../img/monitorr.png"
 			},
@@ -22,15 +22,18 @@
 					"Curl Only",
 					"Ping Only"
 				],
-				"default": "Both"
+				"default": "Both",
+				"required": true
 			},
 			"checkurl": {
 				"type": "string",
+				"title": "Check URL",
 				"format": "uri",
 				"default": "http://localhost:80"
 			},
 			"linkurl": {
 				"type": "string",
+				"title": "Link URL",
 				"format": "uri",
 				"default": "http://localhost:80"
 			}

@@ -13,8 +13,8 @@
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/pace.js" async></script>
         <script type="text/javascript" src="../js/handlebars.js"></script>
-        <script type="text/javascript" src="../js/alpaca.min.js"></script>
-        <!-- <script type="text/javascript" src="../js/alpaca.js"></script> -->
+        <!-- <script type="text/javascript" src="../js/alpaca.min.js"></script> -->
+        <script type="text/javascript" src="../js/alpaca.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 
             <style>
@@ -24,10 +24,6 @@
                     overflow-y: auto; 
                     overflow-x: hidden;
                     color: white !important;
-                }
-
-                :root {
-                    font-size: 12px !important;
                 }
 
                 legend { 
@@ -73,7 +69,7 @@
 
         <title>
             <?php 
-                $str = file_get_contents('../data/user_preferences-data.json');
+                $str = file_get_contents('../data/site_settings-data.json');
                 $json = json_decode($str, true);
                 $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
@@ -82,7 +78,7 @@
         </title>
 
         <?php include ('../config.php'); ?>
-        <?php include ('gitinfo.php'); ?>
+        <?php include ('../php/gitinfo.php'); ?>
 
     </head>
 
@@ -103,7 +99,7 @@
             </div>
         </div>
 
-    <div id="serviceform"> 
+
 
         <div id="servicesettings"></div>
 
@@ -125,32 +121,7 @@
                         "schemaSource": "../config/services-schema.json?a=1",
                         "options": {
                             "toolbarSticky": true,
-/*                             "toolbar": {
-                                "showLabels": true,
-                                "actions": [{
-                                    "label": "I addeth thee",
-                                    "action": "add"
-                                }]
-                            }, */
-                            "actionbar": {
-                                "showLabels": true,
-                                "actions": [{
-                                    "label": "Add Service",
-                                    "action": "add"
-                                }, {
-                                    "label": "Remove Service",
-                                    "action": "remove"
-                                }, {
-                                    "label": "Move UP",
-                                    "action": "up",
-                                    "enabled": true
-                                }, {
-                                    "label": "Move Down",
-                                    "action": "down",
-                                }
-                                ]
-                            },
-                           "items": {
+                           // "items": {
                                 "fields": {
                                     "serviceTitle": {
                                         "type": "text",
@@ -212,8 +183,6 @@
                                          "placeholder": "both",
                                          "typeahead": {},
                                          "allowOptionalEmpty": false,
-                                         "removeDefaultNone": true,
-                                         "hideNone": true,
                                         "data": {},
                                          "autocomplete": false,
                                          "disallowEmptySpaces": false,
@@ -271,36 +240,17 @@
                                          "attributes": {}
                                     }
                                 },
-                           },
+                           // },
                            "form": {
                                 "attributes": {
                                     "action": "post_receiver-services.php",
+                                    //"action": "fruits.php",
                                     "method": "post",
                                     "contentType": "application/json"
                                     //"enctype": "json"
                                 },
                                 "buttons": {
-                                    "submit": {
-                                       // "type": 'button',
-                                       // "label": "submit",
-                                        click: function(){
-
-                                            var data = $('#servicesettings').alpaca().getValue();
-
-                                            $.post('post_receiver-services.php', {
-
-                                                 //JSON.stringify(data, null, "  "),
-                                                data
-                                                },
-                                                                                              
-                                                alert(JSON.stringify(data, null, "  ")),
-                                                alert("settings saved"),
-                                                //console.log(data),
-                                                setTimeout(location.reload.bind(location), 100)
-                                            )
-                                        
-                                        }
-                                    },
+                                    "submit": {},
                                         /*   
                                             "submit": {
                                             "click": function() {
@@ -351,7 +301,7 @@
                 });
             </script>
 
-    </div>
+
 
         <div id="footer">
 

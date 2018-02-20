@@ -5,33 +5,66 @@
 
 <?php 
 
-    //$servicesJSON =  '[{"serviceTitle":"afaaf","image":"..\/img\/monitorr.png","type":"Both","checkurl":"http:\/\/localhost:80","linkurl":"http:\/\/localhost:80"}]';
-    //$servicesJSON =  '{"data":[{"serviceTitle":"monitorr","image":"..\/img\/monitorr.png","type":"Both","checkurl":"http:\/\/localhost:80","linkurl":"http:\/\/localhost:80"}]}';
-    
     $str = file_get_contents('../data/services_settings-data.json');
 
     $myServices = json_decode( $str, true);
 
-    print_r($myServices); 
+    //print_r($myServices); 
 
     ?>
 
 
-    <?php foreach ( $myServices as $v1 ) { ?>
-    
-        <?php foreach ($v1 as $v2) {?>
+
+<?php foreach ( $myServices as $v1 => $v2 ) { ?>
+
+    <div>
+        <?php urlExists($v2['checkurl']); ?> 
+    </div>
+
+<?php } ?> 
+ 
+
+
+
+    <!--    
+        <?php foreach ( $myServices as $v1 ) { ?>
+        
+            <?php foreach ($v1 as $v2) {?>
+            
+                <div> 
+
+                    <?php  urlExists($v2['checkurl']); ?>
+
+                </div>
                     
-             <div> 
+            <?php } ?>
+            
+        <?php } ?> 
+    
+    -->
 
-                <?php  urlExists($v2['checkurl']); ?>
 
-            </div>
-                 
-        <?php } ?>
-           
-    <?php } ?>
+
 
    <!-- below this line is old stuff -->
+
+
+       <!--    
+        <?php foreach ( $myServices as $v1 ) { ?>
+        
+            <?php foreach ($v1 as $v2) {?>
+            
+                <div> 
+
+                    <?php  urlExists($v2['checkurl']); ?>
+
+                </div>
+                    
+            <?php } ?>
+            
+        <?php } ?> 
+    
+    -->
 
 
 <!-- <?php 

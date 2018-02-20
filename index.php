@@ -96,11 +96,12 @@
 
         <title>
             <?php 
-                $str = file_get_contents('assets/data/site_settings-data.json');
+                $str = file_get_contents('assets/data/user_preferences-data.json');
                 $json = json_decode($str, true);
                 $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
             ?>
+            | Monitorr
         </title>
         
         <script src="assets/js/jquery.min.js"></script>
@@ -191,13 +192,13 @@
                     <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
                     <a class="navbar-brand" href="
                         <?php 
-                            $str = file_get_contents('assets/data/site_settings-data.json');
+                            $str = file_get_contents('assets/data/user_preferences-data.json');
                             $json = json_decode($str, true);
                             $siteurl = $json['siteurl'];
                             echo $siteurl . PHP_EOL;
                         ?>"> 
                         <?php
-                            $str = file_get_contents('assets/data/site_settings-data.json');
+                            $str = file_get_contents('assets/data/user_preferences-data.json');
                             $json = json_decode($str, true);
                             $title = $json['sitetitle'];
                             echo $title . PHP_EOL;
@@ -242,6 +243,11 @@
             </div>
 
         </div>
+
+
+<iframe height="500px" width="100%" src="assets/php/monitorr-services_settings.php" name="site_settings" style="border:none;"></iframe>
+
+
 
         <div id="footer">
 
