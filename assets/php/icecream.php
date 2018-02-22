@@ -91,17 +91,18 @@
         <div id="centertext">
             <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
             <div class="navbar-brand">
-                User Preferences
+                Site Settings
             </div>
         </div>
 
-    <div id="preferenceform"> 
+    <div id="timezoneform"> 
 
-        <div id="preferencesettings"></div>
+        <div id="icecream"></div>
 
             <script type="text/javascript">
+
                 $(document).ready(function() {
-                    var CustomConnector = Alpaca.Connector.extend({
+                var CustomConnector = Alpaca.Connector.extend({
                         buildAjaxConfig: function(uri, isJson) {
                             var ajaxConfig = this.base(uri, isJson);
                             ajaxConfig.headers = {
@@ -110,96 +111,48 @@
                             return ajaxConfig;
                         }
                     });
-                    Alpaca.registerConnectorClass("custom", CustomConnector);
-                    $("#preferencesettings").alpaca({
+                   Alpaca.registerConnectorClass("custom", CustomConnector);
+                    $("#icecream").alpaca({
                         "connector": "custom",
-                        "dataSource": "../data/user_preferences-data.json?a=1",
-                        "schemaSource": "../config/user_preferences-schema.json?a=1",
-                        // "optionsSource": "./data/connector-custom-options.json?a=1",
-                        // "viewSource": "../data/connector-custom-view.json?a=1",
+                        //"data": ["Mint"],
+                        "dataSource": "../data/icecream-data.json",
+                        "schema": {
+                            "type": "string",
+                            "name": "icecream",
+                            "format": "string",
+                            "required": true,
+                            "default": ["Vanilla"]
+                        //    "properties": {
+                        //        "icecream": {
+                        //             "type": "string",
+                        //             "format": "string",
+                        //              "name": "icecream",
+                        //             "required": false,
+                        //             "default": "Mint",
+                        //             "properties": {}
+                        //       }
+                        //    }
+                        },
                         "options": {
-                            "focus": false,
-                            "type": "object",
-                            "helpers": [],
-                            "validate": true,
-                            "disabled": false,
-                            "showMessages": true,
-                            "collapsible": false,
-                            "legendStyle": "button",
-                            "fields": {
-                                "sitetitle": {
-                                    "type": "text",
-                                    "validate": false,
-                                    "showMessages": false,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "Site Title:",
-                                    "helpers": [],
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "sitetitle",
-                                    "placeholder": "Monitorr",
-                                    "typeahead": {},
-                                    "allowOptionalEmpty": true,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "siteurl": {
-                                    "type": "url",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "Site URL",
-                                    "helpers": [],
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "siteurl",
-                                    "placeholder": "http://localhost/monitorr",
-                                    "typeahead": {},
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": "false",
-                                    "disallowEmptySpaces": true,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "allowIntranet": true,
-                                    "fields": {}
-                                },
-                                "language": {
-                                    "type": "text",
-                                    "validate": false,
-                                    "showMessages": false,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "Language",
-                                    "helpers": [],
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "language",
-                                    "placeholder": "EN",
-                                    "typeahead": {},
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                }
-                            },
+                            "type": "select",
+                            "dataSource": "../config/icecream-list.json",
+                            "name": "icecream",
+                            "label": "Ice Cream",
+                            "removeDefaultNone": true,
+                            //"helper": "Guess my favorite ice cream?", 
+                            "icecream": {
+                                "type": "select",
+                                "name": "icecream",
+                                "label": "Ice Cream"
+                                //"format": "string",
+                                //"required": true,
+                                //"default": "Mint",
+                                //"properties": {}
+                            },                           
                             "form": {
                                 "attributes": {
-                                    "action": "post_receiver-user_preferences.php",
-                                    "method": "post",
+                                    "action": "post_receiver.php",
+                                    "method": "post"
                                 },
                                 "buttons": {
                                     "submit": {
@@ -208,10 +161,10 @@
                                         "name": "submit",
                                         "value": "submit",
                                         click: function(){
-                                            var data = $('#preferencesettings').alpaca().getValue();
+                                            var data = $('#icecream').alpaca().getValue();
                                             $.post({
-                                                url: 'post_receiver-user_preferences.php', 
-                                                data: $('#preferencesettings').alpaca().getValue(),
+                                                url: 'post_receiver.php', 
+                                                data: $('#icecream').alpaca().getValue(),
                                                 success: function(data) {
                                                     alert(JSON.stringify(data));
                                                     alert("settings saved!");
@@ -231,14 +184,13 @@
                                             alert(JSON.stringify(this.getValue(), null, "  "));
                                         }
                                     }
-                                },
+                                }
                             }
-                        },
+                        }
                     });
-
                 });
             </script>
-
+  
     </div>
 
 

@@ -245,11 +245,14 @@
         </div>
 
 
-<iframe height="500px" width="100%" src="assets/php/monitorr-services_settings.php" name="site_settings" style="border:none;"></iframe>
+<!-- <iframe height="500px" width="100%" src="assets/php/monitorr-services_settings.php" name="site_settings" style="border:none;"></iframe> -->
 
 
 
         <div id="footer">
+
+            <a href="settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a>
+            <br><br>
 
             <script src="assets/js/update.js" async></script>
             <script src="assets/js/update_auto.js" async></script>

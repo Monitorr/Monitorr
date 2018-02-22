@@ -1,7 +1,6 @@
 <?php
-    $fp = fopen('../data/ajax.json', 'w');
+    $fp = fopen('../data/icecream-data.json', 'w');
         fwrite($fp, json_encode($_POST));
     fclose($fp);
 
-    echo '<pre>'; var_dump($_POST); echo '</pre>'
 ?>

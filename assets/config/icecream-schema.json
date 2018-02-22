@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "required": false,
+    "properties": {
+        "icecream": {
+            "type": "string",
+            "required": false,
+			"default": "Monitorr",
+            "properties": {}
+        }
+    }
+}

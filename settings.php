@@ -11,17 +11,19 @@
         
         <script type="text/javascript" src="assets/js/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/pace.js" async></script>
-        <!-- <script type="text/javascript" src="../js/handlebars.js"></script> -->
-        <!-- <script type="text/javascript" src="../js/alpaca.min.js"></script> -->
+        <script type="text/javascript" src="assets/js/handlebars.js"></script>
+        <script type="text/javascript" src="assets/js/alpaca.min.js"></script>
         <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
 
             <style>
 
                 body {
                     margin: 2vw !important;
+                    margin-top: 1vw !important;
                     overflow-y: auto; 
                     overflow-x: hidden;
-                    color: white !important;
+                    /* color: white !important; */
+                    background-color: #1F1F1F !important;
                 }
 
                 legend { 
@@ -91,6 +93,9 @@
                 -webkit-transition: all 0.5s ease;
                 padding-left: 0;
                 transition: all 0.5s ease;
+                float: left;
+                width: 8rem;
+                margin: 0;
                 }
                 #wrapper.toggled {
                 /* padding-left: 220px; */
@@ -103,18 +108,24 @@
                 position: absolute;
                 }
                 #sidebar-wrapper {
-                -moz-transition: all 0.5s ease;
-                -o-transition: all 0.5s ease;
-                -webkit-transition: all 0.5s ease;
-                background: #1a1a1a;
-                height: 100%;
-                left: 220px;
-                margin-left: -220px;
-                overflow-x: hidden;
-                overflow-y: auto;
-                transition: all 0.5s ease;
-                width: 0;
-                z-index: 1000;
+                    height: auto;
+                    padding-top: 0;
+                    background-color: #3d3d3d;
+                    border-radius: 1rem;
+                    box-shadow: 5px 5px 5px black;
+                    -moz-transition: all 0.5s ease;
+                    -o-transition: all 0.5s ease;
+                    -webkit-transition: all 0.5s ease;
+                    /* background: #1a1a1a; */
+
+                    /* left: 220px; */
+                    /* margin-top: 3rem; */
+                    /* margin-left: -220px; */
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    transition: all 0.5s ease;
+                    width: 17rem;
+                    z-index: 1000;
                 }
                 #sidebar-wrapper::-webkit-scrollbar {
                 display: none;
@@ -127,12 +138,12 @@
                 /*     Sidebar nav styles        */
                 /*-------------------------------*/
                 .sidebar-nav {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                position: absolute;
-                top: 0;
-                width: 220px;
+                /* list-style: none; */
+                /* margin: 0; */
+                /* padding: 0; */
+                /* position: absolute; */
+                /* top: 0; */
+                /* width: 220px; */
                 }
                 .sidebar-nav li {
                 display: inline-block;
@@ -188,8 +199,9 @@
                 .sidebar-nav li a {
                 color: #dddddd;
                 display: block;
-                padding: 10px 15px 10px 30px;
+                /* padding: 10px 15px 10px 30px; */
                 text-decoration: none;
+                padding: 1rem;
                 }
                 .sidebar-nav li.open:hover before {
                 -webkit-transition: width 0.2s ease-in;
@@ -218,9 +230,9 @@
                 text-decoration: none;
                 }
                 .sidebar-nav > .sidebar-brand {
-                font-size: 20px;
-                height: 65px;
-                line-height: 44px;
+                /* font-size: 20px; */
+                /* height: 65px; */
+                /* line-height: 44px; */
                 }
                 /*-------------------------------*/
                 /*       Hamburger-Cross         */
@@ -333,60 +345,103 @@
                 display: block;
                 opacity: 1;
                 }
-                /*-------------------------------*/
-                /*          Dark Overlay         */
-                /*-------------------------------*/
-                .overlay {
-                position: fixed;
-                display: none;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(0, 0, 0, 0.4);
-                z-index: 1;
+
+                #left {
+                    padding-top: 5rem;
+                    padding-bottom: 1.5rem !important;
                 }
-                /* SOME DEMO STYLES - NOT REQUIRED */
-/*                 body,
-                html {
-                background-color: #583e7e;
+
+                #footer {
+                    position: fixed !important;
+                    bottom: 0 !important;
                 }
-                body h1,
-                body h2,
-                body h3,
-                body h4 {
-                color: rgba(255, 255, 255, 0.9);
+
+                a:link{
+
+                    background-color: transparent !important;
                 }
-                body p,
-                body blockquote {
-                color: rgba(255, 255, 255, 0.7);
-                }
-                body a {
-                color: rgba(255, 255, 255, 0.8);
-                text-decoration: underline;
-                }
-                body a:hover {
-                color: #fff;
-                } */
+
 
 
             </style>
 
         <title>
             <?php 
-                $str = file_get_contents('assets/data/site_settings-data.json');
+                $str = file_get_contents('assets/data/user_preferences-data.json');
                 $json = json_decode($str, true);
                 $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
             ?>
-            | Site Settings
+            | Settings
         </title>
 
         <?php include ('assets/config.php'); ?>
         <!-- <?php include ('assets/php/check.php') ;?> -->
         <?php include ('assets/php/gitinfo.php'); ?>
+
+
+
+        <script>
+
+            $(document).ready(function() {
+                function update() {
+                $.ajax({
+                type: 'POST',
+                url: 'assets/php/timestamp.php',
+                timeout: 5000,
+                success: function(data) {
+                    $("#timer").html(data); 
+                    window.setTimeout(update, 5000);
+                    }
+                });
+                }
+                update();
+            });
+            
+        </script>
+        
+        <script>
+        
+            <?php $dt = new DateTime("now", new DateTimeZone($config['timezone'])); ?>   
+    
+            $servertimezone = "<?php echo $config['timezone']; ?>";
+            
+            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
+
+            var servertimezone = $servertimezone;
+
+            var servertime = $dt;
+                    
+        </script>
+
+        <script src="assets/js/clock.js" async></script>
+
+
+<!--         <script type="text/javascript">
+
+            var nIntervId;
+            var onload;
+
+            function statusCheck() {
+                $("#statusloop").load('assets/php/loop.php');
+                $("#stats").load('assets/php/systembadges.php');
+            };
+
+            $(document).ready(function () {
+                $(":checkbox").change(function () {
+                    if ($(this).is(':checked')) {
+                        nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
+                    } else {
+                        clearInterval(nIntervId);
+                    }
+                });
+                $('#buttonStart :checkbox').attr('checked', 'checked').change();
+            });
+
+        </script>  -->
+
+
+
 
     <script>
         $(document).ready(function () {
@@ -419,6 +474,13 @@
         });
     </script>
 
+
+        <script>
+            $(function() {
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/phpinfo.php" ></object>';
+            });
+        </script>
+
     </head>
 
 <body>
@@ -430,28 +492,73 @@
             });
         </script>
 
-
-        <div id="centertext">
-            <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
-            <a class="navbar-brand" href="
-                <?php 
-                    $str = file_get_contents('assets/data/site_settings-data.json');
-                    $json = json_decode($str, true);
-                    $siteurl = $json['siteurl'];
-                    echo $siteurl . PHP_EOL;
-                ?>"> 
-                <?php
-                    $str = file_get_contents('assets/data/site_settings-data.json');
-                    $json = json_decode($str, true);
-                    $title = $json['sitetitle'];
-                    echo $title . PHP_EOL;
-                ?>
-            </a>
-        </div>
+            <div id="left" class="Column">
+                <div id="clock">
+                    <canvas id="canvas" width="120" height="120"></canvas>
+                    <div class="dtg" id="timer"></div>
+                </div>
+            </div>
 
 
-<!-- <iframe height="100%" width="75%" src="" name="info" style="border:none; float:right;"></iframe> -->
-<iframe height="100%" width="75%" src="" name="site_settings" style="border:none; float:right;"></iframe>
+
+<div id ="includedContent"> </div>
+
+
+        <!-- <div id="header">
+            
+            <div id="left" class="Column">
+                <div id="clock">
+                    <canvas id="canvas" width="120" height="120"></canvas>
+                    <div class="dtg" id="timer"></div>
+                </div>
+            </div> 
+
+            <div id="center">
+
+                <div id="centertext">
+                    <a class="navbar-brand" href="
+                        <?php 
+                            $str = file_get_contents('assets/data/user_preferences-data.json');
+                            $json = json_decode($str, true);
+                            $siteurl = $json['siteurl'];
+                            echo $siteurl . PHP_EOL;
+                        ?>"> 
+                        <?php
+                            $str = file_get_contents('assets/data/user_preferences-data.json');
+                            $json = json_decode($str, true);
+                            $title = $json['sitetitle'];
+                            echo $title . PHP_EOL;
+                        ?>
+                    </a>
+                </div>
+
+                <div id="toggle">
+                    <table id="slidertable">
+                        <tr>
+                            <th id="textslider">
+                            Auto Refresh:
+                            </th>
+                            <th id="slider">
+                                <label class="switch" id="buttonStart">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </th>
+                        </tr>
+                    </table>
+                </div> 
+
+            </div>
+
+            <div id="right" class="Column">
+
+                <div id="stats" class="container centered">
+
+                </div>
+
+            </div> 
+
+        </div> -->
 
 
     <div id="wrapper">
@@ -459,36 +566,40 @@
     
         <!-- Sidebar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+                   
+                <div class="navbar-brand settingstitle">
+                    Settings
+                </div>   
+        
             <ul class="nav sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        <div class="navbar-brand">
-                            Settings
-                        </div>
-                    </a>
+
+                <li>
+                    <!-- <a href="assets/php/phpinfo.php" target="s"><i class="fa fa-fw fa-file-o"></i> Info </a> -->
+                    <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-file-o"></i> Info </a> 
                 </li>
                 <li>
-                    <a href="assets/php/phpinfo.php" target="info"><i class="fa fa-fw fa-file-o"></i> Info </a>
+                    <!-- <a href="assets/php/monitorr-user_preferences.php" target="s"><i class="fa fa-fw fa-cog"></i> User Preferences </a> -->
+                      <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a> 
                 </li>
                 <li>
-                    <a href="assets/php/monitorr-site_settings.php" target="site_settings"><i class="fa fa-fw fa-cog"></i> site settings</a>
+                    <!-- <a href="assets/php/monitorr-site_settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a> -->
+                    <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a> 
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-cog"></i> GUI </a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-cog"></i> services</a>
+                    <!-- <a href="assets/php/monitorr-services_settings.php" target="#includedContent"><i class="fa fa-fw fa-cog"></i> Services Configuration </a> -->
+                    <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
                 </li>
                 <li>
                     <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
                 </li>
-                <li class="dropdown">
+
+                <!-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Dropdown <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Dropdown heading</li>
                     <li><a href="#">Action</a></li>
                   </ul>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- /#sidebar-wrapper -->
@@ -496,23 +607,57 @@
 
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+        <!-- <div id="page-content-wrapper"> -->
+          <!-- <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
             <span class="hamb-top"></span>
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
-          </button>
-            <div class="container">
-                <div class="row">
-
-                </div>
-            </div>
-        </div>
+          </button> -->
+            <!-- <div class="container"> -->
+                <!-- <div class="row"> -->
+                <!-- <div id="includedContent"></div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+        <!-- </div> -->
         <!-- /#page-content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
+
+
+        <!-- <div id ="includedContent"> </div> -->
+
+        <script>
+            function load_info() {
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/phpinfo.php" ></object>';
+            }
+        </script>
+
+
+        <script>
+            function load_preferences() {
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
+            }
+        </script>
+
+
+        <script>
+            function load_settings() {
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings.php" ></object>';
+            }
+        </script>
+
+        <script>
+            function load_services() {
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
+            }
+        </script>
+
+
+
+
+  <!-- <div id="includedContent"></div> -->
 
 
         <div id="footer">

@@ -115,11 +115,11 @@
                     $("#timezone").alpaca({
                         "connector": "custom",
                         "dataSource": "../data/timezone-data.json?a=1",
-                        //"data": "Europe/London",
+                        //"data": "(GMT) London",
                         "schema": {
-                            //"required": true,
-                            "defaut": "Europe/London",
-                            "enum": ["Europe/London"]
+                            "required": true,
+                            //"defaut": "Europe/London"
+                            // "enum": ["Europe/London"]
                         },
                         "options": {
                             "label": "Timezone",
@@ -127,7 +127,7 @@
                             "type": "select",
                             "helper": "Choose the timezone that Monitorr will use for the UI",
                             "dataSource": "../config/timezone-list.json",
-                             "removeDefaultNone": true,
+                             "removeDefaultNone": false,
                              "noneLabel": "-- Select --",
                            // "optionLabels": ["Vanilla Flavor", "Chocolate Flavor", "Coffee Flavor"]
                             "form": {
@@ -171,7 +171,7 @@
                     });
                 });
             </script>
-
+  
     </div>
 
 
