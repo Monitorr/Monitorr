@@ -69,7 +69,7 @@
                 $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
             ?>
-            | User Preferences
+            | Monitorr Settings
         </title>
 
         <?php include ('../config.php'); ?>
@@ -91,13 +91,13 @@
         <div id="centertext">
             <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
             <div class="navbar-brand">
-                User Preferences
+                Monitorr Settings
             </div>
         </div>
 
-    <div id="preferenceform"> 
+    <div id="siteform"> 
 
-        <div id="preferencesettings"></div>
+        <div id="sitesettings"></div>
 
             <script type="text/javascript">
                 $(document).ready(function() {
@@ -111,10 +111,10 @@
                         }
                     });
                     Alpaca.registerConnectorClass("custom", CustomConnector);
-                    $("#preferencesettings").alpaca({
+                    $("#sitesettings").alpaca({
                         "connector": "custom",
-                        "dataSource": "../data/user_preferences-data.json?a=1",
-                        "schemaSource": "../config/user_preferences-schema.json?a=1",
+                        "dataSource": "../data/site_settings-data.json?a=1",
+                        "schemaSource": "../config/site_settings-schema.json?a=1",
                         // "optionsSource": "./data/connector-custom-options.json?a=1",
                         // "viewSource": "../data/connector-custom-view.json?a=1",
                         "options": {
@@ -198,7 +198,7 @@
                             },
                             "form": {
                                 "attributes": {
-                                    "action": "post_receiver-user_preferences.php",
+                                    "action": "post_receiver-site_settings.php",
                                     "method": "post",
                                 },
                                 "buttons": {
@@ -208,10 +208,10 @@
                                         "name": "submit",
                                         "value": "submit",
                                         click: function(){
-                                            var data = $('#preferencesettings').alpaca().getValue();
+                                            var data = $('#sitesettings').alpaca().getValue();
                                             $.post({
-                                                url: 'post_receiver-user_preferences.php', 
-                                                data: $('#preferencesettings').alpaca().getValue(),
+                                                url: 'post_receiver-site_settings.php', 
+                                                data: $('#sitesettings').alpaca().getValue(),
                                                 success: function(data) {
                                                     alert(JSON.stringify(data));
                                                     alert("settings saved!");

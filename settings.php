@@ -18,10 +18,14 @@
             <style>
 
                 body {
-                    margin: 2vw !important;
-                    margin-top: 1vw !important;
-                    overflow-y: auto; 
-                    overflow-x: hidden;
+                    height: 95%;
+                    /* margin: 2vw !important; */
+                    /* margin-top: 1vw !important; */
+                    padding-left: 2rem;
+                    padding-right: 1rem;
+                    padding-bottom: 1rem;
+                    /* overflow-y: scroll !important;  */
+                    overflow-x: hidden !important;
                     /* color: white !important; */
                     background-color: #1F1F1F !important;
                 }
@@ -67,14 +71,7 @@
                 /*-------------------------------*/
                 /*           VARIABLES           */
                 /*-------------------------------*/
-                body {
-                position: relative;
-                overflow-x: hidden;
-                }
-                body,
-                html {
-                height: 100%;
-                }
+
                 .nav .open > a {
                 background-color: transparent;
                 }
@@ -94,7 +91,7 @@
                 padding-left: 0;
                 transition: all 0.5s ease;
                 float: left;
-                width: 8rem;
+                /* width: 8rem; */
                 margin: 0;
                 }
                 #wrapper.toggled {
@@ -347,7 +344,7 @@
                 }
 
                 #left {
-                    padding-top: 5rem;
+                    /* padding-top: 5rem; */
                     padding-bottom: 1.5rem !important;
                 }
 
@@ -360,8 +357,6 @@
 
                     background-color: transparent !important;
                 }
-
-
 
             </style>
 
@@ -443,7 +438,7 @@
 
 
 
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             var trigger = $('.hamburger'),
                 overlay = $('.overlay'),
@@ -472,12 +467,12 @@
                     $('#wrapper').toggleClass('toggled');
             });  
         });
-    </script>
+    </script> -->
 
 
         <script>
             $(function() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/phpinfo.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="login.php" ></object>';
             });
         </script>
 
@@ -492,145 +487,89 @@
             });
         </script>
 
-            <div id="left" class="Column">
-                <div id="clock">
-                    <canvas id="canvas" width="120" height="120"></canvas>
-                    <div class="dtg" id="timer"></div>
-                </div>
+
+    <div id ="includedContent"> </div>
+
+    <div id ="settingscolumn">
+
+        <div id="left" class="Column">
+            <div id="clock">
+                <canvas id="canvas" width="120" height="120"></canvas>
+                <div class="dtg" id="timer"></div>
             </div>
+        </div>
+
+        <div id="wrapper">
+            <!-- <div class="overlay"></div> -->
 
 
-
-<div id ="includedContent"> </div>
-
-
-        <!-- <div id="header">
-            
-            <div id="left" class="Column">
-                <div id="clock">
-                    <canvas id="canvas" width="120" height="120"></canvas>
-                    <div class="dtg" id="timer"></div>
-                </div>
-            </div> 
-
-            <div id="center">
-
-                <div id="centertext">
-                    <a class="navbar-brand" href="
-                        <?php 
-                            $str = file_get_contents('assets/data/user_preferences-data.json');
-                            $json = json_decode($str, true);
-                            $siteurl = $json['siteurl'];
-                            echo $siteurl . PHP_EOL;
-                        ?>"> 
-                        <?php
-                            $str = file_get_contents('assets/data/user_preferences-data.json');
-                            $json = json_decode($str, true);
-                            $title = $json['sitetitle'];
-                            echo $title . PHP_EOL;
-                        ?>
-                    </a>
-                </div>
-
-                <div id="toggle">
-                    <table id="slidertable">
-                        <tr>
-                            <th id="textslider">
-                            Auto Refresh:
-                            </th>
-                            <th id="slider">
-                                <label class="switch" id="buttonStart">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </th>
-                        </tr>
-                    </table>
-                </div> 
-
-            </div>
-
-            <div id="right" class="Column">
-
-                <div id="stats" class="container centered">
-
-                </div>
-
-            </div> 
-
-        </div> -->
-
-
-    <div id="wrapper">
-        <div class="overlay"></div>
-    
-        <!-- Sidebar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-                   
-                <div class="navbar-brand settingstitle">
-                    Settings
-                </div>   
         
-            <ul class="nav sidebar-nav">
+            <!-- Sidebar -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+                    
+                    <div class="navbar-brand settingstitle">
+                        Settings
+                    </div>   
+            
+                <ul class="nav sidebar-nav">
 
-                <li>
-                    <!-- <a href="assets/php/phpinfo.php" target="s"><i class="fa fa-fw fa-file-o"></i> Info </a> -->
-                    <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-file-o"></i> Info </a> 
-                </li>
-                <li>
-                    <!-- <a href="assets/php/monitorr-user_preferences.php" target="s"><i class="fa fa-fw fa-cog"></i> User Preferences </a> -->
-                      <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a> 
-                </li>
-                <li>
-                    <!-- <a href="assets/php/monitorr-site_settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a> -->
-                    <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a> 
-                </li>
-                <li>
-                    <!-- <a href="assets/php/monitorr-services_settings.php" target="#includedContent"><i class="fa fa-fw fa-cog"></i> Services Configuration </a> -->
-                    <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
-                </li>
-                <li>
-                    <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
-                </li>
+                    <li>
+                        <!-- <a href="assets/php/phpinfo.php" target="s"><i class="fa fa-fw fa-file-o"></i> Info </a> -->
+                        <a href ="#" onclick="load_auth()"><i class="fa fa-fw fa-file-o"></i> Login </a> 
+                    </li>
 
-                <!-- <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Dropdown heading</li>
-                    <li><a href="#">Action</a></li>
-                  </ul>
-                </li> -->
-            </ul>
-        </nav>
-        <!-- /#sidebar-wrapper -->
+                    <li>
+                        <!-- <a href="assets/php/phpinfo.php" target="s"><i class="fa fa-fw fa-file-o"></i> Info </a> -->
+                        <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-file-o"></i> Info </a> 
+                    </li>
+                    <li>
+                        <!-- <a href="assets/php/monitorr-user_preferences.php" target="s"><i class="fa fa-fw fa-cog"></i> User Preferences </a> -->
+                        <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a> 
+                    </li>
+                    <li>
+                        <!-- <a href="assets/php/monitorr-site_settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a> -->
+                        <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a> 
+                    </li>
+                    <li>
+                        <!-- <a href="assets/php/monitorr-services_settings.php" target="#includedContent"><i class="fa fa-fw fa-cog"></i> Services Configuration </a> -->
+                        <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
+                    </li>
+                    <li>
+                        <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- /#sidebar-wrapper -->
 
 
+        </div>
+        <!-- /#wrapper -->
 
-        <!-- Page Content -->
-        <!-- <div id="page-content-wrapper"> -->
-          <!-- <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-          </button> -->
-            <!-- <div class="container"> -->
-                <!-- <div class="row"> -->
-                <!-- <div id="includedContent"></div> -->
-                <!-- </div> -->
-            <!-- </div> -->
-        <!-- </div> -->
-        <!-- /#page-content-wrapper -->
+
+        <div id="version" class="Column">
+
+            <!-- <script src="assets/js/update.js" async></script> -->
+            <script src="assets/js/update_auto.js" async></script>
+        
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+                        
+            <div id="version_check_auto"></div>
+            
+        </div>
 
     </div>
-    <!-- /#wrapper -->
 
 
-
-        <!-- <div id ="includedContent"> </div> -->
+        <script>
+            function load_auth() {
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="login.php" ></object>';
+            }
+        </script>
 
         <script>
             function load_info() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/phpinfo.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/info.php" ></object>';
             }
         </script>
 
@@ -660,20 +599,16 @@
   <!-- <div id="includedContent"></div> -->
 
 
-        <div id="footer">
+        <!-- <div id="footer">
 
-            <script src="assets/js/update.js" async></script>
+
             <script src="assets/js/update_auto.js" async></script>
         
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
-
-            <!-- <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a> -->
-            
-                <br>
-            
+                        
             <div id="version_check_auto"></div>
             
-        </div>
+        </div> -->
 
 </body>
 
