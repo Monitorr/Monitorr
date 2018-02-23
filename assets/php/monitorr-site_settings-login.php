@@ -27,7 +27,7 @@ class OneFileLoginApplication
     /**
      * @var string Path of the database file (create this with _install.php)
      */
-    private $db_sqlite_path = "./assets/data/users.db";
+    private $db_sqlite_path = "../data/users.db";
 
     /**
      * @var object Database connection
@@ -364,7 +364,7 @@ class OneFileLoginApplication
             echo $this->feedback . "<br/><br/>";
         }
 
-         header("location: assets/php/info.php");
+         header("location: monitorr-site_settings.php");
         //echo 'Hello ' . $_SESSION['user_name'] . ', you are logged in.<br/><br/>';
        // echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=logout">Log out</a>';
     }
@@ -393,15 +393,14 @@ class OneFileLoginApplication
 
             echo '<br><br>';
 
-        echo '<label for="login_input_password">Password:</label> ';
+        echo '<label for="login_input_password"> Password: </label> ';
          echo '<br>';
         echo '<input id="login_input_password" type="password" name="user_password" required /> ';
             echo '<br><br>';
         echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
         echo '</form>';
-        echo ' un: username / pw: password';
-         echo '<br><br>';
-       // echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=register">Register new account</a>';
+
+        //echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=register">Register new account</a>';
 
         echo '</div>';
     }
@@ -449,8 +448,8 @@ $application = new OneFileLoginApplication();
     <meta charset="UTF-8">
     <title>Monitorr | Login</title>
     <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
-    <link type="text/css" href="assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link type="text/css" href="assets/css/main.css" rel="stylesheet">
+    <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="../css/main.css" rel="stylesheet">
 
     <style type="text/css">
 
@@ -460,7 +459,7 @@ $application = new OneFileLoginApplication();
         }
 
         :root {
-            font-size: 18px !important;
+            font-size: 16px !important;
         }
 
         .wrapper { 
@@ -473,7 +472,7 @@ $application = new OneFileLoginApplication();
 
     </style>
 
-    <!-- <script src="assets/js/jquery.min.js"></script> -->
+    <script src="assets/js/jquery.min.js"></script>
     
 </head>
 

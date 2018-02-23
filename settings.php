@@ -380,15 +380,24 @@
 
             $(document).ready(function() {
                 function update() {
-                $.ajax({
-                type: 'POST',
-                url: 'assets/php/timestamp.php',
-                timeout: 5000,
-                success: function(data) {
-                    $("#timer").html(data); 
-                    window.setTimeout(update, 5000);
-                    }
-                });
+
+                    rftime =
+                        <?php 
+                            $str = file_get_contents('assets/data/site_settings-data.json');
+                            $json = json_decode($str, true);
+                            $rftime = $json['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/timestamp.php',
+                    timeout: 5000,
+                    success: function(data) {
+                        $("#timer").html(data); 
+                        window.setTimeout(update, rftime);
+                        }
+                    });
                 }
                 update();
             });
@@ -396,11 +405,19 @@
         </script>
         
         <script>
-        
-            <?php $dt = new DateTime("now", new DateTimeZone($config['timezone'])); ?>   
-    
-            $servertimezone = "<?php echo $config['timezone']; ?>";
+
+            $timezone = 
+                "<?php 
+                    $str = file_get_contents('assets/data/user_preferences-data.json');
+                    $json = json_decode($str, true);
+                    $timezone = $json['timezone'];
+                    //echo $timezone;
+                ?>";
+
+            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
             
+             $servertimezone = "<?php echo "$timezone"; ?>";
+
             $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
 
             var servertimezone = $servertimezone;
@@ -412,28 +429,6 @@
         <script src="assets/js/clock.js" async></script>
 
 
-<!--         <script type="text/javascript">
-
-            var nIntervId;
-            var onload;
-
-            function statusCheck() {
-                $("#statusloop").load('assets/php/loop.php');
-                $("#stats").load('assets/php/systembadges.php');
-            };
-
-            $(document).ready(function () {
-                $(":checkbox").change(function () {
-                    if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
-                    } else {
-                        clearInterval(nIntervId);
-                    }
-                });
-                $('#buttonStart :checkbox').attr('checked', 'checked').change();
-            });
-
-        </script>  -->
 
 
 
@@ -515,12 +510,12 @@
 
                     <li>
                         <!-- <a href="assets/php/phpinfo.php" target="s"><i class="fa fa-fw fa-file-o"></i> Info </a> -->
-                        <a href ="#" onclick="load_auth()"><i class="fa fa-fw fa-file-o"></i> Login </a> 
+                        <a href ="#" onclick="load_auth()"><i class="fa fa-fw fa-key"></i> Login </a> 
                     </li>
 
                     <li>
                         <!-- <a href="assets/php/phpinfo.php" target="s"><i class="fa fa-fw fa-file-o"></i> Info </a> -->
-                        <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-file-o"></i> Info </a> 
+                        <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-info"></i> Info </a> 
                     </li>
                     <li>
                         <!-- <a href="assets/php/monitorr-user_preferences.php" target="s"><i class="fa fa-fw fa-cog"></i> User Preferences </a> -->
@@ -533,6 +528,11 @@
                     <li>
                         <!-- <a href="assets/php/monitorr-services_settings.php" target="#includedContent"><i class="fa fa-fw fa-cog"></i> Services Configuration </a> -->
                         <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
+                    </li>
+
+                    <li>
+                        <!-- <a href="assets/php/monitorr-services_settings.php" target="#includedContent"><i class="fa fa-fw fa-cog"></i> Services Configuration </a> -->
+                        <a href="login.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
                     </li>
                     <li>
                         <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
@@ -552,7 +552,7 @@
             <!-- <script src="assets/js/update.js" async></script> -->
             <script src="assets/js/update_auto.js" async></script>
         
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
                         
             <div id="version_check_auto"></div>
             
@@ -569,27 +569,27 @@
 
         <script>
             function load_info() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/info.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/info-login.php" ></object>';
             }
         </script>
 
 
         <script>
             function load_preferences() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences-login.php" ></object>';
             }
         </script>
 
 
         <script>
             function load_settings() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings-login.php" ></object>';
             }
         </script>
 
         <script>
             function load_services() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings-login.php" ></object>';
             }
         </script>
 

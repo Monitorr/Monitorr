@@ -60,6 +60,19 @@
                     text-align: center;
                 }
 
+                #centertext {
+                    padding-bottom: 2rem !important;
+                }
+
+                label {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                }
+
+                /* .control-label {
+                    width: 100% !important;
+                } */
+
             </style>
 
         <title>
@@ -69,7 +82,7 @@
                 $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
             ?>
-            | Monitorr Settings
+            | Settings
         </title>
 
         <?php include ('../config.php'); ?>
@@ -117,6 +130,24 @@
                         "schemaSource": "../config/site_settings-schema.json?a=1",
                         // "optionsSource": "./data/connector-custom-options.json?a=1",
                         // "viewSource": "../data/connector-custom-view.json?a=1",
+                        "view": {
+                            "parent": "bootstrap-edit-horizontal",
+                            "layout": {
+                                "template": './two-column-layout-template.html',
+                                "bindings": {
+                                    "rfsysinfo": "leftcolumn",
+                                    "rftime": "leftcolumn",
+                                    "pinghost": "leftcolumn",
+                                    "pingport": "leftcolumn",
+                                    "cpuok": "rightcolumn",
+                                    "cpuwarn": "rightcolumn",
+                                    "ramok": "rightcolumn",
+                                    "ramwarn": "rightcolumn",
+                                    "hdok": "rightcolumn",
+                                    "hdwarn": "rightcolumn"
+                                }
+                            }
+                        },
                         "options": {
                             "focus": false,
                             "type": "object",
@@ -127,21 +158,21 @@
                             "collapsible": false,
                             "legendStyle": "button",
                             "fields": {
-                                "sitetitle": {
-                                    "type": "text",
-                                    "validate": false,
-                                    "showMessages": false,
+                                "rfsysinfo": {
+                                    "type": "number",
+                                    "validate": true,
+                                    "showMessages": true,
                                     "disabled": false,
                                     "hidden": false,
-                                    "label": "Site Title:",
-                                    "helpers": [],
+                                    "label": "Service & system refresh interval:",
+                                    "helper": "Service & system info refresh interval in milliseconds.",
                                     "hideInitValidationError": false,
                                     "focus": false,
                                     "optionLabels": [],
-                                    "name": "sitetitle",
-                                    "placeholder": "Monitorr",
+                                    "name": "rfsysinfo",
+                                    "placeholder": "5000",
                                     "typeahead": {},
-                                    "allowOptionalEmpty": true,
+                                    "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
                                     "disallowEmptySpaces": false,
@@ -150,41 +181,204 @@
                                     "renderButtons": true,
                                     "attributes": {}
                                 },
-                                "siteurl": {
-                                    "type": "url",
+                                "rftime": {
+                                    "type": "number",
                                     "validate": true,
                                     "showMessages": true,
                                     "disabled": false,
                                     "hidden": false,
-                                    "label": "Site URL",
-                                    "helpers": [],
+                                    "label": "Time refresh interval:",
+                                    "helper": "UI clock display refresh interval in milliseconds.",
                                     "hideInitValidationError": false,
                                     "focus": false,
                                     "optionLabels": [],
-                                    "name": "siteurl",
-                                    "placeholder": "http://localhost/monitorr",
+                                    "name": "rftime",
+                                    "placeholder": "5000",
                                     "typeahead": {},
                                     "allowOptionalEmpty": false,
                                     "data": {},
-                                    "autocomplete": "false",
-                                    "disallowEmptySpaces": true,
+                                    "autocomplete": false,
+                                    "disallowEmptySpaces": false,
                                     "disallowOnlyEmptySpaces": false,
-                                    "allowIntranet": true,
-                                    "fields": {}
+                                    "fields": {},
+                                    "renderButtons": true,
+                                    "attributes": {}
                                 },
-                                "language": {
+                                "pinghost": {
                                     "type": "text",
-                                    "validate": false,
-                                    "showMessages": false,
+                                    "validate": true,
+                                    "showMessages": true,
                                     "disabled": false,
                                     "hidden": false,
-                                    "label": "Language",
-                                    "helpers": [],
+                                    "label": "Ping host:",
+                                    "helper": "URL or IP to ping for latency check. (WAN DNS provider is suggested)",
                                     "hideInitValidationError": false,
                                     "focus": false,
                                     "optionLabels": [],
-                                    "name": "language",
-                                    "placeholder": "EN",
+                                    "name": "pinghost",
+                                    "placeholder": "8.8.8.8",
+                                    "typeahead": {},
+                                    "allowOptionalEmpty": false,
+                                    "data": {},
+                                    "autocomplete": false,
+                                    "disallowEmptySpaces": false,
+                                    "disallowOnlyEmptySpaces": false,
+                                    "fields": {},
+                                    "renderButtons": true,
+                                    "attributes": {}
+                                },
+
+                                "pingport": {
+                                    "type": "number",
+                                    "validate": true,
+                                    "showMessages": true,
+                                    "disabled": false,
+                                    "hidden": false,
+                                    "label": "Ping host port:",
+                                    "helper": "Ping host port to use for latency check. (If using 8.8.8.8, value should be '53')",
+                                    "hideInitValidationError": false,
+                                    "focus": false,
+                                    "optionLabels": [],
+                                    "name": "pingport",
+                                    "placeholder": "53",
+                                    "typeahead": {},
+                                    "allowOptionalEmpty": false,
+                                    "data": {},
+                                    "autocomplete": false,
+                                    "disallowEmptySpaces": false,
+                                    "disallowOnlyEmptySpaces": false,
+                                    "fields": {},
+                                    "renderButtons": true,
+                                    "attributes": {}
+                                },
+                                "cpuok": {
+                                    "type": "number",
+                                    "validate": true,
+                                    "showMessages": true,
+                                    "disabled": false,
+                                    "hidden": false,
+                                    "label": "CPU OK color value:",
+                                    "helper": "CPU% less than this will be green.",
+                                    "hideInitValidationError": false,
+                                    "focus": false,
+                                    "optionLabels": [],
+                                    "name": "cpuok",
+                                    "placeholder": "50",
+                                    "typeahead": {},
+                                    "allowOptionalEmpty": false,
+                                    "data": {},
+                                    "autocomplete": false,
+                                    "disallowEmptySpaces": false,
+                                    "disallowOnlyEmptySpaces": false,
+                                    "fields": {},
+                                    "renderButtons": true,
+                                    "attributes": {}
+                                },
+                                "cpuwarn": {
+                                    "type": "number",
+                                    "validate": true,
+                                    "showMessages": true,
+                                    "disabled": false,
+                                    "hidden": false,
+                                    "label": "CPU warning color value:",
+                                    "helper": "CPU% less than this will be yellow.",
+                                    "hideInitValidationError": false,
+                                    "focus": false,
+                                    "optionLabels": [],
+                                    "name": "cpuwarn",
+                                    "placeholder": "90",
+                                    "typeahead": {},
+                                    "allowOptionalEmpty": false,
+                                    "data": {},
+                                    "autocomplete": false,
+                                    "disallowEmptySpaces": false,
+                                    "disallowOnlyEmptySpaces": false,
+                                    "fields": {},
+                                    "renderButtons": true,
+                                    "attributes": {}
+                                },
+                                "ramok": {
+                                    "type": "number",
+                                    "validate": true,
+                                    "showMessages": true,
+                                    "disabled": false,
+                                    "hidden": false,
+                                    "label": "RAM OK color value:",
+                                    "helper": "RAM% less than this will be green.",
+                                    "hideInitValidationError": false,
+                                    "focus": false,
+                                    "optionLabels": [],
+                                    "name": "ramok",
+                                    "placeholder": "50",
+                                    "typeahead": {},
+                                    "allowOptionalEmpty": false,
+                                    "data": {},
+                                    "autocomplete": false,
+                                    "disallowEmptySpaces": false,
+                                    "disallowOnlyEmptySpaces": false,
+                                    "fields": {},
+                                    "renderButtons": true,
+                                    "attributes": {}
+                                },
+                                "ramwarn": {
+                                    "type": "number",
+                                    "validate": true,
+                                    "showMessages": true,
+                                    "disabled": false,
+                                    "hidden": false,
+                                    "label": "RAM warning color value:",
+                                    "helper": "RAM% less than this will be yellow.",
+                                    "hideInitValidationError": false,
+                                    "focus": false,
+                                    "optionLabels": [],
+                                    "name": "ramwarn",
+                                    "placeholder": "90",
+                                    "typeahead": {},
+                                    "allowOptionalEmpty": false,
+                                    "data": {},
+                                    "autocomplete": false,
+                                    "disallowEmptySpaces": false,
+                                    "disallowOnlyEmptySpaces": false,
+                                    "fields": {},
+                                    "renderButtons": true,
+                                    "attributes": {}
+                                },
+                                "hdok": {
+                                    "type": "number",
+                                    "validate": true,
+                                    "showMessages": true,
+                                    "disabled": false,
+                                    "hidden": false,
+                                    "label": "HD OK color value:",
+                                    "helper": "HD free % less than this will be green.",
+                                    "hideInitValidationError": false,
+                                    "focus": false,
+                                    "optionLabels": [],
+                                    "name": "hdok",
+                                    "placeholder": "75",
+                                    "typeahead": {},
+                                    "allowOptionalEmpty": false,
+                                    "data": {},
+                                    "autocomplete": false,
+                                    "disallowEmptySpaces": false,
+                                    "disallowOnlyEmptySpaces": false,
+                                    "fields": {},
+                                    "renderButtons": true,
+                                    "attributes": {}
+                                },
+                                "hdwarn": {
+                                    "type": "number",
+                                    "validate": true,
+                                    "showMessages": true,
+                                    "disabled": false,
+                                    "hidden": false,
+                                    "label": "HD warning color value:",
+                                    "helper": "HD free % less than this will be yellow.",
+                                    "hideInitValidationError": false,
+                                    "focus": false,
+                                    "optionLabels": [],
+                                    "name": "hdwarn",
+                                    "placeholder": "95",
                                     "typeahead": {},
                                     "allowOptionalEmpty": false,
                                     "data": {},
@@ -215,7 +409,7 @@
                                                 success: function(data) {
                                                     alert(JSON.stringify(data));
                                                     alert("settings saved!");
-                                                    setTimeout(location.reload.bind(location), 100)
+                                                    setTimeout(location.reload.bind(location), 500)
                                                 },
                                                 error: function(errorThrown){
                                                     console.log(errorThrown); 

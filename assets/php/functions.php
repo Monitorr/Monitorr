@@ -1,5 +1,11 @@
 <?php
-include_once '../config.php';
+
+include_once '../config.php';  //REMOVE
+
+
+    $str = file_get_contents('../data/site_settings-data.json');
+    $json = json_decode($str, true);
+
 
 // get CPUload function
 function _getServerLoadLinuxData()
@@ -202,8 +208,15 @@ function getHDFree()
     // Dynamic icon colors for badges
        // Manual values are set below until settings version is published
 
-    $hdok = "75";
-    $hdwarn = "95";
+
+    $str = file_get_contents('../data/site_settings-data.json');
+    $json = json_decode($str, true);
+    $hdok = $json['hdok'];
+    $hdwarn = $json['hdwarn'];
+
+
+    // $hdok = "75";  **  DELETE **
+    // $hdwarn = "95";  **  DELETE **
 
         if ($freeHD < $hdok) {
                 $hdClass = 'success';
@@ -229,8 +242,15 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded";
 
 
 // Dynamic icon colors for badges
-$ramok = $config['ramok']; //set in config.php
-$ramwarn = $config['ramwarn']; //set in config.php
+
+    $str = file_get_contents('../data/site_settings-data.json');
+    $json = json_decode($str, true);
+    $ramok = $json['ramok'];
+    $ramwarn = $json['ramwarn'];
+
+
+        // $ramok = $config['ramok']; //set in config.php  **  DELETE **
+        // $ramwarn = $config['ramwarn']; //set in config.php  **  DELETE **
 
 if ($ramPercent < $ramok) {
     $ramClass = 'success';
@@ -241,8 +261,14 @@ if ($ramPercent < $ramok) {
 }
 
 
-$cpuok = $config['cpuok']; //set in config.php
-$cpuwarn = $config['cpuwarn']; //set in config.php
+    $str = file_get_contents('../data/site_settings-data.json');
+    $json = json_decode($str, true);
+    $cpuok = $json['cpuok'];
+    $cpuwarn = $json['cpuwarn'];
+
+
+        // $cpuok = $config['cpuok']; //set in config.php  **  DELETE **
+        // $cpuwarn = $config['cpuwarn']; //set in config.php  **  DELETE **
 
 if ($cpuPercent < $cpuok) {
     $cpuClass = 'success';
@@ -263,17 +289,29 @@ if ($cpuPercent < $cpuok) {
 * @param int $timeout
 * @return bool|float
 */
-$pinghost = $config['pinghost']; //set in config.php
-$pingport = $config['pingport']; //set in config.php
 
-function ping($host, $port = 53, $timeout = 1) {
-    $start = microtime(true);
-    if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
-        return false;
+
+    $str = file_get_contents('../data/site_settings-data.json');
+    $json = json_decode($str, true);
+    $pinghost = $json['pinghost'];
+    //echo $pinghost;
+
+    // $pinghost = $config['pinghost']; //set in config.php
+
+
+    $pingport = $json['pingport'];
+    // echo $pingport;
+
+    // $pingport = $config['pingport']; //set in config.php
+
+    function ping($host, $port = 53, $timeout = 1) {
+        $start = microtime(true);
+        if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
+            return false;
+        }
+        $end = microtime(true);
+        return round((($end - $start) * 1000));
     }
-    $end = microtime(true);
-    return round((($end - $start) * 1000));
- }
 
  $pingTime = ping($pinghost, $pingport);
 

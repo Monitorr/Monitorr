@@ -1,11 +1,31 @@
 <?php // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
 include_once '../config.php';
 
+    $str = file_get_contents('../data/user_preferences-data.json');
+    $json = json_decode($str, true);
+    $timezone = $json['timezone'];
 
-if (!empty($config['timezone'])) {
-    $timezone = $config['timezone']; // set in config.php
+if (!empty($json['timezone'])) {
+
+    $str = file_get_contents('../data/user_preferences-data.json');
+    $json = json_decode($str, true);
+    $timezone = $json['timezone'];
+    // echo $timezone;
+
+
+   // $timezone = $config['timezone']; // set in config.php
 }
-$timestandard = strtolower($config['timestandard']); // set in config.php
+
+
+    $str = file_get_contents('../data/user_preferences-data.json');
+    $json = json_decode($str, true);
+    $timestandard = $json['timestandard'];
+   // echo $timestandard;
+
+//$timestandard = strtolower($config['timestandard']); // set in config.php
+
+
+
 if (is_link('/etc/localtime')) {
     // Mac OS X (and older Linuxes)
     // /etc/localtime is a symlink to the
@@ -36,13 +56,13 @@ if (is_link('/etc/localtime')) {
     
     <?php
     if ($timestandard=='True') {
-        $msg = date("h:i:sa T");
+        $msg = date("g:i:s A");
         echo $msg;
     } elseif ($timestandard=='true') {
-        $msg = date("h:i:sa T");
+        $msg = date("g:i:s A");
         echo $msg;
     } elseif ($timestandard=='t') {
-        $msg = date("h:i:sa T");
+        $msg = date("g:i:s A");
         echo $msg;
     } elseif ($timestandard=='False') {
         $msg = date("H:i:s T");

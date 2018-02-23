@@ -15,21 +15,23 @@
 $config = array(
 
     'updateBranch' => 'develop', // update branch you wish to use // "master" or "develop"
-    'rfsysinfo' => '5000', // Service & system info refresh interval in milliseconds
+   // ** CONVERTED ** 'rfsysinfo' => '5000', // Service & system info refresh interval in milliseconds
         // rfsysinfo NOTE1: The more services enabled in config.php file, the higher this value should be. General rule is 3s per service, ie 10 services = 30000ms (30 seconds).
         // rfsysinfo NOTE2: The auto refresh disable toggle switch does NOT pause time refresh for the analog or digital clocks
-    'rftime' => '5000', // time refresh
-  // **CONVERTED**  'title' => 'Monitorr', // Site Title
-    'siteurl' => 'http://localhost', // SITE URL
-    'pinghost' => '8.8.8.8', // URL or IP to ping
-    'pingport' => '53', // port to ping (defaults to 53)
-    'cpuok' => '50', //CPU% less than this will be green
-    'cpuwarn' => '90', //CPU% less than this will be yellow
-    'ramok' => '50', //RAM% below this is green
-    'ramwarn' => '90', //RAM% below this will be yellow
-    // HD values are NOT editable until settings version is published
-    'timestandard' => 'False', // True for Standard Time, DEFAULT = False
-    'timezone' => 'UTC',
+   // ** CONVERTED **'rftime' => '2000', // time refresh
+   // **CONVERTED**  'title' => 'Monitorr', // Site Title
+   // ** CONVERTED ** 'siteurl' => 'http://localhost', // SITE URL
+   // ** CONVERTED ** 'pinghost' => '8.8.8.8', // URL or IP to ping
+    // ** CONVERTED ** 'pingport' => '53', // port to ping (defaults to 53)
+    // ** CONVERTED **  'cpuok' => '50', //CPU% less than this will be green
+    // ** CONVERTED **  'cpuwarn' => '90', //CPU% less than this will be yellow
+    // ** CONVERTED **  'ramok' => '50', //RAM% below this is green
+    // ** CONVERTED **  'ramwarn' => '90', //RAM% below this will be yellow
+    // ** CONVERTED **  // HD values are NOT editable until settings version is published
+    
+	
+	  // ** CONVERTED //'timestandard' => 'False', // True for Standard Time, DEFAULT = False
+      // ** CONVERTED //'timezone' => 'America/Los_Angeles',
         // if on Linux, the timezone script will automatically select your timezone
         // For Windows, set the timezone. Default is UTC Time.
         // I.E. ($timezone = 'America/Los_Angeles',) list of timezone: https://php.net/manual/en/timezones.php

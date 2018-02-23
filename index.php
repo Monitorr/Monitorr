@@ -112,15 +112,24 @@
 
             $(document).ready(function() {
                 function update() {
-                $.ajax({
-                type: 'POST',
-                url: 'assets/php/timestamp.php',
-                timeout: 5000,
-                success: function(data) {
-                    $("#timer").html(data); 
-                    window.setTimeout(update, 5000);
-                    }
-                });
+
+                    rftime =
+                        <?php 
+                            $str = file_get_contents('assets/data/site_settings-data.json');
+                            $json = json_decode($str, true);
+                            $rftime = $json['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/timestamp.php',
+                    timeout: 5000,
+                    success: function(data) {
+                        $("#timer").html(data); 
+                        window.setTimeout(update, rftime);
+                        }
+                    });
                 }
                 update();
             });
@@ -128,11 +137,19 @@
         </script>
         
         <script>
-        
-            <?php $dt = new DateTime("now", new DateTimeZone($config['timezone'])); ?>   
-    
-            $servertimezone = "<?php echo $config['timezone']; ?>";
+
+            $timezone = 
+                "<?php 
+                    $str = file_get_contents('assets/data/user_preferences-data.json');
+                    $json = json_decode($str, true);
+                    $timezone = $json['timezone'];
+                    echo $timezone;
+                ?>";
+
+            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
             
+             $servertimezone = "<?php echo "$timezone"; ?>";
+
             $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
 
             var servertimezone = $servertimezone;
@@ -155,8 +172,18 @@
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
+
+                    rfsysinfo =
+                        <?php 
+                            $str = file_get_contents('assets/data/site_settings-data.json');
+                            $json = json_decode($str, true);
+                            $rfsysinfo = $json['rfsysinfo'];
+                            echo $rfsysinfo;
+                        ?>
+
                     if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
+                       /*  nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>); */
+                        nIntervId = setInterval(statusCheck, rfsysinfo);
                     } else {
                         clearInterval(nIntervId);
                     }
@@ -254,14 +281,12 @@
             <a href="settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a>
             <br><br>
 
-            <script src="assets/js/update.js" async></script>
+            <!-- <script src="assets/js/update.js" async></script> -->
             <script src="assets/js/update_auto.js" async></script>
         
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
             <!-- <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a> -->
-            
-                <br>
             
             <div id="version_check_auto"></div>
             

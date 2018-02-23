@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css); 
 
 body {
     opacity: 1;
@@ -193,6 +193,7 @@ br {
 span {
     cursor: pointer;
 }
+
 
 
 /* Links */
@@ -973,6 +974,21 @@ input:checked+.slider:before {
     /* width: 70%; */
 }
 
+
+#sitesettings {
+
+    background-color: transparent;
+}
+
+#leftcolumn {
+    padding-left: 5rem;
+    text-align: left;
+}
+
+#rightcolumn {
+    padding-left: 5rem;
+    text-align: left;
+}
 
 /* Footer */
 

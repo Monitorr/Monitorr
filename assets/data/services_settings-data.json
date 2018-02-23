@@ -1,5 +1,3 @@
 [
 {"serviceTitle":"Service Title","image":"../img/monitorr.png","type":"Both","checkurl":"http://localhost:80","linkurl":"http://localhost:80"},
-{"serviceTitle":"Service Title","image":"../img/monitorr.png","type":"Both","checkurl":"http://localhost:80","linkurl":"http://localhost:80"},
-{"serviceTitle":"radarr","image":"../img/radarr.png","type":"Both","checkurl":"https://localhost:443","linkurl":"https://localhost:443"},
-{"serviceTitle":"Home","image":"../img/monitorr.png","type":"Both","checkurl":"http://localhost:80","linkurl":"http://localhost:80"}]
+{"serviceTitle":"radarr","image":"../img/radarr.png","type":"Both","checkurl":"https://localhost:443","linkurl":"http://google.com"}]

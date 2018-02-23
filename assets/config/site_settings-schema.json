@@ -2,24 +2,93 @@
     "type": "object",
     "required": false,
     "properties": {
-        "sitetitle": {
+        "rfsysinfo": {
             "type": "string",
-            "required": false,
-			"default": "Monitorr",
+            "required": true,
+            "default": "5000",
+            "minimum": 1000,
+            "exclusiveMinimum": true,
             "properties": {}
         },
-        "siteurl": {
+        "rftime": {
             "type": "string",
-            "required": false,
-            "pattern": {},
+            "required": true,
+            "default": "5000",
+            "minimum": 1000,
+            "exclusiveMinimum": true,
+            "properties": {}
+        },
+        "pinghost": {
+            "type": "string",
+            "required": true,
             "format": "uri",
-			"default": "http://localhost/monitorr",
+            "default": "8.8.8.8",
             "properties": {}
         },
-		"language": {
+        "pingport": {
             "type": "string",
-            "required": false,
-			"default":"EN",
+            "required": true,
+            "default": "53",
+            "properties": {}
+        },
+        "cpuok": {
+            "type": "string",
+            "required": true,
+            "default": "50",
+            "minimum": 1,
+            "maximum": 100,
+            "exclusiveMinimum": true,
+            "exclusiveMaximum": true,
+            "properties": {}
+        },
+        "cpuwarn": {
+            "type": "string",
+            "required": true,
+            "default": "90",
+            "minimum": 1,
+            "maximum": 100,
+            "exclusiveMinimum": true,
+            "exclusiveMaximum": true,
+            "properties": {}
+        },
+        "ramok": {
+            "type": "string",
+            "required": true,
+            "default": "50",
+            "minimum": 1,
+            "maximum": 100,
+            "exclusiveMinimum": true,
+            "exclusiveMaximum": true,
+            "properties": {}
+        },
+        "ramwarn": {
+            "type": "string",
+            "required": true,
+            "default": "90",
+            "minimum": 1,
+            "maximum": 100,
+            "exclusiveMinimum": true,
+            "exclusiveMaximum": true,
+            "properties": {}
+        },
+        "hdok": {
+            "type": "string",
+            "required": true,
+            "default": "75",
+            "minimum": 1,
+            "maximum": 100,
+            "exclusiveMinimum": true,
+            "exclusiveMaximum": true,
+            "properties": {}
+        },
+        "hdwarn": {
+            "type": "string",
+            "required": true,
+            "default": "95",
+            "minimum": 1,
+            "maximum": 100,
+            "exclusiveMinimum": true,
+            "exclusiveMaximum": true,
             "properties": {}
         }
     }
