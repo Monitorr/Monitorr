@@ -408,9 +408,9 @@
                                                 url: 'post_receiver-user_preferences.php', 
                                                 data: $('#preferencesettings').alpaca().getValue(),
                                                 success: function(data) {
-                                                    alert(JSON.stringify(data));
+                                                    //alert(data);
                                                     alert("settings saved!");
-                                                    setTimeout(location.reload.bind(location), 100)
+                                                    setTimeout(location.reload.bind(location), 500)
                                                 },
                                                 error: function(errorThrown){
                                                     console.log(errorThrown); 

@@ -29,6 +29,8 @@
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
 
+
+        <!-- // DELETE   -->
         <?php $file = 'assets/config.php';
             //Use the function is_file to check if the config file already exists or not.
             if(!is_file($file)){
@@ -88,11 +90,9 @@
 
         </style>
 
-        <?php include ('assets/config.php'); ?>
+        <?php include ('assets/config.php'); ?>      <!-- DELETE -->
         <?php include ('assets/php/check.php') ;?>
         <?php include ('assets/php/gitinfo.php'); ?>
-
-        <!-- <title><?php echo $config['title']; ?></title> -->
 
         <title>
             <?php 
@@ -182,7 +182,6 @@
                         ?>
 
                     if ($(this).is(':checked')) {
-                       /*  nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>); */
                         nIntervId = setInterval(statusCheck, rfsysinfo);
                     } else {
                         clearInterval(nIntervId);
@@ -216,7 +215,6 @@
             <div id="center">
 
                 <div id="centertext">
-                    <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
                     <a class="navbar-brand" href="
                         <?php 
                             $str = file_get_contents('assets/data/user_preferences-data.json');
@@ -270,9 +268,6 @@
             </div>
 
         </div>
-
-
-<!-- <iframe height="500px" width="100%" src="assets/php/monitorr-services_settings.php" name="site_settings" style="border:none;"></iframe> -->
 
 
 

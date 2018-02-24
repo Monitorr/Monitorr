@@ -1,6 +1,6 @@
 <?php
 
-include_once '../config.php';  //REMOVE
+include_once '../config.php';  //**REMOVE***
 
 
     $str = file_get_contents('../data/site_settings-data.json');
@@ -318,7 +318,12 @@ if ($cpuPercent < $cpuok) {
 
 // New version download information
 
-$branch = $config['updateBranch'];
+    $str = file_get_contents('../data/user_preferences-data.json');
+    $json = json_decode($str, true);
+    $branch = $json['updateBranch'];
+
+
+//$branch = $config['updateBranch']; // *** DELETE ***
 
 // location to download new version zip
 $remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/' . $branch . '';

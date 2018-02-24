@@ -16,13 +16,12 @@
 			},
 			"type": {
 				"type": "radio",
-				"title": "Check Type",
+				"title": "Check Type:",
 				"enum": [
-					"Both",
-					"Curl Only",
+					"Standard",
 					"Ping Only"
 				],
-				"default": "Both",
+				"default": "Standard",
 				"required": true
 			},
 			"checkurl": {

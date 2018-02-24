@@ -18,10 +18,10 @@
         },
 		"updateBranch": {
             "type": "string",
-			"enum": ["Master", "Develop"],
+			"enum": ["master", "develop"],
             "required": true,
             "pattern": {},
-			"default": "Master",
+			"default": "master",
             "properties": {}
         },
         "timezone": {

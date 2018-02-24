@@ -3,6 +3,10 @@
 
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="manifest" href="webmanifest.json">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="apple-touch-icon" href="favicon.ico">
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="../css/alpaca.min.css" rel="stylesheet">
         <link type="text/css" href="../css/main.css" rel="stylesheet">
@@ -123,15 +127,23 @@
                         "connector": "custom",
                         "dataSource": "../data/services_settings-data.json?a=1",
                         "schemaSource": "../config/services-schema.json?a=1",
+                         //**     NOT WORKING    *//
+                        // "view": {
+                        //     "parent": "bootstrap-edit-horizontal",
+                        //     "layout": {
+                        //         "template": './two-column-layout-template.html',
+                        //         "bindings": {
+                        //             "serviceTitle": "leftcolumn",
+                        //             "image": "leftcolumn",
+                        //             "checkurl": "rightcolumn",
+                        //             "linkurl": "rightcolumn",
+                        //             "type": "rightcolumn"                                    
+                        //         }
+                        //     }
+                        // }, 
                         "options": {
                             "toolbarSticky": true,
-/*                             "toolbar": {
-                                "showLabels": true,
-                                "actions": [{
-                                    "label": "I addeth thee",
-                                    "action": "add"
-                                }]
-                            }, */
+                            "collapsible": true,
                             "actionbar": {
                                 "showLabels": true,
                                 "actions": [{
@@ -146,7 +158,15 @@
                                     "enabled": true
                                 }, {
                                     "label": "Move Down",
-                                    "action": "down",
+                                    "action": "down"
+                                }, {
+                                    "label": "Clear",
+                                    "action": "clear",
+                                    "iconClass": "fa fa-cancel",
+                                    "click": function(key, action, itemIndex) {
+                                        var item = this.children[itemIndex];
+                                        item.setValue("");
+                                    }
                                 }
                                 ]
                             },
@@ -158,7 +178,7 @@
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "Service Title",
+                                        "label": "Service Title:",
                                         "helpers": [],
                                          "hideInitValidationError": false,
                                          "focus": false,
@@ -181,7 +201,7 @@
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "Service Image",
+                                        "label": "Service Image:",
                                         "helpers": [],
                                          "hideInitValidationError": false,
                                          "focus": false,
@@ -198,18 +218,19 @@
                                          "renderButtons": true,
                                          "attributes": {}
                                     },
-                                    "Type": {
+                                    "checktype": {
                                         "type": "radio",
-                                        "optionLabels": ["Both", "Curl Only", "Ping Only"],
+                                        "optionLabels": ["Standard", "Ping Only"],
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "Check Type",
-                                        "helpers": [],
+                                        "label": "Check Type:",
+                                        "helpers": ["Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port."],
+                                        "helper": "Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port.",
                                          "hideInitValidationError": false,
                                          "focus": false,
-                                         "name": "type",
-                                         "placeholder": "both",
+                                         "name": "checktype",
+                                         "placeholder": "Standard",
                                          "typeahead": {},
                                          "allowOptionalEmpty": false,
                                          "removeDefaultNone": true,
@@ -229,7 +250,7 @@
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "Check URL",
+                                        "label": "Check URL:",
                                         "helpers": [],
                                          "hideInitValidationError": false,
                                          "focus": false,
@@ -253,7 +274,7 @@
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "Link URL",
+                                        "label": "Link URL:",
                                         "helpers": [],
                                          "hideInitValidationError": false,
                                          "focus": false,
@@ -296,46 +317,12 @@
                                                 alert(JSON.stringify(data, null, "  ")),
                                                 alert("settings saved"),
                                                 //console.log(data),
-                                                setTimeout(location.reload.bind(location), 100)
+                                                setTimeout(location.reload.bind(location), 500)
                                             )
                                         
                                         }
                                     },
-                                        /*   
-                                            "submit": {
-                                            "click": function() {
 
-                                                //data = $('#servicesettings').alpaca().getValue();
-                                                
-                                                
-                                                //        $.post('post_receiver-services.php',
-
-                                                //             "=" + JSON.stringify(data, null, "  "),
-
-                                                //            alert("settings Saved")
-                                                //        ) 
-                                                
-
-                                                $.post({
-                                                    url: 'post_receiver-services.php', 
-                                                    data: data,
-                                                    contentType: 'application/json',
-                                                        success: function(data) {
-                                                            alert(JSON.stringify(data));
-                                                            alert("settings saved");
-                                                        },
-                                                    error: function(errorThrown){
-                                                        console.log(errorThrown); 
-                                                    } 
-                                                }) 
-
-                                                .fail(function() {
-                                                        alert( "error" );
-                                                    })   
-
-                                                }
-                                            }, 
-                                        */
                                     "view": {
                                         "type": "button",
                                         "label": "View JSON",
@@ -352,6 +339,31 @@
             </script>
 
     </div>
+
+                <!-- scroll to top   -->
+            
+            <button onclick="topFunction()" id="myBtn" title="Go to top"></button>
+
+            <script>
+                 
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {scrollFunction()};
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        document.getElementById("myBtn").style.display = "block";
+                    } else {
+                        document.getElementById("myBtn").style.display = "none";
+                    }
+                }
+
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+
+        </script>
 
         <div id="footer">
 

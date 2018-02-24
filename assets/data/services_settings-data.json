@@ -1,3 +1,3 @@
 [
-{"serviceTitle":"Service Title","image":"../img/monitorr.png","type":"Both","checkurl":"http://localhost:80","linkurl":"http://localhost:80"},
-{"serviceTitle":"radarr","image":"../img/radarr.png","type":"Both","checkurl":"https://localhost:443","linkurl":"http://google.com"}]
+{"serviceTitle":"Deluge Xfer","image":"../img/deluge.png","type":"Ping Only","checkurl":"http://192.168.1.25:58846","linkurl":"http://192.168.1.25:58846"},
+{"serviceTitle":"Service Title2","image":"../img/monitorr.png","type":"Ping Only","checkurl":"http://localhost:80","linkurl":"http://localhost:80"}]

@@ -990,6 +990,55 @@ input:checked+.slider:before {
     text-align: left;
 }
 
+
+/* scroll to top  */
+
+#myBtn {
+    width: 5em;
+    height: 5em;
+    display: none;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background: url(../img/up-arrow.png) no-repeat center center;
+    background-color: rgba(126, 126, 126, 0.50);
+    background-size: 4em;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+}
+
+#myBtn:hover {
+    background-color: rgba(104, 2, 51, 0.658);
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+}
+
+table,
+th,
+td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+tbody {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+tr {
+    width: 100%
+}
+
+
+
 /* Footer */
 
 #version_check_auto {

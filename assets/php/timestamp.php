@@ -1,5 +1,6 @@
 <?php // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
-include_once '../config.php';
+
+include_once '../config.php'; // **DELETE **
 
     $str = file_get_contents('../data/user_preferences-data.json');
     $json = json_decode($str, true);

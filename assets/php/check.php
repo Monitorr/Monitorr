@@ -152,6 +152,71 @@
                     }
                 
             }
+    }
+
+    function ping($url) {
+        
+        global $v1;
+        global $v2;
+
+        $fp = fsockopen(url_to_domain($url), $timeout = 5);
+
+            stream_context_set_default( [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                ],
+            ]);
+
+            if (!$fp) {
+
+                //echo OFFLINE;
+
+                echo '<div class="col-lg-4">';
+                    echo '<div class="servicetileoffline">';
+
+                        echo '<div id="serviceimg">';
+                            echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                        echo '</div>';
+                        
+                        echo '<a id="servicetitleoffline" href="'. $v2['checkurl'] .'" target="_blank" style="display: block">';
+                            echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
+                        echo '</a>';
+                        
+                        echo '<div class="btnoffline">Offline</div>';
+
+                    echo '</div>';
+
+                echo '</div>';
+                
+            } 
+            
+            else {
+                    
+                //echo ONLINE;
+
+                echo '<div class="col-lg-4">';
+                    echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
+                
+                        echo '<div id="serviceimg">';
+                            echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                        echo '</div>';
+                        
+                        echo '<div id="servicetitle">';
+                        // echo '<div class="servicetext">';
+                                echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
+                            // echo '</div>';
+                        echo '</div>'; 
+
+                        echo '<div class="btnonline">Online</div>';
+                        
+                    echo '</a>'; 
+                echo '</div>';
+
+                fclose($fp);
+
+            }
     };
 
 ?>
+
