@@ -195,7 +195,7 @@
                                     "fields": {}
                                 },
                                 "updateBranch": {
-                                    "type": "select",
+                                    "type": "radio",
                                     "validate": true,
                                     "showMessages": true,
                                     "disabled": false,
@@ -204,7 +204,7 @@
                                     "helpers": ["Monitorr repo branch to use when updating."],
                                     "hideInitValidationError": false,
                                     "focus": false,
-                                    "optionLabels": [],
+                                     "optionLabels": [" Master", " Develop"],
                                     "name": "updateBranch",
                                     "typeahead": {},
                                     "allowOptionalEmpty": false,
@@ -347,16 +347,16 @@
                                     "fields": {}
                                 },
                                 "timestandard": {
-                                    "type": "select",
+                                    "type": "radio",
                                     "validate": true,
                                     "showMessages": true,
                                     "disabled": false,
                                     "hidden": false,
                                     "label": "Time Standard:",
-                                    "helpers": ["24h time display (FALSE)  / 12h time display (TRUE)."],
+                                    //"helpers": ["24h time display (FALSE)  / 12h time display (TRUE)."],
                                     "hideInitValidationError": false,
                                     "focus": false,
-                                    "optionLabels": [],
+                                    "optionLabels": [" True (12h time)", " False (24h time)"],
                                     "name": "timestandard",
                                     "typeahead": {},
                                     "allowOptionalEmpty": false,

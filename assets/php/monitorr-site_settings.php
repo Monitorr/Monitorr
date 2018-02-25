@@ -172,6 +172,7 @@
                                     "name": "rfsysinfo",
                                     "placeholder": "5000",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -195,6 +196,7 @@
                                     "name": "rftime",
                                     "placeholder": "5000",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -218,6 +220,7 @@
                                     "name": "pinghost",
                                     "placeholder": "8.8.8.8",
                                     "typeahead": {},
+                                        "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -242,6 +245,7 @@
                                     "name": "pingport",
                                     "placeholder": "53",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -265,6 +269,7 @@
                                     "name": "cpuok",
                                     "placeholder": "50",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -288,6 +293,7 @@
                                     "name": "cpuwarn",
                                     "placeholder": "90",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -311,6 +317,7 @@
                                     "name": "ramok",
                                     "placeholder": "50",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -334,6 +341,7 @@
                                     "name": "ramwarn",
                                     "placeholder": "90",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -357,6 +365,7 @@
                                     "name": "hdok",
                                     "placeholder": "75",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -380,6 +389,7 @@
                                     "name": "hdwarn",
                                     "placeholder": "95",
                                     "typeahead": {},
+                                    "size": "10",
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
@@ -441,7 +451,7 @@
             <!-- <script src="../js/update.js" async></script> -->
             <!-- <script src="../js/update_auto.js" async></script> -->
         
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
             <!-- <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a> -->
             

@@ -18,10 +18,10 @@
 				"type": "radio",
 				"title": "Check Type:",
 				"enum": [
-					"Standard",
-					"Ping Only"
+					" Standard",
+					" Ping Only"
 				],
-				"default": "Standard",
+				"default": " Standard",
 				"required": true
 			},
 			"checkurl": {

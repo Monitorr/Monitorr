@@ -18,7 +18,7 @@
 
     <?php 
 
-        if($v2['type'] == "Standard") {
+        if($v2['type'] == " Standard") {
 
            
             

@@ -103,7 +103,7 @@
         </div>
 
 
-        <div>
+        <div id="infodata">
             <br> <br>
             -	OS Version
             <br> <br>
@@ -120,12 +120,12 @@
 
         </div>
 
-        <div id ="includedContent"> </div>
+        <div id ="phpContent"> </div>
 
 
         <script>
             
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="phpinfo.php" ></object>'
+                document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'
             
         </script>
         

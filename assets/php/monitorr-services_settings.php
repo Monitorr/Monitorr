@@ -28,11 +28,12 @@
                     overflow-y: auto; 
                     overflow-x: hidden;
                     color: white !important;
+                    font-size: 1rem !important;  /* ** CHANGE IN ALL SUB SETTINGS PAGES ** */
                 }
 
-                :root {
+                /* :root {
                     font-size: 12px !important;
-                }
+                } */
 
                 legend { 
                     color: white;
@@ -69,8 +70,12 @@
                     text-align: center;
                 }
 
+                .navbar-brand {   /* ** ADD TO ALL SETTINGS PAGES ** */
+                    cursor: default;
+                }
+
                 img {
-                    height: 10rem !important;
+                    height: 6rem !important;
                 }
 
             </style>
@@ -82,7 +87,7 @@
                 $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
             ?>
-            | Service Settings
+            | Service Config
         </title>
 
         <?php include ('../config.php'); ?>
@@ -103,13 +108,21 @@
         <div id="centertext">
             <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
             <div class="navbar-brand">
-                Service Settings
+                Services Configuration
             </div>
         </div>
 
     <div id="serviceform"> 
 
-        <div id="servicesettings"></div>
+        <form id="servicesettings" onsubmit="formsubmit()">
+
+            <!-- <button onclick="formsubmit()" id="myBtn2" label="Submit" title="Form Submit" /> -->
+            <!-- <input id="myBtn2" type="submit" value="Submit" /> -->
+
+        </form>
+
+        <!-- <button onclick="formsubmit()" id="myBtn2" label="Submit" title="Form Submit" ></button> -->
+         <!-- <button onclick="topFunction()" id="myBtn" title="Go to top"></button> -->
 
             <script type="text/javascript">
                 $(document).ready(function() {
@@ -141,6 +154,7 @@
                         //         }
                         //     }
                         // }, 
+                        //"view": "bootstrap-edit-horizontal",
                         "options": {
                             "toolbarSticky": true,
                             "collapsible": true,
@@ -179,7 +193,8 @@
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Service Title:",
-                                        "helpers": [],
+                                        //"helpers": ["Name of Service"],
+                                        "helper": "Name of Service",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
@@ -202,11 +217,13 @@
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Service Image:",
-                                        "helpers": [],
+                                        //"helpers": ["Icon/image representation of service"],
+                                        "helper": "Icon/image representation of service",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
                                          "name": "image",
+                                         "styled": true,
                                          "placeholder": "../img/monitorr.png",
                                          "typeahead": {},
                                          "allowOptionalEmpty": false,
@@ -220,28 +237,28 @@
                                     },
                                     "checktype": {
                                         "type": "radio",
-                                        "optionLabels": ["Standard", "Ping Only"],
+                                        "optionLabels": [" Standard", " Ping Only"],
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Check Type:",
-                                        "helpers": ["Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port."],
+                                        //"helpers": ["Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port."],
                                         "helper": "Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port.",
-                                         "hideInitValidationError": false,
-                                         "focus": false,
-                                         "name": "checktype",
-                                         "placeholder": "Standard",
-                                         "typeahead": {},
-                                         "allowOptionalEmpty": false,
-                                         "removeDefaultNone": true,
-                                         "hideNone": true,
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "name": "checktype",
+                                        "placeholder": " Standard",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "removeDefaultNone": true,
+                                        "hideNone": true,
                                         "data": {},
-                                         "autocomplete": false,
-                                         "disallowEmptySpaces": false,
-                                         "disallowOnlyEmptySpaces": false,
-                                         "fields": {},
-                                         "renderButtons": true,
-                                         "attributes": {}
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
                                     },
                                     "checkurl": {
                                         "type": "url",
@@ -251,7 +268,8 @@
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Check URL:",
-                                        "helpers": [],
+                                        //"helpers": ["URL to check status"],
+                                        "helper": "URL to check status",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
@@ -275,7 +293,8 @@
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Link URL:",
-                                        "helpers": [],
+                                        //"helpers": ["URL that will be linked to service"],
+                                        "helper": "URL that will be linked to service from the UI",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
@@ -304,7 +323,7 @@
                                     "submit": {
                                        // "type": 'button',
                                        // "label": "submit",
-                                        click: function(){
+                                        "click": function formsubmit() {
 
                                             var data = $('#servicesettings').alpaca().getValue();
 
@@ -341,7 +360,7 @@
     </div>
 
                 <!-- scroll to top   -->
-            
+                
             <button onclick="topFunction()" id="myBtn" title="Go to top"></button>
 
             <script>

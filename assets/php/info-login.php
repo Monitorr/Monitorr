@@ -1,11 +1,5 @@
 <?php
 
-
-// include_once 'assets/css/bootstrap.min.css';
-
-// include_once 'assets/css/main.css';
-
-
 /**
  * Class OneFileLoginApplication
  *
@@ -236,10 +230,10 @@ class OneFileLoginApplication
                 $this->user_is_logged_in = true;
                 return true;
             } else {
-                $this->feedback = "Wrong password.";
+                $this->feedback = "Invalid password";
             }
         } else {
-            $this->feedback = "This user does not exist.";
+            $this->feedback = "User does not exist";
         }
         // default return
         return false;
@@ -376,15 +370,17 @@ class OneFileLoginApplication
      */
     private function showPageLoginForm()
     {
-        if ($this->feedback) {
-            echo $this->feedback . "<br/><br/>";
-        }
+        // if ($this->feedback) {
+        //     echo $this->feedback . "<br/>**CHANGE ME**<br/>";  // ** CHANGE to INLINE HTML  ** //
+        // }
         
         echo '<div class="wrapper">';
-        echo '<div class="navbar-brand">';
-            echo '<h2>Monitorr | Login</h2>';
-        echo '</div>';
+            echo '<div class="navbar-brand">';
+                echo 'Monitorr | Login';
+            echo '</div>';
         echo '<br><br>';
+
+
 
         echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
         echo '<label for="login_input_username"> Username: </label> ';
@@ -397,8 +393,20 @@ class OneFileLoginApplication
          echo '<br>';
         echo '<input id="login_input_password" type="password" name="user_password" required /> ';
             echo '<br><br>';
+
+        echo "<div id='loginerror'>";
+
+        if ($this->feedback) {
+            echo $this->feedback . "<br/> <br/>";  // Failed login notification //
+        }
+
+        echo "</div>";
+
         echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
         echo '</form>';
+
+        // echo ' un: username / pw: password';
+         echo '<br><br>';
 
         //echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=register">Register new account</a>';
 
@@ -441,41 +449,25 @@ $application = new OneFileLoginApplication();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <title>Monitorr | Login</title>
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
     <link type="text/css" href="../css/main.css" rel="stylesheet">
+
 
     <style type="text/css">
 
         body { 
             /* font: 14px sans-serif; */
             color: white;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            font-size: 1.25rem !important;
         }
 
-        :root {
-            font-size: 16px !important;
-        }
+        .navbar-brand {
 
-        .wrapper { 
-            width: 30rem;
-            margin-top: 10%;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 1rem; 
+            font-size: 2.5rem;
+            cursor: default;
+
         }
 
     </style>
-
-    <script src="assets/js/jquery.min.js"></script>
-    
-</head>
-
-</html>
-
