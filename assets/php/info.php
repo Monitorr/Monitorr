@@ -113,14 +113,16 @@
             <br> <br>
             -	PHP Version
             <?php
-// prints e.g. 'Current PHP version: 4.1.1'
-echo 'Current PHP version: ' . phpversion();
+              // prints e.g. 'Current PHP version: 4.1.1'
+              echo 'Current PHP version: ' . phpversion();
 
-// prints e.g. '2.0' or nothing if the extension isn't enabled
-echo phpversion('tidy');
-?>
+              // prints e.g. '2.0' or nothing if the extension isn't enabled
+              echo phpversion('tidy');
+            ?>
+            
             <br> <br>
             -	Update check here??
+
              <br> <br>
             -	ChangeLog?
             <br> <br>
@@ -134,11 +136,7 @@ echo phpversion('tidy');
         <div id ="phpContent"> </div>
 
 
-        <script>
-
-                document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'
-
-        </script>
+        <script>document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'</script>
 
 
         <!-- <div id="footer">
