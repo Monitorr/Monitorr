@@ -119,7 +119,7 @@
               // prints e.g. '2.0' or nothing if the extension isn't enabled
               echo phpversion('tidy');
             ?>
-            
+
             <br> <br>
             -	Update check here??
 
@@ -127,6 +127,12 @@
             -	ChangeLog?
             <br> <br>
             -	Github link / Docker Hub link / WiKI / Feat request / Discord link
+            <!--https://github.com/monitorr/Monitorr
+            // DOCKERLINK here
+            // https://github.com/monitorr/monitorr/WiKI
+            // https:// FEAT REQUEST Link
+            // DISCORD LINK
+            -->
             <br> <br>
             -	Donate Link
              <br> <br>
