@@ -104,22 +104,45 @@
 
 
         <div id="infodata">
-            <br> <br>
+          <p> test table </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>NAME</th>
+                  <th>INFO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>OS Version</td>
+                  <td><?php echo php_uname(); ?></td>
+                </tr>
+                <tr>
+                  <td>PHP Version</td>
+                  <td><?php echo phpversion('tidy'); ?></td>
+                </tr>
+                <tr>
+                  <td>Update Check</td>
+                  <td> "PUT UPDATELINKAGE CHECK HERE"</td>
+                </tr>
+                <tr>
+                  <td>Github</td>
+                  <td> Github link here </td> <!--fix-->
+                </tr>
+                <tr>
+                  <td>Docker</td>
+                  <td> Docker link here</td> <!--fix-->
+                </tr>
+                <tr>
+                  <td>Github</td>
+                  <td> Github link here</td> <!--fix-->
+                </tr>
+              </tbody>
+            </table>
+          <!--   OLD SHIT<br> <br>
             -	OS Version
-            <?php
-              echo php_uname();
-              echo PHP_OS;
-            ?>
             <br> <br>
             -	PHP Version
-            <?php
-              // prints e.g. 'Current PHP version: 4.1.1'
-              echo 'Current PHP version: ' . phpversion();
-
-              // prints e.g. '2.0' or nothing if the extension isn't enabled
-              echo phpversion('tidy');
-            ?>
-
             <br> <br>
             -	Update check here??
 
@@ -127,16 +150,17 @@
             -	ChangeLog?
             <br> <br>
             -	Github link / Docker Hub link / WiKI / Feat request / Discord link
-            <!--https://github.com/monitorr/Monitorr
+            https://github.com/monitorr/Monitorr
             // DOCKERLINK here
             // https://github.com/monitorr/monitorr/WiKI
             // https:// FEAT REQUEST Link
             // DISCORD LINK
-            -->
+
             <br> <br>
             -	Donate Link
-             <br> <br>
-
+            CHECKGITHUB
+            <br> <br>
+-->
         </div>
 
         <div id ="phpContent"> </div>
