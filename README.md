@@ -9,7 +9,8 @@
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) [DOCKER]
 
 
-**Version:** v0.14.0d [DEVELOP]
+![GitHub (pre-)release](https://img.shields.io/github/release/qubyte/rubidium/all.svg) [DEVELOP]
+
 
 
 **NOTICE** (25 jan 2018): If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration) for further explanation.
