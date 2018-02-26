@@ -126,16 +126,13 @@
                   <td> "PUT UPDATELINKAGE CHECK HERE"</td>
                 </tr>
                 <tr>
-                  <td>Github</td>
-                  <td><a href="https://github.com/monitorr/Monitorr">https://github.com/monitorr/Monitorr</a></td>
+                  <td>Resources:</td>
+                  <td><a href="https://github.com/monitorr/Monitorr">GitHub</a> | <a href="https://github.com/monitorr/Monitorr">Docker</a> | <a href="https://github.com/monitorr/Monitorr">Feathub</a></td> <!--fix-->
                 </tr>
+                <br>
                 <tr>
-                  <td>Docker</td>
-                  <td><a href="https://hub.docker.com/r/monitorr/monitorr/">https://hub.docker.com/r/monitorr/monitorr/</a></td>
-                </tr>
-                <tr>
-                  <td>Github</td>
-                  <td> Github link here</td> <!--fix-->
+                  <td>Support:</td>
+                  <td><a href="#">Discord</a></a></td> <!--fix-->
                 </tr>
               </tbody>
             </table>
