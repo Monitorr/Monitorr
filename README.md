@@ -9,7 +9,7 @@
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) [DOCKER]
 
 
-![GitHub (pre-)release](https://img.shields.io/github/release/qubyte/rubidium/all.svg) [DEVELOP]
+[![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
 
 
