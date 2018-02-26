@@ -172,18 +172,19 @@
 
                 //echo OFFLINE;
 
-                echo '<div class="col-lg-4">';
-                    echo '<div class="servicetileoffline">';
+                echo '<div class="col-lg-4" style="cursor: default">';
+                    echo '<div class="servicetileoffline" style="display: default">';
 
-                        echo '<div id="serviceimg">';
-                            echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                        echo '<div id="serviceimg" style="display: default">';
+                            echo '<div class="offline" style="cursor: default" ><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                         echo '</div>';
                         
-                        echo '<a id="servicetitleoffline" href="'. $v2['checkurl'] .'" target="_blank" style="display: block">';
+                        echo '<div id="servicetitleoffline" style="cursor: default">';
+                        // echo '<a id="servicetitleoffline" href="'. $v2['checkurl'] .'" target="_blank">';
                             echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
-                        echo '</a>';
+                        echo '</div>';
                         
-                        echo '<div class="btnoffline">Offline</div>';
+                        echo '<div class="btnoffline" style="cursor: default">Offline</div>';
 
                     echo '</div>';
 
@@ -196,13 +197,13 @@
                 //echo ONLINE;
 
                 echo '<div class="col-lg-4">';
-                    echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
+                    echo '<div class="servicetileping" style="display: block; cursor: default">';
                 
                         echo '<div id="serviceimg">';
                             echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                         echo '</div>';
                         
-                        echo '<div id="servicetitle">';
+                        echo '<div id="servicetitleping" style="cursor: default">';
                         // echo '<div class="servicetext">';
                                 echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                             // echo '</div>';
@@ -210,7 +211,7 @@
 
                         echo '<div class="btnonline">Online</div>';
                         
-                    echo '</a>'; 
+                    echo '</div>'; 
                 echo '</div>';
 
                 fclose($fp);

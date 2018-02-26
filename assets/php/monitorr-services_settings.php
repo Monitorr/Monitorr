@@ -194,7 +194,7 @@
                                         "hidden": false,
                                         "label": "Service Title:",
                                         //"helpers": ["Name of Service"],
-                                        "helper": "Name of Service",
+                                        //"helper": "Name of Service",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
@@ -218,7 +218,7 @@
                                         "hidden": false,
                                         "label": "Service Image:",
                                         //"helpers": ["Icon/image representation of service"],
-                                        "helper": "Icon/image representation of service",
+                                        //"helper": "Icon/image representation of service",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
@@ -269,7 +269,7 @@
                                         "hidden": false,
                                         "label": "Check URL:",
                                         //"helpers": ["URL to check status"],
-                                        "helper": "URL to check status",
+                                        "helper": "URL to check service status. (Port is required!)",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
@@ -287,14 +287,14 @@
                                     },
                                     "linkurl": {
                                         "type": "url",
-                                        "validate": true,
+                                        "validate": false,
                                         "allowIntranet": true,
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Link URL:",
                                         //"helpers": ["URL that will be linked to service"],
-                                        "helper": "URL that will be linked to service from the UI",
+                                        "helper": "URL that will be linked to service from the UI. ('Link URL' field values are not applied if using 'ping only' option)",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
@@ -336,7 +336,7 @@
                                                 alert(JSON.stringify(data, null, "  ")),
                                                 alert("settings saved"),
                                                 //console.log(data),
-                                                setTimeout(location.reload.bind(location), 500)
+                                                // setTimeout(location.reload.bind(location), 500)
                                             )
                                         
                                         }

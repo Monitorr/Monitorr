@@ -462,6 +462,20 @@ tbody {
     text-shadow: 1px 1px black;
 }
 
+.servicetileping {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    text-shadow: 1px 1px black;
+}
+
 #serviceimg {
     margin-bottom: 10%;
 }
@@ -469,6 +483,7 @@ tbody {
 .serviceimg {
     height: 5.5rem;
 }
+
 
  #servicetitle {
     display: flex;
@@ -537,6 +552,21 @@ tbody {
     text-shadow: 1px 1px grey;
     text-decoration: none;
 }
+
+#servicetitleping {
+    display: flex;
+    flex-direction: column;
+    height: 2rem;
+    line-height: 100%;
+    margin-bottom: 10%;
+    padding-left: .4rem;
+    padding-right: .4rem;
+    vertical-align: middle;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: rgb(200, 200, 200);
+}
+
 
 .btonline:hover {
     text-decoration: none;
@@ -981,7 +1011,6 @@ input:checked+.slider:before {
     border-bottom-left-radius: 0;
     background-color: rgb(200, 200, 200);
     color: black
-
 }
 
 
@@ -992,7 +1021,6 @@ input:checked+.slider:before {
     height: 100%;
     padding-top: 5rem;
     background-color: transparent;
-
 }
 
 
@@ -1004,7 +1032,6 @@ input:checked+.slider:before {
     background-color: transparent;
     text-shadow: 0 0 8px #FF0104;
     cursor: default;
-
 }
 
 #version {
@@ -1040,8 +1067,49 @@ input:checked+.slider:before {
 }
 
 
+ .resourceslink {
+     font-size: 1rem;
+     color: pink;
+     /* text-decoration: none; */
+ }
+
+  .resrouceslink:hover {
+     color: #ffffff;
+     font-size: 1.2rem;
+     font-weight: 400;
+ } 
+
+/* .resrouceslink:hover {
+    text-decoration: none;
+    color: #f2f2f2;
+    word-wrap: break-word;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+} */
+
+
+
 #infodata {
     height: 25%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    font-size: .75rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    background-color: #3d3d3d;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px black;
+}
+
+#blank {
+ color : #3d3d3d;
+ /* color: white; */
+ font-size: .5rem;
+
 }
 
 
@@ -1054,10 +1122,97 @@ input:checked+.slider:before {
 .phpobject {
     position: inherit;
     width: 100%;
-    height: 50rem;
+    height: 35rem;
     /* height: -webkit-fill-available; */
     /* width: 70%; */
 }
+
+.help-block {
+
+    color: grey;
+    font-style: italic;
+    padding-left: 1.5rem;
+    cursor: default;
+}
+
+.slide {
+    /* border: 1px solid black; */
+    /* margin: 0px 2em 0px 2em; */
+    position: relative;
+    /* margin-bottom: 20px; */
+}
+
+/* .expanded {
+    height: 600px !important;
+}
+ */
+
+ .expand {
+     height: 33rem;
+     transition: height 0.5s;
+     word-wrap: break-word;
+     width: auto;
+     padding: 0 10px 0 10px;
+ }
+
+ .expandtoggle:checked~.expand {
+     height: 20rem;
+     overflow-y: hidden;
+     overflow-x: hidden;
+ }
+
+/*  .expandtoggle:checked~.expandtoggle::before {
+     content: "";
+     background: url(../img/increase.png) no-repeat;
+     background-size: 2em;
+     display: inline-block;
+     width: 2em;
+     height: 2em;
+ } */
+
+
+
+.expandtoggle {
+    display: block;
+    position: absolute;
+    text-align: center;
+    margin: 0;
+    right: 2.5em;
+    bottom: .5em;
+    padding-top: .5em;
+    background-color: rgba(150, 150, 150, 0.75);
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 2em;
+    height: 2.2em;
+    cursor: pointer;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+     /* background: url(../img/increase.png) no-repeat; */
+}
+
+.expandtoggle:hover {
+    /* background-color: rgba(104, 2, 51, 0.400); */
+    background-color: rgba(255, 255, 255, 0.4);
+    background-size: 3em;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    transition: .3s;
+}
+
+.expandtoggle::before {
+    background: url(../img/toggle.png) no-repeat;
+    background-size: 2em;
+    content: "";
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+} 
+
 
 #preferencesettings {
     padding-left: 15%;
@@ -1291,6 +1446,7 @@ input:checked+.slider:before {
         color: #dddddd;
         display: block;
         /* padding: 10px 15px 10px 30px; */
+        font-size: 1rem;
         text-decoration: none;
         padding: .5rem;
         padding-left: .75rem;
@@ -1339,8 +1495,8 @@ input:checked+.slider:before {
 /* scroll to top  */
 
 #myBtn {
-    width: 5em;
-    height: 5em;
+    width: 4em;
+    height: 4em;
     display: none;
     position: fixed;
     bottom: 2em;
@@ -1350,7 +1506,7 @@ input:checked+.slider:before {
     outline: none;
     background: url(../img/up-arrow.png) no-repeat center center;
     background-color: rgba(126, 126, 126, 0.50);
-    background-size: 4em;
+    background-size: 3em;
     cursor: pointer;
     padding: 15px;
     border-radius: 10px;
@@ -1366,7 +1522,9 @@ input:checked+.slider:before {
     transition: .5s;
 }
 
-table,
+table {
+    margin-bottom: 0 !important;
+}
 th,
 td {
     padding-left: 5px;

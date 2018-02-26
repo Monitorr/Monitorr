@@ -22,7 +22,7 @@
                     margin: 2vw !important;
                     overflow-y: auto;
                     overflow-x: hidden;
-                    color: white !important;
+                    /* color: white !important; */
                 }
 
                 legend {
@@ -59,6 +59,11 @@
                 .auto-style1 {
                     text-align: center;
                 }
+                
+                #centertext {
+                    padding-bottom: 2rem !important;
+                }
+
 
                 #includedContent {
                     /* position: static; */
@@ -66,6 +71,23 @@
                     float: right;
                     width: 95% !important;
                 }
+
+                tbody {
+                    cursor: default !important;
+                }
+
+                .links {
+                    color: yellow !important;
+                    font-size: 1rem !important;
+                    font-weight: 500 !important;
+                }
+
+                select, input {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                }
+
 
             </style>
 
@@ -96,88 +118,91 @@
 
 
         <div id="centertext">
-            <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
             <div class="navbar-brand">
-                Info
+                Information
             </div>
         </div>
 
 
         <div id="infodata">
-          <p> test table </p>
+          <!-- <p> test table </p> -->
             <table class="table">
-              <thead>
-                <tr>
-                  <th>NAME</th>
-                  <th>INFO</th>
-                </tr>
-              </thead>
+              <thead> <div id="blank"> . </div> </thead>
               <tbody>
                 <tr>
-                  <td>OS Version</td>
-                  <td><?php echo php_uname(); ?></td>
+                    <td><strong>Monitorr Installed Version:</strong></td>
+                    <td><?php echo file_get_contents( "../js/version/version.txt" );?> <p id="version_check_auto"></p> </td>
+                    <td><strong>OS / Version:</strong></td>
+                    <td><?php echo php_uname(); ?></td>
                 </tr>
                 <tr>
-                  <td>PHP Version</td>
-                  <td><?php echo phpversion('tidy'); ?></td>
+                    <td><strong>Monitorr Latest Version:</strong></td>
+                    <td><a href="https://github.com/monitorr/monitorr/releases" target="_blank" title="Monitorr Releases">
+                            <img src="https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat" label="Monitorr Release" alt="Monitorr Release" style="width:6rem;height:1.1rem;" >
+                        </a>
+                    </td>
+                    <td><strong>PHP Version:</strong></td>
+                    <td><?php echo phpversion('tidy'); ?></td>
+                   
                 </tr>
                 <tr>
-                  <td>Update Check</td>
-                  <td> "PUT UPDATELINKAGE CHECK HERE"</td>
+                    <td><strong>Check & Execute Update:</strong></td>
+                    <td><a id="version_check" style="cursor: pointer">Check for Update</a> </td>
+                     <td><strong>Install Path: </strong></td>
+                     <td>
+                        <?php
+                            $vnum_loc = "../../";
+                            echo realpath($vnum_loc), PHP_EOL;
+                        ?>
+                    </td>
                 </tr>
+
                 <tr>
-                  <td>Resources:</td>
-                  <td><a href="https://github.com/monitorr/Monitorr">GitHub</a> | <a href="https://github.com/monitorr/Monitorr">Docker</a> | <a href="https://github.com/monitorr/Monitorr">Feathub</a></td> <!--fix-->
+                    <td><strong>Resources:</strong></td>
+                    <td><a href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr GitHub Repo"> <img src="https://img.shields.io/badge/GitHub-repo-green.svg" style="width:4rem;height:1rem;" alt="Monitorr GitHub Repo"></a> | <a href="https://hub.docker.com/r/monitorr/monitorr/" target="_blank" title="Monitorr Docker Repo"> <img src="https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000" style="width:6rem;height:1rem;" alt="Monitorr Docker Repo"></a> | <a href="https://feathub.com/Monitorr/Monitorr" target="_blank" title="Monitorr Feature Request"> <img src="https://img.shields.io/badge/FeatHub-suggest-blue.svg" style="width:5rem;height:1rem;" alt="Monitorr Feature Request"></a> | <a href="https://discord.gg/j2XGCtH" target="_blank" title="Monitorr Discord Channel"> <img src="https://img.shields.io/discord/102860784329052160.svg" style="width:5rem;height:1rem;" alt="Monitorr on Discord" ></a> | <a href="https://paypal.me/monitorrapp" target="_blank" title="Buy us a beer!"> <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" style="width:4rem;height:1rem;" alt="PayPal" ></a> </td>
+                    <td><strong>Manual Check Tool:</strong></td>
+                    <td><a href="checkmanual.php" target="_blank">A generated output of why a service may be reporting incorrectly.</a></td>          
+
                 </tr>
-                <br>
-                <tr>
-                  <td>Support:</td>
-                  <td><a href="#">Discord</a></a></td> <!--fix-->
-                </tr>
+
               </tbody>
+                    <tr>
+                        <!-- <div id="blank"> . </div> -->
+                    </tr>
             </table>
-          <!--   OLD SHIT<br> <br>
-            -	OS Version
-            <br> <br>
-            -	PHP Version
-            <br> <br>
-            -	Update check here??
 
-             <br> <br>
-            -	ChangeLog?
-            <br> <br>
-            -	Github link / Docker Hub link / WiKI / Feat request / Discord link
-            https://github.com/monitorr/Monitorr
-            // DOCKERLINK here
-            // https://github.com/monitorr/monitorr/WiKI
-            // https:// FEAT REQUEST Link
-            // DISCORD LINK
-
-            <br> <br>
-            -	Donate Link
-            CHECKGITHUB
-            <br> <br>
--->
         </div>
 
-        <div id ="phpContent"> </div>
+       
+
+         <!-- <div id ="phpContent"> </div> -->
+
+        <div class="slide">
+            <input class="expandtoggle" type="checkbox" name="slidebox"  checked>
+            <!-- <label for="php" ></label> -->
+                <div id="expand" class="expand">
+
+                     <div id ="phpContent"> </div>
+
+                </div>
+            </input>
+        </div>
 
 
         <script>document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'</script>
 
-
-        <!-- <div id="footer">
-
             <script src="../js/update.js" async></script>
-            <script src="../js/update_auto.js" async></script>
+            <script src="../js/update_auto-settings.js" async></script>
 
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
+        <div id="footer">
 
-            <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
-            <div id="version_check_auto"></div>
+            <!-- <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a> -->
 
-        </div> -->
+            <!-- <div id="version_check_auto"></div> -->
+
+        </div>
 
 </body>
 
