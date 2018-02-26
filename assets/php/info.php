@@ -9,7 +9,7 @@
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
-        
+
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/pace.js" async></script>
         <!-- <script type="text/javascript" src="../js/handlebars.js"></script> -->
@@ -20,12 +20,12 @@
 
                 body {
                     margin: 2vw !important;
-                    overflow-y: auto; 
+                    overflow-y: auto;
                     overflow-x: hidden;
                     color: white !important;
                 }
 
-                legend { 
+                legend {
                     color: white;
                     }
 
@@ -46,7 +46,7 @@
                     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                     box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                     background-color: #8E8B8B;
-                } 
+                }
 
                 body.offline #link-bar {
                     display: none;
@@ -70,7 +70,7 @@
             </style>
 
         <title>
-            <?php 
+            <?php
                 $str = file_get_contents('../data/user_preferences-data.json');
                 $json = json_decode($str, true);
                 $title = $json['sitetitle'];
@@ -89,8 +89,8 @@
 
         <script>
             document.body.className += ' fade-out';
-            $(function() { 
-                $('body').removeClass('fade-out'); 
+            $(function() {
+                $('body').removeClass('fade-out');
             });
         </script>
 
@@ -106,6 +106,10 @@
         <div id="infodata">
             <br> <br>
             -	OS Version
+            <?php
+              echo php_uname();
+              echo PHP_OS;
+            ?>
             <br> <br>
             -	PHP Version
             <br> <br>
@@ -124,23 +128,23 @@
 
 
         <script>
-            
+
                 document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'
-            
+
         </script>
-        
+
 
         <!-- <div id="footer">
 
             <script src="../js/update.js" async></script>
             <script src="../js/update_auto.js" async></script>
-        
+
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
             <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a>
-            
+
             <div id="version_check_auto"></div>
-            
+
         </div> -->
 
 </body>
