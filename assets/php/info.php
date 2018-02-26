@@ -127,7 +127,7 @@
                 </tr>
                 <tr>
                   <td>Github</td>
-                  <td> Github link here </td> <!--fix-->
+                  <td><a href="https://github.com/monitorr/Monitorr">https://github.com/monitorr/Monitorr</a></td> <!--fix-->
                 </tr>
                 <tr>
                   <td>Docker</td>
