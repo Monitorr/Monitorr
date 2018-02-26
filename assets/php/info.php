@@ -127,11 +127,11 @@
                 </tr>
                 <tr>
                   <td>Github</td>
-                  <td><a href="https://github.com/monitorr/Monitorr">https://github.com/monitorr/Monitorr</a></td> <!--fix-->
+                  <td><a href="https://github.com/monitorr/Monitorr">https://github.com/monitorr/Monitorr</a></td>
                 </tr>
                 <tr>
                   <td>Docker</td>
-                  <td> Docker link here</td> <!--fix-->
+                  <td><a href="https://hub.docker.com/r/monitorr/monitorr/">https://hub.docker.com/r/monitorr/monitorr/</a></td>
                 </tr>
                 <tr>
                   <td>Github</td>
