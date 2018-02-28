@@ -963,11 +963,52 @@ input:checked+.slider:before {
         padding: 1rem;
     }
 
+    .wrapperregistration {
+        width: 75%;
+        margin-top: 5rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+    }
+
+
+    #registrationform {
+        font-size: 1rem;
+    }
+
+
     #loginerror {
 
         color: red;
         font-weight: 600;
         cursor: default;
+    }
+
+
+    #loginmessage {
+        color: yellow;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: default;
+    }
+
+
+    #loginsuccess {
+        color: green;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: default;
+    }
+
+
+
+        /*     Registration       */
+
+
+    #registrationtable {
+
+        cursor: default;
+        margin-bottom: 2rem !important;
     }
 
 
@@ -1132,6 +1173,36 @@ input:checked+.slider:before {
     color: grey;
     font-style: italic;
     padding-left: 1.5rem;
+    cursor: default;
+}
+
+
+.alpaca-message-invalidPattern {
+    color: red;
+    font-style: italic;
+    /* padding-left: 1.5rem; */
+    cursor: default;
+}
+
+.alpaca-message-stringValueTooSmall {
+    color: red;
+    font-style: italic;
+    /* padding-left: 1.5rem; */
+    cursor: default;
+}
+
+.alpaca-message-stringValueTooLarge {
+    color: red;
+    font-style: italic;
+    /* padding-left: 1.5rem; */
+    cursor: default;
+}
+
+
+.alpaca-message-stringNotANumber {
+    color: red;
+    font-style: italic;
+    /* padding-left: 1.5rem; */
     cursor: default;
 }
 

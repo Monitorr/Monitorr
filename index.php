@@ -30,14 +30,6 @@
         <meta name="theme_color" content="#464646" />
 
 
-        <!-- // DELETE   -->
-        <?php $file = 'assets/config.php';
-            //Use the function is_file to check if the config file already exists or not.
-            if(!is_file($file)){
-                copy('assets/config.php.sample', $file);
-            } 
-        ?>
-
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -90,7 +82,6 @@
 
         </style>
 
-        <?php include ('assets/config.php'); ?>      <!-- DELETE -->
         <?php include ('assets/php/check.php') ;?>
         <?php include ('assets/php/gitinfo.php'); ?>
 

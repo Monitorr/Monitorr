@@ -103,7 +103,7 @@
             | Settings
         </title>
 
-        <!--  <?php include ('assets/config.php'); ?> -->  <!-- ** REMOVE ** -->
+
         <!-- <?php include ('assets/php/check.php') ;?> --> <!-- ** REMOVE ** -->
         <?php include ('assets/php/gitinfo.php'); ?>
 
@@ -162,44 +162,9 @@
         <script src="assets/js/clock.js" async></script>
 
 
-
-
-
-    <!-- <script>
-        $(document).ready(function () {
-            var trigger = $('.hamburger'),
-                overlay = $('.overlay'),
-                isClosed = false;
-
-                trigger.click(function () {
-                hamburger_cross();      
-                });
-
-                function hamburger_cross() {
-
-                if (isClosed == true) {          
-                    overlay.hide();
-                    trigger.removeClass('is-open');
-                    trigger.addClass('is-closed');
-                    isClosed = false;
-                } else {   
-                    overlay.show();
-                    trigger.removeClass('is-closed');
-                    trigger.addClass('is-open');
-                    isClosed = true;
-                }
-            }
-            
-            $('[data-toggle="offcanvas"]').click(function () {
-                    $('#wrapper').toggleClass('toggled');
-            });  
-        });
-    </script> -->
-
-
          <script>
             $(function() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/info-login.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
             });
         </script>
 
@@ -215,8 +180,6 @@
         </script>
 
 
-
-
     <div id ="settingscolumn" class="settingscolumn">
 
         <div id="left" class="Column">
@@ -227,8 +190,6 @@
         </div>
 
         <div id="wrapper">
-            <!-- <div class="overlay"></div> -->
-
 
         
             <!-- Sidebar -->
@@ -263,7 +224,7 @@
 
                     <li>
                         <!-- <a href="assets/php/monitorr-services_settings.php" target="#includedContent"><i class="fa fa-fw fa-cog"></i> Services Configuration </a> -->
-                        <a href="login.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
+                        <a href="assets/php/monitorr-info.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
                     </li>
                     <li>
                         <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
@@ -292,35 +253,35 @@
         <div id ="includedContent"> </div>
 
 
-        <script>
+<!--         <script>
             function load_auth() {
                 document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="login.php" ></object>';
             }
-        </script>
+        </script> -->
 
         <script>
             function load_info() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/info-login.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
             }
         </script>
 
 
         <script>
             function load_preferences() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences-login.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
             }
         </script>
 
 
         <script>
             function load_settings() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings-login.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings.php" ></object>';
             }
         </script>
 
         <script>
             function load_services() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings-login.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
             }
         </script>
 

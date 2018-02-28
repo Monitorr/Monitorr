@@ -1,5 +1,11 @@
 <?php
 
+
+// include_once 'assets/css/bootstrap.min.css';
+
+// include_once 'assets/css/main.css';
+
+
 /**
  * Class OneFileLoginApplication
  *
@@ -11,8 +17,6 @@
  * @link https://github.com/panique/php-login-one-file/
  * @license http://opensource.org/licenses/MIT MIT License
  */
-
-
 class OneFileLoginApplication
 {
     /**
@@ -165,7 +169,7 @@ class OneFileLoginApplication
         session_destroy();
         $this->user_is_logged_in = false;
         $this->feedback = "You were just logged out.";
-        header("location: ../../settings.php");
+        header("location: settings.php");
     }
 
     /**
@@ -232,10 +236,10 @@ class OneFileLoginApplication
                 $this->user_is_logged_in = true;
                 return true;
             } else {
-                $this->feedback = "Invalid password";
+                $this->feedback = "Wrong password.";
             }
         } else {
-            $this->feedback = "User does not exist";
+            $this->feedback = "This user does not exist.";
         }
         // default return
         return false;
@@ -360,10 +364,9 @@ class OneFileLoginApplication
             echo $this->feedback . "<br/><br/>";
         }
 
-?>
+        ?>
 
-
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -383,6 +386,7 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/pace.js" async></script>
         <script type="text/javascript" src="../js/handlebars.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
+        <!-- <script type="text/javascript" src="../js/alpaca.js"></script> -->
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 
             <style>
@@ -697,7 +701,7 @@ class OneFileLoginApplication
                                                 data
                                                 },
                                                                                               
-                                                // alert(JSON.stringify(data, null, "  ")),
+                                                alert(JSON.stringify(data, null, "  ")),
                                                 alert("settings saved"),
                                                 //console.log(data),
                                                 // setTimeout(location.reload.bind(location), 500)
@@ -750,7 +754,14 @@ class OneFileLoginApplication
 
         <div id="footer">
 
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
+            <!-- <script src="../js/update.js" async></script> -->
+            <!-- <script src="../js/update_auto.js" async></script> -->
+        
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
+
+            <!-- <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a> -->
+            
+            <!-- <div id="version_check_auto"></div> -->
             
         </div>
 
@@ -758,11 +769,7 @@ class OneFileLoginApplication
 
 </html>
 
-
-
 <?php
-
-
         //echo 'Hello ' . $_SESSION['user_name'] . ', you are logged in.<br/><br/>';
        // echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=logout">Log out</a>';
     }
@@ -774,17 +781,15 @@ class OneFileLoginApplication
      */
     private function showPageLoginForm()
     {
-        // if ($this->feedback) {
-        //     echo $this->feedback . "<br/>**CHANGE ME**<br/>";  // ** CHANGE to INLINE HTML  ** //
-        // }
+        if ($this->feedback) {
+            echo $this->feedback . "<br/><br/>";
+        }
         
         echo '<div class="wrapper">';
-            echo '<div class="navbar-brand">';
-                echo 'Monitorr | Login';
-            echo '</div>';
+        echo '<div class="navbar-brand">';
+            echo '<h2>Monitorr | Login</h2>';
+        echo '</div>';
         echo '<br><br>';
-
-
 
         echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
         echo '<label for="login_input_username"> Username: </label> ';
@@ -797,25 +802,12 @@ class OneFileLoginApplication
          echo '<br>';
         echo '<input id="login_input_password" type="password" name="user_password" required /> ';
             echo '<br><br>';
-
-        echo "<div id='loginerror'>";
-
-        if ($this->feedback) {
-            echo $this->feedback . "<br/> <br/>";  // Failed login notification //
-        }
-
-        echo "</div>";
-
         echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
         echo '</form>';
-
-        // echo ' un: username / pw: password';
-         echo '<br><br>';
 
         //echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=register">Register new account</a>';
 
         echo '</div>';
-        
     }
 
     /**
@@ -849,6 +841,7 @@ class OneFileLoginApplication
 
 // run the application
 $application = new OneFileLoginApplication();
+
 
 ?>
 
@@ -888,3 +881,4 @@ $application = new OneFileLoginApplication();
 </head>
 
 </html>
+
