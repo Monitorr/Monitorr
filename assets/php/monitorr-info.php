@@ -460,7 +460,7 @@ class OneFileLoginApplication
             | Info
         </title>
 
-        <?php include ('../config.php'); ?>
+        <!-- <?php include ('../config.php'); ?> -->
         <!-- <?php include ('../php/check.php') ;?> -->
         <?php include ('gitinfo.php'); ?>
 
@@ -502,11 +502,19 @@ class OneFileLoginApplication
                     </td>
                     <td><strong>PHP Version:</strong></td>
                     <td><?php echo phpversion('tidy'); ?></td>
-                   
                 </tr>
                 <tr>
                     <td><strong>Check & Execute Update:</strong></td>
-                    <td><a id="version_check" style="cursor: pointer">Check for Update</a> </td>
+                    <td><a id="version_check" style="cursor: pointer">Check for Update</a> |  Update branch selected:             
+                        <strong>
+                        <?php
+                            $str = file_get_contents('../data/user_preferences-data.json');
+                            $json = json_decode($str, true);
+                            $updateBranch = $json['updateBranch'];
+                            echo $updateBranch . PHP_EOL;
+                        ?>
+                        </strong>
+                    </td>
                      <td><strong>Install Path: </strong></td>
                      <td>
                         <?php
@@ -520,7 +528,7 @@ class OneFileLoginApplication
                     <td><strong>Resources:</strong></td>
                     <td><a href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr GitHub Repo"> <img src="https://img.shields.io/badge/GitHub-repo-green.svg" style="width:4rem;height:1rem;" alt="Monitorr GitHub Repo"></a> | <a href="https://hub.docker.com/r/monitorr/monitorr/" target="_blank" title="Monitorr Docker Repo"> <img src="https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000" style="width:6rem;height:1rem;" alt="Monitorr Docker Repo"></a> | <a href="https://feathub.com/Monitorr/Monitorr" target="_blank" title="Monitorr Feature Request"> <img src="https://img.shields.io/badge/FeatHub-suggest-blue.svg" style="width:5rem;height:1rem;" alt="Monitorr Feature Request"></a> | <a href="https://discord.gg/j2XGCtH" target="_blank" title="Monitorr Discord Channel"> <img src="https://img.shields.io/discord/102860784329052160.svg" style="width:5rem;height:1rem;" alt="Monitorr on Discord" ></a> | <a href="https://paypal.me/monitorrapp" target="_blank" title="Buy us a beer!"> <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" style="width:4rem;height:1rem;" alt="PayPal" ></a> </td>
                     <td><strong>Manual Check Tool:</strong></td>
-                    <td><a href="checkmanual.php" target="_blank">A generated output of why a service may be reporting incorrectly.</a></td>          
+                    <td><a href="checkmanual.php" target="_blank">A generated output of why a service may be reporting incorrectly. // CHANGE ME </a></td>  <!--   CHANGE ME      -->
 
                 </tr>
 
@@ -595,17 +603,14 @@ class OneFileLoginApplication
                 if(!is_file($file)){
 
                     echo "<div id='loginerror'>";
-                        //echo "file created"; //CHANGE ME //
                         echo "<br>";
                         echo "No user database detected.";  //CHANGE ME //
                         echo "<br><br>";
                      echo "<div>";
 
                     echo "<div id='loginmessage'>";
-                       // echo "Browse to ../data/_installation/_register.php to create a user database and establish user credientials."; //CHANGE ME //
 
                         echo 'Browse to <a href="../data/_installation/_register.php">../data/_installation/_register.php</a> to create a user database and establish user credentials. ';
-
 
                     echo "</div>";
                     
@@ -659,21 +664,25 @@ class OneFileLoginApplication
             echo $this->feedback . "<br/><br/>";
         }
 
-        echo '<h2>Registration</h2>';
+        echo "<div id='loginerror'>";
+            echo 'Not Authorized';
+        echo "</div>";
 
-        echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
-        echo '<label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>';
-        echo '<input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />';
-        echo '<label for="login_input_email">User\'s email</label>';
-        echo '<input id="login_input_email" type="email" name="user_email" required />';
-        echo '<label for="login_input_password_new">Password (min. 6 characters)</label>';
-        echo '<input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />';
-        echo '<label for="login_input_password_repeat">Repeat password</label>';
-        echo '<input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />';
-        echo '<input type="submit" class="btn btn-primary" name="register" value="Register" />';
-        echo '</form>';
+        // echo '<h2>Registration</h2>';
 
-        echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '">Homepage</a>';
+        // echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
+        // echo '<label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>';
+        // echo '<input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />';
+        // echo '<label for="login_input_email">User\'s email</label>';
+        // echo '<input id="login_input_email" type="email" name="user_email" required />';
+        // echo '<label for="login_input_password_new">Password (min. 6 characters)</label>';
+        // echo '<input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />';
+        // echo '<label for="login_input_password_repeat">Repeat password</label>';
+        // echo '<input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />';
+        // echo '<input type="submit" class="btn btn-primary" name="register" value="Register" />';
+        // echo '</form>';
+
+        // echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '">Homepage</a>';
     }
 }
 
@@ -699,9 +708,14 @@ $application = new OneFileLoginApplication();
             color: white;
         }
 
-        :root {
-            font-size: 16px !important;
+        .navbar-brand { 
+            cursor: default;
         }
+
+        /*  :root {
+                font-size: 16px !important;
+            } 
+        */
 
         .wrapper { 
             width: 30rem;
@@ -710,6 +724,8 @@ $application = new OneFileLoginApplication();
             margin-right: auto;
             padding: 1rem; 
         }
+
+
 
     </style>
 
