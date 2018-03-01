@@ -480,7 +480,7 @@ class OneFileLoginApplication
 
                          echo ' <div id="loginerror">';
                          echo ' <b>NOTE:</b> <br> ';
-                         echo ' It is NOT possible to change credentials after creation. If you want to change or reset credentials, rename the file "/monitorr/assets/data/users.db" to "users.old". Once that file is renamed, browse to this page again to recreate desired credentials. ';
+                         echo " It is NOT possible to change a user's credentials after creation. If you want to change or reset credentials, rename the file '/monitorr/assets/data/users.db' to 'users.old'. Once that file is renamed, browse to this page again to recreate desired credentials. ";
                          echo ' </div>';
 
                     echo '</form>';

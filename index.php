@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +45,8 @@
                 margin-top: 2rem;
                 margin-bottom: 2vw;
                 overflow-y: auto; 
-                overflow-x: hidden; 
+                overflow-x: hidden;
+                background-color: #1F1F1F;
             }
 
             body::-webkit-scrollbar {
@@ -82,7 +82,7 @@
 
         </style>
 
-        <?php include ('assets/php/check.php') ;?>
+        <!-- <?php include ('assets/php/check.php') ;?> -->  <!-- DELETE -->
         <?php include ('assets/php/gitinfo.php'); ?>
 
         <title>
@@ -259,7 +259,6 @@
             </div>
 
         </div>
-
 
 
         <div id="footer">

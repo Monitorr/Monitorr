@@ -360,8 +360,8 @@ class OneFileLoginApplication
             echo $this->feedback . "<br/><br/>";
         }
 
-       ?>
-        
+       
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -375,7 +375,7 @@ class OneFileLoginApplication
 
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/pace.js" async></script>
-        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <!-- <script type="text/javascript" src="../js/bootstrap.min.js"></script> -->
 
             <style>
 
@@ -383,6 +383,7 @@ class OneFileLoginApplication
                     margin: 2vw !important;
                     overflow-y: auto;
                     overflow-x: hidden;
+                    background-color: #1F1F1F;
                     /* color: white !important; */
                 }
 
@@ -447,7 +448,6 @@ class OneFileLoginApplication
                     appearance: none;
                 }
 
-
             </style>
 
         <title>
@@ -460,13 +460,11 @@ class OneFileLoginApplication
             | Info
         </title>
 
-        <!-- <?php include ('../config.php'); ?> -->
-        <!-- <?php include ('../php/check.php') ;?> -->
         <?php include ('gitinfo.php'); ?>
 
     </head>
 
-<body>
+    <body>
 
         <script>
             document.body.className += ' fade-out';
@@ -486,63 +484,64 @@ class OneFileLoginApplication
         <div id="infodata">
           <!-- <p> test table </p> -->
             <table class="table">
-              <thead> <div id="blank"> . </div> </thead>
-              <tbody>
-                <tr>
-                    <td><strong>Monitorr Installed Version:</strong></td>
-                    <td><?php echo file_get_contents( "../js/version/version.txt" );?> <p id="version_check_auto"></p> </td>
-                    <td><strong>OS / Version:</strong></td>
-                    <td><?php echo php_uname(); ?></td>
-                </tr>
-                <tr>
-                    <td><strong>Monitorr Latest Version:</strong></td>
-                    <td><a href="https://github.com/monitorr/monitorr/releases" target="_blank" title="Monitorr Releases">
-                            <img src="https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat" label="Monitorr Release" alt="Monitorr Release" style="width:6rem;height:1.1rem;" >
-                        </a>
-                    </td>
-                    <td><strong>PHP Version:</strong></td>
-                    <td><?php echo phpversion('tidy'); ?></td>
-                </tr>
-                <tr>
-                    <td><strong>Check & Execute Update:</strong></td>
-                    <td><a id="version_check" style="cursor: pointer">Check for Update</a> |  Update branch selected:             
-                        <strong>
-                        <?php
-                            $str = file_get_contents('../data/user_preferences-data.json');
-                            $json = json_decode($str, true);
-                            $updateBranch = $json['updateBranch'];
-                            echo $updateBranch . PHP_EOL;
-                        ?>
-                        </strong>
-                    </td>
-                     <td><strong>Install Path: </strong></td>
-                     <td>
-                        <?php
-                            $vnum_loc = "../../";
-                            echo realpath($vnum_loc), PHP_EOL;
-                        ?>
-                    </td>
-                </tr>
+                <thead> <div id="blank"> . </div> </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Monitorr Installed Version:</strong></td>
+                        <td><?php echo file_get_contents( "../js/version/version.txt" );?> <p id="version_check_auto"></p> </td>
+                        <td><strong>OS / Version:</strong></td>
+                        <td><?php echo php_uname(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monitorr Latest Version:</strong></td>
+                        <td><a href="https://github.com/monitorr/monitorr/releases" target="_blank" title="Monitorr Releases">
+                                <img src="https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat" label="Monitorr Release" alt="Monitorr Release" style="width:6rem;height:1.1rem;" >
+                            </a>
+                        </td>
+                        <td><strong>PHP Version:</strong></td>
+                        <td><?php echo phpversion('tidy'); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Check & Execute Update:</strong></td>
+                        <td><a id="version_check" class="btn" style="cursor: pointer" title="Execute Update">Check for Update</a> |  Update branch selected:             
+                            <strong>
+                            <?php
+                                $str = file_get_contents('../data/user_preferences-data.json');
+                                $json = json_decode($str, true);
+                                $updateBranch = $json['updateBranch'];
+                                echo '| ' . $updateBranch . ' |' . PHP_EOL;  
+                            ?>
+                            </strong>
+                        </td>
+                        <td><strong>Install Path: </strong></td>
+                        <td>
+                            <?php
+                                $vnum_loc = "../../";
+                                echo realpath($vnum_loc), PHP_EOL;
+                            ?>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td><strong>Resources:</strong></td>
-                    <td><a href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr GitHub Repo"> <img src="https://img.shields.io/badge/GitHub-repo-green.svg" style="width:4rem;height:1rem;" alt="Monitorr GitHub Repo"></a> | <a href="https://hub.docker.com/r/monitorr/monitorr/" target="_blank" title="Monitorr Docker Repo"> <img src="https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000" style="width:6rem;height:1rem;" alt="Monitorr Docker Repo"></a> | <a href="https://feathub.com/Monitorr/Monitorr" target="_blank" title="Monitorr Feature Request"> <img src="https://img.shields.io/badge/FeatHub-suggest-blue.svg" style="width:5rem;height:1rem;" alt="Monitorr Feature Request"></a> | <a href="https://discord.gg/j2XGCtH" target="_blank" title="Monitorr Discord Channel"> <img src="https://img.shields.io/discord/102860784329052160.svg" style="width:5rem;height:1rem;" alt="Monitorr on Discord" ></a> | <a href="https://paypal.me/monitorrapp" target="_blank" title="Buy us a beer!"> <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" style="width:4rem;height:1rem;" alt="PayPal" ></a> </td>
-                    <td><strong>Manual Check Tool:</strong></td>
-                    <td><a href="checkmanual.php" target="_blank">A generated output of why a service may be reporting incorrectly. // CHANGE ME </a></td>  <!--   CHANGE ME      -->
+                    <tr>
+                        <td><strong>Tools:</strong></td>
+                        <td>
+                            <a href="../../index.min.php" class="toolslink" target="_blank" title="Monitorr min page"> Monitorr min page |</a>
+                            <a href="../data/_installation/_register.php" class="toolslink" target="_blank" title="Monitorr Registration"> Registration |</a>
+                            <a href="checkmanual.php" target="_blank" class="toolslink" title="Curl check tool"> Curl manual check |</a>
+                            <a href="checkping.php" target="_blank" class="toolslink" title="Ping check tool"> Ping manual check  </a>
+                        </td> 
 
-                </tr>
+                        <td><strong>Resources:</strong></td>
+                        <td><a href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr GitHub Repo"> <img src="https://img.shields.io/badge/GitHub-repo-green.svg" style="width:4rem;height:1rem;" alt="Monitorr GitHub Repo"></a> | <a href="https://hub.docker.com/r/monitorr/monitorr/" target="_blank" title="Monitorr Docker Repo"> <img src="https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000" style="width:6rem;height:1rem;" alt="Monitorr Docker Repo"></a> | <a href="https://feathub.com/Monitorr/Monitorr" target="_blank" title="Monitorr Feature Request"> <img src="https://img.shields.io/badge/FeatHub-suggest-blue.svg" style="width:5rem;height:1rem;" alt="Monitorr Feature Request"></a> | <a href="https://discord.gg/j2XGCtH" target="_blank" title="Monitorr Discord Channel"> <img src="https://img.shields.io/discord/102860784329052160.svg" style="width:5rem;height:1rem;" alt="Monitorr on Discord" ></a> | <a href="https://paypal.me/monitorrapp" target="_blank" title="Buy us a beer!"> <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" style="width:4rem;height:1rem;" alt="PayPal" ></a> </td>
+                    </tr>
 
-              </tbody>
+                </tbody>
                     <tr>
                         <!-- <div id="blank"> . </div> -->
                     </tr>
             </table>
 
         </div>
-
-       
-
-         <!-- <div id ="phpContent"> </div> -->
 
         <div class="slide">
             <input class="expandtoggle" type="checkbox" name="slidebox"  checked>
@@ -565,16 +564,11 @@ class OneFileLoginApplication
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
-            <!-- <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a> -->
-
-            <!-- <div id="version_check_auto"></div> -->
-
         </div>
 
-</body>
+    </body>
 
 </html>
-
 <?php
 
 
@@ -604,7 +598,7 @@ class OneFileLoginApplication
 
                     echo "<div id='loginerror'>";
                         echo "<br>";
-                        echo "No user database detected.";  //CHANGE ME //
+                        echo "No user database detected.";
                         echo "<br><br>";
                      echo "<div>";
 
@@ -668,21 +662,6 @@ class OneFileLoginApplication
             echo 'Not Authorized';
         echo "</div>";
 
-        // echo '<h2>Registration</h2>';
-
-        // echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
-        // echo '<label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>';
-        // echo '<input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />';
-        // echo '<label for="login_input_email">User\'s email</label>';
-        // echo '<input id="login_input_email" type="email" name="user_email" required />';
-        // echo '<label for="login_input_password_new">Password (min. 6 characters)</label>';
-        // echo '<input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />';
-        // echo '<label for="login_input_password_repeat">Repeat password</label>';
-        // echo '<input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />';
-        // echo '<input type="submit" class="btn btn-primary" name="register" value="Register" />';
-        // echo '</form>';
-
-        // echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '">Homepage</a>';
     }
 }
 
@@ -690,7 +669,6 @@ class OneFileLoginApplication
 $application = new OneFileLoginApplication();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -700,22 +678,18 @@ $application = new OneFileLoginApplication();
     <title>Monitorr | Login</title>
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
     <link type="text/css" href="../css/main.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
 
     <style type="text/css">
 
         body { 
-            /* font: 14px sans-serif; */
             color: white;
+            background-color: #1F1F1F;
         }
 
         .navbar-brand { 
             cursor: default;
         }
-
-        /*  :root {
-                font-size: 16px !important;
-            } 
-        */
 
         .wrapper { 
             width: 30rem;
@@ -725,11 +699,18 @@ $application = new OneFileLoginApplication();
             padding: 1rem; 
         }
 
-
-
     </style>
 
     
 </head>
+<body>
+        <script>
+            document.body.className += ' fade-out';
+            $(function() { 
+                $('body').removeClass('fade-out'); 
+            });
+        </script>
+
+</body>
 
 </html>

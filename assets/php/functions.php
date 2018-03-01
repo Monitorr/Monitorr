@@ -1,6 +1,6 @@
 <?php
 
-include_once '../config.php';  //**REMOVE***
+// include_once '../config.php';  //**REMOVE***
 
 
     $str = file_get_contents('../data/site_settings-data.json');
@@ -206,17 +206,12 @@ function getHDFree()
 }
 
     // Dynamic icon colors for badges
-       // Manual values are set below until settings version is published
-
-
+ 
     $str = file_get_contents('../data/site_settings-data.json');
     $json = json_decode($str, true);
     $hdok = $json['hdok'];
     $hdwarn = $json['hdwarn'];
 
-
-    // $hdok = "75";  **  DELETE **
-    // $hdwarn = "95";  **  DELETE **
 
         if ($freeHD < $hdok) {
                 $hdClass = 'success';
@@ -249,9 +244,6 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded";
     $ramwarn = $json['ramwarn'];
 
 
-        // $ramok = $config['ramok']; //set in config.php  **  DELETE **
-        // $ramwarn = $config['ramwarn']; //set in config.php  **  DELETE **
-
 if ($ramPercent < $ramok) {
     $ramClass = 'success';
 } elseif (($ramPercent >= $ramok) && ($ramPercent < $ramwarn)) {
@@ -266,9 +258,6 @@ if ($ramPercent < $ramok) {
     $cpuok = $json['cpuok'];
     $cpuwarn = $json['cpuwarn'];
 
-
-        // $cpuok = $config['cpuok']; //set in config.php  **  DELETE **
-        // $cpuwarn = $config['cpuwarn']; //set in config.php  **  DELETE **
 
 if ($cpuPercent < $cpuok) {
     $cpuClass = 'success';
