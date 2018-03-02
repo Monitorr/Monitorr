@@ -15,14 +15,16 @@
 				"default": "../img/monitorr.png"
 			},
 			"type": {
-				"type": "radio",
-				"title": "Check Type:",
+				"type": "string",
 				"enum": [
 					" Standard",
 					" Ping Only"
 				],
+				"title": "Check Type:",
 				"default": " Standard",
-				"required": true
+				"required": true,
+				"pattern": {},
+				"properties": {}
 			},
 			"checkurl": {
 				"type": "string",

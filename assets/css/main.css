@@ -774,12 +774,30 @@ tbody {
 
 .dtg {
     color: #C8C8C8;
+    font-size: .9rem;
+    font-weight: 600;
+    margin: auto;
+    text-align: center;
+    cursor: default;
+}
+
+.date {
+    color: #C8C8C8;
     font-size: 1rem;
     font-weight: 400;
     margin: auto;
     text-align: center;
     cursor: default;
 }
+
+/* .timer {
+    color: #C8C8C8;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: auto;
+    text-align: center;
+    cursor: default;
+} */
 
 #line {
     cursor: default;
@@ -962,12 +980,16 @@ input:checked+.slider:before {
     }
 
     #dbmessage {
-        color: grey;
+        color: rgb(73, 73, 73);
         font-size: .5rem;
         font-weight: 600;
         cursor: default;
     }
 
+
+    #loginbtn {
+        padding-left: 1.5rem;
+    }
 
 
     /*     Registration       */

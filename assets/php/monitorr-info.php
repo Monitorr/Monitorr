@@ -466,12 +466,12 @@ class OneFileLoginApplication
 
     <body>
 
-        <!-- <script>
+        <script>
             document.body.className += ' fade-out';
             $(function() {
                 $('body').removeClass('fade-out');
             });
-        </script> -->
+        </script>
 
 
         <div id="centertext">
@@ -519,6 +519,18 @@ class OneFileLoginApplication
                                 $vnum_loc = "../../";
                                 echo realpath($vnum_loc), PHP_EOL;
                             ?>
+
+                            <strong>| User db path: </strong>
+
+                            <?php
+                               // $vnum_loc = "../../../../../data/";   <!-- CHANGE ME  -->
+                               // $current_file_name = basename('../../../../../data/users.db');  <!-- CHANGE ME  -->
+
+                                $vnum_loc = "../data";
+                                $current_file_name = basename('../../data/users.db');
+                                echo $vnum_loc. '/' . $current_file_name."\n";
+                            ?>
+
                         </td>
                     </tr>
 
@@ -613,15 +625,15 @@ class OneFileLoginApplication
                 else {
 
                     echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
-                        echo '<label for="login_input_username"> Username: </label> ';
+                        echo '<label for="login_input_username"> </label> ';
                             echo '<br>';
-                        echo '<input id="login_input_username" type="text" name="user_name" required /> ';
+                        echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
 
-                            echo '<br><br>';
-
-                        echo '<label for="login_input_password"> Password: </label> ';
                             echo '<br>';
-                        echo '<input id="login_input_password" type="password" name="user_password" required /> ';
+
+                        echo '<label for="login_input_password"> </label> ';
+                            echo '<br>';
+                        echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required /> ';
                             echo '<br><br>';
 
                         echo "<div id='loginerror'>";
@@ -632,12 +644,15 @@ class OneFileLoginApplication
 
                         echo "</div>";
 
-                        echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
+                        echo '<div id="loginbtn">';
+                            echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
+                        echo "</div>";
+
                     echo '</form>';
                         echo '<br><br>';
 
                     echo "<div id='dbmessage'>"; 
-                        echo "user db present"; 
+                        echo "user db detected"; 
                         echo "<br>"; 
                     echo "</div>";  
 

@@ -446,7 +446,7 @@ class OneFileLoginApplication
             | User Preferences
         </title>
 
-        <?php include ('../config.php'); ?>
+        <!-- <?php include ('../config.php'); ?> -->
         <!-- <?php include ('../php/check.php') ;?> -->
         <?php include ('gitinfo.php'); ?>
 
@@ -705,7 +705,7 @@ class OneFileLoginApplication
                                     "typeahead": {},
                                     "allowOptionalEmpty": false,
                                     "data": {},
-                                    "autocomplete": "false",
+                                    "autocomplete": false,
                                     "disallowEmptySpaces": true,
                                     "disallowOnlyEmptySpaces": false,
                                     "removeDefaultNone": true,
@@ -814,9 +814,6 @@ class OneFileLoginApplication
 
 </html>
 
-
-
-
 <?php
 
 
@@ -843,35 +840,32 @@ class OneFileLoginApplication
 
 
 
-        echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
-        echo '<label for="login_input_username"> Username: </label> ';
-         echo '<br>';
-        echo '<input id="login_input_username" type="text" name="user_name" required /> ';
+            echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+                echo '<label for="login_input_username"> </label> ';
+                    echo '<br>';
+                echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
 
-            echo '<br><br>';
+                    echo '<br>';
 
-        echo '<label for="login_input_password"> Password: </label> ';
-         echo '<br>';
-        echo '<input id="login_input_password" type="password" name="user_password" required /> ';
-            echo '<br><br>';
+                echo '<label for="login_input_password"> </label> ';
+                    echo '<br>';
+                echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required /> ';
+                    echo '<br><br>';
 
-        echo "<div id='loginerror'>";
+                echo "<div id='loginerror'>";
 
-        if ($this->feedback) {
-            echo $this->feedback . "<br/> <br/>";  // Failed login notification //
-        }
+                    if ($this->feedback) {
+                        echo $this->feedback . "<br/> <br/>";  // Failed login notification //
+                    }
 
-        echo "</div>";
+                echo "</div>";
 
-        echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
-        echo '</form>';
+                echo '<div id="loginbtn">';
+                    echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
+                echo "</div>";
 
-        // echo ' un: username / pw: password';
-         echo '<br><br>';
-
-        //echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=register">Register new account</a>';
-
-        echo '</div>';
+            echo '</form>';
+                echo '<br><br>';
         
     }
 
@@ -890,21 +884,6 @@ class OneFileLoginApplication
             echo 'Not Authorized';
         echo "</div>";
         
-        // echo '<h2>Registration</h2>';
-
-        // echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
-        // echo '<label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>';
-        // echo '<input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />';
-        // echo '<label for="login_input_email">User\'s email</label>';
-        // echo '<input id="login_input_email" type="email" name="user_email" required />';
-        // echo '<label for="login_input_password_new">Password (min. 6 characters)</label>';
-        // echo '<input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />';
-        // echo '<label for="login_input_password_repeat">Repeat password</label>';
-        // echo '<input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />';
-        // echo '<input type="submit" class="btn btn-primary" name="register" value="Register" />';
-        // echo '</form>';
-
-        // echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '">Homepage</a>';
     }
 }
 
@@ -923,6 +902,7 @@ $application = new OneFileLoginApplication();
     <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
     <link type="text/css" href="../css/main.css" rel="stylesheet">
+    <!-- <script src="../js/jquery.min.js"></script> -->
 
     <style type="text/css">
 
