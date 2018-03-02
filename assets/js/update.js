@@ -52,7 +52,7 @@ $(document).ready(function(){
 			   }else{
 				    // user has the latest version already installed
 					$('#version_check').html("");
-					$('#version_check').html('<strong> <font color="yellow">  You have the latest version. </font></strong>');
+					$('#version_check').html('<strong> <font color="yellow">  You have the latest version </font></strong>');
 				   	// setTimeout(location.reload.bind(location), 5000);   
 			   }
 		   },

@@ -466,12 +466,12 @@ class OneFileLoginApplication
 
     <body>
 
-        <script>
+        <!-- <script>
             document.body.className += ' fade-out';
             $(function() {
                 $('body').removeClass('fade-out');
             });
-        </script>
+        </script> -->
 
 
         <div id="centertext">
@@ -525,7 +525,7 @@ class OneFileLoginApplication
                     <tr>
                         <td><strong>Tools:</strong></td>
                         <td>
-                            <a href="../../index.min.php" class="toolslink" target="_blank" title="Monitorr min page"> Monitorr min page |</a>
+                            <a href="../../index.min.php" class="toolslink" target="_blank" title="Monitorr Minimal"> Monitorr Minimal |</a>
                             <a href="../data/_installation/_register.php" class="toolslink" target="_blank" title="Monitorr Registration"> Registration |</a>
                             <a href="checkmanual.php" target="_blank" class="toolslink" title="Curl check tool"> Curl manual check |</a>
                             <a href="checkping.php" target="_blank" class="toolslink" title="Ping check tool"> Ping manual check  </a>
@@ -612,11 +612,6 @@ class OneFileLoginApplication
 
                 else {
 
-                    echo "<div id='loginmessage'>"; //CHANGE ME - REMOVE WHEN DONE TESTING //
-                        echo "user db present"; //CHANGE ME - REMOVE WHEN DONE TESTING //
-                        echo "<br>"; //CHANGE ME - REMOVE WHEN DONE TESTING //
-                    echo "</div>";   //CHANGE ME - REMOVE WHEN DONE TESTING //
-
                     echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
                         echo '<label for="login_input_username"> Username: </label> ';
                             echo '<br>';
@@ -640,6 +635,11 @@ class OneFileLoginApplication
                         echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
                     echo '</form>';
                         echo '<br><br>';
+
+                    echo "<div id='dbmessage'>"; 
+                        echo "user db present"; 
+                        echo "<br>"; 
+                    echo "</div>";  
 
                 } 
 
