@@ -944,7 +944,7 @@ input:checked+.slider:before {
 
     .wrapperregistration {
         width: 75%;
-        margin-top: 5rem;
+        margin-top: 2rem;
         margin-left: auto;
         margin-right: auto;
         padding: 1rem;
@@ -971,6 +971,13 @@ input:checked+.slider:before {
         cursor: default;
     }
 
+    .loginmessage {
+        color: yellow;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: default;
+    }
+
 
     #loginsuccess {
         color: green;
@@ -979,9 +986,31 @@ input:checked+.slider:before {
         cursor: default;
     }
 
+    .loginsuccess {
+        color: green;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: default;
+    }
+
+
     #dbmessage {
         color: rgb(73, 73, 73);
-        font-size: .5rem;
+        font-size: 1rem; /* //change ME */
+        font-weight: 600;
+        cursor: default;
+    }
+
+    .dbmessagesuccess {
+        color: green;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: default;
+    }
+
+    #dbmessagesuccess {
+        color: green;
+        font-size: 1rem;
         font-weight: 600;
         cursor: default;
     }
@@ -999,6 +1028,11 @@ input:checked+.slider:before {
         cursor: default;
         margin-bottom: 2rem !important;
     }
+
+        #datdirnotes {
+            font-size: 1rem;
+            cursor: default;
+        }
 
 
 /********************* SETTINGS  **************** */

@@ -22,7 +22,7 @@ class OneFileLoginApplication
     /**
      * @var string Path of the database file (create this with _install.php)
      */
-    private $db_sqlite_path = "../users.db";
+    private $db_sqlite_path = "../users.db"; 
 
     /**
      * @var object Database connection
@@ -77,9 +77,8 @@ class OneFileLoginApplication
     public function runApplication()
     {
 
-
-            $this->doRegistration();
-            $this->showPageRegistration();
+        $this->doRegistration();
+        $this->showPageRegistration();
 
     }
 
@@ -376,7 +375,11 @@ class OneFileLoginApplication
 
     {
 
-        function createdb() {
+           // CHANGE ME ** PRIORITY **
+      //Need to convert below code to a FUNCTION, then fire it somehow AFTER .json file have been copied. 
+      //Right now, the users.db file is created onload of registration.php … so unable to pass the user defined data to the script, because it hasn’t been created yet???
+      
+     // function createdb() {    
         
             error_reporting(E_ALL);
 
@@ -399,23 +402,25 @@ class OneFileLoginApplication
                     ';
 
                 // execute the above query
-                $query = $db_connection->prepare($sql);
-                $query->execute();
+            $query = $db_connection->prepare($sql);
+            $query->execute();
 
-        }
+        //}
 
-        // check for success:
+        //check for success:
 
 
-            // if (!file_exists($db_sqlite_path)) {
-            //     echo "<div id='loginerror'>";
-            //         echo "<br><br>";
-            //         echo "Database $db_sqlite_path was not created, installation was NOT successful. Missing folder write rights ?";
-            //     echo "</div>";
-            // } 
+            if (!file_exists($this->db_sqlite_path)) {
+                echo "<div id='loginerror'>";
+                    echo "<br><br>";
+                    echo "Database $this->db_sqlite_path was not created, installation was NOT successful. Missing folder write rights ?";
+                echo "</div>";
+            }  
             
             
-           // else {
+            //if db file created, show user registration form:
+
+        else {
 
                 echo '<div class="wrapperregistration">';
                     echo '<div class="navbar-brand">';
@@ -424,156 +429,51 @@ class OneFileLoginApplication
                     echo '<br><br>';
                 
                     echo '<div id="loginmessage">';
-                         echo 'Create user database:';
+                         echo 'Create data directory & user database:';
                      echo '</div>';
 
+              
+                    echo "<br>";
+
+                    echo '<div id="dbmessage">';  // CHANGE ME // remove when dev complete
+                        Echo "Current working directiory: "; // CHANGE ME // remove when dev complete
+                            echo "<br>"; // CHANGE ME // remove when dev complete
+                            // current directory
+                        echo getcwd() . "\n"; // CHANGE ME // remove when dev complete
+                 
+                     echo '</div>';
+
+
     ?>
+
+            <!-- Load Form to create data directory and copy default json files to users's defined path -->
+
                 <!DOCTYPE html>
                 <html lang="en">
 
-                <head>
+                    <head>
 
-                    <meta charset="UTF-8">
-                    <!-- <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" /> -->
-                    <!-- <link type="text/css" href="../css/main.css" rel="stylesheet"> -->
-                    <!-- <script src="../js/jquery.min.js"></script> -->
-                    <script src="../../js/jquery.min.js"></script>
+                        <meta charset="UTF-8">
+                        <!-- <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" > -->
+                        <!-- <link type="text/css" href="../../css/main.css" rel="stylesheet"> -->
+                        <script src="../../js/jquery.min.js"></script>
 
-                    <!-- <style type="text/css">
-
-                        body { 
-                            color: white;
-                            background-color: #1F1F1F;
-                        }
-
-                        .navbar-brand { 
-                            cursor: default;
-                        }
-
-                        .wrapper { 
-                            width: 30rem;
-                            margin-top: 10%;
-                            margin-left: auto;
-                            margin-right: auto;
-                            padding: 1rem; 
-                        }
-
-                    </style> -->
-
-                    
-                </head>
+                       
+                    </head>
 
                     <body>
 
                         <script>
                             $(document).ready(function(){
 
-                                $('#userForm').submit(function(){
+                                $('#datadirbtn').click(function(){
                                 
                                     $('#response').html("<b>Loading response...</b>");
                                     
-                                    $.post({
-                                        url: './mkdirajax.php',
-                                        data: $(this).serialize(),
-                                        success: function(data){
-                                            alert("Directory Created successfully");
-                                            $('#response').html(data);
-                                        }
-                                    })
 
-                                    .fail(function() {
-                                        alert( "Posting failed." );
-                                    });
-
-                                    return false;
-                                });
-                            });
-
-                        </script>
-
-                            <br><br>
-
-                        <?php 
-                        
-                       // $dbfile = $this->db_sqlite_path;  //change me
-                        
-                       // echo  $dbfile; //change me
-                        
-                        ?>
-
-                        <form id='userForm'>
-                            Desired Data Directory:
-                                <br> <br>
-                            <div>
-                                <input type='text' name='datadir' placeholder='Data Dir Path' />
-                            </div>
-
-                                <br>
-
-                            <div>
-                                <input type='submit' class="btn btn-primary" value='Create' />
-                            </div>
-
-                        </form>
-
-                        <br>
-
-                        <?php
-
-                            Echo "Current working directiory: ";
-                                echo "<br>";
-                                // current directory
-                            echo getcwd() . "\n";
-
-                        ?>
-
-                            <br><br>
-
-                           
-                        <div id='response' class='dbmessagesuccess'></div>
-
-                    </body>
-
-                </html>
-
-                           
-                        <!--                               
-                            //  echo ' $(document).ready(function(){ ';
-
-                        //           echo ' $("#userForm").submit(function(){ ';
-                                    
-                        //              echo ' ("#response").html("<b>Loading response...</b>"); ';
-                                        
-                        //              echo ' $.post({ ';
-                        //                 echo '  url: ""../../php/mkdirajax.php", ';
-                        //                  echo ' data: $(this).serialize(), ';
-                        //                  echo '     success: function(data){ ';
-                        //                  echo '       alert("Directory Created successfully"); ';
-                        //                  echo '       $("#response").html(data); ';
-                        //                  echo '   } ';
-                        //             echo '    }) ';
-
-                        //            echo '  .fail(function() { ';
-                        //             echo '      alert( "Posting failed." ); ';
-                        //            echo '     }); ';
-
-                        //                 echo ' return false; ';
-                         //           echo ' }); ';
-                             
-                        
-                        //  echo ' }); '; -->
-
-                        
-<!--                          <script>
-
-                               // $(document).ready(function(){
-
-                                    $('#userForm').submit(function(){
-                                    
-                                        $('#response').html("<b>Loading response...</b>");
-                                        
+                                                          
                                         $.post({
-                                            url: 'mkdirajax.php',
+                                            url: './mkdirajax.php',
                                             data: $(this).serialize(),
                                             success: function(data){
                                                 alert("Directory Created successfully");
@@ -583,129 +483,173 @@ class OneFileLoginApplication
 
                                         .fail(function() {
                                             alert( "Posting failed." );
-                                        });
-
-                                        return false;
-                                    });
-                              //  });
+                                        }); 
+                                    
 
 
-                        </script> -->
+                                    var datadir = $("#datadir").val();
+                                    console.log('Submitted: '+ datadir);
+                                    var url ="mkdirajax.php";
 
-                        <?php
-
-                        //    echo ' <form id="userForm"> ';
-                        //       echo ' Desired Data Directory: ';
-                        //            echo ' <br> <br> ';
-                        //        echo ' <div> ';
-                        //             echo '<input type="text" name="datadir" placeholder="Data Dir Path" /> ';
-                        //        echo ' </div> ';
-
-                        //            echo ' <br> ';
-
-                        //         echo '<div> ';
-                        //            echo ' <input type="submit" class="btn btn-primary" value="Submit" /> ';
-                        //        echo ' </div> ';
-
-                        //    echo ' </form> ';
-
-                        //         Echo "Current working directiory: ";
-                        //             echo "<br>";
-
-                        //         echo getcwd() . "\n";
-
-                        //    echo ' <div id="response"></div> ';
+                                    $.post(url, { datadir: datadir }, function(data){
+                                        // alert("Directory Created successfully");
+                                        console.log('response: '+ data);
+                                        // alert('response: '+ data);
+                                        $('#response').html(data); 
+                                    })
+                                    .fail(function() {
+                                        alert( "Posting failed" );
+                                    });   
 
 
+                                    return false;
+                                });
+                            });
 
-                           //Create user:  ** CHANGE ME **
+                        </script>
 
-                    echo '<div id="loginsuccess">';
-                       // echo "Database $db_sqlite_path was created, installation was successful.";
-                        echo '<br><br>';
+                        <div id="dbwrapper">
+
+                            <form id='userForm'>
+
+                                <div id='dbdir' class='loginmessage'>
+                                    1.  Create data directory & copy default data json files to new data directory:
+                                </div>
+
+                                    <br>
+
+                                <div>
+                                    <input type='text' id="datadir" name='datadir' placeholder='Data Dir Path' />
+                                </div>
+                                
+                                <div id="datdirnotes">
+                                        <br>
+                                    + NOTE1: For security, this directory should NOT be within your webserver's root path.
+                                    <br>
+                                    + NOTE2: value must include trailing slash.
+                                        <br>
+                                    + NOTE3: Value must be an absolute path on the webserver's filesystem.
+                                        <br>
+                                    Good:  c:\datadir\, /var/datadir/
+                                    <br>
+                                    Bad: wwwroot\datadir, ../datadir
+                                        <br> <br>
+                                </div>
+
+                                <div>
+                                    <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
+                                </div>
+
+                            </form>
+
+                            <br>
+
+                        
+                            <div id='response' class='dbmessagesuccess'></div>
+
+                        </div>
+
+                    </body>
+
+                </html>
+
+        <?php
+
+                //Create user: 
+
+                echo '<div id="loginmessage">';
+                    echo "2.  Create user database file:";
+                    echo '<br><br>';
+                echo '</div>';
+
+                echo '<div id="loginsuccess">';
+                    echo " Database $db_sqlite_path was created, installation was successful.";
+                    echo '<br><br>';
+                echo '</div>';
+
+
+                echo '<div id="loginmessage">';
+                    echo '3.  Create new user:';
+                    echo '<br><br>';
+                echo '</div>';
+
+                echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
+
+                    echo '<table id="registrationtable">';
+                        echo '<thead> <div id="blank"> . </div> </thead>';
+                        echo '<tbody id="registrationform">';
+
+                            echo '<tr>';
+                                echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder="Username" required /> </td>';
+                                echo '<td><label for="login_input_username"><i> letters and numbers only, 2 to 64 characters </i></label></td>';
+                                
+                            echo '</tr>';
+
+                            echo '<tr>';
+                                echo "<td><i class='fa fa-fw fa-envelope'> </i> <input id='login_input_email' type='email' name='user_email' placeholder='User e-mail' /></td>";
+                                echo '<td><label for="login_input_email"> <i> Not required </i></label></td>';
+                            
+                            echo ' </tr>';
+
+                            echo ' <tr>';
+                                echo "<td><i class='fa fa-fw fa-key'> </i> <input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder='Password' /></td>";
+                                echo '<td><label for="login_input_password_new"> <i>Minimum 6 characters </i></label></td>';
+                            
+                            echo ' </tr>';
+
+                            echo ' <tr>';
+                                echo '<td><i class="fa fa-fw fa-key"> </i> <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder="Repeat password" /></td>';
+                                echo '<td><label for="login_input_password_repeat"> </label></td>';
+                                
+                            echo '</tr>';
+                            
+                        echo ' </tbody>';
+                        echo '<tr>';
+
+                        echo ' </tr>';
+                    echo ' </table>';
+
+                    echo ' <div id="loginsuccess">';
+
+                        // $this->feedback = "This user does not exist.";
+
+                        if ($this->feedbacksuccess) {
+                            echo $this->feedbacksuccess;
+                        };
+
                     echo '</div>';
 
+                    echo ' <div id="loginerror">';
 
-                     echo '<div id="loginmessage">';
-                         echo 'Create New User:';
-                         echo '<br><br>';
-                     echo '</div>';
+                        if ($this->feedbackerror) {
+                            echo $this->feedbackerror;
+                        };
 
-                    echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
+                    echo '</div>';
 
-                        echo '<table id="registrationtable">';
-                            echo '<thead> <div id="blank"> . </div> </thead>';
-                            echo '<tbody id="registrationform">';
+                    echo ' <input type="submit" class="btn btn-primary" name="register" value="Register" />';
 
-                                echo '<tr>';
-                                    echo '<td><input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder="Username" required /> </td>';
-                                    echo '<td><label for="login_input_username"><i> letters and numbers only, 2 to 64 characters </i></label></td>';
-                                    
-                                echo '</tr>';
+                echo '</form>';
 
-                                echo '<tr>';
-                                   echo "<td><input id='login_input_email' type='email' name='user_email' placeholder='User e-mail' /></td>";
-                                    echo '<td><label for="login_input_email"> <i> Not required </i></label></td>';
-                                
-                               echo ' </tr>';
+                    echo ' <div id="loginerror">';
+                        echo ' <b>NOTE:</b> <br> ';
+                        echo " It is NOT possible to change a user's credentials after creation. If you want to change or reset credentials, rename the file "; echo ($this->db_sqlite_path) ; echo " to 'users.old'. Once that file is renamed, browse to this page again to recreate desired credentials. ";
+                    echo ' </div>';
 
-                               echo ' <tr>';
-                                   echo " <td><input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder='Password' /></td>";
-                                   echo ' <td><label for="login_input_password_new"> <i>Minimum 6 characters </i></label></td>';
-                                
-                               echo ' </tr>';
+                    //echo '  </div>';  // CHANGE ME - Where is parent??
 
-                               echo ' <tr>';
-                                    echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder="Repeat password" /></td>';
-                                   echo ' <td><label for="login_input_password_repeat"> </label></td>';
-                                    
-                                echo '</tr>';
-                                
-                           echo ' </tbody>';
-                            echo '<tr>';
+                echo ' <div id="footer">';
+                    echo ' <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank">'; echo file_get_contents('../../js/version/version.txt'); echo '</a> </p>';
+                echo ' </div>';
 
-                           echo ' </tr>';
-                       echo ' </table>';
-
-                        echo ' <div id="loginsuccess"><strong>';
-                            if ($this->feedbacksuccess) {
-                                echo $this->feedbacksuccess . "<br/><br/>";
-                            }
-                        echo ' </strong></div>';
-
-                        echo ' <div id="loginerror"><strong>';
-                            if ($this->feedbackerror) {
-                                echo $this->feedbackerror . "<br/><br/>";
-                            }
-                        echo ' </strong></div>';
-
-                         echo ' <input type="submit" class="btn btn-primary" name="register" value="Register" />';
-
-                            echo '  <br><br>';
-
-                         echo ' <div id="loginerror">';
-                         echo ' <b>NOTE:</b> <br> ';
-                         echo " It is NOT possible to change a user's credentials after creation. If you want to change or reset credentials, rename the file '/monitorr/assets/data/users.db' to 'users.old'. Once that file is renamed, browse to this page again to recreate desired credentials. ";
-                         echo ' </div>';
-
-                    echo '</form>';
-
-                    // echo' <!-- <a href="' . $_SERVER['SCRIPT_NAME'] . '">Homepage</a> -->';
-
-                echo '  </div>';
-
-                 echo ' <div id="footer">';
-                   echo ' <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank">'; echo file_get_contents('../../js/version/version.txt'); echo '</a> </p>';
-                 echo ' </div>';
-
-
-           // }
+           } //show page registration
 
     }
-}
 
-// run the application
-$application = new OneFileLoginApplication();
+} //OneFileLoginApplication
+
+    // run the application:
+    $application = new OneFileLoginApplication();
 
 
 ?>
@@ -713,42 +657,38 @@ $application = new OneFileLoginApplication();
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
-    <title>Monitorr | Registration</title>
-    <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" />
-    <link type="text/css" href="../../css/main.css" rel="stylesheet">
-    <script src="../../js/jquery.min.js"></script>
+        <meta charset="UTF-8">
+        <title>Monitorr | Registration</title>
+        <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" />
+        <link type="text/css" href="../../css/main.css" rel="stylesheet">
+        <script src="../../js/jquery.min.js"></script>
 
-    <style type="text/css">
+        <style type="text/css">
 
-        body { 
-            color: white;
-            font-size: 18px
-        }
+            body { 
+                color: white;
+                font-size: 18px
+            }
 
-/*         :root {
-            font-size: 18px !important;
-        } */
+            .wrapper { 
+                /* width: 30rem; */
+                margin-top: 5%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 1rem; 
+            }
 
-        .wrapper { 
-            /* width: 30rem; */
-            margin-top: 5%;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 1rem; 
-        }
+            #loginerror {
 
-        #loginerror {
+                font-size: 1rem;
+                width: 75%;
+            }
 
-            font-size: 1rem;
-            width: 75%;
-        }
+        </style>
 
-    </style>
-
-    
-</head>
+        
+    </head>
 
 </html>

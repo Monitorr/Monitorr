@@ -82,6 +82,16 @@
 
         </style>
 
+<!--             <?php 
+                $str = file_get_contents('assets/data/user_preferences-data.json');
+                $json = json_decode($str, true);
+                $title = $json['sitetitle'];
+                echo $title . PHP_EOL;
+            ?> -->
+
+        <!-- <?php include ('assets/config.php'); ?> -->
+
+
         <!-- <?php include ('assets/php/check.php') ;?> -->  <!-- DELETE -->
         <?php include ('assets/php/gitinfo.php'); ?>
 
@@ -261,12 +271,47 @@
         </div>
 
 
+
+
+             <?php 
+
+                $str = file_get_contents('assets/config/datadir.json');
+                $json = json_decode( $str, true);
+
+                $datadir = $json['datadir'];
+
+                    echo "<br><br>";
+
+                echo "data dir: " . $datadir;
+
+                    echo "<br><br>";
+
+                $datafile = $datadir . 'user_preferences-data.json';
+
+                echo "data file: " . $datafile . ': ' . filesize($datafile) . ' bytes';
+
+                    echo "<br>";
+
+                $str2 = file_get_contents($datafile);
+                $json = json_decode( $str2, true);
+                $title = $json['sitetitle'];
+
+                     echo "<br>";
+
+                echo "Data file value: Site Title: " . $title;
+                
+            ?>
+
+
+
         <div id="footer">
 
             <a href="settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a>
             <br><br>
 
-            <!-- <script src="assets/js/update.js" async></script> -->
+
+
+<!-- <script src="assets/js/update.js" async></script> -->
             <script src="assets/js/update_auto.js" async></script>
         
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>

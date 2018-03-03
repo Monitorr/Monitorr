@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Class OneFileLoginApplication
  *
@@ -11,7 +12,6 @@
  * @link https://github.com/panique/php-login-one-file/
  * @license http://opensource.org/licenses/MIT MIT License
  */
-
 class OneFileLoginApplication
 {
     /**
@@ -22,7 +22,7 @@ class OneFileLoginApplication
     /**
      * @var string Path of the database file (create this with _install.php)
      */
-    private $db_sqlite_path = "../config/users.db"; 
+    private $db_sqlite_path = "../users.db";
 
     /**
      * @var object Database connection
@@ -164,7 +164,7 @@ class OneFileLoginApplication
         session_destroy();
         $this->user_is_logged_in = false;
         $this->feedback = "You were just logged out.";
-        header("location: ../../settings.php");
+        header("location: ../../../settings.php");
     }
 
     /**
@@ -231,10 +231,10 @@ class OneFileLoginApplication
                 $this->user_is_logged_in = true;
                 return true;
             } else {
-                $this->feedback = "Invalid password";
+                $this->feedback = "Wrong password.";
             }
         } else {
-            $this->feedback = "User does not exist";
+            $this->feedback = "This user does not exist.";
         }
         // default return
         return false;
@@ -359,227 +359,9 @@ class OneFileLoginApplication
             echo $this->feedback . "<br/><br/>";
         }
 
-       
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <meta charset="utf-8">
-        <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
-        <link type="text/css" href="../css/main.css" rel="stylesheet">
-
-        <meta name="theme-color" content="#464646" />
-        <meta name="theme_color" content="#464646" />
-
-        <script type="text/javascript" src="../js/jquery.min.js"></script>
-        <script type="text/javascript" src="../js/pace.js" async></script>
-        <!-- <script type="text/javascript" src="../js/bootstrap.min.js"></script> -->
-
-            <style>
-
-                body {
-                    margin: 2vw !important;
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                    background-color: #1F1F1F;
-                    /* color: white !important; */
-                }
-
-                legend {
-                    color: white;
-                    }
-
-                body::-webkit-scrollbar {
-                    width: 10px;
-                    background-color: #252525;
-                }
-
-                body::-webkit-scrollbar-track {
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    border-radius: 10px;
-                    background-color: #252525;
-                }
-
-                body::-webkit-scrollbar-thumb {
-                    border-radius: 10px;
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    background-color: #8E8B8B;
-                }
-
-                body.offline #link-bar {
-                    display: none;
-                }
-
-                body.online #link-bar {
-                    display: block;
-                }
-
-                .auto-style1 {
-                    text-align: center;
-                }
-                
-                #centertext {
-                    padding-bottom: 2rem !important;
-                }
-
-
-                #includedContent {
-                    float: right;
-                    width: 95% !important;
-                }
-
-                tbody {
-                    cursor: default !important;
-                }
-
-                .links {
-                    color: yellow !important;
-                    font-size: 1rem !important;
-                    font-weight: 500 !important;
-                }
-
-                select, input {
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    appearance: none;
-                }
-
-            </style>
-
-        <title>
-            <?php
-                $str = file_get_contents('../data/user_preferences-data.json');
-                $json = json_decode($str, true);
-                $title = $json['sitetitle'];
-                echo $title . PHP_EOL;
-            ?>
-            | Info
-        </title>
-
-        <?php include ('gitinfo.php'); ?>
-
-    </head>
-
-    <body>
-
-        <script>
-            document.body.className += ' fade-out';
-            $(function() {
-                $('body').removeClass('fade-out');
-            });
-        </script>
-
-
-        <div id="centertext">
-            <div class="navbar-brand">
-                Information
-            </div>
-        </div>
-
-
-        <div id="infodata">
-          <!-- <p> test table </p> -->
-            <table class="table">
-                <thead> <div id="blank"> . </div> </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Monitorr Installed Version:</strong></td>
-                        <td><?php echo file_get_contents( "../js/version/version.txt" );?> <p id="version_check_auto"></p> </td>
-                        <td><strong>OS / Version:</strong></td>
-                        <td><?php echo php_uname(); ?></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Monitorr Latest Version:</strong></td>
-                        <td><a href="https://github.com/monitorr/monitorr/releases" target="_blank" title="Monitorr Releases">
-                                <img src="https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat" label="Monitorr Release" alt="Monitorr Release" style="width:6rem;height:1.1rem;" >
-                            </a>
-                        </td>
-                        <td><strong>PHP Version:</strong></td>
-                        <td><?php echo phpversion('tidy'); ?></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Check & Execute Update:</strong></td>
-                        <td><a id="version_check" class="btn" style="cursor: pointer" title="Execute Update">Check for Update</a> |  Update branch selected:             
-                            <strong>
-                            <?php
-                                $str = file_get_contents('../data/user_preferences-data.json');
-                                $json = json_decode($str, true);
-                                $updateBranch = $json['updateBranch'];
-                                echo '| ' . $updateBranch . ' |' . PHP_EOL;  
-                            ?>
-                            </strong>
-                        </td>
-                        <td><strong>Install Path: </strong></td>
-                        <td>
-                            <?php
-                                $vnum_loc = "../../";
-                                echo realpath($vnum_loc), PHP_EOL;
-                            ?>
-
-                            <strong>| User db path: </strong>
-
-                            <?php
-                                echo $this->db_sqlite_path
-                            ?>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Tools:</strong></td>
-                        <td>
-                            <a href="../../index.min.php" class="toolslink" target="_blank" title="Monitorr Minimal"> Monitorr Minimal |</a>
-                            <a href="../config/_installation/_register.php" class="toolslink" title="Monitorr Registration"> Registration |</a>
-                            <a href="checkmanual.php" target="_blank" class="toolslink" title="Curl check tool"> Curl manual check |</a>
-                            <a href="checkping.php" target="_blank" class="toolslink" title="Ping check tool"> Ping manual check  </a>
-                        </td> 
-
-                        <td><strong>Resources:</strong></td>
-                        <td><a href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr GitHub Repo"> <img src="https://img.shields.io/badge/GitHub-repo-green.svg" style="width:4rem;height:1rem;" alt="Monitorr GitHub Repo"></a> | <a href="https://hub.docker.com/r/monitorr/monitorr/" target="_blank" title="Monitorr Docker Repo"> <img src="https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000" style="width:6rem;height:1rem;" alt="Monitorr Docker Repo"></a> | <a href="https://feathub.com/Monitorr/Monitorr" target="_blank" title="Monitorr Feature Request"> <img src="https://img.shields.io/badge/FeatHub-suggest-blue.svg" style="width:5rem;height:1rem;" alt="Monitorr Feature Request"></a> | <a href="https://discord.gg/j2XGCtH" target="_blank" title="Monitorr Discord Channel"> <img src="https://img.shields.io/discord/102860784329052160.svg" style="width:5rem;height:1rem;" alt="Monitorr on Discord" ></a> | <a href="https://paypal.me/monitorrapp" target="_blank" title="Buy us a beer!"> <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" style="width:4rem;height:1rem;" alt="PayPal" ></a> </td>
-                    </tr>
-
-                </tbody>
-                    <tr>
-                        <!-- <div id="blank"> . </div> -->
-                    </tr>
-            </table>
-
-        </div>
-
-        <div class="slide">
-            <input class="expandtoggle" type="checkbox" name="slidebox"  checked>
-            <!-- <label for="php" ></label> -->
-                <div id="expand" class="expand">
-
-                     <div id ="phpContent"> </div>
-
-                </div>
-            </input>
-        </div>
-
-
-        <script>document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'</script>
-
-            <script src="../js/update.js" async></script>
-            <script src="../js/update_auto-settings.js" async></script>
-
-        <div id="footer">
-
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
-
-        </div>
-
-    </body>
-
-</html>
-<?php
-
-
-        //echo 'Hello ' . $_SESSION['user_name'] . ', you are logged in.<br/><br/>';
-       // echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=logout">Log out</a>';
+        //  header("location: assets/php/info.php");
+        echo 'Hello ' . $_SESSION['user_name'] . ', you are logged in.<br/><br/>';
+       echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=logout">Log out</a>';
     }
 
     /**
@@ -589,83 +371,48 @@ class OneFileLoginApplication
      */
     private function showPageLoginForm()
     {
-
+        // if ($this->feedback) {
+        //     echo $this->feedback . "<br/><br/>";
+        // }
         
         echo '<div class="wrapper">';
-                echo '<div class="navbar-brand">';
-                    echo 'Monitorr | Login';
-                echo '</div>';
-                echo '<br><br>';
+            echo '<div class="navbar-brand">';
+                echo 'Monitorr | Login';
+            echo '</div>';
+        echo '<br><br>';
 
 
-            //$file = '../data/users.db';  //Check if user database is present if not output error below:
-            $dbfile = $this->db_sqlite_path;
 
+        echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+        echo '<label for="login_input_username"> Username: </label> ';
+         echo '<br>';
+        echo '<input id="login_input_username" type="text" name="user_name" required /> ';
 
-                if(!is_file($dbfile)){
+            echo '<br><br>';
 
-                    echo "<div id='loginerror'>";
-                        echo "<br>";
-                        echo "No user database detected.";
-                        echo "<br><br>";
-                     echo "<div>";
+        echo '<label for="login_input_password"> Password: </label> ';
+         echo '<br>';
+        echo '<input id="login_input_password" type="password" name="user_password" required /> ';
+            echo '<br><br>';
 
-                    echo "<div id='loginmessage'>";
+        echo "<div id='loginerror'>";
 
-                        echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
+        if ($this->feedback) {
+            echo $this->feedback . "<br/> <br/>";  // Failed login notification //
+        }
 
-                    echo "</div>";
-                    
-                } 
+        echo "</div>";
 
-                else {
+        echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
+        echo '</form>';
 
-                    echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
-                        echo '<label for="login_input_username"> </label> ';
-                            echo '<br>';
-                        echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
+        
+         echo '<br><br>';
 
-                            echo '<br>';
-
-                        echo '<label for="login_input_password"> </label> ';
-                            echo '<br>';
-                        echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required /> ';
-                            echo '<br><br>';
-
-                        echo "<div id='loginerror'>";
-
-                            if ($this->feedback) {
-                                echo $this->feedback . "<br/> <br/>";  // Failed login notification //
-                            }
-
-                        echo "</div>";
-
-                        echo '<div id="loginbtn">';
-                            echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
-                        echo "</div>";
-
-                    echo '</form>';
-                        echo '<br><br>';
-
-                    // echo "<div id='dbmessage'>"; 
-                    //     echo "user db detected:"; 
-                    //     echo "<br>";
-                    //     echo  $file;
-                    //     echo "<br>"; 
-                    // echo "</div>";  
-
-                    echo "<div id='dbmessage'>"; 
-                        echo "user db detected:"; 
-                        echo "<br>";
-                        echo  $dbfile;
-                        //echo  $db_sqlite_path;
-                        echo "<br>"; 
-                    echo "</div>"; 
-
-                } 
+        echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=register">Register new account</a>';
 
         echo '</div>';
-        
+
     }
 
     /**
@@ -679,59 +426,65 @@ class OneFileLoginApplication
             echo $this->feedback . "<br/><br/>";
         }
 
-        echo "<div id='loginerror'>";
-            echo 'Not Authorized';
-        echo "</div>";
+        echo '<h2>Registration</h2>';
 
+        echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
+        echo '<label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>';
+        echo '<input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />';
+        echo '<label for="login_input_email">User\'s email</label>';
+        echo '<input id="login_input_email" type="email" name="user_email" required />';
+        echo '<label for="login_input_password_new">Password (min. 6 characters)</label>';
+        echo '<input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />';
+        echo '<label for="login_input_password_repeat">Repeat password</label>';
+        echo '<input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />';
+        echo '<input type="submit" class="btn btn-primary" name="register" value="Register" />';
+        echo '</form>';
+
+        echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '">Homepage</a>';
     }
 }
 
 // run the application
 $application = new OneFileLoginApplication();
 
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="UTF-8">
-        <title>Monitorr | Login</title>
-        <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
-        <link type="text/css" href="../css/main.css" rel="stylesheet">
-        <script src="../js/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Monitorr | Login</title>
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
+    <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="../../css/main.css" rel="stylesheet">
 
-        <style type="text/css">
+    <style type="text/css">
 
-            body { 
-                color: white;
-                background-color: #1F1F1F;
-            }
+        body { 
+            /* font: 14px sans-serif; */
+            color: white;
+        }
 
-            .navbar-brand { 
-                cursor: default;
-            }
+        :root {
+            font-size: 18px !important;
+        }
 
-            .wrapper { 
-                width: 30rem;
-                margin-top: 10%;
-                margin-left: auto;
-                margin-right: auto;
-                padding: 1rem; 
-            }
+        .wrapper { 
+            width: 30rem;
+            margin-top: 10%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem; 
+        }
 
-        </style>
+    </style>
 
-        
-    </head>
-    <body>
-            <script>
-                document.body.className += ' fade-out';
-                $(function() { 
-                    $('body').removeClass('fade-out'); 
-                });
-            </script>
-
-    </body>
+    <!-- <script src="assets/js/jquery.min.js"></script> -->
+    
+</head>
 
 </html>
+
