@@ -1,0 +1,43 @@
+{
+	"type": "array",
+	"items": {
+		"type": "object",
+		"properties": {
+			"serviceTitle": {
+				"type": "string",
+				"title": "Service Title",
+				"default": "Service Title"
+			},
+			"image": {
+				"type": "string",
+				"title": "Service Image",
+				"format": "uri",
+				"default": "../img/monitorr.png"
+			},
+			"type": {
+				"type": "string",
+				"enum": [
+					" Standard",
+					" Ping Only"
+				],
+				"title": "Check Type:",
+				"default": " Standard",
+				"required": true,
+				"pattern": {},
+				"properties": {}
+			},
+			"checkurl": {
+				"type": "string",
+				"title": "Check URL",
+				"format": "uri",
+				"default": "http://localhost:80"
+			},
+			"linkurl": {
+				"type": "string",
+				"title": "Link URL",
+				"format": "uri",
+				"default": "http://localhost:80"
+			}
+		}
+	}
+}
