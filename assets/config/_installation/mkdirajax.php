@@ -1,30 +1,22 @@
 <?php
+        echo '<div class="reglog">';
+            echo '<div id="loginmessage">';
 
-    echo '<div id="loginmessage">';
-        print_r('Form submitted:  create data directory: ');
-        var_dump($_POST['datadir']);
-        echo "<br>";
-        print_r('Server received: create data directory:  ');
-        var_dump($_POST['datadir']);
-        echo "<br>";
-        print_r('Server attempting to create data directory:  ');
-        var_dump($_POST['datadir']);
+                    echo '<br>';
+            
+                print_r('Form submitted:  create data directory: ');
+                var_dump($_POST['datadir']);
+                echo "<br>";
+                print_r('Server received: create data directory:  ');
+                var_dump($_POST['datadir']);
+                echo "<br>";
+                print_r('Server attempting to create data directory:  ');
+                var_dump($_POST['datadir']);
 
-    echo '</div>';
+            echo '</div>';
+        echo '</div>';
 
     $post_data = $_POST['datadir'];
-
-
-        $filename ='../datadir.txt';
-        $handle = fopen($filename, "w");      
-    if (empty($post_data)) {   
-        fwrite($handle, ' AJAX data not recieved datadir is:  '. $post_data);  
-    }
-    if (!empty($post_data)) {
-        fwrite($handle, ' AJAX received create data directory.The value of ["datadir"] is:   ');
-        fwrite($handle, $post_data);
-    }
-        fclose($handle);
 
 
     $fp = fopen('../datadir.json', 'w');
@@ -49,19 +41,23 @@
     // to mkdir() must be specified.
 
     if (!mkdir($structure, 0777, true)) {
-        echo "<br>";
-        echo '<div id="loginerror">';
-            die("Failed to create directory: $structure");
-            echo "Failed to create directory: $structure";
+        echo '<div class="reglog">';
+            echo "<br>";
+            echo '<div id="loginerror">';
+                die("Failed to create directory: $structure");
+                echo "Failed to create directory: $structure";
+            echo '</div>';
         echo '</div>';
     }
 
     else  {
         
-        echo '<div id="dbmessagesuccess">';
-            echo "<br>";
-            echo "Directory created successfully:";
-        echo '<div>';
+        echo '<div class="reglog">';
+            echo '<div id="dbmessagesuccess">';
+                echo "<br>";
+                echo "Directory created successfully:";
+            echo '<div>';
+         echo '<div>';
 
         $vnum_loc = "$structure";
         echo realpath($vnum_loc), PHP_EOL;
@@ -77,24 +73,26 @@
                     echo "<br> <br>";
             echo '<div>';
 
-        //$file = 'default/services_settings-data_default.json';
         $file1 = 'default/services_settings-data_default.json';
-        //$newfile1 = '../services_settings-data.json';
         $newfile1 = $structure . 'services_settings-data.json';
 
         
 
             if (!copy($file1, $newfile1)) {
-                echo '<div id="loginerror">';
-                    echo "failed to copy $file1...\n";
+                echo '<div class="reglog">';
+                    echo '<div id="loginerror">';
+                        echo "failed to copy $file1...\n";
+                    echo '</div">';
                 echo '</div">';
             }
 
             else {
-                 echo '<div id="dbmessagesuccess">';
-                    echo "default data files succesfully copied to user data dir:";
-                        echo "<br>";
-                    echo realpath($newfile1);
+                echo '<div class="reglog">';
+                    echo '<div id="dbmessagesuccess">';
+                        echo "Default data file succesfully copied to user data dir:";
+                            echo "<br>";
+                        echo realpath($newfile1);
+                    echo '</div>';
                 echo '</div>';
             }
 
@@ -104,16 +102,20 @@
 
 
             if (!copy($file2, $newfile2)) {
-                echo '<div id="loginerror">';
-                    echo "failed to copy $file2...\n";
+                echo '<div class="reglog">';
+                    echo '<div id="loginerror">';
+                        echo "failed to copy $file2...\n";
+                    echo '</div">';
                 echo '</div">';
             }
 
             else {
-                 echo '<div id="dbmessagesuccess">';
-                    echo "default data files succesfully copied to user data dir:";
-                        echo "<br>";
-                    echo realpath($newfile2);
+                echo '<div class="reglog">';
+                    echo '<div id="dbmessagesuccess">';
+                        echo "Default data file succesfully copied to user data dir:";
+                            echo "<br>";
+                        echo realpath($newfile2);
+                    echo '</div>';
                 echo '</div>';
             }
 
@@ -123,38 +125,117 @@
 
 
             if (!copy($file3, $newfile3)) {
-                echo '<div id="loginerror">';
-                    echo "failed to copy $file3...\n";
-                echo '</div">';
+
+                 echo '<div class="reglog">';
+                    echo '<div id="loginerror">';
+                        echo "failed to copy $file3...\n";
+                    echo '</div">';
+                 echo '</div>';
             }
 
             else {
-                 echo '<div id="dbmessagesuccess">';
-                    echo "default data files succesfully copied to user data dir:";
+
+
+                echo '<div class="reglog">';
+
+                    echo '<div id="dbmessagesuccess">';
+                        echo "Default data file succesfully copied to user data dir:";
+                            echo "<br>";
+                        echo realpath($newfile3);
+                    echo '</div>';
                         echo "<br>";
-                    echo realpath($newfile3);
-                echo '</div>';
-                    echo "<br>";
+                        
+                    echo '<div id="dbmessagesuccess">';
+                        echo "All default data files succesfully copied to user data dir.";
+                    echo '</div>';
                     
-                echo '<div id="dbmessagesuccess">';
-                    echo "All default data files succesfully copied to user data dir.";
+                echo '</div>';  
+
+
+                echo '<div id="loginmessage">';
+                    echo "Creating user database file:";
+                        echo "<br>";
+                    echo "$structure users.db";
                 echo '</div>';
-                
-                echo '<div id="loginmessage">';    
-                    echo "<br>";
-                    echo "You can now create a user database file:";
-                echo '</div>';   
-
-            }
 
 
+                 // Create users.db:
+
+                    // config
+                $db_type = "sqlite";
+
+                $db_sqlite_path = $structure . 'users.db';
+
+                    // create new database file / connection (the file will be automatically created the first time a connection is made up)
+                $db_connection = new PDO($db_type . ':' . $db_sqlite_path);
+
+                    // create new empty table inside the database (if table does not already exist)
+                $sql = 'CREATE TABLE IF NOT EXISTS `users` (
+                        `user_id` INTEGER PRIMARY KEY,
+                        `user_name` varchar(64),
+                        `user_password_hash` varchar(255),
+                        `user_email` varchar(64));
+                        CREATE UNIQUE INDEX `user_name_UNIQUE` ON `users` (`user_name` ASC);
+                        CREATE UNIQUE INDEX `user_email_UNIQUE` ON `users` (`user_email` ASC);
+                        ';
+
+                    // execute the above query
+
+                $query = $db_connection->prepare($sql);
+                $query->execute();
+
+                echo '<div class="reglog">';
+
+                    echo '<div id="dbmessagesuccess">';
+                        echo "User database creation complete:";
+                            echo "<br>";
+                        echo realpath($db_sqlite_path);
+                    echo '</div>';
+                        echo "<br>";
+                    
+                echo '</div>';  
 
 
+                echo '<div id="loginmessage">';
+                    echo "Monitorr data directory creation complete. You can now create a user.";
+                echo '</div>';
+
+                        echo "<br>";
+
+                    if (!execute($query)) {
+
+                        echo '<div class="reglog">';
+                            echo '<div id="loginerror">';
+                                echo "failed to create user database";
+                            echo '</div">';
+                        echo '</div>';
+                    }
+
+                    else {
+
+                        echo '<div class="reglog">';
+
+                            echo '<div id="dbmessagesuccess">';
+                                echo "default data files succesfully copied to user data dir:";
+                                    echo "<br>";
+                                echo realpath($db_sqlite_path);
+                            echo '</div>';
+                                echo "<br>";
+                                
+                            echo '<div id="dbmessagesuccess">';
+                                echo "Data directory creation complete. You can now create a user.";
+                            echo '</div>';
+                            
+                        echo '</div>';  
+
+                    }
+
+           }
 
 
     }
 
-    echo "<br> <br>";
+    echo "<br>";
 
     // ...
 

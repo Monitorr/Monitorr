@@ -82,18 +82,11 @@
 
         </style>
 
-<!--             <?php 
-                $str = file_get_contents('assets/data/user_preferences-data.json');
-                $json = json_decode($str, true);
-                $title = $json['sitetitle'];
-                echo $title . PHP_EOL;
-            ?> -->
 
         <!-- <?php include ('assets/config.php'); ?> -->
 
 
-        <!-- <?php include ('assets/php/check.php') ;?> -->  <!-- DELETE -->
-        <?php include ('assets/php/gitinfo.php'); ?>
+            <?php include ('assets/php/gitinfo.php'); ?>
 
         <title>
             <?php 
@@ -303,15 +296,12 @@
             ?>
 
 
-
         <div id="footer">
 
             <a href="settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a>
             <br><br>
 
 
-
-<!-- <script src="assets/js/update.js" async></script> -->
             <script src="assets/js/update_auto.js" async></script>
         
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>

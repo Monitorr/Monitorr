@@ -12,26 +12,17 @@
  * @link https://github.com/panique/php-login-one-file/
  * @license http://opensource.org/licenses/MIT MIT License
  */
-
-     /**
-     * @var string define data directory path //
-     */
-
-
 class OneFileLoginApplication
 {
-
     /**
      * @var string Type of used database (currently only SQLite, but feel free to expand this with mysql etc)
      */
     private $db_type = "sqlite"; //
 
     /**
-     * @var string define data directory path //
+     * @var string Path of the database file (create this with _install.php)
      */
-
-       // private $db_sqlite_path = "../data/users.db"; 
-
+    private $db_sqlite_path = "../users.db";
 
     /**
      * @var object Database connection
@@ -52,27 +43,8 @@ class OneFileLoginApplication
     /**
      * Does necessary checks for PHP version and PHP password compatibility library and runs the application
      */
-
-
     public function __construct()
     {
-
-            $str = file_get_contents( "../datadir.json" );
-
-            $json = json_decode( $str, true);
-
-            $datadir = $json['datadir'];
-
-        $this->datadir = $datadir;
-
-            $datafile = $datadir . 'users.db';
-            
-            $db_sqlite_path = $datafile;
-
-
-        $this->db_sqlite_path = $db_sqlite_path;
-
-
         if ($this->performMinimumRequirementsCheck()) {
             $this->runApplication();
         }
@@ -105,8 +77,9 @@ class OneFileLoginApplication
     public function runApplication()
     {
 
-        $this->doRegistration();
-        $this->showPageRegistration();
+
+            $this->doRegistration();
+            $this->showPageRegistration();
 
     }
 
@@ -402,93 +375,115 @@ class OneFileLoginApplication
     private function showPageRegistration()
 
     {
+
+        function createdb() {
         
-        error_reporting(E_ALL);
+            error_reporting(E_ALL);
+
+            // config
+            $db_type = "sqlite";
+            
+            $db_sqlite_path = "../users.db";
+
+            // create new database file / connection (the file will be automatically created the first time a connection is made up)
+            $db_connection = new PDO($db_type . ':' . $db_sqlite_path);
+
+            // create new empty table inside the database (if table does not already exist)
+            $sql = 'CREATE TABLE IF NOT EXISTS `users` (
+                    `user_id` INTEGER PRIMARY KEY,
+                    `user_name` varchar(64),
+                    `user_password_hash` varchar(255),
+                    `user_email` varchar(64));
+                    CREATE UNIQUE INDEX `user_name_UNIQUE` ON `users` (`user_name` ASC);
+                    CREATE UNIQUE INDEX `user_email_UNIQUE` ON `users` (`user_email` ASC);
+                    ';
+
+                // execute the above query
+                $query = $db_connection->prepare($sql);
+                $query->execute();
+
+        }
+
+        // check for success:
 
 
-            echo '<div class="wrapperregistration">';
+            // if (!file_exists($db_sqlite_path)) {
+            //     echo "<div id='loginerror'>";
+            //         echo "<br><br>";
+            //         echo "Database $db_sqlite_path was not created, installation was NOT successful. Missing folder write rights ?";
+            //     echo "</div>";
+            // } 
+            
+            
+           // else {
 
-                echo '<div class="navbar-brand">';
-                    echo 'Monitorr | Registration';
-                echo '</div>';
-
-                    echo '<br> <br> <hr>';
-
-                 echo '<div id="loginmessage">';
-
-                    echo ' <i class="fa fa-fw fa-info-circle"> </i> This registration process will perform the following actions: <br><br>';
-
-                echo '</div>';
-
-                echo '<div id="reginstructions">';
+                echo '<div class="wrapperregistration">';
+                    echo '<div class="navbar-brand">';
+                        echo 'Monitorr | Registration';
+                    echo '</div>';
+                    echo '<br><br>';
                 
-                     echo '1-	Establish a data directory which will contain three json files with your custom settings, and a user database file. <br>';
-                     echo '2-	Create a data directory definition file in the Monitorr installation directory which defines where your data directory is established on the webserver. <br>';
-                     echo '3-	Copy the three default json settings files from the local Monitorr repository to the established data directory. <br>';
-                     echo '4-	Create a user database file in the established data directory. <br>';
-                     echo '5-	Create a user. <br> ';
-                     echo '+	The above actions complete successfully in succession in order for Monitorr to function properly. <br> ';
-                     echo '+	If you have any problems during the registration process, please check the <strong> <a href="https://github.com/Monitorr/Monitorr/wiki" target="_blank" class="toolslink" title="Monitorr Wiki"> Monitorr Wiki </a>. </strong> <br>';
-
-                 echo '</div>';
-
-            echo '</div>';
-
+                    echo '<div id="loginmessage">';
+                         echo 'Create user database:';
+                     echo '</div>';
 
     ?>
-
-            <!-- Load Form to create data directory and copy default json files to users's defined path -->
-
                 <!DOCTYPE html>
                 <html lang="en">
 
-                    <head>
+                <head>
 
-                        <meta charset="UTF-8">
-                        <!-- <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" > -->
-                        <!-- <link type="text/css" href="../../css/main.css" rel="stylesheet"> -->
-                        <script src="../../js/jquery.min.js"></script>
+                    <meta charset="UTF-8">
+                    <!-- <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" /> -->
+                    <!-- <link type="text/css" href="../css/main.css" rel="stylesheet"> -->
+                    <!-- <script src="../js/jquery.min.js"></script> -->
+                    <script src="../../js/jquery.min.js"></script>
 
-                    </head>
+                    <!-- <style type="text/css">
+
+                        body { 
+                            color: white;
+                            background-color: #1F1F1F;
+                        }
+
+                        .navbar-brand { 
+                            cursor: default;
+                        }
+
+                        .wrapper { 
+                            width: 30rem;
+                            margin-top: 10%;
+                            margin-left: auto;
+                            margin-right: auto;
+                            padding: 1rem; 
+                        }
+
+                    </style> -->
+
+                    
+                </head>
 
                     <body>
 
                         <script>
-
                             $(document).ready(function(){
 
-                                $('#datadirbtn').click(function(){
+                                $('#userForm').submit(function(){
                                 
-                                    $('#response').html("<font color='yellow'><b>Loading response...</b></font>");
+                                    $('#response').html("<b>Loading response...</b>");
                                     
-         
-                                        $.post({
-                                            url: './mkdirajax.php',
-                                            data: $(this).serialize(),
-                                            success: function(data){
-                                                // alert("Directory Created successfully");
-                                                $('#response').html(data);
-                                            }
-                                        })
-
-                                        .fail(function() {
-                                            alert( "Posting failed." );
-                                        }); 
-
-                                    var datadir = $("#datadir").val();
-                                    console.log('Submitted: '+ datadir);
-                                    var url ="mkdirajax.php";
-
-                                    $.post(url, { datadir: datadir }, function(data){
-                                        // alert("Directory Created successfully");
-                                        console.log('response: '+ data);
-                                        // alert('response: '+ data);
-                                        $('#response').html(data); 
+                                    $.post({
+                                        url: './mkdirajax.php',
+                                        data: $(this).serialize(),
+                                        success: function(data){
+                                            alert("Directory Created successfully");
+                                            $('#response').html(data);
+                                        }
                                     })
-                                    .fail(function() {
-                                        alert( "Posting failed" );
-                                    });   
 
+                                    .fail(function() {
+                                        alert( "Posting failed." );
+                                    });
 
                                     return false;
                                 });
@@ -496,244 +491,264 @@ class OneFileLoginApplication
 
                         </script>
 
-                        <div id="dbwrapper">
+                            <br><br>
 
-                            <hr><br>
+                        <?php 
+                        
+                       // $dbfile = $this->db_sqlite_path;  //change me
+                        
+                       // echo  $dbfile; //change me
+                        
+                        ?>
 
-                            <div id='dbdir' class='loginmessage'>
-                                Create data directory, copy default data json files, and create user database file in defined directory:
+                        <form id='userForm'>
+                            Desired Data Directory:
+                                <br> <br>
+                            <div>
+                                <input type='text' name='datadir' placeholder='Data Dir Path' />
                             </div>
 
                                 <br>
 
-                            <form id="userForm">
-
-                                <div>
-                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' id="datadir" name='datadir' autocomplete="off" required placeholder='Data dir path' />
-                                </div>
-                                    <br>
-                                <div>
-                                    <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
-                                </div>
-
-                            </form>
-
-                            <div id="loginerror">
-                                 <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
+                            <div>
+                                <input type='submit' class="btn btn-primary" value='Create' />
                             </div>
 
-                            <div id="datadirnotes"> 
-                                    <i>
-                                + For security, this directory should NOT be within your webserver's root path.
-                                    <br>
-                                + Path value must include trailing slash.
-                                    <br>
-                                + Value must be an absolute path on the webserver's filesystem.
-                                    <br>
-                                Good:  c:\datadir\, /var/datadir/
-                                    <br>
-                                Bad: wwwroot\datadir, ../datadir
-                                    </i>
-                            </div> 
+                        </form>
 
-                                <br>
+                        <br>
 
-                            <div id='response' class='dbmessagesuccess'></div>
+                        <?php
 
-                        </div>
+                            Echo "Current working directiory: ";
+                                echo "<br>";
+                                // current directory
+                            echo getcwd() . "\n";
+
+                        ?>
+
+                            <br><br>
+
+                           
+                        <div id='response' class='dbmessagesuccess'></div>
 
                     </body>
 
                 </html>
 
-        <?php
+                           
+                        <!--                               
+                            //  echo ' $(document).ready(function(){ ';
 
+                        //           echo ' $("#userForm").submit(function(){ ';
+                                    
+                        //              echo ' ("#response").html("<b>Loading response...</b>"); ';
+                                        
+                        //              echo ' $.post({ ';
+                        //                 echo '  url: ""../../php/mkdirajax.php", ';
+                        //                  echo ' data: $(this).serialize(), ';
+                        //                  echo '     success: function(data){ ';
+                        //                  echo '       alert("Directory Created successfully"); ';
+                        //                  echo '       $("#response").html(data); ';
+                        //                  echo '   } ';
+                        //             echo '    }) ';
 
-            //Create user: 
-                
-        echo '<div id="userwrapper">';
-                echo '<hr><br>';
+                        //            echo '  .fail(function() { ';
+                        //             echo '      alert( "Posting failed." ); ';
+                        //            echo '     }); ';
 
-            echo '<div id="loginmessage">';
-                echo 'Create new user:';
-                echo '<br><br>';
-            echo '</div>';
-
-            echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
-
-                echo '<table id="registrationtable">';
-                    echo '<thead> <div id="blank"> . </div> </thead>';
-                    echo '<tbody id="registrationform">';
-
-                        echo '<tr>';
-                            echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder="Username" required autocomplete="off" /> </td>';
-                            echo '<td><label for="login_input_username"><i> letters and numbers only, 2 to 64 characters </i></label></td>';
-                        echo '</tr>';
-
-                        echo '<tr>';
-                            echo "<td><i class='fa fa-fw fa-envelope'> </i> <input id='login_input_email' type='email' name='user_email' placeholder='User e-mail' /></td>";
-                            echo '<td><label for="login_input_email"> <i> Not required </i></label></td>';
-                        echo ' </tr>';
-
-                        echo ' <tr>';
-                            echo "<td><i class='fa fa-fw fa-key'> </i> <input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder='Password' /></td>";
-                            echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder="Repeat password" /><i> Minimum 6 characters </i></td>';
-                        echo ' </tr>';
+                        //                 echo ' return false; ';
+                         //           echo ' }); ';
+                             
                         
-                    echo ' </tbody>';
+                        //  echo ' }); '; -->
 
-                echo ' </table>';
+                        
+<!--                          <script>
 
-                echo ' <div id="loginerror">';
+                               // $(document).ready(function(){
 
-                    if ($this->feedbackerror) {
-                        echo $this->feedbackerror;
-                    };
+                                    $('#userForm').submit(function(){
+                                    
+                                        $('#response').html("<b>Loading response...</b>");
+                                        
+                                        $.post({
+                                            url: 'mkdirajax.php',
+                                            data: $(this).serialize(),
+                                            success: function(data){
+                                                alert("Directory Created successfully");
+                                                $('#response').html(data);
+                                            }
+                                        })
 
-                echo '</div>';
+                                        .fail(function() {
+                                            alert( "Posting failed." );
+                                        });
 
-
-                echo ' <input type="submit" class="btn btn-primary" name="register" value="Register" />';
-                     echo '<br>';
-
-                echo ' <div id="loginsuccess">';
-
-                    // $this->feedback = "This user does not exist.";
-
-                    if ($this->feedbacksuccess) {
-                        echo ' <br>';
-                        echo $this->feedbacksuccess;
-                    };
-
-                 echo '</div>';
-
-
-            echo '</form>';
-
-                echo ' <div id="loginerror">';
-                    echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br> ';
-                echo ' </div>';
-
-                echo ' <div id="usernotes">';
-                    echo "<i> + It is NOT possible to change a user's credentials after creation. If credentials need to be changed or reset, rename the file "; echo ($this->db_sqlite_path) ;   /*  CHANGE ME / Target datadirpath.json */  echo " to 'users.old'. Once that file is renamed, browse to this page again to recreate desired credentials. </i> ";
-               echo ' </div>';
-
-                    echo '<br>';
-
-        echo ' </div>';
+                                        return false;
+                                    });
+                              //  });
 
 
-         echo ' <div id="reginfo">';
-                    
-                echo "<hr>";
+                        </script> -->
 
-                Echo "Current working directiory: ";
-                    echo "<br>"; 
+                        <?php
 
-                echo getcwd() . "\n"; 
-                    echo "<br>";
+                        //    echo ' <form id="userForm"> ';
+                        //       echo ' Desired Data Directory: ';
+                        //            echo ' <br> <br> ';
+                        //        echo ' <div> ';
+                        //             echo '<input type="text" name="datadir" placeholder="Data Dir Path" /> ';
+                        //        echo ' </div> ';
+
+                        //            echo ' <br> ';
+
+                        //         echo '<div> ';
+                        //            echo ' <input type="submit" class="btn btn-primary" value="Submit" /> ';
+                        //        echo ' </div> ';
+
+                        //    echo ' </form> ';
+
+                        //         Echo "Current working directiory: ";
+                        //             echo "<br>";
+
+                        //         echo getcwd() . "\n";
+
+                        //    echo ' <div id="response"></div> ';
 
 
-                    if (!is_dir($this->datadir)) {
-                        echo "Data directory NOT present.";
-                    }
 
-                    else {
-                        echo 'Data directory present:';
-                            echo "<br>";
-                        echo $this->datadir;
-                    }
+                           //Create user:  ** CHANGE ME **
 
-                        echo "<br>";
+                    echo '<div id="loginsuccess">';
+                       // echo "Database $db_sqlite_path was created, installation was successful.";
+                        echo '<br><br>';
+                    echo '</div>';
 
-                    if (!is_file($this->db_sqlite_path)) {
-                        echo "Database file NOT present.";
-                        echo "<br><br>";
-                    }
 
-                    else {
-                        echo 'Database file present:';
-                            echo "<br>";
-                        echo $this->db_sqlite_path;
-                            echo "<br><br>";
-                    }
+                     echo '<div id="loginmessage">';
+                         echo 'Create New User:';
+                         echo '<br><br>';
+                     echo '</div>';
 
-                echo "<br>";
+                    echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
 
-            echo ' <div id="footer">';
-                echo ' <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank">'; echo file_get_contents('../../js/version/version.txt'); echo '</a> </p>';
-            echo ' </div>';
+                        echo '<table id="registrationtable">';
+                            echo '<thead> <div id="blank"> . </div> </thead>';
+                            echo '<tbody id="registrationform">';
 
-                echo "<br>";
+                                echo '<tr>';
+                                    echo '<td><input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder="Username" required /> </td>';
+                                    echo '<td><label for="login_input_username"><i> letters and numbers only, 2 to 64 characters </i></label></td>';
+                                    
+                                echo '</tr>';
 
-        echo ' </div>';
+                                echo '<tr>';
+                                   echo "<td><input id='login_input_email' type='email' name='user_email' placeholder='User e-mail' /></td>";
+                                    echo '<td><label for="login_input_email"> <i> Not required </i></label></td>';
+                                
+                               echo ' </tr>';
 
+                               echo ' <tr>';
+                                   echo " <td><input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder='Password' /></td>";
+                                   echo ' <td><label for="login_input_password_new"> <i>Minimum 6 characters </i></label></td>';
+                                
+                               echo ' </tr>';
+
+                               echo ' <tr>';
+                                    echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder="Repeat password" /></td>';
+                                   echo ' <td><label for="login_input_password_repeat"> </label></td>';
+                                    
+                                echo '</tr>';
+                                
+                           echo ' </tbody>';
+                            echo '<tr>';
+
+                           echo ' </tr>';
+                       echo ' </table>';
+
+                        echo ' <div id="loginsuccess"><strong>';
+                            if ($this->feedbacksuccess) {
+                                echo $this->feedbacksuccess . "<br/><br/>";
+                            }
+                        echo ' </strong></div>';
+
+                        echo ' <div id="loginerror"><strong>';
+                            if ($this->feedbackerror) {
+                                echo $this->feedbackerror . "<br/><br/>";
+                            }
+                        echo ' </strong></div>';
+
+                         echo ' <input type="submit" class="btn btn-primary" name="register" value="Register" />';
+
+                            echo '  <br><br>';
+
+                         echo ' <div id="loginerror">';
+                         echo ' <b>NOTE:</b> <br> ';
+                         echo " It is NOT possible to change a user's credentials after creation. If you want to change or reset credentials, rename the file '/monitorr/assets/data/users.db' to 'users.old'. Once that file is renamed, browse to this page again to recreate desired credentials. ";
+                         echo ' </div>';
+
+                    echo '</form>';
+
+                    // echo' <!-- <a href="' . $_SERVER['SCRIPT_NAME'] . '">Homepage</a> -->';
+
+                echo '  </div>';
+
+                 echo ' <div id="footer">';
+                   echo ' <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank">'; echo file_get_contents('../../js/version/version.txt'); echo '</a> </p>';
+                 echo ' </div>';
+
+
+           // }
 
     }
+}
 
-} //OneFileLoginApplication
+// run the application
+$application = new OneFileLoginApplication();
 
-    // run the application:
-    $application = new OneFileLoginApplication();
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="UTF-8">
-        <title>Monitorr | Registration</title>
-        <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" />
-        <link type="text/css" href="../../css/main.css" rel="stylesheet">
-        <script src="../../js/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Monitorr | Registration</title>
+    <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="../../css/main.css" rel="stylesheet">
+    <script src="../../js/jquery.min.js"></script>
 
-        <style type="text/css">
+    <style type="text/css">
 
-            body { 
-                color: white;
-                font-size: 1rem;
-            }
+        body { 
+            color: white;
+            font-size: 18px
+        }
 
-            body::-webkit-scrollbar {
-                width: 10px;
-                background-color: #252525;
-            }
+/*         :root {
+            font-size: 18px !important;
+        } */
 
-            body::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
-                background-color: #252525;
-            }
+        .wrapper { 
+            /* width: 30rem; */
+            margin-top: 5%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem; 
+        }
 
-            body::-webkit-scrollbar-thumb {
-                border-radius: 10px;
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                background-color: #8E8B8B;
-            } 
+        #loginerror {
 
-            .wrapper { 
-                margin-top: 5%;
-                margin-left: auto;
-                margin-right: auto;
-                padding: 1rem; 
-            }
+            font-size: 1rem;
+            width: 75%;
+        }
 
-            #loginerror {
-                font-size: 1rem;
-                width: 75%;
-            }
+    </style>
 
-            .navbar-brand { 
-                cursor: default;
-            }
-
-        </style>
-
-        
-    </head>
+    
+</head>
 
 </html>

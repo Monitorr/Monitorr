@@ -947,7 +947,24 @@ input:checked+.slider:before {
         margin-top: 2rem;
         margin-left: auto;
         margin-right: auto;
-        padding: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #dbwrapper {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #userwrapper {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
 
@@ -955,6 +972,23 @@ input:checked+.slider:before {
         font-size: 1rem;
     }
 
+    #reginstructions {
+        font-size: .75rem;
+        cursor: default;
+    }
+
+    #reginfo {
+        width: 75%;
+        color: #555555;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: .50rem;
+        text-align: left;
+        cursor: default;
+    }
 
     #loginerror {
 
@@ -1015,6 +1049,13 @@ input:checked+.slider:before {
         cursor: default;
     }
 
+    .reglog {
+        padding: 1rem;
+        background-color: black;
+        font-size: .75rem !important;
+        cursor: default;
+    }
+
 
     #loginbtn {
         padding-left: 1.5rem;
@@ -1029,32 +1070,21 @@ input:checked+.slider:before {
         margin-bottom: 2rem !important;
     }
 
-        #datdirnotes {
-            font-size: 1rem;
-            cursor: default;
-        }
+    #datadirnotes {
+        font-size: .75rem;
+        cursor: default;
+    }
+
+    #usernotes {
+        font-size: .75rem;
+        cursor: default;
+    }
 
 
 /********************* SETTINGS  **************** */
 
 
 /******SETTINGS NAVBAR ********/
-
-/*           VARIABLES  CHANGE ME - DELETE         */
-
-/* .nav .open>a {
-    background-color: transparent;
-}
-
-.nav .open>a:hover {
-    background-color: transparent;
-}
-
-.nav .open>a:focus {
-    background-color: transparent;
-}
- */
-
 
 /*           Wrappers            */
 
@@ -1093,10 +1123,6 @@ input:checked+.slider:before {
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
-    /* background: #1a1a1a; */
-    /* left: 220px; */
-    /* margin-top: 3rem; */
-    /* margin-left: -220px; */
     overflow-x: hidden;
     overflow-y: auto;
     transition: all 0.3s ease;

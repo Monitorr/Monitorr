@@ -23,7 +23,7 @@ class OneFileLoginApplication
     /**
      * @var string Path of the database file (create this with _install.php)
      */
-    private $db_sqlite_path = "../data/users.db";
+    //private $db_sqlite_path = "../data/users.db";
 
     /**
      * @var object Database connection
@@ -46,6 +46,23 @@ class OneFileLoginApplication
      */
     public function __construct()
     {
+
+        $str = file_get_contents( "../config/datadir.json" );
+
+            $json = json_decode( $str, true);
+
+            $datadir = $json['datadir'];
+
+        $this->datadir = $datadir;
+
+            $datafile = $datadir . 'users.db';
+            
+            $db_sqlite_path = $datafile;
+
+
+        $this->db_sqlite_path = $db_sqlite_path;
+
+
         if ($this->performMinimumRequirementsCheck()) {
             $this->runApplication();
         }
@@ -436,9 +453,37 @@ class OneFileLoginApplication
 
             </style>
 
+        <?php 
+
+            $str = file_get_contents( "../config/datadir.json" );
+
+            $json = json_decode( $str, true);
+
+            $datadir = $json['datadir'];
+
+            $datafile = $datadir . 'users.db';
+            
+            $db_sqlite_path = $datafile;
+
+        ?>
+
+
+        <?php 
+
+            $str1 = file_get_contents($datadir . 'user_preferences-data.json?a=1');
+
+            $json = json_decode( $str1, true);           
+
+            $dataSource = $str1;
+
+        ?>
+
+
+
+
         <title>
             <?php 
-                $str = file_get_contents('../data/user_preferences-data.json');
+                $str = file_get_contents($datadir . 'user_preferences-data.json');
                 $json = json_decode($str, true);
                 $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
@@ -446,8 +491,6 @@ class OneFileLoginApplication
             | User Preferences
         </title>
 
-        <!-- <?php include ('../config.php'); ?> -->
-        <!-- <?php include ('../php/check.php') ;?> -->
         <?php include ('gitinfo.php'); ?>
 
     </head>
@@ -474,6 +517,7 @@ class OneFileLoginApplication
 
             <script type="text/javascript">
                 $(document).ready(function() {
+
                     var CustomConnector = Alpaca.Connector.extend({
                         buildAjaxConfig: function(uri, isJson) {
                             var ajaxConfig = this.base(uri, isJson);
@@ -484,9 +528,18 @@ class OneFileLoginApplication
                         }
                     });
                     Alpaca.registerConnectorClass("custom", CustomConnector);
+
+
                     $("#preferencesettings").alpaca({
+
+
+                            $str = file_get_contents($datadir . 'user_preferences-data.json?a=1'),
+
+                            $dataSource = $str,
+                    
                         "connector": "custom",
-                        "dataSource": "../data/user_preferences-data.json?a=1",
+                        //"dataSource": "../data/user_preferences-data.json?a=1",
+                        "dataSource": $dataSource,
                         "schemaSource": "../config/user_preferences-schema.json?a=1",
                         // "optionsSource": "./data/connector-custom-options.json?a=1",
                         // "viewSource": "../data/connector-custom-view.json?a=1",
@@ -839,6 +892,25 @@ class OneFileLoginApplication
         echo '<br><br>';
 
 
+        if(!is_file($dbfile)){
+
+            echo "<div id='loginerror'>";
+                echo "<br>";
+                echo "No user database detected.";
+                echo "<br><br>";
+                echo "<div>";
+
+            echo "<div id='loginmessage'>";
+
+                echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
+
+            echo "</div>";
+            
+        } 
+
+        else {
+
+
 
             echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
                 echo '<label for="login_input_username"> </label> ';
@@ -866,6 +938,8 @@ class OneFileLoginApplication
 
             echo '</form>';
                 echo '<br><br>';
+
+        }
         
     }
 

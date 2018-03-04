@@ -1,3 +1,4 @@
 [
 {"serviceTitle":"standard","image":"../img/monitorr.png","type":" Standard","checkurl":"http://localhost:80","linkurl":"http://localhost:80"},
+{"serviceTitle":"Service Title","image":"../img/monitorr.png","type":" Standard","checkurl":"http://localhost:80","linkurl":"http://localhost:80"},
 {"serviceTitle":"ping only","image":"../img/monitorr.png","type":" Ping Only","checkurl":"http://localhost:80","linkurl":"http://localhost:80"}]

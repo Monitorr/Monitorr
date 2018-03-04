@@ -28,9 +28,6 @@
             <style>
 
                 body {
-                    /* height: 95%; */
-                    /* margin: 2vw !important; */
-                    /* margin-top: 1vw !important; */
                     margin: auto;
                     padding-left: 2rem;
                     padding-right: 1rem;
@@ -94,9 +91,22 @@
 
             </style>
 
+        <?php 
+            $str = file_get_contents( "assets/config/datadir.json" );
+
+            $json = json_decode( $str, true);
+
+            $datadir = $json['datadir'];
+
+            $datafile = $datadir . 'users.db';
+            
+            $db_sqlite_path = $datafile;
+
+        ?>
+
         <title>
             <?php 
-                $str = file_get_contents('assets/data/user_preferences-data.json');
+                $str = file_get_contents($datadir . 'user_preferences-data.json');
                 $json = json_decode($str, true);
                 $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
@@ -105,10 +115,7 @@
         </title>
 
 
-        <!-- <?php include ('assets/php/check.php') ;?> --> <!-- ** REMOVE ** -->
         <?php include ('assets/php/gitinfo.php'); ?>
-
-
 
         <script>
 
@@ -202,30 +209,21 @@
             
                 <ul class="nav sidebar-nav">
 
-                    <!-- <li>
-                        <a href ="#" onclick="load_auth()"><i class="fa fa-fw fa-key"></i> Login </a> 
-                    </li> -->
-
                     <li>
-                        <!-- <a href="assets/php/phpinfo.php" target="s"><i class="fa fa-fw fa-file-o"></i> Info </a> -->
                         <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-info"></i> Info </a> 
                     </li>
                     <li>
-                        <!-- <a href="assets/php/monitorr-user_preferences.php" target="s"><i class="fa fa-fw fa-cog"></i> User Preferences </a> -->
                         <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a> 
                     </li>
                     <li>
-                        <!-- <a href="assets/php/monitorr-site_settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a> -->
                         <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a> 
                     </li>
                     <li>
-                        <!-- <a href="assets/php/monitorr-services_settings.php" target="#includedContent"><i class="fa fa-fw fa-cog"></i> Services Configuration </a> -->
                         <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
                     </li>
 
                     <li>
-                        <!-- <a href="assets/php/monitorr-services_settings.php" target="#includedContent"><i class="fa fa-fw fa-cog"></i> Services Configuration </a> -->
-                        <a href="assets/php/monitorr-info.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
+                       <a href="assets/php/monitorr-info.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
                     </li>
                     <li>
                         <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
@@ -233,7 +231,6 @@
 
                 </ul>
             </nav>
-            <!-- /#sidebar-wrapper -->
 
 
         </div>
@@ -246,19 +243,45 @@
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
                         
             <div id="version_check_auto"></div>
+
+            
+             <div id="reginfo" >
+
+                <?php 
+
+                    if (!is_dir($datadir)) {
+                        echo "Data directory NOT present.";
+                    }
+
+                    else {
+                        echo 'Data directory present:';
+                            echo "<br>";
+                        echo $datadir;
+                    }
+
+                        echo "<br>";
+
+                    if (!is_file($datafile)) {
+                        echo "Database file NOT present.";
+                        echo "<br><br>";
+                    }
+
+                    else {
+                        echo 'Database file present:';
+                            echo "<br>";
+                        echo $datafile;
+                            echo "<br><br>";
+                    }
+
+                ?>
+
+            </div>
             
         </div>
 
     </div>
 
         <div id ="includedContent"> </div>
-
-
-<!--         <script>
-            function load_auth() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="login.php" ></object>';
-            }
-        </script> -->
 
         <script>
             function load_info() {
@@ -287,19 +310,10 @@
         </script>
 
 
-  <!-- <div id="includedContent"></div> -->
 
 
-        <!-- <div id="footer">
 
 
-            <script src="assets/js/update_auto.js" async></script>
-        
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
-                        
-            <div id="version_check_auto"></div>
-            
-        </div> -->
 
 </body>
 
