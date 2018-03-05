@@ -606,67 +606,72 @@ class OneFileLoginApplication
      */
     private function showPageLoginForm()
     {
-
+        
+        $datadir = $this->datadir;
+        $dbfile = $this->db_sqlite_path;
         
         echo '<div class="wrapper">';
-                echo '<div class="navbar-brand">';
-                    echo 'Monitorr | Login';
-                echo '</div>';
+
+            echo '<div class="navbar-brand">';
+                echo 'Monitorr | Login';
+            echo '</div>';
                 echo '<br><br>';
 
+                //Check if user database is present if not output error below:
+            
+            if(!is_file($dbfile)){
 
-            //$file = '../data/users.db';  //Check if user database is present if not output error below:
-            $dbfile = $this->db_sqlite_path;
+                echo "<div id='loginerror'>";
+                    echo "<br>";
+                    echo "No user database detected.";
+                    echo "<br><br>";
+                    echo "<div>";
 
+                echo "<div id='loginmessage'>";
 
-                if(!is_file($dbfile)){
+                    echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
 
-                    echo "<div id='loginerror'>";
-                        echo "<br>";
-                        echo "No user database detected.";
-                        echo "<br><br>";
-                     echo "<div>";
+                echo "</div>";
+                
+            } 
 
-                    echo "<div id='loginmessage'>";
+                //if user database is present, show log-in form:
 
-                        echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
+            else {
 
-                    echo "</div>";
-                    
-                } 
+                echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+                    echo '<label for="login_input_username"> </label> ';
+                        echo '<br>';
+                    echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
 
-                else {
+                        echo '<br>';
 
-                    echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
-                        echo '<label for="login_input_username"> </label> ';
-                            echo '<br>';
-                        echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
-
-                            echo '<br>';
-
-                        echo '<label for="login_input_password"> </label> ';
-                            echo '<br>';
-                        echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required /> ';
-                            echo '<br><br>';
-
-                        echo "<div id='loginerror'>";
-
-                            if ($this->feedback) {
-                                echo $this->feedback . "<br/> <br/>";  // Failed login notification //
-                            }
-
-                        echo "</div>";
-
-                        echo '<div id="loginbtn">';
-                            echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
-                        echo "</div>";
-
-                    echo '</form>';
+                    echo '<label for="login_input_password"> </label> ';
+                        echo '<br>';
+                    echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required /> ';
                         echo '<br><br>';
 
-                        echo "User database file:"; $this->db_sqlite_path;
+                    echo "<div id='loginerror'>";
 
-                } 
+                        if ($this->feedback) {
+                            echo $this->feedback . "<br/> <br/>";  // Failed login notification //
+                        }
+
+                    echo "</div>";
+
+                    echo '<div id="loginbtn">';
+                        echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
+                    echo "</div>";
+
+                echo '</form>';
+                    echo '<br><br>';
+
+                echo "<div id='reginfo'>";
+                    echo "User database Dir: " .  $datadir;
+                            echo '<br>';
+                    echo "User database file: " . $dbfile;
+                echo "</div>";
+            } 
 
         echo '</div>';
         

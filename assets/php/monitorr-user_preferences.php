@@ -465,16 +465,19 @@ class OneFileLoginApplication
             
             $db_sqlite_path = $datafile;
 
-        ?>
+            $jsonfile = $datadir . "user_preferences-data.json";
 
+            //$jsonfile = $datadir . "user_preferences-data.json?a=1";
 
-        <?php 
+            $str2 = file_get_contents( $jsonfile);
 
-            $str1 = file_get_contents($datadir . 'user_preferences-data.json?a=1');
+            $jsoncontents = json_decode( $str2, true);
 
-            $json = json_decode( $str1, true);           
+          //$dataSource = $jsonfile;
 
-            $dataSource = $str1;
+            $title = $jsoncontents['sitetitle'];
+
+            $dataSource = "../data/user_preferences-data.json";
 
         ?>
 
@@ -483,10 +486,10 @@ class OneFileLoginApplication
 
         <title>
             <?php 
-                $str = file_get_contents($datadir . 'user_preferences-data.json');
-                $json = json_decode($str, true);
-                $title = $json['sitetitle'];
-                echo $title . PHP_EOL;
+              //  $str = file_get_contents($datadir . 'user_preferences-data.json');
+              //  $json = json_decode($str, true);
+               // $title = $json['sitetitle'];
+              //  echo $title . PHP_EOL;
             ?>
             | User Preferences
         </title>
@@ -503,6 +506,34 @@ class OneFileLoginApplication
                 $('body').removeClass('fade-out'); 
             });
         </script>
+
+
+
+        <div>
+            <?php 
+
+
+                echo "datadir: " . $datadir;
+
+                    echo "<br> <br>";
+
+                echo "datafile: " . $datafile;
+
+                    echo "<br> <br>";
+
+                echo "json file: " . $jsonfile;
+
+                    echo "<br> <br>";
+
+                echo "datasource: " . $dataSource ;
+
+                    echo "<br> <br>";
+
+                echo "site title: " . $title ;
+            ?>
+
+        </div>
+
 
 
         <div id="centertext">
@@ -531,18 +562,10 @@ class OneFileLoginApplication
 
 
                     $("#preferencesettings").alpaca({
-
-
-                            $str = file_get_contents($datadir . 'user_preferences-data.json?a=1'),
-
-                            $dataSource = $str,
-                    
                         "connector": "custom",
                         //"dataSource": "../data/user_preferences-data.json?a=1",
-                        "dataSource": $dataSource,
+                        "dataSource": "<?php echo $dataSource ?>?a=1",
                         "schemaSource": "../config/user_preferences-schema.json?a=1",
-                        // "optionsSource": "./data/connector-custom-options.json?a=1",
-                        // "viewSource": "../data/connector-custom-view.json?a=1",
                         "view": {
                             "parent": "bootstrap-edit-horizontal",
                             "layout": {
@@ -881,65 +904,76 @@ class OneFileLoginApplication
      */
     private function showPageLoginForm()
     {
-        // if ($this->feedback) {
-        //     echo $this->feedback . "<br/>**CHANGE ME**<br/>";  // ** CHANGE to INLINE HTML  ** //
-        // }
+
+        $datadir = $this->datadir;
+        $dbfile = $this->db_sqlite_path;
         
         echo '<div class="wrapper">';
+
             echo '<div class="navbar-brand">';
                 echo 'Monitorr | Login';
             echo '</div>';
-        echo '<br><br>';
-
-
-        if(!is_file($dbfile)){
-
-            echo "<div id='loginerror'>";
-                echo "<br>";
-                echo "No user database detected.";
-                echo "<br><br>";
-                echo "<div>";
-
-            echo "<div id='loginmessage'>";
-
-                echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
-
-            echo "</div>";
-            
-        } 
-
-        else {
-
-
-
-            echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
-                echo '<label for="login_input_username"> </label> ';
-                    echo '<br>';
-                echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
-
-                    echo '<br>';
-
-                echo '<label for="login_input_password"> </label> ';
-                    echo '<br>';
-                echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required /> ';
-                    echo '<br><br>';
-
-                echo "<div id='loginerror'>";
-
-                    if ($this->feedback) {
-                        echo $this->feedback . "<br/> <br/>";  // Failed login notification //
-                    }
-
-                echo "</div>";
-
-                echo '<div id="loginbtn">';
-                    echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
-                echo "</div>";
-
-            echo '</form>';
                 echo '<br><br>';
 
-        }
+            //Check if user database is present if not output error below:
+
+            if(!is_file($dbfile)){
+
+                echo "<div id='loginerror'>";
+                    echo "<br>";
+                    echo "No user database detected.";
+                    echo "<br><br>";
+                    echo "<div>";
+
+                echo "<div id='loginmessage'>";
+
+                    echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
+
+                echo "</div>";
+                
+            } 
+
+             //if user database is present, show log-in form:
+
+            else {
+
+                echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+                    echo '<label for="login_input_username"> </label> ';
+                        echo '<br>';
+                    echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
+
+                        echo '<br>';
+
+                    echo '<label for="login_input_password"> </label> ';
+                        echo '<br>';
+                    echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required /> ';
+                        echo '<br><br>';
+
+                    echo "<div id='loginerror'>";
+
+                        if ($this->feedback) {
+                            echo $this->feedback . "<br/> <br/>";  // Failed login notification //
+                        }
+
+                    echo "</div>";
+
+                    echo '<div id="loginbtn">';
+                        echo '<input type="submit" class="btn btn-primary" name="login" value="Log in" />';
+                    echo "</div>";
+
+                echo '</form>';
+                    echo '<br><br>';
+
+                echo "<div id='reginfo'>";
+                    echo "User database Dir: " .  $datadir;
+                            echo '<br>';
+                    echo "User database file: " . $dbfile;
+                
+                echo "</div>";
+                
+            }
+
+        echo '</div>';
         
     }
 

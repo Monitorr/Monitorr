@@ -427,7 +427,7 @@ class OneFileLoginApplication
                      echo '3-	Copy the three default json settings files from the local Monitorr repository to the established data directory. <br>';
                      echo '4-	Create a user database file in the established data directory. <br>';
                      echo '5-	Create a user. <br> ';
-                     echo '+	The above actions complete successfully in succession in order for Monitorr to function properly. <br> ';
+                     echo '+	The above actions must complete successfully and in succession in order for Monitorr to function properly. <br> ';
                      echo '+	If you have any problems during the registration process, please check the <strong> <a href="https://github.com/Monitorr/Monitorr/wiki" target="_blank" class="toolslink" title="Monitorr Wiki"> Monitorr Wiki </a>. </strong> <br>';
 
                  echo '</div>';
@@ -472,12 +472,12 @@ class OneFileLoginApplication
                                         })
 
                                         .fail(function() {
-                                            alert( "Posting failed." );
+                                            alert( "Posting failed (ajax1)" );
                                         }); 
 
                                     var datadir = $("#datadir").val();
                                     console.log('Submitted: '+ datadir);
-                                    var url ="mkdirajax.php";
+                                    var url ="./mkdirajax.php";
 
                                     $.post(url, { datadir: datadir }, function(data){
                                         // alert("Directory Created successfully");
@@ -486,7 +486,7 @@ class OneFileLoginApplication
                                         $('#response').html(data); 
                                     })
                                     .fail(function() {
-                                        alert( "Posting failed" );
+                                        alert( "Posting failed (ajax2)" );
                                     });   
 
 
