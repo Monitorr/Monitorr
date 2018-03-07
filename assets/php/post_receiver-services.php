@@ -1,20 +1,28 @@
 
 <?php
 
-   //$str = file_get_contents('../data/services_settings-data.json');
+
 
    $str =  json_encode( $_POST, true );
 
-   // var_dump($str);
-
     $myServices = json_decode( $str, true);
-
-  //  print_r($myServices); 
 
       
         $iterator = new RecursiveArrayIterator($myServices);
 
-        $fp = fopen('../data/services_settings-data.json', 'w');
+        $str2 = file_get_contents( "../config/datadir.json" );
+
+        $json = json_decode( $str2, true);
+
+        $datadir = $json['datadir'];
+
+        echo $datadir;
+
+        $jsonpath = $datadir . 'services_settings-data.json';
+
+        echo $jsonpath;
+
+        $fp = fopen($jsonpath, 'w');
 
             while ($iterator->valid()) {
 
@@ -81,7 +89,8 @@
 
 <?php
 
-    $fp = '../data/services_settings-data.json';
+
+    $fp = $jsonpath;
 
     $file_contents = file_get_contents($fp);
 

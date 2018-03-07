@@ -461,6 +461,43 @@ class OneFileLoginApplication
 
             </style>
 
+
+
+
+                <?php 
+
+                    $str = file_get_contents( "../config/datadir.json" );
+
+                    $json = json_decode( $str, true);
+
+                    $datadir = $json['datadir'];
+
+                    $datafile = $datadir . 'users.db';
+                    
+                    $db_sqlite_path = $datafile;
+
+                    $jsonfile = $datadir . "user_preferences-data.json";
+
+                    //$jsonfile = $datadir . "user_preferences-data.json?a=1";
+
+                    $str2 = file_get_contents( $jsonfile);
+
+                    $jsoncontents = json_decode( $str2, true);
+
+                //$dataSource = $jsonfile;
+
+                    $title = $jsoncontents['sitetitle'];
+
+                    $dataSource = "../data/user_preferences-data.json";
+
+                    //$dataSource = $jsonfile;
+
+
+                ?>
+
+
+
+
         <title>
             <?php 
                 $str = file_get_contents('../data/user_preferences-data.json');
@@ -493,6 +530,10 @@ class OneFileLoginApplication
             </div>
         </div>
 
+
+ <p id="response"></p>
+
+
     <div id="serviceform"> 
 
         <form id="servicesettings" onsubmit="formsubmit()">
@@ -519,7 +560,8 @@ class OneFileLoginApplication
                     Alpaca.registerConnectorClass("custom", CustomConnector);
                     $("#servicesettings").alpaca({
                         "connector": "custom",
-                        "dataSource": "../data/services_settings-data.json?a=1",
+                        "dataSource": "./post_receiver-services_load.php",
+                        //"dataSource": "../data/services_settings-data.json?a=1",
                         "schemaSource": "../config/services-schema.json?a=1",
                          //**     NOT WORKING    *//
                         // "view": {
@@ -619,7 +661,7 @@ class OneFileLoginApplication
                                     "checktype": {
                                         "type": "select",
                                         "validate": true,
-                                        "optionLabels": [" Standard", " Ping Only"],
+                                        //"optionLabels": [" Standard", " Ping Only"],
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
@@ -629,7 +671,7 @@ class OneFileLoginApplication
                                         "hideInitValidationError": false,
                                         "focus": false,
                                         "name": "checktype",
-                                        // "placeholder": " Standard",
+                                        "placeholder": " Standard",
                                         "typeahead": {},
                                         "allowOptionalEmpty": false,
                                         "removeDefaultNone": true,

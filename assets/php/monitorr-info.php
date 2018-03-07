@@ -642,13 +642,13 @@ class OneFileLoginApplication
                 echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
                     echo '<label for="login_input_username"> </label> ';
                         echo '<br>';
-                    echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
+                    echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required title="Enter your username" /> ';
 
                         echo '<br>';
 
                     echo '<label for="login_input_password"> </label> ';
                         echo '<br>';
-                    echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required /> ';
+                    echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required  title="Enter your password" /> ';
                         echo '<br><br>';
 
                     echo "<div id='loginerror'>";

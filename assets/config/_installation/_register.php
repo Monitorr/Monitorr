@@ -447,7 +447,9 @@ class OneFileLoginApplication
                         <meta charset="UTF-8">
                         <!-- <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" > -->
                         <!-- <link type="text/css" href="../../css/main.css" rel="stylesheet"> -->
+                        <link type="text/css" href="../../css/formValidation.css" rel="stylesheet" />
                         <script src="../../js/jquery.min.js"></script>
+                        <!-- <script src="../../js/formValidation.js"></script> -->
 
                     </head>
 
@@ -462,18 +464,18 @@ class OneFileLoginApplication
                                     $('#response').html("<font color='yellow'><b>Loading response...</b></font>");
                                     
          
-                                        $.post({
-                                            url: './mkdirajax.php',
-                                            data: $(this).serialize(),
-                                            success: function(data){
-                                                // alert("Directory Created successfully");
-                                                $('#response').html(data);
-                                            }
-                                        })
+                                    $.post({
+                                        url: './mkdirajax.php',
+                                        data: $(this).serialize(),
+                                        success: function(data){
+                                            // alert("Directory Created successfully");
+                                            $('#response').html(data);
+                                        }
+                                    })
 
-                                        .fail(function() {
-                                            alert( "Posting failed (ajax1)" );
-                                        }); 
+                                    .fail(function() {
+                                        alert( "Posting failed (ajax1)" );
+                                    }); 
 
                                     var datadir = $("#datadir").val();
                                     console.log('Submitted: '+ datadir);
@@ -484,11 +486,12 @@ class OneFileLoginApplication
                                         console.log('response: '+ data);
                                         // alert('response: '+ data);
                                         $('#response').html(data); 
-                                    })
-                                    .fail(function() {
-                                        alert( "Posting failed (ajax2)" );
-                                    });   
 
+                                    })
+
+                                    .fail(function() {   // Why alert on UNIX? // CHANGE ME //
+                                        alert( "Posting failed (ajax2)" );
+                                    })
 
                                     return false;
                                 });
@@ -509,9 +512,14 @@ class OneFileLoginApplication
                             <form id="userForm">
 
                                 <div>
-                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' id="datadir" name='datadir' autocomplete="off" required placeholder='Data dir path' />
+                                   <i class='fa fa-fw fa-folder-open'> </i> <input type='text' fv-not-empty= " This field can't be empty" pattern="[/^\S*$/]+" title="Cannot contain spaces" id="datadir" name='datadir' autocomplete="off" required placeholder=' Data dir path' />
+                                   <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text'  fv-advanced='{"regex": "/^\s$/", "message": "This field cannot contain spaces."}' fv-not-empty= " This field can't be empty" id="datadir" name='datadir' autocomplete="off" required placeholder='Data dir path' /> -->
+                                        <br>
+                                    <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()   ?> </i>
                                 </div>
-                                    <br>
+
+                                     <br>
+
                                 <div>
                                     <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
                                 </div>
@@ -524,9 +532,9 @@ class OneFileLoginApplication
 
                             <div id="datadirnotes"> 
                                     <i>
-                                + For security, this directory should NOT be within your webserver's root path.
+                                + Path value must include a trailing slash.
                                     <br>
-                                + Path value must include trailing slash.
+                                + For security, this directory should NOT be within your webserver's root path.
                                     <br>
                                 + Value must be an absolute path on the webserver's filesystem.
                                     <br>
@@ -566,18 +574,19 @@ class OneFileLoginApplication
                     echo '<tbody id="registrationform">';
 
                         echo '<tr>';
-                            echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder="Username" required autocomplete="off" /> </td>';
+                            //echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64} name="user_name" placeholder=" Username" required autocomplete="off" /> </td>';
+                            echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder=" Username" title="Enter a username" required autocomplete="off" /> </td>';
                             echo '<td><label for="login_input_username"><i> letters and numbers only, 2 to 64 characters </i></label></td>';
                         echo '</tr>';
 
                         echo '<tr>';
-                            echo "<td><i class='fa fa-fw fa-envelope'> </i> <input id='login_input_email' type='email' name='user_email' placeholder='User e-mail' /></td>";
+                            echo "<td><i class='fa fa-fw fa-envelope'> </i> <input id='login_input_email' type='email' name='user_email' placeholder=' User e-mail' /></td>";
                             echo '<td><label for="login_input_email"> <i> Not required </i></label></td>';
                         echo ' </tr>';
 
                         echo ' <tr>';
-                            echo "<td><i class='fa fa-fw fa-key'> </i> <input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder='Password' /></td>";
-                            echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder="Repeat password" /><i> Minimum 6 characters </i></td>';
+                            echo "<td><i class='fa fa-fw fa-key'> </i> <input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder=' Password' title='Enter a password' /></td>";
+                            echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder=" Repeat password" title="Repeat password" /><i> Minimum 6 characters </i></td>';
                         echo ' </tr>';
                         
                     echo ' </tbody>';
@@ -688,6 +697,8 @@ class OneFileLoginApplication
         <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../../css/main.css" rel="stylesheet">
         <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/formValidation.js"></script>
+        
 
         <style type="text/css">
 

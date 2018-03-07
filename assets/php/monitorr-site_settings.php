@@ -481,6 +481,7 @@ class OneFileLoginApplication
             });
         </script>
 
+        <p id="response"></p>
 
         <div id="centertext">
             <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
@@ -504,10 +505,28 @@ class OneFileLoginApplication
                             return ajaxConfig;
                         }
                     });
+
+                var data;
+                    $.ajax({
+                        dataType: "json",
+                        url: './post_receiver-site_settings_load.php',
+                        data: data,
+                        success: function (data) {
+                            console.log(data);
+                        },
+
+                        error: function(errorThrown){
+                            console.log(errorThrown);
+                            document.getElementById("response").innerHTML = "GET failed (ajax)";
+                            alert( "GET failed (ajax)" ); 
+                        },
+                    });
+
                     Alpaca.registerConnectorClass("custom", CustomConnector);
                     $("#sitesettings").alpaca({
                         "connector": "custom",
-                        "dataSource": "../data/site_settings-data.json?a=1",
+                        "dataSource": "./post_receiver-site_settings_load.php",
+                        //"dataSource": "../data/site_settings-data.json?a=1",
                         "schemaSource": "../config/site_settings-schema.json?a=1",
                         // "optionsSource": "./data/connector-custom-options.json?a=1",
                         // "viewSource": "../data/connector-custom-view.json?a=1",

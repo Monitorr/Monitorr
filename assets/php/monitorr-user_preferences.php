@@ -479,6 +479,9 @@ class OneFileLoginApplication
 
             $dataSource = "../data/user_preferences-data.json";
 
+            //$dataSource = $jsonfile;
+
+
         ?>
 
 
@@ -510,7 +513,7 @@ class OneFileLoginApplication
 
 
         <div>
-            <?php 
+            <!-- <?php 
 
 
                 echo "datadir: " . $datadir;
@@ -530,10 +533,13 @@ class OneFileLoginApplication
                     echo "<br> <br>";
 
                 echo "site title: " . $title ;
-            ?>
+
+            ?> -->
 
         </div>
 
+
+        <p id="response"></p>
 
 
         <div id="centertext">
@@ -558,13 +564,32 @@ class OneFileLoginApplication
                             return ajaxConfig;
                         }
                     });
-                    Alpaca.registerConnectorClass("custom", CustomConnector);
 
+                    var data;
+                    $.ajax({
+                        dataType: "json",
+                        url: './post_receiver-user_preferences_load.php',
+                        data: data,
+                        success: function (data) {
+                            console.log(data);
+                        },
+
+                        error: function(errorThrown){
+                            console.log(errorThrown);
+                            document.getElementById("response").innerHTML = "GET failed (ajax)";
+                            alert( "GET failed (ajax)" ); 
+                        },
+
+                    });
+
+
+                    Alpaca.registerConnectorClass("custom", CustomConnector);
 
                     $("#preferencesettings").alpaca({
                         "connector": "custom",
-                        //"dataSource": "../data/user_preferences-data.json?a=1",
-                        "dataSource": "<?php echo $dataSource ?>?a=1",
+                        //"dataSource": "../data/./user_preferences-data.json?a=1",
+                        //"dataSource": data,
+                        "dataSource": "./post_receiver-user_preferences_load.php",
                         "schemaSource": "../config/user_preferences-schema.json?a=1",
                         "view": {
                             "parent": "bootstrap-edit-horizontal",
