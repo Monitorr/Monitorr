@@ -452,8 +452,8 @@ class OneFileLoginApplication
                 }
 
             </style>
-        <?php $datafile = '../assets/config/datadir.json'; ?>
-        <?php include_once ('../assets/php/monitorr-data.php')?>
+        <?php $datafile = '../config/datadir.json'; ?>
+        <?php include_once ('../config/monitorr-data.php')?>
 
 
 
