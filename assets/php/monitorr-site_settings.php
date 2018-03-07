@@ -56,7 +56,7 @@ class OneFileLoginApplication
         $this->datadir = $datadir;
 
             $datafile = $datadir . 'users.db';
-            
+
             $db_sqlite_path = $datafile;
 
 
@@ -390,7 +390,7 @@ class OneFileLoginApplication
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
-        
+
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/pace.js" async></script>
         <script type="text/javascript" src="../js/handlebars.js"></script>
@@ -401,12 +401,12 @@ class OneFileLoginApplication
 
                 body {
                     margin: 2vw !important;
-                    overflow-y: auto; 
+                    overflow-y: auto;
                     overflow-x: hidden;
                     color: white !important;
                 }
 
-                legend { 
+                legend {
                     color: white;
                     }
 
@@ -427,7 +427,7 @@ class OneFileLoginApplication
                     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                     box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                     background-color: #8E8B8B;
-                } 
+                }
 
                 body.offline #link-bar {
                     display: none;
@@ -455,14 +455,14 @@ class OneFileLoginApplication
                 } */
 
             </style>
+            <?php $datafile = '../config/datadir.json'; ?>
+            <?php include_once ('../config/monitorr-data.php')?>
 
-        <title>
-            <?php 
-                $str = file_get_contents('../data/user_preferences-data.json');
-                $json = json_decode($str, true);
-                $title = $json['sitetitle'];
-                echo $title . PHP_EOL;
-            ?>
+            <title>
+                <?php
+                    $title = $jsonusers['sitetitle'];
+                    echo $title . PHP_EOL;
+                ?>
             | Settings
         </title>
 
@@ -476,8 +476,8 @@ class OneFileLoginApplication
 
         <script>
             document.body.className += ' fade-out';
-            $(function() { 
-                $('body').removeClass('fade-out'); 
+            $(function() {
+                $('body').removeClass('fade-out');
             });
         </script>
 
@@ -490,7 +490,7 @@ class OneFileLoginApplication
             </div>
         </div>
 
-    <div id="siteform"> 
+    <div id="siteform">
 
         <div id="sitesettings"></div>
 
@@ -518,7 +518,7 @@ class OneFileLoginApplication
                         error: function(errorThrown){
                             console.log(errorThrown);
                             document.getElementById("response").innerHTML = "GET failed (ajax)";
-                            alert( "GET failed (ajax)" ); 
+                            alert( "GET failed (ajax)" );
                         },
                     });
 
@@ -814,7 +814,7 @@ class OneFileLoginApplication
                                         click: function(){
                                             var data = $('#sitesettings').alpaca().getValue();
                                             $.post({
-                                                url: 'post_receiver-site_settings.php', 
+                                                url: 'post_receiver-site_settings.php',
                                                 data: $('#sitesettings').alpaca().getValue(),
                                                 success: function(data) {
                                                     // alert(JSON.stringify(data));
@@ -822,8 +822,8 @@ class OneFileLoginApplication
                                                     // setTimeout(location.reload.bind(location), 500)
                                                 },
                                                 error: function(errorThrown){
-                                                    console.log(errorThrown); 
-                                                } 
+                                                    console.log(errorThrown);
+                                                }
                                             });
                                         }
                                     },
@@ -847,9 +847,9 @@ class OneFileLoginApplication
 
 
         <div id="footer">
-        
+
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
-            
+
         </div>
 
 </body>
@@ -875,7 +875,7 @@ class OneFileLoginApplication
 
         $datadir = $this->datadir;
         $dbfile = $this->db_sqlite_path;
-        
+
         echo '<div class="wrapper">';
                 echo '<div class="navbar-brand">';
                     echo 'Monitorr | Login';
@@ -884,7 +884,7 @@ class OneFileLoginApplication
 
 
             //Check if user database is present if not output error below:
-        
+
             if(!is_file($dbfile)){
 
                 echo "<div id='loginerror'>";
@@ -898,11 +898,11 @@ class OneFileLoginApplication
                     echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
 
                 echo "</div>";
-                
-            } 
+
+            }
 
             //if user database is present, show log-in form:
-        
+
             else {
 
                 echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
@@ -982,12 +982,12 @@ $application = new OneFileLoginApplication();
 
     <style type="text/css">
 
-        body { 
+        body {
             /* font: 14px sans-serif; */
             color: white;
         }
 
-        .navbar-brand { 
+        .navbar-brand {
             cursor: default;
         }
 
@@ -995,17 +995,17 @@ $application = new OneFileLoginApplication();
             font-size: 16px !important;
         } */
 
-        .wrapper { 
+        .wrapper {
             width: 30rem;
             margin-top: 10%;
             margin-left: auto;
             margin-right: auto;
-            padding: 1rem; 
+            padding: 1rem;
         }
 
     </style>
 
-    
+
 </head>
 
 </html>
