@@ -466,10 +466,6 @@ class OneFileLoginApplication
             | Settings
         </title>
 
-        <?php include ('../config.php'); ?>
-        <!-- <?php include ('../php/check.php') ;?> -->
-        <?php include ('gitinfo.php'); ?>
-
     </head>
 
 <body>
@@ -484,7 +480,6 @@ class OneFileLoginApplication
         <p id="response"></p>
 
         <div id="centertext">
-            <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
             <div class="navbar-brand">
                 Monitorr Settings
             </div>
