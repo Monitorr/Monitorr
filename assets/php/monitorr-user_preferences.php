@@ -466,8 +466,6 @@ class OneFileLoginApplication
             | User Preferences
         </title>
 
-        <?php include ('gitinfo.php'); ?>
-
     </head>
 
 <body>
