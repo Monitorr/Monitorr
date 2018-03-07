@@ -56,7 +56,7 @@ class OneFileLoginApplication
         $this->datadir = $datadir;
 
             $datafile = $datadir . 'users.db';
-            
+
             $db_sqlite_path = $datafile;
 
 
@@ -395,7 +395,7 @@ class OneFileLoginApplication
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
-        
+
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/pace.js" async></script>
         <script type="text/javascript" src="../js/handlebars.js"></script>
@@ -406,17 +406,17 @@ class OneFileLoginApplication
 
                 body {
                     margin: 2vw !important;
-                    overflow-y: auto; 
+                    overflow-y: auto;
                     overflow-x: hidden;
                     color: white !important;
-                    font-size: 1rem !important; 
+                    font-size: 1rem !important;
                 }
 
                 /* :root {
                     font-size: 12px !important;
                 } */
 
-                legend { 
+                legend {
                     color: white;
                     }
 
@@ -437,7 +437,7 @@ class OneFileLoginApplication
                     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                     box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                     background-color: #8E8B8B;
-                } 
+                }
 
                 body.offline #link-bar {
                     display: none;
@@ -460,56 +460,20 @@ class OneFileLoginApplication
                 }
 
             </style>
+            <?php $datafile = '../config/datadir.json'; ?>
+            <?php include_once ('../config/monitorr-data.php')?>
 
 
 
 
-                <?php 
-
-                    $str = file_get_contents( "../config/datadir.json" );
-
-                    $json = json_decode( $str, true);
-
-                    $datadir = $json['datadir'];
-
-                    $datafile = $datadir . 'users.db';
-                    
-                    $db_sqlite_path = $datafile;
-
-                    $jsonfile = $datadir . "user_preferences-data.json";
-
-                    //$jsonfile = $datadir . "user_preferences-data.json?a=1";
-
-                    $str2 = file_get_contents( $jsonfile);
-
-                    $jsoncontents = json_decode( $str2, true);
-
-                //$dataSource = $jsonfile;
-
-                    $title = $jsoncontents['sitetitle'];
-
-                    $dataSource = "../data/user_preferences-data.json";
-
-                    //$dataSource = $jsonfile;
-
-
+            <title>
+                <?php
+                    $title = $jsonusers['sitetitle'];
+                    echo $title . PHP_EOL;
                 ?>
-
-
-
-
-        <title>
-            <?php 
-                $str = file_get_contents('../data/user_preferences-data.json');
-                $json = json_decode($str, true);
-                $title = $json['sitetitle'];
-                echo $title . PHP_EOL;
-            ?>
             | Service Config
         </title>
 
-        <!-- <?php include ('../config.php'); ?> -->   <!-- DELETE -->
-        <?php include ('gitinfo.php'); ?>
 
     </head>
 
@@ -517,8 +481,8 @@ class OneFileLoginApplication
 
         <script>
             document.body.className += ' fade-out';
-            $(function() { 
-                $('body').removeClass('fade-out'); 
+            $(function() {
+                $('body').removeClass('fade-out');
             });
         </script>
 
@@ -534,7 +498,7 @@ class OneFileLoginApplication
  <p id="response"></p>
 
 
-    <div id="serviceform"> 
+    <div id="serviceform">
 
         <form id="servicesettings" onsubmit="formsubmit()">
 
@@ -561,7 +525,6 @@ class OneFileLoginApplication
                     $("#servicesettings").alpaca({
                         "connector": "custom",
                         "dataSource": "./post_receiver-services_load.php",
-                        //"dataSource": "../data/services_settings-data.json?a=1",
                         "schemaSource": "../config/services-schema.json?a=1",
                          //**     NOT WORKING    *//
                         // "view": {
@@ -573,10 +536,10 @@ class OneFileLoginApplication
                         //             "image": "leftcolumn",
                         //             "checkurl": "rightcolumn",
                         //             "linkurl": "rightcolumn",
-                        //             "type": "rightcolumn"                                    
+                        //             "type": "rightcolumn"
                         //         }
                         //     }
-                        // }, 
+                        // },
                         //"view": "bootstrap-edit-horizontal",
                         "options": {
                             "toolbarSticky": true,
@@ -756,13 +719,13 @@ class OneFileLoginApplication
                                                  //JSON.stringify(data, null, "  "),
                                                 data
                                                 },
-                                                                                              
+
                                                 // alert(JSON.stringify(data, null, "  ")),
                                                 alert("settings saved"),
                                                 //console.log(data),
                                                 // setTimeout(location.reload.bind(location), 500)
                                             )
-                                        
+
                                         }
                                     },
 
@@ -784,11 +747,11 @@ class OneFileLoginApplication
     </div>
 
                 <!-- scroll to top   -->
-                
+
             <button onclick="topFunction()" id="myBtn" title="Go to top"></button>
 
             <script>
-                 
+
                 // When the user scrolls down 20px from the top of the document, show the button
                 window.onscroll = function() {scrollFunction()};
 
@@ -811,7 +774,7 @@ class OneFileLoginApplication
         <div id="footer">
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
-            
+
         </div>
 
 </body>
@@ -860,8 +823,8 @@ class OneFileLoginApplication
                     echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
 
                 echo "</div>";
-                
-            } 
+
+            }
 
             else {
 
@@ -942,7 +905,7 @@ $application = new OneFileLoginApplication();
 
     <style type="text/css">
 
-        body { 
+        body {
             /* font: 14px sans-serif; */
             color: white;
         }
@@ -951,21 +914,21 @@ $application = new OneFileLoginApplication();
             font-size: 16px !important;
         } */
 
-        .wrapper { 
+        .wrapper {
             width: 30rem;
             margin-top: 10%;
             margin-left: auto;
             margin-right: auto;
-            padding: 1rem; 
+            padding: 1rem;
         }
 
-        .navbar-brand { 
+        .navbar-brand {
             cursor: default;
         }
 
     </style>
 
-    
+
 </head>
 
 
