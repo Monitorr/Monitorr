@@ -1,7 +1,7 @@
 <?php
 // Data for Monitorr
 // Data Directory Definition file
-    $datafile = '../config/datadir.json';
+    // $datafile = '../config/datadir.json'; // work in progress for global,
 // Data Directory
     $str = file_get_contents($datafile);
     $json = json_decode( $str, true);
@@ -21,4 +21,9 @@
     $jsonfileservices = $datadir . 'services_settings-data.json';
     $strservices = file_get_contents($jsonfileservices);
     $jsonservices = json_decode( $strservices, true);
+
+// $datadir = data Directory
+// $jsonusers = user prefs
+// $jsonsite = site prefs
+// $jsonservices = services
 ?>
