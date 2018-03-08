@@ -178,6 +178,17 @@ h4 {
     font-weight: 500;
 }
 
+
+#datdirerror {
+    color: red;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: default;
+}
+
+
+
 /* Paragraph & Typographic */
 
 p {
@@ -374,6 +385,8 @@ tbody {
 
 
 /* TILES */
+
+
 
  .container {
     padding-right: 1rem;
