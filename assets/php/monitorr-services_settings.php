@@ -488,7 +488,6 @@ class OneFileLoginApplication
 
 
         <div id="centertext">
-            <!-- <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a> -->
             <div class="navbar-brand">
                 Services Configuration
             </div>
