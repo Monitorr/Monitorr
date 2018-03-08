@@ -132,27 +132,56 @@
            }
         ?>
 
-        <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
+        <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?> | Monitorr</title>
 
         <script src="assets/js/jquery.min.js"></script>
 
         <script src="assets/js/pace.js" async></script>
 
         <script>
+
             $(document).ready(function() {
                 function update() {
-                $.ajax({
-                type: 'POST',
-                url: 'assets/php/timestamp.php',
-                timeout: 5000,
-                success: function(data) {
-                    $("#timer").html(data);
-                    window.setTimeout(update, 10000);
-                    }
-                });
+
+                    rftime =
+                        <?php
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/timestamp.php',
+                    timeout: 5000,
+                    success: function(data) {
+                        $("#timer").html(data);
+                        window.setTimeout(update, rftime);
+                        }
+                    });
                 }
                 update();
             });
+
+        </script>
+
+        <script>
+
+            $timezone =
+                "<?php
+                    $timezone = $jsonusers['timezone'];
+                    echo $timezone;
+                ?>";
+
+            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
+
+             $servertimezone = "<?php echo "$timezone"; ?>";
+
+            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
+
+            var servertimezone = $servertimezone;
+
+            var servertime = $dt;
+
         </script>
 
         <script type="text/javascript">
@@ -167,8 +196,15 @@
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
+
+                    rfsysinfo =
+                        <?php
+                            $rfsysinfo = $jsonsite['rfsysinfo'];
+                            echo $rfsysinfo;
+                        ?>
+
                     if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, <?php echo $jsonsite['rfsysinfo']; ?>);
+                        nIntervId = setInterval(statusCheck, rfsysinfo);
                     } else {
                         clearInterval(nIntervId);
                     }
