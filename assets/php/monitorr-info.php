@@ -22,7 +22,7 @@ class OneFileLoginApplication
     /**
      * @var string Path of the database file (create this with _install.php)
      */
-   // private $db_sqlite_path = "../config/data/users.db"; 
+   // private $db_sqlite_path = "../config/data/users.db";
 
     /**
      * @var object Database connection
@@ -55,7 +55,7 @@ class OneFileLoginApplication
         $this->datadir = $datadir;
 
             $datafile = $datadir . 'users.db';
-            
+
             $db_sqlite_path = $datafile;
 
 
@@ -376,7 +376,7 @@ class OneFileLoginApplication
             echo $this->feedback . "<br/><br/>";
         }
 
-       
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -437,7 +437,7 @@ class OneFileLoginApplication
                 .auto-style1 {
                     text-align: center;
                 }
-                
+
                 #centertext {
                     padding-bottom: 2rem !important;
                 }
@@ -465,18 +465,17 @@ class OneFileLoginApplication
                 }
 
             </style>
+            <?php $datafile = '../config/datadir.json'; ?>
+            <?php include_once ('../config/monitorr-data.php')?>
 
-        <title>
-            <?php
-                $str = file_get_contents('../data/user_preferences-data.json');
-                $json = json_decode($str, true);
-                $title = $json['sitetitle'];
-                echo $title . PHP_EOL;
-            ?>
+            <title>
+                <?php
+                    $title = $jsonusers['sitetitle'];
+                    echo $title . PHP_EOL;
+                ?>
             | Info
         </title>
 
-        <?php include ('gitinfo.php'); ?>
 
     </head>
 
@@ -519,13 +518,13 @@ class OneFileLoginApplication
                     </tr>
                     <tr>
                         <td><strong>Check & Execute Update:</strong></td>
-                        <td><a id="version_check" class="btn" style="cursor: pointer" title="Execute Update">Check for Update</a> |  Update branch selected:             
+                        <td><a id="version_check" class="btn" style="cursor: pointer" title="Execute Update">Check for Update</a> |  Update branch selected:
                             <strong>
                             <?php
                                 $str = file_get_contents('../data/user_preferences-data.json');
                                 $json = json_decode($str, true);
                                 $updateBranch = $json['updateBranch'];
-                                echo '| ' . $updateBranch . ' |' . PHP_EOL;  
+                                echo '| ' . $updateBranch . ' |' . PHP_EOL;
                             ?>
                             </strong>
                         </td>
@@ -552,7 +551,7 @@ class OneFileLoginApplication
                             <a href="../config/_installation/_register.php" class="toolslink" title="Monitorr Registration"> Registration |</a>
                             <a href="checkmanual.php" target="_blank" class="toolslink" title="Curl check tool"> Curl manual check |</a>
                             <a href="checkping.php" target="_blank" class="toolslink" title="Ping check tool"> Ping manual check  </a>
-                        </td> 
+                        </td>
 
                         <td><strong>Resources:</strong></td>
                         <td><a href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr GitHub Repo"> <img src="https://img.shields.io/badge/GitHub-repo-green.svg" style="width:4rem;height:1rem;" alt="Monitorr GitHub Repo"></a> | <a href="https://hub.docker.com/r/monitorr/monitorr/" target="_blank" title="Monitorr Docker Repo"> <img src="https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000" style="width:6rem;height:1rem;" alt="Monitorr Docker Repo"></a> | <a href="https://feathub.com/Monitorr/Monitorr" target="_blank" title="Monitorr Feature Request"> <img src="https://img.shields.io/badge/FeatHub-suggest-blue.svg" style="width:5rem;height:1rem;" alt="Monitorr Feature Request"></a> | <a href="https://discord.gg/j2XGCtH" target="_blank" title="Monitorr Discord Channel"> <img src="https://img.shields.io/discord/102860784329052160.svg" style="width:5rem;height:1rem;" alt="Monitorr on Discord" ></a> | <a href="https://paypal.me/monitorrapp" target="_blank" title="Buy us a beer!"> <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" style="width:4rem;height:1rem;" alt="PayPal" ></a> </td>
@@ -606,10 +605,10 @@ class OneFileLoginApplication
      */
     private function showPageLoginForm()
     {
-        
+
         $datadir = $this->datadir;
         $dbfile = $this->db_sqlite_path;
-        
+
         echo '<div class="wrapper">';
 
             echo '<div class="navbar-brand">';
@@ -618,7 +617,7 @@ class OneFileLoginApplication
                 echo '<br><br>';
 
                 //Check if user database is present if not output error below:
-            
+
             if(!is_file($dbfile)){
 
                 echo "<div id='loginerror'>";
@@ -632,8 +631,8 @@ class OneFileLoginApplication
                     echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
 
                 echo "</div>";
-                
-            } 
+
+            }
 
                 //if user database is present, show log-in form:
 
@@ -671,10 +670,10 @@ class OneFileLoginApplication
                             echo '<br>';
                     echo "User database file: " . $dbfile;
                 echo "</div>";
-            } 
+            }
 
         echo '</div>';
-        
+
     }
 
     /**
@@ -712,34 +711,34 @@ $application = new OneFileLoginApplication();
 
         <style type="text/css">
 
-            body { 
+            body {
                 color: white;
                 background-color: #1F1F1F;
             }
 
-            
 
-            .navbar-brand { 
+
+            .navbar-brand {
                 cursor: default;
             }
 
-            .wrapper { 
+            .wrapper {
                 width: 30rem;
                 margin-top: 10%;
                 margin-left: auto;
                 margin-right: auto;
-                padding: 1rem; 
+                padding: 1rem;
             }
 
         </style>
 
-        
+
     </head>
     <body>
             <script>
                 document.body.className += ' fade-out';
-                $(function() { 
-                    $('body').removeClass('fade-out'); 
+                $(function() {
+                    $('body').removeClass('fade-out');
                 });
             </script>
 
