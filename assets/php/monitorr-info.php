@@ -521,9 +521,7 @@ class OneFileLoginApplication
                         <td><a id="version_check" class="btn" style="cursor: pointer" title="Execute Update">Check for Update</a> |  Update branch selected:
                             <strong>
                             <?php
-                                $str = file_get_contents('../data/user_preferences-data.json');
-                                $json = json_decode($str, true);
-                                $updateBranch = $json['updateBranch'];
+                                $updateBranch = $jsonusers['updateBranch'];
                                 echo '| ' . $updateBranch . ' |' . PHP_EOL;
                             ?>
                             </strong>
