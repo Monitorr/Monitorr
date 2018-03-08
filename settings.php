@@ -25,78 +25,100 @@
         <script type="text/javascript" src="assets/js/alpaca.min.js"></script>
         <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
 
-            <style>
+        <style>
 
-                body {
-                    margin: auto;
-                    padding-left: 2rem;
-                    padding-right: 1rem;
-                    padding-bottom: 1rem;
-                    /* overflow-y: scroll !important;  */
-                    overflow-x: hidden !important;
-                    /* color: white !important; */
-                    background-color: #1F1F1F !important;
+            body {
+                margin: auto;
+                padding-left: 2rem;
+                padding-right: 1rem;
+                padding-bottom: 1rem;
+                /* overflow-y: scroll !important;  */
+                overflow-x: hidden !important;
+                /* color: white !important; */
+                background-color: #1F1F1F !important;
+            }
+
+            legend { 
+                color: white;
                 }
 
-                legend { 
-                    color: white;
-                    }
+            body::-webkit-scrollbar {
+                width: 10px;
+                background-color: #252525;
+            }
 
-                body::-webkit-scrollbar {
-                    width: 10px;
-                    background-color: #252525;
-                }
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #252525;
+            }
 
-                body::-webkit-scrollbar-track {
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    border-radius: 10px;
-                    background-color: #252525;
-                }
+            body::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            } 
 
-                body::-webkit-scrollbar-thumb {
-                    border-radius: 10px;
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    background-color: #8E8B8B;
-                } 
+            body.offline #link-bar {
+                display: none;
+            }
 
-                body.offline #link-bar {
-                    display: none;
-                }
+            body.online #link-bar {
+                display: block;
+            }
 
-                body.online #link-bar {
-                    display: block;
-                }
+            .auto-style1 {
+                text-align: center;
+            }
 
-                .auto-style1 {
-                    text-align: center;
-                }
+            #left {
+                /* padding-top: 5rem; */
+                padding-bottom: 1.5rem !important;
+            }
 
+            #footer {
+                position: fixed !important;
+                bottom: 0 !important;
+            }
 
-                #left {
-                    /* padding-top: 5rem; */
-                    padding-bottom: 1.5rem !important;
-                }
+            a:link{
+                background-color: transparent !important;
+            } 
 
-                #footer {
-                    position: fixed !important;
-                    bottom: 0 !important;
-                }
+        </style>
 
-                a:link{
+         <?php 
+         
+            $file = 'assets/config/datadir.json';
 
-                    background-color: transparent !important;
-                } 
+            if(!is_file($file)){
 
-            </style>
+                $path = "assets/";
+
+                include_once ('assets/config/monitorr-data-default.php');
+
+                $title = $jsonusers['sitetitle'];
+
+                $rftime = $jsonsite['rftime'];
+               
+            } 
+
+            else {
+
+                $datafile = 'assets/config/datadir.json';
+
+                include_once ('assets/config/monitorr-data.php');
+
+                $title = $jsonusers['sitetitle'];
+
+            }
+
+         ?> 
+
 
         <?php 
-            $str = file_get_contents( "assets/config/datadir.json" );
-
-            $json = json_decode( $str, true);
-
-            $datadir = $json['datadir'];
 
             $datafile = $datadir . 'users.db';
             
@@ -106,9 +128,6 @@
 
         <title>
             <?php 
-                $str = file_get_contents($datadir . 'user_preferences-data.json');
-                $json = json_decode($str, true);
-                $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
             ?>
             | Settings
@@ -124,9 +143,7 @@
 
                     rftime =
                         <?php 
-                            $str = file_get_contents('assets/data/site_settings-data.json');
-                            $json = json_decode($str, true);
-                            $rftime = $json['rftime'];
+                            $rftime = $jsonsite['rftime'];
                             echo $rftime;
                         ?>
 
@@ -149,10 +166,8 @@
 
             $timezone = 
                 "<?php 
-                    $str = file_get_contents('assets/data/user_preferences-data.json');
-                    $json = json_decode($str, true);
-                    $timezone = $json['timezone'];
-                    //echo $timezone;
+                    $timezone = $jsonusers['timezone'];
+                    echo $timezone;
                 ?>";
 
             <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
@@ -232,7 +247,6 @@
                 </ul>
             </nav>
 
-
         </div>
 
 
@@ -240,7 +254,7 @@
 
             <script src="assets/js/update_auto.js" async></script>
         
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
                         
             <div id="version_check_auto"></div>
 
@@ -308,11 +322,6 @@
                 document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
             }
         </script>
-
-
-
-
-
 
 
 </body>

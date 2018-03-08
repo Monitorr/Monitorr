@@ -5,11 +5,30 @@
 
 <?php 
 
-    $str = file_get_contents('../data/services_settings-data.json');
+    $file = '../config/datadir.json';
 
-    $myServices = json_decode( $str, true);
+        if(!is_file($file)){
 
-    //print_r($myServices); 
+            $path = "../";
+
+            include_once ('../config/monitorr-data-default.php');
+                   
+            $jsonservices;
+
+        } 
+
+
+        else {
+
+            $datafile = '../config/datadir.json';
+
+            include_once ('../config/monitorr-data.php');
+
+            $jsonservices;
+
+        }
+
+    $myServices = $jsonservices;
 
 ?>
 
@@ -19,22 +38,15 @@
     <?php 
 
         if($v2['type'] == " Standard") {
-
-           
-            
             echo "<div>";
-            urlExists($v2['checkurl']);
-             echo "Standard";
+                urlExists($v2['checkurl']);
             echo "</div>";
         }
 
         else {
-
             echo "<div>";
-            ping($v2['checkurl']);
-            echo "Ping Only";
+                ping($v2['checkurl']);
             echo "</div>";
-
         };
 
     ?>

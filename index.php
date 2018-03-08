@@ -38,7 +38,6 @@
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
        
-
         <style>
 
             body {
@@ -84,8 +83,7 @@
 
 
          <?php 
-
-
+         
             $file = 'assets/config/datadir.json';
 
             if(!is_file($file)){
@@ -96,48 +94,20 @@
 
                 $title = $jsonusers['sitetitle'];
 
-                $rftime = $jsonsite['rftime'];
-
-                echo "default data path: " . $path;
-
-                echo "<br>";
-
-                echo "Datafile NOT present, Default title: " . $title;
-
-                echo "<br>";
-
-                echo "default data file: " . $jsonfileuser;
-
-                echo "<br>";
-
-
+                $rftime = $jsonsite['rftime'];                
             } 
 
             else {
 
-                 
                 $datafile = 'assets/config/datadir.json';
 
                 include_once ('assets/config/monitorr-data.php');
 
                 $title = $jsonusers['sitetitle'];
 
-                echo "Datafile present, custon title: " . $title;
-
-                    echo "<br>";
-                
-                echo "data dir: " . $datadir;
-
-                    echo "<br>";
-
-                echo "data file: " . $datafile . ': ' . filesize($datafile) . ' bytes';
-
-                 echo "<br>";
-
             }
 
          ?> 
-
 
         <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
 
@@ -242,10 +212,6 @@
             });
         </script>
 
-
-
-
-
         <div id="header">
             
             <div id="left" class="Column">
@@ -297,9 +263,7 @@
 
         </div>
 
-
               <!-- Check if datadir has been established: -->
-
         <?php 
         
             $file = 'assets/config/datadir.json';
@@ -308,15 +272,12 @@
             if(!is_file($file)){
 
                 echo '<div id="datdirerror">';
-                
-                    echo 'Data directory not detected. Proceed to <a href="settings.php" target="s" title="Monitorr Settings"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a> and establish it.';
-                
+                    echo 'Data directory NOT detected. Proceed to <a href="settings.php" target="s" title="Monitorr Settings"> Monitorr Settings </a> and establish it.';
                 echo '</div>';
-            
+
             } 
 
             else {
-
             }
 
         ?>
@@ -324,21 +285,21 @@
         <div id="services" class="container">
 
             <div class="row">
-                <div id="statusloop">            
+                <div id="statusloop">
                     <!-- loop data goes here -->
                 </div>
             </div>
 
         </div>
 
-
-
         <div id="footer">
 
-            <a href="settings.php" target="s" title="Monitorr Settings"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a>
+             <script src="assets/js/update_auto.js" async></script>
 
-            <script src="assets/js/update_auto.js" async></script>
-        
+             <div id="settingslink">
+                <a class="footer a" href="settings.php" target="s" title="Monitorr Settings"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a>
+            </div>
+
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
             <div id="version_check_auto"></div>

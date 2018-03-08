@@ -3,8 +3,36 @@
 // include_once '../config.php';  //**REMOVE***
 
 
-    $str = file_get_contents('../data/site_settings-data.json');
-    $json = json_decode($str, true);
+        $file = '../config/datadir.json';
+
+        if(!is_file($file)){
+
+            $path = "../";
+
+            include_once ('../config/monitorr-data-default.php');
+            
+            // $jsonsite;
+
+            // $jsonusers
+
+        } 
+
+        else {
+
+                
+            $datafile = '../config/datadir.json';
+
+            include_once ('../config/monitorr-data.php');
+
+        //    $jsonsite;
+
+        // $jsonusers
+
+        }
+
+
+  //  $str = file_get_contents('../data/site_settings-data.json');
+  //  $json = json_decode($str, true);
 
 
 // get CPUload function
@@ -207,10 +235,12 @@ function getHDFree()
 
     // Dynamic icon colors for badges
  
-    $str = file_get_contents('../data/site_settings-data.json');
-    $json = json_decode($str, true);
-    $hdok = $json['hdok'];
-    $hdwarn = $json['hdwarn'];
+  //  $str = file_get_contents('../data/site_settings-data.json');  // CHANGE ME - DELETE
+  //  $json = json_decode($str, true);   // CHANGE ME - DELETE
+
+
+    $hdok = $jsonsite['hdok'];
+    $hdwarn = $jsonsite['hdwarn'];
 
 
         if ($freeHD < $hdok) {
@@ -238,10 +268,12 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded";
 
 // Dynamic icon colors for badges
 
-    $str = file_get_contents('../data/site_settings-data.json');
-    $json = json_decode($str, true);
-    $ramok = $json['ramok'];
-    $ramwarn = $json['ramwarn'];
+   // $str = file_get_contents('../data/site_settings-data.json');  // CHANGE ME - DELETE
+   // $json = json_decode($str, true);  // CHANGE ME - DELETE
+
+
+    $ramok = $jsonsite['ramok'];
+    $ramwarn = $jsonsite['ramwarn'];
 
 
 if ($ramPercent < $ramok) {
@@ -253,10 +285,12 @@ if ($ramPercent < $ramok) {
 }
 
 
-    $str = file_get_contents('../data/site_settings-data.json');
-    $json = json_decode($str, true);
-    $cpuok = $json['cpuok'];
-    $cpuwarn = $json['cpuwarn'];
+ //   $str = file_get_contents('../data/site_settings-data.json'); // CHANGE ME - DELETE
+  //  $json = json_decode($str, true); // CHANGE ME - DELETE
+
+
+    $cpuok = $jsonsite['cpuok'];
+    $cpuwarn = $jsonsite['cpuwarn'];
 
 
 if ($cpuPercent < $cpuok) {
@@ -280,15 +314,17 @@ if ($cpuPercent < $cpuok) {
 */
 
 
-    $str = file_get_contents('../data/site_settings-data.json');
-    $json = json_decode($str, true);
-    $pinghost = $json['pinghost'];
+  //  $str = file_get_contents('../data/site_settings-data.json');  // CHANGE ME - DELETE
+  //  $json = json_decode($str, true);  // CHANGE ME - DELETE
+    
+    
+    $pinghost = $jsonsite['pinghost'];
     //echo $pinghost;
 
     // $pinghost = $config['pinghost']; //set in config.php
 
 
-    $pingport = $json['pingport'];
+    $pingport = $jsonsite['pingport'];
     // echo $pingport;
 
     // $pingport = $config['pingport']; //set in config.php
@@ -307,9 +343,11 @@ if ($cpuPercent < $cpuok) {
 
 // New version download information
 
-    $str = file_get_contents('../data/user_preferences-data.json');
-    $json = json_decode($str, true);
-    $branch = $json['updateBranch'];
+  //  $str = file_get_contents('../data/user_preferences-data.json');  // CHANGE ME - DELETE
+  //  $json = json_decode($str, true);  // CHANGE ME - DELETE
+   
+   
+    $branch = $jsonusers['updateBranch'];
 
 
 //$branch = $config['updateBranch']; // *** DELETE ***

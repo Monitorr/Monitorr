@@ -1043,12 +1043,22 @@ input:checked+.slider:before {
 
     #dbmessage {
         color: rgb(73, 73, 73);
-        font-size: 1rem; /* //change ME */
+        font-size: 1rem;
         font-weight: 600;
         cursor: default;
     }
 
+    .dbmessage {
+        background-color: black;
+        color: yellow;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: default;
+    }
+
+
     .dbmessagesuccess {
+        background-color: black;
         color: green;
         font-size: 1rem;
         font-weight: 600;
@@ -1644,6 +1654,13 @@ tr {
 
 /* Footer */
 
+
+#settingslink {
+    cursor: default;
+    margin-bottom: .5rem;
+}
+
+
 #version_check_auto {
     cursor: default;
 }
@@ -1667,6 +1684,7 @@ tr {
     color: #ffffff;
     font-size: 1.2rem;
     font-weight: 400;
+    text-shadow: 0 0 15px #FF0104;
 }
 
  .a {

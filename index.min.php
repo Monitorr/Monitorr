@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,68 +119,58 @@
 
         </style>
 
-        <?php
-           $file = 'assets/config/datadir.json';
 
-           if(!is_file($file)){
-               $str = file_get_contents('assets/config/_installation/default/user_preferences-data_default.json');
-               $json = json_decode($str, true);
-           } else {
-               $datafile = 'assets/config/datadir.json';
-               include_once ('assets/config/monitorr-data.php');
-           }
-        ?>
+        <?php 
+         
+            $file = 'assets/config/datadir.json';
 
-        <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?> | Monitorr</title>
+            if(!is_file($file)){
+
+                $path = "assets/";
+
+                include_once ('assets/config/monitorr-data-default.php');
+
+                $title = $jsonusers['sitetitle'];
+
+                $rftime = $jsonsite['rftime'];
+                
+            } 
+
+            else {
+
+                 
+                $datafile = 'assets/config/datadir.json';
+
+                include_once ('assets/config/monitorr-data.php');
+
+                $title = $jsonusers['sitetitle'];
+
+            }
+
+         ?> 
+
+
+        <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
 
         <script src="assets/js/jquery.min.js"></script>
 
         <script src="assets/js/pace.js" async></script>
 
         <script>
-
             $(document).ready(function() {
                 function update() {
-
-                    rftime =
-                        <?php
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                    type: 'POST',
-                    url: 'assets/php/timestamp.php',
-                    timeout: 5000,
-                    success: function(data) {
-                        $("#timer").html(data);
-                        window.setTimeout(update, rftime);
-                        }
-                    });
+                $.ajax({
+                type: 'POST',
+                url: 'assets/php/timestamp.php',
+                timeout: 5000,
+                success: function(data) {
+                    $("#timer").html(data);
+                    window.setTimeout(update, 10000);
+                    }
+                });
                 }
                 update();
             });
-
-        </script>
-
-        <script>
-
-            $timezone =
-                "<?php
-                    $timezone = $jsonusers['timezone'];
-                    echo $timezone;
-                ?>";
-
-            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
-
-             $servertimezone = "<?php echo "$timezone"; ?>";
-
-            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
-
-            var servertimezone = $servertimezone;
-
-            var servertime = $dt;
-
         </script>
 
         <script type="text/javascript">
@@ -196,15 +185,8 @@
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
-
-                    rfsysinfo =
-                        <?php
-                            $rfsysinfo = $jsonsite['rfsysinfo'];
-                            echo $rfsysinfo;
-                        ?>
-
                     if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, rfsysinfo);
+                        nIntervId = setInterval(statusCheck, <?php echo $jsonsite['rfsysinfo']; ?>);
                     } else {
                         clearInterval(nIntervId);
                     }
@@ -213,28 +195,7 @@
             });
 
         </script>
-        <!-- Check if datadir has been established: -->
 
-        <?php
-
-            $file = 'assets/config/datadir.json';
-
-
-            if(!is_file($file)){
-
-                echo '<div id="datdirerror">';
-
-                    echo 'Data directory not detected. Proceed to <a href="settings.php" target="s" title="Monitorr Settings"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a> and establish it.';
-
-                echo '</div>';
-
-            }
-
-            else {
-
-            }
-
-        ?>
     </head>
 
     <body onload="statusCheck()">
@@ -284,6 +245,24 @@
 
         </div>
 
+            <!-- Check if datadir has been established: -->
+        <?php
+
+            $file = 'assets/config/datadir.json';
+
+            if(!is_file($file)){
+
+                echo '<div id="datdirerror">';
+                    echo 'Data directory NOT detected';
+                echo '</div>';
+
+            }
+
+            else {
+            }
+
+        ?>
+
         <div id="services" class="container">
 
             <div class="row">
@@ -294,9 +273,14 @@
 
         </div>
 
-
         <div id="footer">
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+
+            <!-- <script src="assets/js/update_auto.js" async></script> -->
+
+            <!-- <div id="version_check_auto"></div> -->
+
         </div>
 
     </body>

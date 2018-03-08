@@ -1,17 +1,21 @@
 <?php
+
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
         echo '<div class="reglog">';
             echo '<div id="loginmessage">';
-
-                    echo '<br>';
+                echo '<br>';
             
-                print_r('Form submitted:  create data directory: ');
-                var_dump($_POST['datadir']);
+            print_r('Form submitted:  create data directory: ');
+            var_dump($_POST['datadir']);
                 echo "<br>";
-                print_r('Server received: create data directory:  ');
-                var_dump($_POST['datadir']);
+            print_r('Server received: create data directory:  ');
+            var_dump($_POST['datadir']);
                 echo "<br>";
-                print_r('Server attempting to create data directory:  ');
-                var_dump($_POST['datadir']);
+            print_r('Server attempting to create data directory:  ');
+            var_dump($_POST['datadir']);
 
             echo '</div>';
         echo '</div>';
@@ -26,14 +30,11 @@
 
     $filename = file_get_contents('../datadir.json');
 
-    //$datadir = json_decode( $str, true);
 
     $datadir = json_decode( $filename, true);
 
 
     // Desired folder structure
-
-    //$structure = './depth1';
 
     $structure = $datadir['datadir'];
 
@@ -41,13 +42,23 @@
     // to mkdir() must be specified.
 
     if (!mkdir($structure, 0777, true)) {
-        echo '<div class="reglog">';
-            echo "<br>";
-            echo '<div id="loginerror">';
-                die("Failed to create directory: $structure");
-                echo "Failed to create directory: $structure";
+        
+            echo '<div class="reglog">';
+                echo "<br>";
+                echo '<div id="loginerror">';
+                    var_dump(!mkdir($structure));
+                        echo "<br>";
+                    echo "Failed to create directory: $structure";
+                echo '</div>';
             echo '</div>';
-        echo '</div>';
+
+        $fp = fopen('../datadir.json', 'w');
+            fwrite( $fp, "Failed to create directory: $structure" . var_dump(!mkdir($structure)));
+        fclose($fp);
+
+        rename("../datadir.json", "../datadir.fail.txt");
+
+        die;
     }
 
     else  {
@@ -65,7 +76,6 @@
 
          // Copy default json files to user spcified data dir:
 
-
             echo "<br> <br>";
 
             echo '<div id="loginmessage">';
@@ -76,7 +86,6 @@
         $file1 = 'default/services_settings-data_default.json';
         $newfile1 = $structure . 'services_settings-data.json';
 
-        
 
             if (!copy($file1, $newfile1)) {
                 echo '<div class="reglog">';
@@ -84,6 +93,14 @@
                         echo "failed to copy $file1...\n";
                     echo '</div">';
                 echo '</div">';
+
+                $fp = fopen('../datadir.json', 'w');
+                    fwrite( $fp, "Failed to copy default json files to: $structure");
+                fclose($fp);
+
+                rename("../datadir.json", "../datadir.fail.txt");
+
+                 die;
             }
 
             else {
@@ -107,6 +124,15 @@
                         echo "failed to copy $file2...\n";
                     echo '</div">';
                 echo '</div">';
+
+                $fp = fopen('../datadir.json', 'w');
+                    fwrite( $fp, "Failed to copy default json files to: $structure");
+                fclose($fp);
+
+                rename("../datadir.json", "../datadir.fail.txt");
+
+                die;
+
             }
 
             else {
@@ -131,10 +157,18 @@
                         echo "failed to copy $file3...\n";
                     echo '</div">';
                  echo '</div>';
+
+                $fp = fopen('../datadir.json', 'w');
+                    fwrite( $fp, "Failed to copy default json files to: $structure");
+                fclose($fp);
+
+                rename("../datadir.json", "../datadir.fail.txt");
+
+                die;
+
             }
 
             else {
-
 
                 echo '<div class="reglog">';
 
@@ -150,7 +184,6 @@
                     echo '</div>';
                     
                 echo '</div>';  
-
 
                 echo '<div id="loginmessage">';
                     echo "Creating user database file:";
@@ -184,31 +217,22 @@
                 $query = $db_connection->prepare($sql);
                 $query->execute();
 
-                echo '<div class="reglog">';
-
-                    echo '<div id="dbmessagesuccess">';
-                        echo "User database creation complete:";
-                            echo "<br>";
-                        echo realpath($db_sqlite_path);
-                    echo '</div>';
-                        echo "<br>";
-                    
-                echo '</div>';  
-
-
-                echo '<div id="loginmessage">';
-                    echo "Monitorr data directory creation complete. You can now create a user.";
-                echo '</div>';
-
                         echo "<br>";
 
-                    if (!execute($query)) {
+                    if (!$query) {
 
                         echo '<div class="reglog">';
                             echo '<div id="loginerror">';
                                 echo "failed to create user database";
                             echo '</div">';
                         echo '</div>';
+
+                        $fp = fopen('../datadir.json', 'w');
+                            fwrite( $fp, "Failed to create sqlite database in: $structure");
+                        fclose($fp);
+
+                        rename("../datadir.json", "../datadir.fail.txt");
+
                     }
 
                     else {
@@ -216,14 +240,20 @@
                         echo '<div class="reglog">';
 
                             echo '<div id="dbmessagesuccess">';
-                                echo "default data files succesfully copied to user data dir:";
-                                    echo "<br>";
+                                echo "User database creation complete: ";
                                 echo realpath($db_sqlite_path);
                             echo '</div>';
                                 echo "<br>";
-                                
+
                             echo '<div id="dbmessagesuccess">';
-                                echo "Data directory creation complete. You can now create a user.";
+                                echo "All required data files succesfully copied to user data dir:";
+                                    echo "<br>";
+                                echo realpath($structure);
+                            echo '</div>';
+                                echo "<br>";
+                                
+                            echo '<div id="loginmessage">';
+                                echo "Monitorr data directory creation complete. You can now create a user.";
                             echo '</div>';
                             
                         echo '</div>';  
@@ -231,7 +261,6 @@
                     }
 
            }
-
 
     }
 

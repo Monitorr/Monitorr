@@ -22,10 +22,11 @@
     $strservices = file_get_contents($jsonfileservices);
     $jsonservices = json_decode( $strservices, true);
 // Monitorr version
-    $strversion = file_get_contents ("../js/version/version.txt" );
+    // $strversion = file_get_contents ("../js/version/version.txt" );
 
 // $datadir = data Directory
 // $jsonusers = user prefs
 // $jsonsite = site prefs
 // $jsonservices = services
+
 ?>

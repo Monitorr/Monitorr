@@ -47,6 +47,8 @@ class OneFileLoginApplication
      * @var string System messages, likes errors, notices, etc.
      */
     public $feedback = "";
+    public $feedbackerror = "";
+    public $feedbacksuccess = "";
 
 
     /**
@@ -306,7 +308,11 @@ class OneFileLoginApplication
 
         // default return
         return false;
+
+       
     }
+
+    
 
     /**
      * Creates a new user.
@@ -399,6 +405,9 @@ class OneFileLoginApplication
      * In a real application you would probably include an html-template here, but for this extremely simple
      * demo the "echo" statements are totally okay.
      */
+
+
+
     private function showPageRegistration()
 
     {
@@ -425,7 +434,7 @@ class OneFileLoginApplication
                      echo '1-	Establish a data directory which will contain three json files with your custom settings, and a user database file. <br>';
                      echo '2-	Create a data directory definition file in the Monitorr installation directory which defines where your data directory is established on the webserver. <br>';
                      echo '3-	Copy the three default json settings files from the local Monitorr repository to the established data directory. <br>';
-                     echo '4-	Create a user database file in the established data directory. <br>';
+                     echo '4-	Create a sqlite user database file in the established data directory. <br>';
                      echo '5-	Create a user. <br> ';
                      echo '+	The above actions must complete successfully and in succession in order for Monitorr to function properly. <br> ';
                      echo '+	If you have any problems during the registration process, please check the <strong> <a href="https://github.com/Monitorr/Monitorr/wiki" target="_blank" class="toolslink" title="Monitorr Wiki"> Monitorr Wiki </a>. </strong> <br>';
@@ -433,7 +442,6 @@ class OneFileLoginApplication
                  echo '</div>';
 
             echo '</div>';
-
 
     ?>
 
@@ -463,7 +471,6 @@ class OneFileLoginApplication
                                 
                                     $('#response').html("<font color='yellow'><b>Loading response...</b></font>");
                                     
-         
                                     $.post({
                                         url: './mkdirajax.php',
                                         data: $(this).serialize(),
@@ -509,13 +516,38 @@ class OneFileLoginApplication
 
                                 <br>
 
+                                <?php 
+                                
+                                    $datafile = '../datadir.json';
+
+                                    $file = '../datadir.json';
+
+                                    if(is_file($file)){
+
+                                        include_once ('../monitorr-data.php');
+
+                                        $datadir = $json['datadir'];
+
+                                        echo '<div id="loginerror">';
+                                            echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' . If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
+                                                echo '<br>';
+                                        echo '</div>';
+                                        
+                                    } 
+
+                                    else {
+
+                                    }
+
+                                ?> 
+
                             <form id="userForm">
 
                                 <div>
                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' fv-not-empty= " This field can't be empty" pattern="[/^\S*$/]+" title="Cannot contain spaces" id="datadir" name='datadir' autocomplete="off" required placeholder=' Data dir path' />
                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text'  fv-advanced='{"regex": "/^\s$/", "message": "This field cannot contain spaces."}' fv-not-empty= " This field can't be empty" id="datadir" name='datadir' autocomplete="off" required placeholder='Data dir path' /> -->
                                         <br>
-                                    <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()   ?> </i>
+                                    <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
                                 </div>
 
                                      <br>
@@ -532,11 +564,13 @@ class OneFileLoginApplication
 
                             <div id="datadirnotes"> 
                                     <i>
+                                + The directory that is chosen must NOT already exist. 
+                                    <br>
                                 + Path value must include a trailing slash.
                                     <br>
-                                + For security, this directory should NOT be within your webserver's root path.
+                                + For security purposes, this directory should NOT be within the webserver's filesystem hierarchy. However, if a path is chosen outside the webserver's filesystem, the PHP process must have read/write privileges to whatever location is chosen to create the data directory.
                                     <br>
-                                + Value must be an absolute path on the webserver's filesystem.
+                                + Value must be an absolute path on the server's filesystem.
                                     <br>
                                 Good:  c:\datadir\, /var/datadir/
                                     <br>
@@ -546,7 +580,7 @@ class OneFileLoginApplication
 
                                 <br>
 
-                            <div id='response' class='dbmessagesuccess'></div>
+                            <div id='response' class='dbmessage'></div>
 
                         </div>
 
@@ -601,7 +635,6 @@ class OneFileLoginApplication
 
                 echo '</div>';
 
-
                 echo ' <input type="submit" class="btn btn-primary" name="register" value="Register" />';
                      echo '<br>';
 
@@ -624,10 +657,8 @@ class OneFileLoginApplication
                 echo ' </div>';
 
                 echo ' <div id="usernotes">';
-                    echo "<i> + It is NOT possible to change a user's credentials after creation. If credentials need to be changed or reset, rename the file "; echo ($this->db_sqlite_path) ;   /*  CHANGE ME / Target datadirpath.json */  echo " to 'users.old'. Once that file is renamed, browse to this page again to recreate desired credentials. </i> ";
+                    echo "<i> + It is NOT possible to change a user's credentials after creation. If credentials need to be changed or reset, rename the file in your data directory "; echo ($this->db_sqlite_path) ;  echo " to 'users.old'. Once that file is renamed, browse to this page again to recreate desired credentials. </i> ";
                echo ' </div>';
-
-                    echo '<br>';
 
         echo ' </div>';
 
@@ -744,7 +775,6 @@ class OneFileLoginApplication
 
         </style>
 
-        
     </head>
 
 </html>

@@ -6,18 +6,17 @@
 
         if(!is_file($file)){
 
-            $str = file_get_contents('../config/_installation/default/user_preferences-data_default.json');
-            $json = json_decode($str, true);
+            $path = "../";
+
+            include_once ('../config/monitorr-data-default.php');
             
-            $timezone = $json['timezone'];
+            $timezone = $jsonusers['timezone'];
+           // echo $timezone;
 
-                echo $timezone;
-
-                $timestandard = $json['timestandard'];
-                echo $timestandard;
+            $timestandard = $jsonusers['timestandard'];
+            // echo $timestandard;
         
         } 
-
 
         else {
 
@@ -25,15 +24,13 @@
 
             include_once ('../config/monitorr-data.php');
 
-                $timezone = $jsonusers['timezone'];
-                echo $timezone;
+            $timezone = $jsonusers['timezone'];
+            //echo $timezone;
 
-                $timestandard = $jsonusers['timestandard'];
-                echo $timestandard;
+            $timestandard = $jsonusers['timestandard'];
+            //echo $timestandard;
 
         }
-
-
 
     date_default_timezone_set($timezone);
     $timestamp = time();
