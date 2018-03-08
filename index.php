@@ -83,20 +83,60 @@
         </style>
 
 
-        <!-- <?php include ('assets/config.php'); ?> -->
+         <?php 
 
 
-            <?php include ('assets/php/gitinfo.php'); ?>
+            $file = 'assets/config/datadir.json';
+
+            if(!is_file($file)){
+
+                $str = file_get_contents('assets/config/_installation/default/user_preferences-data_default.json');
+                $json = json_decode($str, true);
+
+                
+                $title = $json['sitetitle'];
+
+                    echo "<br>";
+
+                echo "Datafile NOT present, Default title:" . $title;
+
+                echo "<br>";
+            
+            } 
+
+            else {
+
+                 
+                $datafile = 'assets/config/datadir.json';
+
+                include_once ('assets/config/monitorr-data.php');
+
+                $title = $jsonusers['sitetitle'];
+
+                echo "Datafile present, custon title: " . $title;
+
+                    echo "<br>";
+                
+                echo "data dir: " . $datadir;
+
+                    echo "<br>";
+
+                echo "data file: " . $datafile . ': ' . filesize($datafile) . ' bytes';
+
+            }
+
+         ?> 
+
+
+        <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
 
         <title>
             <?php 
-                $str = file_get_contents('assets/data/user_preferences-data.json');
-                $json = json_decode($str, true);
-                $title = $json['sitetitle'];
                 echo $title . PHP_EOL;
             ?>
             | Monitorr
         </title>
+
         
         <script src="assets/js/jquery.min.js"></script>
 
@@ -109,9 +149,7 @@
 
                     rftime =
                         <?php 
-                            $str = file_get_contents('assets/data/site_settings-data.json');
-                            $json = json_decode($str, true);
-                            $rftime = $json['rftime'];
+                            $rftime = $jsonsite['rftime'];
                             echo $rftime;
                         ?>
 
@@ -134,9 +172,7 @@
 
             $timezone = 
                 "<?php 
-                    $str = file_get_contents('assets/data/user_preferences-data.json');
-                    $json = json_decode($str, true);
-                    $timezone = $json['timezone'];
+                    $timezone = $jsonusers['timezone'];
                     echo $timezone;
                 ?>";
 
@@ -169,9 +205,7 @@
 
                     rfsysinfo =
                         <?php 
-                            $str = file_get_contents('assets/data/site_settings-data.json');
-                            $json = json_decode($str, true);
-                            $rfsysinfo = $json['rfsysinfo'];
+                            $rfsysinfo = $jsonsite['rfsysinfo'];
                             echo $rfsysinfo;
                         ?>
 
@@ -211,15 +245,10 @@
                 <div id="centertext">
                     <a class="navbar-brand" href="
                         <?php 
-                            $str = file_get_contents('assets/data/user_preferences-data.json');
-                            $json = json_decode($str, true);
-                            $siteurl = $json['siteurl'];
+                            $siteurl = $jsonusers['siteurl'];
                             echo $siteurl . PHP_EOL;
                         ?>"> 
                         <?php
-                            $str = file_get_contents('assets/data/user_preferences-data.json');
-                            $json = json_decode($str, true);
-                            $title = $json['sitetitle'];
                             echo $title . PHP_EOL;
                         ?>
                     </a>
@@ -252,6 +281,30 @@
             </div> 
 
         </div>
+
+
+              <!-- Check if datadir has been established: -->
+
+        <?php 
+        
+            $file = 'assets/config/datadir.json';
+
+
+            if(!is_file($file)){
+
+                echo '<div id="datdirerror">';
+                
+                    echo 'Data directory not detected. Proceed to <a href="settings.php" target="s" title="Monitorr Settings"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a> and establish it.';
+                
+                echo '</div>';
+            
+            } 
+
+            else {
+
+            }
+
+        ?>
             
         <div id="services" class="container">
 
@@ -262,38 +315,6 @@
             </div>
 
         </div>
-
-
-
-
-             <?php 
-
-                $str = file_get_contents('assets/config/datadir.json');
-                $json = json_decode( $str, true);
-
-                $datadir = $json['datadir'];
-
-                    echo "<br><br>";
-
-                echo "data dir: " . $datadir;
-
-                    echo "<br><br>";
-
-                $datafile = $datadir . 'user_preferences-data.json';
-
-                echo "data file: " . $datafile . ': ' . filesize($datafile) . ' bytes';
-
-                    echo "<br>";
-
-                $str2 = file_get_contents($datafile);
-                $json = json_decode( $str2, true);
-                $title = $json['sitetitle'];
-
-                     echo "<br>";
-
-                echo "Data file value: Site Title: " . $title;
-                
-            ?>
 
 
         <div id="footer">
