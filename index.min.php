@@ -3,16 +3,16 @@
 <html lang="en">
 
     <!--
-    __  __             _ _                  
-    |  \/  |           (_) |                 
-    | \  / | ___  _ __  _| |_ ___  _ __ _ __ 
+    __  __             _ _
+    |  \/  |           (_) |
+    | \  / | ___  _ __  _| |_ ___  _ __ _ __
     | |\/| |/ _ \| '_ \| | __/ _ \| '__| '__|
-    | |  | | (_) | | | | | || (_) | |  | |   
-    |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|  
+    | |  | | (_) | | | | | || (_) | |  | |
+    |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|
             made for the community
-    by @seanvree, @wjbeckett, and @jonfinley 
-    https://github.com/Monitorr/Monitorr 
-    --> 
+    by @seanvree, @wjbeckett, and @jonfinley
+    https://github.com/Monitorr/Monitorr
+    -->
 
 
     <head>
@@ -81,8 +81,8 @@
                 max-width: 40rem;
                 left: 51% !important;
                 padding-top: 1rem;
-                background-color: #1F1F1f; 
-                box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F; 
+                background-color: #1F1F1f;
+                box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F;
             }
 
             #stats {
@@ -117,22 +117,23 @@
                 padding-top: .50rem !important;
                 padding-bottom: .50rem !important;
             }
-            
+
         </style>
 
-        <?php $file = 'assets/config.php';
-            //Use the function is_file to check if the config file already exists or not.
-            if(!is_file($file)){
-                copy('assets/config.php.sample', $file);
-            } 
+        <?php
+           $file = 'assets/config/datadir.json';
+
+           if(!is_file($file)){
+               $str = file_get_contents('assets/config/_installation/default/user_preferences-data_default.json');
+               $json = json_decode($str, true);
+           } else {
+               $datafile = 'assets/config/datadir.json';
+               include_once ('assets/config/monitorr-data.php');
+           }
         ?>
 
-        <?php include ('assets/config.php'); ?>
-        <?php include ('assets/php/check.php') ;?>
-        <?php include ('assets/php/gitinfo.php'); ?>
+        <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
 
-        <title><?php echo $config['title']; ?></title>
-        
         <script src="assets/js/jquery.min.js"></script>
 
         <script src="assets/js/pace.js" async></script>
@@ -145,7 +146,7 @@
                 url: 'assets/php/timestamp.php',
                 timeout: 5000,
                 success: function(data) {
-                    $("#timer").html(data); 
+                    $("#timer").html(data);
                     window.setTimeout(update, 10000);
                     }
                 });
@@ -167,7 +168,7 @@
             $(document).ready(function () {
                 $(":checkbox").change(function () {
                     if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
+                        nIntervId = setInterval(statusCheck, <?php echo $jsonsite['rfsysinfo']; ?>);
                     } else {
                         clearInterval(nIntervId);
                     }
@@ -175,33 +176,54 @@
                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
             });
 
-        </script> 
+        </script>
+        <!-- Check if datadir has been established: -->
 
+        <?php
+
+            $file = 'assets/config/datadir.json';
+
+
+            if(!is_file($file)){
+
+                echo '<div id="datdirerror">';
+
+                    echo 'Data directory not detected. Proceed to <a href="settings.php" target="s" title="Monitorr Settings"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a> and establish it.';
+
+                echo '</div>';
+
+            }
+
+            else {
+
+            }
+
+        ?>
     </head>
 
     <body onload="statusCheck()">
 
         <script>
             document.body.className += ' fade-out';
-            $(function() { 
-                $('body').removeClass('fade-out'); 
+            $(function() {
+                $('body').removeClass('fade-out');
             });
         </script>
 
 
         <div id="headermin">
-            
+
             <div id="left" class="Column">
                 <div id="time">
                     <div class="dtg" id="timer"></div>
                 </div>
-            </div> 
+            </div>
 
             <div id="center">
                 <div id="stats" class="container centered">
                     <!-- system badges go here -->
                 </div>
-            </div>  
+            </div>
 
 
             <div id="right" class="Column">
@@ -220,7 +242,7 @@
                             </th>
                         </tr>
                     </table>
-                </div> 
+                </div>
 
             </div>
 
@@ -235,16 +257,16 @@
             </div>
 
         </div>
-        
+
 
         <div id="footer">
-        
+
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
-            
+
             <script src="assets/js/update_auto.js" async></script>
 
             <div id="version_check_auto"></div>
-            
+
         </div>
 
     </body>
