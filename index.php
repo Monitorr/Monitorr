@@ -90,18 +90,27 @@
 
             if(!is_file($file)){
 
-                $str = file_get_contents('assets/config/_installation/default/user_preferences-data_default.json');
-                $json = json_decode($str, true);
+                $path = "assets/";
 
-                
-                $title = $json['sitetitle'];
+                include_once ('assets/config/monitorr-data-default.php');
 
-                    echo "<br>";
+                $title = $jsonusers['sitetitle'];
 
-                echo "Datafile NOT present, Default title:" . $title;
+                $rftime = $jsonsite['rftime'];
+
+                echo "default data path: " . $path;
 
                 echo "<br>";
-            
+
+                echo "Datafile NOT present, Default title: " . $title;
+
+                echo "<br>";
+
+                echo "default data file: " . $jsonfileuser;
+
+                echo "<br>";
+
+
             } 
 
             else {
@@ -122,6 +131,8 @@
                     echo "<br>";
 
                 echo "data file: " . $datafile . ': ' . filesize($datafile) . ' bytes';
+
+                 echo "<br>";
 
             }
 
@@ -231,6 +242,10 @@
             });
         </script>
 
+
+
+
+
         <div id="header">
             
             <div id="left" class="Column">
@@ -317,18 +332,15 @@
         </div>
 
 
+
         <div id="footer">
 
-            <a href="settings.php" target="s"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a>
-            <br><br>
-
+            <a href="settings.php" target="s" title="Monitorr Settings"><i class="fa fa-fw fa-cog"></i> Monitorr Settings </a>
 
             <script src="assets/js/update_auto.js" async></script>
         
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
-            <!-- <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a> -->
-            
             <div id="version_check_auto"></div>
             
         </div>
