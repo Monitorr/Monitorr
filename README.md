@@ -91,3 +91,5 @@
 
 ## Credits:
 - [Causefx](https://github.com/Causefx)
+- [Roxedus](https://github.com/si0972)
+- [christronyxyocum](https://github.com/christronyxyocum)
