@@ -2,32 +2,38 @@
 
     // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
 
-    $datafile = '../config/datadir.json';
+    $file = '../config/datadir.json';
 
-    include_once ('../config/monitorr-data.php');
+        if(!is_file($file)){
 
+            $str = file_get_contents('../config/_installation/default/user_preferences-data_default.json');
+            $json = json_decode($str, true);
+            
+            $timezone = $json['timezone'];
 
-   // $str = file_get_contents('../data/user_preferences-data.json');
-   // $json = json_decode($str, true);
+                echo $timezone;
 
-
-    
-
-/*     if (!empty($jsonusers['timezone'])) {
-
-        $str = file_get_contents('../config/_installation/default/user_preferences-data_default.json');
-        $json = json_decode($str, true);
-        $timezone = $json['timezone'];
-            echo $timezone;
-
-    } */
+                $timestandard = $json['timestandard'];
+                echo $timestandard;
+        
+        } 
 
 
-    $timezone = $jsonusers['timezone'];
-    echo $timezone;
+        else {
 
-    $timestandard = $jsonusers['timestandard'];
-    echo $timestandard;
+            $datafile = '../config/datadir.json';
+
+            include_once ('../config/monitorr-data.php');
+
+                $timezone = $jsonusers['timezone'];
+                echo $timezone;
+
+                $timestandard = $jsonusers['timestandard'];
+                echo $timestandard;
+
+        }
+
+
 
     date_default_timezone_set($timezone);
     $timestamp = time();
