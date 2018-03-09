@@ -543,8 +543,7 @@ class OneFileLoginApplication
                             <form id="userForm">
 
                                 <div>
-                                   <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' title="Cannot contain spaces & must contain trailing slash" fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>
-                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' title="Cannot contain spaces & must contain trailing slash" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "This field cannot contain spaces."}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required> -->
+                                   <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' title="Cannot contain spaces & must contain trailing slash" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>
                                         <br>
                                     <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
                                 </div>
