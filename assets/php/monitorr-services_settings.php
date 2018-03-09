@@ -493,21 +493,12 @@ class OneFileLoginApplication
             </div>
         </div>
 
-
  <p id="response"></p>
 
 
     <div id="serviceform">
 
-        <form id="servicesettings" onsubmit="formsubmit()">
-
-            <!-- <button onclick="formsubmit()" id="myBtn2" label="Submit" title="Form Submit" /> -->
-            <!-- <input id="myBtn2" type="submit" value="Submit" /> -->
-
-        </form>
-
-        <!-- <button onclick="formsubmit()" id="myBtn2" label="Submit" title="Form Submit" ></button> -->
-         <!-- <button onclick="topFunction()" id="myBtn" title="Go to top"></button> -->
+        <div id="servicesettings"> </div>
 
             <script type="text/javascript">
                 $(document).ready(function() {
@@ -525,21 +516,20 @@ class OneFileLoginApplication
                         "connector": "custom",
                         "dataSource": "./post_receiver-services_load.php",
                         "schemaSource": "../config/services-schema.json?a=1",
-                         //**     NOT WORKING    *//
-                        // "view": {
-                        //     "parent": "bootstrap-edit-horizontal",
-                        //     "layout": {
-                        //         "template": './two-column-layout-template.html',
-                        //         "bindings": {
-                        //             "serviceTitle": "leftcolumn",
-                        //             "image": "leftcolumn",
-                        //             "checkurl": "rightcolumn",
-                        //             "linkurl": "rightcolumn",
-                        //             "type": "rightcolumn"
-                        //         }
-                        //     }
-                        // },
-                        //"view": "bootstrap-edit-horizontal",
+                        "view": {
+                            "parent": "bootstrap-edit"
+                            //"layout": {
+                               // "template": './two-column-layout-template.html',
+                                //"template": '<table class="table table-hover"><tbody><tr><td id="leftservice"></td><td id="rightservice"></td></tr></tbody></table>',
+                                // "bindings": {
+                                //     "serviceTitle": "#leftservice",
+                                //     "image": "#leftservice",
+                                //     "checkurl": "#rightservice",
+                                //     "linkurl": "#rightservice",
+                                //     "type": "#rightservice"
+                                // }
+                            //}
+                        },
                         "options": {
                             "toolbarSticky": true,
                             "collapsible": true,
@@ -603,7 +593,7 @@ class OneFileLoginApplication
                                         "hidden": false,
                                         "label": "Service Image:",
                                         //"helpers": ["Icon/image representation of service"],
-                                        //"helper": "Icon/image representation of service",
+                                        "helper": "Icon/image representation of service. Location of image must be present in the /assets/img directory.",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
@@ -727,7 +717,6 @@ class OneFileLoginApplication
 
                                         }
                                     },
-
                                     "view": {
                                         "type": "button",
                                         "label": "View JSON",

@@ -1111,6 +1111,7 @@ input:checked+.slider:before {
 
 /*           Wrappers            */
 
+
 #wrapper {
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -1121,19 +1122,6 @@ input:checked+.slider:before {
     /* width: 8rem; */
     margin: 0;
 }
-
-/*     #wrapper.toggled {
-       
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 20%;
-    }
-
-    #wrapper.toggled #page-content-wrapper {
-        margin-right: -220px;
-        position: absolute;
-    } */
 
 #sidebar-wrapper {
     height: auto;

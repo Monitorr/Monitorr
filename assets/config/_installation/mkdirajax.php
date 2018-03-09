@@ -20,7 +20,7 @@
             echo '</div>';
         echo '</div>';
 
-    $post_data = $_POST['datadir'];
+   // $post_data = $_POST['datadir'];
 
 
     $fp = fopen('../datadir.json', 'w');
@@ -41,22 +41,23 @@
     // To create the nested structure, the $recursive parameter 
     // to mkdir() must be specified.
 
-    if (!mkdir($structure, 0777, true)) {
+    if (!mkdir($structure, 0777, FALSE)) {
         
             echo '<div class="reglog">';
                 echo "<br>";
                 echo '<div id="loginerror">';
                     var_dump(!mkdir($structure));
                         echo "<br>";
-                    echo "Failed to create directory: $structure";
+                    echo "Failed to create directory1: $structure";
                 echo '</div>';
             echo '</div>';
 
-        $fp = fopen('../datadir.json', 'w');
-            fwrite( $fp, "Failed to create directory: $structure" . var_dump(!mkdir($structure)));
-        fclose($fp);
-
         rename("../datadir.json", "../datadir.fail.txt");
+
+        $fp2 = fopen('../datadir.fail.txt', 'w');
+            fwrite( $fp2, "Failed to create directory2: " . json_encode($_POST));
+            var_dump( $fp2);
+        fclose($fp2);
 
         die;
     }
@@ -257,6 +258,8 @@
                             echo '</div>';
                             
                         echo '</div>';  
+
+                        unlink('../datadir.fail.txt');
 
                     }
 

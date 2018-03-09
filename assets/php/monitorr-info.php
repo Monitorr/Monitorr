@@ -535,17 +535,13 @@ class OneFileLoginApplication
                             </a>
                         </td>
                         <td><strong>PHP Version:</strong></td>
-                        <td><?php echo phpversion('tidy'); ?></td>
+                        <td><?php echo phpversion(); ?></td>
                     </tr>
                     <tr>
                         <td><strong>Check & Execute Update:</strong></td>
                         <td><a id="version_check" class="btn" style="cursor: pointer" title="Execute Update">Check for Update</a> |  Update branch selected:             
                             <strong>
                             <?php
-                               // $str = file_get_contents('../data/user_preferences-data.json');  // change me REMOVE
-                                // $json = json_decode($str, true);  // change me REMOVE
-
-
                                 $updateBranch = $jsonusers['updateBranch'];
                                 echo '| ' . $updateBranch . ' |' . PHP_EOL;  
                             ?>
