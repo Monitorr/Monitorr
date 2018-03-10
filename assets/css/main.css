@@ -1,3 +1,9 @@
+    /* 
+         Monitorr CSS file
+    https://github.com/Monitorr/Monitorr
+
+    */
+    
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css); 
 
@@ -18,12 +24,10 @@ body {
         /* overflow-x: hidden; */
 }
 
-
 body.fade-out {
     opacity: 0;
     transition: none;
 }
-
 
     /* 
         body::-webkit-scrollbar {
@@ -186,7 +190,6 @@ h4 {
     font-weight: 500;
     cursor: default;
 }
-
 
 
 /* Paragraph & Typographic */
@@ -385,8 +388,6 @@ tbody {
 
 
 /* TILES */
-
-
 
  .container {
     padding-right: 1rem;
@@ -944,7 +945,6 @@ input:checked+.slider:before {
 }
 
 
-
     /*     login       */
 
     .wrapper {
@@ -1104,7 +1104,7 @@ input:checked+.slider:before {
     }
 
 
-/********************* SETTINGS  **************** */
+/********************* SETTINGS  *****************/
 
 
 /******SETTINGS NAVBAR ********/
@@ -1305,7 +1305,6 @@ input:checked+.slider:before {
 }
 
 
-
 .btn-group>.btn:first-child {
     margin-left: 0;
     background-color: rgb(200, 200, 200);
@@ -1319,7 +1318,6 @@ input:checked+.slider:before {
     background-color: rgb(200, 200, 200);
     color: black
 }
-
 
 
 .settingscolumn {

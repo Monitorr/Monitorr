@@ -806,8 +806,8 @@ class OneFileLoginApplication
                                     "showMessages": false,
                                     "disabled": false,
                                     "hidden": false,
-                                    "label": "Language",
-                                    "helpers": [],
+                                    "label": "Language:",
+                                    "helpers": ["Beta"], // BETA - CHANGE ME //
                                     "hideInitValidationError": false,
                                     "focus": false,
                                     "optionLabels": [],

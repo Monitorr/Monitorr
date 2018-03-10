@@ -1,0 +1,9 @@
+Monitorr data directory
+https://github.com/Monitorr/Monitorr
+
+
+- This directory and files within are components of the Monitorr web application. 
+- These files should NOT be edited manually. 
+- In case of corruption, these files can be regenerated using the Monitorr settings page which is located in the local monitorr repo at /settings.php
+- If the settings page is not accessible, you can also attempt to browse to /<monitorr repo location>/assets/config/_installation/_register.php
+- If the credentials to the settings page need to be changed or reset, rename the file in this directory users.db to 'users.old'. Once that file is renamed, browse to the Monitorr settings page again to recreate desired credentials.

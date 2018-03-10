@@ -456,6 +456,7 @@ class OneFileLoginApplication
                         <!-- <link type="text/css" href="../../css/main.css" rel="stylesheet"> -->
                         <link type="text/css" href="../../css/formValidation.css" rel="stylesheet" />
                         <script src="../../js/jquery.min.js"></script>
+                         <!-- <script src="../../js/jquery.validate.min.js"></script> -->
                         <script src="../../js/formValidation.js"></script>
 
                     </head>
@@ -464,43 +465,54 @@ class OneFileLoginApplication
 
                         <script>
 
+                            $('#response').html("<font color='yellow'><b>Loading response...</b></font>");
+
                             $(document).ready(function(){
 
-                                $('#datadirbtn').click(function(){
-                                
-                                    $('#response').html("<font color='yellow'><b>Loading response...</b></font>");
-                                    
-                                    $.post({
-                                        url: './mkdirajax.php',
-                                        data: $(this).serialize(),
-                                        success: function(data){
-                                            // alert("Directory Created successfully");
-                                            $('#response').html(data);
-                                        }
-                                    })
+                                    $('#datadirbtn').submit(function(){
 
-                                    .fail(function() {
-                                        alert( "Posting failed (ajax1)" );
-                                    }); 
+                                        $("#userForm").validate({
+                                            debug: true,
+                                            //onsubmit: false,
+                                            submitHandler: function(form) {
 
-                                    var datadir = $("#datadir").val();
-                                    console.log('Submitted: '+ datadir);
-                                    var url ="./mkdirajax.php";
+                                                $(form).post({
+                                                    url: './mkdirajax.php',
+                                                    data: $(this).serialize(),
+                                                    success: function(data){
+                                                        //alert("Directory Created successfully");
+                                                        $('#response').html(data);
+                                                    }
+                                                })
 
-                                    $.post(url, { datadir: datadir }, function(data){
-                                        // alert("Directory Created successfully");
-                                        console.log('response: '+ data);
-                                        // alert('response: '+ data);
-                                        $('#response').html(data); 
+                                                .fail(function() {
+                                                    alert( "Posting failed (ajax1)" );
+                                                }); 
 
-                                    })
+                                                var datadir = $("#datadir").val();
+                                                console.log('Submitted: '+ datadir);
+                                                var url ="./mkdirajax.php";
 
-                                    .fail(function() { 
-                                        alert( "Posting failed (ajax2)" );
-                                    })
+                                                $(form).post(url, { datadir: datadir }, function(data){
+                                                    alert("Directory Created successfully");
+                                                    console.log('response: '+ data);
+                                                    // alert('response: '+ data);
+                                                    $('#response').html(data); 
 
-                                    return false;
-                                });
+                                                })
+
+                                                .fail(function() { 
+                                                    alert( "Posting failed (ajax2)" );
+                                                })
+
+                                                form.submit();
+                                                return false;
+                                            },
+
+                                        });
+
+                                    });
+
                             });
 
                         </script>
@@ -544,7 +556,6 @@ class OneFileLoginApplication
 
                                 <div>
                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>
-                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
                                         <br>
                                     <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
                                 </div>
@@ -569,7 +580,7 @@ class OneFileLoginApplication
                                     <br>
                                 + For security purposes, this directory should NOT be within the webserver's filesystem hierarchy. However, if a path is chosen outside the webserver's filesystem, the PHP process must have read/write privileges to whatever location is chosen to create the data directory.
                                     <br>
-                                + Value must be an absolute path on the server's filesystem with the exception of Docker - use a relative path with trailing slash.
+                                + Value must be an absolute path on the server's filesystem.
                                     <br>
                                 Good:  c:\datadir\, /var/datadir/
                                     <br>
@@ -727,6 +738,7 @@ class OneFileLoginApplication
         <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../../css/main.css" rel="stylesheet">
         <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/jquery.validate.min.js"></script>
         <script src="../../js/formValidation.js"></script>
         
 

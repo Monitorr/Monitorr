@@ -613,7 +613,7 @@ class OneFileLoginApplication
                                     "checktype": {
                                         "type": "select",
                                         "validate": true,
-                                        //"optionLabels": [" Standard", " Ping Only"],
+                                        "optionLabels": [" Standard", " Ping Only"],
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,

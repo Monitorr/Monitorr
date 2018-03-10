@@ -2,6 +2,8 @@ var fvId = 1;
 
 $(document).ready(function () {
     $.each($('input'), function () {
+        this.validations = 0;
+
         /**
          * fv-not-empty handling
          *
@@ -9,11 +11,14 @@ $(document).ready(function () {
          * leave this blank to add none
          */
         if (typeof $(this).attr('fv-not-empty') != "undefined") {
+            this.validations++;
+
             var message = $(this).attr('fv-not-empty');
 
-            $(this).off('keyup').on('keyup', function () {
+            $(this).on('keyup', function () {
                 if ($(this).val().length == 0) {
                     addError(this, message);
+                    return;
                 } else {
                     addSuccess(this);
                 }
@@ -29,7 +34,9 @@ $(document).ready(function () {
          *  - regex
          */
         if (typeof $(this).attr('fv-advanced') != "undefined") {
-            $(this).off('keyup').on('keyup', function () {
+            this.validations++;
+
+            $(this).on('keyup', function () {
                 var data = JSON.parse($(this).attr('fv-advanced'));
                 var val = $(this).val();
                 var message = data.message || "";
@@ -80,13 +87,33 @@ $(document).ready(function () {
 
         /**
          * fv-email handling
+         *
+         * fv-simple-email is a simple check to see if `@` exists in the input.
+         * fv-email is a more complicated regex taken from here: http://emailregex.com/#disqus_thread
          */
+        if (typeof $(this).attr('fv-simple-email') != "undefined") {
+            this.validations++;
+
+            $(this).on('keyup', function () {
+                var message = $(this).attr('fv-simple-email');
+                var val = $(this).val();
+
+                if (val.match(/@/) != null) {
+                    addSuccess(this);
+                } else {
+                    addError(this, message);
+                }
+            });
+        }
+
         if (typeof $(this).attr('fv-email') != "undefined") {
-            $(this).off('keyup').on('keyup', function () {
+            this.validations++;
+
+            $(this).on('keyup', function () {
                 var message = $(this).attr('fv-email');
                 var val = $(this).val();
 
-                if (val.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i) != null) {
+                if (val.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null) {
                     addSuccess(this);
                 } else {
                     addError(this, message);
@@ -99,7 +126,9 @@ $(document).ready(function () {
          * fv-number handling
          */
         if (typeof $(this).attr('fv-number') != 'undefined') {
-            $(this).off('keyup').on('keyup', function () {
+            this.validations++;
+
+            $(this).on('keyup', function () {
                 var message = $(this).attr('fv-number');
                 var val = $(this).val();
 
@@ -116,7 +145,9 @@ $(document).ready(function () {
          * fv-alphanum handling
          */
         if (typeof $(this).attr('fv-alphanum') != 'undefined') {
-            $(this).off('keyup').on('keyup', function () {
+            this.validations++;
+
+            $(this).on('keyup', function () {
                 var message = $(this).attr('fv-alphanum');
                 var val = $(this).val();
 
@@ -130,7 +161,9 @@ $(document).ready(function () {
         }
 
         if (typeof $(this).attr('fv-func') != 'undefined') {
-            $(this).off('keyup').on('keyup', function () {
+            this.validations++;
+
+            $(this).on('keyup', function () {
                 var func = $(this).attr('fv-func');
                 var val = $(this).val();
 
@@ -153,6 +186,8 @@ $(document).ready(function () {
      * @param message
      */
     function addError(self, message) {
+        self.error = true;
+
         message = message || '';
         var id = $(self).attr('data-fvid');
         if (typeof id != "undefined") {
@@ -164,6 +199,9 @@ $(document).ready(function () {
         if ($(self).siblings(selector).length === 0) {
             $(self).removeClass('fv-success').addClass('fv-error').attr('data-fvid', fvId).after('<small class="fv-error-message ' + formValidation.errorMessageClasses + '" data-fvId="' + fvId++ + '">' + message + '</small>');
             $(self).closest('form').find('input[type="submit"]').prop('disabled', true);
+        } else {
+            // Error message already exists so replace text
+            $(self).siblings(selector).text(message);
         }
     }
 
@@ -172,13 +210,17 @@ $(document).ready(function () {
      * @param self
      */
     function addSuccess(self) {
-        $(self).removeClass('fv-error').addClass('fv-success');
-        if ($(self).siblings('.fv-error-message').length > 0) {
-            var id = $(self).attr('data-fvid');
-            $('small[data-fvid="' + id + '"]').remove();
-            $(self).removeAttr('data-fvid');
+        if (!self.error | self.validations == 1) {
+            $(self).removeClass('fv-error').addClass('fv-success');
+            if ($(self).siblings('.fv-error-message').length > 0) {
+                var id = $(self).attr('data-fvid');
+                $('small[data-fvid="' + id + '"]').remove();
+                $(self).removeAttr('data-fvid');
+            }
+            $(self).closest('form').find('input[type="submit"]').prop('disabled', false);
+        } else {
+            self.error = false;
         }
-        $(self).closest('form').find('input[type="submit"]').prop('disabled', false);
     }
 });
 

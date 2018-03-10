@@ -8,20 +8,19 @@
             echo '<div id="loginmessage">';
                 echo '<br>';
             
-            print_r('Form submitted:  create data directory: ');
-            var_dump($_POST['datadir']);
-                echo "<br>";
-            print_r('Server received: create data directory:  ');
-            var_dump($_POST['datadir']);
-                echo "<br>";
-            print_r('Server attempting to create data directory:  ');
-            var_dump($_POST['datadir']);
+                print_r('Form submitted:  create data directory: ');
+                var_dump($_POST['datadir']);
+                    echo "<br>";
+                print_r('Server received: create data directory:  ');
+                var_dump($_POST['datadir']);
+                    echo "<br>";
+                print_r('Server attempting to create data directory:  ');
+                var_dump($_POST['datadir']);
 
             echo '</div>';
         echo '</div>';
 
    // $post_data = $_POST['datadir'];
-
 
     $fp = fopen('../datadir.json', 'w');
         fwrite($fp, json_encode($_POST));
@@ -29,7 +28,6 @@
 
 
     $filename = file_get_contents('../datadir.json');
-
 
     $datadir = json_decode( $filename, true);
 
@@ -43,19 +41,19 @@
 
     if (!mkdir($structure, 0777, FALSE)) {
         
-            echo '<div class="reglog">';
-                echo "<br>";
-                echo '<div id="loginerror">';
-                    var_dump(!mkdir($structure));
-                        echo "<br>";
-                    echo "Failed to create directory1: $structure";
-                echo '</div>';
+        echo '<div class="reglog">';
+            echo "<br>";
+            echo '<div id="loginerror">';
+                var_dump(!mkdir($structure));
+                    echo "<br><br>";
+                echo "Failed to create directory: $structure";
             echo '</div>';
+        echo '</div>';
 
         rename("../datadir.json", "../datadir.fail.txt");
 
         $fp2 = fopen('../datadir.fail.txt', 'w');
-            fwrite( $fp2, "Failed to create directory2: " . json_encode($_POST));
+            fwrite( $fp2, "Failed to create directory: " . json_encode($_POST));
             var_dump( $fp2);
         fclose($fp2);
 
@@ -77,21 +75,21 @@
 
          // Copy default json files to user spcified data dir:
 
-            echo "<br> <br>";
+        echo "<br> <br>";
 
-            echo '<div id="loginmessage">';
-                echo "Copying default data files to user specified data dir:";
-                    echo "<br> <br>";
-            echo '<div>';
-
-        $file1 = 'default/services_settings-data_default.json';
-        $newfile1 = $structure . 'services_settings-data.json';
+        echo '<div id="loginmessage">';
+            echo "Copying default data files to user specified data dir:";
+                echo "<br> <br>";
+        echo '<div>';
 
 
-            if (!copy($file1, $newfile1)) {
+        $file0 = 'default/monitorr_data_directory_default.txt';
+        $newfile0 = $structure . 'monitorr_data_directory.txt';
+
+            if (!copy($file0, $newfile0)) {
                 echo '<div class="reglog">';
                     echo '<div id="loginerror">';
-                        echo "failed to copy $file1...\n";
+                        echo "failed to copy $file0...\n";
                     echo '</div">';
                 echo '</div">';
 
@@ -105,13 +103,46 @@
             }
 
             else {
+
                 echo '<div class="reglog">';
                     echo '<div id="dbmessagesuccess">';
                         echo "Default data file succesfully copied to user data dir:";
                             echo "<br>";
-                        echo realpath($newfile1);
+                        echo realpath($newfile0);
                     echo '</div>';
                 echo '</div>';
+
+
+                $file1 = 'default/services_settings-data_default.json';
+                $newfile1 = $structure . 'services_settings-data.json';
+
+
+                if (!copy($file1, $newfile1)) {
+
+                    echo '<div class="reglog">';
+                        echo '<div id="loginerror">';
+                            echo "failed to copy $file1...\n";
+                        echo '</div">';
+                    echo '</div">';
+
+                    $fp = fopen('../datadir.json', 'w');
+                        fwrite( $fp, "Failed to copy default json files to: $structure");
+                    fclose($fp);
+
+                    rename("../datadir.json", "../datadir.fail.txt");
+
+                    die;
+                }
+
+                else {
+                    echo '<div class="reglog">';
+                        echo '<div id="dbmessagesuccess">';
+                            echo "Default data file succesfully copied to user data dir:";
+                                echo "<br>";
+                            echo realpath($newfile1);
+                        echo '</div>';
+                    echo '</div>';
+                }
             }
 
 
@@ -262,9 +293,7 @@
                         unlink('../datadir.fail.txt');
 
                     }
-
            }
-
     }
 
     echo "<br>";
@@ -272,6 +301,5 @@
     // ...
 
     exit;
-
 
 ?>

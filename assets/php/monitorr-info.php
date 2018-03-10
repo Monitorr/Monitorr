@@ -640,14 +640,14 @@ class OneFileLoginApplication
             if(!is_file($dbfile)){
 
                 echo "<div id='loginerror'>";
-                    echo "<br>";
-                    echo "Data directory & user database NOT detected.";
-                    echo "<br><br>";
-                    echo "<div>";
+                        echo "<br>";
+                    echo "<i class='fa fa-fw fa-exclamation-triangle'> </i> Data directory & user database NOT detected.";
+                        echo "<br><br>";
+                echo "<div>";
 
                 echo "<div id='loginmessage'>";
 
-                    echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
+                    echo 'Browse to <a href="../config/_installation/_register.php"> Monitorr Registration </a> to create a user database and establish user credentials. ';
 
                 echo "</div>";
                 
@@ -660,13 +660,13 @@ class OneFileLoginApplication
                 echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
                     echo '<label for="login_input_username"> </label> ';
                         echo '<br>';
-                    echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required title="Enter your username" /> ';
+                    echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" pattern="^\S+$" placeholder=" Username" name="user_name" autofocus required title="Enter your username" /> ';
 
                         echo '<br>';
 
                     echo '<label for="login_input_password"> </label> ';
                         echo '<br>';
-                    echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required  title="Enter your password" /> ';
+                    echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder=" Password" name="user_password" required  title="Enter your password" /> ';
                         echo '<br><br>';
 
                     echo "<div id='loginerror'>";
@@ -685,7 +685,7 @@ class OneFileLoginApplication
                     echo '<br><br>';
 
                 echo "<div id='reginfo'>";
-                    echo "User database Dir: " .  $datadir;
+                    echo "User database dir: " .  $datadir;
                             echo '<br>';
                     echo "User database file: " . $dbfile;
                 echo "</div>";
