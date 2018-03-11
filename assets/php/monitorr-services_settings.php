@@ -456,7 +456,7 @@ class OneFileLoginApplication
                 }
 
                 img {
-                    height: 6rem !important;
+                    height: 8rem !important;
                 }
 
             </style>
@@ -704,27 +704,23 @@ class OneFileLoginApplication
                                             var data = $('#servicesettings').alpaca().getValue();
 
                                             $.post('post_receiver-services.php', {
-
-                                                 //JSON.stringify(data, null, "  "),
-                                                data
+                                                    data
                                                 },
 
                                                 // alert(JSON.stringify(data, null, "  ")),
                                                 alert("settings saved"),
                                                 //console.log(data),
-                                                // setTimeout(location.reload.bind(location), 500)
                                             )
-
-                                        }
-                                    },
-                                    "view": {
-                                        "type": "button",
-                                        "label": "View JSON",
-                                        "value": "View JSON",
-                                        "click": function() {
-                                            alert(JSON.stringify(this.getValue(), null, "  "));
                                         }
                                     }
+                                    // "view": {
+                                    //     "type": "button",
+                                    //     "label": "View JSON",
+                                    //     "value": "View JSON",
+                                    //     "click": function() {
+                                    //         alert(JSON.stringify(this.getValue(), null, "  "));
+                                    //     }
+                                    //},
                                 }
                             }
                         }
@@ -894,13 +890,8 @@ $application = new OneFileLoginApplication();
     <style type="text/css">
 
         body {
-            /* font: 14px sans-serif; */
             color: white;
         }
-
-        /* :root {
-            font-size: 16px !important;
-        } */
 
         .wrapper {
             width: 30rem;

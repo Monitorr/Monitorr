@@ -597,7 +597,7 @@ class OneFileLoginApplication
 
             echo '<div id="loginmessage">';
                 echo 'Create new user:';
-                echo '<br><br>';
+                echo '<br>';
             echo '</div>';
 
             echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
@@ -707,7 +707,6 @@ class OneFileLoginApplication
 
         echo ' </div>';
 
-
     }
 
 } //OneFileLoginApplication
@@ -729,7 +728,6 @@ class OneFileLoginApplication
         <script src="../../js/jquery.min.js"></script>
         <script src="../../js/formValidation.js"></script>
         
-
         <style type="text/css">
 
             body { 

@@ -159,7 +159,11 @@ h1,
 h2,
 h3,
 h4,
-h5,
+h5 {
+    font-family: 'Lato', sans-serif;
+    color: #1F1F1F;
+}
+
 h6 {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
@@ -642,7 +646,7 @@ tbody {
     float: left;
     width: 17rem;
     height: 8rem;
-    justify-content: stretch;
+    /* justify-content: stretch; */
     align-content: center;
     text-align: center;
     text-align: -webkit-center;
@@ -658,11 +662,11 @@ tbody {
 
 #uptime {
 
-        grid-column-start: 2;
-        grid-row-start: 1;
-        grid-row-end: span 2;
-        width: 1rem;
-        padding-bottom: 1rem; 
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: span 2;
+    width: 1rem;
+    padding-bottom: 1rem; 
 }
 
 #ping {
@@ -947,161 +951,161 @@ input:checked+.slider:before {
 
     /*     login       */
 
-    .wrapper {
-        width: 30rem;
-        margin-top: 10rem;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 1rem;
-    }
+.wrapper {
+    width: 30rem;
+    margin-top: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
 
-    .wrapperregistration {
-        width: 75%;
-        margin-top: 2rem;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+.wrapperregistration {
+    width: 75%;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 
-    #dbwrapper {
-        width: 75%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+#dbwrapper {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 
-    #userwrapper {
-        width: 75%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-
-    #registrationform {
-        font-size: 1rem;
-    }
-
-    #reginstructions {
-        font-size: .90rem;
-        cursor: default;
-    }
-
-    #reginfo {
-        width: 75%;
-        color: #555555;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: .50rem;
-        text-align: left;
-        cursor: default;
-    }
-
-    #loginerror {
-
-        color: red;
-        font-weight: 600;
-        cursor: default;
-    }
+#userwrapper {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 
 
-    #loginmessage {
-        color: yellow;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: default;
-    }
+#registrationform {
+    font-size: 1rem;
+}
 
-    .loginmessage {
-        color: yellow;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: default;
-    }
+#reginstructions {
+    font-size: .90rem;
+    cursor: default;
+}
 
+#reginfo {
+    width: 75%;
+    color: #555555;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: .50rem;
+    text-align: left;
+    cursor: default;
+}
 
-    #loginsuccess {
-        color: green;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: default;
-    }
+#loginerror {
 
-    .loginsuccess {
-        color: green;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: default;
-    }
-
-
-    #dbmessage {
-        color: rgb(73, 73, 73);
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: default;
-    }
-
-    .dbmessage {
-        background-color: black;
-        color: yellow;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: default;
-    }
+    color: red;
+    font-weight: 600;
+    cursor: default;
+}
 
 
-    .dbmessagesuccess {
-        background-color: black;
-        color: green;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: default;
-    }
+#loginmessage {
+    color: yellow;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+}
 
-    #dbmessagesuccess {
-        color: green;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: default;
-    }
-
-    .reglog {
-        padding: 1rem;
-        background-color: black;
-        font-size: .75rem !important;
-        cursor: default;
-    }
+.loginmessage {
+    color: yellow;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+}
 
 
-    #loginbtn {
-        padding-left: 1.5rem;
-    }
+#loginsuccess {
+    color: green;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+}
+
+.loginsuccess {
+    color: green;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+}
 
 
-    /*     Registration       */
+#dbmessage {
+    color: rgb(73, 73, 73);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+}
+
+.dbmessage {
+    background-color: black;
+    color: yellow;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+}
 
 
-    #registrationtable {
-        cursor: default;
-        margin-bottom: 2rem !important;
-    }
+.dbmessagesuccess {
+    background-color: black;
+    color: green;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+}
 
-    #datadirnotes {
-        font-size: .75rem;
-        cursor: default;
-    }
+#dbmessagesuccess {
+    color: green;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+}
 
-    #usernotes {
-        font-size: .75rem;
-        cursor: default;
-    }
+.reglog {
+    padding: 1rem;
+    background-color: black;
+    font-size: .75rem !important;
+    cursor: default;
+}
+
+
+#loginbtn {
+    padding-left: 1.5rem;
+}
+
+
+/*     Registration       */
+
+
+#registrationtable {
+    cursor: default;
+    margin-bottom: 2rem !important;
+}
+
+#datadirnotes {
+    font-size: .75rem;
+    cursor: default;
+}
+
+#usernotes {
+    font-size: .75rem;
+    cursor: default;
+}
 
 
 /********************* SETTINGS  *****************/
@@ -1287,7 +1291,10 @@ input:checked+.slider:before {
     background-color .15s ease-in-out,
     border-color .15s ease-in-out,
     box-shadow .15s ease-in-out;
+}
 
+.alpaca-form-buttons-container {
+    text-align: left;
 }
 
 .btn:hover {
@@ -1304,7 +1311,6 @@ input:checked+.slider:before {
     background-color: #0073ee;
 }
 
-
 .btn-group>.btn:first-child {
     margin-left: 0;
     background-color: rgb(200, 200, 200);
@@ -1319,7 +1325,6 @@ input:checked+.slider:before {
     color: black
 }
 
-
 .settingscolumn {
     float: left;
     width: min-content;
@@ -1327,7 +1332,6 @@ input:checked+.slider:before {
     padding-top: 5rem;
     background-color: transparent;
 }
-
 
 .settingstitle {
     margin-left: 3rem;
@@ -1350,10 +1354,7 @@ input:checked+.slider:before {
     text-align: center;
 }
 
-
 #includedContent {
-    /* position: static; */
-    /* margin-top: -5rem; */
     float: right;
     /* width: 70%; */
     width: calc(100% - 18rem);
@@ -1361,15 +1362,11 @@ input:checked+.slider:before {
     background-color: #1F1F1F
 }
 
-
-
 .object {
     /* position: static; */
     float: right; 
     width: 100%;
-    height: 100%;
-    /* height: -webkit-fill-available; */
-    /* width: 70%; */
+    height: 100vh;
 }
 
 #version_check {
@@ -1384,7 +1381,6 @@ input:checked+.slider:before {
 
 
 #infodata {
-    /* height: 25%; */
     padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 1rem;
@@ -1398,7 +1394,6 @@ input:checked+.slider:before {
 
 #blank {
     color : #3d3d3d;
-    /* color: white; */
     font-size: .5rem;
 }
 
@@ -1413,10 +1408,7 @@ input:checked+.slider:before {
     position: inherit;
     width: 100%;
     height: 35rem;
-    /* height: -webkit-fill-available; */
-    /* width: 70%; */
 }
-
 
 
 .slide {
@@ -1445,7 +1437,6 @@ input:checked+.slider:before {
      overflow-x: hidden;
  }
 
-
 .expandtoggle {
     display: block;
     position: absolute;
@@ -1463,7 +1454,6 @@ input:checked+.slider:before {
     -webkit-transition: .5s;
     -moz-transition: .5s;
     transition: .5s;
-     /* background: url(../img/increase.png) no-repeat; */
 }
 
 .expandtoggle:hover {
@@ -1487,30 +1477,33 @@ input:checked+.slider:before {
     transition: .5s;
 } 
 
-
 #preferencesettings {
     padding-left: 15%;
 }
-
 
 #sitesettings {
     padding-left: 15%;
 }
 
-
-
 #leftcolumn {
     margin: auto;
-    /* padding-left: 5rem; */
     text-align: left;
 }
 
 #rightcolumn {
     margin: auto;
-    /* padding-left: 1rem; */
     text-align: left;
 }
 
+.alpaca-field-object {
+    padding-left: 2rem;
+}
+
+.alpaca-image-display {
+    float: right;
+    margin-top: -9rem !important;
+    padding-right: 4rem;
+}
 
 .help-block {
     color: grey;
@@ -1522,32 +1515,26 @@ input:checked+.slider:before {
 .alpaca-message-invalidPattern {
     color: red;
     font-style: italic;
-    /* padding-left: 1.5rem; */
     cursor: default;
 }
 
 .alpaca-message-stringValueTooSmall {
     color: red;
     font-style: italic;
-    /* padding-left: 1.5rem; */
     cursor: default;
 }
 
 .alpaca-message-stringValueTooLarge {
     color: red;
     font-style: italic;
-    /* padding-left: 1.5rem; */
     cursor: default;
 }
 
 .alpaca-message-stringNotANumber {
     color: red;
     font-style: italic;
-    /* padding-left: 1.5rem; */
     cursor: default;
 }
-
-
 
 
 /* scroll to top  */
@@ -1640,12 +1627,10 @@ tr {
 
 /* Footer */
 
-
 #settingslink {
     cursor: default;
     margin-bottom: .5rem;
 }
-
 
 #version_check_auto {
     cursor: default;

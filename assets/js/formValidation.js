@@ -1,7 +1,7 @@
 var fvId = 1;
 
-$(document).ready(function () {
-    $.each($('input'), function () {
+$(document).ready(function() {
+    $.each($('input'), function() {
         this.validations = 0;
 
         /**
@@ -10,13 +10,13 @@ $(document).ready(function () {
          * The text inside of the quotes is the error message to be added to the input
          * leave this blank to add none
          */
-        if (typeof $(this).attr('fv-not-empty') != "undefined") {
+        if(typeof $(this).attr('fv-not-empty') != "undefined") {
             this.validations++;
 
             var message = $(this).attr('fv-not-empty');
 
-            $(this).on('keyup', function () {
-                if ($(this).val().length == 0) {
+            $(this).on('keyup', function() {
+                if($(this).val().length == 0) {
                     addError(this, message);
                     return;
                 } else {
@@ -33,16 +33,16 @@ $(document).ready(function () {
          *  - max
          *  - regex
          */
-        if (typeof $(this).attr('fv-advanced') != "undefined") {
+        if(typeof $(this).attr('fv-advanced') != "undefined") {
             this.validations++;
 
-            $(this).on('keyup', function () {
+            $(this).on('keyup', function() {
                 var data = JSON.parse($(this).attr('fv-advanced'));
                 var val = $(this).val();
                 var message = data.message || "";
 
-                if (typeof data.min != "undefined") {
-                    if (val.length < data.min) {
+                if(typeof data.min != "undefined") {
+                    if(val.length < data.min) {
                         addError(this, message);
                         return;
                     } else {
@@ -50,8 +50,8 @@ $(document).ready(function () {
                     }
                 }
 
-                if (typeof data.max != "undefined") {
-                    if (val.length > data.max) {
+                if(typeof data.max != "undefined") {
+                    if(val.length > data.max) {
                         addError(this, message);
                         return;
                     } else {
@@ -59,7 +59,7 @@ $(document).ready(function () {
                     }
                 }
 
-                if (typeof data.regex != "undefined") {
+                if(typeof data.regex != "undefined") {
                     var regex = new RegExp(data.regex);
 
                     var reverse = false;
@@ -67,7 +67,7 @@ $(document).ready(function () {
                         reverse = data.regex_reverse;
                     }
 
-                    if (val.match(regex)) {
+                    if(val.match(regex)) {
                         if (!reverse) {
                             addSuccess(this);
                         } else {
@@ -94,7 +94,7 @@ $(document).ready(function () {
         if (typeof $(this).attr('fv-simple-email') != "undefined") {
             this.validations++;
 
-            $(this).on('keyup', function () {
+            $(this).on('keyup', function() {
                 var message = $(this).attr('fv-simple-email');
                 var val = $(this).val();
 
@@ -106,14 +106,14 @@ $(document).ready(function () {
             });
         }
 
-        if (typeof $(this).attr('fv-email') != "undefined") {
+        if(typeof $(this).attr('fv-email') != "undefined") {
             this.validations++;
 
-            $(this).on('keyup', function () {
+            $(this).on('keyup', function() {
                 var message = $(this).attr('fv-email');
                 var val = $(this).val();
 
-                if (val.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null) {
+                if(val.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) != null) {
                     addSuccess(this);
                 } else {
                     addError(this, message);
@@ -128,7 +128,7 @@ $(document).ready(function () {
         if (typeof $(this).attr('fv-number') != 'undefined') {
             this.validations++;
 
-            $(this).on('keyup', function () {
+            $(this).on('keyup', function() {
                 var message = $(this).attr('fv-number');
                 var val = $(this).val();
 
@@ -147,7 +147,7 @@ $(document).ready(function () {
         if (typeof $(this).attr('fv-alphanum') != 'undefined') {
             this.validations++;
 
-            $(this).on('keyup', function () {
+            $(this).on('keyup', function() {
                 var message = $(this).attr('fv-alphanum');
                 var val = $(this).val();
 
@@ -163,7 +163,7 @@ $(document).ready(function () {
         if (typeof $(this).attr('fv-func') != 'undefined') {
             this.validations++;
 
-            $(this).on('keyup', function () {
+            $(this).on('keyup', function() {
                 var func = $(this).attr('fv-func');
                 var val = $(this).val();
 
@@ -190,14 +190,14 @@ $(document).ready(function () {
 
         message = message || '';
         var id = $(self).attr('data-fvid');
-        if (typeof id != "undefined") {
-            var selector = '.fv-error-message[data-fvid="' + id + '"]';
+        if(typeof id != "undefined") {
+            var selector = '.fv-error-message[data-fvid="'+id+'"]';
         } else {
             var selector = '.fv-error-message:not([data-fvid])';
         }
 
-        if ($(self).siblings(selector).length === 0) {
-            $(self).removeClass('fv-success').addClass('fv-error').attr('data-fvid', fvId).after('<small class="fv-error-message ' + formValidation.errorMessageClasses + '" data-fvId="' + fvId++ + '">' + message + '</small>');
+        if($(self).siblings(selector).length === 0) {
+            $(self).removeClass('fv-success').addClass('fv-error').attr('data-fvid', fvId).after('<small class="fv-error-message ' + formValidation.errorMessageClasses + '" data-fvId="'+ fvId++ +'">' + message + '</small>');
             $(self).closest('form').find('input[type="submit"]').prop('disabled', true);
         } else {
             // Error message already exists so replace text
@@ -212,9 +212,9 @@ $(document).ready(function () {
     function addSuccess(self) {
         if (!self.error | self.validations == 1) {
             $(self).removeClass('fv-error').addClass('fv-success');
-            if ($(self).siblings('.fv-error-message').length > 0) {
+            if($(self).siblings('.fv-error-message').length > 0) {
                 var id = $(self).attr('data-fvid');
-                $('small[data-fvid="' + id + '"]').remove();
+                $('small[data-fvid="'+id+'"]').remove();
                 $(self).removeAttr('data-fvid');
             }
             $(self).closest('form').find('input[type="submit"]').prop('disabled', false);
@@ -239,12 +239,12 @@ formValidation.errorMessageClasses = "";
  * Add setup function to allow for some data to be passed
  * @param data
  */
-formValidation.setup = function (data) {
+formValidation.setup = function(data) {
     /**
      * Check to see if custom classes have been added to error messages, if they have, store them
      * for use later in the script
      */
-    if (typeof data.errorMessageClasses != "undefined") {
+    if(typeof data.errorMessageClasses != "undefined") {
         formValidation.errorMessageClasses = data.errorMessageClasses;
     }
 };

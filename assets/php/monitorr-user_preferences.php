@@ -478,34 +478,6 @@ class OneFileLoginApplication
         </script>
 
 
-
-        <div>
-            <!-- <?php
-
-
-                echo "datadir: " . $datadir;
-
-                    echo "<br> <br>";
-
-                echo "datafile: " . $datafile;
-
-                    echo "<br> <br>";
-
-                echo "json file: " . $jsonfile;
-
-                    echo "<br> <br>";
-
-                echo "datasource: " . $dataSource ;
-
-                    echo "<br> <br>";
-
-                echo "site title: " . $title ;
-
-            ?> -->
-
-        </div>
-
-
         <p id="response"></p>
 
 
@@ -869,12 +841,9 @@ class OneFileLoginApplication
 
     </div>
 
-
         <div id="footer">
 
-
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
-
+            <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a>
 
         </div>
 

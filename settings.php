@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="en">
 
     <!--
@@ -219,13 +219,12 @@
 
         <div id="wrapper">
 
-        
             <!-- Sidebar -->
             <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
                     
-                    <div class="navbar-brand settingstitle">
-                        Settings
-                    </div>   
+                <div class="navbar-brand settingstitle">
+                    Settings
+                </div>   
             
                 <ul class="nav sidebar-nav">
 
@@ -300,11 +299,11 @@
 
     </div>
 
-        <div id ="includedContent"> </div>
+    <div id ="includedContent">
 
         <script>
             function load_info() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
+                document.getElementById("includedContent").innerHTML='<object  type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
             }
         </script>
 
@@ -327,6 +326,8 @@
                 document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
             }
         </script>
+
+    </div>
 
 
 </body>
