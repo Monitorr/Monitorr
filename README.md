@@ -35,18 +35,13 @@
 - Alternate hot links (Testing)
 
 
-## Screenshot :
+## Screenshots:
 
-![](https://i.imgur.com/h8S1976.png)
+<img src="https://i.imgur.com/h8S1976.png" width="32%"><img src="https://i.imgur.com/SwevXaG.png" width="32%">  <img src="https://i.imgur.com/fkThyoZ.png" width="32%"> <img src="https://i.imgur.com/eCyidGT.png" width="32%"> <img src="https://i.imgur.com/Ybcq2SD.png" width="32%"> 
 
 ### Mobile:
 
 ![](https://i.imgur.com/RKp2yiZ.jpg?1)
-
-
-### In use with [Organizr](https://github.com/causefx/Organizr) :
-
-![](https://i.imgur.com/SwevXaG.png)
 
 
 ## Prerequisites:
