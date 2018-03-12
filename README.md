@@ -12,17 +12,17 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
 
-
-**NOTICE** (25 jan 2018): If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration) for further explanation.
+**NOTICE** (12 MARCH 2018): This build is a release candidate for version 1.0. Target master branch release date is 15 March.  If you are testing this build you will need to use a new local repo for testing. it is NOT possible to upgrade from a previous version of Monitorr. We thank you for helping us develop.  
 
 ## Features:
 
-**Latest major change:** Complete overhaul of GUI, NEW mobile display....it's dope. 
+**Latest major change:** Integrated settings page. 
 
 - LIVE! (w/ option to pause live updating)
 - Self-hosted
 - Monitor any app on any domain (Curl as primary check, sockopen as fallback) (UPDATED)
 - Responsive mobile display (NEW)
+- Integrated settings page w/ authentication (NEW)
 - Host system resources display (CPU, MEM, HD, PING, Uptime)
 - Server DTG data
 - Update Monitorr via web UI / branch switching w/ update notification (NEW)
@@ -30,9 +30,9 @@
 - User customizable system threshold colors
 
 **Features in development:**
-- Settings page
+- Settings page (Testing)
 - Reverse proxy authentication
-- Alternate hot links
+- Alternate hot links (Testing)
 
 
 ## Screenshot :
@@ -51,19 +51,25 @@
 
 ## Prerequisites:
 1) [PHP](https://secure.php.net/downloads.php) (7.1+ recommended)
+2) [PHP PDO](http://php.net/manual/en/book.pdo.php)
+3) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
+4) [SQLite](https://www.sqlite.org/index.html)
+5) [GIT](https://git-scm.com/download/win) (Recommended for Windows hosts (see wiki)
 
-2) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
-
-2) [GIT](https://git-scm.com/download/win) (Recommended for Windows hosts (see wiki)
+## Libraries used in this project:
+- [Alpaca](https://github.com/gitana/alpaca/)
+- [PHP Login](https://github.com/panique/php-login-one-file)
+- [Form Validation](https://github.com/DrRoach/FormValidation)
 
 
 ## Quick Start:
 - See full configuration instructions in the WiKi: https://github.com/Monitorr/Monitorr/wiki
 1) Clone/download repository to your webserver
 2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
-3) Browse to <localhost\domain>/monitorr/index.php (config.php will be auto populated in /assets/config.php)
-4) Edit `assets/config.php`:
-5) Chill
+3) Browse to <localhost\domain>/monitorr/index.php 
+4) Establish data directory, and user database.
+5) Configure Monitorr
+6) Chill
 
 
 ## Feature Requests:
@@ -91,3 +97,5 @@
 
 ## Credits:
 - [Causefx](https://github.com/Causefx)
+- [Roxedux](https://github.com/si0972)
+- [christronyxyocum](https://github.com/christronyxyocum)
