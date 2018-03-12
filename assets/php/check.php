@@ -20,13 +20,16 @@
 
     function url_to_domain($url) {
 
+        global $v1;
+        global $v2;
+
         $host = parse_url($url, PHP_URL_HOST);
         $port = parse_url($url, PHP_URL_PORT);
         $path = parse_url($url, PHP_URL_PATH);
 
             if (!$host)
 
-                echo "<b> ////// Invalid URL in config.php : $url ////// </b> <br />\n";
+                echo "<br> ////// <b> Invalid URL in Service Settings : </b>" . $v2['serviceTitle'] . $url . " //////";
 
                 // $host = $url;
 
@@ -76,9 +79,7 @@
                         echo '</div>';
                         
                         echo '<div id="servicetitle">';
-                           // echo '<div class="servicetext">';
-                                echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
-                            // echo '</div>';
+                            echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                         echo '</div>'; 
 
                         echo '<div class="btnonline">Online</div>';
@@ -87,9 +88,7 @@
                 echo '</div>';
                 
                 curl_close($handle);
-
             } 
-
 
             else {
 
@@ -150,7 +149,6 @@
                         fclose($fp);
 
                     }
-                
             }
     }
 
@@ -204,9 +202,7 @@
                         echo '</div>';
                         
                         echo '<div id="servicetitleping" style="cursor: default">';
-                        // echo '<div class="servicetext">';
                                 echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
-                            // echo '</div>';
                         echo '</div>'; 
 
                         echo '<div class="btnonline">Online</div>';

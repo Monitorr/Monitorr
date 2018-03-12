@@ -706,12 +706,12 @@ class OneFileLoginApplication
                                             $.post('post_receiver-services.php', {
                                                     data
                                                 },
-
-                                                // alert(JSON.stringify(data, null, "  ")),
                                                 alert("settings saved"),
-                                                //console.log(data),
                                             )
                                         }
+                                    },
+                                    "reset":{
+                                        "label": "Clear Values"
                                     }
                                     // "view": {
                                     //     "type": "button",
@@ -757,7 +757,7 @@ class OneFileLoginApplication
 
         <div id="footer">
 
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
         </div>
 
