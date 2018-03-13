@@ -42,7 +42,7 @@
 
 ### Mobile:
 
-![](https://i.imgur.com/RKp2yiZ.jpg?1)
+ <img src="https://i.imgur.com/RKp2yiZ.jpg?1" width="32%"> 
 
 
 ## Prerequisites:
