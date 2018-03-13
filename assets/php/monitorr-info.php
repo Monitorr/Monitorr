@@ -524,9 +524,10 @@ class OneFileLoginApplication
                 <tbody>
                     <tr>
                         <td><strong>Monitorr Installed Version:</strong></td>
-                        <td><?php echo file_get_contents( "../js/version/version.txt" );?> <p id="version_check_auto"></p> </td>
+                        <td><?php echo file_get_contents( "../js/version/version.txt " ) . " // Do NOT update while testing alpha version.";?> <!-- CHANGE ME --> <p id="version_check_auto"></p> </td>
                         <td><strong>OS / Version:</strong></td>
                         <td><?php echo php_uname(); ?></td>
+                        
                     </tr>
                     <tr>
                         <td><strong>Monitorr Latest Version:</strong></td>

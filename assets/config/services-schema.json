@@ -38,6 +38,9 @@
 				"format": "uri",
 				"default": "http://localhost:80"
 			}
-		}
+		},
+		"dependencies": {
+            "linkurl": ["type"]
+        }
 	}
 }

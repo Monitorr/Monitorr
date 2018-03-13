@@ -18,7 +18,6 @@
 
 
         <link type="text/css" href="assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link type="text/css" href="assets/css/alpaca.min.css" rel="stylesheet" />
         <link type="text/css" href="assets/css/main.css" rel="stylesheet">
 
         <meta name="theme-color" content="#464646" />
@@ -26,8 +25,6 @@
         
         <script type="text/javascript" src="assets/js/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/pace.js" async></script>
-        <script type="text/javascript" src="assets/js/handlebars.js"></script>
-        <script type="text/javascript" src="assets/js/alpaca.min.js"></script>
         <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
 
         <style>
@@ -45,7 +42,7 @@
 
             legend { 
                 color: white;
-                }
+            }
 
             body::-webkit-scrollbar {
                 width: 10px;

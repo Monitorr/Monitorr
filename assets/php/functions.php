@@ -1,19 +1,13 @@
 <?php
 
-// include_once '../config.php';  //**REMOVE***
 
+    $file = '../config/datadir.json';
 
-        $file = '../config/datadir.json';
+    if(!is_file($file)){
 
-        if(!is_file($file)){
+        $path = "../";
 
-            $path = "../";
-
-            include_once ('../config/monitorr-data-default.php');
-            
-            // $jsonsite;
-
-            // $jsonusers
+        include_once ('../config/monitorr-data-default.php');
 
         } 
 
@@ -24,15 +18,7 @@
 
             include_once ('../config/monitorr-data.php');
 
-        //    $jsonsite;
-
-        // $jsonusers
-
         }
-
-
-  //  $str = file_get_contents('../data/site_settings-data.json');
-  //  $json = json_decode($str, true);
 
 
 // get CPUload function
@@ -235,10 +221,6 @@ function getHDFree()
 
     // Dynamic icon colors for badges
  
-  //  $str = file_get_contents('../data/site_settings-data.json');  // CHANGE ME - DELETE
-  //  $json = json_decode($str, true);   // CHANGE ME - DELETE
-
-
     $hdok = $jsonsite['hdok'];
     $hdwarn = $jsonsite['hdwarn'];
 
@@ -268,10 +250,6 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded";
 
 // Dynamic icon colors for badges
 
-   // $str = file_get_contents('../data/site_settings-data.json');  // CHANGE ME - DELETE
-   // $json = json_decode($str, true);  // CHANGE ME - DELETE
-
-
     $ramok = $jsonsite['ramok'];
     $ramwarn = $jsonsite['ramwarn'];
 
@@ -283,11 +261,6 @@ if ($ramPercent < $ramok) {
 } else {
     $ramClass = 'danger';
 }
-
-
- //   $str = file_get_contents('../data/site_settings-data.json'); // CHANGE ME - DELETE
-  //  $json = json_decode($str, true); // CHANGE ME - DELETE
-
 
     $cpuok = $jsonsite['cpuok'];
     $cpuwarn = $jsonsite['cpuwarn'];
@@ -302,7 +275,6 @@ if ($cpuPercent < $cpuok) {
 }
 
 
-
 /**
 * Returns ping in milliseconds
 * Returns false if host is unavailable
@@ -313,21 +285,14 @@ if ($cpuPercent < $cpuok) {
 * @return bool|float
 */
 
-
-  //  $str = file_get_contents('../data/site_settings-data.json');  // CHANGE ME - DELETE
-  //  $json = json_decode($str, true);  // CHANGE ME - DELETE
-    
     
     $pinghost = $jsonsite['pinghost'];
     //echo $pinghost;
-
-    // $pinghost = $config['pinghost']; //set in config.php
 
 
     $pingport = $jsonsite['pingport'];
     // echo $pingport;
 
-    // $pingport = $config['pingport']; //set in config.php
 
     function ping($host, $port = 53, $timeout = 1) {
         $start = microtime(true);
@@ -343,14 +308,10 @@ if ($cpuPercent < $cpuok) {
 
 // New version download information
 
-  //  $str = file_get_contents('../data/user_preferences-data.json');  // CHANGE ME - DELETE
-  //  $json = json_decode($str, true);  // CHANGE ME - DELETE
-   
+  
    
     $branch = $jsonusers['updateBranch'];
 
-
-//$branch = $config['updateBranch']; // *** DELETE ***
 
 // location to download new version zip
 $remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/' . $branch . '';

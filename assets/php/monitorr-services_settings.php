@@ -662,6 +662,9 @@ class OneFileLoginApplication
                                          "attributes": {}
                                     },
                                     "linkurl": {
+                                        "dependencies": {
+                                            "type": [" Standard"]
+                                        },
                                         "type": "url",
                                         "validate": false,
                                         "allowIntranet": true,

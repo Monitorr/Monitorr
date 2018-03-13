@@ -543,7 +543,8 @@ class OneFileLoginApplication
                             <form id="userForm">
 
                                 <div>
-                                   <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>
+                                   <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
+                                   <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
                                     <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
                                         <br>
                                     <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
@@ -589,7 +590,6 @@ class OneFileLoginApplication
 
         <?php
 
-
             //Create user: 
                 
         echo '<div id="userwrapper">';
@@ -607,7 +607,6 @@ class OneFileLoginApplication
                     echo '<tbody id="registrationform">';
 
                         echo '<tr>';
-                            //echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64} name="user_name" placeholder=" Username" required autocomplete="off" /> </td>';
                             echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder=" Username" title="Enter a username" required autocomplete="off" /> </td>';
                             echo '<td><label for="login_input_username"><i> letters and numbers only, 2 to 64 characters </i></label></td>';
                         echo '</tr>';
@@ -648,7 +647,6 @@ class OneFileLoginApplication
 
                  echo '</div>';
 
-
             echo '</form>';
 
                 echo ' <div id="loginerror">';
@@ -660,7 +658,6 @@ class OneFileLoginApplication
                echo ' </div>';
 
         echo ' </div>';
-
 
          echo ' <div id="reginfo">';
                     
