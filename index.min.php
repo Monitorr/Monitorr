@@ -30,9 +30,6 @@
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Fonts from Google Fonts -->
-        <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
-
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
 
@@ -276,10 +273,6 @@
         <div id="footer">
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
-
-            <!-- <script src="assets/js/update_auto.js" async></script> -->
-
-            <!-- <div id="version_check_auto"></div> -->
 
         </div>
 

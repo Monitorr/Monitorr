@@ -4,8 +4,8 @@
 
     */
     
-@import url(https://fonts.googleapis.com/css?family=Roboto:400);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css); 
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:400); */
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
     /* @import "https://designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css"; */
     /* @import "https://daneden.github.io/animate.css/animate.min.css"; */
@@ -15,7 +15,8 @@ body {
     opacity: 1;
     transition: 2s opacity;
     background-color: #1F1F1F;
-    font-family: 'Lato', sans-serif;
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Roboto:400', sans-serif;
     color: #555;
     align-items: center;
     align-content: center;

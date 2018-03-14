@@ -387,7 +387,7 @@ class OneFileLoginApplication
         <meta charset="utf-8">
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="../css/alpaca.min.css" rel="stylesheet">
-        <link type="text/css" href="../css/main.css" rel="stylesheet">
+        <!-- <link type="text/css" href="../css/main.css" rel="stylesheet"> -->
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
@@ -395,9 +395,9 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/pace.js" async></script>
         <script type="text/javascript" src="../js/handlebars.js"></script>
-        <script type="text/javascript" src="../js/alpaca.min.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-
+        <script type="text/javascript" src="../js/alpaca.min.js"></script>
+       
             <style>
 
                 body {
@@ -452,11 +452,9 @@ class OneFileLoginApplication
                 }
 
             </style>
+
         <?php $datafile = '../config/datadir.json'; ?>
         <?php include_once ('../config/monitorr-data.php')?>
-
-
-
 
         <title>
             <?php
@@ -518,16 +516,13 @@ class OneFileLoginApplication
                             document.getElementById("response").innerHTML = "GET failed (ajax)";
                             alert( "GET failed (ajax)" );
                         },
-
                     });
-
 
                     Alpaca.registerConnectorClass("custom", CustomConnector);
 
                     $("#preferencesettings").alpaca({
                         "connector": "custom",
                         //"dataSource": "../data/./user_preferences-data.json?a=1",
-                        //"dataSource": data,
                         "dataSource": "./post_receiver-user_preferences_load.php",
                         "schemaSource": "../config/user_preferences-schema.json?a=1",
                         "view": {
@@ -967,41 +962,40 @@ $application = new OneFileLoginApplication();
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
-    <title>Monitorr | Login</title>
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
-    <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link type="text/css" href="../css/main.css" rel="stylesheet">
-    <!-- <script src="../js/jquery.min.js"></script> -->
+        <meta charset="UTF-8">
+        <title>Monitorr | Login</title>
+        <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
+        <link type="text/css" href="../css/main.css" rel="stylesheet">
+        <!-- <script src="../js/jquery.min.js"></script> -->
 
-    <style type="text/css">
+        <style type="text/css">
 
-        body {
-            /* font: 14px sans-serif; */
-            color: white;
-        }
+            body {
+                /* font: 14px sans-serif; */
+                color: white;
+            }
 
-        .navbar-brand {
-            cursor: default;
-        }
+            .navbar-brand {
+                cursor: default;
+            }
 
-        /* :root {
-            font-size: 16px !important;
-        } */
+            /* :root {
+                font-size: 16px !important;
+            } */
 
-        .wrapper {
-            width: 30rem;
-            margin-top: 10%;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 1rem;
-        }
+            .wrapper {
+                width: 30rem;
+                margin-top: 10%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 1rem;
+            }
 
-    </style>
+        </style>
 
 
-</head>
+    </head>
 
 </html>

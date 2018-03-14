@@ -596,7 +596,6 @@ class OneFileLoginApplication
             </input>
         </div>
 
-
         <script>document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'</script>
 
             <script src="../js/update.js" async></script>

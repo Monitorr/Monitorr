@@ -33,7 +33,7 @@
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Fonts from Google Fonts -->
-        <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+        <!-- <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'> -->
 
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
