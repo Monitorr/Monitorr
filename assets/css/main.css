@@ -504,7 +504,6 @@ tbody {
     height: 5.5rem;
 }
 
-
  #servicetitle {
     display: flex;
     flex-direction: column;
@@ -1015,7 +1014,6 @@ input:checked+.slider:before {
     cursor: default;
 }
 
-
 #loginmessage {
     color: yellow;
     font-size: 1rem;
@@ -1029,7 +1027,6 @@ input:checked+.slider:before {
     font-weight: 600;
     cursor: default;
 }
-
 
 #loginsuccess {
     color: green;
@@ -1045,7 +1042,6 @@ input:checked+.slider:before {
     cursor: default;
 }
 
-
 #dbmessage {
     color: rgb(73, 73, 73);
     font-size: 1rem;
@@ -1060,7 +1056,6 @@ input:checked+.slider:before {
     font-weight: 600;
     cursor: default;
 }
-
 
 .dbmessagesuccess {
     background-color: black;
@@ -1083,7 +1078,6 @@ input:checked+.slider:before {
     font-size: .75rem !important;
     cursor: default;
 }
-
 
 #loginbtn {
     padding-left: 1.5rem;
@@ -1180,7 +1174,6 @@ input:checked+.slider:before {
 
 .sidebar-nav li:first-child a {
     background-color: #3e011e;
-    /* color: #ffffff; */
 }
 
 .sidebar-nav li:first-child a:hover {
@@ -1266,7 +1259,6 @@ input:checked+.slider:before {
 .sidebar-nav li a {
     color: #dddddd;
     display: block;
-    /* padding: 10px 15px 10px 30px; */
     font-size: 1rem;
     text-decoration: none;
     padding: .5rem;
@@ -1294,12 +1286,21 @@ input:checked+.slider:before {
     box-shadow .15s ease-in-out;
 }
 
-.alpaca-form-buttons-container {
-    text-align: left;
-}
-
 .btn:hover {
     background-color: #0073ee;
+}
+
+.alpaca-form-buttons-container {
+    text-align: left;
+    width: 14rem;
+    width: fit-content;
+    padding: .5rem;
+    background-color: rgba(126, 126, 126, 0.50);
+    border-radius: 4px;
+}
+
+.alpaca-form-button-submit {
+    margin-right: .5rem;
 }
 
 #myBtn2 {
@@ -1380,7 +1381,6 @@ input:checked+.slider:before {
     text-shadow: 0 0 15px #FF0104;
 } 
 
-
 #infodata {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -1398,12 +1398,10 @@ input:checked+.slider:before {
     font-size: .5rem;
 }
 
-
 #phpContent {
     position: inherit;
     background: transparent;
 }
-
 
 .phpobject {
     position: inherit;
@@ -1411,18 +1409,14 @@ input:checked+.slider:before {
     height: 35rem;
 }
 
-
 .slide {
-    /* border: 1px solid black; */
-    /* margin: 0px 2em 0px 2em; */
     position: relative;
-    /* margin-bottom: 20px; */
 }
 
-/* .expanded {
-    height: 600px !important;
+#servicesettings {
+    margin-bottom: 6rem;
+    background-color: #1F1F1F;
 }
- */
 
  .expand {
      height: 33rem;
@@ -1494,6 +1488,10 @@ input:checked+.slider:before {
 #rightcolumn {
     margin: auto;
     text-align: left;
+}
+
+.alpaca-message-invalidValueOfEnum {
+    color: red !important;
 }
 
 .alpaca-field-object {
@@ -1637,12 +1635,24 @@ tr {
     cursor: default;
 }
 
-#footer {
+/* #footer {
     margin: 0px;
     margin-top: 1vw;
     text-align: center;
     color: #555555;
     font-size: 1rem;
+} */
+
+#footer {
+    position: fixed;
+    left: 46%;
+    bottom: 2rem;
+    margin: 0px;
+    margin-top: 1vw;
+    text-align: center;
+    color: #555555;
+    font-size: 1rem;
+    z-index: -1;
 }
 
  .footer {

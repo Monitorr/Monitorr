@@ -460,6 +460,12 @@ class OneFileLoginApplication
                     height: 8rem !important;
                 }
 
+                .alpaca-form-buttons-container {
+                    position: fixed;
+                    margin-left: 1rem;
+                    bottom: 3rem;
+                }
+
             </style>
 
             <?php $datafile = '../config/datadir.json'; ?>
@@ -588,7 +594,7 @@ class OneFileLoginApplication
                                     },
                                     "image": {
                                         "type": "image",
-                                         "validate": true,
+                                        "validate": true,
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
@@ -605,8 +611,8 @@ class OneFileLoginApplication
                                          "allowOptionalEmpty": false,
                                          "data": {},
                                          "autocomplete": false,
-                                         "disallowEmptySpaces": false,
-                                         "disallowOnlyEmptySpaces": false,
+                                         "disallowEmptySpaces": true,
+                                         "disallowOnlyEmptySpaces": true,
                                          "fields": {},
                                          "renderButtons": true,
                                          "attributes": {}
@@ -626,6 +632,7 @@ class OneFileLoginApplication
                                         "name": "checktype",
                                         "placeholder": " Standard",
                                         "typeahead": {},
+                                        "styled": true,
                                         "allowOptionalEmpty": false,
                                         "removeDefaultNone": true,
                                         "hideNone": true,

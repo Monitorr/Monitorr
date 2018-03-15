@@ -252,7 +252,6 @@
                 echo '<div id="datdirerror">';
                     echo 'Data directory NOT detected';
                 echo '</div>';
-
             }
 
             else {
