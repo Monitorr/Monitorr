@@ -12,7 +12,7 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
 
-**NOTICE** (12 MARCH 2018): This build is a release candidate for version 1.0. Master branch target release date is 15 March.  If you are testing this build you will need to use a new local repo for testing. it is NOT possible to upgrade from a previous version of Monitorr. We thank you for helping us develop.  
+**NOTICE** (15 MARCH 2018): This build is a release candidate for version 1.0.  Monitorr 1.0 will be released ~18 March 2018. When this release is published, updating via the UI by clicking on “check for update” in the footer MAY FAIL. Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for further explanation.
 
 ## Features:
 
