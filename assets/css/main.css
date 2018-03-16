@@ -942,14 +942,19 @@ input:checked+.slider:before {
 .footer:hover {
     text-decoration: none;
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 400;
 }
 
  .a {
     color: #555555;
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-shadow: none;
     font-weight: 300;
     text-decoration: none;
  }
+
+  #alert {
+      color: red;
+      font-size: 1.2rem;
+  }
