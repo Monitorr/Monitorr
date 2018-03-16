@@ -11,7 +11,7 @@
 **Version:** v0.14.0d [DEVELOP]
 
 
-**NOTICE** (25 jan 2018): If you are upgrading from any version prior to 0.12.5. You MUST add a port to all of your monitorred URLs (i.e. https://mydomain.com:443/application).  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration) for further explanation.
+**NOTICE** (16 MAR 2018): Monitorr 1.0 will be released ~18 March 2018. When this release is published, updating via the UI by clicking on “check for update” in the footer MAY FAIL. Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for further explanation.
 
 ## Features:
 
