@@ -392,7 +392,7 @@ class OneFileLoginApplication
         <meta name="theme_color" content="#464646" />
 
         <script type="text/javascript" src="../js/jquery.min.js"></script>
-        <script type="text/javascript" src="../js/pace.js" async></script>
+        <!-- <script type="text/javascript" src="../js/pace.js" async></script> -->
         <script type="text/javascript" src="../js/handlebars.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
@@ -451,10 +451,6 @@ class OneFileLoginApplication
                     max-width: 100% !important;
                 }
 
-                /* .control-label {
-                    width: 100% !important;
-                } */
-
             </style>
 
             <?php $datafile = '../config/datadir.json'; ?>
@@ -470,7 +466,7 @@ class OneFileLoginApplication
 
     </head>
 
-<body>
+    <body>
 
         <script>
             document.body.className += ' fade-out';
@@ -487,363 +483,363 @@ class OneFileLoginApplication
             </div>
         </div>
 
-    <div id="siteform">
+        <div id="siteform">
 
-        <div id="sitesettings"></div>
+            <div id="sitesettings"></div>
 
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    var CustomConnector = Alpaca.Connector.extend({
-                        buildAjaxConfig: function(uri, isJson) {
-                            var ajaxConfig = this.base(uri, isJson);
-                            ajaxConfig.headers = {
-                                "ssoheader": "abcde12345"
-                            };
-                            return ajaxConfig;
-                        }
-                    });
-
-                var data;
-                    $.ajax({
-                        dataType: "json",
-                        url: './post_receiver-site_settings_load.php',
-                        data: data,
-                        success: function (data) {
-                            console.log(data);
-                        },
-
-                        error: function(errorThrown){
-                            console.log(errorThrown);
-                            document.getElementById("response").innerHTML = "GET failed (ajax)";
-                            alert( "GET failed (ajax)" );
-                        },
-                    });
-
-                    Alpaca.registerConnectorClass("custom", CustomConnector);
-                    $("#sitesettings").alpaca({
-                        "connector": "custom",
-                        "dataSource": "./post_receiver-site_settings_load.php",
-                        //"dataSource": "../data/site_settings-data.json?a=1",
-                        "schemaSource": "../config/site_settings-schema.json?a=1",
-                        // "optionsSource": "./data/connector-custom-options.json?a=1",
-                        // "viewSource": "../data/connector-custom-view.json?a=1",
-                        "view": {
-                            "parent": "bootstrap-edit-horizontal",
-                            "layout": {
-                                "template": './two-column-layout-template.html',
-                                "bindings": {
-                                    "rfsysinfo": "leftcolumn",
-                                    "rftime": "leftcolumn",
-                                    "pinghost": "leftcolumn",
-                                    "pingport": "leftcolumn",
-                                    "cpuok": "rightcolumn",
-                                    "cpuwarn": "rightcolumn",
-                                    "ramok": "rightcolumn",
-                                    "ramwarn": "rightcolumn",
-                                    "hdok": "rightcolumn",
-                                    "hdwarn": "rightcolumn"
-                                }
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        var CustomConnector = Alpaca.Connector.extend({
+                            buildAjaxConfig: function(uri, isJson) {
+                                var ajaxConfig = this.base(uri, isJson);
+                                ajaxConfig.headers = {
+                                    "ssoheader": "abcde12345"
+                                };
+                                return ajaxConfig;
                             }
-                        },
-                        "options": {
-                            "focus": false,
-                            "type": "object",
-                            "helpers": [],
-                            "validate": true,
-                            "disabled": false,
-                            "showMessages": true,
-                            "collapsible": false,
-                            "legendStyle": "button",
-                            "fields": {
-                                "rfsysinfo": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "Service & system refresh interval:",
-                                    "helper": "Service & system info refresh interval in milliseconds.",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "rfsysinfo",
-                                    "placeholder": "5000",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "rftime": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "Time refresh interval:",
-                                    "helper": "UI clock display refresh interval in milliseconds.",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "rftime",
-                                    "placeholder": "5000",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "pinghost": {
-                                    "type": "text",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "Ping host:",
-                                    "helper": "URL or IP to ping for latency check. (WAN DNS provider is suggested)",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "pinghost",
-                                    "placeholder": "8.8.8.8",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
+                        });
 
-                                "pingport": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "Ping host port:",
-                                    "helper": "Ping host port to use for latency check. (If using 8.8.8.8, value should be '53')",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "pingport",
-                                    "placeholder": "53",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "cpuok": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "CPU OK color value:",
-                                    "helper": "CPU% less than this will be green.",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "cpuok",
-                                    "placeholder": "50",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "cpuwarn": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "CPU warning color value:",
-                                    "helper": "CPU% less than this will be yellow.",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "cpuwarn",
-                                    "placeholder": "90",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "ramok": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "RAM OK color value:",
-                                    "helper": "RAM% less than this will be green.",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "ramok",
-                                    "placeholder": "50",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "ramwarn": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "RAM warning color value:",
-                                    "helper": "RAM% less than this will be yellow.",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "ramwarn",
-                                    "placeholder": "90",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "hdok": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "HD OK color value:",
-                                    "helper": "HD free % less than this will be green.",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "hdok",
-                                    "placeholder": "75",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
-                                },
-                                "hdwarn": {
-                                    "type": "number",
-                                    "validate": true,
-                                    "showMessages": true,
-                                    "disabled": false,
-                                    "hidden": false,
-                                    "label": "HD warning color value:",
-                                    "helper": "HD free % less than this will be yellow.",
-                                    "hideInitValidationError": false,
-                                    "focus": false,
-                                    "optionLabels": [],
-                                    "name": "hdwarn",
-                                    "placeholder": "95",
-                                    "typeahead": {},
-                                    "size": "10",
-                                    "allowOptionalEmpty": false,
-                                    "data": {},
-                                    "autocomplete": false,
-                                    "disallowEmptySpaces": false,
-                                    "disallowOnlyEmptySpaces": false,
-                                    "fields": {},
-                                    "renderButtons": true,
-                                    "attributes": {}
+                    var data;
+                        $.ajax({
+                            dataType: "json",
+                            url: './post_receiver-site_settings_load.php',
+                            data: data,
+                            success: function (data) {
+                                console.log(data);
+                            },
+
+                            error: function(errorThrown){
+                                console.log(errorThrown);
+                                document.getElementById("response").innerHTML = "GET failed (ajax)";
+                                alert( "GET failed (ajax)" );
+                            },
+                        });
+
+                        Alpaca.registerConnectorClass("custom", CustomConnector);
+                        $("#sitesettings").alpaca({
+                            "connector": "custom",
+                            "dataSource": "./post_receiver-site_settings_load.php",
+                            //"dataSource": "../data/site_settings-data.json?a=1",
+                            "schemaSource": "../config/site_settings-schema.json?a=1",
+                            // "optionsSource": "./data/connector-custom-options.json?a=1",
+                            // "viewSource": "../data/connector-custom-view.json?a=1",
+                            "view": {
+                                "parent": "bootstrap-edit-horizontal",
+                                "layout": {
+                                    "template": '../css/./two-column-layout-template.html',
+                                    "bindings": {
+                                        "rfsysinfo": "leftcolumn",
+                                        "rftime": "leftcolumn",
+                                        "pinghost": "leftcolumn",
+                                        "pingport": "leftcolumn",
+                                        "cpuok": "rightcolumn",
+                                        "cpuwarn": "rightcolumn",
+                                        "ramok": "rightcolumn",
+                                        "ramwarn": "rightcolumn",
+                                        "hdok": "rightcolumn",
+                                        "hdwarn": "rightcolumn"
+                                    }
                                 }
                             },
-                            "form": {
-                                "attributes": {
-                                    "action": "post_receiver-site_settings.php",
-                                    "method": "post",
-                                },
-                                "buttons": {
-                                    "submit": {
-                                        "type": "button",
-                                        "label": "Submit",
-                                        "name": "submit",
-                                        "value": "submit",
-                                        click: function(){
-                                            var data = $('#sitesettings').alpaca().getValue();
-                                            $.post({
-                                                url: 'post_receiver-site_settings.php',
-                                                data: $('#sitesettings').alpaca().getValue(),
-                                                success: function(data) {
-                                                    // alert(JSON.stringify(data));
-                                                    alert("settings saved!");
-                                                    // setTimeout(location.reload.bind(location), 500)
-                                                },
-                                                error: function(errorThrown){
-                                                    console.log(errorThrown);
-                                                }
-                                            });
-                                        }
+                            "options": {
+                                "focus": false,
+                                "type": "object",
+                                "helpers": [],
+                                "validate": true,
+                                "disabled": false,
+                                "showMessages": true,
+                                "collapsible": false,
+                                "legendStyle": "button",
+                                "fields": {
+                                    "rfsysinfo": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Service & system refresh interval:",
+                                        "helper": "Service & system info refresh interval in milliseconds.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "rfsysinfo",
+                                        "placeholder": "5000",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
                                     },
-                                    "reset":{
-                                        "label": "Clear Values"
+                                    "rftime": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Time refresh interval:",
+                                        "helper": "UI clock display refresh interval in milliseconds.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "rftime",
+                                        "placeholder": "5000",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
+                                    },
+                                    "pinghost": {
+                                        "type": "text",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Ping host:",
+                                        "helper": "URL or IP to ping for latency check. (WAN DNS provider is suggested)",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "pinghost",
+                                        "placeholder": "8.8.8.8",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
+                                    },
+
+                                    "pingport": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Ping host port:",
+                                        "helper": "Ping host port to use for latency check. (If using 8.8.8.8, value should be '53')",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "pingport",
+                                        "placeholder": "53",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
+                                    },
+                                    "cpuok": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "CPU OK color value:",
+                                        "helper": "CPU% less than this will be green.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "cpuok",
+                                        "placeholder": "50",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
+                                    },
+                                    "cpuwarn": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "CPU warning color value:",
+                                        "helper": "CPU% less than this will be yellow.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "cpuwarn",
+                                        "placeholder": "90",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
+                                    },
+                                    "ramok": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "RAM OK color value:",
+                                        "helper": "RAM% less than this will be green.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "ramok",
+                                        "placeholder": "50",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
+                                    },
+                                    "ramwarn": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "RAM warning color value:",
+                                        "helper": "RAM% less than this will be yellow.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "ramwarn",
+                                        "placeholder": "90",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
+                                    },
+                                    "hdok": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "HD OK color value:",
+                                        "helper": "HD free % less than this will be green.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "hdok",
+                                        "placeholder": "75",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
+                                    },
+                                    "hdwarn": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "HD warning color value:",
+                                        "helper": "HD free % less than this will be yellow.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "hdwarn",
+                                        "placeholder": "95",
+                                        "typeahead": {},
+                                        "size": "10",
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {}
                                     }
-                                    // "view": {
-                                    //     "type": "button",
-                                    //     "label": "View JSON",
-                                    //     "value": "View JSON",
-                                    //     "click": function() {
-                                    //         alert(JSON.stringify(this.getValue(), null, "  "));
-                                    //     }
-                                    // }
                                 },
-                            }
-                        },
+                                "form": {
+                                    "attributes": {
+                                        "action": "post_receiver-site_settings.php",
+                                        "method": "post",
+                                    },
+                                    "buttons": {
+                                        "submit": {
+                                            "type": "button",
+                                            "label": "Submit",
+                                            "name": "submit",
+                                            "value": "submit",
+                                            click: function(){
+                                                var data = $('#sitesettings').alpaca().getValue();
+                                                $.post({
+                                                    url: 'post_receiver-site_settings.php',
+                                                    data: $('#sitesettings').alpaca().getValue(),
+                                                    success: function(data) {
+                                                        // alert(JSON.stringify(data));
+                                                        alert("settings saved!");
+                                                        // setTimeout(location.reload.bind(location), 500)
+                                                    },
+                                                    error: function(errorThrown){
+                                                        console.log(errorThrown);
+                                                    }
+                                                });
+                                            }
+                                        },
+                                        "reset":{
+                                            "label": "Clear Values"
+                                        }
+                                        // "view": {
+                                        //     "type": "button",
+                                        //     "label": "View JSON",
+                                        //     "value": "View JSON",
+                                        //     "click": function() {
+                                        //         alert(JSON.stringify(this.getValue(), null, "  "));
+                                        //     }
+                                        // }
+                                    },
+                                }
+                            },
+                        });
+
                     });
+                </script>
 
-                });
-            </script>
-
-    </div>
+        </div>
 
         <div id="footer">
 
@@ -851,7 +847,7 @@ class OneFileLoginApplication
 
         </div>
 
-</body>
+    </body>
 
 </html>
 
@@ -897,7 +893,6 @@ class OneFileLoginApplication
                     echo 'Browse to <a href="../config/_installation/_register.php">../config/_installation/_register.php</a> to create a user database and establish user credentials. ';
 
                 echo "</div>";
-
             }
 
             //if user database is present, show log-in form:
@@ -940,7 +935,6 @@ class OneFileLoginApplication
             }
 
         echo '</div>';
-
     }
 
     /**
@@ -957,7 +951,6 @@ class OneFileLoginApplication
         echo "<div id='loginerror'>";
             echo 'Not Authorized';
         echo "</div>";
-
 
     }
 }
@@ -976,6 +969,7 @@ $application = new OneFileLoginApplication();
         <title>Monitorr | Login</title>
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
+        <script type="text/javascript" src="../js/pace.js" async></script>
         <!-- <script src="../js/jquery.min.js"></script> -->
 
         <style type="text/css">

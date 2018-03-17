@@ -397,7 +397,7 @@ class OneFileLoginApplication
         <meta name="theme_color" content="#464646" />
 
         <script type="text/javascript" src="../js/jquery.min.js"></script>
-        <script type="text/javascript" src="../js/pace.js" async></script>
+        <!-- <script type="text/javascript" src="../js/pace.js" async></script> -->
         <script type="text/javascript" src="../js/handlebars.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
@@ -457,7 +457,7 @@ class OneFileLoginApplication
                 }
 
                 img {
-                    height: 8rem !important;
+                    height: 7rem !important;
                 }
 
                 .alpaca-form-buttons-container {
@@ -501,10 +501,12 @@ class OneFileLoginApplication
 
  <p id="response"></p>
 
+ <!-- <div id="myform"></div> -->
+ 
 
     <div id="serviceform">
 
-        <div id="servicesettings"> </div>
+        <div id="servicesettings"></div>
 
             <script type="text/javascript">
                 $(document).ready(function() {
@@ -523,18 +525,29 @@ class OneFileLoginApplication
                         "dataSource": "./post_receiver-services_load.php",
                         "schemaSource": "../config/services-schema.json?a=1",
                         "view": {
-                            "parent": "bootstrap-edit"
-                            //"layout": {
-                               // "template": './two-column-layout-template.html',
-                                //"template": '<table class="table table-hover"><tbody><tr><td id="leftservice"></td><td id="rightservice"></td></tr></tbody></table>',
-                                // "bindings": {
-                                //     "serviceTitle": "#leftservice",
-                                //     "image": "#leftservice",
-                                //     "checkurl": "#rightservice",
-                                //     "linkurl": "#rightservice",
-                                //     "type": "#rightservice"
-                                // }
-                            //}
+                            "fields": {
+                                "//checkurl": {
+                                    "templates": {
+                                        "control": "../css/./templates-checkurl-control.html"
+                                    }
+                                },
+                                "//linkurl": {
+                                    "templates": {
+                                        "control": "../css/./templates-linkurl-control.html"
+                                    }
+                                }
+                            }
+                            // "parent": "bootstrap-edit-horizontal",
+                            // "layout": {
+                            //    "template": './two-column-layout-template-services.html',
+                            //     "bindings": {
+                            //         "serviceTitle": "#leftservice",
+                            //         "image": "#leftservice",
+                            //         "checkurl": "#rightservice",
+                            //         "linkurl": "#rightservice",
+                            //         "type": "#rightservice"
+                            //     }
+                            // }
                         },
                         "options": {
                             "toolbarSticky": true,
@@ -581,10 +594,11 @@ class OneFileLoginApplication
                                          "focus": false,
                                          "optionLabels": [],
                                          "name": "serviceTitle",
+                                         "size": 20,
                                          "placeholder": "Service Name",
                                          "typeahead": {},
                                          "allowOptionalEmpty": false,
-                                        "data": {},
+                                         "data": {},
                                          "autocomplete": false,
                                          "disallowEmptySpaces": false,
                                          "disallowOnlyEmptySpaces": false,
@@ -600,10 +614,11 @@ class OneFileLoginApplication
                                         "hidden": false,
                                         "label": "Service Image:",
                                         //"helpers": ["Icon/image representation of service"],
-                                        "helper": "Icon/image representation of service. Location of image must be present in the /assets/img directory.",
+                                        "helper": "Icon/image representation of service. <br> Location of image must be present in the /assets/img directory.",
                                          "hideInitValidationError": false,
                                          "focus": false,
                                          "optionLabels": [],
+                                         "size": 20,
                                          "name": "image",
                                          "styled": true,
                                          "placeholder": "../img/monitorr.png",
@@ -652,6 +667,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Check URL:",
+                                        "size": 30,
                                         //"helpers": ["URL to check status"],
                                         "helper": "URL to check service status. (Port is required!)",
                                          "hideInitValidationError": false,
@@ -680,6 +696,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Link URL:",
+                                         "size": 30,
                                         //"helpers": ["URL that will be linked to service"],
                                         "helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
                                          "hideInitValidationError": false,
@@ -724,14 +741,6 @@ class OneFileLoginApplication
                                     "reset":{
                                         "label": "Clear Values"
                                     }
-                                    // "view": {
-                                    //     "type": "button",
-                                    //     "label": "View JSON",
-                                    //     "value": "View JSON",
-                                    //     "click": function() {
-                                    //         alert(JSON.stringify(this.getValue(), null, "  "));
-                                    //     }
-                                    //},
                                 }
                             }
                         }
@@ -741,28 +750,28 @@ class OneFileLoginApplication
 
     </div>
 
-                <!-- scroll to top   -->
+            <!-- scroll to top   -->
 
-            <button onclick="topFunction()" id="myBtn" title="Go to top"></button>
+        <button onclick="topFunction()" id="myBtn" title="Go to top"></button>
 
-            <script>
+        <script>
 
-                // When the user scrolls down 20px from the top of the document, show the button
-                window.onscroll = function() {scrollFunction()};
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
 
-                function scrollFunction() {
-                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                        document.getElementById("myBtn").style.display = "block";
-                    } else {
-                        document.getElementById("myBtn").style.display = "none";
-                    }
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("myBtn").style.display = "block";
+                } else {
+                    document.getElementById("myBtn").style.display = "none";
                 }
+            }
 
-                // When the user clicks on the button, scroll to the top of the document
-                function topFunction() {
-                    document.body.scrollTop = 0;
-                    document.documentElement.scrollTop = 0;
-                }
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
 
         </script>
 
@@ -895,6 +904,7 @@ $application = new OneFileLoginApplication();
         <title>Monitorr | Login</title>
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
+        <script type="text/javascript" src="../js/pace.js" async></script>
 
         <!-- <script src="../js/jquery.min.js"></script> -->
 

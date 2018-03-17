@@ -390,7 +390,7 @@ class OneFileLoginApplication
         <meta name="theme_color" content="#464646" />
 
         <script type="text/javascript" src="../js/jquery.min.js"></script>
-        <script type="text/javascript" src="../js/pace.js" async></script>
+        <!-- <script type="text/javascript" src="../js/pace.js" async></script> -->
         <!-- <script type="text/javascript" src="../js/bootstrap.min.js"></script> -->
 
             <style>
@@ -727,6 +727,7 @@ $application = new OneFileLoginApplication();
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/pace.js" async></script>
 
         <style type="text/css">
 
