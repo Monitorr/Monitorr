@@ -129,7 +129,7 @@
                         //echo UNRESPONSIVE;
 
                         echo '<div class="col-lg-4">';
-                            echo '<a class="servicetile" href="'. $v2['checkurl'] .'" target="_blank" style="display: block">';
+                            echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
                         
                                 echo '<div id="serviceimg">';
                                     echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
