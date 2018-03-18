@@ -12,7 +12,7 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
 
-**NOTICE** (15 MARCH 2018): This build is a release candidate for version 1.0.  Monitorr 1.0 will be released ~18 March 2018. When this release is published, updating via the UI by clicking on “check for update” in the footer MAY FAIL. Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for further explanation.
+**NOTICE** (18 MARCH 2018): If you are updating to any version prior to 1.0 updating via the UI by clicking on “check for update” in the footer MAY FAIL. It is recommended to clone a new copy of this repo starting with version 1.0.  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for further explanation.
 
 ## Features:
 
@@ -25,14 +25,13 @@
 - Integrated settings page w/ authentication (NEW)
 - Host system resources display (CPU, MEM, HD, PING, Uptime)
 - Server DTG data
-- Update Monitorr via web UI / branch switching w/ update notification (NEW)
+- Update Monitorr via web UI / branch switching w/ update notification
 - Minimal UI for iFrame displays (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/Integration:--Organizr))
 - User customizable system threshold colors
 
 **Features in development:**
-- Settings page (Testing)
 - Reverse proxy authentication
-- Alternate hot links (Testing)
+- Alerting
 
 
 ## Screenshots:
