@@ -1276,14 +1276,30 @@ input:checked+.slider:before {
  #checkurl {
      float: right;
      margin-top: -10rem;
+     width: 20rem;
      text-align: center;
  }
 
  #linkurl {
      float: right;
+     position: relative;
      margin-top: -4rem;
+     width: 20rem;
      text-align: center;
+     background-color: #1F1F1F;
+     z-index: 1000;
  }
+
+  #checknote {
+    position: sticky;
+    width: inherit;
+    margin-top: 2rem;
+    color: grey;
+    font-style: italic;
+    cursor: default;
+    z-index: 1;
+  }
+
 
 .btn {
     color: white;
