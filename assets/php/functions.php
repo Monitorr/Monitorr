@@ -1,5 +1,25 @@
 <?php
-include_once '../config.php';
+
+
+    $file = '../config/datadir.json';
+
+    if(!is_file($file)){
+
+        $path = "../";
+
+        include_once ('../config/monitorr-data-default.php');
+
+        } 
+
+        else {
+
+                
+            $datafile = '../config/datadir.json';
+
+            include_once ('../config/monitorr-data.php');
+
+        }
+
 
 // get CPUload function
 function _getServerLoadLinuxData()
@@ -200,10 +220,10 @@ function getHDFree()
 }
 
     // Dynamic icon colors for badges
-       // Manual values are set below until settings version is published
+ 
+    $hdok = $jsonsite['hdok'];
+    $hdwarn = $jsonsite['hdwarn'];
 
-    $hdok = "75";
-    $hdwarn = "95";
 
         if ($freeHD < $hdok) {
                 $hdClass = 'success';
@@ -229,8 +249,10 @@ $total_uptime = "$days_padded:$hours_padded:$mins_padded";
 
 
 // Dynamic icon colors for badges
-$ramok = $config['ramok']; //set in config.php
-$ramwarn = $config['ramwarn']; //set in config.php
+
+    $ramok = $jsonsite['ramok'];
+    $ramwarn = $jsonsite['ramwarn'];
+
 
 if ($ramPercent < $ramok) {
     $ramClass = 'success';
@@ -240,9 +262,9 @@ if ($ramPercent < $ramok) {
     $ramClass = 'danger';
 }
 
+    $cpuok = $jsonsite['cpuok'];
+    $cpuwarn = $jsonsite['cpuwarn'];
 
-$cpuok = $config['cpuok']; //set in config.php
-$cpuwarn = $config['cpuwarn']; //set in config.php
 
 if ($cpuPercent < $cpuok) {
     $cpuClass = 'success';
@@ -251,7 +273,6 @@ if ($cpuPercent < $cpuok) {
 } else {
     $cpuClass = 'danger';
 }
-
 
 
 /**
@@ -263,24 +284,34 @@ if ($cpuPercent < $cpuok) {
 * @param int $timeout
 * @return bool|float
 */
-$pinghost = $config['pinghost']; //set in config.php
-$pingport = $config['pingport']; //set in config.php
 
-function ping($host, $port = 53, $timeout = 1) {
-    $start = microtime(true);
-    if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
-        return false;
+    
+    $pinghost = $jsonsite['pinghost'];
+    //echo $pinghost;
+
+
+    $pingport = $jsonsite['pingport'];
+    // echo $pingport;
+
+
+    function ping($host, $port = 53, $timeout = 1) {
+        $start = microtime(true);
+        if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
+            return false;
+        }
+        $end = microtime(true);
+        return round((($end - $start) * 1000));
     }
-    $end = microtime(true);
-    return round((($end - $start) * 1000));
- }
 
  $pingTime = ping($pinghost, $pingport);
 
 
 // New version download information
 
-$branch = $config['updateBranch'];
+  
+   
+    $branch = $jsonusers['updateBranch'];
+
 
 // location to download new version zip
 $remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/' . $branch . '';
