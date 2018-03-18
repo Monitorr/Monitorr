@@ -288,9 +288,26 @@
                                 echo "Monitorr data directory creation complete. You can now create a user.";
                             echo '</div>';
                             
-                        echo '</div>';  
+                        echo '</div>'; 
 
                         unlink('../datadir.fail.txt');
+
+
+                            // Temporary OLD config file removal // CHANGE ME //
+
+                        $fileold1 = '../../config.php.sample';
+
+                        if(is_file($fileold1)){
+
+                            rename('../../config.php.sample', '../../config.php.sample.old');      
+                        } 
+
+                        $fileold2 = '../../config.php';
+
+                        if(is_file($fileold2)){
+
+                            rename('../../config.php', '../../config.php.old');      
+                        } 
 
                     }
            }
