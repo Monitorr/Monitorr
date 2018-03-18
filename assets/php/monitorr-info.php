@@ -527,12 +527,16 @@ class OneFileLoginApplication
                         <td><?php echo file_get_contents( "../js/version/version.txt " )?> <p id="version_check_auto"></p> </td>
                         <td><strong>OS / Version:</strong></td>
                         <td><?php echo php_uname(); ?></td>
-                        
                     </tr>
                     <tr>
                         <td><strong>Monitorr Latest Version:</strong></td>
-                        <td><a href="https://github.com/monitorr/monitorr/releases" target="_blank" title="Monitorr Releases">
+                        <td>Master: 
+                            <a href="https://github.com/monitorr/monitorr/releases" target="_blank" title="Monitorr Releases">
                                 <img src="https://img.shields.io/github/release/monitorr/monitorr.svg?style=flat" label="Monitorr Release" alt="Monitorr Release" style="width:6rem;height:1.1rem;" >
+                            </a>
+                            | Develop: 
+                            <a href="https://github.com/monitorr/monitorr/releases" target="_blank" title="Monitorr Releases">
+                                <img src="https://img.shields.io/github/release/monitorr/monitorr/all.svg" label="Monitorr Release" alt="Monitorr Release" style="width:6rem;height:1.1rem;" >
                             </a>
                         </td>
                         <td><strong>PHP Version:</strong></td>
