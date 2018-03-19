@@ -39,6 +39,15 @@
                 background-color: #1F1F1F !important;
             }
 
+            #summary {
+                margin-top: 0rem !important;
+                width: 17rem !important;
+                position: relative !important;
+                margin-bottom: 1rem;
+                font-size: .8rem;
+                line-height: 1.5rem;
+            }
+
             legend { 
                 color: white;
             }
@@ -114,10 +123,13 @@
 
                 $title = $jsonusers['sitetitle'];
 
+                $rftime = $jsonsite['rftime'];
+
+                $rftime = $jsonsite['rftime'];
+
             }
 
          ?> 
-
 
         <?php 
 
@@ -134,8 +146,7 @@
             | Settings
         </title>
 
-
-        <?php include ('assets/php/gitinfo.php'); ?>
+        <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
 
         <script>
 
@@ -186,6 +197,23 @@
         <script src="assets/js/clock.js" async></script>
 
 
+        <script type="text/javascript">
+
+            rfsysinfo =
+                <?php 
+                    $rfsysinfo = $jsonsite['rfsysinfo'];
+                    echo $rfsysinfo;
+                ?>
+
+            function statusCheck() {
+                $("#summary").load(document.URL +  ' #summary', function() {
+                    setTimeout(statusCheck, rfsysinfo);
+                });
+            };
+            statusCheck();
+
+        </script> 
+
          <script>
             $(function() {
                 document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
@@ -194,17 +222,31 @@
 
     </head>
 
-<body>
+<body  onload="statusCheck()">
 
-        <script>
-            document.body.className += ' fade-out';
-            $(function() { 
-                $('body').removeClass('fade-out'); 
-            });
-        </script>
-
+    <script>
+        document.body.className += ' fade-out';
+        $(function() { 
+            $('body').removeClass('fade-out'); 
+        });
+    </script>
 
     <div id ="settingscolumn" class="settingscolumn">
+
+        <?php 
+
+            foreach (glob("assets/logs/*.json") as $filename) {  
+                   // echo $filename."<br />";  
+                } 
+
+            if(is_file($filename)){
+
+                echo '<div id="summary">';
+                    $filename2 = file_get_contents ($filename);
+                    echo ucfirst($filename2);
+                echo '</div>';
+            }
+        ?>
 
         <div id="left" class="Column">
             <div id="clock">
