@@ -88,6 +88,16 @@
                 echo '</div>';
                 
                 curl_close($handle);
+
+                // Remove .json file from /assets/logs dir when service comes back online
+
+                $servicefile = ($v2['serviceTitle']).'.offline.json';                    
+                $fileoffline = '../logs/'.$servicefile;
+
+                if(is_file($fileoffline)){
+                    rename($fileoffline, '../logs/offline.json.old');
+                } 
+
             } 
 
             else {
@@ -119,10 +129,18 @@
                                 echo '<div class="btnoffline">Offline</div>';
 
                             echo '</div>';
-
                         echo '</div>';
-                        
-                    } 
+                    
+
+                        $servicefile = '../logs/'.($v2['serviceTitle']).'.offline.json';
+                        $today = date("H:i:s");
+
+                        if(!is_file($servicefile)){
+                            $fp = fopen($servicefile, 'w');
+                                fwrite($fp, $v2['serviceTitle'] . " is OFFLINE as of " . $today);
+                            fclose($fp);
+                        } 
+                    }
                     
                     else {
                             
@@ -136,9 +154,7 @@
                                 echo '</div>';
                                 
                                 echo '<div id="servicetitle">';
-                                    //echo '<div class="servicetext">';
                                         echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
-                                    //echo '</div>';
                                 echo '</div>'; 
 
                                 echo '<div class="btunknown">Unresponsive</div>';
@@ -146,8 +162,14 @@
                             echo '</a>'; 
                         echo '</div>'; 
 
-                        fclose($fp);
+                            $servicefile = ($v2['serviceTitle']).'.offline.json';                    
+                            $fileoffline = '../logs/'.$servicefile;
 
+                            if(is_file($fileoffline)){
+                                rename($fileoffline, '../logs/offline.json.old');
+                            } 
+
+                        fclose($fp);
                     }
             }
     }
@@ -187,7 +209,15 @@
                     echo '</div>';
 
                 echo '</div>';
-                
+
+                    $servicefile = '../logs/'.($v2['serviceTitle']).'.offline.json';
+                    $today = date("H:i:s");
+
+                    if(!is_file($servicefile)){
+                        $fp = fopen($servicefile, 'w');
+                            fwrite($fp, $v2['serviceTitle'] . " is OFFLINE as of " . $today);
+                        fclose($fp);
+                    }
             } 
             
             else {
@@ -210,10 +240,16 @@
                     echo '</div>'; 
                 echo '</div>';
 
+                $servicefile = ($v2['serviceTitle']).'.offline.json';                    
+                $fileoffline = '../logs/'.$servicefile;
+
+                if(is_file($fileoffline)){
+                    rename($fileoffline, '../logs/offline.json.old');
+                } 
+
                 fclose($fp);
 
             }
     };
 
 ?>
-
