@@ -236,8 +236,16 @@ hr {
     padding: 0;
 }
 
-
 /* Top Margin */
+
+#summary {
+    position: fixed;
+    width: 100%;
+    background-color: red;
+    text-align: center;
+    color: white;
+    margin-top: -.8rem;
+}
 
 #header {
     position: static;
@@ -246,6 +254,7 @@ hr {
     table-layout: fixed;
     border-spacing: 1px;
     margin-bottom: 1rem;
+    margin-top: 2rem;
     padding-left: .5rem
 }
 
@@ -256,7 +265,7 @@ hr {
     height: 65px !important;
     table-layout: fixed;
     border-spacing: 1px;
-    margin-top: 5px;
+    margin-top: 10px;
     padding-right: 1rem;
     padding-left: .5rem;
     line-height: 1;
