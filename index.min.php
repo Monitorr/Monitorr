@@ -41,6 +41,12 @@
                 overflow-x: hidden;
             }
 
+            #summary {
+                margin-top: -.2rem !important;
+                z-index: 1000;
+                font-size: .8rem;
+            }
+
             :root {
                 font-size: 12px !important;
             }
@@ -72,7 +78,7 @@
 
             #center {
                 position: absolute !important;
-                 height: 5rem;
+                height: 5rem;
                 width: 100% !important;
                 max-width: 40rem;
                 left: 51% !important;
@@ -88,17 +94,16 @@
                 box-sizing: content-box;
                 height: 2em !important;
                 width: 40em !important;
-
             }
 
             #uptime {
-                    width: auto !important;
-                    padding-bottom: .5rem !important;
+                width: auto !important;
+                padding-bottom: .5rem !important;
             }
 
             #ping {
 
-                    padding-top: .5rem !important;
+                padding-top: .5rem !important;
             }
 
             #services {
@@ -115,7 +120,6 @@
             }
 
         </style>
-
 
         <?php 
          
@@ -144,8 +148,7 @@
 
             }
 
-         ?> 
-
+        ?> 
 
         <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
 
@@ -156,15 +159,22 @@
         <script>
             $(document).ready(function() {
                 function update() {
-                $.ajax({
-                type: 'POST',
-                url: 'assets/php/timestamp.php',
-                timeout: 5000,
-                success: function(data) {
-                    $("#timer").html(data);
-                    window.setTimeout(update, 10000);
-                    }
-                });
+
+                    rftime =
+                        <?php 
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/timestamp.php',
+                    timeout: 5000,
+                    success: function(data) {
+                        $("#timer").html(data); 
+                        window.setTimeout(update, rftime);
+                        }
+                    });
                 }
                 update();
             });
@@ -178,6 +188,7 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
+                $('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
@@ -203,6 +214,22 @@
                 $('body').removeClass('fade-out');
             });
         </script>
+
+            <!-- Append alert if service is down: -->
+
+        <?php 
+
+            foreach (glob("assets/logs/*.json") as $filename) {   
+                } 
+
+            if(is_file($filename)){
+
+                echo '<div id="summary">';
+                    $filename2 = file_get_contents ($filename);
+                    echo ucfirst($filename2);
+                echo '</div>';
+            }
+        ?>
 
 
         <div id="headermin">
@@ -256,8 +283,8 @@
 
             else {
             }
-
         ?>
+
 
         <div id="services" class="container">
 
