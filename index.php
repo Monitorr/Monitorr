@@ -32,16 +32,13 @@
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Fonts from Google Fonts -->
-        <!-- <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'> -->
-
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
        
         <style>
 
             body {
-                margin-top: 2rem;
+                /* margin-top: 2rem; */
                 margin-bottom: 2vw;
                 overflow-y: auto; 
                 overflow-x: hidden;
@@ -118,13 +115,11 @@
             | Monitorr
         </title>
 
-        
         <script src="assets/js/jquery.min.js"></script>
 
         <script src="assets/js/pace.js" async></script>
 
         <script>
-
             $(document).ready(function() {
                 function update() {
 
@@ -146,7 +141,6 @@
                 }
                 update();
             });
-            
         </script>
         
         <script>
@@ -179,6 +173,7 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
+                $('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
@@ -211,6 +206,21 @@
                 $('body').removeClass('fade-out'); 
             });
         </script>
+
+             <!-- Append alert if service is down: -->
+        <?php 
+
+            foreach (glob("assets/logs/*.json") as $filename) {   
+                } 
+
+            if(is_file($filename)){
+
+                echo '<div id="summary">';
+                    $filename2 = file_get_contents ($filename);
+                    echo ucfirst($filename2);
+                echo '</div>';
+            }
+        ?>
 
         <div id="header">
             
@@ -268,13 +278,11 @@
         
             $file = 'assets/config/datadir.json';
 
-
             if(!is_file($file)){
 
                 echo '<div id="datdirerror">';
                     echo 'Data directory NOT detected. Proceed to <a href="settings.php" target="s" title="Monitorr Settings"> Monitorr Settings </a> and establish it.';
                 echo '</div>';
-
             } 
 
             else {
