@@ -535,6 +535,22 @@ class OneFileLoginApplication
                                     "templates": {
                                         "control": "../css/./templates-linkurl-control.html"
                                     }
+                                },
+                                "//serviceTitle": {
+                                    "templates": {
+                                        "control": "../css/./templates-services_title.html"
+                                    },
+                                    "bindings": {
+                                        "serviceTitle": "#title_input"
+                                    }
+                                },
+                                "//enabled": {
+                                    "templates": {
+                                        "control": "../css/./templates-services_enabled.html"
+                                    },
+                                    "bindings": {
+                                        "enabled": "#enabled_option"
+                                    }
                                 }
                             }
                             // "parent": "bootstrap-edit-horizontal",
@@ -605,6 +621,28 @@ class OneFileLoginApplication
                                          "fields": {},
                                          "renderButtons": true,
                                          "attributes": {}
+                                    },
+                                    "enabled": {
+                                        "type": "select",
+                                        "validate": false, // ** CHANGE ME ** change to TRUE to allow for user config propegation//
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Enabled:",
+                                        "helpers": ["When disabled, service will NOT be checked or displayed in the UI."],
+                                        "helper": "When disabled, service will NOT be checked or displayed in the UI",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        //"optionLabels": ["True", "False"],
+                                        "name": "enabled",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
                                     },
                                     "image": {
                                         "type": "image",
@@ -728,9 +766,7 @@ class OneFileLoginApplication
                                        // "type": 'button',
                                        // "label": "submit",
                                         "click": function formsubmit() {
-
                                             var data = $('#servicesettings').alpaca().getValue();
-
                                             $.post('post_receiver-services.php', {
                                                     data
                                                 },
@@ -784,8 +820,6 @@ class OneFileLoginApplication
 </body>
 
 </html>
-
-
 
 <?php
 
