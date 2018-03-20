@@ -1630,6 +1630,7 @@ input:checked+.slider:before {
     -webkit-transition: .5s;
     -moz-transition: .5s;
     transition: .5s;
+    z-index: 1000;
 }
 
 #myBtn:hover {
