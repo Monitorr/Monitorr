@@ -410,8 +410,9 @@ tbody {
 } 
 
 #services {
-    background: transparent;
+    background: #1F1F1F;
     width: 90%;
+    margin-bottom: 6rem;
 }
 
 .services {
