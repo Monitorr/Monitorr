@@ -245,6 +245,7 @@ hr {
     text-align: center;
     color: white;
     margin-top: -.8rem;
+    z-index: 1000;
 }
 
 #header {
@@ -522,6 +523,8 @@ tbody {
     justify-content: center;
     font-size: 1.5rem;
     color: rgb(200, 200, 200);
+    word-break: keep-all;
+    overflow-wrap: normal;
 }
 
 
@@ -531,6 +534,7 @@ tbody {
     text-shadow: 0 0 20px #FF0104;
     text-decoration: none;
     outline: 0;
+    word-break: keep-all;
     font-weight: 600;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -551,6 +555,8 @@ tbody {
     justify-content: center;
     font-size: 1.5rem;
     color: rgb(200, 200, 200);
+    word-break: keep-all;
+    overflow-wrap: normal;
     cursor: no-drop;
 }
 
@@ -1282,6 +1288,16 @@ input:checked+.slider:before {
     text-decoration: none;
 }
 
+#title_input {
+    margin-bottom: 2rem;
+    width: 16rem;
+}
+
+#enabled_option {
+    margin-top: -6.5rem;
+    margin-left: 16.5rem;
+}
+
  #checkurl {
      float: right;
      margin-top: -10rem;
@@ -1308,6 +1324,10 @@ input:checked+.slider:before {
     cursor: default;
     z-index: 1;
   }
+
+
+
+
 
 
 .btn {
@@ -1524,6 +1544,15 @@ input:checked+.slider:before {
     color: red !important;
 }
 
+#enablednote {
+    position: absolute;
+    color: grey;
+    background-color: #1F1F1F;
+    font-style: italic;
+    padding-left: 1rem;
+    cursor: default;
+}
+
 .alpaca-field-object {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -1533,6 +1562,10 @@ input:checked+.slider:before {
 .alpaca-control-label {
     font-size: 1.1rem;
     font-weight: 600;
+}
+
+.radio {
+    width: 10rem;
 }
 
 .alpaca-image-display {
@@ -1553,6 +1586,7 @@ input:checked+.slider:before {
     font-style: italic;
     cursor: default;
     margin-left: -2rem;
+    margin-top: -5rem;
 }
 
 .alpaca-message-stringValueTooSmall {
