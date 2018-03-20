@@ -1,8 +1,6 @@
 
 <?php
 
-
-
    $str =  json_encode( $_POST, true );
 
     $myServices = json_decode( $str, true);
@@ -33,11 +31,11 @@
 
                     foreach ($iterator as $v1) {
                        
-          
                         foreach ($v1 as $v2) {
                             fwrite ($fp, PHP_EOL);
                             fwrite ($fp, "{");
                             fwrite ($fp, '"'."serviceTitle" . '"' . ':' .  '"' . $v2['serviceTitle'] . '"'.  ",");
+                            fwrite ($fp, '"'."enabled" . '"' . ':' .  '"' . $v2['enabled'] . '"'.  ",");
                             fwrite ($fp, '"'."image" . '"' . ':' .  '"' . $v2['image'] . '"'.  ",");
                             fwrite ($fp, '"'."type" . '"' . ':' .  '"' . $v2['type'] . '"'.  ",");
                             fwrite ($fp, '"'."checkurl" . '"' . ':' .  '"' . $v2['checkurl'] . '"'.  ",");
@@ -45,30 +43,7 @@
                             fwrite ($fp,  "}");
                             fwrite ($fp,  ",");
                             //fwrite ($fp, PHP_EOL);
-
-                            // echo ("<br>");
-                            // echo ( "{");
-                            // echo ( '"'."serviceTitle" . '"' . ':' .  '"' . $v2['serviceTitle'] . '"'.  ",");
-                            // echo ( '"'."image" . '"' . ':' .  '"' . $v2['image'] . '"'.  ",");
-                            // echo ( '"'."type" . '"' . ':' .  '"' . $v2['type'] . '"'.  ",");
-                            // echo ( '"'."checkurl" . '"' . ':' .  '"' . $v2['checkurl'] . '"'.  ",");
-                            // echo ( '"'."linkurl" . '"' . ':' .  '"' . $v2['linkurl'] . '"');
-                            // echo ( "}");
-                            // echo ( ",");
-                            // echo ("<br>");
-
-
-                            //  echo ("[{");
-                            //  echo ('"'."serviceTitle" . '"' . ':' .  '"' . $v2['serviceTitle'] . '"'.  ",");
-                            //  echo ('"'."image" . '"' . ':' .  '"' . $v2['image'] . '"'.  ",");
-                            //  echo ('"'."type" . '"' . ':' .  '"' . $v2['type'] . '"'.  ",");
-                            //  echo ('"'."checkurl" . '"' . ':' .  '"' . $v2['checkurl'] . '"'.  ",");
-                            //  echo ('"'."linkurl" . '"' . ':' .  '"' . $v2['linkurl'] . '"');
-                            //  echo ("}]");
-                        
                         }
-
-                       // fwrite ($fp,  ",");
                     }
 
                     fwrite ($fp,  "]");
@@ -83,12 +58,11 @@
 
         fclose($fp);
 
-
 ?>
 
+    <!-- "Hack" to fix alapaca bug not writing json arrays correctly // See https://github.com/gitana/alpaca/issues/605 -->
 
 <?php
-
 
     $fp = $jsonpath;
 
