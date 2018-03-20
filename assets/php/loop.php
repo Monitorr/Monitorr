@@ -14,9 +14,7 @@
             include_once ('../config/monitorr-data-default.php');
                    
             $jsonservices;
-
         } 
-
 
         else {
 
@@ -25,7 +23,6 @@
             include_once ('../config/monitorr-data.php');
 
             $jsonservices;
-
         }
 
     $myServices = $jsonservices;
@@ -37,17 +34,31 @@
 
     <?php 
 
-        if($v2['type'] == " Standard") {
-            echo "<div>";
-                urlExists($v2['checkurl']);
-            echo "</div>";
+        if($v2['enabled'] == "Yes") {
+
+            if($v2['type'] == " Standard") {
+                echo "<div>";
+                    urlExists($v2['checkurl']);
+                echo "</div>";
+            }
+
+            else {
+                echo "<div>";
+                    ping($v2['checkurl']);
+                echo "</div>";
+            };
         }
 
         else {
-            echo "<div>";
-                ping($v2['checkurl']);
-            echo "</div>";
-        };
+                // Remove offline log file if disabled://
+
+            $servicefile = ($v2['serviceTitle']).'.offline.json';                    
+            $fileoffline = '../logs/'.$servicefile;
+
+            if(is_file($fileoffline)){
+                rename($fileoffline, '../logs/offline.json.old');
+            } 
+        }
 
     ?>
 
