@@ -460,6 +460,10 @@ class OneFileLoginApplication
                     height: 7rem !important;
                 }
 
+                .form-control {
+                    width: inherit !important;
+                }
+
                 .alpaca-message-invalidPattern {
                     margin-left: -2rem;
                     margin-top: -5rem;
@@ -740,7 +744,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Link URL:",
-                                         "size": 30,
+                                        "size": 30,
                                         //"helpers": ["URL that will be linked to service"],
                                         "helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
                                          "hideInitValidationError": false,
