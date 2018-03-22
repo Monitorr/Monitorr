@@ -460,11 +460,17 @@ class OneFileLoginApplication
                     height: 7rem !important;
                 }
 
+                .alpaca-message-invalidPattern {
+                    margin-left: -2rem;
+                    margin-top: -5rem;
+                }
+
                 .alpaca-form-buttons-container {
                     position: fixed;
                     margin-left: 1rem;
                     bottom: 3rem;
                 }
+
 
             </style>
 
