@@ -75,6 +75,10 @@
             .auto-style1 {
                 text-align: center;
             }
+            
+            #services {
+                margin-bottom: 7rem;
+            }
 
         </style>
 
