@@ -108,6 +108,7 @@
 
             #services {
                 width: 100% !important;
+                margin-bottom: 4rem;
             }
 
             #slider {
