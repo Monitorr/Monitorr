@@ -20,13 +20,13 @@
 
 - LIVE! (w/ option to pause live updating)
 - Self-hosted
-- Monitor any app on any domain (Curl as primary check, fsockopen as fallback) (UPDATED)
+- Monitor any app on any domain (Curl as primary check, fsockopen as fallback)
 - Responsive mobile display (NEW)
 - Integrated settings page w/ authentication (NEW)
 - Host system resources display (CPU, MEM, HD, PING, Uptime)
 - Server DTG data
 - Update Monitorr via web UI / branch switching w/ update notification
-- Minimal UI for iFrame displays (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/04-Integration:--Organizr))
+- Minimal UI for iFrame displays (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/05-Integration:--Organizr))
 - User customizable system threshold colors
 
 **Features in development:**
