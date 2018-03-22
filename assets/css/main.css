@@ -1238,12 +1238,13 @@
     #title_input {
         position: relative;
         margin-bottom: 2rem;
-        width: 16rem;
     }
     
     #enabled_option {
+        position: relative;
         margin-top: -6.5rem;
         margin-left: 16.5rem;
+        z-index: 1000;
     }
     
     #checkurl {
