@@ -232,8 +232,10 @@
         background-color: red;
         text-align: center;
         color: white;
+        text-shadow: 1px 1px black;
         margin-top: -.8rem;
         z-index: 1000;
+        cursor: default;
     }
     
     #header {
