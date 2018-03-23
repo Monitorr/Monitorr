@@ -217,21 +217,17 @@
         </script>
 
             <!-- Append alert if service is down: -->
-
-        <?php 
-
-            foreach (glob("assets/logs/*.json") as $filename) {   
+        <div id="summary">
+            <?php 
+                foreach (glob("assets/logs/*.json") as $filename) {
                 } 
 
-            if(is_file($filename)){
-
-                echo '<div id="summary">';
+                if(is_file($filename)){
                     $filename2 = file_get_contents ($filename);
                     echo ucfirst($filename2);
-                echo '</div>';
-            }
-        ?>
-
+                }
+            ?>
+        </div>
 
         <div id="headermin">
 
