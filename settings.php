@@ -233,20 +233,17 @@
 
     <div id ="settingscolumn" class="settingscolumn">
 
-        <?php 
-
-            foreach (glob("assets/logs/*.json") as $filename) {  
-                   // echo $filename."<br />";  
+        <div id="summary">
+            <?php 
+                foreach (glob("assets/logs/*.json") as $filename) {
                 } 
 
-            if(is_file($filename)){
-
-                echo '<div id="summary">';
+                if(is_file($filename)){
                     $filename2 = file_get_contents ($filename);
                     echo ucfirst($filename2);
-                echo '</div>';
-            }
-        ?>
+                }
+            ?>
+        </div>
 
         <div id="left" class="Column">
             <div id="clock">
