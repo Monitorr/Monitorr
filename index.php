@@ -28,12 +28,13 @@
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
 
-
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
+
+        <script src="assets/js/jquery.min.js"></script>
        
         <style>
 
@@ -105,7 +106,6 @@
                 include_once ('assets/config/monitorr-data.php');
 
                 $title = $jsonusers['sitetitle'];
-
             }
 
          ?> 
@@ -118,8 +118,6 @@
             ?>
             | Monitorr
         </title>
-
-        <script src="assets/js/jquery.min.js"></script>
 
         <script src="assets/js/pace.js" async></script>
 
@@ -212,19 +210,18 @@
         </script>
 
              <!-- Append alert if service is down: -->
-        <?php 
-
-            foreach (glob("assets/logs/*.json") as $filename) {   
+        <div id="summary">
+            <?php 
+                foreach (glob("assets/logs/*.json") as $filename) {   
                 } 
 
-            if(is_file($filename)){
+                if(is_file($filename)){
 
-                echo '<div id="summary">';
                     $filename2 = file_get_contents ($filename);
                     echo ucfirst($filename2);
-                echo '</div>';
-            }
-        ?>
+                }
+            ?>
+        </div>
 
         <div id="header">
             
