@@ -35,7 +35,8 @@ $(document).ready(function(){
 						   		   $('#version_check').html("");
 							       // successful update
 									$('#version_check').html('<strong> <font color="yellow"> Update Successful! <br> Reloading Monitorr in 10 seconds... </font> <strong>');
-									setTimeout(location.reload.bind(location), 13000);
+									//setTimeout(location.reload.bind(location), 13000);
+									setTimeout(function () { window.top.location = "../../settings.php" }, 13000);
 							   }else{
 								   // error during update/unzip   
 									$('#version_check').html('<strong> <font color="red"> An error occured while extracting the files. </font> </strong>');
@@ -53,7 +54,7 @@ $(document).ready(function(){
 				    // user has the latest version already installed
 					$('#version_check').html("");
 					$('#version_check').html('<strong> <font color="yellow">  You have the latest version </font></strong>');
-				   	// setTimeout(location.reload.bind(location), 5000);   
+				   		//setTimeout(function () { window.top.location = "../../settings.php" }, 5000);
 			   }
 		   },
 		   error: function() {
