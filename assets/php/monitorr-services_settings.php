@@ -727,8 +727,8 @@ class OneFileLoginApplication
                                          "allowOptionalEmpty": false,
                                         "data": {},
                                          "autocomplete": false,
-                                         "disallowEmptySpaces": false,
-                                         "disallowOnlyEmptySpaces": false,
+                                         "disallowEmptySpaces": true,
+                                         "disallowOnlyEmptySpaces": true,
                                          "fields": {},
                                          "renderButtons": true,
                                          "attributes": {}
