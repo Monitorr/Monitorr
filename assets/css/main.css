@@ -1248,7 +1248,65 @@
         margin-left: 16.5rem;
         z-index: 1000;
     }
-    
+
+
+    /* Service Image Modal */
+
+    .modal {
+        display: none;
+        position: fixed;
+        width: 20rem;
+        width: fit-content;
+        height: 14rem;
+        height: fit-content;
+        margin: 0 auto;
+        margin-top: 15%;
+        padding: 1rem;
+        padding-bottom: .5rem;
+        color: black;
+        text-align: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.750);
+        border: 1px solid #888;
+        z-index: 2000;
+    }
+
+    /* Modal Content/Box */
+
+    .modal-content {
+        background-color: transparent;
+        padding: 2rem;
+        padding-top: .5rem;
+        padding-bottom: 0;
+        align-items: center;
+    }
+
+    .modaltext {
+        color: #aaa;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        cursor: default;
+    }
+
+    /* Modal Close Button */
+
+    .close {
+        color: rgb(255, 80, 80);
+        float: left;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: red;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 900;
+    }
+
+
     #checkurl {
         float: right;
         margin-top: -10rem;
