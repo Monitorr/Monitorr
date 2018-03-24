@@ -401,7 +401,6 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/handlebars.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
-        
 
             <style>
 
@@ -457,7 +456,8 @@ class OneFileLoginApplication
                 }
 
                 img {
-                    height: 7rem !important;
+                    width: 7rem !important;
+                    color: white;
                 }
 
                 .form-control {
@@ -475,25 +475,22 @@ class OneFileLoginApplication
                     bottom: 3rem;
                 }
 
-
             </style>
 
             <?php $datafile = '../config/datadir.json'; ?>
             <?php include_once ('../config/monitorr-data.php')?>
 
-
-            <title>
-                <?php
-                    $title = $jsonusers['sitetitle'];
-                    echo $title . PHP_EOL;
-                ?>
+        <title>
+            <?php
+                $title = $jsonusers['sitetitle'];
+                echo $title . PHP_EOL;
+            ?>
             | Service Config
         </title>
 
-
     </head>
 
-<body>
+    <body>
 
         <script>
             document.body.className += ' fade-out';
@@ -502,324 +499,355 @@ class OneFileLoginApplication
             });
         </script>
 
-
         <div id="centertext">
             <div class="navbar-brand">
                 Services Configuration
             </div>
         </div>
 
- <p id="response"></p>
+        <p id="response"></p>
 
- <!-- <div id="myform"></div> -->
- 
+        <div id="serviceform">
 
-    <div id="serviceform">
+            <div id="servicesettings"></div>
 
-        <div id="servicesettings"></div>
-
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    var CustomConnector = Alpaca.Connector.extend({
-                        buildAjaxConfig: function(uri, isJson) {
-                            var ajaxConfig = this.base(uri, isJson);
-                            ajaxConfig.headers = {
-                                "ssoheader": "abcde12345"
-                            };
-                            return ajaxConfig;
-                        }
-                    });
-                    Alpaca.registerConnectorClass("custom", CustomConnector);
-                    $("#servicesettings").alpaca({
-                        "connector": "custom",
-                        "dataSource": "./post_receiver-services_load.php",
-                        "schemaSource": "../config/services-schema.json?a=1",
-                        "view": {
-                            "fields": {
-                                "//checkurl": {
-                                    "templates": {
-                                        "control": "../css/./templates-checkurl-control.html"
-                                    }
-                                },
-                                "//linkurl": {
-                                    "templates": {
-                                        "control": "../css/./templates-linkurl-control.html"
-                                    }
-                                },
-                                "//serviceTitle": {
-                                    "templates": {
-                                        "control": "../css/./templates-services_title.html"
-                                    },
-                                    "bindings": {
-                                        "serviceTitle": "#title_input"
-                                    }
-                                },
-                                "//enabled": {
-                                    "templates": {
-                                        "control": "../css/./templates-services_enabled.html"
-                                    },
-                                    "bindings": {
-                                        "enabled": "#enabled_option"
-                                    }
-                                }
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        var CustomConnector = Alpaca.Connector.extend({
+                            buildAjaxConfig: function(uri, isJson) {
+                                var ajaxConfig = this.base(uri, isJson);
+                                ajaxConfig.headers = {
+                                    "ssoheader": "abcde12345"
+                                };
+                                return ajaxConfig;
                             }
-                            // "parent": "bootstrap-edit-horizontal",
-                            // "layout": {
-                            //    "template": './two-column-layout-template-services.html',
-                            //     "bindings": {
-                            //         "serviceTitle": "#leftservice",
-                            //         "image": "#leftservice",
-                            //         "checkurl": "#rightservice",
-                            //         "linkurl": "#rightservice",
-                            //         "type": "#rightservice"
-                            //     }
-                            // }
-                        },
-                        "options": {
-                            "toolbarSticky": true,
-                            "collapsible": true,
-                            "actionbar": {
-                                "showLabels": true,
-                                "actions": [{
-                                    "label": "Add Service",
-                                    "action": "add"
-                                }, {
-                                    "label": "Remove Service",
-                                    "action": "remove"
-                                }, {
-                                    "label": "Move UP",
-                                    "action": "up",
-                                    "enabled": true
-                                }, {
-                                    "label": "Move Down",
-                                    "action": "down",
-                                    "enabled": true
-                                }, {
-                                    "label": "Clear",
-                                    "action": "clear",
-                                    "iconClass": "fa fa-cancel",
-                                    "click": function(key, action, itemIndex) {
-                                        var item = this.children[itemIndex];
-                                        item.setValue("");
-                                    }
-                                }
-                                ]
-                            },
-                           "items": {
+                        });
+                        Alpaca.registerConnectorClass("custom", CustomConnector);
+                        $("#servicesettings").alpaca({
+                            "connector": "custom",
+                            "dataSource": "./post_receiver-services_load.php",
+                            "schemaSource": "../config/services-schema.json?a=1",
+                            "view": {
                                 "fields": {
-                                    "serviceTitle": {
-                                        "type": "text",
-                                        "validate": true,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "Service Title:",
-                                        //"helpers": ["Name of Service"],
-                                        //"helper": "Name of Service",
-                                         "hideInitValidationError": false,
-                                         "focus": false,
-                                         "optionLabels": [],
-                                         "name": "serviceTitle",
-                                         "size": 20,
-                                         "placeholder": "Service Name",
-                                         "typeahead": {},
-                                         "allowOptionalEmpty": false,
-                                         "data": {},
-                                         "autocomplete": false,
-                                         "disallowEmptySpaces": false,
-                                         "disallowOnlyEmptySpaces": false,
-                                         "fields": {},
-                                         "renderButtons": true,
-                                         "attributes": {}
-                                    },
-                                    "enabled": {
-                                        "type": "select",
-                                        "validate": false, // ** CHANGE ME ** change to TRUE to allow for user config propegation//
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "Enabled:",
-                                        "helpers": ["When disabled, service will NOT be checked or displayed in the UI."],
-                                        "helper": "When disabled, service will NOT be checked or displayed in the UI",
-                                        "hideInitValidationError": false,
-                                        "focus": false,
-                                        //"optionLabels": ["True", "False"],
-                                        "name": "enabled",
-                                        "typeahead": {},
-                                        "allowOptionalEmpty": false,
-                                        "data": {},
-                                        "autocomplete": false,
-                                        "disallowEmptySpaces": true,
-                                        "disallowOnlyEmptySpaces": false,
-                                        "removeDefaultNone": true,
-                                        "fields": {},
-                                    },
-                                    "image": {
-                                        "type": "image",
-                                        "validate": true,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "Service Image:",
-                                        //"helpers": ["Icon/image representation of service"],
-                                        "helper": "Icon/image representation of service. <br> Location of image must be present in the /assets/img directory.",
-                                         "hideInitValidationError": false,
-                                         "focus": false,
-                                         "optionLabels": [],
-                                         "size": 20,
-                                         "name": "image",
-                                         "styled": true,
-                                         "placeholder": "../img/monitorr.png",
-                                         "typeahead": {},
-                                         "allowOptionalEmpty": false,
-                                         "data": {},
-                                         "autocomplete": false,
-                                         "disallowEmptySpaces": true,
-                                         "disallowOnlyEmptySpaces": true,
-                                         "fields": {},
-                                         "renderButtons": true,
-                                         "attributes": {}
-                                    },
-                                    "checktype": {
-                                        "type": "select",
-                                        "validate": true,
-                                        "optionLabels": [" Standard", " Ping Only"],
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "Check Type:",
-                                        //"helpers": ["Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port."],
-                                        //"helper": "Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port.",
-                                        "hideInitValidationError": false,
-                                        "focus": false,
-                                        "name": "checktype",
-                                        "placeholder": " Standard",
-                                        "typeahead": {},
-                                        "styled": true,
-                                        "allowOptionalEmpty": false,
-                                        "removeDefaultNone": true,
-                                        "hideNone": true,
-                                        "data": {},
-                                        "autocomplete": false,
-                                        "disallowEmptySpaces": false,
-                                        "disallowOnlyEmptySpaces": false,
-                                        "fields": {},
-                                        "renderButtons": true,
-                                        "attributes": {}
-                                    },
-                                    "checkurl": {
-                                        "type": "url",
-                                        "validate": true,
-                                        "allowIntranet": true,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "Check URL:",
-                                        "size": 30,
-                                        //"helpers": ["URL to check status"],
-                                        "helper": "URL to check service status. (Port is required!)",
-                                         "hideInitValidationError": false,
-                                         "focus": false,
-                                         "optionLabels": [],
-                                         "name": "checkurl",
-                                         "placeholder": "http://localhost:80",
-                                         "typeahead": {},
-                                         "allowOptionalEmpty": false,
-                                        "data": {},
-                                         "autocomplete": false,
-                                         "disallowEmptySpaces": true,
-                                         "disallowOnlyEmptySpaces": true,
-                                         "fields": {},
-                                         "renderButtons": true,
-                                         "attributes": {}
-                                    },
-                                    "linkurl": {
-                                        "dependencies": {
-                                            "type": [" Standard"]
-                                        },
-                                        "type": "url",
-                                        "validate": false,
-                                        "allowIntranet": true,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "Link URL:",
-                                        "size": 30,
-                                        //"helpers": ["URL that will be linked to service"],
-                                        "helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
-                                         "hideInitValidationError": false,
-                                         "focus": false,
-                                         "optionLabels": [],
-                                         "name": "linkurl",
-                                         "placeholder": "http://localhost:80",
-                                         "typeahead": {},
-                                         "allowOptionalEmpty": false,
-                                        "data": {},
-                                         "autocomplete": false,
-                                         "disallowEmptySpaces": false,
-                                         "disallowOnlyEmptySpaces": false,
-                                         "fields": {},
-                                         "renderButtons": true,
-                                         "attributes": {}
-                                    }
-                                },
-                           },
-                           "form": {
-                                "attributes": {
-                                    "action": "post_receiver-services.php",
-                                    "method": "post",
-                                    "contentType": "application/json"
-                                    //"enctype": "json"
-                                },
-                                "buttons": {
-                                    "submit": {
-                                       // "type": 'button',
-                                       // "label": "submit",
-                                        "click": function formsubmit() {
-                                            var data = $('#servicesettings').alpaca().getValue();
-                                            $.post('post_receiver-services.php', {
-                                                    data
-                                                },
-                                                alert("settings saved"),
-                                            )
+                                    "//checkurl": {
+                                        "templates": {
+                                            "control": "../css/./templates-checkurl-control.html"
                                         }
                                     },
-                                    "reset":{
-                                        "label": "Clear Values"
+                                    "//linkurl": {
+                                        "templates": {
+                                            "control": "../css/./templates-linkurl-control.html"
+                                        }
+                                    },
+                                    "//serviceTitle": {
+                                        "templates": {
+                                            "control": "../css/./templates-services_title.html"
+                                        },
+                                        "bindings": {
+                                            "serviceTitle": "#title_input"
+                                        }
+                                    },
+                                    "//enabled": {
+                                        "templates": {
+                                            "control": "../css/./templates-services_enabled.html"
+                                        },
+                                        "bindings": {
+                                            "enabled": "#enabled_option"
+                                        }
+                                    }
+                                }
+                                // "parent": "bootstrap-edit-horizontal",
+                                // "layout": {
+                                //    "template": './two-column-layout-template-services.html',
+                                //     "bindings": {
+                                //         "serviceTitle": "#leftservice",
+                                //         "image": "#leftservice",
+                                //         "checkurl": "#rightservice",
+                                //         "linkurl": "#rightservice",
+                                //         "type": "#rightservice"
+                                //     }
+                                // }
+                            },
+                            "options": {
+                                "toolbarSticky": true,
+                                "collapsible": true,
+                                "actionbar": {
+                                    "showLabels": true,
+                                    "actions": [{
+                                        "label": "Add Service",
+                                        "action": "add"
+                                    }, {
+                                        "label": "Remove Service",
+                                        "action": "remove"
+                                    }, {
+                                        "label": "Move UP",
+                                        "action": "up",
+                                        "enabled": true
+                                    }, {
+                                        "label": "Move Down",
+                                        "action": "down",
+                                        "enabled": true
+                                    }, {
+                                        "label": "Clear",
+                                        "action": "clear",
+                                        "iconClass": "fa fa-cancel",
+                                        "click": function(key, action, itemIndex) {
+                                            var item = this.children[itemIndex];
+                                            item.setValue("");
+                                        }
+                                    }
+                                    ]
+                                },
+                            "items": {
+                                    "fields": {
+                                        "serviceTitle": {
+                                            "type": "text",
+                                            "validate": true,
+                                            "showMessages": true,
+                                            "disabled": false,
+                                            "hidden": false,
+                                            "label": "Service Title:",
+                                            //"helpers": ["Name of Service"],
+                                            //"helper": "Name of Service",
+                                            "hideInitValidationError": false,
+                                            "focus": false,
+                                            "optionLabels": [],
+                                            "name": "serviceTitle",
+                                            "size": 20,
+                                            "placeholder": "Service Name",
+                                            "typeahead": {},
+                                            "allowOptionalEmpty": false,
+                                            "data": {},
+                                            "autocomplete": false,
+                                            "disallowEmptySpaces": false,
+                                            "disallowOnlyEmptySpaces": false,
+                                            "fields": {},
+                                            "renderButtons": true,
+                                            "attributes": {},
+                                        },
+                                        "enabled": {
+                                            "type": "select",
+                                            "validate": false, // ** CHANGE ME ** change to TRUE to allow for user config propegation//
+                                            "showMessages": true,
+                                            "disabled": false,
+                                            "hidden": false,
+                                            "label": "Enabled:",
+                                            "helpers": ["When disabled, service will NOT be checked or displayed in the UI."],
+                                            "helper": "When disabled, service will NOT be checked or displayed in the UI",
+                                            "hideInitValidationError": false,
+                                            "focus": false,
+                                            //"optionLabels": ["True", "False"],
+                                            "name": "enabled",
+                                            "typeahead": {},
+                                            "allowOptionalEmpty": false,
+                                            "data": {},
+                                            "autocomplete": false,
+                                            "disallowEmptySpaces": true,
+                                            "disallowOnlyEmptySpaces": false,
+                                            "removeDefaultNone": true,
+                                            "fields": {},
+                                        },
+                                        "image": {
+                                            "type": "image",
+                                            "validate": true,
+                                            "showMessages": true,
+                                            "disabled": false,
+                                            "hidden": false,
+                                            "label": "Service Image:",
+                                            //"helpers": ["Icon/image representation of service"],
+                                            "helper": "Icon/image representation of service. <br> Location of image must be present in the /assets/img directory.",
+                                            "hideInitValidationError": false,
+                                            "focus": false,
+                                            "optionLabels": [],
+                                            "size": 20,
+                                            "name": "image",
+                                            "styled": true,
+                                            "placeholder": "../img/monitorr.png",
+                                            "typeahead": {},
+                                            "allowOptionalEmpty": false,
+                                            "data": {},
+                                            "autocomplete": false,
+                                            "disallowEmptySpaces": true,
+                                            "disallowOnlyEmptySpaces": true,
+                                            "fields": {},
+                                            "renderButtons": true,
+                                            "attributes": {},
+                                            "onFieldChange": function(e) {
+
+                                                // Window/modal will appear with image when user inputs path into "service Image" text field and clicks out of field:"
+                                                var value = this.getValue();
+                                                if (value) {
+                                                    var img = $("<img src='../img/" + value + "' style='width:7rem' alt=' image not found'>");
+                                                    $("#mymodal2").append(img);
+                                                }
+
+                                                var modal = document.getElementById('myModal');
+                                                var span = document.getElementsByClassName("close")[0];
+                                                modal.style.display = "block";
+
+                                                span.onclick = function() {
+                                                    modal.style.display = "none";
+                                                    $('#mymodal2').empty();
+                                                }
+
+                                                window.onclick = function(event) {
+                                                    if (event.target == modal) {
+                                                        modal.style.display = "none";
+                                                        $('#mymodal2').empty();
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "checktype": {
+                                            "type": "select",
+                                            "validate": true,
+                                            "optionLabels": [" Standard", " Ping Only"],
+                                            "showMessages": true,
+                                            "disabled": false,
+                                            "hidden": false,
+                                            "label": "Check Type:",
+                                            //"helpers": ["Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port."],
+                                            //"helper": "Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port.",
+                                            "hideInitValidationError": false,
+                                            "focus": false,
+                                            "name": "checktype",
+                                            "placeholder": " Standard",
+                                            "typeahead": {},
+                                            "styled": true,
+                                            "allowOptionalEmpty": false,
+                                            "removeDefaultNone": true,
+                                            "hideNone": true,
+                                            "data": {},
+                                            "autocomplete": false,
+                                            "disallowEmptySpaces": false,
+                                            "disallowOnlyEmptySpaces": false,
+                                            "fields": {},
+                                            "renderButtons": true,
+                                            "attributes": {}
+                                        },
+                                        "checkurl": {
+                                            "type": "url",
+                                            "validate": true,
+                                            "allowIntranet": true,
+                                            "showMessages": true,
+                                            "disabled": false,
+                                            "hidden": false,
+                                            "label": "Check URL:",
+                                            "size": 30,
+                                            //"helpers": ["URL to check status"],
+                                            "helper": "URL to check service status. (Port is required!)",
+                                            "hideInitValidationError": false,
+                                            "focus": false,
+                                            "optionLabels": [],
+                                            "name": "checkurl",
+                                            "placeholder": "http://localhost:80",
+                                            "typeahead": {},
+                                            "allowOptionalEmpty": false,
+                                            "data": {},
+                                            "autocomplete": false,
+                                            "disallowEmptySpaces": true,
+                                            "disallowOnlyEmptySpaces": true,
+                                            "fields": {},
+                                            "renderButtons": true,
+                                            "attributes": {}
+                                        },
+                                        "linkurl": {
+                                            "dependencies": {
+                                                "type": [" Standard"]
+                                            },
+                                            "type": "url",
+                                            "validate": false,
+                                            "allowIntranet": true,
+                                            "showMessages": true,
+                                            "disabled": false,
+                                            "hidden": false,
+                                            "label": "Link URL:",
+                                            "size": 30,
+                                            //"helpers": ["URL that will be linked to service"],
+                                            "helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
+                                            "hideInitValidationError": false,
+                                            "focus": false,
+                                            "optionLabels": [],
+                                            "name": "linkurl",
+                                            "placeholder": "http://localhost:80",
+                                            "typeahead": {},
+                                            "allowOptionalEmpty": false,
+                                            "data": {},
+                                            "autocomplete": false,
+                                            "disallowEmptySpaces": false,
+                                            "disallowOnlyEmptySpaces": false,
+                                            "fields": {},
+                                            "renderButtons": true,
+                                            "attributes": {}
+                                        }
+                                    },
+                            },
+                            "form": {
+                                    "attributes": {
+                                        "action": "post_receiver-services.php",
+                                        "method": "post",
+                                        "contentType": "application/json"
+                                        //"enctype": "json"
+                                    },
+                                    "buttons": {
+                                        "submit": {
+                                        // "type": 'button',
+                                        // "label": "submit",
+                                            "click": function formsubmit() {
+                                                var data = $('#servicesettings').alpaca().getValue();
+                                                $.post('post_receiver-services.php', {
+                                                        data
+                                                    },
+                                                    alert("settings saved"),
+                                                )
+                                            }
+                                        },
+                                        "reset":{
+                                            "label": "Clear Values"
+                                        }
                                     }
                                 }
                             }
-                        }
+                        });
                     });
-                });
-            </script>
+                </script>
+        </div>
 
-    </div>
+                <!-- Modal pop-up for "service Image" input field: -->
 
-            <!-- scroll to top   -->
+        <div id="myModal" class="modal">
+
+            <p class="modaltext">Service Image Preview:</p>
+                <!-- Modal content -->
+            <div id="mymodal2" class="modal-content"></div>
+            <span class="close"  aria-hidden="true" title="close preview">&times;</span>
+
+        </div>
+
+                <!-- scroll to top   -->
 
         <button onclick="topFunction()" id="myBtn" title="Go to top"></button>
 
-        <script>
+            <script>
 
-            // When the user scrolls down 20px from the top of the document, show the button
-            window.onscroll = function() {scrollFunction()};
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {scrollFunction()};
 
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementById("myBtn").style.display = "block";
-                } else {
-                    document.getElementById("myBtn").style.display = "none";
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        document.getElementById("myBtn").style.display = "block";
+                    } else {
+                        document.getElementById("myBtn").style.display = "none";
+                    }
                 }
-            }
 
-            // When the user clicks on the button, scroll to the top of the document
-            function topFunction() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            }
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
 
-        </script>
+            </script>
 
         <div id="footer">
 
@@ -827,7 +855,7 @@ class OneFileLoginApplication
 
         </div>
 
-</body>
+    </body>
 
 </html>
 
