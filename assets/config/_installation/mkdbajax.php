@@ -9,7 +9,7 @@ $fp = fopen('../datadir.json', 'w');
 fwrite($fp, json_encode($_POST));
 fclose($fp);
 
-$filename = file_get_contents('../datadir.json');
+$filename = file_get_contents('../data/datadir.json');
 
 $datadir = json_decode( $filename, true);
 
@@ -26,13 +26,10 @@ if (file_exists($db_sqlite_path)) { //check if file exists
     rename("users.db", "users.db.old"); //delete file if does exist
 } else {
      $db_type = "sqlite";
-
      $db_sqlite_path = $structure . 'users.db';
-
-        // create new database file / connection (the file will be automatically created the first time a connection is made up)
+// create new database file / connection (the file will be automatically created the first time a connection is made up)
      $db_connection = new PDO($db_type . ':' . $db_sqlite_path);
-
-        // create new empty table inside the database (if table does not already exist)
+// create new empty table inside the database (if table does not already exist)
      $sql = 'CREATE TABLE IF NOT EXISTS `users` (
             `user_id` INTEGER PRIMARY KEY,
             `user_name` varchar(64),
@@ -105,7 +102,7 @@ if (file_exists($db_sqlite_path)) { //check if file exists
             if(is_file($fileold2)){
 
                 rename('../../config.php', '../../config.php.old');
-            } 
+            }
 
      }
 }
