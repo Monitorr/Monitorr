@@ -4,25 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-echo '<div class="reglog">';
-echo '<div id="loginmessage">';
-echo '<br>';
-
-print_r('Form submitted:  create data directory: ');
-var_dump($_POST['datadir']);
-echo "<br>";
-print_r('Server received: create data directory:  ');
-var_dump($_POST['datadir']);
-echo "<br>";
-print_r('Server attempting to create data directory:  ');
-var_dump($_POST['datadir']);
-
-echo '</div>';
-echo '</div>';
-
-
-// $post_data = $_POST['datadir'];
-
+//datadir
 $fp = fopen('../datadir.json', 'w');
 fwrite($fp, json_encode($_POST));
 fclose($fp);
@@ -32,10 +14,9 @@ $filename = file_get_contents('../datadir.json');
 $datadir = json_decode( $filename, true);
 
 // Desired folder structure
-
 $structure = $datadir['datadir'];
 
-// Create users.db:
+// Create users.db: //
 
 // config
 $db_type = "sqlite";
