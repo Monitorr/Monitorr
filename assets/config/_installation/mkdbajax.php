@@ -5,11 +5,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 //datadir
-$fp = fopen('../datadir.json', 'w');
+$fp = fopen('../../data/datadir.json', 'w');
 fwrite($fp, json_encode($_POST));
 fclose($fp);
 
-$filename = file_get_contents('../data/datadir.json');
+$filename = file_get_contents('../../data/datadir.json');
 
 $datadir = json_decode( $filename, true);
 
@@ -80,7 +80,7 @@ if (file_exists($db_sqlite_path)) { //check if file exists
                      echo "<br>";
 
                 echo '<div id="loginmessage">';
-                     echo "Monitorr data directory creation complete. You can now create a user.";
+                     echo "Monitorr data directory creation complete. You can now create a user below.";
                 echo '</div>';
 
             echo '</div>';
