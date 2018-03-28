@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bash
+
+# Clone Monitorr repo
+[[ ! -d /config/www/Monitorr/.git ]] && \
+git clone -b docker --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
+
+# Set permissions
+chown -R abc:abc \
+	/config
