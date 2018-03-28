@@ -7,7 +7,9 @@ RUN \
 	curl \
 	php7-curl \
 	php7-session \
-	php7-zip
+	php7-zip \
+        php7-sqlite \
+        git
 
 # Add local files
 COPY root/ /
@@ -15,3 +17,4 @@ COPY root/ /
 # Port and volumes
 EXPOSE 80
 VOLUME /config
+VOLUME /mount
