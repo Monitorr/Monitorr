@@ -92,10 +92,10 @@
                 // Remove .json file from /assets/logs dir when service comes back online
 
                 $servicefile = ($v2['serviceTitle']).'.offline.json';                    
-                $fileoffline = '../logs/'.$servicefile;
+                $fileoffline = '../data/logs/'.$servicefile;
 
                 if(is_file($fileoffline)){
-                    rename($fileoffline, '../logs/offline.json.old');
+                    rename($fileoffline, '../data/logs/offline.json.old');
                 } 
 
             } 
@@ -132,7 +132,7 @@
                         echo '</div>';
                     
 
-                        $servicefile = '../logs/'.($v2['serviceTitle']).'.offline.json';
+                        $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
                         $today = date("H:i:s");
 
                         if(!is_file($servicefile)){
@@ -163,10 +163,10 @@
                         echo '</div>'; 
 
                             $servicefile = ($v2['serviceTitle']).'.offline.json';                    
-                            $fileoffline = '../logs/'.$servicefile;
+                            $fileoffline = '../data/logs/'.$servicefile;
 
                             if(is_file($fileoffline)){
-                                rename($fileoffline, '../logs/offline.json.old');
+                                rename($fileoffline, '../data/logs/offline.json.old');
                             } 
 
                         fclose($fp);
@@ -200,7 +200,6 @@
                         echo '</div>';
                         
                         echo '<div id="servicetitleoffline" style="cursor: default">';
-                        // echo '<a id="servicetitleoffline" href="'. $v2['checkurl'] .'" target="_blank">';
                             echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                         echo '</div>';
                         
@@ -210,7 +209,7 @@
 
                 echo '</div>';
 
-                    $servicefile = '../logs/'.($v2['serviceTitle']).'.offline.json';
+                    $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
                     $today = date("H:i:s");
 
                     if(!is_file($servicefile)){
@@ -241,10 +240,10 @@
                 echo '</div>';
 
                 $servicefile = ($v2['serviceTitle']).'.offline.json';                    
-                $fileoffline = '../logs/'.$servicefile;
+                $fileoffline = '../data/logs/'.$servicefile;
 
                 if(is_file($fileoffline)){
-                    rename($fileoffline, '../logs/offline.json.old');
+                    rename($fileoffline, '../data/logs/offline.json.old');
                 } 
 
                 fclose($fp);

@@ -8,7 +8,7 @@
       
         $iterator = new RecursiveArrayIterator($myServices);
 
-        $str2 = file_get_contents( "../config/datadir.json" );
+        $str2 = file_get_contents( "../data/datadir.json" );
 
         $json = json_decode( $str2, true);
 

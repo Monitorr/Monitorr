@@ -2,28 +2,54 @@
 
 <link rel="stylesheet" href="assets/css/main.css">
 
+ <!-- // temporary code:  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
 
 <?php 
 
-    $file = '../config/datadir.json';
+    $oldfile = '../config/datadir.json';
+    $newfile = '../data/datadir.json';
 
-        if(!is_file($file)){
+    if(!is_file($newfile)){
 
-            $path = "../";
-
-            include_once ('../config/monitorr-data-default.php');
-                   
-            $jsonservices;
-        } 
+        if (!copy($oldfile, $newfile)) {
+            // echo "failed to copy $oldfile...\n";
+        }
 
         else {
-
-            $datafile = '../config/datadir.json';
-
-            include_once ('../config/monitorr-data.php');
-
-            $jsonservices;
+            rename($oldfile, '../config/datadir.json.old');
         }
+    } 
+
+    else {
+    }
+?>
+
+
+<?php 
+
+    $datafile = '../data/datadir.json';
+    $str = file_get_contents($datafile);
+    $json = json_decode( $str, true);
+    $datadir = $json['datadir'];
+    $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+    if(!is_file($jsonfileuserdata)){
+
+        $path = "../";
+
+        include_once ('../config/monitorr-data-default.php');
+                
+        $jsonservices;
+    } 
+
+    else {
+
+        $datafile = '../data/datadir.json';
+
+        include_once ('../config/monitorr-data.php');
+
+        $jsonservices;
+    }
 
     $myServices = $jsonservices;
 
@@ -53,10 +79,10 @@
                 // Remove offline log file if disabled://
 
             $servicefile = ($v2['serviceTitle']).'.offline.json';                    
-            $fileoffline = '../logs/'.$servicefile;
+            $fileoffline = '../data/logs/'.$servicefile;
 
             if(is_file($fileoffline)){
-                rename($fileoffline, '../logs/offline.json.old');
+                rename($fileoffline, '../data/logs/offline.json.old');
             } 
         }
 

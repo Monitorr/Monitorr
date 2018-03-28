@@ -99,11 +99,39 @@
 
         </style>
 
-         <?php 
-         
-            $file = 'assets/config/datadir.json';
 
-            if(!is_file($file)){
+                <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
+            
+            <?php 
+
+                $oldfile = 'assets/config/datadir.json';
+                $newfile = 'assets/data/datadir.json';
+
+                if(!is_file($newfile)){
+
+                    if (!copy($oldfile, $newfile)) {
+                        // echo "failed to copy $oldfile...\n";
+                    }
+
+                    else {
+                        rename($oldfile, 'assets/config/datadir.json.old');
+                    }
+                } 
+
+                else {
+
+                }
+            ?>
+
+         <?php 
+
+            $datafile = 'assets/data/datadir.json';
+            $str = file_get_contents($datafile);
+            $json = json_decode( $str, true);
+            $datadir = $json['datadir'];
+            $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+            
+            if(!is_file($jsonfileuserdata)){
 
                 $path = "assets/";
 
@@ -112,18 +140,18 @@
                 $title = $jsonusers['sitetitle'];
 
                 $rftime = $jsonsite['rftime'];
-               
+
+                $timezone = $jsonusers['timezone'];
+
             } 
 
             else {
 
-                $datafile = 'assets/config/datadir.json';
+                $datafile = 'assets/data/datadir.json';
 
                 include_once ('assets/config/monitorr-data.php');
 
                 $title = $jsonusers['sitetitle'];
-
-                $rftime = $jsonsite['rftime'];
 
                 $rftime = $jsonsite['rftime'];
 
@@ -235,7 +263,7 @@
 
         <div id="summary">
             <?php 
-                foreach (glob("assets/logs/*.json") as $filename) {
+                foreach (glob("assets/data/logs/*.json") as $filename) {
                 } 
 
                 if(is_file($filename)){

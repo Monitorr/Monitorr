@@ -940,6 +940,10 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
+
+    #regmulti {
+        width: 90%;
+    }
     
     #dbwrapper {
         width: 75%;
@@ -947,16 +951,97 @@
         margin-right: auto;
         padding-left: 1rem;
         padding-right: 1rem;
+        background-color: #1F1F1F;
     }
-    
-    #userwrapper {
+
+    #datadirmulti {
+        /* width: 75%; */
+        margin-left: 2rem;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    .multiheading {
+        color: yellow;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-align: center;
+        cursor: default;
+    }
+
+
+    #dbcreatewrapper {
         width: 75%;
         margin-left: auto;
         margin-right: auto;
         padding-left: 1rem;
         padding-right: 1rem;
+        background-color: #1F1F1F;
     }
-    
+
+    #dbcreatewrappermulti {
+        /* width: 75%; */
+        margin-left: auto;
+        margin-right: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+
+    #datadirform {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    #dbform {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    input[name="dbfile"] {
+        background-color: rgb(200, 200, 200);
+        border: none;
+        cursor: not-allowed;
+    }
+
+    input[name="dbfilemulti"] {
+        /* background-color: rgb(200, 200, 200); */
+    }
+
+
+    #userwrapper {
+        width: 82%;
+        margin-top: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    #userform {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
     #registrationform {
         font-size: 1rem;
     }
@@ -965,12 +1050,23 @@
         font-size: .90rem;
         cursor: default;
     }
+
+    #multiwarning {
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-top: 1rem;
+        font-size: .90rem;
+        color: red;
+        cursor: default;
+    }
     
     #reginfo {
         width: 75%;
         color: #555555;
+        background-color: #1F1F1F;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 5rem;
         padding-top: 1rem;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -1024,6 +1120,7 @@
         background-color: black;
         color: yellow;
         font-size: 1rem;
+        padding-left: 1rem;
         font-weight: 600;
         cursor: default;
     }
@@ -1067,6 +1164,7 @@
     
     #usernotes {
         font-size: .75rem;
+        background-color: #1F1F1F;
         cursor: default;
     }
     /********************* SETTINGS  *****************/

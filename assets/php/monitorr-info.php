@@ -46,7 +46,7 @@ class OneFileLoginApplication
     public function __construct()
     {
 
-            $str = file_get_contents( "../config/datadir.json" );
+            $str = file_get_contents( "../data/datadir.json" );
 
             $json = json_decode( $str, true);
 
@@ -469,7 +469,7 @@ class OneFileLoginApplication
 
             <?php
 
-                $file = '../config/datadir.json';
+                $file = '../data/datadir.json';
 
                 if(!is_file($file)){
 
@@ -481,7 +481,7 @@ class OneFileLoginApplication
 
                 else {
                     
-                    $datafile = '../config/datadir.json';
+                    $datafile = '../data/datadir.json';
 
                     include_once ('../config/monitorr-data.php');
 
@@ -645,13 +645,13 @@ class OneFileLoginApplication
 
                 echo "<div id='loginerror'>";
                         echo "<br>";
-                    echo "<i class='fa fa-fw fa-exclamation-triangle'> </i> Data directory & user database NOT detected.";
+                    echo "<i class='fa fa-fw fa-exclamation-triangle'> </i> Data directory or user database NOT detected.";
                         echo "<br><br>";
                 echo "<div>";
 
                 echo "<div id='loginmessage'>";
 
-                    echo 'Browse to <a href="../config/_installation/_register.php"> Monitorr Registration </a> to create a user database and establish user credentials. ';
+                    echo 'Browse to <a href="../config/_installation/_register.php"> Monitorr Registration </a> to create a data directory and/or user database. ';
 
                 echo "</div>";
                 
