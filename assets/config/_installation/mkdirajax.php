@@ -22,12 +22,12 @@
 
    // $post_data = $_POST['datadir'];
 
-    $fp = fopen('../datadir.json', 'w');
+    $fp = fopen('../../data/datadir.json', 'w');
         fwrite($fp, json_encode($_POST));
     fclose($fp);
 
 
-    $filename = file_get_contents('../datadir.json');
+    $filename = file_get_contents('../../data/datadir.json');
 
     $datadir = json_decode( $filename, true);
 
@@ -50,11 +50,12 @@
             echo '</div>';
         echo '</div>';
 
-        rename("../datadir.json", "../datadir.fail.txt");
+        rename("../../data/datadir.json", "../../data/datadir.fail.txt");
 
-        $fp2 = fopen('../datadir.fail.txt', 'w');
+        $fp2 = fopen('../../data/datadir.fail.txt', 'w');
             fwrite( $fp2, "Failed to create directory: " . json_encode($_POST));
             var_dump( $fp2);
+            echo "<br><br>";
         fclose($fp2);
 
         die;
@@ -93,11 +94,11 @@
                     echo '</div">';
                 echo '</div">';
 
-                $fp = fopen('../datadir.json', 'w');
+                $fp = fopen('../../data/datadir.json', 'w');
                     fwrite( $fp, "Failed to copy default json files to: $structure");
                 fclose($fp);
 
-                rename("../datadir.json", "../datadir.fail.txt");
+                rename("../../data/datadir.json", "../../data/datadir.fail.txt");
 
                  die;
             }
@@ -125,11 +126,11 @@
                         echo '</div">';
                     echo '</div">';
 
-                    $fp = fopen('../datadir.json', 'w');
+                    $fp = fopen('../../data/datadir.json', 'w');
                         fwrite( $fp, "Failed to copy default json files to: $structure");
                     fclose($fp);
 
-                    rename("../datadir.json", "../datadir.fail.txt");
+                    rename("../../data/datadir.json", "../../data/datadir.fail.txt");
 
                     die;
                 }
@@ -157,14 +158,13 @@
                     echo '</div">';
                 echo '</div">';
 
-                $fp = fopen('../datadir.json', 'w');
+                $fp = fopen('../../data/datadir.json', 'w');
                     fwrite( $fp, "Failed to copy default json files to: $structure");
                 fclose($fp);
 
-                rename("../datadir.json", "../datadir.fail.txt");
+                rename("../../data/datadir.json", "../../data/datadir.fail.txt");
 
                 die;
-
             }
 
             else {
@@ -190,11 +190,11 @@
                     echo '</div">';
                  echo '</div>';
 
-                $fp = fopen('../datadir.json', 'w');
+                $fp = fopen('../../data/datadir.json', 'w');
                     fwrite( $fp, "Failed to copy default json files to: $structure");
                 fclose($fp);
 
-                rename("../datadir.json", "../datadir.fail.txt");
+                rename("../../data/datadir.json", "../../data/datadir.fail.txt");
 
                 die;
 
@@ -259,15 +259,19 @@
                             echo '</div">';
                         echo '</div>';
 
-                        $fp = fopen('../datadir.json', 'w');
+                        $fp = fopen('../../data/datadir.json', 'w');
                             fwrite( $fp, "Failed to create sqlite database in: $structure");
                         fclose($fp);
 
-                        rename("../datadir.json", "../datadir.fail.txt");
-
+                        rename("../../data/datadir.json", "../../data/datadir.fail.txt");
                     }
 
                     else {
+
+                        $monitorrcwd = $structure . 'monitorr_install_path.txt';
+                        $fp = fopen($monitorrcwd, 'w');
+                            fwrite ( $fp, "Monitorr application install path: " . realpath('../../../'));
+                        fclose($fp);
 
                         echo '<div class="reglog">';
 
@@ -285,12 +289,12 @@
                                 echo "<br>";
                                 
                             echo '<div id="loginmessage">';
-                                echo "Monitorr data directory creation complete. You can now create a user.";
+                                echo "Monitorr data directory creation complete. You can now create a user below.";
                             echo '</div>';
                             
                         echo '</div>'; 
 
-                        unlink('../datadir.fail.txt');
+                        unlink('../../data/datadir.fail.txt');
 
 
                             // Temporary OLD config file removal // CHANGE ME //

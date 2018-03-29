@@ -99,11 +99,39 @@
 
         </style>
 
-         <?php 
-         
-            $file = 'assets/config/datadir.json';
 
-            if(!is_file($file)){
+                <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
+            
+            <?php 
+
+                $oldfile = 'assets/config/datadir.json';
+                $newfile = 'assets/data/datadir.json';
+
+                if(!is_file($newfile)){
+
+                    if (!copy($oldfile, $newfile)) {
+                        // echo "failed to copy $oldfile...\n";
+                    }
+
+                    else {
+                        rename($oldfile, 'assets/config/datadir.json.old');
+                    }
+                } 
+
+                else {
+
+                }
+            ?>
+
+         <?php 
+
+            $datafile = 'assets/data/datadir.json';
+            $str = file_get_contents($datafile);
+            $json = json_decode( $str, true);
+            $datadir = $json['datadir'];
+            $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+            
+            if(!is_file($jsonfileuserdata)){
 
                 $path = "assets/";
 
@@ -112,21 +140,19 @@
                 $title = $jsonusers['sitetitle'];
 
                 $rftime = $jsonsite['rftime'];
-               
+
+                $timezone = $jsonusers['timezone'];
             } 
 
             else {
 
-                $datafile = 'assets/config/datadir.json';
+                $datafile = 'assets/data/datadir.json';
 
                 include_once ('assets/config/monitorr-data.php');
 
                 $title = $jsonusers['sitetitle'];
 
                 $rftime = $jsonsite['rftime'];
-
-                $rftime = $jsonsite['rftime'];
-
             }
 
          ?> 
@@ -222,149 +248,149 @@
 
     </head>
 
-<body  onload="statusCheck()">
+    <body  onload="statusCheck()">
 
-    <script>
-        document.body.className += ' fade-out';
-        $(function() { 
-            $('body').removeClass('fade-out'); 
-        });
-    </script>
+        <script>
+            document.body.className += ' fade-out';
+            $(function() { 
+                $('body').removeClass('fade-out'); 
+            });
+        </script>
 
-    <div id ="settingscolumn" class="settingscolumn">
+        <div id ="settingscolumn" class="settingscolumn">
 
-        <div id="summary">
-            <?php 
-                foreach (glob("assets/logs/*.json") as $filename) {
-                } 
-
-                if(is_file($filename)){
-                    $filename2 = file_get_contents ($filename);
-                    echo ucfirst($filename2);
-                }
-            ?>
-        </div>
-
-        <div id="left" class="Column">
-            <div id="clock">
-                <canvas id="canvas" width="120" height="120"></canvas>
-                <div class="dtg" id="timer"></div>
-            </div>
-        </div>
-
-        <div id="wrapper">
-
-            <!-- Sidebar -->
-            <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-                    
-                <div class="navbar-brand settingstitle">
-                    Settings
-                </div>   
-            
-                <ul class="nav sidebar-nav">
-
-                    <li>
-                        <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-info"></i> Info </a> 
-                    </li>
-                    <li>
-                        <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a> 
-                    </li>
-                    <li>
-                        <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a> 
-                    </li>
-                    <li>
-                        <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
-                    </li>
-
-                    <li>
-                       <a href="assets/php/monitorr-info.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
-                    </li>
-                    <li>
-                        <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
-                    </li>
-
-                </ul>
-            </nav>
-
-        </div>
-
-
-        <div id="version" >
-
-            <script src="assets/js/update_auto.js" async></script>
-        
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
-                        
-            <div id="version_check_auto"></div>
-
-            
-             <div id="reginfo" >
-
+            <div id="summary">
                 <?php 
+                    foreach (glob("assets/data/logs/*.json") as $filename) {
+                    } 
 
-                    if (!is_dir($datadir)) {
-                        echo "Data directory NOT present.";
+                    if(is_file($filename)){
+                        $filename2 = file_get_contents ($filename);
+                        echo ucfirst($filename2);
                     }
-
-                    else {
-                        echo 'Data directory present:';
-                            echo "<br>";
-                        echo $datadir;
-                    }
-
-                        echo "<br>";
-
-                    if (!is_file($datafile)) {
-                        echo "Database file NOT present.";
-                        echo "<br><br>";
-                    }
-
-                    else {
-                        echo 'Database file present:';
-                            echo "<br>";
-                        echo $datafile;
-                            echo "<br><br>";
-                    }
-
                 ?>
+            </div>
+
+            <div id="left" class="Column">
+                <div id="clock">
+                    <canvas id="canvas" width="120" height="120"></canvas>
+                    <div class="dtg" id="timer"></div>
+                </div>
+            </div>
+
+            <div id="wrapper">
+
+                <!-- Sidebar -->
+                <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+                        
+                    <div class="navbar-brand settingstitle">
+                        Settings
+                    </div>   
+                
+                    <ul class="nav sidebar-nav">
+
+                        <li>
+                            <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-info"></i> Info </a> 
+                        </li>
+                        <li>
+                            <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a> 
+                        </li>
+                        <li>
+                            <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a> 
+                        </li>
+                        <li>
+                            <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
+                        </li>
+
+                        <li>
+                        <a href="assets/php/monitorr-info.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
+                        </li>
+                        <li>
+                            <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
+                        </li>
+
+                    </ul>
+                </nav>
 
             </div>
+
+
+            <div id="version" >
+
+                <script src="assets/js/update_auto.js" async></script>
             
+                <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+                            
+                <div id="version_check_auto"></div>
+
+                
+                <div id="reginfo" >
+
+                    <?php 
+
+                        if (!is_dir($datadir)) {
+                            echo "Data directory NOT present.";
+                        }
+
+                        else {
+                            echo 'Data directory present:';
+                                echo "<br>";
+                            echo $datadir;
+                        }
+
+                            echo "<br>";
+
+                        if (!is_file($datafile)) {
+                            echo "Database file NOT present.";
+                            echo "<br><br>";
+                        }
+
+                        else {
+                            echo 'Database file present:';
+                                echo "<br>";
+                            echo $datafile;
+                                echo "<br><br>";
+                        }
+
+                    ?>
+
+                </div>
+                
+            </div>
+
         </div>
 
-    </div>
+        <div id ="includedContent">
 
-    <div id ="includedContent">
-
-        <script>
-            function load_info() {
-                document.getElementById("includedContent").innerHTML='<object  type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
-            }
-        </script>
+            <script>
+                function load_info() {
+                    document.getElementById("includedContent").innerHTML='<object  type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
+                }
+            </script>
 
 
-        <script>
-            function load_preferences() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
-            }
-        </script>
+            <script>
+                function load_preferences() {
+                    document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
+                }
+            </script>
 
 
-        <script>
-            function load_settings() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings.php" ></object>';
-            }
-        </script>
+            <script>
+                function load_settings() {
+                    document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings.php" ></object>';
+                }
+            </script>
 
-        <script>
-            function load_services() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
-            }
-        </script>
+            <script>
+                function load_services() {
+                    document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
+                }
+            </script>
 
-    </div>
+        </div>
 
 
-</body>
+    </body>
 
 </html>

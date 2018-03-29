@@ -922,6 +922,7 @@
         padding-bottom: 1em;
         color: #8E8B8B;
     }
+    
     /*     login       */
     
     .wrapper {
@@ -940,6 +941,20 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
+
+    #multiform {
+        width: 90%;
+        margin-top: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #regmulti {
+        margin-bottom: 1rem !important;
+        cursor: default;
+    }
     
     #dbwrapper {
         width: 75%;
@@ -947,30 +962,115 @@
         margin-right: auto;
         padding-left: 1rem;
         padding-right: 1rem;
+        background-color: #1F1F1F;
     }
-    
-    #userwrapper {
+
+    #datadirmulti {
+        margin-left: 2rem;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    .multiheading {
+        color: yellow;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-align: center;
+        cursor: default;
+    }
+
+
+    #dbcreatewrapper {
         width: 75%;
         margin-left: auto;
         margin-right: auto;
         padding-left: 1rem;
         padding-right: 1rem;
+        background-color: #1F1F1F;
     }
-    
+
+    #dbcreatewrappermulti {
+        margin-left: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    #datadirform {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    #dbform {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    input[name="dbfile"] {
+        background-color: rgb(200, 200, 200);
+        border: none;
+        padding-left: .2rem;
+        cursor: not-allowed;
+    }
+
+    #userwrapper {
+        width: 82%;
+        margin-top: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
+    #userform {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #1F1F1F;
+    }
+
     #registrationform {
         font-size: 1rem;
+        cursor: default;
     }
     
     #reginstructions {
         font-size: .90rem;
         cursor: default;
     }
+
+    #multiwarning {
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-top: 1rem;
+        font-size: .90rem;
+        color: red;
+        cursor: default;
+    }
     
     #reginfo {
-        width: 75%;
+        width: 85%;
         color: #555555;
+        background-color: #1F1F1F;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 5rem;
         padding-top: 1rem;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -1024,6 +1124,7 @@
         background-color: black;
         color: yellow;
         font-size: 1rem;
+        padding-left: 1rem;
         font-weight: 600;
         cursor: default;
     }
@@ -1067,6 +1168,7 @@
     
     #usernotes {
         font-size: .75rem;
+        background-color: #1F1F1F;
         cursor: default;
     }
     /********************* SETTINGS  *****************/
@@ -1271,6 +1373,25 @@
         z-index: 2000;
     }
 
+    #myModal3 {
+        display: none;
+        position: fixed;
+        top: 0;
+        overflow-y: auto;
+        height: 75%;
+        margin-top: 10%;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 1rem;
+        padding-bottom: .5rem;
+        color: black;
+        text-align: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.900);
+        border: 1px solid #888;
+        z-index: 2000;
+    }
+
     /* Modal Content/Box */
 
     .modal-content {
@@ -1279,6 +1400,27 @@
         padding-top: .5rem;
         padding-bottom: 0;
         align-items: center;
+    }
+
+    #mymodal4 {
+        background-color: transparent;
+        padding: 2rem;
+        padding-top: .5rem;
+        padding-bottom: 0;
+        align-items: center;
+    }
+
+    #imgthumb {
+        background-color: transparent;
+        display: inline-grid;
+        padding: 1rem;
+    }
+
+    #imgpath {
+        background-color: transparent;
+        display: inline-grid;
+        color: white;
+        text-align: center;
     }
 
     .modaltext {
@@ -1300,6 +1442,23 @@
 
     .close:hover,
     .close:focus {
+        color: red;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 900;
+    }
+
+    .closeimg {
+        position: fixed;
+        color: rgb(255, 80, 80);
+        float: left;
+        margin-left: -36%;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .closeimg:hover,
+    .closeimg:focus {
         color: red;
         text-decoration: none;
         cursor: pointer;

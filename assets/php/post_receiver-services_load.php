@@ -1,7 +1,7 @@
 <?php
 
 
-        $str = file_get_contents( "../config/datadir.json" );
+        $str = file_get_contents( "../data/datadir.json" );
 
         $json = json_decode( $str, true);
 

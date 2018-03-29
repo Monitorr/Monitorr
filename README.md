@@ -36,9 +36,7 @@
 
 ## Screenshots:
 
-![](https://i.imgur.com/h8S1976.png)
-<img src="https://i.imgur.com/SwevXaG.png" width="46%"> <img src="https://i.imgur.com/eCyidGT.png" width="51%">
-<img src="https://i.imgur.com/ejNyp3j.jpg" width="32%">  <img src="https://i.imgur.com/Ql1ujZ5.png" width="32%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="32%"> 
+<img src="https://i.imgur.com/h8S1976.png" width="49%"><img src="https://i.imgur.com/SwevXaG.png" width="49%">  <img src="https://i.imgur.com/ejNyp3j.jpg" width="24%"> <img src="https://i.imgur.com/eCyidGT.png" width="24%"> <img src="https://i.imgur.com/Ql1ujZ5.png" width="24%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="24%"> 
 
 
 ### Mobile:

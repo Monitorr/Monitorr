@@ -47,7 +47,7 @@ class OneFileLoginApplication
     public function __construct()
     {
 
-        $str = file_get_contents( "../config/datadir.json" );
+        $str = file_get_contents( "../data/datadir.json" );
 
             $json = json_decode( $str, true);
 
@@ -452,7 +452,7 @@ class OneFileLoginApplication
 
             </style>
 
-        <?php $datafile = '../config/datadir.json'; ?>
+        <?php $datafile = '../data/datadir.json'; ?>
         <?php include_once ('../config/monitorr-data.php')?>
 
         <title>

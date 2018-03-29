@@ -1,23 +1,25 @@
 <?php
 
 
-    $file = '../config/datadir.json';
+        $datafile = '../data/datadir.json';
+        $str = file_get_contents($datafile);
+        $json = json_decode( $str, true);
+        $datadir = $json['datadir'];
+        $jsonfileuserdata = $datadir . 'user_preferences-data.json';
 
-    if(!is_file($file)){
+        if(!is_file($jsonfileuserdata)){    
 
-        $path = "../";
+            $path = "../";
 
-        include_once ('../config/monitorr-data-default.php');
+            include_once ('../config/monitorr-data-default.php');
 
         } 
 
         else {
 
-                
-            $datafile = '../config/datadir.json';
+            $datafile = '../data/datadir.json';
 
             include_once ('../config/monitorr-data.php');
-
         }
 
 

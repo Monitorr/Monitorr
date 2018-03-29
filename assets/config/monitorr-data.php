@@ -6,9 +6,6 @@
     $str = file_get_contents($datafile);
     $json = json_decode( $str, true);
     $datadir = $json['datadir'];
-// Login Database
-    $dbfile = $datadir . 'users.db';
-    $db_sqlite_path = $dbfile;
 // JSON for User Preferences
     $jsonfileuser = $datadir . 'user_preferences-data.json';
     $strusers = file_get_contents($jsonfileuser);
@@ -21,6 +18,10 @@
     $jsonfileservices = $datadir . 'services_settings-data.json';
     $strservices = file_get_contents($jsonfileservices);
     $jsonservices = json_decode( $strservices, true);
+// Login Database
+    $dbfile = $datadir . 'users.db';
+    $db_sqlite_path = $dbfile;
+
 // Monitorr version
     // $strversion = file_get_contents ("../js/version/version.txt" );
 
