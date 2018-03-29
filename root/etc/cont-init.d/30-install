@@ -5,19 +5,17 @@
 git clone -b docker-develop --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
 
 # Make Directories
-mkdir /app/data/ # Dir for User Data
-mkdir /config/datadir/ # Dir for datadir.json
+mkdir /app/userdata/ # Dir for User Data
 cp /datadir.json /config/www/monitorr/assets/data/datadir.json # copy data dir
-#cp /config/datadir/datadir.json /config/www/monitorr/assets/data/datadir.json # link datadir to proper Directory
 
 # copy and rename Default Files
-cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/data/monitorr_data_directory.txt
-cp /config/www/monitorr/assets/config/_installation/default/services_settings-data_default.json /app/data/services_settings-data.json
-cp /config/www/monitorr/assets/config/_installation/default/site_settings-data_default.json /app/data/site_settings-data.json
-cp /config/www/monitorr/assets/config/_installation/default/user_preferences-data_default.json /app/data/user_preferences-data.json
+cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
+cp /config/www/monitorr/assets/config/_installation/default/services_settings-data_default.json /app/userdata/services_settings-data.json
+cp /config/www/monitorr/assets/config/_installation/default/site_settings-data_default.json /app/userdata/site_settings-data.json
+cp /config/www/monitorr/assets/config/_installation/default/user_preferences-data_default.json /app/userdata/user_preferences-data.json
 
 # Permissions
 chown -R abc:abc \
-	/config
+	/config \
 	/app
 chmod 666 /config/www/monitorr/assets/data/datadir.json
