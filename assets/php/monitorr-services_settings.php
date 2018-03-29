@@ -595,7 +595,7 @@ class OneFileLoginApplication
                                             item.setValue("");
                                         }
                                     }, {
-                                        "label": "images",
+                                        "label": "Images",
                                         "action": "",
                                         //"iconClass": "fa fa-cancel",
                                         "click": function() {

@@ -922,6 +922,7 @@
         padding-bottom: 1em;
         color: #8E8B8B;
     }
+    
     /*     login       */
     
     .wrapper {
@@ -941,8 +942,16 @@
         padding-right: 1rem;
     }
 
-    #regmulti {
+    #multiform {
         width: 90%;
+        margin-top: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #regmulti {
         margin-bottom: 1rem !important;
         cursor: default;
     }
@@ -957,7 +966,6 @@
     }
 
     #datadirmulti {
-        /* width: 75%; */
         margin-left: 2rem;
         margin-right: auto;
         padding-left: 1rem;
@@ -984,14 +992,11 @@
     }
 
     #dbcreatewrappermulti {
-        /* width: 75%; */
         margin-left: auto;
-        margin-right: 2rem;
         padding-left: 1rem;
         padding-right: 1rem;
         background-color: #1F1F1F;
     }
-
 
     #datadirform {
         margin-left: auto;

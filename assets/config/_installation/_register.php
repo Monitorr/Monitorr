@@ -561,7 +561,7 @@
 
                                     <div id="dbwrapper">
 
-                                        <hr><br>
+                                        <hr>
 
                                         <div id='dbdir' class='loginmessage'>
                                             Create data directory, copy default data json files, and create user database file in defined directory:
@@ -703,162 +703,166 @@
                         ?>
                                     <!--  START multi form -->
 
-                                        <div id="multiwarning">                            
-                                    
-                                            <?php 
-                                                
-                                                $datafile = '../../data/datadir.json';
+                                        <div id="multiform"> 
 
-                                                $file = '../../data/datadir.json';
+                                            <div id="multiwarning">                            
+                                        
+                                                <?php 
+                                                    
+                                                    $datafile = '../../data/datadir.json';
 
-                                                if(is_file($file)){
+                                                    $file = '../../data/datadir.json';
 
-                                                    include_once ('../monitorr-data.php');
+                                                    if(is_file($file)){
 
-                                                    $datadir = $json['datadir'];
+                                                        include_once ('../monitorr-data.php');
 
-                                                    //echo '<div id="loginerror">';
-                                                        echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
-                                                        
-                                                    //echo '</div>';
-                                                } 
+                                                        $datadir = $json['datadir'];
 
-                                                else {
-                                                }
-                                            ?> 
+                                                        //echo '<div id="loginerror">';
+                                                            echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
+                                                            
+                                                        //echo '</div>';
+                                                    } 
 
-                                        </div>
+                                                    else {
+                                                    }
+                                                ?> 
 
-                                        <table id='regmulti'>
+                                            </div>
 
-                                                <hr><br>
+                                             <hr><br>
 
-                                            <tr>
-                                                <th>
-                                                    <div id='datadirheading' class='multiheading'>
-                                                        Create new data directory:
-                                                    </div>
-                                                </th>
+                                            <table id='regmulti'>
 
-                                                <th>
-                                                    <div id='dbheading' class='multiheading'>
-                                                        Create a new user database:
-                                                    </div>
-                                                </th>
-                                            </tr>
+                                                <tr>
+                                                    <th>
+                                                        <div id='datadirheading' class='multiheading'>
+                                                            Create new data directory:
+                                                        </div>
+                                                    </th>
 
-                                            <tr>
-                                                <td>
+                                                    <th>
+                                                        <div id='dbheading' class='multiheading'>
+                                                            Create a new user database:
+                                                        </div>
+                                                    </th>
+                                                </tr>
 
-                                                    <div id="datadirmulti">
+                                                <tr>
+                                                    <td>
 
-                                                        <form id="datadirform">
+                                                        <div id="datadirmulti">
 
-                                                            <div>
-                                                                <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
-                                                                <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
-                                                                    <br>
-                                                                <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
+                                                            <form id="datadirform">
+
+                                                                <div>
+                                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
+                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
+                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
+                                                                        <br>
+                                                                    <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
+                                                                </div>
+                                                                        <br>
+                                                                <div>
+                                                                    <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
+                                                                </div>
+
+                                                            </form>
+
+                                                            <div id="loginerror">
+                                                                    <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
                                                             </div>
+
+                                                            <div id="datadirnotes"> 
+                                                                    <i>
+                                                                + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory. 
                                                                     <br>
-                                                            <div>
-                                                                <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
-                                                            </div>
+                                                                + Path value must include a trailing slash.
+                                                                    <br>
+                                                                + For security purposes, this directory should NOT be within the webserver's filesystem hierarchy. <br> However, if a path is chosen outside the webserver's filesystem, the PHP process must have read/write privileges to whatever location is chosen to create the data directory.
+                                                                    <br>
+                                                                + Value must be an absolute path on the server's filesystem with the exception of Docker - use a relative path with trailing slash.
+                                                                    <br>
+                                                                Good:  c:\datadir\, /var/datadir/
+                                                                    <br>
+                                                                Bad: wwwroot\datadir, ../datadir
+                                                                    </i>
+                                                            </div> 
 
-                                                        </form>
-
-                                                        <div id="loginerror">
-                                                                <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
                                                         </div>
 
-                                                        <div id="datadirnotes"> 
-                                                                <i>
-                                                            + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory. 
-                                                                <br>
-                                                            + Path value must include a trailing slash.
-                                                                <br>
-                                                            + For security purposes, this directory should NOT be within the webserver's filesystem hierarchy. <br> However, if a path is chosen outside the webserver's filesystem, the PHP process must have read/write privileges to whatever location is chosen to create the data directory.
-                                                                <br>
-                                                            + Value must be an absolute path on the server's filesystem with the exception of Docker - use a relative path with trailing slash.
-                                                                <br>
-                                                            Good:  c:\datadir\, /var/datadir/
-                                                                <br>
-                                                            Bad: wwwroot\datadir, ../datadir
-                                                                </i>
-                                                        </div> 
+                                                    </td>
 
-                                                    </div>
+                                                    <td>
+                                                        
+                                                        <div id="dbcreatewrappermulti">
 
-                                                </td>
+                                                            <form id="dbform">
 
-                                                <td>
-                                                    
-                                                    <div id="dbcreatewrappermulti">
+                                                                <div>
+                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
+                                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfilemulti' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required> 
+                                                                    <!-- <?php echo  $datadir = $json['datadir']; ?> -->
+                                                                        <br>
+                                                                    <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current data directory path is: " . $datadir = $json['datadir'];  ?> </i>
+                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
+                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
+                                                                        <br>
+                                                                </div>
+                                                                        <br>
+                                                                <div>
+                                                                    <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />  
+                                                                </div>
 
-                                                        <form id="dbform">
+                                                            </form>
 
-                                                            <div>
-                                                                <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfilemulti' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required> 
-                                                                <!-- <?php echo  $datadir = $json['datadir']; ?> -->
-                                                                    <br>
-                                                                <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current data directory path is: " . $datadir = $json['datadir'];  ?> </i>
-                                                                <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
-                                                                    <br>
-                                                            </div>
-                                                                    <br>
-                                                            <div>
-                                                                <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />  
-                                                            </div>
+                                                            <?php 
+                                                                
+                                                                $datafile = '../../data/datadir.json';
 
-                                                        </form>
+                                                                if(is_file($datafile)){
 
-                                                        <?php 
-                                                            
-                                                            $datafile = '../../data/datadir.json';
+                                                                    include_once ('../monitorr-data.php');
 
-                                                            if(is_file($datafile)){
+                                                                    $datadir = $json['datadir'];
 
-                                                                include_once ('../monitorr-data.php');
+                                                                    echo '<div id="loginerror">';
+                                                                            echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>';
+                                                                    echo "</div>";
 
-                                                                $datadir = $json['datadir'];
-
-                                                                echo '<div id="loginerror">';
-                                                                        echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>';
-                                                                echo "</div>";
-
-                                                                    echo '<div id="datadirnotes"> ';
-                                                                            echo "<i>";
-                                                                        echo "+ An existing data directory is detected at: $datadir ";
-                                                                            echo "<br>";
-                                                                        echo '+ By clicking "create" above, a user database will be created in the data directory specified. ';
+                                                                        echo '<div id="datadirnotes"> ';
+                                                                                echo "<i>";
+                                                                            echo "+ An existing data directory is detected at: $datadir ";
                                                                                 echo "<br>";
-                                                                        echo '+ The location of the new user database MUST be located in the data directory indicated above. ';
+                                                                            echo '+ By clicking "create" above, a user database will be created in the data directory specified. ';
+                                                                                    echo "<br>";
+                                                                            echo '+ The location of the new user database MUST be located in the data directory indicated above. ';
+                                                                                    echo "<br>";
+                                                                            echo '+ If there is an existing user database in this directory, it will be renamed to "users.db.old" and a new user database will be created.';
                                                                                 echo "<br>";
-                                                                        echo '+ If there is an existing user database in this directory, it will be renamed to "users.db.old" and a new user database will be created.';
-                                                                            echo "<br>";
-                                                                        echo '+ All setting JSON files in the current data directory will be left in tact.';
-                                                                            echo "<br>";
-                                                                        echo '+ After the new user database is created, you will be prompted to create new user credentials.';
-                                                                            echo "<br>";
-                                                                    echo "</div> ";
-                                                            } 
+                                                                            echo '+ All setting JSON files in the current data directory will be left in tact.';
+                                                                                echo "<br>";
+                                                                            echo '+ After the new user database is created, you will be prompted to create new user credentials.';
+                                                                                echo "<br>";
+                                                                        echo "</div> ";
+                                                                } 
 
-                                                            else {
+                                                                else {
 
-                                                            }
-                                                        ?> 
+                                                                }
+                                                            ?> 
 
-                                                            <br>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                                <br>
+                                                        </div>
+                                                    </td>
+                                                </tr>
 
-                                        </table>
+                                            </table>
 
-                                        <div id='response' class='dbmessage'></div>
+                                            <div id='response' class='dbmessage'></div>
+
+                                        </div>
 
                                     <!--  END multi form-->
 
