@@ -16,5 +16,5 @@ RUN \
 COPY root/ /
 
 # Port and volumes
-VOLUME /config /app
+VOLUME /app /config
 EXPOSE 80
