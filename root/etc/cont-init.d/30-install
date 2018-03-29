@@ -15,7 +15,6 @@ cp /config/www/monitorr/assets/config/_installation/default/site_settings-data_d
 cp /config/www/monitorr/assets/config/_installation/default/user_preferences-data_default.json /app/userdata/user_preferences-data.json
 
 # Permissions
-chown -R abc:abc \
-	/config \
-	/app
-chmod 666 /config/www/monitorr/assets/data/datadir.json
+chown -R abc:abc /config
+chown -R abc:abc /app
+chmod 777 /config/www/monitorr/assets/data/datadir.json
