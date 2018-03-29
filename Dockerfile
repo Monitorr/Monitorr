@@ -6,7 +6,6 @@ RUN \
  apk add --no-cache \
          curl \
          php7-curl \
-         php7-session \
          php7-zip \
          php7-sqlite3 \
          php7-pdo_sqlite \
