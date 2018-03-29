@@ -9,6 +9,7 @@ RUN \
 	php7-session \
 	php7-zip \
         php7-sqlite \
+	php7-pdo_sqlite \
         git
 
 # Add local files
