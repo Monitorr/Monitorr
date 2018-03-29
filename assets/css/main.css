@@ -943,6 +943,8 @@
 
     #regmulti {
         width: 90%;
+        margin-bottom: 1rem !important;
+        cursor: default;
     }
     
     #dbwrapper {
@@ -1014,13 +1016,9 @@
     input[name="dbfile"] {
         background-color: rgb(200, 200, 200);
         border: none;
+        padding-left: .2rem;
         cursor: not-allowed;
     }
-
-    input[name="dbfilemulti"] {
-        /* background-color: rgb(200, 200, 200); */
-    }
-
 
     #userwrapper {
         width: 82%;
@@ -1044,6 +1042,7 @@
 
     #registrationform {
         font-size: 1rem;
+        cursor: default;
     }
     
     #reginstructions {
@@ -1061,7 +1060,7 @@
     }
     
     #reginfo {
-        width: 75%;
+        width: 85%;
         color: #555555;
         background-color: #1F1F1F;
         margin-left: auto;
@@ -1369,6 +1368,25 @@
         z-index: 2000;
     }
 
+    #myModal3 {
+        display: none;
+        position: fixed;
+        top: 0;
+        overflow-y: auto;
+        height: 75%;
+        margin-top: 10%;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 1rem;
+        padding-bottom: .5rem;
+        color: black;
+        text-align: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.900);
+        border: 1px solid #888;
+        z-index: 2000;
+    }
+
     /* Modal Content/Box */
 
     .modal-content {
@@ -1377,6 +1395,27 @@
         padding-top: .5rem;
         padding-bottom: 0;
         align-items: center;
+    }
+
+    #mymodal4 {
+        background-color: transparent;
+        padding: 2rem;
+        padding-top: .5rem;
+        padding-bottom: 0;
+        align-items: center;
+    }
+
+    #imgthumb {
+        background-color: transparent;
+        display: inline-grid;
+        padding: 1rem;
+    }
+
+    #imgpath {
+        background-color: transparent;
+        display: inline-grid;
+        color: white;
+        text-align: center;
     }
 
     .modaltext {
@@ -1398,6 +1437,23 @@
 
     .close:hover,
     .close:focus {
+        color: red;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 900;
+    }
+
+    .closeimg {
+        position: fixed;
+        color: rgb(255, 80, 80);
+        float: left;
+        margin-left: -36%;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .closeimg:hover,
+    .closeimg:focus {
         color: red;
         text-decoration: none;
         cursor: pointer;

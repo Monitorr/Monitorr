@@ -264,16 +264,13 @@
                         fclose($fp);
 
                         rename("../../data/datadir.json", "../../data/datadir.fail.txt");
-
                     }
 
                     else {
 
-                        //change me - ECHO CWD
-
-                        $monitorrcwd = $structure . 'monitorrCWD.txt';
+                        $monitorrcwd = $structure . 'monitorr_install_path.txt';
                         $fp = fopen($monitorrcwd, 'w');
-                            fwrite( $fp, "Monitorr application path: " . getcwd());
+                            fwrite ( $fp, "Monitorr application install path: " . realpath('../../../'));
                         fclose($fp);
 
                         echo '<div class="reglog">';

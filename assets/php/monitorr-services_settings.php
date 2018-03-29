@@ -379,7 +379,6 @@ class OneFileLoginApplication
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -594,6 +593,26 @@ class OneFileLoginApplication
                                         "click": function(key, action, itemIndex) {
                                             var item = this.children[itemIndex];
                                             item.setValue("");
+                                        }
+                                    }, {
+                                        "label": "images",
+                                        "action": "",
+                                        //"iconClass": "fa fa-cancel",
+                                        "click": function() {
+
+                                            var modal = document.getElementById('myModal3');
+                                            var span = document.getElementsByClassName("closeimg")[0];
+                                            modal.style.display = "block";
+
+                                            span.onclick = function() {
+                                                modal.style.display = "none";
+                                            }
+
+                                            window.onclick = function(event) {
+                                                if (event.target == modal) {
+                                                    modal.style.display = "none";
+                                                }
+                                            }
                                         }
                                     }
                                     ]
@@ -813,7 +832,7 @@ class OneFileLoginApplication
                 </script>
         </div>
 
-                <!-- Modal pop-up for "service Image" input field: -->
+                <!-- Modal pop-up for "Service Image" input field: -->
 
         <div id="myModal" class="modal">
 
@@ -821,6 +840,37 @@ class OneFileLoginApplication
                 <!-- Modal content -->
             <div id="mymodal2" class="modal-content"></div>
             <span class="close"  aria-hidden="true" title="close preview">&times;</span>
+
+        </div>
+
+                <!-- Modal pop-up for images directory display: -->
+
+        <div id="myModal3" >
+
+            <span class="closeimg"  aria-hidden="true" title="close images">&times;</span>
+
+            <p class="modaltext">images:</p>
+                <!-- Modal content -->
+            <div id="mymodal4"> 
+            
+                <?php
+
+                    $dirname = "../img/";
+                    $images = glob($dirname."*.*");
+
+                    foreach($images as $image) {
+                        echo '<div id="imgthumb">';
+                            echo '<center>';
+                                echo '<img src="'.$image.'" style="width:7rem" />';
+                            echo '</center>';
+                            echo '<div id="imgpath">';
+                                echo $image;
+                            echo '</div>';
+                        echo '</div>';
+                    }
+                ?>
+            
+            </div>
 
         </div>
 
