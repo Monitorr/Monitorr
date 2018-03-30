@@ -576,7 +576,7 @@
                                             $datadir = $json['datadir'];
                                             $jsonfileuserdata = $datadir . 'user_preferences-data.json';
 
-                                            if(is_file($jsonfileuser)){
+                                            if(is_file($jsonfileuserdata)){
 
                                                 echo '<div id="loginerror">';
                                                     echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
