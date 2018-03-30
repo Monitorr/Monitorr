@@ -449,6 +449,10 @@ class OneFileLoginApplication
                     width: 100% !important;
                     max-width: 100% !important;
                 }
+                
+                input[type=checkbox], input[type=radio] {
+                    cursor: pointer;
+                }
 
             </style>
 
