@@ -474,6 +474,10 @@ class OneFileLoginApplication
                     bottom: 3rem;
                 }
 
+                input[type=checkbox], input[type=radio] {
+                    cursor: pointer;
+                }
+
             </style>
 
             <?php $datafile = '../data/datadir.json'; ?>
@@ -574,22 +578,26 @@ class OneFileLoginApplication
                                     "showLabels": true,
                                     "actions": [{
                                         "label": "Add Service",
-                                        "action": "add"
+                                        "action": "add",
+                                        "iconClass": "fa fa-plus",
                                     }, {
                                         "label": "Remove Service",
-                                        "action": "remove"
+                                        "action": "remove",
+                                        "iconClass": "fa fa-minus"
                                     }, {
                                         "label": "Move UP",
                                         "action": "up",
+                                        "iconClass": "fa fa-arrow-up",
                                         "enabled": true
                                     }, {
                                         "label": "Move Down",
                                         "action": "down",
+                                        "iconClass": "fa fa-arrow-down",
                                         "enabled": true
                                     }, {
                                         "label": "Clear",
                                         "action": "clear",
-                                        "iconClass": "fa fa-cancel",
+                                        "iconClass": "fa fa-trash",
                                         "click": function(key, action, itemIndex) {
                                             var item = this.children[itemIndex];
                                             item.setValue("");
@@ -597,7 +605,7 @@ class OneFileLoginApplication
                                     }, {
                                         "label": "Images",
                                         "action": "",
-                                        //"iconClass": "fa fa-cancel",
+                                        "iconClass": "fa fa-image",
                                         "click": function() {
 
                                             var modal = document.getElementById('myModal3');
