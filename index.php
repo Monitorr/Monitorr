@@ -116,7 +116,7 @@
             $datadir = $json['datadir'];
             $jsonfileuserdata = $datadir . 'user_preferences-data.json';
             
-            if(!is_file($jsonfileuser)){
+            if(!is_file($jsonfileuserdata)){
 
                 $path = "assets/";
 
