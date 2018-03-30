@@ -1502,6 +1502,13 @@
     .btn:hover {
         background-color: #0073ee;
     }
+
+    .btn:disabled {
+        color: red;
+        opacity: .65;
+        background-color: #003d7e;
+        cursor: not-allowed;
+    }
     
     .alpaca-form-buttons-container {
         text-align: left;
@@ -1514,6 +1521,7 @@
     
     .alpaca-form-button-submit {
         margin-right: .5rem;
+        opacity: 100 !important;
     }
     
     #myBtn2 {
