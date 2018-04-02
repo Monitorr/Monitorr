@@ -401,87 +401,83 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
 
-            <style>
+        <style>
 
-                body {
-                    margin: 2vw !important;
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                    color: white !important;
-                    font-size: 1rem !important;
-                }
+            body {
+                margin: 2vw !important;
+                overflow-y: auto;
+                overflow-x: hidden;
+                color: white !important;
+                font-size: 1rem !important;
+            }
 
-                /* :root {
-                    font-size: 12px !important;
-                } */
+            legend {
+                color: white;
+            }
 
-                legend {
-                    color: white;
-                    }
+            body::-webkit-scrollbar {
+                width: 10px;
+                background-color: #252525;
+            }
 
-                body::-webkit-scrollbar {
-                    width: 10px;
-                    background-color: #252525;
-                }
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #252525;
+            }
 
-                body::-webkit-scrollbar-track {
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    border-radius: 10px;
-                    background-color: #252525;
-                }
+            body::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            }
 
-                body::-webkit-scrollbar-thumb {
-                    border-radius: 10px;
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    background-color: #8E8B8B;
-                }
+            body.offline #link-bar {
+                display: none;
+            }
 
-                body.offline #link-bar {
-                    display: none;
-                }
+            body.online #link-bar {
+                display: block;
+            }
 
-                body.online #link-bar {
-                    display: block;
-                }
+            .auto-style1 {
+                text-align: center;
+            }
 
-                .auto-style1 {
-                    text-align: center;
-                }
+            .navbar-brand {
+                cursor: default;
+            }
 
-                .navbar-brand {
-                    cursor: default;
-                }
+            img {
+                width: 7rem !important;
+                color: white;
+            }
 
-                img {
-                    width: 7rem !important;
-                    color: white;
-                }
+            .form-control {
+                width: inherit !important;
+            }
 
-                .form-control {
-                    width: inherit !important;
-                }
+            .alpaca-message-invalidPattern {
+                margin-left: -2rem;
+                margin-top: -5rem;
+            }
 
-                .alpaca-message-invalidPattern {
-                    margin-left: -2rem;
-                    margin-top: -5rem;
-                }
+            .alpaca-form-buttons-container {
+                position: fixed;
+                margin-left: 1rem;
+                bottom: 3rem;
+            }
 
-                .alpaca-form-buttons-container {
-                    position: fixed;
-                    margin-left: 1rem;
-                    bottom: 3rem;
-                }
+            input[type=checkbox], input[type=radio] {
+                cursor: pointer;
+            }
 
-                input[type=checkbox], input[type=radio] {
-                    cursor: pointer;
-                }
+        </style>
 
-            </style>
-
-            <?php $datafile = '../data/datadir.json'; ?>
-            <?php include_once ('../config/monitorr-data.php')?>
+        <?php $datafile = '../data/datadir.json'; ?>
+        <?php include_once ('../config/monitorr-data.php')?>
 
         <title>
             <?php
@@ -651,6 +647,11 @@ class OneFileLoginApplication
                                             "fields": {},
                                             "renderButtons": true,
                                             "attributes": {},
+                                            "events": {
+                                                "change": function() {
+                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                }
+                                            }
                                         },
                                         "enabled": {
                                             "type": "select",
@@ -673,6 +674,11 @@ class OneFileLoginApplication
                                             "disallowOnlyEmptySpaces": false,
                                             "removeDefaultNone": true,
                                             "fields": {},
+                                            "events": {
+                                                "change": function() {
+                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                }
+                                            }
                                         },
                                         "image": {
                                             "type": "image",
@@ -709,7 +715,7 @@ class OneFileLoginApplication
                                                 }
 
                                                 var modal = document.getElementById('myModal');
-                                                var span = document.getElementsByClassName("close")[0];
+                                                var span = document.getElementsByClassName("modal")[0];
                                                 modal.style.display = "block";
 
                                                 span.onclick = function() {
@@ -723,34 +729,40 @@ class OneFileLoginApplication
                                                         $('#mymodal2').empty();
                                                     }
                                                 }
+
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
                                             }
                                         },
-                                        "checktype": {
+                                        "type": {
                                             "type": "select",
                                             "validate": true,
-                                            "optionLabels": [" Standard", " Ping Only"],
+                                            //"optionLabels": [" Standard", " Ping Only"],
                                             "showMessages": true,
                                             "disabled": false,
                                             "hidden": false,
                                             "label": "Check Type:",
-                                            //"helpers": ["Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port."],
-                                            //"helper": "Standard: Services that can be accessed via HTTP / Ping: Any service that is listening on defined port.",
+                                            "helpers": ["Standard: Services that serve a webpage. <br> Ping: Services that only listen on defined port."],
                                             "hideInitValidationError": false,
                                             "focus": false,
                                             "name": "checktype",
-                                            "placeholder": " Standard",
+                                            //"placeholder": " Standard",
                                             "typeahead": {},
                                             "styled": true,
                                             "allowOptionalEmpty": false,
-                                            "removeDefaultNone": true,
                                             "hideNone": true,
                                             "data": {},
                                             "autocomplete": false,
-                                            "disallowEmptySpaces": false,
+                                            "disallowEmptySpaces": true,
                                             "disallowOnlyEmptySpaces": false,
+                                            "removeDefaultNone": true,
                                             "fields": {},
                                             "renderButtons": true,
-                                            "attributes": {}
+                                            "attributes": {},
+                                            "events": {
+                                                "change": function() {
+                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                }
+                                            }
                                         },
                                         "checkurl": {
                                             "type": "url",
@@ -776,7 +788,12 @@ class OneFileLoginApplication
                                             "disallowOnlyEmptySpaces": true,
                                             "fields": {},
                                             "renderButtons": true,
-                                            "attributes": {}
+                                            "attributes": {},
+                                            "events": {
+                                                "change": function() {
+                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                }
+                                            }
                                         },
                                         "linkurl": {
                                             "dependencies": {
@@ -805,7 +822,12 @@ class OneFileLoginApplication
                                             "disallowOnlyEmptySpaces": false,
                                             "fields": {},
                                             "renderButtons": true,
-                                            "attributes": {}
+                                            "attributes": {},
+                                            "events": {
+                                                "change": function() {
+                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                }
+                                            }
                                         }
                                     },
                             },
@@ -818,15 +840,22 @@ class OneFileLoginApplication
                                     },
                                     "buttons": {
                                         "submit": {
-                                        // "type": 'button',
-                                        // "label": "submit",
+                                            // "type": 'button',
                                             "click": function formsubmit() {
                                                 var data = $('#servicesettings').alpaca().getValue();
                                                 $.post('post_receiver-services.php', {
-                                                        data
+                                                        data,
+                                                        success: function(data){
+                                                            alert("Settings saved! Applying changes...");
+                                                                // Refresh form after submit:
+                                                            setTimeout(location.reload.bind(location), 1000)
+                                                        },
+                                                        error: function(errorThrown){
+                                                            console.log(errorThrown);
+                                                        }
                                                     },
-                                                    alert("settings saved"),
                                                 )
+                                                $('.alpaca-form-button-submit').removeClass('buttonchange');
                                             }
                                         },
                                         "reset":{
@@ -840,7 +869,7 @@ class OneFileLoginApplication
                 </script>
         </div>
 
-                <!-- Modal pop-up for "Service Image" input field: -->
+            <!-- Modal pop-up for "Service Image" input field: -->
 
         <div id="myModal" class="modal">
 
@@ -851,36 +880,65 @@ class OneFileLoginApplication
 
         </div>
 
-                <!-- Modal pop-up for images directory display: -->
+            <!-- Modal pop-up for images directory display: -->
 
         <div id="myModal3" >
 
             <span class="closeimg"  aria-hidden="true" title="close images">&times;</span>
 
-            <p class="modaltext">images:</p>
+            <p class="modaltext">Images:</p>
+                <?php $imgpath = '../img/'; ?>
+            <p class="modalimgpath"> <?php echo realpath($imgpath); ?> </p>
+
                 <!-- Modal content -->
             <div id="mymodal4"> 
             
                 <?php
 
-                    $dirname = "../img/";
-                    $images = glob($dirname."*.*");
+                    $dirname = '../img/';
+                    $images = glob($dirname.'*.*');
 
-                    foreach($images as $image) {
-                        echo '<div id="imgthumb">';
-                            echo '<center>';
-                                echo '<img src="'.$image.'" style="width:7rem" />';
-                            echo '</center>';
+                    $count = 0;
+
+                    foreach ($images as $image) {
+
+                        echo '<div id="imgthumb" class="imgthumb">';
+
+                            echo '<button id="imgbtn" onclick="copyFunction(' . $count . ')">';
+                                echo '<center>';
+                                    echo '<img src="'.$image.'" style="width:7rem" title="click to copy"/>';
+                                echo '</center>';
+                            echo '</button>';
+
                             echo '<div id="imgpath">';
-                                echo $image;
+                                echo '<input type="text" value="'.$image.'"  id="'.$count.'" name="imginput" readonly>';
+
                             echo '</div>';
                         echo '</div>';
+
+                        ++$count;
                     }
                 ?>
             
             </div>
 
         </div>
+
+                 <!-- Click-to-copy function -->
+
+            <script>
+                function copyFunction() {
+                    var thumbs = document.querySelectorAll('.imgthumb');
+                    thumbs.forEach( function ( thumb ) {
+                        var button = thumb.querySelector('button');
+                        var input = thumb.querySelector('input');
+                        button.addEventListener('click', function () {
+                            input.select();
+                            document.execCommand("Copy");
+                        })
+                    })
+                }
+            </script>
 
                 <!-- scroll to top   -->
 
