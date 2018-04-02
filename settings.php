@@ -2,7 +2,7 @@
 <html lang="en">
 
     <!--
-         Monitorr settings page
+         Monitorr | settings page
     https://github.com/Monitorr/Monitorr
     -->
 
@@ -37,6 +37,11 @@
                 overflow-x: hidden !important;
                 /* color: white !important; */
                 background-color: #1F1F1F !important;
+            }
+
+            .navbar-brand {
+                font-size: 2rem !important;
+                font-weight: 500;
             }
 
             #summary {
@@ -123,7 +128,7 @@
                 }
             ?>
 
-         <?php 
+        <?php 
 
             $datafile = 'assets/data/datadir.json';
             $str = file_get_contents($datafile);
@@ -155,7 +160,7 @@
                 $rftime = $jsonsite['rftime'];
             }
 
-         ?> 
+        ?> 
 
         <?php 
 
@@ -210,7 +215,7 @@
 
             <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
             
-             $servertimezone = "<?php echo "$timezone"; ?>";
+            $servertimezone = "<?php echo "$timezone"; ?>";
 
             $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
 
@@ -221,7 +226,6 @@
         </script>
 
         <script src="assets/js/clock.js" async></script>
-
 
         <script type="text/javascript">
 
@@ -259,6 +263,14 @@
 
         <div id ="settingscolumn" class="settingscolumn">
 
+            <div id="settingsbrand">
+                <div class="navbar-brand">
+                    <?php
+                        echo $title . PHP_EOL;
+                    ?>
+                </div>
+            </div>
+
             <div id="summary">
                 <?php 
                     foreach (glob("assets/data/logs/*.json") as $filename) {
@@ -283,7 +295,7 @@
                 <!-- Sidebar -->
                 <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
                         
-                    <div class="navbar-brand settingstitle">
+                    <div class="settingstitle">
                         Settings
                     </div>   
                 
@@ -303,7 +315,7 @@
                         </li>
 
                         <li>
-                        <a href="assets/php/monitorr-info.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
+                            <a href="assets/php/monitorr-info.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-fw fa-home"></i> Monitorr </a>
@@ -314,7 +326,6 @@
 
             </div>
 
-
             <div id="version" >
 
                 <script src="assets/js/update_auto.js" async></script>
@@ -323,7 +334,6 @@
                             
                 <div id="version_check_auto"></div>
 
-                
                 <div id="reginfo" >
 
                     <?php 
@@ -368,13 +378,11 @@
                 }
             </script>
 
-
             <script>
                 function load_preferences() {
                     document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
                 }
             </script>
-
 
             <script>
                 function load_settings() {
@@ -389,7 +397,6 @@
             </script>
 
         </div>
-
 
     </body>
 
