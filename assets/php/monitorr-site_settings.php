@@ -573,7 +573,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
                                     "rftime": {
                                         "type": "number",
@@ -597,7 +602,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
                                     "pinghost": {
                                         "type": "text",
@@ -621,7 +631,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
 
                                     "pingport": {
@@ -646,7 +661,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
                                     "cpuok": {
                                         "type": "number",
@@ -670,7 +690,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
                                     "cpuwarn": {
                                         "type": "number",
@@ -694,7 +719,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
                                     "ramok": {
                                         "type": "number",
@@ -718,7 +748,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
                                     "ramwarn": {
                                         "type": "number",
@@ -742,7 +777,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
                                     "hdok": {
                                         "type": "number",
@@ -766,7 +806,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     },
                                     "hdwarn": {
                                         "type": "number",
@@ -790,7 +835,12 @@ class OneFileLoginApplication
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
-                                        "attributes": {}
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
                                     }
                                 },
                                 "form": {
@@ -810,14 +860,15 @@ class OneFileLoginApplication
                                                     url: 'post_receiver-site_settings.php',
                                                     data: $('#sitesettings').alpaca().getValue(),
                                                     success: function(data) {
-                                                        // alert(JSON.stringify(data));
-                                                        alert("settings saved!");
+                                                        alert("Settings saved!");
                                                         // setTimeout(location.reload.bind(location), 500)
                                                     },
                                                     error: function(errorThrown){
                                                         console.log(errorThrown);
+                                                        alert("Error submitting data.");
                                                     }
                                                 });
+                                                $('.alpaca-form-button-submit').removeClass('buttonchange');
                                             }
                                         },
                                         "reset":{
