@@ -182,6 +182,7 @@
         <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
 
         <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jQuery.scrollbox.js"></script>
 
         <script src="assets/js/pace.js" async></script>
 
@@ -209,6 +210,11 @@
             });
         </script>
 
+        <script>
+            $(document).ready(function() {
+                $('#summary').scrollbox();
+            });
+        </script>
         <script type="text/javascript">
 
             var nIntervId;
@@ -217,7 +223,6 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
-                $('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
@@ -246,16 +251,19 @@
 
             <!-- Append alert if service is down: -->
         <div id="summary">
+            
+            <ul>
             <?php 
-                foreach (glob("assets/data/logs/*.json") as $filename) {
+                foreach (glob("assets/data/logs/*.json") as $filename) {   
                     if(is_file($filename)){
+
                         $file_contents = file_get_contents ($filename);
-                        echo ucfirst($file_contents) . "<br>";
+                        echo '<li>' . ucfirst($file_contents) . '</li>';
                     }
                 } 
 
-                
             ?>
+        </ul>
         </div>
 
         <div id="headermin">
