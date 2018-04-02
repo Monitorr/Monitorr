@@ -542,15 +542,18 @@ class OneFileLoginApplication
                         <td><strong>PHP Version:</strong></td>
                         <td><?php echo phpversion(); ?></td>
                     </tr>
-                    <tr>
+                    <tr> 
                         <td><strong>Check & Execute Update:</strong></td>
-                        <td><a id="version_check" class="btn" style="cursor: pointer" title="Execute Update">Check for Update</a> |  Update branch selected:             
+                        <td>
+                            Update branch selected: 
                             <strong>
                             <?php
                                 $updateBranch = $jsonusers['updateBranch'];
-                                echo '| ' . $updateBranch . ' |' . PHP_EOL;  
+                                echo '| ' . $updateBranch . ' | ' . PHP_EOL;  
                             ?>
                             </strong>
+
+                            <a id="version_check" class="btn" style="cursor: pointer" title="Execute Update">Check for Update</a>
                         </td>
                         <td><strong>Install Path: </strong></td>
                         <td>
