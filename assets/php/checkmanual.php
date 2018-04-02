@@ -227,10 +227,10 @@
             }
 
     echo "<br>";
-    echo "<b> //////////////// check END /////////////// </b> <br />\n";
+    echo "<b> //////////////// check END //////////////// </b> <br />\n";
 
 ?>
 
-<p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "../../assets/js/version/version.txt" );?> </a> </p>
+<p> <a href="https://github.com/monitorr/Monitorr" target="_blank">Monitorr </a> | <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../../assets/js/version/version.txt" );?> </a> </p>
 
 
