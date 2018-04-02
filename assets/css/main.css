@@ -377,10 +377,10 @@
     }
     
     .form-control {
-        /* height: 2.5rem; */
-        /* font-size: 1rem; */
         width: auto;
     }
+
+
     /* TILES */
     
     .container {
@@ -1154,6 +1154,7 @@
     #loginbtn {
         padding-left: 1.5rem;
     }
+
     /*     Registration       */
     
     #registrationtable {
@@ -1171,8 +1172,11 @@
         background-color: #1F1F1F;
         cursor: default;
     }
+
     /********************* SETTINGS  *****************/
+
     /******SETTINGS NAVBAR ********/
+    
     /*           Wrappers            */
     
     #wrapper {
@@ -1182,8 +1186,8 @@
         padding-left: 0;
         transition: all 0.3s ease;
         float: left;
-        /* width: 8rem; */
         margin: 0;
+        margin-bottom: 1rem;
     }
     
     #sidebar-wrapper {
@@ -1392,6 +1396,25 @@
         z-index: 2000;
     }
 
+    #myModal3::-webkit-scrollbar {
+        width: 8px;
+        background-color: #252525;
+    }
+
+    #myModal3::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        background-color: #252525;
+    }
+
+    #myModal3::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: #8E8B8B;
+    }
+
     /* Modal Content/Box */
 
     .modal-content {
@@ -1404,7 +1427,7 @@
 
     #mymodal4 {
         background-color: transparent;
-        padding: 2rem;
+        /* padding: 2rem; */
         padding-top: .5rem;
         padding-bottom: 0;
         align-items: center;
@@ -1416,18 +1439,40 @@
         padding: 1rem;
     }
 
-    #imgpath {
+    #imgbtn {
         background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    #imgpath {
         display: inline-grid;
+        margin-top: .5rem;
         color: white;
         text-align: center;
+    }
+
+    input[name="imginput"] {
+        color: white;
+        background-color: transparent;
+        border: none;
+        padding-left: .2rem;
+        text-align: center;
+        cursor: text;
     }
 
     .modaltext {
         color: #aaa;
         font-size: 1.5rem;
         font-weight: 600;
-        margin-bottom: 1rem;
+        margin-bottom: .5rem;
+        cursor: default;
+    }
+
+    .modalimgpath {
+        color: #aaa;
+        font-size: 1rem;
+        font-weight: 400;
         cursor: default;
     }
 
@@ -1438,6 +1483,7 @@
         float: left;
         font-size: 2rem;
         font-weight: 700;
+        text-shadow: none !important;
     }
 
     .close:hover,
@@ -1464,7 +1510,6 @@
         cursor: pointer;
         font-weight: 900;
     }
-
 
     #checkurl {
         float: right;
@@ -1523,6 +1568,10 @@
         margin-right: .5rem;
         opacity: 100 !important;
     }
+
+    .buttonchange {
+        background-color: green;
+    }
     
     #myBtn2 {
         color: white;
@@ -1534,6 +1583,12 @@
         background-color: #0073ee;
     }
     
+
+    .alpaca-array-actionbar,
+    .alpaca-array-actionbar.btn-group {
+        margin-top: 1rem;
+    }
+
     .btn-group>.btn:first-child {
         margin-left: 0;
         background-color: rgb(200, 200, 200);
@@ -1554,21 +1609,36 @@
         height: 100%;
         padding-top: 5rem;
         background-color: transparent;
+        
     }
-    
-    .settingstitle {
-        margin-left: 3rem;
-        font-size: 1.5rem;
-        padding: 1rem;
-        padding-bottom: .25rem;
-        background-color: transparent;
-        text-shadow: 0 0 8px #FF0104;
+
+    #settingsbrand {
+        width: 17rem;
+        margin-bottom: 1rem;
+        padding: 0px;
+        padding-top: .5rem;
+        text-align: center;
         cursor: default;
     }
     
+    .settingstitle {
+        width: 16rem;
+        margin: 0;
+        padding: 1rem;
+        padding-bottom: .25rem;
+        background-color: transparent;
+        text-shadow: 0 0 6px #FF0104;
+        vertical-align: middle;
+        color: #ffffff;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 500;
+        outline: 0;
+        cursor: default;
+    }
+
     #version {
-        display: inline-block;
-        width: 17rem;
+        display: block;
         font-size: 1rem;
         padding: 1rem;
         padding-top: 1.5rem;
@@ -1821,6 +1891,7 @@
     tr {
         width: 100%
     }
+
     /* Progress Bar */
     
     .pace {
@@ -1859,6 +1930,7 @@
         -o-transform: rotate(3deg) translate(0px, -4px);
         transform: rotate(3deg) translate(0px, -4px);
     }
+
     /* Footer */
     
     #settingslink {
