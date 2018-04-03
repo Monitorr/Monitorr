@@ -13,7 +13,7 @@ fi
 if [[ ! -d /app/userdata/ ]]; then
   mkdir /app/userdata/ # Dir for User Data
 elif [[ -d /app/userdata/ ]]; then
-  echo NOTIFY: The Directory /app/userdata/ already exists 1>&2
+  echo NOTIFY- The Directory /app/userdata/ already exists 1>&2
 else
   :
 fi
@@ -22,7 +22,7 @@ fi
 if [[ ! -e /config/www/monitorr/assets/data/datadir.json ]]; then
   cp /datadir.json /config/www/monitorr/assets/data/datadir.json # copy data dir
 elif [[ -e /config/www/monitorr/assets/data/datadir.json ]]; then
-  echo NOTIFY: The File /config/www/monitorr/assets/data/datadir.json already exists 1>&2
+  echo NOTIFY- The File /config/www/monitorr/assets/data/datadir.json already exists 1>&2
 else
   :
 fi
@@ -31,7 +31,7 @@ fi
 if [[ ! -e /app/userdata/monitorr_data_directory.txt ]]; then
   cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
 elif [[ -e /app/userdata/monitorr_data_directory.txt ]]; then
-  echo NOTIFY: The File /app/userdata/monitorr_data_directory.txt  already exists 1>&2
+  echo NOTIFY- The File /app/userdata/monitorr_data_directory.txt  already exists 1>&2
 else
   :
 fi
