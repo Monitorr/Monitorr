@@ -434,35 +434,38 @@
 
                                 $('#datadirbtn').click(function(){
                                 
-                                    $('#response').html("<font color='yellow'><b>Loading response...</b></font>");
+                                    $('#response').html("<font color='yellow'><b>Creating data directory...</b></font>");
                                     
-                                    $.post({
-                                        url: './mkdirajax.php',
-                                        data: $(this).serialize(),
-                                        success: function(data){
-                                            // alert("Directory Created successfully");
-                                            $('#response').html(data);
-                                            $('#userwrapper').load(document.URL +  ' #userwrapper');
-                                        }
-                                    })
+                                    // REMOVE:??  CHANGE ME //
 
-                                    .fail(function() {
-                                        alert( "Posting failed (ajax1)" );
-                                    }); 
+                                    // $.post({
+                                    //     url: './mkdirajax.php',
+                                    //     data: $(this).serialize(),
+                                    //     success: function(data){
+                                    //         console.log('response1: '+ data);
+                                    //         $('#response').html(data);
+                                    //         $('#userwrapper').load(document.URL +  ' #userwrapper');
+                                    //     }
+                                    // })
+
+                                    // .fail(function() {
+                                    //     alert( "Posting failed (ajax1)" );
+                                    // }); 
 
                                     var datadir = $("#datadir").val();
-                                    console.log('Submitted: '+ datadir);
+                                    console.log('submitted: '+ datadir);
                                     var url ="./mkdirajax.php";
 
                                     $.post(url, { datadir: datadir }, function(data){
                                         // alert("Directory Created successfully");
-                                        console.log('response: '+ data);
-                                        $('#response').html(data); 
-
+                                        console.log('mkdirajax: '+ data);
+                                        $('#response').html(data);
+                                        $('#userwrapper').load(document.URL +  ' #userwrapper');
                                     })
 
                                     .fail(function() { 
-                                        alert( "Posting failed (ajax2)" );
+                                        alert( "Posting failed (ajax)" );
+                                        console.log("Posting failed (ajax)");
                                     })
 
                                     return false;
@@ -478,36 +481,38 @@
 
                                 $('#dbbtn').click(function(){
                                 
-                                    $('#response').html("<font color='yellow'><b>Loading response...</b></font>");
+                                    $('#response').html("<font color='yellow'><b>Creating user database...</b></font>");
                                     
-                                    $.post({
-                                        url: './mkdbajax.php',
-                                        data: $(this).serialize(),
-                                        success: function(data){
-                                            // alert("Directory Created successfully");
-                                            $('#response').html(data);
-                                            $('#userwrapper').load(document.URL +  ' #userwrapper');
-                                        }
-                                    })
+                                         // REMOVE?  CHANGE ME 
 
-                                    .fail(function() {
-                                        alert( "Posting failed (ajax1)" );
-                                    }); 
+                                    // $.post({
+                                    //     url: './mkdbajax.php',
+                                    //     data: $(this).serialize(),
+                                    //     success: function(data){
+                                    //         $('#response').html(data);
+                                    //         $('#userwrapper').load(document.URL +  ' #userwrapper');
+                                    //     }
+                                    // })
+
+                                    // .fail(function() {
+                                    //     alert( "Posting failed (ajax1)" );
+                                    // }); 
 
                                     var dbfile = $("#dbfile").val();
-                                    console.log('Submitted: '+ dbfile);
+                                    console.log('submitted: '+ dbfile);
                                     var url ="./mkdbajax.php";
 
                                     $.post(url, { dbfile: dbfile }, function(data){
                                         // alert("Directory Created successfully");
-                                        console.log('response: '+ data);
-                                        // alert('response: '+ data);
+                                        console.log('mkdbajax: '+ data);
                                         $('#response').html(data); 
+                                        $('#userwrapper').load(document.URL +  ' #userwrapper');
 
                                     })
 
                                     .fail(function() { 
-                                        alert( "Posting failed (ajax2)" );
+                                        alert( "Posting failed (ajax)" );
+                                        console.log("Posting failed (ajax)");
                                     })
 
                                     return false;
@@ -550,11 +555,11 @@
                             $str = file_get_contents($datafile);
                             $json = json_decode( $str, true);
                             $datadir1 = $json['datadir'];
-                            $jsonfileuserdata = $datadir1 . 'user_preferences-data.json';
+                            $datadirdetect = $datadir1 . 'monitorr_data_directory.txt';
                             //$dbfile = $datadir . 'users.db';
 
 
-                            if (!is_file($jsonfileuserdata)) {
+                            if (!is_file($datadirdetect)) {
                                     
                         ?>
                                 <!--  START datadir create form -->
@@ -719,10 +724,8 @@
 
                                                         $datadir = $json['datadir'];
 
-                                                        //echo '<div id="loginerror">';
                                                             echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
                                                             
-                                                        //echo '</div>';
                                                     } 
 
                                                     else {
