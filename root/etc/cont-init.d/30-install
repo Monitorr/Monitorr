@@ -1,15 +1,32 @@
 #!/usr/bin/with-contenv bash
 
-# Clone Monitorr repo
-[[ ! -d /config/www/Monitorr/.git ]] && \
-git clone -b docker-develop --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
+# Clone directory, If Directory Exists, Git Pull
+if [[ ! -d /config/www/monitorr/.git ]]; then
+  git clone -b docker-develop --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
+elif [[ -d /config/www/monitorr/.git ]]; then
+  cd /config/www/monitorr || return
+  git pull
+fi
 
 # Make Directories
-mkdir /app/userdata/ # Dir for User Data
-cp /datadir.json /config/www/monitorr/assets/data/datadir.json # copy data dir
+if [[ ! -d /app/userdata/ ]]; then
+  mkdir /app/userdata/ # Dir for User Data
+elif [[ -d /app/userdata/ ]]; then
+  # DO NOTHING
+fi
 
-# copy and rename Default Files
-cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
+if [[ ! -e /config/www/monitorr/assets/data/datadir.json ]]; then
+  cp /datadir.json /config/www/monitorr/assets/data/datadir.json # copy data dir
+elif [[ -e /config/www/monitorr/assets/data/datadir.json ]]; then
+  # DO NOTHING
+fi
+
+# copy and rename Defaul Trigger File
+if [[ ! -e /app/userdata/monitorr_data_directory.txt ]]; then
+  cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
+elif [[ -e /app/userdata/monitorr_data_directory.txt ]]; then
+  # DO NOTHING
+fi
 
 # Permissions
 chown -R abc:abc /config
