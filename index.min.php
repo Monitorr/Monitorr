@@ -216,21 +216,89 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
-                $('#summary').load(document.URL +  ' #summary');
+                //$('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
+
+                    rfsysinfo =
+                        <?php 
+                            $rfsysinfo = $jsonsite['rfsysinfo'];
+                            echo $rfsysinfo;
+                        ?>
+
+
                     if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, <?php echo $jsonsite['rfsysinfo']; ?>);
+                        nIntervId = setInterval(statusCheck, rfsysinfo);
                     } else {
                         clearInterval(nIntervId);
                     }
                 });
-                $('#buttonStart :checkbox').attr('checked', 'checked').change();
+                //$('#buttonStart :checkbox').attr('checked', 'checked').change();
             });
 
         </script>
+
+        <script>
+
+             var nIntervId2;
+             var onload;
+
+            $(document).ready(function() {
+
+                $(":checkbox").change(function () {
+
+                    var current = -1;
+
+                    function updateSummary() {
+
+                        rfsysinfo =
+                            <?php 
+                                $rfsysinfo = $jsonsite['rfsysinfo'];
+                                echo $rfsysinfo;
+                            ?>
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'assets/php/marquee.php',
+                            data: {
+                                current: current
+                            },
+                            
+                            timeout: 5000,
+                            success: function(data) {
+                                if(data){
+                                    result = $.parseJSON(data);
+                                    console.log(result);
+                                    $("#summary").fadeOut(function() {
+                                    $(this).html(result[0]).fadeIn();
+                                    });
+                                    current = result[1];
+                                }
+
+                                else {
+                                    current = -1;
+                                    $("#summary").hide();
+                                }
+
+                                //window.setTimeout(updateSummary, 5000);
+                            }
+                        });
+                    }
+
+                    if ($(this).is(':checked')) {
+                        nIntervId2 = setInterval(updateSummary, rfsysinfo);
+                    } else {
+                        clearInterval(nIntervId2);
+                    }
+                });
+                $('#buttonStart :checkbox').attr('checked', 'checked').change();
+
+                //updateSummary();
+           });
+        </script>
+
 
     </head>
 
@@ -244,17 +312,7 @@
         </script>
 
             <!-- Append alert if service is down: -->
-        <div id="summary">
-            <?php 
-                foreach (glob("assets/data/logs/*.json") as $filename) {
-                } 
-
-                if(is_file($filename)){
-                    $filename2 = file_get_contents ($filename);
-                    echo ucfirst($filename2);
-                }
-            ?>
-        </div>
+        <div id="summary"></div>
 
         <div id="headermin">
 
