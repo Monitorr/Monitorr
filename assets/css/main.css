@@ -233,7 +233,7 @@
         text-align: center;
         color: white;
         text-shadow: 1px 1px black;
-        margin-top: -.8rem;
+        margin-top: -1.5rem;
         z-index: 1000;
         cursor: default;
     }
@@ -634,7 +634,6 @@
         float: left;
         width: 17rem;
         height: 8rem;
-        /* justify-content: stretch; */
         align-content: center;
         text-align: center;
         text-align: -webkit-center;
@@ -787,14 +786,7 @@
         text-align: center;
         cursor: default;
     }
-    /* .timer {
-    color: #C8C8C8;
-    font-size: 1rem;
-    font-weight: 400;
-    margin: auto;
-    text-align: center;
-    cursor: default;
-} */
+
     
     #line {
         cursor: default;
