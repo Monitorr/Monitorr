@@ -10,9 +10,6 @@ cp /datadir.json /config/www/monitorr/assets/data/datadir.json # copy data dir
 
 # copy and rename Default Files
 cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
-cp /config/www/monitorr/assets/config/_installation/default/services_settings-data_default.json /app/userdata/services_settings-data.json
-cp /config/www/monitorr/assets/config/_installation/default/site_settings-data_default.json /app/userdata/site_settings-data.json
-cp /config/www/monitorr/assets/config/_installation/default/user_preferences-data_default.json /app/userdata/user_preferences-data.json
 
 # Permissions
 chown -R abc:abc /config
