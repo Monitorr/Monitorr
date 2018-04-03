@@ -449,6 +449,10 @@ class OneFileLoginApplication
                     width: 100% !important;
                     max-width: 100% !important;
                 }
+                
+                input[type=checkbox], input[type=radio] {
+                    cursor: pointer;
+                }
 
             </style>
 
@@ -569,7 +573,12 @@ class OneFileLoginApplication
                                     "disallowOnlyEmptySpaces": false,
                                     "fields": {},
                                     "renderButtons": true,
-                                    "attributes": {}
+                                    "attributes": {},
+                                    "events": {
+                                        "change": function() {
+                                            $('.alpaca-form-button-submit').addClass('buttonchange');
+                                        }
+                                    }
                                 },
                                 "siteurl": {
                                     "type": "url",
@@ -591,7 +600,12 @@ class OneFileLoginApplication
                                     "disallowEmptySpaces": true,
                                     "disallowOnlyEmptySpaces": false,
                                     "allowIntranet": true,
-                                    "fields": {}
+                                    "fields": {},
+                                    "events": {
+                                        "change": function() {
+                                            $('.alpaca-form-button-submit').addClass('buttonchange');
+                                        }
+                                    }
                                 },
                                 "updateBranch": {
                                     "type": "radio",
@@ -612,7 +626,12 @@ class OneFileLoginApplication
                                     "disallowEmptySpaces": true,
                                     "disallowOnlyEmptySpaces": false,
                                     "removeDefaultNone": true,
-                                    "fields": {}
+                                    "fields": {},
+                                    "events": {
+                                        "change": function() {
+                                            $('.alpaca-form-button-submit').addClass('buttonchange');
+                                        }
+                                    }
                                 },
                                 "timezone": {
                                     "type": "select",
@@ -743,7 +762,12 @@ class OneFileLoginApplication
                                     "disallowEmptySpaces": true,
                                     "disallowOnlyEmptySpaces": false,
                                     "removeDefaultNone": true,
-                                    "fields": {}
+                                    "fields": {},
+                                    "events": {
+                                        "change": function() {
+                                            $('.alpaca-form-button-submit').addClass('buttonchange');
+                                        }
+                                    }
                                 },
                                 "timestandard": {
                                     "type": "radio",
@@ -764,7 +788,12 @@ class OneFileLoginApplication
                                     "disallowEmptySpaces": true,
                                     "disallowOnlyEmptySpaces": false,
                                     "removeDefaultNone": true,
-                                    "fields": {}
+                                    "fields": {},
+                                    "events": {
+                                        "change": function() {
+                                            $('.alpaca-form-button-submit').addClass('buttonchange');
+                                        }
+                                    }
                                 },
                                 "language": {
                                     "type": "text",
@@ -787,7 +816,12 @@ class OneFileLoginApplication
                                     "disallowOnlyEmptySpaces": false,
                                     "fields": {},
                                     "renderButtons": true,
-                                    "attributes": {}
+                                    "attributes": {},
+                                    "events": {
+                                        "change": function() {
+                                            $('.alpaca-form-button-submit').addClass('buttonchange');
+                                        }
+                                    }
                                 }
                             },
                             "form": {
@@ -807,14 +841,15 @@ class OneFileLoginApplication
                                                 url: 'post_receiver-user_preferences.php',
                                                 data: $('#preferencesettings').alpaca().getValue(),
                                                 success: function(data) {
-                                                    //alert(data);
-                                                    alert("settings saved!");
+                                                    alert("Settings saved!");
                                                     // setTimeout(location.reload.bind(location), 500)
                                                 },
                                                 error: function(errorThrown){
                                                     console.log(errorThrown);
+                                                    alert("Error submitting data.");
                                                 }
                                             });
+                                            $('.alpaca-form-button-submit').removeClass('buttonchange');
                                         }
                                     },
                                     "reset":{

@@ -28,14 +28,14 @@
 			},
 			"type": {
 				"type": "string",
+				"title": "Check Type:",
 				"enum": [
 					" Standard",
 					" Ping Only"
 				],
-				"title": "Check Type:",
-				"default": " Standard",
 				"required": true,
 				"pattern": {},
+				"default": " Standard",
 				"properties": {}
 			},
 			"checkurl": {

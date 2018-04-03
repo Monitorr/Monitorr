@@ -23,7 +23,7 @@
     // **  INSERT URL TO CHECK BELOW: ** //
 
 
-    $url = "https://google.com:443";
+    $url = "http://google.com:80";
 
 
     // **  INSERT URL TO CHECK ABOVE ** //
@@ -89,7 +89,10 @@
         if($auth=="1"){
             curl_setopt($handle, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
             curl_setopt($handle, CURLOPT_USERPWD, $creds);
-            echo "Authentication .... Enabled <br> <br />\n";
+            echo "Authentication .... Enabled <br>\n";
+            echo "Creds (first 5)....... ";
+            echo substr($creds, 0, 5); echo "---";
+                echo "<br><br>";
         };
 
         curl_setopt($handle, CURLOPT_FRESH_CONNECT, true);
@@ -224,10 +227,10 @@
             }
 
     echo "<br>";
-    echo "<b> //////////////// check END /////////////// </b> <br />\n";
+    echo "<b> //////////////// check END //////////////// </b> <br />\n";
 
 ?>
 
-<p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "../../assets/js/version/version.txt" );?> </a> </p>
+<p> <a href="https://github.com/monitorr/Monitorr" target="_blank">Monitorr </a> | <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../../assets/js/version/version.txt" );?> </a> </p>
 
 
