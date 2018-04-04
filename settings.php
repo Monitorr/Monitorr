@@ -104,7 +104,6 @@
 
         </style>
 
-
                 <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
             
             <?php 
@@ -227,22 +226,55 @@
 
         <script src="assets/js/clock.js" async></script>
 
-        <script type="text/javascript">
+        <script>
 
-            rfsysinfo =
-                <?php 
-                    $rfsysinfo = $jsonsite['rfsysinfo'];
-                    echo $rfsysinfo;
-                ?>
+             var nIntervId2;
+             var onload;
 
-            function statusCheck() {
-                $("#summary").load(document.URL +  ' #summary', function() {
-                    setTimeout(statusCheck, rfsysinfo);
-                });
-            };
-            statusCheck();
+            $(document).ready(function() {
 
-        </script> 
+                var current = -1;
+
+                function updateSummary() {
+
+                    rfsysinfo =
+                        <?php 
+                            $rfsysinfo = $jsonsite['rfsysinfo'];
+                            echo $rfsysinfo;
+                        ?>
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'assets/php/marquee.php',
+                        data: {
+                            current: current
+                        },
+                        
+                        timeout: 5000,
+                        success: function(data) {
+                            if(data){
+                                result = $.parseJSON(data);
+                                console.log(result);
+                                $("#summary").fadeOut(function() {
+                                $(this).html(result[0]).fadeIn();
+                                });
+                                current = result[1];
+                            }
+
+                            else {
+                                current = -1;
+                                $("#summary").hide();
+                            }
+
+                            window.setTimeout(updateSummary, rfsysinfo);
+                        }
+                    });
+                }
+
+                updateSummary();
+           });
+
+        </script>
 
          <script>
             $(function() {
@@ -252,7 +284,7 @@
 
     </head>
 
-    <body  onload="statusCheck()">
+    <body>
 
         <script>
             document.body.className += ' fade-out';
@@ -271,17 +303,7 @@
                 </div>
             </div>
 
-            <div id="summary">
-                <?php 
-                    foreach (glob("assets/data/logs/*.json") as $filename) {
-                    } 
-
-                    if(is_file($filename)){
-                        $filename2 = file_get_contents ($filename);
-                        echo ucfirst($filename2);
-                    }
-                ?>
-            </div>
+            <div id="summary"></div>
 
             <div id="left" class="Column">
                 <div id="clock">
@@ -322,6 +344,7 @@
                         </li>
 
                     </ul>
+                    
                 </nav>
 
             </div>
