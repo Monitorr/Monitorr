@@ -17,7 +17,6 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <!-- <link rel="apple-touch-icon" href="favicon.ico"> -->
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Monitorr">
@@ -166,7 +165,6 @@
             } 
 
             else {
-
                  
                 $datafile = 'assets/data/datadir.json';
 
@@ -216,7 +214,6 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
-                //$('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
@@ -235,7 +232,6 @@
                         clearInterval(nIntervId);
                     }
                 });
-                //$('#buttonStart :checkbox').attr('checked', 'checked').change();
             });
 
         </script>
@@ -281,8 +277,6 @@
                                     current = -1;
                                     $("#summary").hide();
                                 }
-
-                                //window.setTimeout(updateSummary, 5000);
                             }
                         });
                     }
@@ -293,10 +287,11 @@
                         clearInterval(nIntervId2);
                     }
                 });
+
                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
 
-                //updateSummary();
-           });
+            });
+
         </script>
 
 
@@ -366,7 +361,6 @@
             else {
             }
         ?>
-
 
         <div id="services" class="container">
 
