@@ -436,22 +436,6 @@
                                 
                                     $('#response').html("<font color='yellow'><b>Creating data directory...</b></font>");
                                     
-                                    // REMOVE:??  CHANGE ME //
-
-                                    // $.post({
-                                    //     url: './mkdirajax.php',
-                                    //     data: $(this).serialize(),
-                                    //     success: function(data){
-                                    //         console.log('response1: '+ data);
-                                    //         $('#response').html(data);
-                                    //         $('#userwrapper').load(document.URL +  ' #userwrapper');
-                                    //     }
-                                    // })
-
-                                    // .fail(function() {
-                                    //     alert( "Posting failed (ajax1)" );
-                                    // }); 
-
                                     var datadir = $("#datadir").val();
                                     console.log('submitted: '+ datadir);
                                     var url ="./mkdirajax.php";
@@ -483,21 +467,6 @@
                                 
                                     $('#response').html("<font color='yellow'><b>Creating user database...</b></font>");
                                     
-                                         // REMOVE?  CHANGE ME 
-
-                                    // $.post({
-                                    //     url: './mkdbajax.php',
-                                    //     data: $(this).serialize(),
-                                    //     success: function(data){
-                                    //         $('#response').html(data);
-                                    //         $('#userwrapper').load(document.URL +  ' #userwrapper');
-                                    //     }
-                                    // })
-
-                                    // .fail(function() {
-                                    //     alert( "Posting failed (ajax1)" );
-                                    // }); 
-
                                     var dbfile = $("#dbfile").val();
                                     console.log('submitted: '+ dbfile);
                                     var url ="./mkdbajax.php";
@@ -1020,7 +989,6 @@
                 </html>
                 
             <!--  END registration form -->
-
 
 <?php
 
