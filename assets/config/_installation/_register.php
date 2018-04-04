@@ -29,7 +29,7 @@
          * @var string define data directory path //
          */
 
-        // private $db_sqlite_path = "../data/users.db"; 
+        // private $db_sqlite_path = "../data/users.db";
 
 
         /**
@@ -67,7 +67,7 @@
             $this->datadir = $datadir;
 
                 $datafile = $datadir . 'users.db';
-                
+
                 $db_sqlite_path = $datafile;
 
 
@@ -309,7 +309,7 @@
             return false;
 
         }
-        
+
 
         /**
          * Creates a new user.
@@ -408,7 +408,7 @@
         {
             error_reporting(E_ALL);
 ?>
-         
+
             <!--  START registration form -->
 
                 <!DOCTYPE html>
@@ -433,24 +433,8 @@
                             $(document).ready(function(){
 
                                 $('#datadirbtn').click(function(){
-                                
+
                                     $('#response').html("<font color='yellow'><b>Creating data directory...</b></font>");
-                                    
-                                    // REMOVE:: ?? //
-
-                                    // $.post({
-                                    //     url: './mkdirajax.php',
-                                    //     data: $(this).serialize(),
-                                    //     success: function(data){
-                                    //         console.log('response1: '+ data);
-                                    //         $('#response').html(data);
-                                    //         $('#userwrapper').load(document.URL +  ' #userwrapper');
-                                    //     }
-                                    // })
-
-                                    // .fail(function() {
-                                    //     alert( "Posting failed (ajax1)" );
-                                    // }); 
 
                                     var datadir = $("#datadir").val();
                                     console.log('submitted: '+ datadir);
@@ -463,7 +447,7 @@
                                         $('#userwrapper').load(document.URL +  ' #userwrapper');
                                     })
 
-                                    .fail(function() { 
+                                    .fail(function() {
                                         alert( "Posting failed (ajax)" );
                                         console.log("Posting failed (ajax)");
                                     })
@@ -480,21 +464,8 @@
                             $(document).ready(function(){
 
                                 $('#dbbtn').click(function(){
-                                
-                                    $('#response').html("<font color='yellow'><b>Creating user database...</b></font>");
-                                    
-                                    // $.post({
-                                    //     url: './mkdbajax.php',
-                                    //     data: $(this).serialize(),
-                                    //     success: function(data){
-                                    //         $('#response').html(data);
-                                    //         $('#userwrapper').load(document.URL +  ' #userwrapper');
-                                    //     }
-                                    // })
 
-                                    // .fail(function() {
-                                    //     alert( "Posting failed (ajax1)" );
-                                    // }); 
+                                    $('#response').html("<font color='yellow'><b>Creating user database...</b></font>");
 
                                     var dbfile = $("#dbfile").val();
                                     console.log('submitted: '+ dbfile);
@@ -503,12 +474,12 @@
                                     $.post(url, { dbfile: dbfile }, function(data){
                                         // alert("Directory Created successfully");
                                         console.log('mkdbajax: '+ data);
-                                        $('#response').html(data); 
+                                        $('#response').html(data);
                                         $('#userwrapper').load(document.URL +  ' #userwrapper');
 
                                     })
 
-                                    .fail(function() { 
+                                    .fail(function() {
                                         alert( "Posting failed (ajax)" );
                                         console.log("Posting failed (ajax)");
                                     })
@@ -535,7 +506,7 @@
                             </div>
 
                             <div id="reginstructions">
-                            
+
                                 1-	Establish a data directory which will contain three json files with your custom settings, and a user database file. <br>
                                 2-	Create a data directory definition file in the Monitorr installation directory which defines where your data directory is established on the webserver. <br>
                                 3-	Copy the three default json settings files from the local Monitorr repository to the established data directory. <br>
@@ -547,7 +518,7 @@
                             </div>
                         </div>
 
-                        <?php 
+                        <?php
 
                             $datafile = '../../data/datadir.json';
                             $str = file_get_contents($datafile);
@@ -558,7 +529,7 @@
 
 
                             if (!is_file($datadirdetect)) {
-                                    
+
                         ?>
                                 <!--  START datadir create form -->
 
@@ -571,8 +542,8 @@
                                         </div>
                                             <br>
 
-                                        <?php 
-                                            
+                                        <?php
+
                                             $datafile = '../../data/datadir.json';
                                             $str = file_get_contents($datafile);
                                             $json = json_decode( $str, true);
@@ -583,13 +554,13 @@
 
                                                 echo '<div id="loginerror">';
                                                     echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
-                                                    
+
                                                 echo '</div>';
-                                            } 
+                                            }
 
                                             else {
                                             }
-                                        ?> 
+                                        ?>
 
                                         <form id="datadirform">
 
@@ -611,9 +582,9 @@
                                                 <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
                                         </div>
 
-                                        <div id="datadirnotes"> 
+                                        <div id="datadirnotes">
                                                 <i>
-                                            + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory. 
+                                            + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory.
                                                 <br>
                                             + Path value must include a trailing slash.
                                                 <br>
@@ -625,7 +596,7 @@
                                                 <br>
                                             Bad: wwwroot\datadir, ../datadir
                                                 </i>
-                                        </div> 
+                                        </div>
 
                                             <br>
 
@@ -634,7 +605,7 @@
                                     </div>
 
                                 <!--  END datadir create form -->
-            
+
                         <?php
 
                             }
@@ -647,13 +618,13 @@
                         ?>
                                     <!--  START  db create form -->
 
-                                       
+
                                         <div id="dbcreatewrapper">
 
                                             <hr><br>
 
-                                            <?php 
-                                                
+                                            <?php
+
                                                 $datafile = '../../data/datadir.json';
 
                                                 $file = '../../data/datadir.json';
@@ -668,24 +639,24 @@
                                                         echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> An existing data directory is detected at: '; echo $datadir; echo ' <br> By clicking "create" below, a user database will be created in the data directory specified below while leaving the JSON setting files in tact. <br> After the user database is created you will be able to create a user, log in, and edit the Monitorr settings. <br>';
                                                             echo '<br>';
                                                     echo '</div>';
-                                                } 
+                                                }
 
                                                 else {
 
                                                 }
-                                            ?> 
+                                            ?>
 
                                             <form id="dbform">
 
                                                 <div>
                                                     <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required readonly> 
+                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required readonly>
                                                 </div>
 
                                                         <br>
 
                                                 <div>
-                                                    <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />  
+                                                    <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />
                                                 </div>
 
                                             </form>
@@ -706,11 +677,11 @@
                         ?>
                                     <!--  START multi form -->
 
-                                        <div id="multiform"> 
+                                        <div id="multiform">
 
-                                            <div id="multiwarning">                            
-                                        
-                                                <?php 
+                                            <div id="multiwarning">
+
+                                                <?php
                                                     
                                                     $datafile = '../../data/datadir.json';
 
@@ -723,12 +694,12 @@
                                                         $datadir = $json['datadir'];
 
                                                             echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
-                                                            
-                                                    } 
+
+                                                    }
 
                                                     else {
                                                     }
-                                                ?> 
+                                                ?>
 
                                             </div>
 
@@ -775,9 +746,9 @@
                                                                     <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
                                                             </div>
 
-                                                            <div id="datadirnotes"> 
+                                                            <div id="datadirnotes">
                                                                     <i>
-                                                                + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory. 
+                                                                + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory.
                                                                     <br>
                                                                 + Path value must include a trailing slash.
                                                                     <br>
@@ -789,21 +760,21 @@
                                                                     <br>
                                                                 Bad: wwwroot\datadir, ../datadir
                                                                     </i>
-                                                            </div> 
+                                                            </div>
 
                                                         </div>
 
                                                     </td>
 
                                                     <td>
-                                                        
+
                                                         <div id="dbcreatewrappermulti">
 
                                                             <form id="dbform">
 
                                                                 <div>
                                                                     <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfilemulti' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required> 
+                                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfilemulti' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required>
                                                                     <!-- <?php echo  $datadir = $json['datadir']; ?> -->
                                                                         <br>
                                                                     <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current data directory path is: " . $datadir = $json['datadir'];  ?> </i>
@@ -813,13 +784,13 @@
                                                                 </div>
                                                                         <br>
                                                                 <div>
-                                                                    <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />  
+                                                                    <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />
                                                                 </div>
 
                                                             </form>
 
-                                                            <?php 
-                                                                
+                                                            <?php
+
                                                                 $datafile = '../../data/datadir.json';
 
                                                                 if(is_file($datafile)){
@@ -847,12 +818,12 @@
                                                                             echo '+ After the new user database is created, you will be prompted to create new user credentials.';
                                                                                 echo "<br>";
                                                                         echo "</div> ";
-                                                                } 
+                                                                }
 
                                                                 else {
 
                                                                 }
-                                                            ?> 
+                                                            ?>
 
                                                                 <br>
                                                         </div>
@@ -867,20 +838,20 @@
 
                                     <!--  END multi form-->
 
-                         <?php           
+                         <?php
 
                                 }
                             }
 
                         ?>
-                        
-                        <!--  START create user form --> 
-                        
+
+                        <!--  START create user form -->
+
                             <div id="userwrapper">
 
                                 <?php
 
-                                    //Create user: 
+                                    //Create user:
 
                                     $datafile = '../../data/datadir.json';
                                     $str = file_get_contents($datafile);
@@ -917,7 +888,7 @@
                                                         echo "<td><i class='fa fa-fw fa-key'> </i> <input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder=' Password' title='Enter a password' /></td>";
                                                         echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder=" Repeat password" title="Repeat password" /><i> Minimum 6 characters </i></td>';
                                                     echo ' </tr>';
-                                                    
+
                                                 echo ' </tbody>';
 
                                             echo '</table>';
@@ -955,8 +926,8 @@
                                                 echo '<br>';
                                             echo ' + If credentials need to be changed or reset, rename the file in your data directory '; echo $this->db_sqlite_path ;  echo ' to "users.old". Once that file is renamed, browse to this page again to recreate desired credentials. </i> ';
                                         echo ' </div>';
-                                        
-                                    } 
+
+                                    }
 
                                     else {
                                     }
@@ -964,19 +935,19 @@
                                 ?>
 
                             </div>
-                        <!--  END create user form --> 
+                        <!--  END create user form -->
 
                         <!-- reginfo: -->
                             <?php
 
                                 echo '<div id="reginfo">';
-                                            
+
                                         echo "<hr>";
 
                                     echo "Current working directiory: ";
-                                        echo "<br>"; 
+                                        echo "<br>";
 
-                                    echo getcwd() . "\n"; 
+                                    echo getcwd() . "\n";
                                         echo "<br>";
 
                                         if (!is_dir($this->datadir)) {
@@ -1016,9 +987,8 @@
                     </body>
 
                 </html>
-                
-            <!--  END registration form -->
 
+            <!--  END registration form -->
 
 <?php
 
@@ -1042,10 +1012,10 @@
         <link type="text/css" href="../../css/main.css" rel="stylesheet">
         <script src="../../js/jquery.min.js"></script>
         <script src="../../js/formValidation.js"></script>
-        
+
         <style type="text/css">
 
-            body { 
+            body {
                 color: white;
                 font-size: 1rem;
             }
@@ -1067,13 +1037,13 @@
                 -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                 box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                 background-color: #8E8B8B;
-            } 
+            }
 
-            .wrapper { 
+            .wrapper {
                 margin-top: 5%;
                 margin-left: auto;
                 margin-right: auto;
-                padding: 1rem; 
+                padding: 1rem;
             }
 
             #loginerror {
@@ -1081,11 +1051,11 @@
                 width: 75%;
             }
 
-            .navbar-brand { 
+            .navbar-brand {
                 cursor: default;
             }
 
-            tbody { 
+            tbody {
                 cursor: default;
             }
 

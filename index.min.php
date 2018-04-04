@@ -17,7 +17,6 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <!-- <link rel="apple-touch-icon" href="favicon.ico"> -->
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Monitorr">
@@ -124,7 +123,7 @@
 
             <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
 
-            <?php 
+            <?php
 
                 $oldfile = 'assets/config/datadir.json';
                 $newfile = 'assets/data/datadir.json';
@@ -138,21 +137,21 @@
                     else {
                         rename($oldfile, 'assets/config/datadir.json.old');
                     }
-                } 
+                }
 
                 else {
                 }
             ?>
 
 
-        <?php 
-         
+        <?php
+
             $datafile = 'assets/data/datadir.json';
             $str = file_get_contents($datafile);
             $json = json_decode( $str, true);
             $datadir = $json['datadir'];
             $jsonfileuserdata = $datadir . 'user_preferences-data.json';
-            
+
             if(!is_file($jsonfileuserdata)){
 
                 $path = "assets/";
@@ -162,12 +161,11 @@
                 $title = $jsonusers['sitetitle'];
 
                 $rftime = $jsonsite['rftime'];
-                
-            } 
+
+            }
 
             else {
 
-                 
                 $datafile = 'assets/data/datadir.json';
 
                 include_once ('assets/config/monitorr-data.php');
@@ -176,7 +174,7 @@
 
             }
 
-        ?> 
+        ?>
 
         <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
 
@@ -189,7 +187,7 @@
                 function update() {
 
                     rftime =
-                        <?php 
+                        <?php
                             $rftime = $jsonsite['rftime'];
                             echo $rftime;
                         ?>
@@ -199,7 +197,7 @@
                     url: 'assets/php/timestamp.php',
                     timeout: 5000,
                     success: function(data) {
-                        $("#timer").html(data); 
+                        $("#timer").html(data);
                         window.setTimeout(update, rftime);
                         }
                     });
@@ -216,14 +214,13 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
-                //$('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
 
                     rfsysinfo =
-                        <?php 
+                        <?php
                             $rfsysinfo = $jsonsite['rfsysinfo'];
                             echo $rfsysinfo;
                         ?>
@@ -235,11 +232,9 @@
                         clearInterval(nIntervId);
                     }
                 });
-                //$('#buttonStart :checkbox').attr('checked', 'checked').change();
             });
 
         </script>
-
 
         <script>
 
@@ -250,14 +245,12 @@
 
                 $(":checkbox").change(function () {
 
-
-                    //var nIntervId2;
                     var current = -1;
 
                     function updateSummary() {
 
                         rfsysinfo =
-                            <?php 
+                            <?php
                                 $rfsysinfo = $jsonsite['rfsysinfo'];
                                 echo $rfsysinfo;
                             ?>
@@ -268,7 +261,7 @@
                             data: {
                                 current: current
                             },
-                            
+
                             timeout: 5000,
                             success: function(data) {
                                 if(data){
@@ -284,8 +277,6 @@
                                     current = -1;
                                     $("#summary").hide();
                                 }
-
-                                //window.setTimeout(updateSummary, 5000);
                             }
                         });
                     }
@@ -296,10 +287,11 @@
                         clearInterval(nIntervId2);
                     }
                 });
-                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
 
-                //updateSummary();
-           });
+                $('#buttonStart :checkbox').attr('checked', 'checked').change();
+
+            });
+
         </script>
 
 
@@ -369,7 +361,6 @@
             else {
             }
         ?>
-
 
         <div id="services" class="container">
 

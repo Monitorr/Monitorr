@@ -21,7 +21,7 @@
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
-        
+
         <script type="text/javascript" src="assets/js/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/pace.js" async></script>
         <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
@@ -53,7 +53,7 @@
                 line-height: 1.5rem;
             }
 
-            legend { 
+            legend {
                 color: white;
             }
 
@@ -74,7 +74,7 @@
                 -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                 box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                 background-color: #8E8B8B;
-            } 
+            }
 
             body.offline #link-bar {
                 display: none;
@@ -100,14 +100,13 @@
 
             a:link{
                 background-color: transparent !important;
-            } 
+            }
 
         </style>
 
-
                 <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
-            
-            <?php 
+
+            <?php
 
                 $oldfile = 'assets/config/datadir.json';
                 $newfile = 'assets/data/datadir.json';
@@ -121,21 +120,21 @@
                     else {
                         rename($oldfile, 'assets/config/datadir.json.old');
                     }
-                } 
+                }
 
                 else {
 
                 }
             ?>
 
-        <?php 
+        <?php
 
             $datafile = 'assets/data/datadir.json';
             $str = file_get_contents($datafile);
             $json = json_decode( $str, true);
             $datadir = $json['datadir'];
             $jsonfileuserdata = $datadir . 'user_preferences-data.json';
-            
+
             if(!is_file($jsonfileuserdata)){
 
                 $path = "assets/";
@@ -147,7 +146,7 @@
                 $rftime = $jsonsite['rftime'];
 
                 $timezone = $jsonusers['timezone'];
-            } 
+            }
 
             else {
 
@@ -160,18 +159,18 @@
                 $rftime = $jsonsite['rftime'];
             }
 
-        ?> 
+        ?>
 
-        <?php 
+        <?php
 
             $datafile = $datadir . 'users.db';
-            
+
             $db_sqlite_path = $datafile;
 
         ?>
 
         <title>
-            <?php 
+            <?php
                 echo $title . PHP_EOL;
             ?>
             | Settings
@@ -185,7 +184,7 @@
                 function update() {
 
                     rftime =
-                        <?php 
+                        <?php
                             $rftime = $jsonsite['rftime'];
                             echo $rftime;
                         ?>
@@ -195,26 +194,26 @@
                     url: 'assets/php/timestamp.php',
                     timeout: 5000,
                     success: function(data) {
-                        $("#timer").html(data); 
+                        $("#timer").html(data);
                         window.setTimeout(update, rftime);
                         }
                     });
                 }
                 update();
             });
-            
+
         </script>
-        
+
         <script>
 
-            $timezone = 
-                "<?php 
+            $timezone =
+                "<?php
                     $timezone = $jsonusers['timezone'];
                     echo $timezone;
                 ?>";
 
             <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
-            
+
             $servertimezone = "<?php echo "$timezone"; ?>";
 
             $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
@@ -222,27 +221,60 @@
             var servertimezone = $servertimezone;
 
             var servertime = $dt;
-                    
+
         </script>
 
         <script src="assets/js/clock.js" async></script>
 
-        <script type="text/javascript">
+        <script>
 
-            rfsysinfo =
-                <?php 
-                    $rfsysinfo = $jsonsite['rfsysinfo'];
-                    echo $rfsysinfo;
-                ?>
+             var nIntervId2;
+             var onload;
 
-            function statusCheck() {
-                $("#summary").load(document.URL +  ' #summary', function() {
-                    setTimeout(statusCheck, rfsysinfo);
-                });
-            };
-            statusCheck();
+            $(document).ready(function() {
 
-        </script> 
+                var current = -1;
+
+                function updateSummary() {
+
+                    rfsysinfo =
+                        <?php
+                            $rfsysinfo = $jsonsite['rfsysinfo'];
+                            echo $rfsysinfo;
+                        ?>
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'assets/php/marquee.php',
+                        data: {
+                            current: current
+                        },
+
+                        timeout: 5000,
+                        success: function(data) {
+                            if(data){
+                                result = $.parseJSON(data);
+                                console.log(result);
+                                $("#summary").fadeOut(function() {
+                                $(this).html(result[0]).fadeIn();
+                                });
+                                current = result[1];
+                            }
+
+                            else {
+                                current = -1;
+                                $("#summary").hide();
+                            }
+
+                            window.setTimeout(updateSummary, rfsysinfo);
+                        }
+                    });
+                }
+
+                updateSummary();
+           });
+
+        </script>
 
          <script>
             $(function() {
@@ -252,11 +284,11 @@
 
     </head>
 
-    <body  onload="statusCheck()">
+    <body>
 
         <script>
             document.body.className += ' fade-out';
-            $(function() { 
+            $(function() {
                 $('body').removeClass('fade-out'); 
             });
         </script>
@@ -271,17 +303,7 @@
                 </div>
             </div>
 
-            <div id="summary">
-                <?php 
-                    foreach (glob("assets/data/logs/*.json") as $filename) {
-                    } 
-
-                    if(is_file($filename)){
-                        $filename2 = file_get_contents ($filename);
-                        echo ucfirst($filename2);
-                    }
-                ?>
-            </div>
+            <div id="summary"></div>
 
             <div id="left" class="Column">
                 <div id="clock">
@@ -294,21 +316,21 @@
 
                 <!-- Sidebar -->
                 <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-                        
+
                     <div class="settingstitle">
                         Settings
-                    </div>   
-                
+                    </div>
+
                     <ul class="nav sidebar-nav">
 
                         <li>
-                            <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-info"></i> Info </a> 
+                            <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-info"></i> Info </a>
                         </li>
                         <li>
-                            <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a> 
+                            <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a>
                         </li>
                         <li>
-                            <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a> 
+                            <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a>
                         </li>
                         <li>
                             <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
@@ -322,6 +344,7 @@
                         </li>
 
                     </ul>
+
                 </nav>
 
             </div>
@@ -329,14 +352,14 @@
             <div id="version" >
 
                 <script src="assets/js/update_auto.js" async></script>
-            
+
                 <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
-                            
+
                 <div id="version_check_auto"></div>
 
                 <div id="reginfo" >
 
-                    <?php 
+                    <?php
 
                         if (!is_dir($datadir)) {
                             echo "Data directory NOT present.";
@@ -365,7 +388,7 @@
                     ?>
 
                 </div>
-                
+
             </div>
 
         </div>
