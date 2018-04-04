@@ -8,11 +8,11 @@
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) [DOCKER]
 
-
 [![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
 
 **NOTICE** (18 MARCH 2018): If you are updating to any version prior to 1.0 updating via the UI by clicking on “check for update” in the footer MAY FAIL. It is recommended to clone a new copy of this repo starting with version 1.0.  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for further explanation.
+
 
 ## Features:
 
