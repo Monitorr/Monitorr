@@ -7,10 +7,10 @@ $(document).ready(function(){
 		var info = "uid="+uid+"&vcheck=1";
 		$.ajax({
 		   beforeSend: function(){
-			   $('#version_check').html('<img src="assets/img/loader.gif" width="16" height="16" />');
+			   $('#version_check').html('<img src="../img/loader.gif" width="16" height="16" />');
 		   },
 		   type: "POST",
-		   url: "assets/php/version_check.php",
+		   url: "version_check.php",
 		   data: info,
 		   dataType: "json",
 		   success: function(data){
@@ -21,10 +21,10 @@ $(document).ready(function(){
 				   var uInfo = "uid="+uid+"&version="+data.version
 			    	$.ajax({
 					   beforeSend: function(){
-						   $('#version_check').html('<img src="assets/img/loader.gif" width="16" height="16" />');
+						   $('#version_check').html('<img src="../img/loader.gif" width="16" height="16" />');
 					   },
 					   type: "POST",
-					   url: "assets/php/update-functions.php",
+					   url: "../php/update-functions.php",
 					   data: uInfo,
 					   dataType: "json",
 					   success: function(data){
@@ -34,31 +34,32 @@ $(document).ready(function(){
 							       // clear loading information
 						   		   $('#version_check').html("");
 							       // successful update
-									$('#version_check').html("<strong> Update Successful! <br> Reloading Monitorr in 5 seconds... <strong>");
-									setTimeout(location.reload.bind(location), 5000);
+									$('#version_check').html('<strong> <font color="yellow"> Update Successful! <br> Reloading Monitorr in 10 seconds... </font> <strong>');
+									//setTimeout(location.reload.bind(location), 13000);
+									setTimeout(function () { window.top.location = "../../settings.php" }, 13000);
 							   }else{
 								   // error during update/unzip   
-									$('#version_check').html("<strong> An error occured while extracting the files. </strong>");
+									$('#version_check').html('<strong> <font color="red"> An error occured while extracting the files. </font> </strong>');
 							   }
                            } else {
-								$('#version_check').html("<strong> An error occured while copying the files. </strong>");
+								$('#version_check').html('<strong> <font color="red"> An error occured while copying the files. </font> </strong>');
                            }
 					   },
 					   error: function() {
 						   // error
-						   $('#version_check').html('<strong> An error occured while updating your files. </strong>');
+						   $('#version_check').html('<strong><font color="red"> An error occured while updating your files. </font></strong>');
 					   }
 					});
 			   }else{
 				    // user has the latest version already installed
 					$('#version_check').html("");
-					$('#version_check').html('<strong> You have the latest version. <br> Reloading Monitorr in 5 seconds... </strong>');
-				   	setTimeout(location.reload.bind(location), 5000);   
+					$('#version_check').html('<strong> <font color="yellow">  You have the latest version </font></strong>');
+				   		//setTimeout(function () { window.top.location = "../../settings.php" }, 5000);
 			   }
 		   },
 		   error: function() {
 			   // error
-			   $('#version_check').html('<strong> An error occured while checking your Monitorr version. </strong>');
+			   $('#version_check').html('<strong> <font color="red"> An error occured while checking your Monitorr version. </font></strong>');
 		   }
 		});
 	});

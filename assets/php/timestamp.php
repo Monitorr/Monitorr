@@ -1,48 +1,58 @@
-<?php // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
-include_once '../config.php';
+<?php 
 
+    // adapted from this website: https://bojanz.wordpress.com/2014/03/11/detecting-the-system-timezone-php/
 
-if (!empty($config['timezone'])) {
-    $timezone = $config['timezone']; // set in config.php
-}
-$timestandard = strtolower($config['timestandard']); // set in config.php
-if (is_link('/etc/localtime')) {
-    // Mac OS X (and older Linuxes)
-    // /etc/localtime is a symlink to the
-    // timezone in /usr/share/zoneinfo.
-    $filename = readlink('/etc/localtime');
-    if (strpos($filename, '/usr/share/zoneinfo/') === 0) {
-        $timezone = substr($filename, 20);
-    }
-} elseif (file_exists('/etc/timezone')) {
-    // Ubuntu / Debian.
-    $data = file_get_contents('/etc/timezone');
-    if ($data) {
-        $timezone = $data;
-    }
-} elseif (file_exists('/etc/sysconfig/clock')) {
-    // RHEL / CentOS
-    $data = parse_ini_file('/etc/sysconfig/clock');
-    if (!empty($data['ZONE'])) {
-        $timezone = $data['ZONE'];
-    }
-}
+        $datafile = '../data/datadir.json';
+        $str = file_get_contents($datafile);
+        $json = json_decode( $str, true);
+        $datadir = $json['datadir'];
+        $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+        if(!is_file($jsonfileuserdata)){
+
+            $path = "../";
+
+            include_once ('../config/monitorr-data-default.php');
+            
+            $timezone = $jsonusers['timezone'];
+           // echo $timezone;
+
+            $timestandard = $jsonusers['timestandard'];
+            // echo $timestandard;
+        
+        } 
+
+        else {
+
+            $datafile = '../data/datadir.json';
+
+            include_once ('../config/monitorr-data.php');
+
+            $timezone = $jsonusers['timezone'];
+            //echo $timezone;
+
+            $timestandard = $jsonusers['timestandard'];
+            //echo $timestandard;
+
+        }
+
     date_default_timezone_set($timezone);
     $timestamp = time();
     $server_date = date("D | d M <br> Y");
+
 ?>
 
-<div class="dtg"><strong>
-    
-    <?php
+    <div class="dtg">
+
+<?php
     if ($timestandard=='True') {
-        $msg = date("h:i:sa T");
+        $msg = date("g:i:s A");
         echo $msg;
     } elseif ($timestandard=='true') {
-        $msg = date("h:i:sa T");
+        $msg = date("g:i:s A");
         echo $msg;
     } elseif ($timestandard=='t') {
-        $msg = date("h:i:sa T");
+        $msg = date("g:i:s A");
         echo $msg;
     } elseif ($timestandard=='False') {
         $msg = date("H:i:s T");
@@ -54,12 +64,12 @@ if (is_link('/etc/localtime')) {
         $msg = date("H:i:s T");
         echo $msg;
     }
-        ?>
-        
-</strong></div>
+?>
+
+</div>
 
     <div id="line">__________</div>
 
-
-<?php echo "$server_date"?>
-
+<div class="date">
+    <?php echo "$server_date"?>
+</div>
