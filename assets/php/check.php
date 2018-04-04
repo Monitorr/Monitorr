@@ -20,13 +20,16 @@
 
     function url_to_domain($url) {
 
+        global $v1;
+        global $v2;
+
         $host = parse_url($url, PHP_URL_HOST);
         $port = parse_url($url, PHP_URL_PORT);
         $path = parse_url($url, PHP_URL_PATH);
 
             if (!$host)
 
-                echo "<b> ////// Invalid URL in config.php : $url ////// </b> <br />\n";
+                echo "<br> ////// <b> Invalid URL in Service Settings : </b>" . $v2['serviceTitle'] . $url . " //////";
 
                 // $host = $url;
 
@@ -41,8 +44,8 @@
 
     function urlExists($url) {
         
-        global $t;
-        global $k;
+        global $v1;
+        global $v2;
 
         $handle = curl_init($url);
 
@@ -69,16 +72,14 @@
                 //echo ONLINE;
 
                 echo '<div class="col-lg-4">';
-                    echo '<a class="servicetile" href="'. $k['link'] .'" target="_blank" style="display: block">';
+                    echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
                 
                         echo '<div id="serviceimg">';
-                            echo '<div><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:5.5rem" alt=' . strtolower($t) . '></div>';
+                            echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                         echo '</div>';
                         
                         echo '<div id="servicetitle">';
-                           // echo '<div class="servicetext">';
-                                echo '<div>'. ucfirst($t) .'</div>';
-                            // echo '</div>';
+                            echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                         echo '</div>'; 
 
                         echo '<div class="btnonline">Online</div>';
@@ -88,8 +89,16 @@
                 
                 curl_close($handle);
 
-            } 
+                // Remove .json file from /assets/logs dir when service comes back online
 
+                $servicefile = ($v2['serviceTitle']).'.offline.json';                    
+                $fileoffline = '../data/logs/'.$servicefile;
+
+                if(is_file($fileoffline)){
+                    rename($fileoffline, '../data/logs/offline.json.old');
+                } 
+
+            } 
 
             else {
 
@@ -110,36 +119,42 @@
                             echo '<div class="servicetileoffline">';
 
                                 echo '<div id="serviceimg">';
-                                    echo '<div class="offline"><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:5.5rem" alt=' . strtolower($t) . '></div>';
+                                    echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                 echo '</div>';
                                 
-                                echo '<a id="servicetitleoffline" href="'. $k['link'] .'" target="_blank" style="display: block">';
-                                    echo '<div>'. ucfirst($t) .'</div>';
+                                echo '<a id="servicetitleoffline" href="'. $v2['checkurl'] .'" target="_blank" style="display: block">';
+                                    echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                                 echo '</a>';
                                 
                                 echo '<div class="btnoffline">Offline</div>';
 
                             echo '</div>';
-
                         echo '</div>';
-                        
-                    } 
+                    
+
+                        $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
+                        $today = date("H:i:s");
+
+                        if(!is_file($servicefile)){
+                            $fp = fopen($servicefile, 'w');
+                                fwrite($fp, $v2['serviceTitle'] . " is OFFLINE as of " . $today);
+                            fclose($fp);
+                        } 
+                    }
                     
                     else {
                             
                         //echo UNRESPONSIVE;
 
                         echo '<div class="col-lg-4">';
-                            echo '<a class="servicetile" href="'. $k['link'] .'" target="_blank" style="display: block">';
+                            echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
                         
                                 echo '<div id="serviceimg">';
-                                    echo '<div><img id="'. strtolower($t) .'-service-img" src="assets/img/'. strtolower($k['image']) .'" style="height:5.5rem" alt=' . strtolower($t) . '></div>';
+                                    echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                 echo '</div>';
                                 
                                 echo '<div id="servicetitle">';
-                                    //echo '<div class="servicetext">';
-                                        echo '<div>'. ucfirst($t) .'</div>';
-                                    //echo '</div>';
+                                        echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                                 echo '</div>'; 
 
                                 echo '<div class="btunknown">Unresponsive</div>';
@@ -147,10 +162,92 @@
                             echo '</a>'; 
                         echo '</div>'; 
 
-                        fclose($fp);
+                            $servicefile = ($v2['serviceTitle']).'.offline.json';                    
+                            $fileoffline = '../data/logs/'.$servicefile;
 
+                            if(is_file($fileoffline)){
+                                rename($fileoffline, '../data/logs/offline.json.old');
+                            } 
+
+                        fclose($fp);
                     }
+            }
+    }
+
+    function ping($url) {
+        
+        global $v1;
+        global $v2;
+
+        $fp = fsockopen(url_to_domain($url), $timeout = 5);
+
+            stream_context_set_default( [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                ],
+            ]);
+
+            if (!$fp) {
+
+                //echo OFFLINE;
+
+                echo '<div class="col-lg-4" style="cursor: default">';
+                    echo '<div class="servicetileoffline" style="display: default">';
+
+                        echo '<div id="serviceimg" style="display: default">';
+                            echo '<div class="offline" style="cursor: default" ><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                        echo '</div>';
+                        
+                        echo '<div id="servicetitleoffline" style="cursor: default">';
+                            echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
+                        echo '</div>';
+                        
+                        echo '<div class="btnoffline" style="cursor: default">Offline</div>';
+
+                    echo '</div>';
+
+                echo '</div>';
+
+                    $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
+                    $today = date("H:i:s");
+
+                    if(!is_file($servicefile)){
+                        $fp = fopen($servicefile, 'w');
+                            fwrite($fp, $v2['serviceTitle'] . " is OFFLINE as of " . $today);
+                        fclose($fp);
+                    }
+            } 
+            
+            else {
+                    
+                //echo ONLINE;
+
+                echo '<div class="col-lg-4">';
+                    echo '<div class="servicetileping" style="display: block; cursor: default">';
                 
+                        echo '<div id="serviceimg">';
+                            echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                        echo '</div>';
+                        
+                        echo '<div id="servicetitleping" style="cursor: default">';
+                                echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
+                        echo '</div>'; 
+
+                        echo '<div class="btnonline">Online</div>';
+                        
+                    echo '</div>'; 
+                echo '</div>';
+
+                $servicefile = ($v2['serviceTitle']).'.offline.json';                    
+                $fileoffline = '../data/logs/'.$servicefile;
+
+                if(is_file($fileoffline)){
+                    rename($fileoffline, '../data/logs/offline.json.old');
+                } 
+
+                fclose($fp);
+
             }
     };
 

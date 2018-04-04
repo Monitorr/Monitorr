@@ -1,8 +1,10 @@
 <?php
 
-  echo "<b> //////////////// MONITORR /////////////// </b> <br />\n";
-  echo "<br>"; 
+    echo "<b> //////////////// MONITORR /////////////// </b> <br />\n";
+    echo "<b> <a href='https://github.com/monitorr/Monitorr' target='_blank'> https://github.com/monitorr/Monitorr </a> </b> <br />\n";
 
+    echo "<br>"; 
+    
     echo "Usage: <br />\n"; 
     echo "- This script uses a PING (pfsockopen) function to check if the port is OPEN at given URL <br />\n";
     
@@ -93,4 +95,4 @@
 
 ?>
 
-<p> <a href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> // <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "../../assets/js/version/version.txt" );?> </a> </p>
+<p> <a href="https://github.com/monitorr/Monitorr" target="_blank">Monitorr </a> | <a href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../../assets/js/version/version.txt" );?> </a> </p>

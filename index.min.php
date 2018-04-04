@@ -1,25 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
     <!--
-    __  __             _ _                  
-    |  \/  |           (_) |                 
-    | \  / | ___  _ __  _| |_ ___  _ __ _ __ 
+    __  __             _ _
+    |  \/  |           (_) |
+    | \  / | ___  _ __  _| |_ ___  _ __ _ __
     | |\/| |/ _ \| '_ \| | __/ _ \| '__| '__|
-    | |  | | (_) | | | | | || (_) | |  | |   
-    |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|  
+    | |  | | (_) | | | | | || (_) | |  | |
+    |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|
             made for the community
-    by @seanvree, @wjbeckett, and @jonfinley 
-    https://github.com/Monitorr/Monitorr 
-    --> 
-
+    by @seanvree, @wjbeckett, and @jonfinley
+    https://github.com/Monitorr/Monitorr
+    -->
 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <!-- <link rel="apple-touch-icon" href="favicon.ico"> -->
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Monitorr">
@@ -31,9 +28,6 @@
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Fonts from Google Fonts -->
-        <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
-
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
 
@@ -43,6 +37,12 @@
                 margin-bottom: 1vw;
                 overflow: scroll;
                 overflow-x: hidden;
+            }
+
+            #summary {
+                margin-top: -.2rem !important;
+                z-index: 1000;
+                font-size: .8rem;
             }
 
             :root {
@@ -76,13 +76,13 @@
 
             #center {
                 position: absolute !important;
-                 height: 5rem;
+                height: 5rem;
                 width: 100% !important;
                 max-width: 40rem;
                 left: 51% !important;
                 padding-top: 1rem;
-                background-color: #1F1F1f; 
-                box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F; 
+                background-color: #1F1F1f;
+                box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F;
             }
 
             #stats {
@@ -92,21 +92,21 @@
                 box-sizing: content-box;
                 height: 2em !important;
                 width: 40em !important;
-
             }
 
             #uptime {
-                    width: auto !important;
-                    padding-bottom: .5rem !important;
+                width: auto !important;
+                padding-bottom: .5rem !important;
             }
 
             #ping {
 
-                    padding-top: .5rem !important;
+                padding-top: .5rem !important;
             }
 
             #services {
                 width: 100% !important;
+                margin-bottom: 4rem;
             }
 
             #slider {
@@ -117,22 +117,67 @@
                 padding-top: .50rem !important;
                 padding-bottom: .50rem !important;
             }
-            
+
         </style>
 
-        <?php $file = 'assets/config.php';
-            //Use the function is_file to check if the config file already exists or not.
-            if(!is_file($file)){
-                copy('assets/config.php.sample', $file);
-            } 
+
+            <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
+
+            <?php
+
+                $oldfile = 'assets/config/datadir.json';
+                $newfile = 'assets/data/datadir.json';
+
+                if(!is_file($newfile)){
+
+                    if (!copy($oldfile, $newfile)) {
+                        // echo "failed to copy $oldfile...\n";
+                    }
+
+                    else {
+                        rename($oldfile, 'assets/config/datadir.json.old');
+                    }
+                }
+
+                else {
+                }
+            ?>
+
+
+        <?php
+
+            $datafile = 'assets/data/datadir.json';
+            $str = file_get_contents($datafile);
+            $json = json_decode( $str, true);
+            $datadir = $json['datadir'];
+            $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+            if(!is_file($jsonfileuserdata)){
+
+                $path = "assets/";
+
+                include_once ('assets/config/monitorr-data-default.php');
+
+                $title = $jsonusers['sitetitle'];
+
+                $rftime = $jsonsite['rftime'];
+
+            }
+
+            else {
+
+                $datafile = 'assets/data/datadir.json';
+
+                include_once ('assets/config/monitorr-data.php');
+
+                $title = $jsonusers['sitetitle'];
+
+            }
+
         ?>
 
-        <?php include ('assets/config.php'); ?>
-        <?php include ('assets/php/check.php') ;?>
-        <?php include ('assets/php/gitinfo.php'); ?>
+        <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
 
-        <title><?php echo $config['title']; ?></title>
-        
         <script src="assets/js/jquery.min.js"></script>
 
         <script src="assets/js/pace.js" async></script>
@@ -140,15 +185,22 @@
         <script>
             $(document).ready(function() {
                 function update() {
-                $.ajax({
-                type: 'POST',
-                url: 'assets/php/timestamp.php',
-                timeout: 5000,
-                success: function(data) {
-                    $("#timer").html(data); 
-                    window.setTimeout(update, 10000);
-                    }
-                });
+
+                    rftime =
+                        <?php
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/timestamp.php',
+                    timeout: 5000,
+                    success: function(data) {
+                        $("#timer").html(data);
+                        window.setTimeout(update, rftime);
+                        }
+                    });
                 }
                 update();
             });
@@ -166,16 +218,82 @@
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
+
+                    rfsysinfo =
+                        <?php
+                            $rfsysinfo = $jsonsite['rfsysinfo'];
+                            echo $rfsysinfo;
+                        ?>
+
+
                     if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
+                        nIntervId = setInterval(statusCheck, rfsysinfo);
                     } else {
                         clearInterval(nIntervId);
                     }
                 });
-                $('#buttonStart :checkbox').attr('checked', 'checked').change();
             });
 
-        </script> 
+        </script>
+
+        <script>
+
+             var nIntervId2;
+             var onload;
+
+            $(document).ready(function() {
+
+                $(":checkbox").change(function () {
+
+                    var current = -1;
+
+                    function updateSummary() {
+
+                        rfsysinfo =
+                            <?php
+                                $rfsysinfo = $jsonsite['rfsysinfo'];
+                                echo $rfsysinfo;
+                            ?>
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'assets/php/marquee.php',
+                            data: {
+                                current: current
+                            },
+
+                            timeout: 5000,
+                            success: function(data) {
+                                if(data){
+                                    result = $.parseJSON(data);
+                                    console.log(result);
+                                    $("#summary").fadeOut(function() {
+                                    $(this).html(result[0]).fadeIn();
+                                    });
+                                    current = result[1];
+                                }
+
+                                else {
+                                    current = -1;
+                                    $("#summary").hide();
+                                }
+                            }
+                        });
+                    }
+
+                    if ($(this).is(':checked')) {
+                        nIntervId2 = setInterval(updateSummary, rfsysinfo);
+                    } else {
+                        clearInterval(nIntervId2);
+                    }
+                });
+
+                $('#buttonStart :checkbox').attr('checked', 'checked').change();
+
+            });
+
+        </script>
+
 
     </head>
 
@@ -183,25 +301,27 @@
 
         <script>
             document.body.className += ' fade-out';
-            $(function() { 
-                $('body').removeClass('fade-out'); 
+            $(function() {
+                $('body').removeClass('fade-out');
             });
         </script>
 
+            <!-- Append alert if service is down: -->
+        <div id="summary"></div>
 
         <div id="headermin">
-            
+
             <div id="left" class="Column">
                 <div id="time">
                     <div class="dtg" id="timer"></div>
                 </div>
-            </div> 
+            </div>
 
             <div id="center">
                 <div id="stats" class="container centered">
                     <!-- system badges go here -->
                 </div>
-            </div>  
+            </div>
 
 
             <div id="right" class="Column">
@@ -220,11 +340,27 @@
                             </th>
                         </tr>
                     </table>
-                </div> 
+                </div>
 
             </div>
 
         </div>
+
+            <!-- Check if datadir has been established: -->
+        <?php
+
+            $file = 'assets/data/datadir.json';
+
+            if(!is_file($jsonfileuserdata)){
+
+                echo '<div id="datdirerror">';
+                    echo 'Data directory NOT detected';
+                echo '</div>';
+            }
+
+            else {
+            }
+        ?>
 
         <div id="services" class="container">
 
@@ -235,18 +371,11 @@
             </div>
 
         </div>
-        
 
         <div id="footer">
-        
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
-            
-            <p> <a id="alert" class="footer a" href="https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr" target="_blank"> **ALERT: Click here for an important notice ** </a> </p>
-            
-            <script src="assets/js/update_auto.js" async></script>
 
-            <div id="version_check_auto"></div>
-            
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+
         </div>
 
     </body>

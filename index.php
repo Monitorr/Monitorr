@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
     <!--
-    __  __             _ _                  
-    |  \/  |           (_) |                 
-    | \  / | ___  _ __  _| |_ ___  _ __ _ __ 
+    __  __             _ _
+    |  \/  |           (_) |
+    | \  / | ___  _ __  _| |_ ___  _ __ _ __
     | |\/| |/ _ \| '_ \| | __/ _ \| '__| '__|
-    | |  | | (_) | | | | | || (_) | |  | |   
-    |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|  
+    | |  | | (_) | | | | | || (_) | |  | |
+    |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|
             made for the community
-    by @seanvree, @wjbeckett, and @jonfinley 
-    https://github.com/Monitorr/Monitorr 
-    --> 
+    by @seanvree, @wjbeckett, and @jonfinley
+    https://github.com/Monitorr/Monitorr
+    -->
 
 
     <head>
@@ -29,30 +28,22 @@
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
 
-        <?php $file = 'assets/config.php';
-            //Use the function is_file to check if the config file already exists or not.
-            if(!is_file($file)){
-                copy('assets/config.php.sample', $file);
-            } 
-        ?>
-
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Fonts from Google Fonts -->
-        <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
-
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
-       
+
+        <script src="assets/js/jquery.min.js"></script>
 
         <style>
 
             body {
-                margin-top: 2rem;
+                /* margin-top: 2rem; */
                 margin-bottom: 2vw;
-                overflow-y: auto; 
-                overflow-x: hidden; 
+                overflow-y: auto;
+                overflow-x: hidden;
+                background-color: #1F1F1F;
             }
 
             body::-webkit-scrollbar {
@@ -72,7 +63,7 @@
                 -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                 box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                 background-color: #8E8B8B;
-            } 
+            }
 
             body.offline #link-bar {
                 display: none;
@@ -86,49 +77,118 @@
                 text-align: center;
             }
 
+            #services {
+                margin-bottom: 7rem;
+            }
+
         </style>
 
-        <?php include ('assets/config.php'); ?>
-        <?php include ('assets/php/check.php') ;?>
-        <?php include ('assets/php/gitinfo.php'); ?>
+            <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
 
-        <title><?php echo $config['title']; ?></title>
-        
-        <script src="assets/js/jquery.min.js"></script>
+            <?php
+
+                $oldfile = 'assets/config/datadir.json';
+                $newfile = 'assets/data/datadir.json';
+
+                if(!is_file($newfile)){
+
+                    if (!copy($oldfile, $newfile)) {
+                        // echo "failed to copy $oldfile...\n";
+                    }
+
+                    else {
+                        rename($oldfile, 'assets/config/datadir.json.old');
+                    }
+                }
+
+                else {
+
+                }
+            ?>
+
+         <?php
+
+            $datafile = 'assets/data/datadir.json';
+            $str = file_get_contents($datafile);
+            $json = json_decode( $str, true);
+            $datadir = $json['datadir'];
+            $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+            if(!is_file($jsonfileuserdata)){
+
+                $path = "assets/";
+
+                include_once ('assets/config/monitorr-data-default.php');
+
+                $title = $jsonusers['sitetitle'];
+
+                $rftime = $jsonsite['rftime'];
+            }
+
+            else {
+
+                $datafile = 'assets/data/datadir.json';
+
+                include_once ('assets/config/monitorr-data.php');
+
+                $title = $jsonusers['sitetitle'];
+            }
+
+         ?>
+
+        <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
+
+        <title>
+            <?php
+                echo $title . PHP_EOL;
+            ?>
+            | Monitorr
+        </title>
 
         <script src="assets/js/pace.js" async></script>
 
         <script>
-
             $(document).ready(function() {
                 function update() {
-                $.ajax({
-                type: 'POST',
-                url: 'assets/php/timestamp.php',
-                timeout: 5000,
-                success: function(data) {
-                    $("#timer").html(data); 
-                    window.setTimeout(update, 5000);
-                    }
-                });
+
+                    rftime =
+                        <?php
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'assets/php/timestamp.php',
+                        timeout: 5000,
+                        success: function(data) {
+                            $("#timer").html(data);
+                            window.setTimeout(update, rftime);
+                        }
+                    });
                 }
                 update();
             });
-            
         </script>
-        
+
         <script>
-        
-            <?php $dt = new DateTime("now", new DateTimeZone($config['timezone'])); ?>   
-    
-            $servertimezone = "<?php echo $config['timezone']; ?>";
-            
+
+            $timezone =
+                "<?php
+                    $timezone = $jsonusers['timezone'];
+                    echo $timezone;
+                ?>";
+
+            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
+
+             $servertimezone = "<?php echo "$timezone"; ?>";
+
             $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
 
             var servertimezone = $servertimezone;
 
             var servertime = $dt;
-                    
+
         </script>
 
         <script src="assets/js/clock.js" async></script>
@@ -145,41 +205,116 @@
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
+
+                    rfsysinfo =
+                        <?php
+                            $rfsysinfo = $jsonsite['rfsysinfo'];
+                            echo $rfsysinfo;
+                        ?>
+
                     if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, <?php echo $config['rfsysinfo']; ?>);
+                        nIntervId = setInterval(statusCheck, rfsysinfo);
                     } else {
                         clearInterval(nIntervId);
                     }
                 });
-                $('#buttonStart :checkbox').attr('checked', 'checked').change();
             });
 
-        </script> 
+        </script>
+
+        <script>
+
+             var nIntervId2;
+             var onload;
+
+            $(document).ready(function() {
+
+                $(":checkbox").change(function () {
+
+                    var current = -1;
+
+                    function updateSummary() {
+
+                        rfsysinfo =
+                            <?php
+                                $rfsysinfo = $jsonsite['rfsysinfo'];
+                                echo $rfsysinfo;
+                            ?>
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'assets/php/marquee.php',
+                            data: {
+                                current: current
+                            },
+
+                            timeout: 5000,
+                            success: function(data) {
+                                if(data){
+                                    result = $.parseJSON(data);
+                                    console.log(result);
+                                    $("#summary").fadeOut(function() {
+                                    $(this).html(result[0]).fadeIn();
+                                    });
+                                    current = result[1];
+                                }
+
+                                else {
+                                    current = -1;
+                                    $("#summary").hide();
+                                }
+                            }
+                        });
+                    }
+
+                    if ($(this).is(':checked')) {
+                        nIntervId2 = setInterval(updateSummary, rfsysinfo);
+                    } else {
+                        clearInterval(nIntervId2);
+                    }
+                });
+                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
+
+           });
+
+        </script>
 
     </head>
 
     <body onload="statusCheck()">
-            
+
         <script>
             document.body.className += ' fade-out';
-            $(function() { 
-                $('body').removeClass('fade-out'); 
+            $(function() {
+                $('body').removeClass('fade-out');
             });
         </script>
 
+             <!-- Append alert if service is down: -->
+
+        <div id="summary"></div>
+
         <div id="header">
-            
+
             <div id="left" class="Column">
                 <div id="clock">
                     <canvas id="canvas" width="120" height="120"></canvas>
                     <div class="dtg" id="timer"></div>
                 </div>
-            </div> 
+            </div>
 
             <div id="center">
 
                 <div id="centertext">
-                    <a class="navbar-brand" href="<?php echo $config['siteurl']; ?>"> <?php echo $config['title']; ?></a>
+                    <a class="navbar-brand" href="
+                        <?php
+                            $siteurl = $jsonusers['siteurl'];
+                            echo $siteurl . PHP_EOL;
+                        ?>">
+                        <?php
+                            echo $title . PHP_EOL;
+                        ?>
+                    </a>
                 </div>
 
                 <div id="toggle">
@@ -206,14 +341,31 @@
                     <!-- system badges go here -->
                 </div>
 
-            </div> 
+            </div>
 
         </div>
-            
+
+              <!-- Check if datadir has been established: -->
+        <?php
+
+            $file = 'assets/data/datadir.json';
+
+            if(!is_file($jsonfileuserdata)){
+
+                echo '<div id="datdirerror">';
+                    echo 'Data directory NOT detected. Proceed to <a href="settings.php" target="s" title="Monitorr Settings"> Monitorr Settings </a> and establish it.';
+                echo '</div>';
+            }
+
+            else {
+            }
+
+        ?>
+
         <div id="services" class="container">
 
             <div class="row">
-                <div id="statusloop">            
+                <div id="statusloop">
                     <!-- loop data goes here -->
                 </div>
             </div>
@@ -222,22 +374,18 @@
 
         <div id="footer">
 
-            <script src="assets/js/update.js" async></script>
-            <script src="assets/js/update_auto.js" async></script>
-        
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Repo: Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> Version: <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+             <script src="assets/js/update_auto.js" async></script>
 
-            <p> <a id="alert" class="footer a" href="https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr" target="_blank"> **ALERT: Click here for an important notice ** </a> </p>
+             <div id="settingslink">
+                <a class="footer a" href="settings.php" target="s" title="Monitorr Settings"><i class="fa fa-fw fa-cog"></i>Monitorr Settings </a>
+            </div>
 
-            <a class="footer a" id="version_check" style="cursor: pointer">Check for Update</a>
-            
-                <br>
-            
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+
             <div id="version_check_auto"></div>
-            
+
         </div>
 
     </body>
 
 </html>
-
