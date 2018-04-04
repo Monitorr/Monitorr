@@ -1547,9 +1547,8 @@
     }
     
     .alpaca-form-buttons-container {
-        text-align: left;
-        width: 14rem;
-        width: fit-content;
+        text-align: center;
+        width: 14.5rem;
         padding: .5rem;
         background-color: rgba(126, 126, 126, 0.50);
         border-radius: 4px;
