@@ -263,8 +263,6 @@
                                     current = -1;
                                     $("#summary").hide();
                                 }
-
-                                //window.setTimeout(updateSummary, 5000);
                             }
                         });
                     }
@@ -277,8 +275,8 @@
                 });
                  $('#buttonStart :checkbox').attr('checked', 'checked').change();
 
-                //updateSummary();
            });
+           
         </script>
 
     </head>
