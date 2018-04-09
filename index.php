@@ -34,8 +34,6 @@
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
 
-        <script src="assets/js/jquery.min.js"></script>
-
         <style>
 
             body {
@@ -77,11 +75,21 @@
                 text-align: center;
             }
 
+            #summary {
+                margin-top: -2rem !important;
+            }
+
+            #header {
+                margin-top: 2.5rem !important;
+            }
+
             #services {
                 margin-bottom: 7rem;
             }
 
         </style>
+
+         <script src="assets/js/jquery.min.js"></script>
 
             <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
 
@@ -105,6 +113,9 @@
 
                 }
             ?>
+
+            <!-- top loading bar function: -->
+        <script src="assets/js/pace.js" async></script>
 
          <?php
 
@@ -145,32 +156,7 @@
             | Monitorr
         </title>
 
-        <script src="assets/js/pace.js" async></script>
-
-        <script>
-            $(document).ready(function() {
-                function update() {
-
-                    rftime =
-                        <?php
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'assets/php/timestamp.php',
-                        timeout: 5000,
-                        success: function(data) {
-                            $("#timer").html(data);
-                            window.setTimeout(update, rftime);
-                        }
-                    });
-                }
-                update();
-            });
-        </script>
-
+             <!-- analog clock function: -->
         <script>
 
             $timezone =
@@ -181,7 +167,7 @@
 
             <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
 
-             $servertimezone = "<?php echo "$timezone"; ?>";
+            $servertimezone = "<?php echo "$timezone"; ?>";
 
             $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
 
@@ -193,6 +179,7 @@
 
         <script src="assets/js/clock.js" async></script>
 
+            <!-- services status update function: -->
         <script type="text/javascript">
 
             var nIntervId;
@@ -214,7 +201,8 @@
 
                     if ($(this).is(':checked')) {
                         nIntervId = setInterval(statusCheck, rfsysinfo);
-                    } else {
+                    } 
+                    else {
                         clearInterval(nIntervId);
                     }
                 });
@@ -222,6 +210,40 @@
 
         </script>
 
+            <!-- digital clock function: -->
+        <script>
+            $(document).ready(function() {
+                function update() {
+
+                    rftime =
+                        <?php
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'assets/php/timestamp.php',
+                        timeout: 5000,
+                        success: function(data) {
+                            $("#timer").html(data);
+                            window.setTimeout(update, rftime);
+                        },
+                        error: function(x, t, m) {
+                            if(t==="timeout") {
+                                //alert("timestamp timeout1");
+                                console.log("ERROR: timestamp timeout");
+                                 $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                            } else {
+                            }
+                        }
+                    });
+                }
+                update();
+            });
+        </script>
+
+            <!-- marquee offline function: -->
         <script>
 
              var nIntervId2;
@@ -248,13 +270,13 @@
                                 current: current
                             },
 
-                            timeout: 5000,
+                            timeout: 7000,
                             success: function(data) {
                                 if(data){
                                     result = $.parseJSON(data);
                                     console.log(result);
                                     $("#summary").fadeOut(function() {
-                                    $(this).html(result[0]).fadeIn();
+                                        $(this).html(result[0]).fadeIn();
                                     });
                                     current = result[1];
                                 }
@@ -262,6 +284,14 @@
                                 else {
                                     current = -1;
                                     $("#summary").hide();
+                                }
+                            },
+                            error: function(x, t, m) {
+                                if(t==="timeout") {
+                                    //alert("ERROR: marquee timeout");
+                                    console.log("ERROR: marquee timeout");
+                                    $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                                } else {
                                 }
                             }
                         });
@@ -290,9 +320,13 @@
             });
         </script>
 
-             <!-- Append alert if service is down: -->
+            <!-- Append alert if service is down: -->
 
         <div id="summary"></div>
+
+            <!-- Ajax timeout indicator: -->
+        <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
+        <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
 
         <div id="header">
 

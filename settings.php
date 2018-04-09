@@ -250,13 +250,13 @@
                             current: current
                         },
 
-                        timeout: 5000,
+                        timeout: 4000,
                         success: function(data) {
                             if(data){
                                 result = $.parseJSON(data);
                                 console.log(result);
                                 $("#summary").fadeOut(function() {
-                                $(this).html(result[0]).fadeIn();
+                                    $(this).html(result[0]).fadeIn();
                                 });
                                 current = result[1];
                             }
@@ -266,7 +266,8 @@
                                 $("#summary").hide();
                             }
 
-                            window.setTimeout(updateSummary, rfsysinfo);
+                            window.setTimeout(updateSummary, 5000);
+                            //window.setTimeout(updateSummary, rfsysinfo);
                         }
                     });
                 }
@@ -324,18 +325,17 @@
                     <ul class="nav sidebar-nav">
 
                         <li>
-                            <a href ="#" onclick="load_info()"><i class="fa fa-fw fa-info"></i> Info </a>
+                            <a href ="#info" onclick="load_info()"><i class="fa fa-fw fa-info"></i> Info </a>
                         </li>
                         <li>
-                            <a href ="#" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a>
+                            <a href ="#user-preferences" onclick="load_preferences()"><i class="fa fa-fw fa-cog"></i>  User Preferences </a>
                         </li>
                         <li>
-                            <a href ="#" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a>
+                            <a href ="#monitorr-settings" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a>
                         </li>
                         <li>
-                            <a href ="#" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
+                            <a href ="#services-configuration" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>
                         </li>
-
                         <li>
                             <a href="assets/php/monitorr-info.php?action=logout"><i class="fa fa-fw fa-sign-out"></i> Log-out </a>
                         </li>

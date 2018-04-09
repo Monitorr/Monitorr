@@ -1,3 +1,3 @@
 [
-{"serviceTitle":"Google","enabled":"Yes","image":"../img/google.gif","type":" Standard","checkurl":"https://google.com:443","linkurl":"https://google.com"},
-{"serviceTitle":"Monitorr","enabled":"Yes","image":"../img/monitorr.png","type":" Ping Only","checkurl":"http://localhost:80","linkurl":"http://localhost:80"}]
+{"serviceTitle":"Google","enabled":"Yes","image":"../img/google.gif","type":" Standard","link":"Yes","checkurl":"https://google.com:443","linkurl":"https://google.com"},
+{"serviceTitle":"Monitorr","enabled":"Yes","image":"../img/monitorr.png","type":" Ping Only","link":"Yes","checkurl":"http://localhost:80","linkurl":"http://localhost:80"}]
