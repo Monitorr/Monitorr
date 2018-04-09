@@ -16,7 +16,7 @@
 
 ## Features:
 
-**Latest major change:** Integrated settings page. 
+**Latest major change:** Integrated settings page.
 
 - LIVE! (w/ option to pause live updating)
 - Self-hosted
@@ -41,6 +41,7 @@
 <img src="https://i.imgur.com/ejNyp3j.jpg" width="32%">  <img src="https://i.imgur.com/btxGuuo.png" width="32%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="32%"> 
 
 
+
 ### Mobile:
 
 ![](https://i.imgur.com/RKp2yiZ.jpg?1)
@@ -63,7 +64,7 @@
 - See full configuration instructions in the WiKi: https://github.com/Monitorr/Monitorr/wiki
 1) Clone/download repository to your webserver
 2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
-3) Browse to <localhost\domain>/monitorr/index.php 
+3) Browse to <localhost\domain>/monitorr/index.php
 4) Establish data directory, and user database.
 5) Configure Monitorr
 6) Chill
