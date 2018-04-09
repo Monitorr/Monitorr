@@ -1059,6 +1059,26 @@
                 cursor: default;
             }
 
+            input[type=text] {
+                color: black !important;
+                background: rgb(225, 225, 225) !important;
+            }
+
+            input[type=text]:hover {
+                color: black !important;
+                background: white !important;
+            }
+
+            input[type=password] {
+                color: black;
+                background: rgb(225, 225, 225) !important;
+            }
+
+            input[type=password]:hover {
+                color: black !important;
+                background: white !important;
+            }
+
         </style>
 
     </head>
