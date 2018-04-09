@@ -391,7 +391,6 @@ class OneFileLoginApplication
 
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <!-- <script type="text/javascript" src="../js/pace.js" async></script> -->
-        <!-- <script type="text/javascript" src="../js/bootstrap.min.js"></script> -->
 
             <style>
 
@@ -400,7 +399,6 @@ class OneFileLoginApplication
                     overflow-y: auto;
                     overflow-x: hidden;
                     background-color: #1F1F1F;
-                    /* color: white !important; */
                 }
 
                 legend {
@@ -665,16 +663,18 @@ class OneFileLoginApplication
             else {
 
                 echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
-                    echo '<label for="login_input_username"> </label> ';
-                        echo '<br>';
-                    echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" pattern="^\S+$" placeholder=" Username" name="user_name" autofocus required title="Enter your username" /> ';
-
-                        echo '<br>';
-
-                    echo '<label for="login_input_password"> </label> ';
-                        echo '<br>';
-                    echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder=" Password" name="user_password" required  title="Enter your password" /> ';
-                        echo '<br><br>';
+                    echo '<div id="username">';
+                        echo '<label for="login_input_username"> </label> ';
+                            echo '<br>';
+                        echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" pattern="^\S+$" placeholder="Username" name="user_name" autofocus required title="Enter your username" /> ';
+                    echo '</div>';
+                        
+                    echo '<div id="password">';
+                        echo '<label for="login_input_password"> </label> ';
+                            echo '<br>';
+                        echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required  title="Enter your password" /> ';
+                            echo '<br><br>';
+                    echo '</div>';
 
                     echo "<div id='loginerror'>";
 
@@ -749,16 +749,46 @@ $application = new OneFileLoginApplication();
 
             .wrapper { 
                 width: 30rem;
-                margin-top: 10%;
+                /* margin-top: 10%; */
                 margin-left: auto;
                 margin-right: auto;
                 padding: 1rem; 
             }
 
-        </style>
+            input[type=text] {
+                width: 12rem;
+                padding: .175rem .75rem;
+                font-size: 1.2rem;
+                line-height: 1.5;
+                color: black;
+                background: rgb(200, 200, 200);
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                transition: border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out;
+            }
 
+            input[type=password] {
+                width: 12rem;
+                padding: .175rem .75rem;
+                font-size: 1.2rem;
+                line-height: 1.5;
+                color: black;
+                background: rgb(200, 200, 200);
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                transition: border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out;
+            }
+
+            #loginbtn {
+                padding-left: 1.8rem;
+            }
+
+        </style>
         
     </head>
+
     <body>
 
         <script>
