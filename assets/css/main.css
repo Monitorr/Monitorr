@@ -224,6 +224,68 @@
         margin: 1em 0;
         padding: 0;
     }
+
+    select {
+        cursor: pointer;
+        color: black !important;
+        background: rgb(200, 200, 200) !important;
+    }
+
+    select:focus {
+        color: black;
+        background: white !important;
+    }
+
+    select:hover {
+        color: black !important;
+        background: white !important;
+    } 
+
+    input[type=text] {
+        color: black;
+        background: rgb(200, 200, 200);
+    }
+
+    input[type=text]:focus {
+        color: black;
+        background: white !important;
+    }
+
+    input[type=text]:hover {
+        color: black;
+        background: white;
+    }
+
+    input[type=password] {
+        color: black;
+        background: rgb(200, 200, 200);
+    }
+
+    input[type=password]:focus {
+        color: black;
+        background: white !important;
+    }
+
+    input[type=password]:hover {
+        color: black;
+         background: white !important;
+    }
+
+    input[type=email] {
+        color: black;
+        background: rgb(200, 200, 200) !important;
+    }
+
+    input[type=email]:focus {
+        color: black;
+        background: white !important;
+    }
+
+    input[type=email]:hover {
+        color: black !important;
+        background: white !important;
+    }
+
     /* Top Margin */
 
     #summary {
@@ -234,6 +296,23 @@
         color: white;
         text-shadow: 1px 1px black;
         margin-top: -1.5rem;
+        z-index: 1000;
+        cursor: default;
+    }
+
+    #ajaxtimestamp {
+        position: fixed;
+        margin-top: -2rem;
+        color: yellow;
+        z-index: 1000;
+        cursor: default;
+    }
+
+    #ajaxmarquee {
+        position: fixed;
+        margin-top: -2rem;
+        margin-left: 1rem;
+        color: yellow;
         z-index: 1000;
         cursor: default;
     }
@@ -470,7 +549,7 @@
         text-shadow: 1px 1px black;
     }
 
-    .servicetileping {
+    .servicetilenolink {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -523,6 +602,24 @@
         transition: all .2s ease-in-out;
     }
 
+    #servicetitlenolink {
+        display: flex;
+        flex-direction: column;
+        height: 2rem;
+        line-height: 100%;
+        margin-bottom: 10%;
+        padding-left: .4rem;
+        padding-right: .4rem;
+        vertical-align: middle;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: rgb(200, 200, 200);
+        word-break: keep-all;
+        overflow-wrap: normal;
+        cursor: default;
+    }
+
+
     #servicetitleoffline {
         display: flex;
         flex-direction: column;
@@ -537,7 +634,7 @@
         color: rgb(200, 200, 200);
         word-break: keep-all;
         overflow-wrap: normal;
-        cursor: no-drop;
+        cursor: default;
     }
 
     #servicetitleoffline:hover,
@@ -564,19 +661,7 @@
         text-decoration: none;
     }
 
-    #servicetitleping {
-        display: flex;
-        flex-direction: column;
-        height: 2rem;
-        line-height: 100%;
-        margin-bottom: 10%;
-        padding-left: .4rem;
-        padding-right: .4rem;
-        vertical-align: middle;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: rgb(200, 200, 200);
-    }
+
 
     .btonline:hover {
         text-decoration: none;
@@ -597,11 +682,11 @@
         font-weight: 600;
         text-shadow: 1px 1px grey;
         text-decoration: none;
-        cursor: not-allowed;
+        cursor: default;
     }
 
     .offline {
-        cursor: not-allowed;
+        cursor: default;
     }
 
     .btunknown {
@@ -916,6 +1001,22 @@
     }
 
     /*     login       */
+
+    #username {
+        font-size: 1.2rem
+    }
+
+    #username:hover {
+        text-shadow: 0 0 1rem #FF0104;
+    }
+
+    #password {
+        font-size: 1.2rem
+    }
+
+    #password:hover {
+        text-shadow: 0 0 1rem #FF0104;
+    }
 
     .wrapper {
         width: 30rem;
@@ -1347,6 +1448,53 @@
         z-index: 1000;
     }
 
+    #enabled_option_icon {
+        color: grey;
+        cursor: help;
+    }
+
+    #enabled_option_icon:hover {
+        color: yellow;
+    }
+
+    #image_option_icon {
+        color: grey;
+        cursor: help;
+    }
+
+    #image_option_icon:hover {
+        color: yellow;
+    }
+
+    #type_option {
+        position: relative;
+    }
+
+    #type_option_icon {
+        color: grey;
+        cursor: help;
+    }
+
+    #type_option_icon:hover {
+        color: yellow;
+    }
+
+    #link_option {
+        position: relative;
+        margin-top: -6.5rem;
+        margin-left: 16.5rem;
+        z-index: 1000;
+    }
+
+    #link_option_icon {
+        color: grey;
+        cursor: help;
+    }
+
+    #link_option_icon:hover {
+        color: yellow;
+    }
+
 
     /* Service Image Modal */
 
@@ -1418,19 +1566,18 @@
     }
 
     #mymodal4 {
-        background-color: transparent;
         padding-top: .5rem;
         padding-bottom: 0;
         align-items: center;
     }
 
     #imgthumb {
-        background-color: transparent;
         display: inline-grid;
         padding: 1rem;
     }
 
     #imgbtn {
+        height: 7rem;
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -1444,12 +1591,17 @@
     }
 
     input[name="imginput"] {
-        color: white;
-        background-color: transparent;
-        border: none;
+        color: white !important;
+        background-color: transparent !important;
+        border: none !important;
         padding-left: .2rem;
         text-align: center;
         cursor: text;
+    }
+
+    input[name="imginput"]:focus {
+        color: white !important;
+        background-color: transparent !important;
     }
 
     .modaltext {
@@ -1504,26 +1656,36 @@
 
     #checkurl {
         float: right;
-        margin-top: -10rem;
+        margin-top: -12rem;
         width: 20rem;
         text-align: center;
+    }
+
+    #checkurl_icon {
+        cursor: help;
+        color: grey;
+    }
+
+    #checkurl_icon:hover {
+        color: yellow;
     }
 
     #linkurl {
         float: right;
         position: relative;
-        margin-top: -4rem;
+        margin-top: -5.5rem;
         width: 20rem;
         text-align: center;
-        background-color: #1F1F1F;
+        /* background-color: #1F1F1F; */
         z-index: 1000;
     }
 
     #checknote {
         position: sticky;
         width: inherit;
-        margin-top: 2rem;
+        margin-top: 4rem;
         color: grey;
+        font-size: .95rem;
         font-style: italic;
         cursor: default;
         z-index: 1;
@@ -1556,7 +1718,7 @@
 
     .alpaca-form-button-submit {
         margin-right: .5rem;
-        opacity: 100 !important;
+        opacity: 1 !important;
     }
 
     .buttonchange {
@@ -1572,7 +1734,6 @@
     #myBtn2:hover {
         background-color: #0073ee;
     }
-
 
     .alpaca-array-actionbar,
     .alpaca-array-actionbar.btn-group {
@@ -1593,13 +1754,22 @@
         color: black
     }
 
+    .btn-group>.btn:first-child:hover {
+        background-color: rgb(150, 150, 150);
+        color: white;
+    }
+
+    .btn-group>.btn:not(:first-child):hover {
+        background-color: rgb(150, 150, 150);
+        color: white;
+    }
+
     .settingscolumn {
         float: left;
         width: min-content;
         height: 100%;
         padding-top: 5rem;
         background-color: transparent;
-
     }
 
     #settingsbrand {
@@ -1798,8 +1968,8 @@
 
     .alpaca-image-display {
         float: right;
-        margin-top: -11rem !important;
-        padding-right: 6.5rem;
+        margin-top: -16rem !important;
+        padding-right: 7rem;
     }
 
     .help-block {
@@ -1812,7 +1982,9 @@
     .alpaca-message-invalidPattern {
         color: red;
         font-style: italic;
+        background-color: #1F1F1F;
         cursor: default;
+        z-index: 1000;
     }
 
     .alpaca-message-stringValueTooSmall {
