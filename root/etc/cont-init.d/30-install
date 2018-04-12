@@ -18,6 +18,15 @@ else
   :
 fi
 
+# USER IMAGES
+if [[ ! -d /app/images/ ]]; then
+  mkdir /app/images/ # Dir for User Data
+elif [[ -d /app/images/ ]]; then
+  echo 'NOTIFY: The Directory /app/images/ already exists'
+else
+  :
+fi
+
 # Data Dir File
 if [[ ! -e /config/www/monitorr/assets/data/datadir.json ]]; then
   cp /datadir.json /config/www/monitorr/assets/data/datadir.json # copy data dir
@@ -41,3 +50,6 @@ chown -R abc:abc /config
 chown -R abc:abc /app
 chmod 777 /app/userdata/monitorr_data_directory.txt
 chmod 777 /config/www/monitorr/assets/data/datadir.json
+
+# Link userimages
+ln -s /app/images /config/www/monitorr/assets/data/usrimg
