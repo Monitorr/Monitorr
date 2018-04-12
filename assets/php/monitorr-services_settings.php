@@ -617,7 +617,7 @@ class OneFileLoginApplication
                                         "action": "remove",
                                         "iconClass": "fa fa-minus"
                                     }, {
-                                        "label": "Move UP",
+                                        "label": "Move Up",
                                         "action": "up",
                                         "iconClass": "fa fa-arrow-up",
                                         "enabled": true
@@ -863,7 +863,7 @@ class OneFileLoginApplication
                                             "label": "Link URL:",
                                             "size": 30,
                                             //"helpers": ["URL that will be linked to service"],
-                                            "helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
+                                            //"helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
                                             "hideInitValidationError": false,
                                             "focus": false,
                                             "optionLabels": [],
@@ -943,17 +943,40 @@ class OneFileLoginApplication
 
             <p class="modaltext">Images:</p>
                 <?php $imgpath = '../img/'; ?>
-            <p class="modalimgpath"> <?php echo realpath($imgpath); ?> </p>
+                <?php $usrimgpath = '../data/usrimg/'; ?>
+            <p class="modalimgpath"> Default Images: <?php echo realpath($imgpath); ?> </p>
+            <p class="modalimgpath"> User Images: <?php echo realpath($usrimgpath); ?> </p>
 
                 <!-- Modal content -->
             <div id="mymodal4"> 
             
                 <?php
 
-                    $dirname = '../img/';
-                    $images = glob($dirname.'*.*');
+                    $imgpath = '../img/';
+                    $usrimgpath = '../data/usrimg/';
+                    $images = glob($imgpath.'*.*');
+                    $images2 = glob($usrimgpath.'*.*');
 
                     $count = 0;
+
+                    foreach ($images2 as $image) {
+
+                        echo '<div id="imgthumb" class="imgthumb">';
+
+                            echo '<button id="imgbtn" onclick="copyFunction(' . $count . ')">';
+                                echo '<center>';
+                                    echo '<img src="'.$image.'" style="width:7rem" title="Double-click to copy"/>';
+                                echo '</center>';
+                            echo '</button>';
+
+                            echo '<div id="imgpath">';
+                                echo '<input type="text" value="'.$image.'"  id="'.$count.'" name="imginput" readonly>';
+
+                            echo '</div>';
+                        echo '</div>';
+
+                        ++$count;
+                    }
 
                     foreach ($images as $image) {
 
