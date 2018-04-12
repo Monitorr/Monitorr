@@ -59,7 +59,7 @@
         curl_setopt($handle, CURLOPT_TCP_FASTOPEN, true);
         curl_setopt($handle, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 10.0)");
         curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($handle, CURLOPT_TIMEOUT, 30);
+        curl_setopt($handle, CURLOPT_TIMEOUT, 15);
         //curl_setopt($handle, CURLOPT_URL, $url);
 
         $response = curl_exec($handle);
