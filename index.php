@@ -89,7 +89,7 @@
 
         </style>
 
-         <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
 
             <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
 
@@ -110,7 +110,6 @@
                 }
 
                 else {
-
                 }
             ?>
 
@@ -303,9 +302,9 @@
                         clearInterval(nIntervId2);
                     }
                 });
-                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
+                $('#buttonStart :checkbox').attr('checked', 'checked').change();
 
-           });
+            });
 
         </script>
 
@@ -353,7 +352,7 @@
 
                 <div id="toggle">
                     <table id="slidertable">
-                        <tr>
+                        <tr title="Toggle auto-refresh. Interval: <?php echo $rfsysinfo; ?> ms ">
                             <th id="textslider">
                             Auto Refresh:
                             </th>
