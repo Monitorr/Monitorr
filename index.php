@@ -36,6 +36,7 @@
         <link href="assets/css/custom.css" rel="stylesheet">
 
         <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollbox.js"></script>
        
         <style>
 
@@ -173,43 +174,10 @@
                 update();
             });
         </script>
+        
         <script>
             $(document).ready(function() {
-                var current = -1;
-                function updateSummary() {
-
-                    rftime =
-                        <?php 
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                    type: 'POST',
-                    data: {
-                        current: current
-                    },
-                    url: 'assets/php/summary.php',
-                    timeout: 5000,
-                    success: function(data) {
-                        if(data){
-                            result = $.parseJSON(data);
-                            console.log(result);
-                            $("#summary").fadeOut(function() {
-                              $(this).html(result[0]).fadeIn();
-                            });
-                            current = result[1];
-                        }
-                        else {
-                            current = -1;
-                            $("#summary").hide();
-                        }
-                        window.setTimeout(updateSummary, 5000);
-                        }
-                    });
-
-                }
-                updateSummary();
+                $('#summary').scrollbox();
             });
         </script>
         <script>
@@ -276,7 +244,20 @@
         </script>
 
              <!-- Append alert if service is down: -->
-        <div id="summary"></div>
+        <div id="summary">
+            <ul>
+            <?php 
+                foreach (glob("assets/data/logs/*.json") as $filename) {   
+                    if(is_file($filename)){
+
+                        $file_contents = file_get_contents ($filename);
+                        echo '<li>' . ucfirst($file_contents) . '</li>';
+                    }
+                } 
+
+            ?>
+        </ul>
+        </div>
 
         <div id="header">
             
