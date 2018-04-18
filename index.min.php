@@ -248,13 +248,12 @@
         <div id="summary">
             <?php 
                 foreach (glob("assets/data/logs/*.json") as $filename) {
-                    if(is_file($filename)){
-                        $file_contents = file_get_contents ($filename);
-                        echo ucfirst($file_contents) . "<br>";
-                    }
                 } 
 
-                
+                if(is_file($filename)){
+                    $filename2 = file_get_contents ($filename);
+                    echo ucfirst($filename2);
+                }
             ?>
         </div>
 

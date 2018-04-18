@@ -1,7 +1,6 @@
 <?php include ('functions.php'); ?>
 
-<link href="../css/main.css" rel="stylesheet">
-<link href="../css/custom.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
 
 <div id="cpu" class="col-md-2 col-centered double-val-label">
   <span class="<?php echo $cpuClass; ?>">CPU</span>
