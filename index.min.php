@@ -17,6 +17,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <!-- <link rel="apple-touch-icon" href="favicon.ico"> -->
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Monitorr">
@@ -37,11 +38,6 @@
                 margin-bottom: 1vw;
                 overflow: scroll;
                 overflow-x: hidden;
-                overflow-y: visible;
-            }
-
-            :root {
-                font-size: 12px !important;
             }
 
             #summary {
@@ -50,12 +46,8 @@
                 font-size: .8rem;
             }
 
-            #ajaxtimestamp {
-                margin-top: -.5rem !important;
-            }
-
-            #ajaxmarquee {
-                margin-top: -.5rem !important;
+            :root {
+                font-size: 12px !important;
             }
 
             ::-webkit-scrollbar {
@@ -109,6 +101,7 @@
             }
 
             #ping {
+
                 padding-top: .5rem !important;
             }
 
@@ -128,12 +121,10 @@
 
         </style>
 
-        <script src="assets/js/jquery.min.js"></script>
-
 
             <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
 
-            <?php
+            <?php 
 
                 $oldfile = 'assets/config/datadir.json';
                 $newfile = 'assets/data/datadir.json';
@@ -147,23 +138,21 @@
                     else {
                         rename($oldfile, 'assets/config/datadir.json.old');
                     }
-                }
+                } 
 
                 else {
                 }
             ?>
 
-            <!-- top loading bar function: -->
-        <script src="assets/js/pace.js" async></script>
 
-        <?php
-
+        <?php 
+         
             $datafile = 'assets/data/datadir.json';
             $str = file_get_contents($datafile);
             $json = json_decode( $str, true);
             $datadir = $json['datadir'];
             $jsonfileuserdata = $datadir . 'user_preferences-data.json';
-
+            
             if(!is_file($jsonfileuserdata)){
 
                 $path = "assets/";
@@ -173,11 +162,12 @@
                 $title = $jsonusers['sitetitle'];
 
                 $rftime = $jsonsite['rftime'];
-
-            }
+                
+            } 
 
             else {
 
+                 
                 $datafile = 'assets/data/datadir.json';
 
                 include_once ('assets/config/monitorr-data.php');
@@ -186,13 +176,38 @@
 
             }
 
-        ?>
+        ?> 
 
-        <title>
-            <?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?>
-        </title>
+        <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
 
-            <!-- services status update function: -->
+        <script src="assets/js/jquery.min.js"></script>
+
+        <script src="assets/js/pace.js" async></script>
+
+        <script>
+            $(document).ready(function() {
+                function update() {
+
+                    rftime =
+                        <?php 
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/timestamp.php',
+                    timeout: 5000,
+                    success: function(data) {
+                        $("#timer").html(data); 
+                        window.setTimeout(update, rftime);
+                        }
+                    });
+                }
+                update();
+            });
+        </script>
+
         <script type="text/javascript">
 
             var nIntervId;
@@ -201,119 +216,15 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
+                $('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
-
-                    rfsysinfo =
-                        <?php
-                            $rfsysinfo = $jsonsite['rfsysinfo'];
-                            echo $rfsysinfo;
-                        ?>
-
                     if ($(this).is(':checked')) {
-                        nIntervId = setInterval(statusCheck, rfsysinfo);
-                    } 
-                    else {
-                        clearInterval(nIntervId);
-                    }
-                });
-            });
-
-        </script>
-
-            <!-- digital clock function: -->
-        <script>
-            $(document).ready(function() {
-                function update() {
-
-                    rftime =
-                        <?php
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'assets/php/timestamp.php',
-                        timeout: 4000,
-                        success: function(data) {
-                            $("#timer").html(data);
-                            window.setTimeout(update, rftime);
-                        },
-                        error: function(x, t, m) {
-                            if(t==="timeout") {
-                                //alert("timestamp timeout1");
-                                console.log("ERROR: timestamp timeout");
-                                $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
-                            } else {
-                            }
-                        }
-                    });
-                }
-                update();
-            });
-        </script>
-
-            <!-- marquee offline function: -->
-        <script>
-
-             var nIntervId2;
-             var onload;
-
-            $(document).ready(function() {
-
-                $(":checkbox").change(function () {
-
-                    var current = -1;
-
-                    function updateSummary() {
-
-                        rfsysinfo =
-                            <?php
-                                $rfsysinfo = $jsonsite['rfsysinfo'];
-                                echo $rfsysinfo;
-                            ?>
-
-                        $.ajax({
-                            type: 'POST',
-                            url: 'assets/php/marquee.php',
-                            data: {
-                                current: current
-                            },
-
-                            timeout: 6000,
-                            success: function(data) {
-                                if(data){
-                                    result = $.parseJSON(data);
-                                    console.log(result);
-                                    $("#summary").fadeOut(function() {
-                                        $(this).html(result[0]).fadeIn();
-                                    });
-                                    current = result[1];
-                                }
-
-                                else {
-                                    current = -1;
-                                    $("#summary").hide();
-                                }
-                            },
-                            error: function(x, t, m) {
-                                if(t==="timeout") {
-                                    //alert("ERROR: marquee timeout");
-                                    console.log("ERROR: marquee timeout");
-                                    $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
-                                } else {
-                                }
-                            }
-                        });
-                    }
-
-                    if ($(this).is(':checked')) {
-                        nIntervId2 = setInterval(updateSummary, rfsysinfo);
+                        nIntervId = setInterval(statusCheck, <?php echo $jsonsite['rfsysinfo']; ?>);
                     } else {
-                        clearInterval(nIntervId2);
+                        clearInterval(nIntervId);
                     }
                 });
                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
@@ -333,12 +244,17 @@
         </script>
 
             <!-- Append alert if service is down: -->
-        <div id="summary"></div>
+        <div id="summary">
+            <?php 
+                foreach (glob("assets/data/logs/*.json") as $filename) {
+                } 
 
-            <!-- Ajax timeout indicator: -->
-        <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
-        <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
-
+                if(is_file($filename)){
+                    $filename2 = file_get_contents ($filename);
+                    echo ucfirst($filename2);
+                }
+            ?>
+        </div>
 
         <div id="headermin">
 
@@ -353,6 +269,7 @@
                     <!-- system badges go here -->
                 </div>
             </div>
+
 
             <div id="right" class="Column">
 
@@ -391,6 +308,7 @@
             else {
             }
         ?>
+
 
         <div id="services" class="container">
 

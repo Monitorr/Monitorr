@@ -2,16 +2,16 @@
 <html lang="en">
 
     <!--
-    __  __             _ _
-    |  \/  |           (_) |
-    | \  / | ___  _ __  _| |_ ___  _ __ _ __
+    __  __             _ _                  
+    |  \/  |           (_) |                 
+    | \  / | ___  _ __  _| |_ ___  _ __ _ __ 
     | |\/| |/ _ \| '_ \| | __/ _ \| '__| '__|
-    | |  | | (_) | | | | | || (_) | |  | |
-    |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|
+    | |  | | (_) | | | | | || (_) | |  | |   
+    |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|  
             made for the community
-    by @seanvree, @wjbeckett, and @jonfinley
-    https://github.com/Monitorr/Monitorr
-    -->
+    by @seanvree, @wjbeckett, and @jonfinley 
+    https://github.com/Monitorr/Monitorr 
+    --> 
 
 
     <head>
@@ -34,12 +34,14 @@
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
 
+        <script src="assets/js/jquery.min.js"></script>
+       
         <style>
 
             body {
                 /* margin-top: 2rem; */
                 margin-bottom: 2vw;
-                overflow-y: auto;
+                overflow-y: auto; 
                 overflow-x: hidden;
                 background-color: #1F1F1F;
             }
@@ -61,7 +63,7 @@
                 -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                 box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
                 background-color: #8E8B8B;
-            }
+            } 
 
             body.offline #link-bar {
                 display: none;
@@ -74,26 +76,17 @@
             .auto-style1 {
                 text-align: center;
             }
-
-            #summary {
-                margin-top: -2rem !important;
-            }
-
-            #header {
-                margin-top: 2.5rem !important;
-            }
-
+            
             #services {
                 margin-bottom: 7rem;
             }
 
         </style>
 
-        <script src="assets/js/jquery.min.js"></script>
 
             <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
 
-            <?php
+            <?php 
 
                 $oldfile = 'assets/config/datadir.json';
                 $newfile = 'assets/data/datadir.json';
@@ -107,23 +100,22 @@
                     else {
                         rename($oldfile, 'assets/config/datadir.json.old');
                     }
-                }
+                } 
 
                 else {
+
                 }
             ?>
 
-            <!-- top loading bar function: -->
-        <script src="assets/js/pace.js" async></script>
 
-         <?php
-
+         <?php 
+         
             $datafile = 'assets/data/datadir.json';
             $str = file_get_contents($datafile);
             $json = json_decode( $str, true);
             $datadir = $json['datadir'];
             $jsonfileuserdata = $datadir . 'user_preferences-data.json';
-
+            
             if(!is_file($jsonfileuserdata)){
 
                 $path = "assets/";
@@ -132,8 +124,8 @@
 
                 $title = $jsonusers['sitetitle'];
 
-                $rftime = $jsonsite['rftime'];
-            }
+                $rftime = $jsonsite['rftime'];                
+            } 
 
             else {
 
@@ -144,41 +136,65 @@
                 $title = $jsonusers['sitetitle'];
             }
 
-         ?>
+         ?> 
 
         <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
 
         <title>
-            <?php
+            <?php 
                 echo $title . PHP_EOL;
             ?>
             | Monitorr
         </title>
 
-             <!-- analog clock function: -->
+        <script src="assets/js/pace.js" async></script>
+
+        <script>
+            $(document).ready(function() {
+                function update() {
+
+                    rftime =
+                        <?php 
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/timestamp.php',
+                    timeout: 5000,
+                    success: function(data) {
+                        $("#timer").html(data); 
+                        window.setTimeout(update, rftime);
+                        }
+                    });
+                }
+                update();
+            });
+        </script>
+        
         <script>
 
-            $timezone =
-                "<?php
+            $timezone = 
+                "<?php 
                     $timezone = $jsonusers['timezone'];
                     echo $timezone;
                 ?>";
 
             <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
-
-            $servertimezone = "<?php echo "$timezone"; ?>";
+            
+             $servertimezone = "<?php echo "$timezone"; ?>";
 
             $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
 
             var servertimezone = $servertimezone;
 
             var servertime = $dt;
-
+                    
         </script>
 
         <script src="assets/js/clock.js" async></script>
 
-            <!-- services status update function: -->
         <script type="text/javascript">
 
             var nIntervId;
@@ -187,163 +203,71 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
+                $('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
 
                     rfsysinfo =
-                        <?php
+                        <?php 
                             $rfsysinfo = $jsonsite['rfsysinfo'];
                             echo $rfsysinfo;
                         ?>
 
                     if ($(this).is(':checked')) {
                         nIntervId = setInterval(statusCheck, rfsysinfo);
-                    } 
-                    else {
+                    } else {
                         clearInterval(nIntervId);
                     }
                 });
-            });
-
-        </script>
-
-            <!-- digital clock function: -->
-        <script>
-            $(document).ready(function() {
-                function update() {
-
-                    rftime =
-                        <?php
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'assets/php/timestamp.php',
-                        timeout: 5000,
-                        success: function(data) {
-                            $("#timer").html(data);
-                            window.setTimeout(update, rftime);
-                        },
-                        error: function(x, t, m) {
-                            if(t==="timeout") {
-                                //alert("timestamp timeout1");
-                                console.log("ERROR: timestamp timeout");
-                                 $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
-                            } else {
-                            }
-                        }
-                    });
-                }
-                update();
-            });
-        </script>
-
-            <!-- marquee offline function: -->
-        <script>
-
-             var nIntervId2;
-             var onload;
-
-            $(document).ready(function() {
-
-                $(":checkbox").change(function () {
-
-                    var current = -1;
-
-                    function updateSummary() {
-
-                        rfsysinfo =
-                            <?php
-                                $rfsysinfo = $jsonsite['rfsysinfo'];
-                                echo $rfsysinfo;
-                            ?>
-
-                        $.ajax({
-                            type: 'POST',
-                            url: 'assets/php/marquee.php',
-                            data: {
-                                current: current
-                            },
-
-                            timeout: 7000,
-                            success: function(data) {
-                                if(data){
-                                    result = $.parseJSON(data);
-                                    console.log(result);
-                                    $("#summary").fadeOut(function() {
-                                        $(this).html(result[0]).fadeIn();
-                                    });
-                                    current = result[1];
-                                }
-
-                                else {
-                                    current = -1;
-                                    $("#summary").hide();
-                                }
-                            },
-                            error: function(x, t, m) {
-                                if(t==="timeout") {
-                                    //alert("ERROR: marquee timeout");
-                                    console.log("ERROR: marquee timeout");
-                                    $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
-                                } else {
-                                }
-                            }
-                        });
-                    }
-
-                    if ($(this).is(':checked')) {
-                        nIntervId2 = setInterval(updateSummary, rfsysinfo);
-                    } else {
-                        clearInterval(nIntervId2);
-                    }
-                });
                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
-
             });
 
-        </script>
+        </script> 
 
     </head>
 
     <body onload="statusCheck()">
-
+            
         <script>
             document.body.className += ' fade-out';
-            $(function() {
-                $('body').removeClass('fade-out');
+            $(function() { 
+                $('body').removeClass('fade-out'); 
             });
         </script>
 
-            <!-- Append alert if service is down: -->
+             <!-- Append alert if service is down: -->
+        <div id="summary">
+            <?php 
+                foreach (glob("assets/data/logs/*.json") as $filename) {   
+                } 
 
-        <div id="summary"></div>
+                if(is_file($filename)){
 
-            <!-- Ajax timeout indicator: -->
-        <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
-        <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+                    $filename2 = file_get_contents ($filename);
+                    echo ucfirst($filename2);
+                }
+            ?>
+        </div>
 
         <div id="header">
-
+            
             <div id="left" class="Column">
                 <div id="clock">
                     <canvas id="canvas" width="120" height="120"></canvas>
                     <div class="dtg" id="timer"></div>
                 </div>
-            </div>
+            </div> 
 
             <div id="center">
 
                 <div id="centertext">
                     <a class="navbar-brand" href="
-                        <?php
+                        <?php 
                             $siteurl = $jsonusers['siteurl'];
                             echo $siteurl . PHP_EOL;
-                        ?>">
+                        ?>"> 
                         <?php
                             echo $title . PHP_EOL;
                         ?>
@@ -352,7 +276,7 @@
 
                 <div id="toggle">
                     <table id="slidertable">
-                        <tr title="Toggle auto-refresh. Interval: <?php echo $rfsysinfo; ?> ms ">
+                        <tr>
                             <th id="textslider">
                             Auto Refresh:
                             </th>
@@ -374,13 +298,13 @@
                     <!-- system badges go here -->
                 </div>
 
-            </div>
+            </div> 
 
         </div>
 
               <!-- Check if datadir has been established: -->
-        <?php
-
+        <?php 
+        
             $file = 'assets/data/datadir.json';
 
             if(!is_file($jsonfileuserdata)){
@@ -388,13 +312,13 @@
                 echo '<div id="datdirerror">';
                     echo 'Data directory NOT detected. Proceed to <a href="settings.php" target="s" title="Monitorr Settings"> Monitorr Settings </a> and establish it.';
                 echo '</div>';
-            }
+            } 
 
             else {
             }
 
         ?>
-
+            
         <div id="services" class="container">
 
             <div class="row">
@@ -416,9 +340,10 @@
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
             <div id="version_check_auto"></div>
-
+            
         </div>
 
     </body>
 
 </html>
+

@@ -8,15 +8,15 @@
 
 [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) [DOCKER]
 
+
 [![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
 
 **NOTICE** (18 MARCH 2018): If you are updating to any version prior to 1.0 updating via the UI by clicking on “check for update” in the footer MAY FAIL. It is recommended to clone a new copy of this repo starting with version 1.0.  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for further explanation.
 
-
 ## Features:
 
-**Latest major change:** Integrated settings page.
+**Latest major change:** Integrated settings page. 
 
 - LIVE! (w/ option to pause live updating)
 - Self-hosted
@@ -30,8 +30,7 @@
 - User customizable system threshold colors
 
 **Features in development:**
-- Option to choose which HD is used for system stats
-- Custom CSS
+- Reverse proxy authentication
 - Alerting
 
 
@@ -39,22 +38,20 @@
 
 ![](https://i.imgur.com/h8S1976.png)
 <img src="https://i.imgur.com/SwevXaG.png" width="46%"> <img src="https://i.imgur.com/eCyidGT.png" width="51%">
-<img src="https://i.imgur.com/ejNyp3j.jpg" width="32%">  <img src="https://i.imgur.com/btxGuuo.png" width="32%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="32%"> 
-
+<img src="https://i.imgur.com/ejNyp3j.jpg" width="32%">  <img src="https://i.imgur.com/Ql1ujZ5.png" width="32%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="32%"> 
 
 
 ### Mobile:
 
-![](https://i.imgur.com/RKp2yiZ.jpg?1)
+ <img src="https://i.imgur.com/RKp2yiZ.jpg?1" width="32%"> 
 
 
 ## Prerequisites:
 1) [PHP](https://secure.php.net/downloads.php) (7.1+ recommended)
-2) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
-3) [PHP ZipArchive](http://www.php.net/manual/en/zip.installation.php)
-4) [PHP PDO](http://php.net/manual/en/book.pdo.php)
-5) [SQLite](https://www.sqlite.org/index.html)
-6) [GIT](https://git-scm.com/download/win) (Recommended for Windows hosts (see wiki)
+2) [PHP PDO](http://php.net/manual/en/book.pdo.php)
+3) [PHP cURL](https://secure.php.net/manual/en/book.curl.php)
+4) [SQLite](https://www.sqlite.org/index.html)
+5) [GIT](https://git-scm.com/download/win) (Recommended for Windows hosts (see wiki)
 
 ## Libraries used in this project:
 - [Alpaca](https://github.com/gitana/alpaca/)
@@ -66,7 +63,7 @@
 - See full configuration instructions in the WiKi: https://github.com/Monitorr/Monitorr/wiki
 1) Clone/download repository to your webserver
 2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
-3) Browse to <localhost\domain>/monitorr/index.php
+3) Browse to <localhost\domain>/monitorr/index.php 
 4) Establish data directory, and user database.
 5) Configure Monitorr
 6) Chill
