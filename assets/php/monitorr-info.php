@@ -464,7 +464,6 @@ class OneFileLoginApplication
 
             </style>
 
-
             <?php
 
                 $file = '../data/datadir.json';
@@ -508,15 +507,14 @@ class OneFileLoginApplication
             });
         </script>
 
-
         <div id="centertext">
             <div class="navbar-brand">
                 Information
             </div>
         </div>
 
-
         <div id="infodata">
+
             <table class="table">
                 <thead> <div id="blank"> . </div> </thead>
                 <tbody>
@@ -537,8 +535,69 @@ class OneFileLoginApplication
                                 <img src="https://img.shields.io/github/release/monitorr/monitorr/all.svg" label="Monitorr Release" alt="Monitorr Release" style="width:6rem;height:1.1rem;" >
                             </a>
                         </td>
-                        <td><strong>PHP Version:</strong></td>
-                        <td><?php echo phpversion(); ?></td>
+
+                        <td>
+                            <strong>PHP Version:</strong>
+                        </td>
+
+                        <td>
+
+                            <?php echo phpversion() ;
+
+                                echo " <strong> | Extensions: </strong> ";
+                         
+                                if (extension_loaded('curl')) {
+                                    echo " <div class='extok' title='PHP cURL extension loaded OK' >";
+                                        echo "cURL";
+                                    echo "</div>";
+                                }
+
+                                else {
+                                    echo " | <a class='extfail' href='https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration' target='_blank' title='PHP cURL extension NOT loaded'>";
+                                        echo "cURL";
+                                    echo "</a>";
+                                }
+
+                                if (extension_loaded('sqlite3')) {
+                                    echo " | <div class='extok' title='PHP sqlite3 extension loaded OK'>";
+                                        echo "php_sqlite3";
+                                    echo "</div>";
+                                }
+
+                                else {
+                                    echo " | <a class='extfail' href='https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration' target='_blank' title='PHP php_sqlite3 extension NOT loaded'>";
+                                        echo "php_sqlite3";
+                                    echo "</a>";
+                                }
+
+                                if (extension_loaded('pdo_sqlite')) {
+                                    echo " | <div class='extok' title='PHP pdo_sqlite extension loaded OK'>";
+                                        echo "pdo_sqlite";
+                                    echo "</div>";
+                                }
+
+                                else {
+                                    echo " | <a class='extfail' href='https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration' target='_blank' title='PHP pdo_sqlite extension NOT loaded'>";
+                                        echo "pdo_sqlite";
+                                    echo "</a>";
+                                }
+
+                                if (extension_loaded('zip')) {
+                                    echo " | <div class='extok' title='PHP ZIP extension loaded OK'>";
+                                        echo "php7-zip";
+                                    echo "</div>";
+                                }
+
+                                else {
+                                    echo " | <a class='extfail' href='https://github.com/Monitorr/Monitorr/wiki/01-Config:--Initial-configuration' target='_blank' title='php7-zip extension NOT loaded'>";
+                                        echo "php7-zip";
+                                    echo "</a>";
+                                }
+
+                            ?>
+                        
+                        </td>
+                        
                     </tr>
                     <tr> 
                         <td><strong>Check & Execute Update:</strong></td>
@@ -603,8 +662,8 @@ class OneFileLoginApplication
 
         <script>document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'</script>
 
-            <script src="../js/update.js" async></script>
-            <script src="../js/update_auto-settings.js" async></script>
+        <script src="../js/update.js" async></script>
+        <script src="../js/update_auto-settings.js" async></script>
 
         <div id="footer">
 
