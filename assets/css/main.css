@@ -773,40 +773,54 @@
         text-shadow: 1px 1px grey;
         white-space: nowrap;
         cursor: default;
-        &:first-child() {
-            border-bottom-left-radius: 0.25em;
-            border-top-left-radius: .25em;
-        }
-        &:nth-child(2) {
-            border-bottom-right-radius: 0.25em;
-            border-top-right-radius: .25em;
-        }
+    }
+
+    .double-val-label>span:first-child() {
+        border-bottom-left-radius: 0.25em;
+        border-top-left-radius: .25em;
+    }
+
+    .double-val-label>span:nth-child(2) {
+        border-bottom-right-radius: 0.25em;
+        border-top-right-radius: .25em;
     }
 
     .double-val-label>span.primary {
         background-color: #337ab7;
+        border-top-left-radius: 0.25em;
+        border-bottom-left-radius: 0.25em;
         cursor: default;
     }
 
     .double-val-label>span.success {
         background-color: #5cb85c;
+        border-top-left-radius: 0.25em;
+        border-bottom-left-radius: 0.25em;
         cursor: default;
     }
 
     .double-val-label>span.info {
         background-color: #5bc0de;
+        border-top-left-radius: 0.25em;
+        border-bottom-left-radius: 0.25em;
         cursor: default;
     }
 
     .double-val-label>span.warning {
         background-color: #f0ad4e;
+        border-top-left-radius: 0.25em;
+        border-bottom-left-radius: 0.25em;
         cursor: default;
     }
 
     .double-val-label>span.danger {
         background-color: #d9534f;
+        border-top-left-radius: 0.25em;
+        border-bottom-left-radius: 0.25em;
         cursor: default;
     }
+
+
     /* CLOCK */
 
     #clock {
@@ -814,7 +828,6 @@
         flex-direction: row;
         float: right;
         height: 9rem;
-        ;
         width: 17rem;
         margin: 0;
         padding-top: .5rem;
@@ -826,6 +839,7 @@
         background-color: #3d3d3d;
         border-radius: 1rem;
         box-shadow: 5px 5px 5px black;
+        text-shadow: 1px 1px black;
     }
 
     #canvas {
@@ -1842,6 +1856,36 @@
         box-shadow: 5px 5px 5px black;
     }
 
+    .extok {
+        color: white;
+        background-color: green;
+        display: inline-block;
+        text-align: center;
+        font-size: .50rem;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .1rem .5rem;
+        border-radius: .25rem;
+        cursor: help;
+    }
+
+    .extfail {
+        color: white !important;
+        background-color: red !important;
+        display: inline-block;
+        font-size: .50rem;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .1rem .5rem;
+        border-radius: .25rem;
+        cursor: pointer;
+    }
+
     #blank {
         color: #3d3d3d;
         font-size: .5rem;
@@ -2004,6 +2048,13 @@
         font-style: italic;
         cursor: default;
     }
+
+    .alpaca-message-notOptional {
+        color: red;
+        font-style: italic;
+        cursor: default;
+    }
+
     /* scroll to top  */
 
     #myBtn {
