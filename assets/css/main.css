@@ -233,17 +233,9 @@
         text-align: center;
         color: white;
         text-shadow: 1px 1px black;
-        margin-top: 5px;
+        margin-top: -.8rem;
         z-index: 1000;
         cursor: default;
-        height: 20px;
-        line-height: 20px;
-        overflow: hidden;
-        top: 0;
-    }
-
-    #summary > ul {
-        list-style-type: none;
     }
     
     #header {
