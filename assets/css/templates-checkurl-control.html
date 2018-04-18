@@ -3,13 +3,7 @@
     <div id="checkurl">
 
         {{#if options.label}}
-        <label class="{{#if options.labelClass}}{{options.labelClass}}{{/if}} alpaca-control-label" for="{{id}}">
-        
-            {{{options.label}}}
-
-            <i class="fa fa-fw fa-question-circle" id="checkurl_icon" title="URL to check service status. (Port is required!)"></i>
-        
-        </label>
+        <label class="{{#if options.labelClass}}{{options.labelClass}}{{/if}} alpaca-control-label" for="{{id}}">{{{options.label}}}</label>
         {{/if}}
 
         {{#control}}{{/control}}
@@ -21,15 +15,13 @@
         </p>
         {{/if}}
 
-            <div id="checknote">
-            
-                Enable link option to the left to input link URL.
-            
-            </div>
 
+        <div id="checknote">
+        
+            Link URL is used only when "standard" Check Type is selected.
+        
+        </div>
 
     </div>
-
-
 
 </script>

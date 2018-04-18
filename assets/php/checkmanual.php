@@ -95,16 +95,15 @@
                 echo "<br><br>";
         };
 
-
-        curl_setopt($handle, CURLOPT_FRESH_CONNECT, TRUE);
-        curl_setopt($handle, CURLOPT_FORBID_REUSE, TRUE);
-        curl_setopt($handle, CURLOPT_FOLLOWLOCATION, TRUE);
+        curl_setopt($handle, CURLOPT_FRESH_CONNECT, true);
+        curl_setopt($handle, CURLOPT_FORBID_REUSE, true);
+        curl_setopt($handle, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($handle, CURLOPT_HEADER, TRUE);
-        curl_setopt($handle, CURLOPT_NOBODY, TRUE);
+        curl_setopt($handle, CURLOPT_HEADER, true);
+        curl_setopt($handle, CURLOPT_NOBODY, true);
         curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($handle, CURLOPT_TCP_FASTOPEN, TRUE);
+        curl_setopt($handle, CURLOPT_TCP_FASTOPEN, true);
         curl_setopt($handle, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 10.0)");
         curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($handle, CURLOPT_TIMEOUT, 30);

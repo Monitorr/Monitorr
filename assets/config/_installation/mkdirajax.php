@@ -29,7 +29,7 @@
 
     $filename = file_get_contents('../../data/datadir.json');
 
-    $datadir = json_decode($filename, true);
+    $datadir = json_decode( $filename, true);
 
 
     // Desired folder structure
@@ -147,8 +147,9 @@
             }
 
 
-            $file2 = 'default/user_preferences-data_default.json';
-            $newfile2 = $structure . 'user_preferences-data.json';
+        $file2 = 'default/user_preferences-data_default.json';
+        $newfile2 = $structure . 'user_preferences-data.json';
+
 
             if (!copy($file2, $newfile2)) {
                 echo '<div class="reglog">';
@@ -177,8 +178,9 @@
             }
 
 
-            $file3 = 'default/site_settings-data_default.json';
-            $newfile3 = $structure . 'site_settings-data.json';
+        $file3 = 'default/site_settings-data_default.json';
+        $newfile3 = $structure . 'site_settings-data.json';
+
 
             if (!copy($file3, $newfile3)) {
 
@@ -292,14 +294,8 @@
                             
                         echo '</div>'; 
 
+                        unlink('../../data/datadir.fail.txt');
 
-                            $datafail = '../../data/datadir.fail.txt';
-
-                            if(is_file($datafail)){
-
-                                unlink('../../data/datadir.fail.txt');    
-                            } 
-                        
 
                             // Temporary OLD config file removal // CHANGE ME //
 
@@ -318,7 +314,7 @@
                         } 
 
                     }
-            }
+           }
     }
 
     echo "<br>";

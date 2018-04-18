@@ -1,7 +1,6 @@
 Monitorr data directory
 https://github.com/Monitorr/Monitorr
 
-** DO NOT DELETE THIS FILE **
 
 - This directory and files within are components of the Monitorr web application. 
 - These files should NOT be edited manually. 

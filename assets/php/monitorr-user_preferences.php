@@ -842,8 +842,8 @@ class OneFileLoginApplication
                                                 url: 'post_receiver-user_preferences.php',
                                                 data: $('#preferencesettings').alpaca().getValue(),
                                                 success: function(data) {
-                                                    alert("Settings saved! Applying changes...");
-                                                    setTimeout(function () { window.top.location = "../../settings.php" }, 3000);
+                                                    alert("Settings saved!");
+                                                    // setTimeout(location.reload.bind(location), 500)
                                                 },
                                                 error: function(errorThrown){
                                                     console.log(errorThrown);
@@ -1000,7 +1000,7 @@ $application = new OneFileLoginApplication();
     <head>
 
         <meta charset="UTF-8">
-        <title>Monitorr | Settings</title>
+        <title>Monitorr | Login</title>
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
         <link type="text/css" href="../css/custom.css" rel="stylesheet">
@@ -1018,39 +1018,20 @@ $application = new OneFileLoginApplication();
                 cursor: default;
             }
 
+            /* :root {
+                font-size: 16px !important;
+            } */
+
             .wrapper {
                 width: 30rem;
-                /* margin-top: 10%; */
+                margin-top: 10%;
                 margin-left: auto;
                 margin-right: auto;
                 padding: 1rem;
             }
 
-            input[type=text] {
-                padding: .375rem .75rem;
-                font-size: 1rem;
-                line-height: 1.5;
-                color: black;
-                background: rgb(200, 200, 200);
-                border: 1px solid #ced4da;
-                border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
-            }
-
-            input[type=password] {
-                padding: .375rem .75rem;
-                font-size: 1rem;
-                line-height: 1.5;
-                color: black;
-                background: rgb(200, 200, 200);
-                border: 1px solid #ced4da;
-                border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
-            }
-
         </style>
+
 
     </head>
 

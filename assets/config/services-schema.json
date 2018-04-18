@@ -38,27 +38,13 @@
 				"default": " Standard",
 				"properties": {}
 			},
-			"link": {
-				"type": "string",
-				"title": "link",
-				"enum": [
-					"Yes",
-					"No"
-				],
-				"required": true,
-				"pattern": {},
-				"default": "Yes",
-				"properties": {}
-			},
 			"checkurl": {
-				"required": true,
 				"type": "string",
 				"title": "Check URL",
 				"format": "uri",
 				"default": "http://localhost:80"
 			},
 			"linkurl": {
-				"required": true,
 				"type": "string",
 				"title": "Link URL",
 				"format": "uri",
@@ -66,7 +52,7 @@
 			}
 		},
 		"dependencies": {
-            "linkurl": ["link"]
+            "linkurl": ["type"]
         }
 	}
 }
