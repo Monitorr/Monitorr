@@ -37,6 +37,7 @@
                 margin-bottom: 1vw;
                 overflow: scroll;
                 overflow-x: hidden;
+                overflow-y: visible;
             }
 
             :root {
@@ -315,9 +316,8 @@
                         clearInterval(nIntervId2);
                     }
                 });
-                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
-
-           });
+                $('#buttonStart :checkbox').attr('checked', 'checked').change();
+            });
 
         </script>
 
@@ -353,7 +353,6 @@
                     <!-- system badges go here -->
                 </div>
             </div>
-
 
             <div id="right" class="Column">
 
