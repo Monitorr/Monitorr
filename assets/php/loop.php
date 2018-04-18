@@ -1,7 +1,11 @@
 <?php include ('check.php') ;?>
 
+<<<<<<< HEAD
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/custom.css">
+=======
+<!-- <link rel="stylesheet" href="assets/css/main.css">  -->
+>>>>>>> 0c0293068c1d8b796e9e24a9d24e6ee226c15ad4
 
  <!-- // temporary code:  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
 

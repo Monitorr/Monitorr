@@ -617,7 +617,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Ping host:",
-                                        "helper": "URL or IP to ping for latency check. (WAN DNS provider is suggested)",
+                                        "helper": "URL or IP to ping for latency check. <br> (WAN DNS provider is suggested)",
                                         "hideInitValidationError": false,
                                         "focus": false,
                                         "optionLabels": [],
@@ -647,7 +647,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Ping host port:",
-                                        "helper": "Ping host port to use for latency check. (If using 8.8.8.8, value should be '53')",
+                                        "helper": "Ping host port to use for latency check. <br> (If using 8.8.8.8, value should be '53')",
                                         "hideInitValidationError": false,
                                         "focus": false,
                                         "optionLabels": [],
@@ -1018,7 +1018,7 @@ $application = new OneFileLoginApplication();
     <head>
 
         <meta charset="UTF-8">
-        <title>Monitorr | Login</title>
+        <title>Monitorr | Settings</title>
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
         <link type="text/css" href="../css/custom.css" rel="stylesheet">
@@ -1036,16 +1036,36 @@ $application = new OneFileLoginApplication();
                 cursor: default;
             }
 
-            /* :root {
-                font-size: 16px !important;
-            } */
-
             .wrapper {
                 width: 30rem;
-                margin-top: 10%;
+                /* margin-top: 10%; */
                 margin-left: auto;
                 margin-right: auto;
                 padding: 1rem;
+            }
+
+            input[type=text] {
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+                color: black;
+                background: rgb(200, 200, 200);
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                transition: border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out;
+            }
+
+            input[type=password] {
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+                color: black;
+                background: rgb(200, 200, 200);
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                transition: border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out;
             }
 
         </style>
