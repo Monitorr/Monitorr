@@ -31,7 +31,6 @@
 
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
-        <link href="assets/css/custom.css" rel="stylesheet">
 
         <style>
 
