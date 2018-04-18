@@ -36,7 +36,6 @@
         <link href="assets/css/custom.css" rel="stylesheet">
 
         <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollbox.js"></script>
        
         <style>
 
@@ -176,11 +175,6 @@
         </script>
         
         <script>
-            $(document).ready(function() {
-                $('#summary').scrollbox();
-            });
-        </script>
-        <script>
 
             $timezone = 
                 "<?php 
@@ -210,6 +204,7 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
+                $('#summary').load(document.URL +  ' #summary');
             };
 
             $(document).ready(function () {
@@ -245,18 +240,16 @@
 
              <!-- Append alert if service is down: -->
         <div id="summary">
-            <ul>
             <?php 
                 foreach (glob("assets/data/logs/*.json") as $filename) {   
                     if(is_file($filename)){
 
                         $file_contents = file_get_contents ($filename);
-                        echo '<li>' . ucfirst($file_contents) . '</li>';
+                        echo ucfirst($file_contents) . "<br>";
                     }
                 } 
 
             ?>
-        </ul>
         </div>
 
         <div id="header">
@@ -350,6 +343,7 @@
             <div id="version_check_auto"></div>
             
         </div>
+
     </body>
 
 </html>
