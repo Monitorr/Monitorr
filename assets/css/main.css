@@ -2188,3 +2188,12 @@
         font-weight: 300;
         text-decoration: none;
     }
+
+    /* Custom CSS */
+    #customCSSEditor {
+        height: 300px;
+    }
+    .customCSS {
+        padding: 0px 15px;
+        width: 100%;
+    }

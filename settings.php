@@ -18,7 +18,7 @@
 
         <link type="text/css" href="assets/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="assets/css/main.css" rel="stylesheet">
-        <link type="text/css" href="assets/css/custom.css" rel="stylesheet">
+        <link type="text/css" href="assets/data/css/custom.css" rel="stylesheet">
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
@@ -333,9 +333,6 @@
                         </li>
                         <li>
                             <a href ="#monitorr-settings" onclick="load_settings()"><i class="fa fa-fw fa-cog"></i>  Monitorr Settings </a>
-                        </li>
-                        <li>
-                            <a href ="#monitorr-css" onclick="load_style()"><i class="fa fa-fw fa-paint-brush"></i>  Custom CSS </a>
                         </li>
                         <li>
                             <a href ="#services-configuration" onclick="load_services()"><i class="fa fa-fw fa-cog"></i> Services Configuration  </a>

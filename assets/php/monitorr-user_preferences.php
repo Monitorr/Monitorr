@@ -388,7 +388,7 @@ class OneFileLoginApplication
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="../css/alpaca.min.css" rel="stylesheet">
         <!-- <link type="text/css" href="../css/main.css" rel="stylesheet"> -->
-        <link type="text/css" href="../css/custom.css" rel="stylesheet">
+        <link type="text/css" href="../data/css/custom.css" rel="stylesheet">
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
@@ -397,6 +397,7 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/handlebars.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
        
             <style>
 
@@ -532,7 +533,7 @@ class OneFileLoginApplication
                         "view": {
                             "parent": "bootstrap-edit-horizontal",
                             "layout": {
-                                "template": '../css/./two-column-layout-template.html',
+                                "template": '../css/./two-column-layout-template-user-preferences.html',
                                 "bindings": {
                                     "sitetitle": "leftcolumn",
                                     "siteurl": "leftcolumn",
@@ -823,7 +824,7 @@ class OneFileLoginApplication
                                             $('.alpaca-form-button-submit').addClass('buttonchange');
                                         }
                                     }
-                                }
+                                },
                             },
                             "form": {
                                 "attributes": {
@@ -850,6 +851,8 @@ class OneFileLoginApplication
                                                     alert("Error submitting data.");
                                                 }
                                             });
+
+                                            $.post('post_receiver_custom_css.php', { css: cssEditor.getSession().getValue()}, function(data) {});
                                             $('.alpaca-form-button-submit').removeClass('buttonchange');
                                         }
                                     },
@@ -867,6 +870,17 @@ class OneFileLoginApplication
                                 },
                             }
                         },
+                        "postRender": function(control) {
+                            cssEditor = ace.edit("customCSSEditor");
+                            cssEditor.getSession().setMode("ace/mode/css");
+                            cssEditor.setTheme("ace/theme/idle_fingers");
+
+                            //load the custom css file into the form
+                            $.when($.get("../data/css/custom.css"))
+                            .done(function(response) {
+                                cssEditor.getSession().setValue(response);
+                            });
+                        }
                     });
 
                 });
@@ -1003,7 +1017,7 @@ $application = new OneFileLoginApplication();
         <title>Monitorr | Settings</title>
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
-        <link type="text/css" href="../css/custom.css" rel="stylesheet">
+        <link type="text/css" href="../data/css/custom.css" rel="stylesheet">
         <script type="text/javascript" src="../js/pace.js" async></script>
         <!-- <script src="../js/jquery.min.js"></script> -->
 
