@@ -10,4 +10,4 @@
 
 ## Describe your issue:
 
-I have read the t-shooting Wiki at: https://github.com/Monitorr/Monitorr/wiki/05-Troubleshooting
+I have read the t-shooting Wiki at: https://github.com/Monitorr/Monitorr/wiki/06-Troubleshooting
