@@ -37,6 +37,11 @@
                 margin-bottom: 1vw;
                 overflow: scroll;
                 overflow-x: hidden;
+                overflow-y: visible;
+            }
+
+            :root {
+                font-size: 12px !important;
             }
 
             #summary {
@@ -45,8 +50,12 @@
                 font-size: .8rem;
             }
 
-            :root {
-                font-size: 12px !important;
+            #ajaxtimestamp {
+                margin-top: -.5rem !important;
+            }
+
+            #ajaxmarquee {
+                margin-top: -.5rem !important;
             }
 
             ::-webkit-scrollbar {
@@ -100,7 +109,6 @@
             }
 
             #ping {
-
                 padding-top: .5rem !important;
             }
 
@@ -119,6 +127,8 @@
             }
 
         </style>
+
+        <script src="assets/js/jquery.min.js"></script>
 
 
             <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
@@ -143,6 +153,8 @@
                 }
             ?>
 
+            <!-- top loading bar function: -->
+        <script src="assets/js/pace.js" async></script>
 
         <?php
 
@@ -176,36 +188,11 @@
 
         ?>
 
-        <title><?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?></title>
+        <title>
+            <?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?>
+        </title>
 
-        <script src="assets/js/jquery.min.js"></script>
-
-        <script src="assets/js/pace.js" async></script>
-
-        <script>
-            $(document).ready(function() {
-                function update() {
-
-                    rftime =
-                        <?php
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                    type: 'POST',
-                    url: 'assets/php/timestamp.php',
-                    timeout: 5000,
-                    success: function(data) {
-                        $("#timer").html(data);
-                        window.setTimeout(update, rftime);
-                        }
-                    });
-                }
-                update();
-            });
-        </script>
-
+            <!-- services status update function: -->
         <script type="text/javascript">
 
             var nIntervId;
@@ -225,10 +212,10 @@
                             echo $rfsysinfo;
                         ?>
 
-
                     if ($(this).is(':checked')) {
                         nIntervId = setInterval(statusCheck, rfsysinfo);
-                    } else {
+                    } 
+                    else {
                         clearInterval(nIntervId);
                     }
                 });
@@ -236,6 +223,40 @@
 
         </script>
 
+            <!-- digital clock function: -->
+        <script>
+            $(document).ready(function() {
+                function update() {
+
+                    rftime =
+                        <?php
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'assets/php/timestamp.php',
+                        timeout: 4000,
+                        success: function(data) {
+                            $("#timer").html(data);
+                            window.setTimeout(update, rftime);
+                        },
+                        error: function(x, t, m) {
+                            if(t==="timeout") {
+                                //alert("timestamp timeout1");
+                                console.log("ERROR: timestamp timeout");
+                                $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                            } else {
+                            }
+                        }
+                    });
+                }
+                update();
+            });
+        </script>
+
+            <!-- marquee offline function: -->
         <script>
 
              var nIntervId2;
@@ -262,13 +283,13 @@
                                 current: current
                             },
 
-                            timeout: 5000,
+                            timeout: 6000,
                             success: function(data) {
                                 if(data){
                                     result = $.parseJSON(data);
                                     console.log(result);
                                     $("#summary").fadeOut(function() {
-                                    $(this).html(result[0]).fadeIn();
+                                        $(this).html(result[0]).fadeIn();
                                     });
                                     current = result[1];
                                 }
@@ -276,6 +297,14 @@
                                 else {
                                     current = -1;
                                     $("#summary").hide();
+                                }
+                            },
+                            error: function(x, t, m) {
+                                if(t==="timeout") {
+                                    //alert("ERROR: marquee timeout");
+                                    console.log("ERROR: marquee timeout");
+                                    $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                                } else {
                                 }
                             }
                         });
@@ -287,13 +316,10 @@
                         clearInterval(nIntervId2);
                     }
                 });
-
                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
-
             });
 
         </script>
-
 
     </head>
 
@@ -309,6 +335,11 @@
             <!-- Append alert if service is down: -->
         <div id="summary"></div>
 
+            <!-- Ajax timeout indicator: -->
+        <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
+        <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+
+
         <div id="headermin">
 
             <div id="left" class="Column">
@@ -322,7 +353,6 @@
                     <!-- system badges go here -->
                 </div>
             </div>
-
 
             <div id="right" class="Column">
 
