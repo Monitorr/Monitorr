@@ -1968,6 +1968,24 @@
         padding-left: 15%;
     }
 
+    /* Custom CSS */
+
+    .customCSS {
+        padding: 0px 15px;
+        width: 98%;
+        margin: 0 auto;
+    }
+
+    #customCSSEditor {
+        height: 20rem;
+        max-width: 100%;
+    }
+
+    #customcsslabel {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
     #sitesettings {
         padding-left: 15%;
     }
@@ -2189,11 +2207,3 @@
         text-decoration: none;
     }
 
-    /* Custom CSS */
-    #customCSSEditor {
-        height: 300px;
-    }
-    .customCSS {
-        padding: 0px 15px;
-        width: 100%;
-    }
