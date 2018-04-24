@@ -1965,7 +1965,7 @@
     }
 
     #preferencesettings {
-        padding-left: 15%;
+        padding-left: 10%;
     }
 
     /* Custom CSS */
@@ -1987,7 +1987,7 @@
     }
 
     #sitesettings {
-        padding-left: 15%;
+        padding-left: 10%;
     }
 
     #leftcolumn {
@@ -2014,7 +2014,7 @@
     }
 
     .alpaca-field-object {
-        padding-left: 2rem;
+        /* padding-left: 2rem; */
         padding-right: 2rem;
         padding-bottom: 1rem;
     }
