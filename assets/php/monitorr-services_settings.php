@@ -608,6 +608,7 @@ class OneFileLoginApplication
                             "options": {
                                 "toolbarSticky": true,
                                 "collapsible": true,
+                                "focus": false,
                                 "actionbar": {
                                     "showLabels": true,
                                     "actions": [{
@@ -893,11 +894,9 @@ class OneFileLoginApplication
                                         "action": "post_receiver-services.php",
                                         "method": "post",
                                         "contentType": "application/json"
-                                        //"enctype": "json"
                                     },
                                     "buttons": {
                                         "submit": {
-                                            // "type": 'button',
                                             "click": function formsubmit() {
                                                 var data = $('#servicesettings').alpaca().getValue();
                                                 $.post('post_receiver-services.php', {
