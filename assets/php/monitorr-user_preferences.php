@@ -483,7 +483,6 @@ class OneFileLoginApplication
 
         <p id="response"></p>
 
-
         <div id="centertext">
             <div class="navbar-brand">
                 User Preferences
@@ -852,7 +851,11 @@ class OneFileLoginApplication
                                                 }
                                             });
 
-                                            $.post('post_receiver_custom_css.php', { css: cssEditor.getSession().getValue()}, function(data) {});
+                                            $.post('post_receiver_custom_css.php', { 
+                                                css: cssEditor.getSession().getValue()
+                                                }, 
+                                                function(data) {}
+                                            );
                                             $('.alpaca-form-button-submit').removeClass('buttonchange');
                                         }
                                     },
