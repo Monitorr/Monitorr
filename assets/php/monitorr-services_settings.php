@@ -479,6 +479,7 @@ class OneFileLoginApplication
 
             .alpaca-field-object {
                 padding-top: 2rem;
+                padding-left: 2rem;
             }
 
             .form-control {
