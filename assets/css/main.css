@@ -775,7 +775,7 @@
         cursor: default;
     }
 
-    .double-val-label>span:first-child() {
+    .double-val-label>span:first-child {
         border-bottom-left-radius: 0.25em;
         border-top-left-radius: .25em;
     }
@@ -1690,7 +1690,6 @@
         margin-top: -5.5rem;
         width: 20rem;
         text-align: center;
-        /* background-color: #1F1F1F; */
         z-index: 1000;
     }
 
@@ -1990,6 +1989,22 @@
         padding-left: 10%;
     }
 
+    #tablesitesettings {
+        border-collapse: separate;
+        margin: auto;
+        width: 100%;
+    }
+
+    #tableuserprefs {
+        border-collapse: separate;
+        margin: auto;
+        width: 100%;
+    }
+
+    #settingstable{
+        cursor: default;
+    }
+
     #leftcolumn {
         margin: auto;
         text-align: left;
@@ -2014,7 +2029,6 @@
     }
 
     .alpaca-field-object {
-        /* padding-left: 2rem; */
         padding-right: 2rem;
         padding-bottom: 1rem;
     }
