@@ -3,11 +3,22 @@
         {{#if options.label}}<h3>{{options.label}}</h3>{{/if}}
         {{#if options.helper}}<h4>{{options.helper}}</h4>{{/if}}
     </div>
-    <div class="col-md-6" id="leftcolumn"></div>
-    <div class="col-md-6" id="rightcolumn"></div>
+    
+    <table id="tablesitesettings">
+        <tr id="settingstable">
+            <td>
+                <div id="leftcolumn"></div>
+            </td>
+            <td>
+                <div id="rightcolumn"></div>
+            </td>
+        </tr>
+    </table>
+
+
     <div class="customCSS">
-        <!-- <label for="alpaca8" class="control-label alpaca-control-label col-sm-3" style="text-align:left;">Custom CSS:</label> -->
         <label for="alpaca8" id="customcsslabel" style="text-align:left;">Custom CSS:</label>
 	    <div class="col-sm-9" id="customCSSEditor"></div>
-	</div>
+    </div>
+    
 </div>
