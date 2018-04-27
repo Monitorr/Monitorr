@@ -37,7 +37,7 @@
                 /* overflow-y: scroll !important;  */
                 overflow-x: hidden !important;
                 /* color: white !important; */
-                background-color: #1F1F1F !important;
+                background-color: #1F1F1F;
             }
 
             .navbar-brand {
