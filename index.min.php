@@ -91,7 +91,7 @@
                 max-width: 40rem;
                 left: 51% !important;
                 padding-top: 1rem;
-                background-color: #1F1F1f;
+                background-color: inherit;
                 box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F;
             }
 
