@@ -1582,7 +1582,7 @@
     }
 
     #mymodal4 {
-        padding-top: .5rem;
+        /* padding-top: .5rem; */
         padding-bottom: 0;
         align-items: center;
     }
@@ -1668,6 +1668,96 @@
         text-decoration: none;
         cursor: pointer;
         font-weight: 900;
+    }
+
+
+    /* IMG upload form */
+
+    #uploadbutton {
+        background-color: transparent;
+        padding: .5rem;
+        color: #aaa;
+        cursor: default;
+    }
+
+    #choosefile {
+        color: white;
+        cursor: pointer;
+    }
+
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .file-upload {
+        display: inline-block;
+        padding: 1px 6px;
+        border-radius: .2rem;
+        background-color: rgb(200, 200, 200);
+        border: none;
+        color: black;
+        cursor: pointer;
+    }
+
+    .file-upload:hover {
+        background-color: rgb(150, 150, 150);
+        color: white;
+    }
+
+    .uploadbtn {
+        visibility: hidden;
+        background-color: rgb(150, 150, 150) !important;
+        color: black !important;
+        cursor: not-allowed !important;
+    }
+
+    uploadbtn:hover {
+        background-color: rgb(150, 150, 150) !important;
+        color: black !important;
+        cursor: not-allowed !important;
+    }
+
+    #upload {
+        border-radius: .2rem;
+        background-color: rgb(200, 200, 200);
+        border: none;
+        color: black;
+        cursor: pointer;
+    }
+
+
+    #upload:hover {
+        background-color: rgb(150, 150, 150);
+        color: white;
+    }
+
+    #file-selected {
+        color: white;
+        cursor: default;
+    }
+
+    #uploadreturn {
+        position: static;
+        color: white;
+        font-size: 1rem;
+        background-color: transparent;
+        text-align: center;
+        cursor: default;
+    }
+
+    #uploadreturn:empty {
+        visibility: hidden;
+    }
+
+    #uploadok {
+        color: green;
+        font-weight: 700;
+    }
+
+    #uploaderror {
+        color: red;
+        font-weight: 700;
     }
 
     #checkurl {
