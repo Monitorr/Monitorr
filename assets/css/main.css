@@ -6,6 +6,7 @@
     /* @import url(https://fonts.googleapis.com/css?family=Roboto:400); */
 
     @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
     body {
         opacity: 1;
         transition: 2s opacity;
@@ -339,6 +340,7 @@
         padding-right: 1rem;
         padding-left: .5rem;
         line-height: 1;
+        background-color: inherit;
     }
 
     @media screen and (min-width: 100px) {
@@ -397,7 +399,7 @@
     .navbar-brand {
         vertical-align: middle;
         margin: 0;
-        background-color: rgba(31, 31, 31, 0.500);
+        /* background-color: rgba(31, 31, 31, 0.500); */
         padding: 0px;
         color: #ffffff;
         text-shadow: 0 0 15px #FF0104;
@@ -471,7 +473,7 @@
     }
 
     #services {
-        background: #1F1F1F;
+        background-color: inherit;
         width: 90%;
     }
 
@@ -775,7 +777,7 @@
         cursor: default;
     }
 
-    .double-val-label>span:first-child() {
+    .double-val-label>span:first-child {
         border-bottom-left-radius: 0.25em;
         border-top-left-radius: .25em;
     }
@@ -1174,7 +1176,7 @@
     #reginfo {
         width: 85%;
         color: #555555;
-        background-color: #1F1F1F;
+        background-color: inherit;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 5rem;
@@ -1536,7 +1538,7 @@
         position: fixed;
         top: 0;
         overflow-y: auto;
-        height: 75%;
+        height: 70%;
         margin-top: 10%;
         margin-left: 10%;
         margin-right: 10%;
@@ -1580,7 +1582,7 @@
     }
 
     #mymodal4 {
-        padding-top: .5rem;
+        /* padding-top: .5rem; */
         padding-bottom: 0;
         align-items: center;
     }
@@ -1668,6 +1670,96 @@
         font-weight: 900;
     }
 
+
+    /* IMG upload form */
+
+    #uploadbutton {
+        background-color: transparent;
+        padding: .5rem;
+        color: #aaa;
+        cursor: default;
+    }
+
+    #choosefile {
+        color: white;
+        cursor: pointer;
+    }
+
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .file-upload {
+        display: inline-block;
+        padding: 1px 6px;
+        border-radius: .2rem;
+        background-color: rgb(200, 200, 200);
+        border: none;
+        color: black;
+        cursor: pointer;
+    }
+
+    .file-upload:hover {
+        background-color: rgb(150, 150, 150);
+        color: white;
+    }
+
+    .uploadbtn {
+        visibility: hidden;
+        background-color: rgb(150, 150, 150) !important;
+        color: black !important;
+        cursor: not-allowed !important;
+    }
+
+    uploadbtn:hover {
+        background-color: rgb(150, 150, 150) !important;
+        color: black !important;
+        cursor: not-allowed !important;
+    }
+
+    #upload {
+        border-radius: .2rem;
+        background-color: rgb(200, 200, 200);
+        border: none;
+        color: black;
+        cursor: pointer;
+    }
+
+
+    #upload:hover {
+        background-color: rgb(150, 150, 150);
+        color: white;
+    }
+
+    #file-selected {
+        color: white;
+        cursor: default;
+    }
+
+    #uploadreturn {
+        position: static;
+        color: white;
+        font-size: 1rem;
+        background-color: transparent;
+        text-align: center;
+        cursor: default;
+    }
+
+    #uploadreturn:empty {
+        visibility: hidden;
+    }
+
+    #uploadok {
+        color: green;
+        font-weight: 700;
+    }
+
+    #uploaderror {
+        color: red;
+        font-weight: 700;
+    }
+
     #checkurl {
         float: right;
         margin-top: -12rem;
@@ -1690,7 +1782,6 @@
         margin-top: -5.5rem;
         width: 20rem;
         text-align: center;
-        /* background-color: #1F1F1F; */
         z-index: 1000;
     }
 
@@ -1825,7 +1916,7 @@
         float: right;
         width: calc(100% - 18rem);
         padding-left: 2rem;
-        background-color: #1F1F1F
+        /* background-color: #1F1F1F */
     }
 
     .object {
@@ -1906,9 +1997,13 @@
         position: relative;
     }
 
+    #serviceform {
+        background-color: inherit;
+    }
+
     #servicesettings {
         margin-bottom: 6rem;
-        background-color: #1F1F1F;
+        /* background-color: #1F1F1F; */
     }
 
     .expand {
@@ -1964,12 +2059,60 @@
         transition: .5s;
     }
 
-    #preferencesettings {
-        padding-left: 15%;
+    #preferenceform {
+        background-color: inherit;
     }
 
+    #preferencesettings {
+        padding-left: 10%;
+    }
+
+    /* Custom CSS */
+
+    .customCSS {
+        padding: 0px 15px;
+        width: 98%;
+        margin: 0 auto;
+    }
+
+    #customCSSEditor {
+        height: 20rem;
+        max-width: 100%;
+        border: 2px solid rgb(200, 200, 200);
+    }
+
+    #customcsslabel {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .ace_content {
+        height: 100% !important;
+    }
+
+    #siteform {
+        background-color: inherit;
+    }
+
+
     #sitesettings {
-        padding-left: 15%;
+        padding-left: 10%;
+    }
+
+    #tablesitesettings {
+        border-collapse: separate;
+        margin: auto;
+        width: 100%;
+    }
+
+    #tableuserprefs {
+        border-collapse: separate;
+        margin: auto;
+        width: 100%;
+    }
+
+    #settingstable{
+        cursor: default;
     }
 
     #leftcolumn {
@@ -1996,7 +2139,6 @@
     }
 
     .alpaca-field-object {
-        padding-left: 2rem;
         padding-right: 2rem;
         padding-bottom: 1rem;
     }
@@ -2026,7 +2168,7 @@
     .alpaca-message-invalidPattern {
         color: red;
         font-style: italic;
-        background-color: #1F1F1F;
+        background-color: inherit;
         cursor: default;
         z-index: 1000;
     }
@@ -2188,3 +2330,4 @@
         font-weight: 300;
         text-decoration: none;
     }
+
