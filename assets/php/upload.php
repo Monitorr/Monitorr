@@ -39,9 +39,9 @@
         
         else {
             
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], strtolower($target_file))) {
                 echo "<div id='uploadok'>";
-                    echo "File ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded to: " . $target_file ;
+                    echo "File ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded to: " . strtolower($target_file) ;
                 echo "</div>";
             } 
             
