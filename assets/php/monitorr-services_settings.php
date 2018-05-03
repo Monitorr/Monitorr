@@ -947,6 +947,7 @@ class OneFileLoginApplication
                         var fileName = ''; 
                         fileName = $(this).val(); 
                         $('#file-selected').html(fileName.replace(/^.*\\/, ""));
+                        //$('#file-selected').html(fileName.replace(/[|&;$%@"<>()+,]/g, "").toLowerCase());
                         $('#upload').removeClass('uploadbtn');
                     })
                 });
