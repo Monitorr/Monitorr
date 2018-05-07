@@ -132,28 +132,6 @@
         <script src="assets/js/jquery.min.js"></script>
 
 
-            <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
-
-            <?php
-
-                $oldfile = 'assets/config/datadir.json';
-                $newfile = 'assets/data/datadir.json';
-
-                if(!is_file($newfile)){
-
-                    if (!copy($oldfile, $newfile)) {
-                        // echo "failed to copy $oldfile...\n";
-                    }
-
-                    else {
-                        rename($oldfile, 'assets/config/datadir.json.old');
-                    }
-                }
-
-                else {
-                }
-            ?>
-
             <!-- top loading bar function: -->
         <script src="assets/js/pace.js" async></script>
 
@@ -174,7 +152,6 @@
                 $title = $jsonusers['sitetitle'];
 
                 $rftime = $jsonsite['rftime'];
-
             }
 
             else {
@@ -184,9 +161,7 @@
                 include_once ('assets/config/monitorr-data.php');
 
                 $title = $jsonusers['sitetitle'];
-
             }
-
         ?>
 
         <title>
