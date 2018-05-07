@@ -8,21 +8,6 @@ elif [[ -d /config/www/monitorr/.git ]]; then
   git pull
 fi
 
-mv /config/www/monitorr/assets/data/css /app/css
-ln -s  /app/css /config/www/monitorr/assets/data/css
-
-mv /config/www/monitorr/assets/data/logs /app/logs
-ln -s  /app/logs /config/www/monitorr/assets/data/logs
-
-mv /config/www/monitorr/assets/data/usrimg/ /app/images
-ln -s  /app/images /config/www/monitorr/assets/data/usrimg
-
-cp /datadir.json /app/datadir.json
-ln -s /app/datadir.json /config/www/monitorr/assets/data/datadir.json
-
-cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
-
-
 # Make Directories
 # USER DATA
 if [[ ! -d /app/userdata/ ]]; then
