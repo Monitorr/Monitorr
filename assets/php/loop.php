@@ -2,30 +2,7 @@
 
 <!-- <link rel="stylesheet" href="assets/css/main.css">  -->
 
- <!-- // temporary code:  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
-
-<?php 
-
-    $oldfile = '../config/datadir.json';
-    $newfile = '../data/datadir.json';
-
-    if(!is_file($newfile)){
-
-        if (!copy($oldfile, $newfile)) {
-            // echo "failed to copy $oldfile...\n";
-        }
-
-        else {
-            rename($oldfile, '../config/datadir.json.old');
-        }
-    } 
-
-    else {
-    }
-?>
-
-
-<?php 
+ <?php 
 
     $datafile = '../data/datadir.json';
     $str = file_get_contents($datafile);
@@ -55,7 +32,6 @@
 
 ?>
 
-
  <?php foreach ( $myServices as $v1 => $v2 ) { ?>
 
     <?php 
@@ -66,8 +42,6 @@
                 echo "<div>";
                     urlExists($v2['checkurl']);
                 echo "</div>";
-
-
             }
 
             else {
@@ -87,7 +61,16 @@
                 rename($fileoffline, '../data/logs/offline.json.old');
             } 
         }
-
     ?>
 
 <?php } ?> 
+
+        <!-- Remove loading modal after page onload: -->
+
+   <script type='text/javascript'>
+       $(document).ready(function(){
+            $('.pace-activity').addClass('hidepace');
+            $('.modalloadingindex').addClass('hidemodal');
+            console.log("Service check complete");
+       });
+   </script>
