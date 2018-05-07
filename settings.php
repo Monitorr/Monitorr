@@ -18,6 +18,7 @@
 
         <link type="text/css" href="assets/css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="assets/css/main.css" rel="stylesheet">
+        <link type="text/css" href="assets/data/css/custom.css" rel="stylesheet">
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
@@ -36,7 +37,7 @@
                 /* overflow-y: scroll !important;  */
                 overflow-x: hidden !important;
                 /* color: white !important; */
-                background-color: #1F1F1F !important;
+                background-color: #1F1F1F;
             }
 
             .navbar-brand {
@@ -404,6 +405,12 @@
             <script>
                 function load_preferences() {
                     document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
+                }
+            </script>
+
+            <script>
+                function load_style() {
+                    document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-custom_style.php" ></object>';
                 }
             </script>
 
