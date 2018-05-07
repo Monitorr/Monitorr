@@ -384,6 +384,7 @@ class OneFileLoginApplication
 <html lang="en">
 
     <head>
+
         <meta charset="utf-8">
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="../css/alpaca.min.css" rel="stylesheet">
@@ -480,7 +481,6 @@ class OneFileLoginApplication
             });
         </script>
 
-
         <p id="response"></p>
 
         <div id="centertext">
@@ -526,7 +526,6 @@ class OneFileLoginApplication
 
                         $("#preferencesettings").alpaca({
                             "connector": "custom",
-                            //"dataSource": "../data/./user_preferences-data.json?a=1",
                             "dataSource": "./post_receiver-user_preferences_load.php",
                             "schemaSource": "../config/user_preferences-schema.json?a=1",
                             "view": {
@@ -540,6 +539,40 @@ class OneFileLoginApplication
                                         "language": "rightcolumn",
                                         "timezone": "rightcolumn",
                                         "timestandard": "rightcolumn"
+                                    }
+                                },
+                                "fields": {
+                                    "/sitetitle": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-user-preferences_title.html"
+                                        },
+                                        "bindings": {
+                                            "sitetitle": "#site_title_input"
+                                        }
+                                    },
+                                    "/siteurl": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-user-preferences_url.html"
+                                        },
+                                        "bindings": {
+                                            "siteurl": "#site_url_input"
+                                        }
+                                    },
+                                    "/updateBranch": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-user-preferences_updatebranch.html"
+                                        },
+                                        "bindings": {
+                                            "updateBranch": "#updatebranch"
+                                        }
+                                    },
+                                    "/timezone": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-user-preferences_timezone.html"
+                                        },
+                                        "bindings": {
+                                            "timzone": "#timezone"
+                                        }
                                     }
                                 }
                             },
@@ -560,6 +593,8 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Site Title:",
+                                        "constrainMaxLength": true,
+                                        "showMaxLengthIndicator": true,
                                         "helpers": ["Text that is displayed in the top header."],
                                         "hideInitValidationError": false,
                                         "focus": false,
@@ -885,7 +920,6 @@ class OneFileLoginApplication
                                 });
                             }
                         });
-
                     });
                 </script>
 
@@ -1051,8 +1085,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
             input[type=password] {
@@ -1063,8 +1096,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
         </style>

@@ -448,6 +448,7 @@ class OneFileLoginApplication
 
             img {
                 width: 7rem !important;
+                max-height: 8rem;
                 color: white;
             }
 
@@ -455,6 +456,14 @@ class OneFileLoginApplication
                 position: relative !important;
                 margin-left: -2rem;
                 margin-top: -5rem !important;
+            }
+            
+            .alpaca-field-text-max-length-indicator.err {
+                margin-top: -2rem;
+            }
+
+            .alpaca-field-text-max-length-indicator {
+                margin-top: -2rem;
             }
 
             .help-block {
@@ -482,10 +491,42 @@ class OneFileLoginApplication
                 padding-left: 2rem;
             }
 
+            .servicedisabled {
+                /* background-color: red; */
+            }
+
             .form-control {
                 width: inherit !important;
                 margin-bottom: 2rem;
             }
+
+            .pace .pace-progress {
+                visibility: hidden;
+            }
+
+            .pace .pace-activity {
+                display: block;
+                visibility: visible !important;
+                position: fixed;
+                z-index: 2000;
+                left: .5rem;
+                width: 2rem;
+                height: 2rem;
+                border: solid .2rem transparent;
+                border-top-color: #680233;
+                border-left-color: #680233;
+                border-radius: 1rem;
+                -webkit-animation: pace-spinner 400ms linear infinite;
+                -moz-animation: pace-spinner 400ms linear infinite;
+                -ms-animation: pace-spinner 400ms linear infinite;
+                -o-animation: pace-spinner 400ms linear infinite;
+                animation: pace-spinner 400ms linear infinite;
+            }
+
+            .pace-inactive {
+                display: block !important;
+            }
+
 
         </style>
 
@@ -503,7 +544,7 @@ class OneFileLoginApplication
     </head>
 
     <body>
-
+         
         <script>
             document.body.className += ' fade-out';
             $(function() {
@@ -519,8 +560,22 @@ class OneFileLoginApplication
 
         <p id="response"></p>
 
-        <div id="serviceform">
+        <div id="modalloading" title="Monitorr services are populating.">
 
+            <div id="modalloadingspinner" style="transform:translateZ(0);"> </div>
+
+            <script>
+                window.paceOptions = { 
+                    target: "#modalloadingspinner",
+                    ajax: false
+                };
+            </script>
+            
+            <p class="modaltextloading">Loading services ...</p>
+
+        </div>
+
+        <div id="serviceform">
             <div id="servicesettings"></div>
 
                 <script type="text/javascript">
@@ -581,19 +636,8 @@ class OneFileLoginApplication
                                         "templates": {
                                             "control": "../css/./templates-linkurl-control.html"
                                         }
-                                    },
+                                    }
                                 }
-                                // "parent": "bootstrap-edit-horizontal",
-                                // "layout": {
-                                //    "template": './two-column-layout-template-services.html',
-                                //     "bindings": {
-                                //         "serviceTitle": "#leftservice",
-                                //         "image": "#leftservice",
-                                //         "checkurl": "#rightservice",
-                                //         "linkurl": "#rightservice",
-                                //         "type": "#rightservice"
-                                //     }
-                                // }
                             },
                             "options": {
                                 "toolbarSticky": true,
@@ -633,7 +677,6 @@ class OneFileLoginApplication
                                         "action": "",
                                         "iconClass": "fa fa-image",
                                         "click": function() {
-
                                             var modal = document.getElementById('myModal3');
                                             var span = document.getElementsByClassName("closeimg")[0];
                                             modal.style.display = "block";
@@ -655,11 +698,13 @@ class OneFileLoginApplication
                                     "fields": {
                                         "serviceTitle": {
                                             "type": "text",
-                                            "validate": true,
+                                            "validate": false,
                                             "showMessages": true,
                                             "disabled": false,
                                             "hidden": false,
                                             "label": "Service Title:",
+                                            "constrainMaxLength": true,
+                                            "showMaxLengthIndicator": true,
                                             "hideInitValidationError": false,
                                             "focus": false,
                                             "optionLabels": [],
@@ -712,8 +757,6 @@ class OneFileLoginApplication
                                             "disabled": false,
                                             "hidden": false,
                                             "label": "Service Image:",
-                                            //"helpers": ["Icon/image representation of service"],
-                                            //"helper": "Icon/image representation of service. <br> Location of image must be present in the /assets/img directory.",
                                             "hideInitValidationError": false,
                                             "focus": false,
                                             "optionLabels": [],
@@ -754,7 +797,6 @@ class OneFileLoginApplication
                                                         $('#mymodal2').empty();
                                                     }
                                                 }
-
                                                 $('.alpaca-form-button-submit').addClass('buttonchange');
                                             }
                                         },
@@ -766,7 +808,6 @@ class OneFileLoginApplication
                                             "disabled": false,
                                             "hidden": false,
                                             "label": "Check Type:",
-                                            //"helpers": ["Standard: Services that serve a webpage. <br> Ping: Services that only listen on defined port."],
                                             "hideInitValidationError": false,
                                             "focus": false,
                                             "name": "checktype",
@@ -854,7 +895,7 @@ class OneFileLoginApplication
                                             "showMessages": true,
                                             "disabled": false,
                                             "hidden": false,
-                                            "label": "Link URL:",
+                                            "label": "Service URL:",
                                             "size": 30,
                                             //"helpers": ["URL that will be linked to service"],
                                             //"helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
@@ -909,7 +950,10 @@ class OneFileLoginApplication
                                         }
                                     }
                                 }
-                            }
+                            },
+                            "postRender": function(control) {
+                                document.getElementById("modalloading").remove();
+                            }   
                         });
                     });
                 </script>
@@ -930,7 +974,6 @@ class OneFileLoginApplication
                             data: form_data,                         
                             type: 'post',
                             success: function(php_script_response){
-                                //alert(php_script_response); // REMOVE // CHANGE ME
                                 console.log($('#choosefile'));
                                 console.log(php_script_response);
                                 $('#uploadreturn').html(php_script_response);
@@ -1213,9 +1256,10 @@ $application = new OneFileLoginApplication();
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
         <link type="text/css" href="../data/css/custom.css" rel="stylesheet">
-        <script type="text/javascript" src="../js/pace.js" async></script>
 
-        <!-- <script src="../js/jquery.min.js"></script> -->
+        <script type="text/javascript" src="../js/pace.js"></script>
+
+        <script>window.paceOptions = { target: "header" };</script>
 
         <style type="text/css">
 
@@ -1225,7 +1269,6 @@ $application = new OneFileLoginApplication();
 
             .wrapper {
                 width: 30rem;
-                /* margin-top: 10%; */
                 margin-left: auto;
                 margin-right: auto;
                 padding: 1rem;
@@ -1243,8 +1286,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
             input[type=password] {
@@ -1255,8 +1297,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
         </style>
