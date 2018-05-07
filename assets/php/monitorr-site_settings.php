@@ -520,10 +520,7 @@ class OneFileLoginApplication
                         $("#sitesettings").alpaca({
                             "connector": "custom",
                             "dataSource": "./post_receiver-site_settings_load.php",
-                            //"dataSource": "../data/site_settings-data.json?a=1",
                             "schemaSource": "../config/site_settings-schema.json?a=1",
-                            // "optionsSource": "./data/connector-custom-options.json?a=1",
-                            // "viewSource": "../data/connector-custom-view.json?a=1",
                             "view": {
                                 "parent": "bootstrap-edit-horizontal",
                                 "layout": {
@@ -1052,8 +1049,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
             input[type=password] {
@@ -1064,8 +1060,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
         </style>
