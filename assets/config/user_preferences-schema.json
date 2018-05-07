@@ -5,6 +5,7 @@
         "sitetitle": {
             "type": "string",
             "required": false,
+            "maxLength": 15,
             "default": "Monitorr",
             "properties": {}
         },
