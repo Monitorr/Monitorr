@@ -33,7 +33,6 @@
 
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
-        <link href="assets/data/css/custom.css" rel="stylesheet">
 
         <style>
 

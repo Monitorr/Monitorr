@@ -6,7 +6,6 @@
 			"serviceTitle": {
 				"type": "string",
 				"title": "Service Title",
-				"maxLength": 20,
 				"default": "Service Title"
 			},
 			"enabled": {

@@ -6,7 +6,6 @@
     /* @import url(https://fonts.googleapis.com/css?family=Roboto:400); */
 
     @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
-
     body {
         opacity: 1;
         transition: 2s opacity;
@@ -340,7 +339,6 @@
         padding-right: 1rem;
         padding-left: .5rem;
         line-height: 1;
-        background-color: inherit;
     }
 
     @media screen and (min-width: 100px) {
@@ -399,7 +397,7 @@
     .navbar-brand {
         vertical-align: middle;
         margin: 0;
-        /* background-color: rgba(31, 31, 31, 0.500); */
+        background-color: rgba(31, 31, 31, 0.500);
         padding: 0px;
         color: #ffffff;
         text-shadow: 0 0 15px #FF0104;
@@ -473,7 +471,7 @@
     }
 
     #services {
-        background-color: inherit;
+        background: #1F1F1F;
         width: 90%;
     }
 
@@ -663,6 +661,8 @@
         text-decoration: none;
     }
 
+
+
     .btonline:hover {
         text-decoration: none;
     }
@@ -709,8 +709,7 @@
     .btunknown:hover {
         text-decoration: none;
     }
-
-    /* System Info Badges */
+    /* BADGES */
 
     #stats {
         display: grid;
@@ -776,7 +775,7 @@
         cursor: default;
     }
 
-    .double-val-label>span:first-child {
+    .double-val-label>span:first-child() {
         border-bottom-left-radius: 0.25em;
         border-top-left-radius: .25em;
     }
@@ -1175,7 +1174,7 @@
     #reginfo {
         width: 85%;
         color: #555555;
-        background-color: inherit;
+        background-color: #1F1F1F;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 5rem;
@@ -1281,11 +1280,11 @@
         cursor: default;
     }
 
-    /************ SETTINGS  **************/
+    /********************* SETTINGS  *****************/
 
     /******SETTINGS NAVBAR ********/
 
-    /*     Wrappers      */
+    /*           Wrappers            */
 
     #wrapper {
         -moz-transition: all 0.3s ease;
@@ -1458,13 +1457,40 @@
 
     #enabled_option {
         position: relative;
-        margin-top: -8rem;
+        margin-top: -6.5rem;
         margin-left: 16.5rem;
         z-index: 1000;
     }
 
+    #enabled_option_icon {
+        color: grey;
+        cursor: help;
+    }
+
+    #enabled_option_icon:hover {
+        color: yellow;
+    }
+
+    #image_option_icon {
+        color: grey;
+        cursor: help;
+    }
+
+    #image_option_icon:hover {
+        color: yellow;
+    }
+
     #type_option {
         position: relative;
+    }
+
+    #type_option_icon {
+        color: grey;
+        cursor: help;
+    }
+
+    #type_option_icon:hover {
+        color: yellow;
     }
 
     #link_option {
@@ -1473,6 +1499,16 @@
         margin-left: 16.5rem;
         z-index: 1000;
     }
+
+    #link_option_icon {
+        color: grey;
+        cursor: help;
+    }
+
+    #link_option_icon:hover {
+        color: yellow;
+    }
+
 
     /* Service Image Modal */
 
@@ -1492,7 +1528,6 @@
         align-items: center;
         background-color: rgba(0, 0, 0, 0.750);
         border: 1px solid #888;
-        border-radius: 4px;
         z-index: 2000;
     }
 
@@ -1501,7 +1536,7 @@
         position: fixed;
         top: 0;
         overflow-y: auto;
-        height: 70%;
+        height: 75%;
         margin-top: 10%;
         margin-left: 10%;
         margin-right: 10%;
@@ -1512,7 +1547,6 @@
         align-items: center;
         background-color: rgba(0, 0, 0, 0.900);
         border: 1px solid #888;
-        border-radius: 4px;
         z-index: 2000;
     }
 
@@ -1546,7 +1580,7 @@
     }
 
     #mymodal4 {
-        /* padding-top: .5rem; */
+        padding-top: .5rem;
         padding-bottom: 0;
         align-items: center;
     }
@@ -1634,99 +1668,20 @@
         font-weight: 900;
     }
 
-    /* IMG upload form */
-
-    #uploadbutton {
-        background-color: transparent;
-        padding: .5rem;
-        color: #aaa;
-        cursor: default;
-    }
-
-    #choosefile {
-        color: white;
-        cursor: pointer;
-    }
-
-
-    input[type="file"] {
-        display: none;
-    }
-
-    .file-upload {
-        display: inline-block;
-        padding: 1px 6px;
-        border-radius: .2rem;
-        background-color: rgb(200, 200, 200);
-        border: none;
-        color: black;
-        cursor: pointer;
-    }
-
-    .file-upload:hover {
-        background-color: rgb(150, 150, 150);
-        color: white;
-    }
-
-    .uploadbtn {
-        visibility: hidden;
-        background-color: rgb(150, 150, 150) !important;
-        color: black !important;
-        cursor: not-allowed !important;
-    }
-
-    uploadbtn:hover {
-        background-color: rgb(150, 150, 150) !important;
-        color: black !important;
-        cursor: not-allowed !important;
-    }
-
-    #upload {
-        border-radius: .2rem;
-        background-color: rgb(200, 200, 200);
-        border: none;
-        color: black;
-        cursor: pointer;
-    }
-
-    #upload:hover {
-        background-color: rgb(150, 150, 150);
-        color: white;
-    }
-
-    #file-selected {
-        color: white;
-        cursor: default;
-    }
-
-    #uploadreturn {
-        position: static;
-        color: white;
-        font-size: 1rem;
-        background-color: transparent;
-        text-align: center;
-        cursor: default;
-    }
-
-    #uploadreturn:empty {
-        visibility: hidden;
-    }
-
-    #uploadok {
-        color: green;
-        font-weight: 700;
-    }
-
-    #uploaderror {
-        color: red;
-        font-weight: 700;
-    }
-
     #checkurl {
         float: right;
         margin-top: -12rem;
         width: 20rem;
         text-align: center;
+    }
+
+    #checkurl_icon {
+        cursor: help;
+        color: grey;
+    }
+
+    #checkurl_icon:hover {
+        color: yellow;
     }
 
     #linkurl {
@@ -1735,6 +1690,7 @@
         margin-top: -5.5rem;
         width: 20rem;
         text-align: center;
+        /* background-color: #1F1F1F; */
         z-index: 1000;
     }
 
@@ -1743,7 +1699,7 @@
         width: inherit;
         margin-top: 4rem;
         color: grey;
-        font-size: .85rem;
+        font-size: .95rem;
         font-style: italic;
         cursor: default;
         z-index: 1;
@@ -1869,6 +1825,7 @@
         float: right;
         width: calc(100% - 18rem);
         padding-left: 2rem;
+        background-color: #1F1F1F
     }
 
     .object {
@@ -1949,37 +1906,9 @@
         position: relative;
     }
 
-    #serviceform {
-        background-color: inherit;
-    }
-
     #servicesettings {
         margin-bottom: 6rem;
-    }
-
-    #modalloading {
-        position: fixed;
-        width: 24rem;
-        left: calc(50% - 12rem);
-        top: 25%;
-        margin: 0 auto;
-        padding: 1rem;
-        color: black;
-        text-align: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.750);
-        border: 1px solid #888;
-        border-radius: 4px;
-        z-index: 2000;
-        cursor: wait;
-    }
-
-    .modaltextloading {
-        margin-left: 2rem;
-        color: #aaa;
-        font-size: 1.5rem;
-        font-weight: 600;
-        cursor: wait;
+        background-color: #1F1F1F;
     }
 
     .expand {
@@ -2035,67 +1964,12 @@
         transition: .5s;
     }
 
-    #preferenceform {
-        background-color: inherit;
-    }
-
     #preferencesettings {
-        padding-left: 10%;
-    }
-
-    /* Custom CSS */
-
-    .customCSS {
-        padding: 0px 15px;
-        width: 98%;
-        margin: 0 auto;
-    }
-
-    #customCSSEditor {
-        height: 22rem;
-        max-width: 100%;
-        border: 2px solid rgb(200, 200, 200);
-    }
-
-    #customcsslabel {
-        font-size: 1.1rem;
-        font-weight: 600;
-    }
-
-    .ace_content {
-        height: 100% !important;
-    }
-
-    #siteform {
-        background-color: inherit;
+        padding-left: 15%;
     }
 
     #sitesettings {
-        padding-left: 10%;
-    }
-
-    #tablesitesettings {
-        border-collapse: separate;
-        margin: auto;
-        width: 100%;
-    }
-
-    #tableuserprefs {
-        border-collapse: separate;
-        margin: auto;
-        width: 100%;
-    }
-
-    #settingstable{
-        cursor: default;
-    }
-
-    #tdleft {
-        width: 50%;
-    }
-
-    #tdright {
-        width: 50%;
+        padding-left: 15%;
     }
 
     #leftcolumn {
@@ -2108,29 +1982,8 @@
         text-align: left;
     }
 
-    .input_icon {
-        color: grey;
-        cursor: help;
-    }
-
-    .input_icon:hover {
-        color: yellow;
-    }
-
     .alpaca-message-invalidValueOfEnum {
         color: red !important;
-    }
-
-    .alpaca-field-text-max-length-indicator.err {
-        color: red;
-        font-style: italic;
-        cursor: default;
-        z-index: 1000;
-    }
-
-    .alpaca-field-text-max-length-indicator {
-        font-style: italic;
-        cursor: default;
     }
 
     #enablednote {
@@ -2143,6 +1996,7 @@
     }
 
     .alpaca-field-object {
+        padding-left: 2rem;
         padding-right: 2rem;
         padding-bottom: 1rem;
     }
@@ -2154,10 +2008,6 @@
 
     .radio {
         width: 10rem;
-    }
-
-    #image_option {
-        margin-top: 3rem;
     }
 
     .alpaca-image-display {
@@ -2176,7 +2026,7 @@
     .alpaca-message-invalidPattern {
         color: red;
         font-style: italic;
-        background-color: inherit;
+        background-color: #1F1F1F;
         cursor: default;
         z-index: 1000;
     }
@@ -2222,7 +2072,7 @@
         background-size: 3em;
         cursor: pointer;
         padding: 15px;
-        border-radius: 4px;
+        border-radius: 10px;
         -webkit-transition: .5s;
         -moz-transition: .5s;
         transition: .5s;
@@ -2256,43 +2106,6 @@
     }
 
     /* Progress Bar */
-
-
-    #modalloadingindex {
-        position: fixed;
-        width: 30rem;
-        left: calc(50% - 15rem);
-        top: 40%;
-        margin: 0 auto;
-        padding: 1rem;
-        color: black;
-        text-align: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.750);
-        border: 1px solid #888;
-        border-radius: 4px;
-        z-index: 2000;
-        cursor: wait;
-    }
-
-    .modaltextloadingindex {
-        color: #aaa;
-        font-size: 1.5rem;
-        font-weight: 600;
-        cursor: wait;
-    }
-
-    .hidemodal {
-        visibility: hidden;
-    }
-
-    .hidepace {
-        visibility: hidden !important;
-    }
-
-    .showpace {
-        visibility: visible !important;
-    }
 
     .pace {
         -webkit-pointer-events: none;
@@ -2330,62 +2143,6 @@
         -o-transform: rotate(3deg) translate(0px, -4px);
         transform: rotate(3deg) translate(0px, -4px);
     }
-
-        @-webkit-keyframes pace-spinner {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
-        @-moz-keyframes pace-spinner {
-            0% {
-                -moz-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -moz-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
-        @-o-keyframes pace-spinner {
-            0% {
-                -o-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -o-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
-        @-ms-keyframes pace-spinner {
-            0% {
-                -ms-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -ms-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes pace-spinner {
-            0% {
-                transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
 
     /* Footer */
 
@@ -2431,4 +2188,3 @@
         font-weight: 300;
         text-decoration: none;
     }
-

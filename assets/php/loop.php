@@ -66,15 +66,13 @@
                 echo "<div>";
                     urlExists($v2['checkurl']);
                 echo "</div>";
-
-
             }
 
             else {
                 echo "<div>";
                     ping($v2['checkurl']);
                 echo "</div>";
-            }
+            };
         }
 
         else {

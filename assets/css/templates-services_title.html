@@ -3,21 +3,16 @@
     <div id="title_input">
 
         {{#if options.label}}
-        <label class="{{#if options.labelClass}}{{options.labelClass}}{{/if}} alpaca-control-label" for="{{id}}">
-            
-            {{{options.label}}}
+        <label class="{{#if options.labelClass}}{{options.labelClass}}{{/if}} alpaca-control-label" for="{{id}}">{{{options.label}}}</label>
+        {{/if}}
 
-            <i class="fa fa-fw fa-question-circle input_icon" id="title_input_icon" title="Title of service. NOTE: For optimal appearance, ‘Service Title’ should be no more than than 20 characters in length, and no more than 10 consecutive characters without a space."></i>
+        {{#control}}{{/control}}
 
-        </label>
-        
-        {{/if}} {{#control}}{{/control}} {{#if options.helper}}
-
+        {{#if options.helper}}
         <p class="{{#if options.helperClass}}{{options.helperClass}}{{/if}}">
             <i class="info-sign"></i>
             {{{options.helper}}}
         </p>
-
         {{/if}}
 
     </div>

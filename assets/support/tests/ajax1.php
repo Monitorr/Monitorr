@@ -36,7 +36,6 @@
 
         <!-- Custom styles -->
         <link href="../css/main.css" rel="stylesheet">
-        <link href="../data/css/custom.css" rel="stylesheet">
        
 
         <style>
