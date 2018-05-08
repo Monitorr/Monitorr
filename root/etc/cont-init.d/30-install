@@ -13,24 +13,59 @@ fi
 if [[ ! -d /app/userdata/ ]]; then
   mkdir /app/userdata/ # Dir for User Data
 elif [[ -d /app/userdata/ ]]; then
-  echo 'NOTIFY: The Directory /app/userdata/ already exists'
+  echo 'NOTIFY: The Directory /app/userdata/ already exists!!'
 else
   :
 fi
 
-mv /config/www/monitorr/assets/data/css /app/css
-ln -s  /app/css /config/www/monitorr/assets/data/css
+if [[ ! -e /app/datadir.json ]]; then
+  echo 'datadir.json does not exist, creating file'
+  cp /datadir.json /app/datadir.json
+  echo 'linking datadir to monitorr'
+  ln -s /app/datadir.json /config/www/monitorr/assets/data/datadir.json
 
-mv /config/www/monitorr/assets/data/logs /app/logs
-ln -s  /app/logs /config/www/monitorr/assets/data/logs
+  echo 'moving user images folder to /app'
+  mv /config/www/monitorr/assets/data/usrimg/ /app/images
+  echo 'linking /app/images to monitorr'
+  ln -s  /app/images /config/www/monitorr/assets/data/usrimg
 
-mv /config/www/monitorr/assets/data/usrimg/ /app/images
-ln -s  /app/images /config/www/monitorr/assets/data/usrimg
+  echo 'moving monitorr logs to /app'
+  mv /config/www/monitorr/assets/data/logs /app/logs
+  echo 'linking /app/logs to monitorr'
+  ln -s  /app/logs /config/www/monitorr/assets/data/logs
 
-cp /datadir.json /app/datadir.json
-ln -s /app/datadir.json /config/www/monitorr/assets/data/datadir.json
+  echo 'moving custom.css file to /app'
+  mv /config/www/monitorr/assets/data/css /app/css
+  echo 'linking /app/css to monitorr'
+  ln -s  /app/css /config/www/monitorr/assets/data/css
 
-cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
+  echo 'copying information text to data dir'
+  cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
+
+elif [[ -e /app/datadir.json ]]; then
+  echo 'We have detected  */app/datadir.json*'
+  sleep 1
+  echo '-------------------------------------'
+  echo 'Cleaning data directory for data. . .'
+  rm -rf /config/www/monitorr/assets/data/usrimg
+  rm -rf /config/www/monitorr/assets/data/logs
+  rm -rf /config/www/monitorr/assets/data/css
+  rm -rf /config/www/monitorr/assets/data/datadir.json
+  echo '-----------------------------------'
+  echo 'User Data Directory link clean. . .'
+  sleep 3
+  echo '---------------------------'
+  echo 'Relinking previous install!'
+  ln -s  /app/datadir.json /config/www/monitorr/assets/data/datadir.json
+  ln -s  /app/images /config/www/monitorr/assets/data/usrimg
+  ln -s  /app/logs /config/www/monitorr/assets/data/logs
+  ln -s  /app/css /config/www/monitorr/assets/data/css
+  echo 'Previous install relinked. . .'
+  echo 'Complete!'
+else
+  :
+fi
+
 
 # Permissions
 chown -R abc:abc /config
