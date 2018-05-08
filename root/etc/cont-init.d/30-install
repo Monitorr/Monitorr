@@ -43,12 +43,7 @@ if [[ ! -e /app/datadir.json ]]; then
   ln -s  /app/images /config/www/monitorr/assets/data/usrimg
   ln -s  /app/logs /config/www/monitorr/assets/data/logs
   ln -s  /app/css /config/www/monitorr/assets/data/css
-  sleep 1
-  echo '------------------------------------------'
-  echo '| Insert Monitorr Data File Warning Text |'
-  echo '------------------------------------------'
   cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
-  sleep 2
   echo 'Installation Complete. Thanks for using Monitorr!'
 elif [[ -e /app/datadir.json ]]; then
   echo '---------------------------------------'
