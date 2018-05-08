@@ -13,54 +13,68 @@ fi
 if [[ ! -d /app/userdata/ ]]; then
   mkdir /app/userdata/ # Dir for User Data
 elif [[ -d /app/userdata/ ]]; then
-  echo 'NOTIFY: The Directory /app/userdata/ already exists!!'
+  echo '-----------------------------------------------'
+  echo '| The Directory /app/userdata/ already exists |'
+  echo '-----------------------------------------------'
 else
   :
 fi
 
 if [[ ! -e /app/datadir.json ]]; then
-  echo 'datadir.json does not exist, creating file'
+  echo 'No datadir detected...'
+  echo 'Creating datadir.json'
   cp /datadir.json /app/datadir.json
-  echo 'linking datadir to monitorr'
+  echo 'Linking datadir to monitorr...'
   ln -s /app/datadir.json /config/www/monitorr/assets/data/datadir.json
-
-  echo 'moving user images folder to /app'
+  echo '--------------------------------'
+  echo 'Moving *usrimg* to */app/images*'
   mv /config/www/monitorr/assets/data/usrimg/ /app/images
-  echo 'linking /app/images to monitorr'
+  echo 'Linking *app/images* to Monitorr'
   ln -s  /app/images /config/www/monitorr/assets/data/usrimg
-
-  echo 'moving monitorr logs to /app'
+  echo '----------------------------'
+  echo 'Moving *logs* to */app/logs*'
   mv /config/www/monitorr/assets/data/logs /app/logs
-  echo 'linking /app/logs to monitorr'
+  echo 'Linking */app/logs* to Monitorr'
   ln -s  /app/logs /config/www/monitorr/assets/data/logs
-
-  echo 'moving custom.css file to /app'
+  echo '-------------------------------'
+  echo 'Moving *css* file to */app/css*'
   mv /config/www/monitorr/assets/data/css /app/css
-  echo 'linking /app/css to monitorr'
+  echo 'Linking */app/css* to Monitorr'
   ln -s  /app/css /config/www/monitorr/assets/data/css
-
-  echo 'copying information text to data dir'
+  echo '------------------------------------'
+  echo 'Insert Monitorr Data File Warning Text'
   cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
-
+  sleep 2
+  echo 'Installation Complete. Thanks for using Monitorr!'
 elif [[ -e /app/datadir.json ]]; then
-  echo 'We have detected  */app/datadir.json*'
+  echo '--------------------------------------'
+  echo '| We have detected /app/datadir.json |'
+  echo '--------------------------------------'
+  echo '. . .'
   sleep 1
-  echo '-------------------------------------'
-  echo 'Cleaning data directory for data. . .'
+  echo '---------------------------------------'
+  echo '| Cleaning data directory for data... |'
+  echo '---------------------------------------'
+  echo '. . .'
+  sleep 1
   rm -rf /config/www/monitorr/assets/data/usrimg
   rm -rf /config/www/monitorr/assets/data/logs
   rm -rf /config/www/monitorr/assets/data/css
   rm -rf /config/www/monitorr/assets/data/datadir.json
-  echo '-----------------------------------'
-  echo 'User Data Directory link clean. . .'
+  echo '-------------------------------------'
+  echo '| User Data Directory link clean... |'
+  echo '-------------------------------------'
+  echo '. . .'
+  sleep 1
+  echo '-------------------------------'
+  echo '| Relinking previous install! |'
+  echo '-------------------------------'
   sleep 3
-  echo '---------------------------'
-  echo 'Relinking previous install!'
   ln -s  /app/datadir.json /config/www/monitorr/assets/data/datadir.json
   ln -s  /app/images /config/www/monitorr/assets/data/usrimg
   ln -s  /app/logs /config/www/monitorr/assets/data/logs
   ln -s  /app/css /config/www/monitorr/assets/data/css
-  echo 'Previous install relinked. . .'
+  echo 'Previous install linked. . .'
   echo 'Complete!'
 else
   :
