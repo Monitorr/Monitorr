@@ -21,35 +21,39 @@ else
 fi
 
 if [[ ! -e /app/datadir.json ]]; then
-  echo 'No datadir detected...'
-  echo 'Creating datadir.json'
+  echo '---------------------------------'
+  echo '| No /app/datadir.json detected |'
+  echo '---------------------------------'
+  echo '. . .'
+  sleep 1
+  echo '-------------------------------------'
+  echo '| Preparing Data for Data Directory |'
+  echo '-------------------------------------'
+  echo '. . .'
+  sleep 1
   cp /datadir.json /app/datadir.json
-  echo 'Linking datadir to monitorr...'
-  ln -s /app/datadir.json /config/www/monitorr/assets/data/datadir.json
-  echo '--------------------------------'
-  echo 'Moving *usrimg* to */app/images*'
   mv /config/www/monitorr/assets/data/usrimg/ /app/images
-  echo 'Linking *app/images* to Monitorr'
-  ln -s  /app/images /config/www/monitorr/assets/data/usrimg
-  echo '----------------------------'
-  echo 'Moving *logs* to */app/logs*'
   mv /config/www/monitorr/assets/data/logs /app/logs
-  echo 'Linking */app/logs* to Monitorr'
-  ln -s  /app/logs /config/www/monitorr/assets/data/logs
-  echo '-------------------------------'
-  echo 'Moving *css* file to */app/css*'
   mv /config/www/monitorr/assets/data/css /app/css
-  echo 'Linking */app/css* to Monitorr'
+  echo '--------------------------------'
+  echo '| Linking Data Dir to Monitorr |'
+  echo '--------------------------------'
+  sleep 3
+  ln -s /app/datadir.json /config/www/monitorr/assets/data/datadir.json
+  ln -s  /app/images /config/www/monitorr/assets/data/usrimg
+  ln -s  /app/logs /config/www/monitorr/assets/data/logs
   ln -s  /app/css /config/www/monitorr/assets/data/css
-  echo '------------------------------------'
-  echo 'Insert Monitorr Data File Warning Text'
+  sleep 1
+  echo '------------------------------------------'
+  echo '| Insert Monitorr Data File Warning Text |'
+  echo '------------------------------------------'
   cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
   sleep 2
   echo 'Installation Complete. Thanks for using Monitorr!'
 elif [[ -e /app/datadir.json ]]; then
-  echo '--------------------------------------'
-  echo '| We have detected /app/datadir.json |'
-  echo '--------------------------------------'
+  echo '---------------------------------------'
+  echo '| We have detected /app/datadir.json! |'
+  echo '---------------------------------------'
   echo '. . .'
   sleep 1
   echo '---------------------------------------'
@@ -74,7 +78,6 @@ elif [[ -e /app/datadir.json ]]; then
   ln -s  /app/images /config/www/monitorr/assets/data/usrimg
   ln -s  /app/logs /config/www/monitorr/assets/data/logs
   ln -s  /app/css /config/www/monitorr/assets/data/css
-  echo 'Previous install linked. . .'
   echo 'Complete!'
 else
   :
