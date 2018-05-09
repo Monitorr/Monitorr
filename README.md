@@ -11,17 +11,14 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
 
-**NOTICE** (18 MARCH 2018): If you are updating to any version prior to 1.0 updating via the UI by clicking on “check for update” in the footer MAY FAIL. It is recommended to clone a new copy of this repo starting with version 1.0.  Please See [WIKI](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for further explanation.
-
-
 ## Features:
 
-**Latest major change:** Integrated settings page.
+**Latest major change:** Custom CSS / Image upload function.
 
 - LIVE! (w/ option to pause live updating)
 - Self-hosted
 - Monitor any app on any domain (Curl as primary check, fsockopen as fallback)
-- Responsive mobile display (NEW)
+- Responsive mobile display
 - Integrated settings page w/ authentication (NEW)
 - Host system resources display (CPU, MEM, HD, PING, Uptime)
 - Server DTG data
@@ -31,7 +28,6 @@
 
 **Features in development:**
 - Option to choose which HD is used for system stats
-- Custom CSS
 - Alerting
 
 
@@ -99,3 +95,4 @@
 - [Causefx](https://github.com/Causefx)
 - [Roxedux](https://github.com/si0972)
 - [christronyxyocum](https://github.com/christronyxyocum)
+- [rob1998](https://github.com/rob1998)
