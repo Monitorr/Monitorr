@@ -2,7 +2,7 @@
 
 # Clone directory, If Directory Exists, Git Pull
 if [[ ! -d /config/www/monitorr/.git ]]; then
-  git clone -b docker-develop --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
+  git clone -b docker-test --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
 elif [[ -d /config/www/monitorr/.git ]]; then
   cd /config/www/monitorr || return
   git pull
@@ -13,43 +13,74 @@ fi
 if [[ ! -d /app/userdata/ ]]; then
   mkdir /app/userdata/ # Dir for User Data
 elif [[ -d /app/userdata/ ]]; then
-  echo 'NOTIFY: The Directory /app/userdata/ already exists'
+  echo '-----------------------------------------------'
+  echo '| The Directory /app/userdata/ already exists |'
+  echo '-----------------------------------------------'
 else
   :
 fi
 
-# USER IMAGES
-if [[ ! -d /app/images/ ]]; then
-  mkdir /app/images/ # Dir for User Data
-elif [[ -d /app/images/ ]]; then
-  echo 'NOTIFY: The Directory /app/images/ already exists'
-else
-  :
-fi
-
-# Data Dir File
-if [[ ! -e /config/www/monitorr/assets/data/datadir.json ]]; then
-  cp /datadir.json /config/www/monitorr/assets/data/datadir.json # copy data dir
-elif [[ -e /config/www/monitorr/assets/data/datadir.json ]]; then
-  echo 'NOTIFY: The File /config/www/monitorr/assets/data/datadir.json already exists'
-else
-  :
-fi
-
-# Data Dir File
-if [[ ! -e /app/userdata/monitorr_data_directory.txt ]]; then
+if [[ ! -e /app/datadir.json ]]; then
+  echo '---------------------------------'
+  echo '| No /app/datadir.json detected |'
+  echo '---------------------------------'
+  echo '. . .'
+  sleep 1
+  echo '-------------------------------------'
+  echo '| Preparing Data for Data Directory |'
+  echo '-------------------------------------'
+  echo '. . .'
+  sleep 1
+  cp /datadir.json /app/datadir.json
+  mv /config/www/monitorr/assets/data/usrimg/ /app/images
+  mv /config/www/monitorr/assets/data/logs /app/logs
+  mv /config/www/monitorr/assets/data/css /app/css
+  echo '--------------------------------'
+  echo '| Linking Data Dir to Monitorr |'
+  echo '--------------------------------'
+  sleep 3
+  ln -s /app/datadir.json /config/www/monitorr/assets/data/datadir.json
+  ln -s  /app/images /config/www/monitorr/assets/data/usrimg
+  ln -s  /app/logs /config/www/monitorr/assets/data/logs
+  ln -s  /app/css /config/www/monitorr/assets/data/css
   cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
-elif [[ -e /app/userdata/monitorr_data_directory.txt ]]; then
-  echo 'NOTIFY: The File /app/userdata/monitorr_data_directory.txt already exists'
+  echo 'Installation Complete. Thanks for using Monitorr!'
+elif [[ -e /app/datadir.json ]]; then
+  echo '---------------------------------------'
+  echo '| We have detected /app/datadir.json! |'
+  echo '---------------------------------------'
+  echo '. . .'
+  sleep 1
+  echo '---------------------------------------'
+  echo '| Cleaning data directory for data... |'
+  echo '---------------------------------------'
+  echo '. . .'
+  sleep 1
+  rm -rf /config/www/monitorr/assets/data/usrimg
+  rm -rf /config/www/monitorr/assets/data/logs
+  rm -rf /config/www/monitorr/assets/data/css
+  rm -rf /config/www/monitorr/assets/data/datadir.json
+  echo '-------------------------------------'
+  echo '| User Data Directory link clean... |'
+  echo '-------------------------------------'
+  echo '. . .'
+  sleep 1
+  echo '-------------------------------'
+  echo '| Relinking previous install! |'
+  echo '-------------------------------'
+  sleep 3
+  ln -s  /app/datadir.json /config/www/monitorr/assets/data/datadir.json
+  ln -s  /app/images /config/www/monitorr/assets/data/usrimg
+  ln -s  /app/logs /config/www/monitorr/assets/data/logs
+  ln -s  /app/css /config/www/monitorr/assets/data/css
+  echo 'Complete!'
 else
   :
 fi
+
 
 # Permissions
 chown -R abc:abc /config
 chown -R abc:abc /app
-chmod 777 /app/userdata/monitorr_data_directory.txt
-chmod 777 /config/www/monitorr/assets/data/datadir.json
-
-# Link userimages
-ln -s /app/images /config/www/monitorr/assets/data/usrimg
+chmod -R 777 /app/userdata/
+chmod -R 777 /config/www/monitorr/assets/data/
