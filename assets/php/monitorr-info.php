@@ -385,6 +385,7 @@ class OneFileLoginApplication
         <meta charset="utf-8">
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="../css/main.css" rel="stylesheet">
+        <link type="text/css" href="../data/css/custom.css" rel="stylesheet">
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
@@ -792,6 +793,7 @@ $application = new OneFileLoginApplication();
         <title>Monitorr | Login</title>
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
+        <link type="text/css" href="../data/css/custom.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/pace.js" async></script>
 
@@ -823,8 +825,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
             input[type=password] {
@@ -836,8 +837,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
             #loginbtn {
