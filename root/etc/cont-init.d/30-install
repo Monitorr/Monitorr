@@ -2,81 +2,119 @@
 
 # Clone directory, If Directory Exists, Git Pull
 if [[ ! -d /config/www/monitorr/.git ]]; then
-  git clone -b docker-develop --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
+  echo '-----------------------'
+  echo '| Installing Monitorr |'
+  echo '-----------------------'
+  git clone -b docker-test --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
 elif [[ -d /config/www/monitorr/.git ]]; then
+  echo '---------------------'
+  echo '| Updating Monitorr |'
+  echo '---------------------'
   cd /config/www/monitorr || return
-  git pull
+  git reset --hard
+  git pull --rebase
 fi
 
 # Make Directories
 # USER DATA
+echo 'Processing /app/userdata/ . . .'
 if [[ ! -d /app/userdata/ ]]; then
+  echo '-----------------------------------'
+  echo '| No User Data Directory Detected |'
+  echo '-----------------------------------'
   mkdir /app/userdata/ # Dir for User Data
 elif [[ -d /app/userdata/ ]]; then
-  echo '-----------------------------------------------'
-  echo '| The Directory /app/userdata/ already exists |'
-  echo '-----------------------------------------------'
+  echo '--------------------------------'
+  echo '| User Data Directory Detected |'
+  echo '--------------------------------'
 else
   :
 fi
-
+sleep 1
+# DATA DIR Check
+echo 'Processing /app/datadir.json . . .'
 if [[ ! -e /app/datadir.json ]]; then
-  echo '---------------------------------'
-  echo '| No /app/datadir.json detected |'
-  echo '---------------------------------'
-  echo '. . .'
-  sleep 1
-  echo '-------------------------------------'
-  echo '| Preparing Data for Data Directory |'
-  echo '-------------------------------------'
-  echo '. . .'
-  sleep 1
+  echo '----------------------------------------------'
+  echo '| No /app/datadir.json detected. Creating... |'
+  echo '----------------------------------------------'
   cp /datadir.json /app/datadir.json
-  mv /config/www/monitorr/assets/data/usrimg/ /app/images
-  mv /config/www/monitorr/assets/data/logs /app/logs
-  mv /config/www/monitorr/assets/data/css /app/css
-  echo '--------------------------------'
-  echo '| Linking Data Dir to Monitorr |'
-  echo '--------------------------------'
-  sleep 3
-  ln -s /app/datadir.json /config/www/monitorr/assets/data/datadir.json
-  ln -s  /app/images /config/www/monitorr/assets/data/usrimg
-  ln -s  /app/logs /config/www/monitorr/assets/data/logs
-  ln -s  /app/css /config/www/monitorr/assets/data/css
-  cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
-  echo 'Installation Complete. Thanks for using Monitorr!'
 elif [[ -e /app/datadir.json ]]; then
   echo '---------------------------------------'
   echo '| We have detected /app/datadir.json! |'
   echo '---------------------------------------'
-  echo '. . .'
-  sleep 1
-  echo '---------------------------------------'
-  echo '| Cleaning data directory for data... |'
-  echo '---------------------------------------'
-  echo '. . .'
-  sleep 1
-  rm -rf /config/www/monitorr/assets/data/usrimg
-  rm -rf /config/www/monitorr/assets/data/logs
-  rm -rf /config/www/monitorr/assets/data/css
   rm -rf /config/www/monitorr/assets/data/datadir.json
-  echo '-------------------------------------'
-  echo '| User Data Directory link clean... |'
-  echo '-------------------------------------'
-  echo '. . .'
-  sleep 1
-  echo '-------------------------------'
-  echo '| Relinking previous install! |'
-  echo '-------------------------------'
-  sleep 3
-  ln -s  /app/datadir.json /config/www/monitorr/assets/data/datadir.json
-  ln -s  /app/images /config/www/monitorr/assets/data/usrimg
-  ln -s  /app/logs /config/www/monitorr/assets/data/logs
-  ln -s  /app/css /config/www/monitorr/assets/data/css
-  echo 'Complete!'
 else
   :
 fi
+sleep 1
+# IMAGES DIR Check
+echo 'Processing /app/images/ . . .'
+if [[ ! -d /app/images/ ]]; then
+  echo '-------------------------------------------------'
+  echo '| No User Image Directory Detected. Creating... |'
+  echo '-------------------------------------------------'
+  mv /config/www/monitorr/assets/data/usrimg/ /app/images
+elif [[ -d /app/images/ ]]; then
+  echo '---------------------------------'
+  echo '| User Image Directory Detected |'
+  echo '---------------------------------'
+  rm -rf /config/www/monitorr/assets/data/usrimg
+else
+  :
+fi
+sleep 1
+# LOGS DIR Check
+echo 'Processing /app/logs/ . . .'
+if [[ ! -d /app/logs/ ]]; then
+  echo '------------------------------------------'
+  echo '| No Log Directory Detected. Creating... |'
+  echo '------------------------------------------'
+  mv /config/www/monitorr/assets/data/logs /app/logs
+elif [[ -d /app/logs/ ]]; then
+  echo '--------------------------'
+  echo '| Log Directory Detected |'
+  echo '--------------------------'
+  rm -rf /config/www/monitorr/assets/data/logs
+else
+  :
+fi
+sleep 1
+# CSS DIR Check
+echo 'Processing /app/css/ . . .'
+if [[ ! -d /app/css/ ]]; then
+  echo '------------------------------------------'
+  echo '| No CSS Directory Detected. Creating... |'
+  echo '------------------------------------------'
+  mv /config/www/monitorr/assets/data/css /app/css
+elif [[ -d /app/css/ ]]; then
+  echo '--------------------------'
+  echo '| CSS Directory Detected |'
+  echo '--------------------------'
+  rm -rf /config/www/monitorr/assets/data/css
+else
+  :
+fi
+
+if [[ ! -e /app/userdata/monitorr_data_directory.txt ]]; then
+  cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
+  echo 'Completed Directory Detection'
+elif [[ -e /app/userdata/monitorr_data_directory.txt ]]; then
+  echo 'Directory Detection Completed'
+else
+  :
+fi
+
+echo '--------------------------------'
+echo '| Linking Data Dir to Monitorr |'
+echo '--------------------------------'
+sleep 3
+ln -s  /app/datadir.json /config/www/monitorr/assets/data/datadir.json
+ln -s  /app/images/ /config/www/monitorr/assets/data/usrimg
+ln -s  /app/logs/ /config/www/monitorr/assets/data/logs
+ln -s  /app/css/ /config/www/monitorr/assets/data/css
+cp /config/www/monitorr/assets/config/_installation/default/monitorr_data_directory_default.txt /app/userdata/monitorr_data_directory.txt
+echo 'Installation Complete. Thanks for using Monitorr!'
+sleep 1
 
 
 # Permissions
