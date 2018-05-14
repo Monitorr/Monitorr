@@ -33,11 +33,11 @@
 
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
+        <link href="assets/data/css/custom.css" rel="stylesheet">
 
         <style>
 
             body {
-                /* margin-top: 2rem; */
                 margin-bottom: 2vw;
                 overflow-y: auto;
                 overflow-x: hidden;
@@ -87,6 +87,27 @@
                 margin-bottom: 7rem;
             }
 
+            .pace .pace-activity {
+                display: block;
+                visibility: hidden;
+                position: fixed;
+                top: 40%;
+                left: calc(50% - 13rem);
+                width: 2rem;
+                height: 2rem;
+                margin-top: 1rem;
+                border: solid .2rem transparent;
+                border-top-color: #680233;
+                border-left-color: #680233;
+                border-radius: 1rem;
+                -webkit-animation: pace-spinner 400ms linear infinite;
+                -moz-animation: pace-spinner 400ms linear infinite;
+                -ms-animation: pace-spinner 400ms linear infinite;
+                -o-animation: pace-spinner 400ms linear infinite;
+                animation: pace-spinner 400ms linear infinite;
+                z-index: 3000;
+            }
+
         </style>
 
         <script src="assets/js/jquery.min.js"></script>
@@ -114,7 +135,7 @@
             ?>
 
             <!-- top loading bar function: -->
-        <script src="assets/js/pace.js" async></script>
+        <script src="assets/js/pace.js"></script>
 
          <?php
 
@@ -185,8 +206,8 @@
             var onload;
 
             function statusCheck() {
-                $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
+                $("#statusloop").load('assets/php/loop.php');
             };
 
             $(document).ready(function () {
@@ -207,6 +228,13 @@
                 });
             });
 
+        </script>
+
+            <!-- Show loading modal pace indicator first onload only: -->
+        <script>
+            function showpace() {
+                $('.pace-activity').addClass('showpace');
+            };
         </script>
 
             <!-- digital clock function: -->
@@ -230,7 +258,6 @@
                         },
                         error: function(x, t, m) {
                             if(t==="timeout") {
-                                //alert("timestamp timeout1");
                                 console.log("ERROR: timestamp timeout");
                                  $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
                             } else {
@@ -303,14 +330,13 @@
                     }
                 });
                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
-
             });
 
         </script>
 
     </head>
 
-    <body onload="statusCheck()">
+    <body onload="statusCheck(), showpace()">
 
         <script>
             document.body.className += ' fade-out';
@@ -320,7 +346,6 @@
         </script>
 
             <!-- Append alert if service is down: -->
-
         <div id="summary"></div>
 
             <!-- Ajax timeout indicator: -->
@@ -378,7 +403,7 @@
 
         </div>
 
-              <!-- Check if datadir has been established: -->
+            <!-- Check if datadir has been established: -->
         <?php
 
             $file = 'assets/data/datadir.json';
@@ -392,8 +417,14 @@
 
             else {
             }
-
         ?>
+
+            <!-- Loading modal indicator: -->
+        <div id="modalloadingindex" class="modalloadingindex" title="Monitorr is checking services.">
+            
+            <p class="modaltextloadingindex">Monitorr is loading ...</p>
+
+        </div>
 
         <div id="services" class="container">
 
