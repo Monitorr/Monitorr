@@ -80,7 +80,7 @@ class OneFileLoginApplication
         if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             echo "Sorry, Simple PHP Login does not run on a PHP version older than 5.3.7 !";
         } elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
-            require_once("libraries/password_compatibility_library.php");
+            require_once("../config/_installation/vendor/password_compatibility_library.php");
             return true;
         } elseif (version_compare(PHP_VERSION, '5.5.0', '>=')) {
             return true;
@@ -387,6 +387,7 @@ class OneFileLoginApplication
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="../css/alpaca.min.css" rel="stylesheet">
         <!-- <link type="text/css" href="../css/main.css" rel="stylesheet"> -->
+        <link type="text/css" href="../data/css/custom.css" rel="stylesheet">
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
@@ -519,10 +520,7 @@ class OneFileLoginApplication
                         $("#sitesettings").alpaca({
                             "connector": "custom",
                             "dataSource": "./post_receiver-site_settings_load.php",
-                            //"dataSource": "../data/site_settings-data.json?a=1",
                             "schemaSource": "../config/site_settings-schema.json?a=1",
-                            // "optionsSource": "./data/connector-custom-options.json?a=1",
-                            // "viewSource": "../data/connector-custom-view.json?a=1",
                             "view": {
                                 "parent": "bootstrap-edit-horizontal",
                                 "layout": {
@@ -1020,6 +1018,7 @@ $application = new OneFileLoginApplication();
         <title>Monitorr | Settings</title>
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
         <link type="text/css" href="../css/main.css" rel="stylesheet">
+        <link type="text/css" href="../data/css/custom.css" rel="stylesheet">
         <script type="text/javascript" src="../js/pace.js" async></script>
         <!-- <script src="../js/jquery.min.js"></script> -->
 
@@ -1050,8 +1049,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
             input[type=password] {
@@ -1062,8 +1060,7 @@ $application = new OneFileLoginApplication();
                 background: rgb(200, 200, 200);
                 border: 1px solid #ced4da;
                 border-radius: .25rem;
-                transition: border-color .15s ease-in-out,
-                box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
 
         </style>
