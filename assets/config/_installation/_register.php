@@ -348,10 +348,11 @@
                 $registration_success_state = $query->execute();
 
                 if ($registration_success_state) {
-                    $this->feedbacksuccess = '<b>Your account has been created successfully. <a href="../../php/monitorr-info.php">Log in here.</a> </b>';
+                    $this->feedbacksuccess = '<b>User credentials have been created successfully. <br> <a href="../../php/monitorr-info.php" title="Monitorr Settings">Log in here.</a> </b>';
+
                     return true;
                 } else {
-                    $this->feedbackerror = "Sorry, your registration failed. Please and try again.";
+                    $this->feedbackerror = "ERROR: registration failed. Please check the webserver PHP logs and try again.";
                 }
             }
             // default return
@@ -383,6 +384,607 @@
         echo '<a href="' . $_SERVER['SCRIPT_NAME'] . '?action=logout">Log out</a>';
         }
 
+                
+        public function runregister() 
+        {
+            ?>
+
+                <!--  START registration form -->
+
+                    <!DOCTYPE html>
+                    <html lang="en">
+
+                        <head>
+
+                            <meta charset="UTF-8">
+                            <!-- <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" > -->
+                            <!-- <link type="text/css" href="../../css/main.css" rel="stylesheet"> -->
+                            <link type="text/css" href="../../css/formValidation.css" rel="stylesheet" />
+                            <script src="../../js/jquery.min.js"></script>
+                            <script src="../../js/formValidation.js"></script>
+
+                        </head>
+
+                        <body>
+
+                            <!-- datadir create button: -->
+                            <script>
+
+                                $(document).ready(function(){
+
+                                    $('#datadirbtn').click(function(){
+
+                                        $('#response').html("<font color='yellow'><b>Creating data directory...</b></font>");
+
+                                        var datadir = $("#datadir").val();
+                                        console.log('submitted: '+ datadir);
+                                        var url ="./mkdirajax.php";
+
+                                        $.post(url, { datadir: datadir }, function(data){
+                                            // alert("Directory Created successfully");
+                                            console.log('mkdirajax: '+ data);
+                                            $('#response').html(data);
+                                            $('#userwrapper').load(document.URL +  ' #userwrapper');
+                                        })
+
+                                        .fail(function() {
+                                            alert( "Posting failed (ajax)" );
+                                            console.log("Posting failed (ajax)");
+                                        })
+
+                                        return false;
+                                    });
+                                });
+
+                            </script>
+
+                            <!-- db create button: -->
+                            <script>
+
+                                $(document).ready(function(){
+
+                                    $('#dbbtn').click(function(){
+
+                                        $('#response').html("<font color='yellow'><b>Creating user database...</b></font>");
+
+                                        var dbfile = $("#dbfile").val();
+                                        console.log('submitted: '+ dbfile);
+                                        var url ="./mkdbajax.php";
+
+                                        $.post(url, { dbfile: dbfile }, function(data){
+                                            // alert("Directory Created successfully");
+                                            console.log('mkdbajax: '+ data);
+                                            $('#response').html(data);
+                                            $('#userwrapper').load(document.URL +  ' #userwrapper');
+
+                                        })
+
+                                        .fail(function() {
+                                            alert( "Posting failed (ajax)" );
+                                            console.log("Posting failed (ajax)");
+                                        })
+
+                                        return false;
+                                    });
+                                });
+
+                            </script>
+
+
+                            <div class="wrapperregistration">
+
+                                <div class="navbar-brand">
+                                    Monitorr | Registration
+                                </div>
+
+                                    <br> <br> <hr>
+
+                                <div id="loginmessage">
+
+                                    <i class="fa fa-fw fa-info-circle"> </i> This registration process will perform the following actions: <br><br>
+
+                                </div>
+
+                                <div id="reginstructions">
+
+                                    1-	Establish a data directory which will contain three json files with your custom settings, and a user database file. <br>
+                                    2-	Create a data directory definition file in the Monitorr installation directory which defines where your data directory is established on the webserver. <br>
+                                    3-	Copy the three default json settings files from the local Monitorr repository to the established data directory. <br>
+                                    4-	Create a sqlite user database file in the established data directory. <br>
+                                    5-	Create a user. <br>
+                                    +	The above actions must complete successfully and in succession in order for Monitorr to function properly. <br>
+                                    +	If you have any problems during the registration process, please check the <strong> <a href="https://github.com/Monitorr/Monitorr/wiki" target="_blank" class="toolslink" title="Monitorr Wiki"> Monitorr Wiki </a>. </strong> <br>
+
+                                </div>
+                            </div>
+
+                            <?php
+
+                                $datafile = '../../data/datadir.json';
+                                $str = file_get_contents($datafile);
+                                $json = json_decode( $str, true);
+                                $datadir1 = $json['datadir'];
+                                $datadirdetect = $datadir1 . 'monitorr_data_directory.txt';
+                                //$dbfile = $datadir . 'users.db';
+
+
+                                if (!is_file($datadirdetect)) {
+
+                            ?>
+                                    <!--  START datadir create form -->
+
+                                        <div id="dbwrapper">
+
+                                            <hr>
+
+                                            <div id='dbdir' class='loginmessage'>
+                                                Create data directory, copy default data json files, and create user database file in defined directory:
+                                            </div>
+                                                <br>
+
+                                            <?php
+
+                                                $datafile = '../../data/datadir.json';
+                                                $str = file_get_contents($datafile);
+                                                $json = json_decode( $str, true);
+                                                $datadir = $json['datadir'];
+                                                $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+                                                if(is_file($jsonfileuserdata)){
+
+                                                    echo '<div id="loginerror">';
+                                                        echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current data directory will NOT be altered, however, Monitorr will use all default resources from the newly created data directory. </b> <br>';
+
+                                                    echo '</div>';
+                                                }
+
+                                                else {
+                                                }
+                                            ?>
+
+                                            <form id="datadirform">
+
+                                                <div>
+                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
+                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
+                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
+                                                        <br>
+                                                    <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
+                                                </div>
+                                                        <br>
+                                                <div>
+                                                    <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
+                                                </div>
+
+                                            </form>
+
+                                            <div id="loginerror">
+                                                    <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
+                                            </div>
+
+                                            <div id="datadirnotes">
+                                                    <i>
+                                                + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory.
+                                                    <br>
+                                                + Path value must include a trailing slash.
+                                                    <br>
+                                                + For security purposes, this directory should NOT be within the webserver's filesystem hierarchy. However, if a path is chosen outside the webserver's filesystem, the PHP process must have read/write privileges to whatever location is chosen to create the data directory.
+                                                    <br>
+                                                + Value must be an absolute path on the server's filesystem with the exception of Docker - use a relative path with trailing slash.
+                                                    <br>
+                                                Good:  c:\datadir\, /var/datadir/
+                                                    <br>
+                                                Bad: wwwroot\datadir, ../datadir
+                                                    </i>
+                                            </div>
+
+                                                <br>
+
+                                            <div id='response' class='dbmessage'></div>
+
+                                        </div>
+
+                                    <!--  END datadir create form -->
+
+                            <?php
+
+                                }
+
+                                else  {
+
+                                    $dbfile = $datadir1 . 'users.db';
+
+                                    if (!is_file($dbfile)) {
+                            ?>
+                                        <!--  START  db create form -->
+
+
+                                            <div id="dbcreatewrapper">
+
+                                                <hr><br>
+
+                                                <?php
+
+                                                    $datafile = '../../data/datadir.json';
+
+                                                    $file = '../../data/datadir.json';
+
+                                                    if(is_file($file)){
+
+                                                        include_once ('../monitorr-data.php');
+
+                                                        $datadir = $json['datadir'];
+
+                                                        echo '<div id="loginmessage">';
+                                                            echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> An existing data directory is detected at: '; echo $datadir; echo ' <br> By clicking "create" below, a user database will be created in the data directory specified below while leaving the JSON setting files in tact. <br> After the user database is created you will be able to create a user, log in, and edit the Monitorr settings. <br>';
+                                                                echo '<br>';
+                                                        echo '</div>';
+                                                    }
+
+                                                    else {
+
+                                                    }
+                                                ?>
+
+                                                <form id="dbform">
+
+                                                    <div>
+                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
+                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required readonly>
+                                                    </div>
+
+                                                            <br>
+
+                                                    <div>
+                                                        <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />
+                                                    </div>
+
+                                                </form>
+
+                                                    <br>
+
+                                                <div id='response' class='dbmessage'></div>
+
+                                            </div>
+
+                                        <!--  END  db create form -->
+
+                            <?php
+                                    }
+
+                                    else  {
+
+                            ?>
+                                        <!--  START multi form -->
+
+                                            <div id="multiform">
+
+                                                <div id="multiwarning">
+
+                                                    <?php
+                                                        
+                                                        $datafile = '../../data/datadir.json';
+
+                                                        $file = '../../data/datadir.json';
+
+                                                        if(is_file($file)){
+
+                                                            include_once ('../monitorr-data.php');
+
+                                                            $datadir = $json['datadir'];
+
+                                                                echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created data directory. </b> <br>';
+
+                                                        }
+
+                                                        else {
+                                                        }
+                                                    ?>
+
+                                                </div>
+
+                                                <hr><br>
+
+                                                <table id='regmulti'>
+
+                                                    <tr>
+                                                        <th>
+                                                            <div id='datadirheading' class='multiheading'>
+                                                                Create new data directory:
+                                                            </div>
+                                                        </th>
+
+                                                        <th>
+                                                            <div id='dbheading' class='multiheading'>
+                                                                Create new user database:
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+
+                                                            <div id="datadirmulti">
+
+                                                                <form id="datadirform">
+
+                                                                    <div>
+                                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
+                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
+                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
+                                                                            <br>
+                                                                        <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
+                                                                    </div>
+                                                                            <br>
+                                                                    <div>
+                                                                        <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
+                                                                    </div>
+
+                                                                </form>
+
+                                                                <div id="loginerror">
+                                                                        <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
+                                                                </div>
+
+                                                                <div id="datadirnotes">
+                                                                        <i>
+                                                                    + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory.
+                                                                        <br>
+                                                                    + Path value must include a trailing slash.
+                                                                        <br>
+                                                                    + For security purposes, this directory should NOT be within the webserver's filesystem hierarchy. <br> However, if a path is chosen outside the webserver's filesystem, the PHP process must have read/write privileges to whatever location is chosen to create the data directory.
+                                                                        <br>
+                                                                    + Value must be an absolute path on the server's filesystem with the exception of Docker - use a relative path with trailing slash.
+                                                                        <br>
+                                                                    Good:  c:\datadir\, /var/datadir/
+                                                                        <br>
+                                                                    Bad: wwwroot\datadir, ../datadir
+                                                                        </i>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+
+                                                            <div id="dbcreatewrappermulti">
+
+                                                                <form id="dbform">
+
+                                                                    <div>
+                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
+                                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfilemulti' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required>
+                                                                        <!-- <?php echo  $datadir = $json['datadir']; ?> -->
+                                                                            <br>
+                                                                        <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current data directory path is: " . $datadir = $json['datadir'];  ?> </i>
+                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
+                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
+                                                                            <br>
+                                                                    </div>
+                                                                            <br>
+                                                                    <div>
+                                                                        <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />
+                                                                    </div>
+
+                                                                </form>
+
+                                                                <?php
+
+                                                                    $datafile = '../../data/datadir.json';
+
+                                                                    if(is_file($datafile)){
+
+                                                                        include_once ('../monitorr-data.php');
+
+                                                                        $datadir = $json['datadir'];
+
+                                                                        echo '<div id="loginerror">';
+                                                                                echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>';
+                                                                        echo "</div>";
+
+                                                                            echo '<div id="datadirnotes"> ';
+                                                                                    echo "<i>";
+                                                                                echo "+ An existing data directory is detected at: $datadir ";
+                                                                                    echo "<br>";
+                                                                                echo '+ By clicking "create" above, a user database will be created in the data directory specified. ';
+                                                                                        echo "<br>";
+                                                                                echo '+ The location of the new user database MUST be located in the data directory indicated above. ';
+                                                                                        echo "<br>";
+                                                                                echo '+ If there is an existing user database in this directory, it will be renamed to "users.db.old" and a new user database will be created.';
+                                                                                    echo "<br>";
+                                                                                echo '+ All setting JSON files in the current data directory will be left in tact.';
+                                                                                    echo "<br>";
+                                                                                echo '+ After the new user database is created, you will be prompted to create new user credentials.';
+                                                                                    echo "<br>";
+                                                                            echo "</div> ";
+                                                                    }
+
+                                                                    else {
+
+                                                                    }
+                                                                ?>
+
+                                                                    <br>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+
+                                                <div id='response' class='dbmessage'></div>
+
+                                            </div>
+
+                                        <!--  END multi form-->
+
+                            <?php
+
+                                    }
+                                }
+
+                            ?>
+
+                            <!--  START create user form -->
+
+                                <div id="userwrapper">
+
+                                    <?php
+
+                                        //Create user:
+
+                                        $datafile = '../../data/datadir.json';
+                                        $str = file_get_contents($datafile);
+                                        $json = json_decode( $str, true);
+                                        $datadir = $json['datadir'];
+                                        $dbfile3 = $datadir . 'users.db';
+
+                                        if(is_file($dbfile3)){
+
+                                            echo '<hr><br>';
+
+                                            echo '<div id="loginmessage">';
+                                                echo 'Create a user in the user database: '; echo $datadir; echo "users.db :";
+                                                echo '<br>';
+                                            echo '</div>';
+
+                                            echo '<form id="userform" method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
+
+                                                echo '<table id="registrationtable">';
+                                                    // echo '<thead> <div id="blank"> . </div> </thead>';
+                                                    echo '<tbody id="registrationform">';
+
+                                                        echo '<tr>';
+                                                            echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder=" Username" title="Enter a username" required autocomplete="off" /> </td>';
+                                                            echo '<td><label for="login_input_username"><i> Letters and numbers only, 2 to 64 characters </i></label></td>';
+                                                        echo '</tr>';
+
+                                                        echo '<tr>';
+                                                            echo "<td><i class='fa fa-fw fa-envelope'> </i> <input id='login_input_email' type='email' name='user_email' placeholder=' User e-mail' /></td>";
+                                                            echo '<td><label for="login_input_email"> <i> Not required </i></label></td>';
+                                                        echo ' </tr>';
+
+                                                        echo ' <tr>';
+                                                            echo "<td><i class='fa fa-fw fa-key'> </i> <input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder=' Password' title='Enter a password' /></td>";
+                                                            echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder=" Repeat password" title="Repeat password" /><i> Minimum 6 characters </i></td>';
+                                                        echo ' </tr>';
+
+                                                    echo ' </tbody>';
+
+                                                echo '</table>';
+
+                                                echo '<div id="loginerror">';
+
+                                                    if ($this->feedbackerror) {
+                                                        echo $this->feedbackerror;
+                                                    };
+
+                                                echo '</div>';
+
+                                                echo ' <input type="submit" class="btn btn-primary" name="register" value="Register" />';
+                                                    echo '<br>';
+
+                                                echo '<div id="loginsuccess">';
+
+                                                    // $this->feedback = "This user does not exist.";
+
+                                                    if ($this->feedbacksuccess) {
+                                                        
+                                                        echo '<div id="myModal" class="modalreg">';
+
+                                                                echo '<div id="mymodal2" class="modal-content">';
+                                                                
+                                                                    echo $this->feedbacksuccess;
+                                                                
+                                                                echo '</div>';
+                                                                echo '<span class="close closereg"  aria-hidden="true" title="close">&times;</span>';
+
+                                                         echo '</div>';
+                                
+
+                                                    };
+
+                                                echo '</div>';
+
+                                            echo '</form>';
+
+                                            echo ' <div id="loginerror">';
+                                                echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br> ';
+                                            echo ' </div>';
+
+                                            echo ' <div id="usernotes">';
+                                                echo "<i> + It is NOT possible to change a user's credentials after creation. ";
+                                                    echo '<br>';
+                                                echo ' + If credentials need to be changed or reset, rename the file in your data directory '; echo $this->db_sqlite_path ;  echo ' to "users.old". Once that file is renamed, browse to this page again to recreate desired credentials. </i> ';
+                                            echo ' </div>';
+
+                                        }
+
+                                        else {
+                                        }
+
+                                    ?>
+
+                                </div>
+                            <!--  END create user form -->
+
+                            <!-- reginfo: -->
+                                <?php
+
+                                    echo '<div id="reginfo">';
+
+                                            echo "<hr>";
+
+                                        echo "Current working directiory: ";
+                                            echo "<br>";
+
+                                        echo getcwd() . "\n";
+                                            echo "<br>";
+
+                                            if (!is_dir($this->datadir)) {
+                                                echo "Data directory NOT present.";
+                                            }
+
+                                            else {
+                                                echo 'Data directory present:';
+                                                    echo "<br>";
+                                                echo $this->datadir;
+                                            }
+
+                                                echo "<br>";
+
+                                            if (!is_file($this->db_sqlite_path)) {
+                                                echo "Database file NOT present.";
+                                                echo "<br><br>";
+                                            }
+
+                                            else {
+                                                echo 'Database file present:';
+                                                    echo "<br>";
+                                                echo $this->db_sqlite_path;
+                                                    echo "<br>";
+                                            }
+
+                                            echo "<br>";
+                                    echo '</div>';
+
+                                ?>
+                            <!-- reginfo: -->
+
+                            <div id="footer">
+                                <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents('../../js/version/version.txt');?> </a> </p>
+                            </div>
+
+                        </body>
+
+                    </html>
+
+                <!--  END registration form -->
+
+            <?php
+        }
+
+
         /**
          * Simple demo-"page" with the login form.
          * In a real application you would probably include an html-template here, but for this extremely simple
@@ -408,587 +1010,90 @@
         {
             error_reporting(E_ALL);
 ?>
+            
+            <?php
 
-            <!--  START registration form -->
-
-                <!DOCTYPE html>
-                <html lang="en">
-
-                    <head>
-
-                        <meta charset="UTF-8">
-                        <!-- <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" > -->
-                        <!-- <link type="text/css" href="../../css/main.css" rel="stylesheet"> -->
-                        <link type="text/css" href="../../css/formValidation.css" rel="stylesheet" />
-                        <script src="../../js/jquery.min.js"></script>
-                        <script src="../../js/formValidation.js"></script>
-
-                    </head>
-
-                    <body>
-
-                        <!-- datadir create button: -->
-                        <script>
-
-                            $(document).ready(function(){
-
-                                $('#datadirbtn').click(function(){
-
-                                    $('#response').html("<font color='yellow'><b>Creating data directory...</b></font>");
-
-                                    var datadir = $("#datadir").val();
-                                    console.log('submitted: '+ datadir);
-                                    var url ="./mkdirajax.php";
-
-                                    $.post(url, { datadir: datadir }, function(data){
-                                        // alert("Directory Created successfully");
-                                        console.log('mkdirajax: '+ data);
-                                        $('#response').html(data);
-                                        $('#userwrapper').load(document.URL +  ' #userwrapper');
-                                    })
-
-                                    .fail(function() {
-                                        alert( "Posting failed (ajax)" );
-                                        console.log("Posting failed (ajax)");
-                                    })
-
-                                    return false;
-                                });
-                            });
-
-                        </script>
-
-                        <!-- db create button: -->
-                        <script>
-
-                            $(document).ready(function(){
-
-                                $('#dbbtn').click(function(){
-
-                                    $('#response').html("<font color='yellow'><b>Creating user database...</b></font>");
-
-                                    var dbfile = $("#dbfile").val();
-                                    console.log('submitted: '+ dbfile);
-                                    var url ="./mkdbajax.php";
-
-                                    $.post(url, { dbfile: dbfile }, function(data){
-                                        // alert("Directory Created successfully");
-                                        console.log('mkdbajax: '+ data);
-                                        $('#response').html(data);
-                                        $('#userwrapper').load(document.URL +  ' #userwrapper');
-
-                                    })
-
-                                    .fail(function() {
-                                        alert( "Posting failed (ajax)" );
-                                        console.log("Posting failed (ajax)");
-                                    })
-
-                                    return false;
-                                });
-                            });
-
-                        </script>
+                $datafile = '../../data/datadir.json';
+                $str = file_get_contents($datafile);
+                $json = json_decode( $str, true);
+                $datadir1 = $json['datadir'];
+                $dbfile = $datadir1 . 'users.db';
 
 
-                        <div class="wrapperregistration">
+                 // IF users.db is NOT present, show registration page: //
 
-                            <div class="navbar-brand">
-                                Monitorr | Registration
-                            </div>
+                if (!is_file($dbfile)) {
+            
+                    $this->runregister();
+                    
+                }
 
-                                <br> <br> <hr>
+                else {
 
-                            <div id="loginmessage">
+                        $datafile = '../../data/datadir.json';
+                        $str = file_get_contents($datafile);
+                        $json = json_decode( $str, true);
+                        $datadir = $json['datadir'];
+                        $jsonfileuserdata = $datadir . 'user_preferences-data.json';
 
-                                <i class="fa fa-fw fa-info-circle"> </i> This registration process will perform the following actions: <br><br>
+                        if(!is_file($jsonfileuserdata)){
 
-                            </div>
+                            $path = "../../../assets/";
 
-                            <div id="reginstructions">
+                            include_once ('../monitorr-data-default.php');
 
-                                1-	Establish a data directory which will contain three json files with your custom settings, and a user database file. <br>
-                                2-	Create a data directory definition file in the Monitorr installation directory which defines where your data directory is established on the webserver. <br>
-                                3-	Copy the three default json settings files from the local Monitorr repository to the established data directory. <br>
-                                4-	Create a sqlite user database file in the established data directory. <br>
-                                5-	Create a user. <br>
-                                +	The above actions must complete successfully and in succession in order for Monitorr to function properly. <br>
-                                +	If you have any problems during the registration process, please check the <strong> <a href="https://github.com/Monitorr/Monitorr/wiki" target="_blank" class="toolslink" title="Monitorr Wiki"> Monitorr Wiki </a>. </strong> <br>
+                        }
 
-                            </div>
-                        </div>
-
-                        <?php
+                        else {
 
                             $datafile = '../../data/datadir.json';
-                            $str = file_get_contents($datafile);
-                            $json = json_decode( $str, true);
-                            $datadir1 = $json['datadir'];
-                            $datadirdetect = $datadir1 . 'monitorr_data_directory.txt';
-                            //$dbfile = $datadir . 'users.db';
 
+                            include_once ('../monitorr-data.php');
 
-                            if (!is_file($datadirdetect)) {
+                            $registration = $jsonusers['registration'];
+                        }
+                    
+                    // IF users.db IS present, check if register settings is set to ENABLE, if YES, show registration page: //
 
-                        ?>
-                                <!--  START datadir create form -->
+                    if($registration == "Enable") {
 
-                                    <div id="dbwrapper">
+                        $this->runregister();
 
-                                        <hr>
+                    } 
 
-                                        <div id='dbdir' class='loginmessage'>
-                                            Create data directory, copy default data json files, and create user database file in defined directory:
-                                        </div>
-                                            <br>
+                    else {
 
-                                        <?php
+                        // Deny access to register page if users.db is present AND register setting is set to DISABLE //
 
-                                            $datafile = '../../data/datadir.json';
-                                            $str = file_get_contents($datafile);
-                                            $json = json_decode( $str, true);
-                                            $datadir = $json['datadir'];
-                                            $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+                            echo '<div class="wrapperregistrationdisable">';
 
-                                            if(is_file($jsonfileuserdata)){
-
-                                                echo '<div id="loginerror">';
-                                                    echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
-
-                                                echo '</div>';
-                                            }
-
-                                            else {
-                                            }
-                                        ?>
-
-                                        <form id="datadirform">
-
-                                            <div>
-                                                <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
-                                                <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
-                                                    <br>
-                                                <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
-                                            </div>
-                                                    <br>
-                                            <div>
-                                                <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
-                                            </div>
-
-                                        </form>
-
-                                        <div id="loginerror">
-                                                <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
-                                        </div>
-
-                                        <div id="datadirnotes">
-                                                <i>
-                                            + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory.
-                                                <br>
-                                            + Path value must include a trailing slash.
-                                                <br>
-                                            + For security purposes, this directory should NOT be within the webserver's filesystem hierarchy. However, if a path is chosen outside the webserver's filesystem, the PHP process must have read/write privileges to whatever location is chosen to create the data directory.
-                                                <br>
-                                            + Value must be an absolute path on the server's filesystem with the exception of Docker - use a relative path with trailing slash.
-                                                <br>
-                                            Good:  c:\datadir\, /var/datadir/
-                                                <br>
-                                            Bad: wwwroot\datadir, ../datadir
-                                                </i>
-                                        </div>
-
-                                            <br>
-
-                                        <div id='response' class='dbmessage'></div>
-
-                                    </div>
-
-                                <!--  END datadir create form -->
-
-                        <?php
-
-                            }
-
-                            else  {
-
-                                $dbfile = $datadir1 . 'users.db';
-
-                                if (!is_file($dbfile)) {
-                        ?>
-                                    <!--  START  db create form -->
-
-
-                                        <div id="dbcreatewrapper">
-
-                                            <hr><br>
-
-                                            <?php
-
-                                                $datafile = '../../data/datadir.json';
-
-                                                $file = '../../data/datadir.json';
-
-                                                if(is_file($file)){
-
-                                                    include_once ('../monitorr-data.php');
-
-                                                    $datadir = $json['datadir'];
-
-                                                    echo '<div id="loginmessage">';
-                                                        echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> An existing data directory is detected at: '; echo $datadir; echo ' <br> By clicking "create" below, a user database will be created in the data directory specified below while leaving the JSON setting files in tact. <br> After the user database is created you will be able to create a user, log in, and edit the Monitorr settings. <br>';
-                                                            echo '<br>';
-                                                    echo '</div>';
-                                                }
-
-                                                else {
-
-                                                }
-                                            ?>
-
-                                            <form id="dbform">
-
-                                                <div>
-                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required readonly>
-                                                </div>
-
-                                                        <br>
-
-                                                <div>
-                                                    <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />
-                                                </div>
-
-                                            </form>
-
-                                                <br>
-
-                                            <div id='response' class='dbmessage'></div>
-
-                                        </div>
-
-                                    <!--  END  db create form -->
-
-                        <?php
-                                }
-
-                                else  {
-
-                        ?>
-                                    <!--  START multi form -->
-
-                                        <div id="multiform">
-
-                                            <div id="multiwarning">
-
-                                                <?php
-                                                    
-                                                    $datafile = '../../data/datadir.json';
-
-                                                    $file = '../../data/datadir.json';
-
-                                                    if(is_file($file)){
-
-                                                        include_once ('../monitorr-data.php');
-
-                                                        $datadir = $json['datadir'];
-
-                                                            echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> WARNING: An existing data directory is detected at: '; echo $datadir; echo ' <br> If an additional data directory is created, the current directory will NOT be altered, however, Monitorr will use all resources from the newly created directory after creation. </b> <br>';
-
-                                                    }
-
-                                                    else {
-                                                    }
-                                                ?>
-
-                                            </div>
-
-                                             <hr><br>
-
-                                            <table id='regmulti'>
-
-                                                <tr>
-                                                    <th>
-                                                        <div id='datadirheading' class='multiheading'>
-                                                            Create new data directory:
-                                                        </div>
-                                                    </th>
-
-                                                    <th>
-                                                        <div id='dbheading' class='multiheading'>
-                                                            Create a new user database:
-                                                        </div>
-                                                    </th>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-
-                                                        <div id="datadirmulti">
-
-                                                            <form id="datadirform">
-
-                                                                <div>
-                                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
-                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
-                                                                        <br>
-                                                                    <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
-                                                                </div>
-                                                                        <br>
-                                                                <div>
-                                                                    <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
-                                                                </div>
-
-                                                            </form>
-
-                                                            <div id="loginerror">
-                                                                    <i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>
-                                                            </div>
-
-                                                            <div id="datadirnotes">
-                                                                    <i>
-                                                                + The directory that is chosen must NOT already exist, however CAN be a sub directory of an exisiting directory.
-                                                                    <br>
-                                                                + Path value must include a trailing slash.
-                                                                    <br>
-                                                                + For security purposes, this directory should NOT be within the webserver's filesystem hierarchy. <br> However, if a path is chosen outside the webserver's filesystem, the PHP process must have read/write privileges to whatever location is chosen to create the data directory.
-                                                                    <br>
-                                                                + Value must be an absolute path on the server's filesystem with the exception of Docker - use a relative path with trailing slash.
-                                                                    <br>
-                                                                Good:  c:\datadir\, /var/datadir/
-                                                                    <br>
-                                                                Bad: wwwroot\datadir, ../datadir
-                                                                    </i>
-                                                            </div>
-
-                                                        </div>
-
-                                                    </td>
-
-                                                    <td>
-
-                                                        <div id="dbcreatewrappermulti">
-
-                                                            <form id="dbform">
-
-                                                                <div>
-                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfilemulti' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required>
-                                                                    <!-- <?php echo  $datadir = $json['datadir']; ?> -->
-                                                                        <br>
-                                                                    <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current data directory path is: " . $datadir = $json['datadir'];  ?> </i>
-                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
-                                                                        <br>
-                                                                </div>
-                                                                        <br>
-                                                                <div>
-                                                                    <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />
-                                                                </div>
-
-                                                            </form>
-
-                                                            <?php
-
-                                                                $datafile = '../../data/datadir.json';
-
-                                                                if(is_file($datafile)){
-
-                                                                    include_once ('../monitorr-data.php');
-
-                                                                    $datadir = $json['datadir'];
-
-                                                                    echo '<div id="loginerror">';
-                                                                            echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br>';
-                                                                    echo "</div>";
-
-                                                                        echo '<div id="datadirnotes"> ';
-                                                                                echo "<i>";
-                                                                            echo "+ An existing data directory is detected at: $datadir ";
-                                                                                echo "<br>";
-                                                                            echo '+ By clicking "create" above, a user database will be created in the data directory specified. ';
-                                                                                    echo "<br>";
-                                                                            echo '+ The location of the new user database MUST be located in the data directory indicated above. ';
-                                                                                    echo "<br>";
-                                                                            echo '+ If there is an existing user database in this directory, it will be renamed to "users.db.old" and a new user database will be created.';
-                                                                                echo "<br>";
-                                                                            echo '+ All setting JSON files in the current data directory will be left in tact.';
-                                                                                echo "<br>";
-                                                                            echo '+ After the new user database is created, you will be prompted to create new user credentials.';
-                                                                                echo "<br>";
-                                                                        echo "</div> ";
-                                                                }
-
-                                                                else {
-
-                                                                }
-                                                            ?>
-
-                                                                <br>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                            </table>
-
-                                            <div id='response' class='dbmessage'></div>
-
-                                        </div>
-
-                                    <!--  END multi form-->
-
-                         <?php
-
-                                }
-                            }
-
-                        ?>
-
-                        <!--  START create user form -->
-
-                            <div id="userwrapper">
-
-                                <?php
-
-                                    //Create user:
-
-                                    $datafile = '../../data/datadir.json';
-                                    $str = file_get_contents($datafile);
-                                    $json = json_decode( $str, true);
-                                    $datadir = $json['datadir'];
-                                    $dbfile3 = $datadir . 'users.db';
-
-                                    if(is_file($dbfile3)){
-
-                                        echo '<hr><br>';
-
-                                        echo '<div id="loginmessage">';
-                                            echo 'Create a user in the user database: '; echo $datadir; echo "users.db :";
-                                            echo '<br>';
-                                        echo '</div>';
-
-                                        echo '<form id="userform" method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
-
-                                            echo '<table id="registrationtable">';
-                                                // echo '<thead> <div id="blank"> . </div> </thead>';
-                                                echo '<tbody id="registrationform">';
-
-                                                    echo '<tr>';
-                                                        echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder=" Username" title="Enter a username" required autocomplete="off" /> </td>';
-                                                        echo '<td><label for="login_input_username"><i> Letters and numbers only, 2 to 64 characters </i></label></td>';
-                                                    echo '</tr>';
-
-                                                    echo '<tr>';
-                                                        echo "<td><i class='fa fa-fw fa-envelope'> </i> <input id='login_input_email' type='email' name='user_email' placeholder=' User e-mail' /></td>";
-                                                        echo '<td><label for="login_input_email"> <i> Not required </i></label></td>';
-                                                    echo ' </tr>';
-
-                                                    echo ' <tr>';
-                                                        echo "<td><i class='fa fa-fw fa-key'> </i> <input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder=' Password' title='Enter a password' /></td>";
-                                                        echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder=" Repeat password" title="Repeat password" /><i> Minimum 6 characters </i></td>';
-                                                    echo ' </tr>';
-
-                                                echo ' </tbody>';
-
-                                            echo '</table>';
-
-                                            echo '<div id="loginerror">';
-
-                                                if ($this->feedbackerror) {
-                                                    echo $this->feedbackerror;
-                                                };
-
-                                            echo '</div>';
-
-                                            echo ' <input type="submit" class="btn btn-primary" name="register" value="Register" />';
-                                                echo '<br>';
-
-                                            echo ' <div id="loginsuccess">';
-
-                                                // $this->feedback = "This user does not exist.";
-
-                                                if ($this->feedbacksuccess) {
-                                                    echo ' <br>';
-                                                    echo $this->feedbacksuccess;
-                                                };
-
-                                            echo '</div>';
-
-                                        echo '</form>';
-
-                                        echo ' <div id="loginerror">';
-                                            echo '<i class="fa fa-fw fa-exclamation-triangle"> </i><b> NOTE: </b> <br> ';
-                                        echo ' </div>';
-
-                                        echo ' <div id="usernotes">';
-                                            echo "<i> + It is NOT possible to change a user's credentials after creation. ";
-                                                echo '<br>';
-                                            echo ' + If credentials need to be changed or reset, rename the file in your data directory '; echo $this->db_sqlite_path ;  echo ' to "users.old". Once that file is renamed, browse to this page again to recreate desired credentials. </i> ';
-                                        echo ' </div>';
-
-                                    }
-
-                                    else {
-                                    }
-
-                                ?>
-
-                            </div>
-                        <!--  END create user form -->
-
-                        <!-- reginfo: -->
-                            <?php
-
-                                echo '<div id="reginfo">';
-
-                                        echo "<hr>";
-
-                                    echo "Current working directiory: ";
-                                        echo "<br>";
-
-                                    echo getcwd() . "\n";
-                                        echo "<br>";
-
-                                        if (!is_dir($this->datadir)) {
-                                            echo "Data directory NOT present.";
-                                        }
-
-                                        else {
-                                            echo 'Data directory present:';
-                                                echo "<br>";
-                                            echo $this->datadir;
-                                        }
-
-                                            echo "<br>";
-
-                                        if (!is_file($this->db_sqlite_path)) {
-                                            echo "Database file NOT present.";
-                                            echo "<br><br>";
-                                        }
-
-                                        else {
-                                            echo 'Database file present:';
-                                                echo "<br>";
-                                            echo $this->db_sqlite_path;
-                                                echo "<br>";
-                                        }
-
-                                        echo "<br>";
+                                echo '<div class="navbar-brand">';
+                                    echo 'Monitorr';
                                 echo '</div>';
+                                    echo '<br><br>';
 
-                            ?>
-                        <!-- reginfo: -->
+                                    echo "<font color='red'> You are NOT authorized to access this page. </font>";
+                                        echo "<br><br>";
+                                    echo "+  If you are the administrator and are trying to access the Monitorr registration tool, change the Monitorr User Preferences setting 'Registration Access' to 'Enable'. ";
+                                        echo "<br>";
+                                    echo "+  If you cannot access the Monitorr settings page, rename the file <i>"  . realpath($dbfile) .  " </i> and browse to this page again. ";
+                                        echo "<br>";
+                                    echo "+  <a href='../../../index.php' target='_blank'> Return to the Monitorr UI. </a>";
 
-                        <div id="footer">
-                            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents('../../js/version/version.txt');?> </a> </p>
-                        </div>
+                            echo '</div>';
 
-                    </body>
+                            echo '<div id="footer">';
 
-                </html>
+                                echo ' <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> </a>'; echo file_get_contents( "../../js/version/version.txt" ) ;
 
-            <!--  END registration form -->
+                            echo '</div>';
+
+                            
+                        // END deny access page //
+
+                    }
+                }
+            ?>
 
 <?php
 

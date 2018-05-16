@@ -80,7 +80,7 @@ class OneFileLoginApplication
         if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             echo "Sorry, Simple PHP Login does not run on a PHP version older than 5.3.7 !";
         } elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
-            require_once("../config/_installation/vendor/password_compatibility_library.php");
+            require_once("libraries/password_compatibility_library.php");
             return true;
         } elseif (version_compare(PHP_VERSION, '5.5.0', '>=')) {
             return true;
@@ -452,6 +452,15 @@ class OneFileLoginApplication
                     max-width: 100% !important;
                 }
 
+                .form-group {
+                    margin-bottom: 2rem !important;
+                }
+                
+                .alpaca-form-buttons-container {
+                    position: absolute;
+                    bottom: 15%;
+                }
+
             </style>
 
             <?php $datafile = '../data/datadir.json'; ?>
@@ -530,12 +539,116 @@ class OneFileLoginApplication
                                         "rftime": "leftcolumn",
                                         "pinghost": "leftcolumn",
                                         "pingport": "leftcolumn",
+                                        "disk1enable": "tdcenterleft",
+                                        "disk1": "disk1",
+                                        "disk2enable": "tdcenterleft",
+                                        "disk2": "disk2",
+                                        "disk3enable": "tdcenterleft",
+                                        "disk3": "disk3",
+                                        "hdok": "centerbottom",
+                                        "hdwarn": "centerbottom",
                                         "cpuok": "rightcolumn",
                                         "cpuwarn": "rightcolumn",
                                         "ramok": "rightcolumn",
-                                        "ramwarn": "rightcolumn",
-                                        "hdok": "rightcolumn",
-                                        "hdwarn": "rightcolumn"
+                                        "ramwarn": "rightcolumn"
+                                    }
+                                },
+                                "fields": {
+                                    "/rfsysinfo": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_rfsysinfo.html"
+                                        },
+                                        "bindings": {
+                                            "rfsysinfo": "#rfsysinfo_input"
+                                        }
+                                    },
+                                    "/rftime": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_rftime.html"
+                                        },
+                                        "bindings": {
+                                            "rftime": "#rftime_input"
+                                        }
+                                    },
+                                    "/pinghost": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_pinghost.html"
+                                        },
+                                        "bindings": {
+                                            "pinghost": "#pinghost_input"
+                                        }
+                                    },
+                                    "/pingport": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_pingport.html"
+                                        },
+                                        "bindings": {
+                                            "pingport": "#pingport_input"
+                                        }
+                                    },
+                                    "/disk1enable": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_disk1enable.html"
+                                        },
+                                        "bindings": {
+                                            "disk1enable": "#disk1enable_select"
+                                        }
+                                    },
+                                    "/disk1": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_disk1.html"
+                                        },
+                                        "bindings": {
+                                            "disk1": "#disk1_input"
+                                        }
+                                    },
+                                    "/hdok": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_hdok.html"
+                                        },
+                                        "bindings": {
+                                            "hdok": "#hdok_input"
+                                        }
+                                    },
+                                    "/hdwarn": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_hdwarn.html"
+                                        },
+                                        "bindings": {
+                                            "hdwarn": "#hdwarn_input"
+                                        }
+                                    },
+                                    "/cpuok": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_cpuok.html"
+                                        },
+                                        "bindings": {
+                                            "cpuok": "#cpuok_input"
+                                        }
+                                    },
+                                    "/cpuwarn": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_cpuwarn.html"
+                                        },
+                                        "bindings": {
+                                            "cpuwarn": "#cpuwarn_input"
+                                        }
+                                    },
+                                    "/ramok": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_ramok.html"
+                                        },
+                                        "bindings": {
+                                            "ramok": "#ramok_input"
+                                        }
+                                    },
+                                    "/ramwarn": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-site-settings_ramwarn.html"
+                                        },
+                                        "bindings": {
+                                            "ramwarn": "#ramwarn_input"
+                                        }
                                     }
                                 }
                             },
@@ -567,7 +680,7 @@ class OneFileLoginApplication
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
@@ -596,7 +709,7 @@ class OneFileLoginApplication
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
@@ -625,7 +738,7 @@ class OneFileLoginApplication
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
@@ -636,7 +749,6 @@ class OneFileLoginApplication
                                             }
                                         }
                                     },
-
                                     "pingport": {
                                         "type": "number",
                                         "validate": true,
@@ -644,7 +756,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Ping host port:",
-                                        "helper": "Ping host port to use for latency check. <br> (If using 8.8.8.8, value should be '53')",
+                                        "helper": "Ping host port for ping latency check. <br> (If using 8.8.8.8, value should be '53')",
                                         "hideInitValidationError": false,
                                         "focus": false,
                                         "optionLabels": [],
@@ -655,7 +767,7 @@ class OneFileLoginApplication
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
@@ -666,25 +778,51 @@ class OneFileLoginApplication
                                             }
                                         }
                                     },
-                                    "cpuok": {
-                                        "type": "number",
-                                        "validate": true,
+                                    "disk1enable": {
+                                        "type": "select",
+                                        "validate": false,
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "CPU OK color value:",
-                                        "helper": "CPU% less than this will be green.",
+                                        "label": "HD1 display:",
                                         "hideInitValidationError": false,
                                         "focus": false,
-                                        "optionLabels": [],
-                                        "name": "cpuok",
-                                        "placeholder": "50",
+                                        "name": "disk1enable",
                                         "typeahead": {},
-                                        "size": 5,
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "disk1": {
+                                        "dependencies": {
+                                            "disk1enable": ["Enable"]
+                                        },
+                                        "type": "text",
+                                        "validate": false,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "HD1 volume:",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "disk1",
+                                        "placeholder": "HD volume",
+                                        "typeahead": {},
+                                        "size": "6",
+                                        "allowOptionalEmpty": true,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
@@ -695,25 +833,54 @@ class OneFileLoginApplication
                                             }
                                         }
                                     },
-                                    "cpuwarn": {
-                                        "type": "number",
-                                        "validate": true,
+                                    "disk2enable": {
+                                        "dependencies": {
+                                            "disk1enable": ["Enable"]
+                                        },
+                                        "type": "select",
+                                        "validate": false,
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "CPU warning color value:",
-                                        "helper": "CPU% less than this will be yellow.",
+                                        "label": "HD2 display:",
                                         "hideInitValidationError": false,
                                         "focus": false,
-                                        "optionLabels": [],
-                                        "name": "cpuwarn",
-                                        "placeholder": "90",
+                                        "name": "disk2enable",
                                         "typeahead": {},
-                                        "size": 5,
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "disk2": {
+                                        "dependencies": {
+                                            "disk2enable": ["Enable"]
+                                        },
+                                        "type": "text",
+                                        "validate": false,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "HD2 volume:",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "disk2",
+                                        "placeholder": "HD volume",
+                                        "typeahead": {},
+                                        "size": "6",
+                                        "allowOptionalEmpty": true,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
@@ -724,54 +891,54 @@ class OneFileLoginApplication
                                             }
                                         }
                                     },
-                                    "ramok": {
-                                        "type": "number",
-                                        "validate": true,
+                                    "disk3enable": {
+                                        "dependencies": {
+                                            "disk2enable": ["Enable"]
+                                        },
+                                        "type": "select",
+                                        "validate": false,
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "RAM OK color value:",
-                                        "helper": "RAM% less than this will be green.",
+                                        "label": "HD3 display:",
                                         "hideInitValidationError": false,
                                         "focus": false,
-                                        "optionLabels": [],
-                                        "name": "ramok",
-                                        "placeholder": "50",
+                                        "name": "disk3enable",
                                         "typeahead": {},
-                                        "size": 5,
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
                                         "fields": {},
-                                        "renderButtons": true,
-                                        "attributes": {},
                                         "events": {
                                             "change": function() {
                                                 $('.alpaca-form-button-submit').addClass('buttonchange');
                                             }
                                         }
                                     },
-                                    "ramwarn": {
-                                        "type": "number",
-                                        "validate": true,
+                                    "disk3": {
+                                        "dependencies": {
+                                            "disk3enable": ["Enable"]
+                                        },
+                                        "type": "text",
+                                        "validate": false,
                                         "showMessages": true,
                                         "disabled": false,
                                         "hidden": false,
-                                        "label": "RAM warning color value:",
-                                        "helper": "RAM% less than this will be yellow.",
+                                        "label": "HD3 volume:",
                                         "hideInitValidationError": false,
                                         "focus": false,
                                         "optionLabels": [],
-                                        "name": "ramwarn",
-                                        "placeholder": "90",
+                                        "name": "disk3",
+                                        "placeholder": "HD volume",
                                         "typeahead": {},
-                                        "size": 5,
-                                        "allowOptionalEmpty": false,
+                                        "size": "6",
+                                        "allowOptionalEmpty": true,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
@@ -789,7 +956,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "HD OK color value:",
-                                        "helper": "HD free % less than this will be green.",
+                                        "helper": "HD used % less than this value will be green.",
                                         "hideInitValidationError": false,
                                         "focus": false,
                                         "optionLabels": [],
@@ -800,7 +967,7 @@ class OneFileLoginApplication
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,
@@ -829,7 +996,123 @@ class OneFileLoginApplication
                                         "allowOptionalEmpty": false,
                                         "data": {},
                                         "autocomplete": false,
-                                        "disallowEmptySpaces": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "cpuok": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "CPU OK color value:",
+                                        "helper": "CPU usage % less than this value will appear green, above this value will appear yellow.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "cpuok",
+                                        "placeholder": "50",
+                                        "typeahead": {},
+                                        "size": 5,
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "cpuwarn": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "CPU warning color value:",
+                                        "helper": "CPU usage % less than this value will appear yellow, above this value will appear red",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "cpuwarn",
+                                        "placeholder": "90",
+                                        "typeahead": {},
+                                        "size": 5,
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "ramok": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "RAM OK color value:",
+                                        "helper": "RAM usage % less than this value will appear green, above this value will appear yellow.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "ramok",
+                                        "placeholder": "50",
+                                        "typeahead": {},
+                                        "size": 5,
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "ramwarn": {
+                                        "type": "number",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "RAM warning color value:",
+                                        "helper": "RAM usage % less than this value will appear yellow, above this value will appear red.",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "ramwarn",
+                                        "placeholder": "90",
+                                        "typeahead": {},
+                                        "size": 5,
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
                                         "disallowOnlyEmptySpaces": false,
                                         "fields": {},
                                         "renderButtons": true,

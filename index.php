@@ -83,6 +83,10 @@
                 margin-top: 2.5rem !important;
             }
 
+            #hd {
+                grid-column: 1/ span 2;
+            }
+
             #services {
                 margin-bottom: 7rem;
             }

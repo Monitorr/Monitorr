@@ -80,7 +80,7 @@ class OneFileLoginApplication
         if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             echo "Sorry, Simple PHP Login does not run on a PHP version older than 5.3.7 !";
         } elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
-            require_once("../config/_installation/vendor/password_compatibility_library.php");
+            require_once("libraries/password_compatibility_library.php");
             return true;
         } elseif (version_compare(PHP_VERSION, '5.5.0', '>=')) {
             return true;
@@ -489,10 +489,7 @@ class OneFileLoginApplication
             .alpaca-field-object {
                 padding-top: 2rem;
                 padding-left: 2rem;
-            }
-
-            .servicedisabled {
-                /* background-color: red; */
+                padding-right: 2rem;
             }
 
             .form-control {
@@ -745,6 +742,14 @@ class OneFileLoginApplication
                                             "removeDefaultNone": true,
                                             "fields": {},
                                             "events": {
+                                                // "ready": function(callback) {
+                                                //     var value = this.getValue();
+                                                //     if (value == "No") {
+                                                //         $('.{{id}}').removeClass('enabledwarningchange');
+                                                //     } else {
+                                                //         $('.{{id}}').addClass('enabledwarningchange');
+                                                //     }
+                                                // },
                                                 "change": function() {
                                                     $('.alpaca-form-button-submit').addClass('buttonchange');
                                                 }

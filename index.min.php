@@ -127,6 +127,25 @@
                 padding-bottom: .50rem !important;
             }
 
+            #hd {
+                display: contents;
+            }
+
+            .hdhidden {
+                visibility: hidden;
+                display: none !important;
+            }
+
+            #hdlabel1 {
+                margin: 0 !important;
+                font-size: .75rem !important;
+            }
+
+            #hdpercent1 {
+                margin: 0 !important;
+                font-size: .75rem !important;
+            }
+
         </style>
 
         <script src="assets/js/jquery.min.js"></script>
