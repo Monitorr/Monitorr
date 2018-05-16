@@ -494,6 +494,93 @@ class OneFileLoginApplication
         </div>
 
         <div id="siteform">
+            <?php include('functions.php'); ?>
+            <table id="sitepreview">
+                <tr>
+                    <td id="previewleft">
+                        <div id="ping" class="col-md-2 col-centered double-val-label">
+                            <span class="primary">ping</span>
+                            <span><?php echo $pingTime; ?>ms</span>
+                        </div>
+                    </td>
+                    <td id="previewcenter">
+                        <div id="hd" class="col-md-2 col-centered double-val-label">
+                            <?php
+                            foreach ($disks as $key => $disk) {
+                                echo "";
+                                echo "<span id='hdlabel' class='" . $disk['class'] . "'> HD " . $disk['disk'] . " </span>";
+                                echo "<span id='hdpercent' >" . $disk['freeHD'] . "%</span>";
+                            }
+                            ?>
+                        </div>
+                        <div id='HDBar' class='bar'>
+                            <div class='part part1' style='width:<?php echo $jsonsite['hdok']; ?>%'>
+                                <?php echo "<p style='text-align: right'><" . $jsonsite['hdok'] . "%</p>"; ?>
+                                <span class="tooltiptext">HD OK</span>
+                            </div>
+                            <div class='part part2'
+                                 style='width:<?php echo(100 - $jsonsite['hdok'] - (100 - $jsonsite['hdwarn'])); ?>%'>
+                                <span class="tooltiptext">HD WARNING</span>
+                            </div>
+                            <div class='part part3' style='width:<?php echo(100 - $jsonsite['hdwarn']); ?>%'>
+                                <?php echo "<p style='text-align: left'>>" . $jsonsite['hdwarn'] . "%</p>"; ?>
+                                <span class="tooltiptext">HD NOT OK</span>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td id="previewright">
+                        <div id="systempreview">
+                            <table id="systempreview">
+                                <tr>
+                                    <td>
+                                        <div id="cpu" class="col-md-2 col-centered double-val-label">
+                                            <span class="<?php echo $cpuClass; ?>">CPU</span>
+                                            <span><?php echo $cpuPercent; ?>%</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="ram" class="col-md-2 col-centered double-val-label">
+                                            <span class="<?php echo $ramClass; ?>">RAM</span>
+                                            <span><?php echo $ramPercent; ?>%</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id='CPUBar' class='bar'>
+                                <div class='part part1' style='width:<?php echo $jsonsite['cpuok']; ?>%'>
+                                    <?php echo "<p style='text-align: right'><" . $jsonsite['cpuok'] . "%</p>"; ?>
+                                    <span class="tooltiptext">CPU OK</span>
+                                </div>
+                                <div class='part part2'
+                                     style='width:<?php echo(100 - $jsonsite['cpuok'] - (100 - $jsonsite['cpuwarn'])); ?>%'>
+                                    <span class="tooltiptext">CPU WARNING</span>
+                                </div>
+                                <div class='part part3' style='width:<?php echo(100 - $jsonsite['cpuwarn']); ?>%'>
+                                    <?php echo "<p style='text-align: left'>>" . $jsonsite['cpuwarn'] . "%</p>"; ?>
+                                    <span class="tooltiptext">CPU NOT OK</span>
+                                </div>
+                            </div>
+                            <div id='RAMBar' class='bar'>
+                                <div class='part part1' style='width:<?php echo $jsonsite['ramok']; ?>%'>
+                                    <?php echo "<p style='text-align: right'><" . $jsonsite['ramok'] . "%</p>"; ?>
+                                    <span class="tooltiptext">RAM OK</span>
+                                </div>
+                                <div class='part part2'
+                                     style='width:<?php echo(100 - $jsonsite['ramok'] - (100 - $jsonsite['ramwarn'])); ?>%'>
+                                    <span class="tooltiptext">RAM WARNING</span>
+                                </div>
+                                <div class='part part3' style='width:<?php echo(100 - $jsonsite['ramwarn']); ?>%'>
+                                    <?php echo "<p style='text-align: left'>>" . $jsonsite['ramwarn'] . "%</p>"; ?>
+                                    <span class="tooltiptext">RAM NOT OK</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+
+                </tr>
+            </table>
 
             <div id="sitesettings"></div>
 
@@ -539,12 +626,7 @@ class OneFileLoginApplication
                                         "rftime": "leftcolumn",
                                         "pinghost": "leftcolumn",
                                         "pingport": "leftcolumn",
-                                        "disk1enable": "tdcenterleft",
-                                        "disk1": "disk1",
-                                        "disk2enable": "tdcenterleft",
-                                        "disk2": "disk2",
-                                        "disk3enable": "tdcenterleft",
-                                        "disk3": "disk3",
+                                        "disks": "tdcenterleft",
                                         "hdok": "centerbottom",
                                         "hdwarn": "centerbottom",
                                         "cpuok": "rightcolumn",
@@ -584,22 +666,6 @@ class OneFileLoginApplication
                                         },
                                         "bindings": {
                                             "pingport": "#pingport_input"
-                                        }
-                                    },
-                                    "/disk1enable": {
-                                        "templates": {
-                                            "control": "../css/forms/./templates-site-settings_disk1enable.html"
-                                        },
-                                        "bindings": {
-                                            "disk1enable": "#disk1enable_select"
-                                        }
-                                    },
-                                    "/disk1": {
-                                        "templates": {
-                                            "control": "../css/forms/./templates-site-settings_disk1.html"
-                                        },
-                                        "bindings": {
-                                            "disk1": "#disk1_input"
                                         }
                                     },
                                     "/hdok": {
@@ -659,7 +725,7 @@ class OneFileLoginApplication
                                 "validate": true,
                                 "disabled": false,
                                 "showMessages": true,
-                                "collapsible": false,
+                                "collapsible": true,
                                 "legendStyle": "button",
                                 "fields": {
                                     "rfsysinfo": {
@@ -778,171 +844,31 @@ class OneFileLoginApplication
                                             }
                                         }
                                     },
-                                    "disk1enable": {
-                                        "type": "select",
-                                        "validate": false,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "HD1 display:",
-                                        "hideInitValidationError": false,
-                                        "focus": false,
-                                        "name": "disk1enable",
-                                        "typeahead": {},
-                                        "allowOptionalEmpty": false,
-                                        "data": {},
-                                        "autocomplete": false,
-                                        "disallowEmptySpaces": true,
-                                        "disallowOnlyEmptySpaces": false,
-                                        "removeDefaultNone": true,
-                                        "fields": {},
-                                        "events": {
-                                            "change": function() {
-                                                $('.alpaca-form-button-submit').addClass('buttonchange');
-                                            }
-                                        }
-                                    },
-                                    "disk1": {
-                                        "dependencies": {
-                                            "disk1enable": ["Enable"]
+                                    "disks": {
+                                        "actionbar": {
+                                            "actions": [{
+                                                "label": "Add Disk",
+                                                "action": "add",
+                                                "iconClass": "fa fa-plus"
+                                            }, {
+                                                "label": "Remove Disk",
+                                                "action": "remove",
+                                                "iconClass": "fa fa-minus"
+                                            }, {
+                                                "label": "Move Up",
+                                                "action": "up",
+                                                "iconClass": "fa fa-arrow-up",
+                                                "enabled": true
+                                            }, {
+                                                "label": "Move Down",
+                                                "action": "down",
+                                                "iconClass": "fa fa-arrow-down",
+                                                "enabled": true
+                                            },]
                                         },
-                                        "type": "text",
-                                        "validate": false,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "HD1 volume:",
-                                        "hideInitValidationError": false,
-                                        "focus": false,
-                                        "optionLabels": [],
-                                        "name": "disk1",
-                                        "placeholder": "HD volume",
-                                        "typeahead": {},
-                                        "size": "6",
-                                        "allowOptionalEmpty": true,
-                                        "data": {},
-                                        "autocomplete": false,
-                                        "disallowEmptySpaces": true,
-                                        "disallowOnlyEmptySpaces": false,
-                                        "fields": {},
-                                        "renderButtons": true,
-                                        "attributes": {},
-                                        "events": {
-                                            "change": function() {
-                                                $('.alpaca-form-button-submit').addClass('buttonchange');
-                                            }
-                                        }
-                                    },
-                                    "disk2enable": {
-                                        "dependencies": {
-                                            "disk1enable": ["Enable"]
-                                        },
-                                        "type": "select",
-                                        "validate": false,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "HD2 display:",
-                                        "hideInitValidationError": false,
-                                        "focus": false,
-                                        "name": "disk2enable",
-                                        "typeahead": {},
-                                        "allowOptionalEmpty": false,
-                                        "data": {},
-                                        "autocomplete": false,
-                                        "disallowEmptySpaces": true,
-                                        "disallowOnlyEmptySpaces": false,
-                                        "removeDefaultNone": true,
-                                        "fields": {},
-                                        "events": {
-                                            "change": function() {
-                                                $('.alpaca-form-button-submit').addClass('buttonchange');
-                                            }
-                                        }
-                                    },
-                                    "disk2": {
-                                        "dependencies": {
-                                            "disk2enable": ["Enable"]
-                                        },
-                                        "type": "text",
-                                        "validate": false,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "HD2 volume:",
-                                        "hideInitValidationError": false,
-                                        "focus": false,
-                                        "optionLabels": [],
-                                        "name": "disk2",
-                                        "placeholder": "HD volume",
-                                        "typeahead": {},
-                                        "size": "6",
-                                        "allowOptionalEmpty": true,
-                                        "data": {},
-                                        "autocomplete": false,
-                                        "disallowEmptySpaces": true,
-                                        "disallowOnlyEmptySpaces": false,
-                                        "fields": {},
-                                        "renderButtons": true,
-                                        "attributes": {},
-                                        "events": {
-                                            "change": function() {
-                                                $('.alpaca-form-button-submit').addClass('buttonchange');
-                                            }
-                                        }
-                                    },
-                                    "disk3enable": {
-                                        "dependencies": {
-                                            "disk2enable": ["Enable"]
-                                        },
-                                        "type": "select",
-                                        "validate": false,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "HD3 display:",
-                                        "hideInitValidationError": false,
-                                        "focus": false,
-                                        "name": "disk3enable",
-                                        "typeahead": {},
-                                        "allowOptionalEmpty": false,
-                                        "data": {},
-                                        "autocomplete": false,
-                                        "disallowEmptySpaces": true,
-                                        "disallowOnlyEmptySpaces": false,
-                                        "removeDefaultNone": true,
-                                        "fields": {},
-                                        "events": {
-                                            "change": function() {
-                                                $('.alpaca-form-button-submit').addClass('buttonchange');
-                                            }
-                                        }
-                                    },
-                                    "disk3": {
-                                        "dependencies": {
-                                            "disk3enable": ["Enable"]
-                                        },
-                                        "type": "text",
-                                        "validate": false,
-                                        "showMessages": true,
-                                        "disabled": false,
-                                        "hidden": false,
-                                        "label": "HD3 volume:",
-                                        "hideInitValidationError": false,
-                                        "focus": false,
-                                        "optionLabels": [],
-                                        "name": "disk3",
-                                        "placeholder": "HD volume",
-                                        "typeahead": {},
-                                        "size": "6",
-                                        "allowOptionalEmpty": true,
-                                        "data": {},
-                                        "autocomplete": false,
-                                        "disallowEmptySpaces": true,
-                                        "disallowOnlyEmptySpaces": false,
-                                        "fields": {},
-                                        "renderButtons": true,
-                                        "attributes": {},
+                                        "title": "",
+                                        "size": 20,
+                                        "toolbarSticky": true,
                                         "events": {
                                             "change": function() {
                                                 $('.alpaca-form-button-submit').addClass('buttonchange');
@@ -1106,6 +1032,7 @@ class OneFileLoginApplication
                                         "focus": false,
                                         "optionLabels": [],
                                         "name": "ramwarn",
+                                        "name": "ramwarn",
                                         "placeholder": "90",
                                         "typeahead": {},
                                         "size": 5,
@@ -1150,6 +1077,7 @@ class OneFileLoginApplication
                                                     }
                                                 });
                                                 $('.alpaca-form-button-submit').removeClass('buttonchange');
+                                                $('#sitepreview').load(document.URL + ' #sitepreview');
                                             }
                                         },
                                         "reset":{
@@ -1164,7 +1092,7 @@ class OneFileLoginApplication
                                         //     }
                                         // }
                                     },
-                                }
+                                },
                             },
                         });
 

@@ -640,7 +640,6 @@ class OneFileLoginApplication
                                 "toolbarSticky": true,
                                 "focus": false,
                                 "collapsible": true,
-                                "focus": false,
                                 "actionbar": {
                                     "showLabels": true,
                                     "actions": [{
@@ -680,7 +679,7 @@ class OneFileLoginApplication
 
                                             span.onclick = function() {
                                                 modal.style.display = "none";
-                                            }
+                                            };
 
                                             window.onclick = function(event) {
                                                 if (event.target == modal) {
@@ -794,14 +793,14 @@ class OneFileLoginApplication
                                                 span.onclick = function() {
                                                     modal.style.display = "none";
                                                     $('#mymodal2').empty();
-                                                }
+                                                };
 
                                                 window.onclick = function(event) {
                                                     if (event.target == modal) {
                                                         modal.style.display = "none";
                                                         $('#mymodal2').empty();
                                                     }
-                                                }
+                                                };
                                                 $('.alpaca-form-button-submit').addClass('buttonchange');
                                             }
                                         },
@@ -946,7 +945,7 @@ class OneFileLoginApplication
                                                     error: function(errorThrown){
                                                         console.log(errorThrown);
                                                     }
-                                                },)
+                                                },);
                                                 $('.alpaca-form-button-submit').removeClass('buttonchange');
                                             }
                                         },

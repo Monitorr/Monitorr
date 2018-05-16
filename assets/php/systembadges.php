@@ -32,32 +32,15 @@
 <div id="hd" class="col-md-2 col-centered double-val-label">
   
   <?php
-
-    if($disk1 == "") {
+  $i = 0;
+  foreach ($disks as $key => $disk) {
+      $last = '';
+      if ($i === 3) break; //limit amount of visible disks to 3
+      if ($i === 2) $last = "class='last'";
+      echo "<span id='hdlabel' class='" . $disk['class'] . "'> HD " . $disk['disk'] . " </span>";
+      echo "<span id='hdpercent' " . $last . "' >" . $disk['freeHD'] . "%</span>";
+      $i++;
     }
-
-    else {
-      
-      echo "<span id='hdlabel1' class='" . $hdClass1 . "'> HD " .  $disk1 . " </span>";
-      echo "<span id='hdpercent1' >" . $freeHD1 . "%</span>";
-    }
-
-    if($disk2 == "") {
-    }
-
-    else {
-      echo "<span id='hdlabel2' class='" . $hdClass2 . " hdhidden'> HD " .  $disk2 . " </span>";
-      echo "<span id='hdpercent2' class='hdhidden'>" . $freeHD2 . "%</span>";
-    }
-
-    if($disk3 == "") {
-    }
-
-    else {
-      echo "<span id='hdlabel3' class='" . $hdClass3 . " hdhidden'> HD " .  $disk3 . " </span>";
-      echo "<span id='hdpercent3' class='hdhidden'>" . $freeHD3 . "%</span>";
-    }
-
   ?>
 
 </div>

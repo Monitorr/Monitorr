@@ -1,1 +1,13 @@
-{"rfsysinfo":"20000","rftime":"5000","pinghost":"8.8.8.8","pingport":"53","disk1enable":"Enable","disk1":"\/","disk2enable":"Disable","cpuok":"75","cpuwarn":"90","ramok":"50","ramwarn":"75","hdok":"75","hdwarn":"90"}
+{
+  "rfsysinfo": "20000",
+  "rftime": "5000",
+  "pinghost": "8.8.8.8",
+  "pingport": "53",
+  "disks": {},
+  "cpuok": "75",
+  "cpuwarn": "90",
+  "ramok": "50",
+  "ramwarn": "75",
+  "hdok": "75",
+  "hdwarn": "90"
+}

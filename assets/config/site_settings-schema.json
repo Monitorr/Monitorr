@@ -31,59 +31,14 @@
             "default": "53",
             "properties": {}
         },
-        "disk1enable": {
-            "type": "string",
-            "title": "disk1enable",
-            "enum": [
-                "Enable",
-                "Disable"
-            ],
-            "required": true,
-            "pattern": {},
-            "default": "Enable",
-            "properties": {}
+      "disks": {
+        "type": "array",
+        "title": "Disks",
+        "items": {
+          "title": "Disk",
+          "type": "string"
         },
-        "disk1": {
-            "type": "string",
-            "required": false,
-            "default": "/",
-            "properties": {}
-        },
-        "disk2enable": {
-            "type": "string",
-            "title": "disk2enable",
-            "enum": [
-                "Enable",
-                "Disable"
-            ],
-            "required": true,
-            "pattern": {},
-            "default": "Disable",
-            "properties": {}
-        },
-        "disk2": {
-            "type": "string",
-            "required": false,
-            "default": "",
-            "properties": {}
-        },
-        "disk3enable": {
-            "type": "string",
-            "title": "disk3enable",
-            "enum": [
-                "Enable",
-                "Disable"
-            ],
-            "required": true,
-            "pattern": {},
-            "default": "Disable",
-            "properties": {}
-        },
-        "disk3": {
-            "type": "string",
-            "required": false,
-            "default": "",
-            "properties": {}
+        "required": false
         },
         "cpuok": {
             "type": "string",

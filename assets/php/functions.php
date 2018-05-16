@@ -206,25 +206,16 @@ $ramPercent = round(($usedRam / $totalRam) * 100);
 // getHD function
 
 
- ////// HD1 ///////
+function getHDFree($disk)
+{
 
-    global $disk1;
-    $disk1 = $jsonsite['disk1'];
-
-    //$disk = "C:"; 
-
-    $freeHD1 = getHDFree1();
-
-function getHDFree1() {
-    
-    global $disk1;
 
     //hdd stat
     // $stat['hdd_free'] = round(disk_free_space("/") / 1024 / 1024 / 1024, 2);
-    $stat['hdd_free'] = round(disk_free_space($disk1) / 1024 / 1024 / 1024, 2);
+    $stat['hdd_free'] = round(disk_free_space($disk) / 1024 / 1024 / 1024, 2);
     
     // $stat['hdd_total'] = round(disk_total_space("/") / 1024 / 1024/ 1024, 2);
-    $stat['hdd_total'] = round(disk_total_space($disk1) / 1024 / 1024/ 1024, 2);
+    $stat['hdd_total'] = round(disk_total_space($disk) / 1024 / 1024 / 1024, 2);
 
     $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
     $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
@@ -233,100 +224,98 @@ function getHDFree1() {
     return  $stat['hdd_percent'];
     
 }
+
+////// HD1 ///////
+$disks = array();
+foreach ($jsonsite['disks'] as $disk) {
+
+    $freeHD = getHDFree($disk);
+
     // Dynamic icon colors for badges:
 
     $hdok = $jsonsite['hdok'];
     $hdwarn = $jsonsite['hdwarn'];
 
-        if ($freeHD1 < $hdok) {
-                $hdClass1 = 'success';
-        } elseif (($freeHD1 >= $hdok) && ($freeHD1 < $hdwarn)) {
-                $hdClass1 = 'warning';
-        } else {
-                $hdClass1 = 'danger';
-        }
+    if ($freeHD < $hdok) {
+        $hdClass = 'success';
+    } elseif (($freeHD >= $hdok) && ($freeHD < $hdwarn)) {
+        $hdClass = 'warning';
+    } else {
+        $hdClass = 'danger';
+    }
+    $disks[] = array(
+        'class' => $hdClass,
+        'disk' => $disk,
+        'freeHD' => $freeHD
+    );
+}
 
+global $disk1;
+if (isset($jsonsite['disk1'])) {
+    $disk1 = $jsonsite['disk1'];
+
+    //$disk = "C:";
+
+    $freeHD1 = getHDFree($disk1);
+
+    // Dynamic icon colors for badges:
+
+    $hdok = $jsonsite['hdok'];
+    $hdwarn = $jsonsite['hdwarn'];
+
+    if ($freeHD1 < $hdok) {
+        $hdClass1 = 'success';
+    } elseif (($freeHD1 >= $hdok) && ($freeHD1 < $hdwarn)) {
+        $hdClass1 = 'warning';
+    } else {
+        $hdClass1 = 'danger';
+    }
+}
 
 ////// HD2 ///////
 
-    global $disk2;
+global $disk2;
+if (isset($jsonsite['disk2'])) {
     $disk2 = $jsonsite['disk2'];
-    //$disk2 = "G:"; //CHANGE ME
 
-    $freeHD2 = getHDFree2();
+    //$disk = "C:";
 
-function getHDFree2() {
+    $freeHD2 = getHDFree($disk2);
 
-    global $disk2;
+    // Dynamic icon colors for badges:
 
-        //hdd stat
-        // $stat['hdd_free'] = round(disk_free_space("/") / 1024 / 1024 / 1024, 2);
-        $stat['hdd_free'] = round(disk_free_space($disk2) / 1024 / 1024 / 1024, 2);
-        
-        // $stat['hdd_total'] = round(disk_total_space("/") / 1024 / 1024/ 1024, 2);
-        $stat['hdd_total'] = round(disk_total_space($disk2) / 1024 / 1024/ 1024, 2);
-
-        $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
-        $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
-        $stat['hdd_percent'];
-
-        return  $stat['hdd_percent'];
-}
-
-    // Dynamic icon colors for badges
- 
     $hdok = $jsonsite['hdok'];
     $hdwarn = $jsonsite['hdwarn'];
 
+    if ($freeHD2 < $hdok) {
+        $hdClass2 = 'success';
+    } elseif (($freeHD2 >= $hdok) && ($freeHD2 < $hdwarn)) {
+        $hdClass2 = 'warning';
+    } else {
+        $hdClass2 = 'danger';
+    }
+}
 
-        if ($freeHD2 < $hdok) {
-                $hdClass2 = 'success';
-        } elseif (($freeHD2 >= $hdok) && ($freeHD2 < $hdwarn)) {
-                $hdClass2 = 'warning';
-        } else {
-                $hdClass2 = 'danger';
-        }
+////// HD1 ///////
 
-        
-////// HD3 ///////
-
-    global $disk3;
+global $disk3;
+if (isset($jsonsite['disk3'])) {
     $disk3 = $jsonsite['disk3'];
-    //$disk3 = "X:"; //CHANGE ME
 
-    $freeHD3 = getHDFree3();
+    //$disk = "C:";
 
-function getHDFree3() {
+    $freeHD3 = getHDFree($disk3);
 
-    global $disk3;
+    // Dynamic icon colors for badges:
 
-        //hdd stat
-        // $stat['hdd_free'] = round(disk_free_space("/") / 1024 / 1024 / 1024, 2);
-        $stat['hdd_free'] = round(disk_free_space($disk3) / 1024 / 1024 / 1024, 2);
-        
-        // $stat['hdd_total'] = round(disk_total_space("/") / 1024 / 1024/ 1024, 2);
-        $stat['hdd_total'] = round(disk_total_space($disk3) / 1024 / 1024/ 1024, 2);
-
-        $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
-        $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
-        $stat['hdd_percent'];
-
-        return  $stat['hdd_percent'];
+    if ($freeHD3 < $hdok) {
+        $hdClass3 = 'success';
+    } elseif (($freeHD3 >= $hdok) && ($freeHD3 < $hdwarn)) {
+        $hdClass3 = 'warning';
+    } else {
+        $hdClass3 = 'danger';
+    }
 }
-
-    // Dynamic icon colors for badges
- 
-    $hdok = $jsonsite['hdok'];
-    $hdwarn = $jsonsite['hdwarn'];
-
-
-        if ($freeHD3 < $hdok) {
-                $hdClass3 = 'success';
-        } elseif (($freeHD3 >= $hdok) && ($freeHD3 < $hdwarn)) {
-                $hdClass3 = 'warning';
-        } else {
-                $hdClass3 = 'danger';
-        }
 
 
 
