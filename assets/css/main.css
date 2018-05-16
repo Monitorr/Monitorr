@@ -354,15 +354,27 @@
     }
 
     table,
-    th,
     td {
         padding-left: 5px;
         padding-right: 5px;
     }
 
+    table {
+        margin-bottom: 0 !important;
+    }
+
     tbody {
         background-color: transparent;
-        cursor: pointer;
+    }
+
+    tr {
+        width: 100%
+    }
+
+    th {
+        /* padding-left: 5px; */
+        /* padding-right: 5px; */
+        cursor: default;
     }
 
     #left {
@@ -735,17 +747,61 @@
     #uptime {
         grid-column-start: 2;
         grid-row-start: 1;
-        grid-row-end: span 2;
+        /* grid-row-end: span 2; */
         width: 1rem;
-        padding-bottom: 1rem;
+        /* padding-bottom: 1rem; */
     }
 
     #ping {
         grid-column-start: 2;
         grid-row-start: 2;
         grid-row-end: x;
-        padding-top: 1rem;
+        /* padding-top: 1rem; */
     }
+
+    #hdlabel1 {
+        margin: auto;
+        font-size: .5rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #hdpercent1 {
+        margin: auto;
+        font-size: .5rem;
+        margin-right: .4rem;
+        margin-left: 0;
+    }
+
+    #hdlabel2 {
+        margin: auto;
+        font-size: .5rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #hdpercent2 {
+        margin: auto;
+        font-size: .5rem;
+        margin-right: .4rem;
+        margin-left: 0;
+    }
+    
+    #hdlabel3 {
+        margin: auto;
+        font-size: .5rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #hdpercent3 {
+        margin: auto;
+        font-size: .5rem;
+        margin-left: 0;
+    }
+
+
+
 
     .double-val-label {
         display: flex;
@@ -1050,6 +1106,17 @@
         padding-right: 1rem;
     }
 
+    .wrapperregistrationdisable {
+        width: 75%;
+        margin-top: 10%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 1.25rem;
+        cursor: default;
+    }
+
     #multiform {
         width: 90%;
         margin-top: 2rem;
@@ -1170,6 +1237,30 @@
         font-size: .90rem;
         color: red;
         cursor: default;
+    }
+
+    .modalreg {
+        position: fixed;
+        top: 40%;
+        left: 25%;
+        width: 50%;
+        width: fit-content;
+        /* height: 20rem; */
+        height: fit-content;
+        margin: 0 auto;
+        padding: 1rem;
+        font-size: 1.5rem;
+        color: green;
+        text-align: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.900);
+        border: 1px solid #888;
+        border-radius: 4px;
+        z-index: 2000;
+    }
+
+    .closereg {
+        margin-top: -1rem;
     }
 
     #reginfo {
@@ -1461,6 +1552,19 @@
         margin-top: -8rem;
         margin-left: 16.5rem;
         z-index: 1000;
+    }
+
+    .enabledwarning {
+        margin-left: 1rem;
+        margin-bottom: -1rem;
+        color: red;
+        font-style: italic;
+        cursor: default;
+    }
+
+    .enabledwarningchange {
+        display: none;
+        visibility: hidden;
     }
 
     #type_option {
@@ -2043,6 +2147,23 @@
         padding-left: 10%;
     }
 
+    #registration {
+        margin-bottom: 2rem;
+    }
+
+    .registrationwarning {
+        margin-left: 1rem;
+        margin-bottom: -1rem;
+        color: red;
+        font-style: italic;
+        cursor: default;
+    }
+
+    .registrationwarningchange {
+        display: none;
+        visibility: hidden;
+    }
+
     /* Custom CSS */
 
     .customCSS {
@@ -2091,11 +2212,32 @@
     }
 
     #tdleft {
-        width: 50%;
+        width: 33%;
+    }
+
+    #centercolumn {
+        margin: auto;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    #tdcenterleft {
+        width: 15%;
+    }
+    #tdcenterright {
+        width: 15%;
+        vertical-align: top;
+    }
+
+    #centerbottom {
+        width: inherit;
+        position: fixed;
+        left: 45%;
+        margin-top: 1rem;
     }
 
     #tdright {
-        width: 50%;
+        width: 33%;
     }
 
     #leftcolumn {
@@ -2143,7 +2285,7 @@
     }
 
     .alpaca-field-object {
-        padding-right: 2rem;
+        /* padding-right: 2rem; */
         padding-bottom: 1rem;
     }
 
@@ -2234,25 +2376,6 @@
         -webkit-transition: .5s;
         -moz-transition: .5s;
         transition: .5s;
-    }
-
-    table {
-        margin-bottom: 0 !important;
-    }
-
-    th,
-    td {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    tbody {
-        background-color: transparent;
-        cursor: pointer;
-    }
-
-    tr {
-        width: 100%
     }
 
     /* Progress Bar */
