@@ -10,3 +10,5 @@ ehthumbs.db
 Thumbs.db
 .travis.yml
 assets/data/css/custom.css
+data/datadir.json
+.idea/*
