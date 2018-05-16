@@ -398,7 +398,6 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
         
-
             <style>
 
                 body {
@@ -494,6 +493,79 @@ class OneFileLoginApplication
         </div>
 
         <div id="siteform">
+
+            <table id="sitepreview">
+                <tr>
+                     <?php  include ('functions.php'); ?>
+                    
+                    <td id="previewleft">
+
+                        <div id="ping" class="col-md-2 col-centered double-val-label">
+                            <span class="primary">ping</span>
+                            <span><?php echo $pingTime ;?>ms</span>
+                        </div>
+
+                    </td>
+
+                    <td id="previewcenter">
+                        <div id="hd" class="col-md-2 col-centered double-val-label">
+                        
+                            <?php
+
+                                if($disk1 == "") {
+                                }
+
+                                else {
+                                
+                                    echo "<span id='hdlabel1' class='" . $hdClass1 . "'> HD " .  $disk1 . " </span>";
+                                    echo "<span id='hdpercent1' >" . $freeHD1 . "%</span>";
+                                }
+
+                                if($disk2 == "") {
+                                }
+
+                                else {
+                                    echo "<span id='hdlabel2' class='" . $hdClass2 . " hdhidden'> HD " .  $disk2 . " </span>";
+                                    echo "<span id='hdpercent2' class='hdhidden'>" . $freeHD2 . "%</span>";
+                                }
+
+                                if($disk3 == "") {
+                                }
+
+                                else {
+                                    echo "<span id='hdlabel3' class='" . $hdClass3 . " hdhidden'> HD " .  $disk3 . " </span>";
+                                    echo "<span id='hdpercent3' class='hdhidden'>" . $freeHD3 . "%</span>";
+                                }
+
+                            ?>
+
+                        </div>
+                    </td>
+
+                    <td id="previewright">
+                        <div id="systempreview">
+                            <table id="systempreview">
+                                <tr>
+                                    <td>
+                                        <div id="cpu" class="col-md-2 col-centered double-val-label">
+                                            <span class="<?php echo $cpuClass; ?>">CPU</span>
+                                            <span><?php echo $cpuPercent; ?>%</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="ram" class="col-md-2 col-centered double-val-label">
+                                            <span class="<?php echo $ramClass; ?>">RAM</span>
+                                            <span><?php echo $ramPercent; ?>%</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </td>
+
+                </tr>
+            </table>
 
             <div id="sitesettings"></div>
 
@@ -1150,6 +1222,7 @@ class OneFileLoginApplication
                                                     }
                                                 });
                                                 $('.alpaca-form-button-submit').removeClass('buttonchange');
+                                                $('#sitepreview').load(document.URL +  ' #sitepreview');
                                             }
                                         },
                                         "reset":{
