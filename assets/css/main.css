@@ -798,6 +798,7 @@
         margin: auto;
         font-size: .5rem;
         margin-left: 0;
+        margin-right: 0;
     }
 
 
@@ -2188,11 +2189,37 @@
     }
 
     #siteform {
+        padding-left:  10%;
         background-color: inherit;
     }
 
     #sitesettings {
-        padding-left: 10%;
+        /* padding-left: 10%; */
+    }
+
+    #sitepreview {
+        width: 100%;
+        margin-bottom: 1rem !important;
+    }
+
+    #previewleft {
+        width: 33%;
+        padding-right: 10%;
+    }
+
+    #previewcenter {
+        width: 33%;
+        padding-right: 2%;
+    }
+
+    #previewright {
+        width: 33%;
+    }
+
+    #systempreview {
+        margin: auto;
+        text-align: center;
+        padding-right: 10%;
     }
 
     #tablesitesettings {
