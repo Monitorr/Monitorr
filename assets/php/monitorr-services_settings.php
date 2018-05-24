@@ -489,10 +489,7 @@ class OneFileLoginApplication
             .alpaca-field-object {
                 padding-top: 2rem;
                 padding-left: 2rem;
-            }
-
-            .servicedisabled {
-                /* background-color: red; */
+                padding-right: 2rem;
             }
 
             .form-control {
@@ -619,6 +616,14 @@ class OneFileLoginApplication
                                             "link": "#type_option"
                                         }
                                     },
+                                    "//ping": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-services_ping.html"
+                                        },
+                                        "bindings": {
+                                            "ping": "#ping_option"
+                                        }
+                                    },
                                     "//link": {
                                         "templates": {
                                             "control": "../css/./templates-services_link.html"
@@ -728,7 +733,7 @@ class OneFileLoginApplication
                                         },
                                         "enabled": {
                                             "type": "select",
-                                            "validate": false, // ** CHANGE ME ** change to TRUE to allow for user config propegation//
+                                            "validate": true,
                                             "showMessages": true,
                                             "disabled": false,
                                             "hidden": false,
@@ -745,6 +750,14 @@ class OneFileLoginApplication
                                             "removeDefaultNone": true,
                                             "fields": {},
                                             "events": {
+                                                // "ready": function(callback) {
+                                                //     var value = this.getValue();
+                                                //     if (value == "No") {
+                                                //         $('.{{id}}').removeClass('enabledwarningchange');
+                                                //     } else {
+                                                //         $('.{{id}}').addClass('enabledwarningchange');
+                                                //     }
+                                                // },
                                                 "change": function() {
                                                     $('.alpaca-form-button-submit').addClass('buttonchange');
                                                 }
@@ -823,6 +836,31 @@ class OneFileLoginApplication
                                             "fields": {},
                                             "renderButtons": true,
                                             "attributes": {},
+                                            "events": {
+                                                "change": function() {
+                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                }
+                                            }
+                                        },
+                                        "ping": {
+                                            "type": "select",
+                                            "validate": false,
+                                            "showMessages": true,
+                                            "disabled": false,
+                                            "hidden": false,
+                                            "label": "Ping RT:",
+                                            //"helpers": ["Attaches 'Link URL' to service tile in the UI"],
+                                            "hideInitValidationError": false,
+                                            "focus": false,
+                                            "name": "ping",
+                                            "typeahead": {},
+                                            "allowOptionalEmpty": false,
+                                            "data": {},
+                                            "autocomplete": false,
+                                            "disallowEmptySpaces": true,
+                                            "disallowOnlyEmptySpaces": false,
+                                            "removeDefaultNone": true,
+                                            "fields": {},
                                             "events": {
                                                 "change": function() {
                                                     $('.alpaca-form-button-submit').addClass('buttonchange');
@@ -953,6 +991,9 @@ class OneFileLoginApplication
                             },
                             "postRender": function(control) {
                                 document.getElementById("modalloading").remove();
+                                console.log('Service check START');
+                                $("#serviceshidden").load('loop.php');
+                                document.getElementById("serviceshidden").remove();
                             }   
                         });
                     });
@@ -1130,11 +1171,14 @@ class OneFileLoginApplication
 
             </script>
 
+        
         <div id="footer">
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
         </div>
+
+        <div id="serviceshidden"></div>
 
     </body>
 

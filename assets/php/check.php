@@ -18,6 +18,41 @@
     * @param string $url URL that must be checked
     */
 
+
+        $server = $_SERVER['SERVER_NAME'];
+        $root = $_SERVER['DOCUMENT_ROOT'];
+        $scriptpath = $_SERVER['PHP_SELF'];
+        $script = basename($_SERVER['PHP_SELF']);
+
+
+             // Global image path:
+
+        if ($script == "loop.php"){
+
+            $scriptdir = str_replace("loop.php","",$scriptpath);
+
+            $imgpathreplaced = str_replace("/assets/php","/assets/img",$scriptdir);
+
+            $imgpath = $imgpathreplaced;
+
+            global $imgpath;
+        }
+
+        else {
+
+             //echo "no loop";
+
+        };
+
+
+        // if ($script == "check.php"){
+        //     echo "check script: " . $script;
+        //     echo "<br>";
+        // }
+        // else {
+        // };
+
+
     function url_to_domain($url) {
 
         global $v1;
@@ -41,10 +76,40 @@
             return $host . ":" . $port . $path;
     } 
 
-    function urlExists($url) {
-        
+        /**
+        * Returns ping in milliseconds
+        * Returns false if host is unavailable
+        *
+        * @param $host
+        * @param int $port
+        * @param int $timeout
+        * @return bool|float
+        */
+   
+
+    function pingstat($host, $timeout = 2) {
+
         global $v1;
         global $v2;
+        global $imgpath;
+
+            $start = microtime(true);
+            if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
+                return "PING error";
+                // echo "error";
+            }
+            $end = microtime(true);
+            return round((($end - $start) * 1000));
+
+    }
+
+
+    function urlExists($url) {
+        
+        global $imgpath;
+        global $v1;
+        global $v2;
+        global $jsonsite;
 
         $handle = curl_init($url);
 
@@ -73,10 +138,36 @@
                 if($v2['link'] == "Yes") {
 
                     echo '<div class="col-lg-4">';
+
+                        if($v2['ping'] == "Enabled") {
+
+                            $pingTime = pingstat(url_to_domain($url));
+
+                                $pingok = $jsonsite['pingok'];
+                                $pingwarn = $jsonsite['pingwarn'];
+
+                            if ($pingTime < $pingok) {
+                                    $pingid = 'pinggreen';
+                            } elseif (($pingTime >= $pingok) && ($pingTime < $pingwarn)) {
+                                    $pingid = 'pingyellow';
+                            } else {
+                                    $pingid = 'pingred';
+                            }
+
+                            echo '<div id="pingindicator">';
+                                echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                            echo '</div>';
+
+                        }
+
+                        else {
+
+                        }
+
                         echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
                     
                             echo '<div id="serviceimg">';
-                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                             echo '</div>';
                             
                             echo '<div id="servicetitle">';
@@ -92,10 +183,35 @@
                 else {
 
                     echo '<div class="col-lg-4">';
+
+
+                        if($v2['ping'] == "Enabled") {
+
+                            $pingTime = pingstat(url_to_domain($url));
+
+                                $pingok = $jsonsite['pingok'];
+                                $pingwarn = $jsonsite['pingwarn'];
+
+                            if ($pingTime < $pingok) {
+                                    $pingid = 'pinggreen';
+                            } elseif (($pingTime >= $pingok) && ($pingTime < $pingwarn)) {
+                                    $pingid = 'pingyellow';
+                            } else {
+                                    $pingid = 'pingred';
+                            }
+
+                            echo '<div id="pingindicator">';
+                                echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                            echo '</div>';
+                        }
+
+                        else {
+                        };
+
                         echo '<div class="servicetilenolink" style="display: block; cursor: default">';
                     
                             echo '<div id="serviceimg">';
-                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                             echo '</div>';
                             
                             echo '<div id="servicetitlenolink" style="cursor: default">';
@@ -105,6 +221,7 @@
                             echo '<div class="btnonline">Online</div>';
                             
                         echo '</div>'; 
+
                     echo '</div>';
                 }
 
@@ -125,6 +242,8 @@
 
                 $fp = fsockopen(url_to_domain($url), $timeout = 5);
 
+                $pingTime = pingstat(url_to_domain($url));
+
                     stream_context_set_default( [
                         'ssl' => [
                             'verify_peer' => false,
@@ -140,7 +259,7 @@
                             echo '<div class="servicetileoffline">';
 
                                 echo '<div id="serviceimg">';
-                                    echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                    echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                 echo '</div>';
                                 
                                 echo '<div id="servicetitleoffline">';
@@ -169,10 +288,34 @@
                         if($v2['link'] == "Yes") {
 
                             echo '<div class="col-lg-4">';
+
+                                if($v2['ping'] == "Enabled") {
+
+                                    $pingTime = pingstat(url_to_domain($url));
+
+                                        $pingok = $jsonsite['pingok'];
+                                        $pingwarn = $jsonsite['pingwarn'];
+
+                                    if ($pingTime < $pingok) {
+                                            $pingid = 'pinggreen';
+                                    } elseif (($pingTime >= $pingok) && ($pingTime < $pingwarn)) {
+                                            $pingid = 'pingyellow';
+                                    } else {
+                                            $pingid = 'pingred';
+                                    }
+
+                                    echo '<div id="pingindicator">';
+                                        echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                                    echo '</div>';
+                                }
+
+                                else {
+                                };
+
                                 echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
                             
                                     echo '<div id="serviceimg">';
-                                        echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                        echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                     echo '</div>';
                                     
                                     echo '<div id="servicetitle">';
@@ -190,10 +333,33 @@
 
                             echo '<div class="col-lg-4">';
                                 
+                                if($v2['ping'] == "Enabled") {
+
+                                    $pingTime = pingstat(url_to_domain($url));
+
+                                        $pingok = $jsonsite['pingok'];
+                                        $pingwarn = $jsonsite['pingwarn'];
+
+                                    if ($pingTime < $pingok) {
+                                            $pingid = 'pinggreen';
+                                    } elseif (($pingTime >= $pingok) && ($pingTime < $pingwarn)) {
+                                            $pingid = 'pingyellow';
+                                    } else {
+                                            $pingid = 'pingred';
+                                    }
+
+                                    echo '<div id="pingindicator">';
+                                        echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                                    echo '</div>';
+                                }
+
+                                else {
+                                };
+                                
                                 echo '<div class="servicetilenolink" style="display: block; cursor: default">';
 
                                     echo '<div id="serviceimg">';
-                                        echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                        echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                     echo '</div>';
                                     
                                     echo '<div id="servicetitlenolink">';
@@ -223,6 +389,10 @@
         
         global $v1;
         global $v2;
+        global $imgpath;
+        global $jsonsite;
+
+        //$pingTime = pingstat(url_to_domain($url), $pingport);
 
         $fp = fsockopen(url_to_domain($url), $timeout = 5);
 
@@ -241,7 +411,7 @@
                     echo '<div class="servicetileoffline" style="display: default">';
 
                         echo '<div id="serviceimg" style="display: default">';
-                            echo '<div class="offline" style="cursor: default" ><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                            echo '<div class="offline" style="cursor: default" ><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';                                         
                         echo '</div>';
                         
                         echo '<div id="servicetitleoffline" style="cursor: default">';
@@ -270,30 +440,80 @@
                 if($v2['link'] == "Yes") {
 
                     echo '<div class="col-lg-4">';
+
+                        if($v2['ping'] == "Enabled") {
+
+                            $pingTime = pingstat(url_to_domain($url));
+
+                                $pingok = $jsonsite['pingok'];
+                                $pingwarn = $jsonsite['pingwarn'];
+
+                            if ($pingTime < $pingok) {
+                                    $pingid = 'pinggreen';
+                            } elseif (($pingTime >= $pingok) && ($pingTime < $pingwarn)) {
+                                    $pingid = 'pingyellow';
+                            } else {
+                                    $pingid = 'pingred';
+                            }
+
+                            echo '<div id="pingindicator">';
+                                echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                            echo '</div>';
+                        }
+
+                        else {
+                        };
+
                         echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
 
                             echo '<div id="serviceimg">';
-                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                             echo '</div>';
                             
                             echo '<div id="servicetitle">';
-                                    echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
+                                echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                             echo '</div>'; 
 
                             echo '<div class="btnonline">Online</div>';
                             
-                        echo '</a>'; 
-                    echo '</div>';
+                        echo '</a>';
 
+                    echo '</div>';
                 }
 
                 else {
 
+                    $pingTime = pingstat(url_to_domain($url));
+                    
                     echo '<div class="col-lg-4">';
+
+                        if($v2['ping'] == "Enabled") {
+
+                            $pingTime = pingstat(url_to_domain($url));
+
+                                $pingok = $jsonsite['pingok'];
+                                $pingwarn = $jsonsite['pingwarn'];
+
+                            if ($pingTime < $pingok) {
+                                    $pingid = 'pinggreen';
+                            } elseif (($pingTime >= $pingok) && ($pingTime < $pingwarn)) {
+                                    $pingid = 'pingyellow';
+                            } else {
+                                    $pingid = 'pingred';
+                            }
+
+                            echo '<div id="pingindicator">';
+                                echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                            echo '</div>';
+                        }
+
+                        else {
+                        };
+
                         echo '<div class="servicetilenolink" style="display: block; cursor: default">';
                     
                             echo '<div id="serviceimg">';
-                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="assets/img/'. strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                             echo '</div>';
                             
                             echo '<div id="servicetitlenolink" style="cursor: default">';
@@ -303,8 +523,8 @@
                             echo '<div class="btnonline">Online</div>';
                             
                         echo '</div>'; 
+                        
                     echo '</div>';
-
                 }
 
                 $servicefile = ($v2['serviceTitle']).'.offline.json';                    

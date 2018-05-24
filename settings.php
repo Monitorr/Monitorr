@@ -46,12 +46,15 @@
             }
 
             #summary {
-                margin-top: 0rem !important;
-                width: 17rem !important;
                 position: relative !important;
+                margin: auto;
+                margin-top: 0rem !important;
                 margin-bottom: 1rem;
+                width: 16.5rem !important;
                 font-size: .8rem;
                 line-height: 1.5rem;
+                border-radius: .2rem;
+                box-shadow: 5px 5px 5px black !important;
             }
 
             legend {
@@ -99,34 +102,11 @@
                 bottom: 0 !important;
             }
 
-            a:link{
+            a:link {
                 background-color: transparent !important;
             }
 
         </style>
-
-                <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
-
-            <?php
-
-                $oldfile = 'assets/config/datadir.json';
-                $newfile = 'assets/data/datadir.json';
-
-                if(!is_file($newfile)){
-
-                    if (!copy($oldfile, $newfile)) {
-                        // echo "failed to copy $oldfile...\n";
-                    }
-
-                    else {
-                        rename($oldfile, 'assets/config/datadir.json.old');
-                    }
-                }
-
-                else {
-
-                }
-            ?>
 
         <?php
 
@@ -159,7 +139,6 @@
 
                 $rftime = $jsonsite['rftime'];
             }
-
         ?>
 
         <?php
@@ -177,10 +156,10 @@
             | Settings
         </title>
 
-        <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
+            <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
 
+            <!-- digital clock function: -->
         <script>
-
             $(document).ready(function() {
                 function update() {
 
@@ -202,7 +181,6 @@
                 }
                 update();
             });
-
         </script>
 
         <script>
@@ -227,54 +205,112 @@
 
         <script src="assets/js/clock.js" async></script>
 
+            <!-- marquee offline function: -->
         <script>
 
-             var nIntervId2;
-             var onload;
+            var nIntervId2;
+            var onload;
+            var current = -1;
+
+            function updateSummary() {
+
+                 console.log('Service offline check START');
+
+                rfsysinfo =
+                    <?php
+                        $rfsysinfo = $jsonsite['rfsysinfo'];
+                        echo $rfsysinfo;
+                    ?>
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/marquee.php',
+                    data: {
+                        current: current
+                    },
+
+                    timeout: 4000,
+                    success: function(data) {
+                        if(data){
+                            result = $.parseJSON(data);
+                            console.log(result);
+                            $("#summary").fadeOut(function() {
+                                $(this).html(result[0]).fadeIn();
+                            });
+                            current = result[1];
+                        }
+
+                        else {
+                            current = -1;
+                            $("#summary").hide();
+                        }
+                        //window.setTimeout(updateSummary, 5000);
+                        window.setTimeout(updateSummary, rfsysinfo);
+                    },
+                    error: function(x, t, m) {
+                        if(t==="timeout") {
+                            //alert("ERROR: marquee timeout");
+                            console.log("ERROR: marquee timeout");
+                            $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                        } else {
+                        }
+                    }
+                });
+            }
+
+        </script>
+
+        <script>
+
+            var nIntervId2;
+            var onload;
+            var current = -1;
+            
+            function updateSummaryManual() {
+
+                console.log('Service offline check START');
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/marquee.php',
+                    data: {
+                        current: current
+                    },
+
+                    timeout: 4000,
+                    success: function(data) {
+                        if(data){
+                            result = $.parseJSON(data);
+                            console.log(result);
+                            $("#summary").fadeOut(function() {
+                                $(this).html(result[0]).fadeIn();
+                            });
+                            current = result[1];
+                        }
+
+                        else {
+                            current = -1;
+                            $("#summary").hide();
+                        }
+                    },
+                    error: function(x, t, m) {
+                        if(t==="timeout") {
+                            //alert("ERROR: marquee timeout");
+                            console.log("ERROR: marquee timeout");
+                            $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                        } else {
+                        }
+                    }
+                });
+            }
+
+        </script>
+
+        <script>
 
             $(document).ready(function() {
-
-                var current = -1;
-
-                function updateSummary() {
-
-                    rfsysinfo =
-                        <?php
-                            $rfsysinfo = $jsonsite['rfsysinfo'];
-                            echo $rfsysinfo;
-                        ?>
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'assets/php/marquee.php',
-                        data: {
-                            current: current
-                        },
-
-                        timeout: 4000,
-                        success: function(data) {
-                            if(data){
-                                result = $.parseJSON(data);
-                                console.log(result);
-                                $("#summary").fadeOut(function() {
-                                    $(this).html(result[0]).fadeIn();
-                                });
-                                current = result[1];
-                            }
-
-                            else {
-                                current = -1;
-                                $("#summary").hide();
-                            }
-
-                            window.setTimeout(updateSummary, 5000);
-                            //window.setTimeout(updateSummary, rfsysinfo);
-                        }
-                    });
-                }
-
                 updateSummary();
-           });
+            });
 
         </script>
 
@@ -294,6 +330,7 @@
                 $('body').removeClass('fade-out'); 
             });
         </script>
+
 
         <div id ="settingscolumn" class="settingscolumn">
 
@@ -399,34 +436,44 @@
             <script>
                 function load_info() {
                     document.getElementById("includedContent").innerHTML='<object  type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
+                    updateSummaryManual();
                 }
             </script>
 
             <script>
                 function load_preferences() {
                     document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
-                }
-            </script>
-
-            <script>
-                function load_style() {
-                    document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-custom_style.php" ></object>';
+                    updateSummaryManual();
                 }
             </script>
 
             <script>
                 function load_settings() {
                     document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings.php" ></object>';
+                    updateSummaryManual();
                 }
             </script>
 
             <script>
                 function load_services() {
                     document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
+                    updateSummaryManual();
                 }
             </script>
 
         </div>
+
+         <!-- Fire loop.php once page onload to get services status: -->
+
+        <script>
+
+            $(function() {
+                $("#serviceshidden").load('assets/php/loop.php');
+            });
+
+        </script>
+
+        <div id="serviceshidden"></div>
 
     </body>
 

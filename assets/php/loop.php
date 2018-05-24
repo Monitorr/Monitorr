@@ -1,6 +1,6 @@
 <?php include ('check.php') ;?>
 
-<!-- <link rel="stylesheet" href="assets/css/main.css">  -->
+<!-- <link rel="stylesheet" href="../css/main.css"> -->
 
  <?php 
 
@@ -17,6 +17,8 @@
         include_once ('../config/monitorr-data-default.php');
                 
         $jsonservices;
+
+        $jsonsite;
     } 
 
     else {
@@ -26,6 +28,8 @@
         include_once ('../config/monitorr-data.php');
 
         $jsonservices;
+
+        $jsonsite;
     }
 
     $myServices = $jsonservices;

@@ -80,7 +80,7 @@ class OneFileLoginApplication
         if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             echo "Sorry, Simple PHP Login does not run on a PHP version older than 5.3.7 !";
         } elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
-            require_once("../config/_installation/vendor/password_compatibility_library.php");
+            require_once("libraries/password_compatibility_library.php");
             return true;
         } elseif (version_compare(PHP_VERSION, '5.5.0', '>=')) {
             return true;
@@ -411,7 +411,7 @@ class OneFileLoginApplication
 
                 legend {
                     color: white;
-                    }
+                }
 
                 body::-webkit-scrollbar {
                     width: 10px;
@@ -456,6 +456,11 @@ class OneFileLoginApplication
                 input[type=checkbox], input[type=radio] {
                     cursor: pointer;
                 }
+
+                .alpaca-message-invalidValueOfEnum {
+                    margin-top: 1rem !important;
+                }
+
 
             </style>
 
@@ -533,12 +538,13 @@ class OneFileLoginApplication
                                 "layout": {
                                     "template": '../css/./two-column-layout-template-user-preferences.html',
                                     "bindings": {
-                                        "sitetitle": "leftcolumn",
-                                        "siteurl": "leftcolumn",
-                                        "updateBranch": "leftcolumn",
-                                        "language": "rightcolumn",
-                                        "timezone": "rightcolumn",
-                                        "timestandard": "rightcolumn"
+                                        "sitetitle": "leftcolumnuser",
+                                        "siteurl": "leftcolumnuser",
+                                        "updateBranch": "leftcolumnuser",
+                                        "registration": "rightcolumnuser",
+                                        // "language": "rightcolumn",
+                                        "timezone": "rightcolumnuser",
+                                        "timestandard": "rightcolumnuser"
                                     }
                                 },
                                 "fields": {
@@ -564,6 +570,14 @@ class OneFileLoginApplication
                                         },
                                         "bindings": {
                                             "updateBranch": "#updatebranch"
+                                        }
+                                    },
+                                    "/registration": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-user-preferences_registration.html"
+                                        },
+                                        "bindings": {
+                                            "registration": "#registration"
                                         }
                                     },
                                     "/timezone": {
@@ -666,6 +680,44 @@ class OneFileLoginApplication
                                         "events": {
                                             "change": function() {
                                                 $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "registration": {
+                                        "type": "select",
+                                        "validate": true, // ** CHANGE ME ** change to TRUE to allow for user config propegation//
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Registration:",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "name": "registration",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
+                                        "events": {
+                                            "ready": function(callback) {
+                                                var value = this.getValue();
+                                                if (value == "Enable") {
+                                                    $('.registrationwarning').removeClass('registrationwarningchange');
+                                                } else {
+                                                    $('.registrationwarning').addClass('registrationwarningchange');
+                                                }
+                                            },
+                                            "change": function(callback) {
+                                                var value = this.getValue();
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                if (value == "Enable") {
+                                                    $('.registrationwarning').removeClass('registrationwarningchange');
+                                                } else {
+                                                    $('.registrationwarning').addClass('registrationwarningchange');
+                                                }
                                             }
                                         }
                                     },

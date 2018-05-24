@@ -83,6 +83,10 @@
                 margin-top: 2.5rem !important;
             }
 
+            #hd {
+                grid-column: 1/ span 2;
+            }
+
             #services {
                 margin-bottom: 7rem;
             }
@@ -111,28 +115,6 @@
         </style>
 
         <script src="assets/js/jquery.min.js"></script>
-
-            <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
-
-            <?php
-
-                $oldfile = 'assets/config/datadir.json';
-                $newfile = 'assets/data/datadir.json';
-
-                if(!is_file($newfile)){
-
-                    if (!copy($oldfile, $newfile)) {
-                        // echo "failed to copy $oldfile...\n";
-                    }
-
-                    else {
-                        rename($oldfile, 'assets/config/datadir.json.old');
-                    }
-                }
-
-                else {
-                }
-            ?>
 
             <!-- top loading bar function: -->
         <script src="assets/js/pace.js"></script>
@@ -208,6 +190,7 @@
             function statusCheck() {
                 $("#stats").load('assets/php/systembadges.php');
                 $("#statusloop").load('assets/php/loop.php');
+                console.log('Service check START');
             };
 
             $(document).ready(function () {
@@ -349,8 +332,13 @@
         <div id="summary"></div>
 
             <!-- Ajax timeout indicator: -->
-        <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
-        <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+
+        <div id="ajaxtimeout">
+
+            <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
+            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+
+        </div>
 
         <div id="header">
 

@@ -38,15 +38,20 @@
                 margin-bottom: 1vw;
                 overflow: scroll;
                 overflow-x: hidden;
-                overflow-y: visible;
+                overflow-y: scroll !important;
             }
 
             :root {
                 font-size: 12px !important;
             }
 
+            ::-webkit-scrollbar {
+                width: 0px;  /* remove scrollbar space */
+                background: transparent;  /* make scrollbar invisible */
+            }
+
             #summary {
-                margin-top: -.2rem !important;
+                margin-top: -15px !important;
                 z-index: 1000;
                 font-size: .8rem;
             }
@@ -57,11 +62,6 @@
 
             #ajaxmarquee {
                 margin-top: -.5rem !important;
-            }
-
-            ::-webkit-scrollbar {
-                width: 0px;  /* remove scrollbar space */
-                background: transparent;  /* make scrollbar invisible */
             }
 
             body.offline #link-bar {
@@ -90,7 +90,7 @@
                 width: 100% !important;
                 max-width: 40rem;
                 left: 51% !important;
-                padding-top: 1rem;
+                padding-top: .5rem;
                 background-color: inherit;
                 box-shadow: 0px 0px 0px 0px #1F1F1F, 0px 0px 0px 0px #1F1F1F, 10px 0px 10px 0px #1F1F1F, -10px 0px 10px 2px #1F1F1F;
             }
@@ -102,6 +102,7 @@
                 box-sizing: content-box;
                 height: 2em !important;
                 width: 40em !important;
+                border-radius: 8px !important;
             }
 
             #uptime {
@@ -125,6 +126,25 @@
             #textslider {
                 padding-top: .50rem !important;
                 padding-bottom: .50rem !important;
+            }
+
+            #hd {
+                display: contents;
+            }
+
+            .hdhidden {
+                visibility: hidden;
+                display: none !important;
+            }
+
+            #hdlabel1 {
+                margin: 0 !important;
+                font-size: .75rem !important;
+            }
+
+            #hdpercent1 {
+                margin: 0 !important;
+                font-size: .75rem !important;
             }
 
         </style>
@@ -177,6 +197,7 @@
             function statusCheck() {
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
+                console.log('Service check START');
             };
 
             $(document).ready(function () {
@@ -312,8 +333,12 @@
         <div id="summary"></div>
 
             <!-- Ajax timeout indicator: -->
-        <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
-        <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+        <div id="ajaxtimeout">
+
+            <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
+            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+
+        </div>
 
 
         <div id="headermin">
