@@ -178,23 +178,40 @@
 
              <!-- analog clock function: -->
         <script>
+            <?php
+            $timezone = $jsonusers['timezone'];
+            $dt = new DateTime("now", new DateTimeZone("$timezone"));
+            $timeStandard = (int)($jsonusers['timestandard']);
+            ?>
+            var servertime = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
+            var timeStandard = <?php echo $timeStandard; ?>;
+            var servertimezone = "<?php echo $timezone; ?>";
 
-            $timezone =
-                "<?php
-                    $timezone = $jsonusers['timezone'];
-                    echo $timezone;
-                ?>";
+            function updateTime() {
+                var timeString = date.toLocaleString('en-US', {
+                    hour12: timeStandard,
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                }).toString();
+                var res = timeString.split(",");
+                var time = res[3];
+                var dateString = res[0] + ' | ' + res[1] + ',' + res[2];
+                var data = '<div class="dtg">' + time + '</div>';
+                data += '<div id="line">__________</div>';
+                data += '<div class="date">' + dateString + '</div>';
+                $("#timer").html(data);
+                window.setTimeout(updateTime, 1000);
+            }
 
-            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
+            $(document).ready(function () {
 
-            $servertimezone = "<?php echo "$timezone"; ?>";
-
-            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
-
-            var servertimezone = $servertimezone;
-
-            var servertime = $dt;
-
+                updateTime();
+            });
         </script>
 
         <script src="assets/js/clock.js" async></script>
@@ -208,12 +225,11 @@
             function statusCheck() {
                 $("#stats").load('assets/php/systembadges.php');
                 $("#statusloop").load('assets/php/loop.php');
-            };
-
+            }
             $(document).ready(function () {
                 $(":checkbox").change(function () {
 
-                    rfsysinfo =
+                    rfsysinfo =;
                         <?php
                             $rfsysinfo = $jsonsite['rfsysinfo'];
                             echo $rfsysinfo;
@@ -234,39 +250,7 @@
         <script>
             function showpace() {
                 $('.pace-activity').addClass('showpace');
-            };
-        </script>
-
-            <!-- digital clock function: -->
-        <script>
-            $(document).ready(function() {
-                function update() {
-
-                    rftime =
-                        <?php
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'assets/php/timestamp.php',
-                        timeout: 5000,
-                        success: function(data) {
-                            $("#timer").html(data);
-                            window.setTimeout(update, rftime);
-                        },
-                        error: function(x, t, m) {
-                            if(t==="timeout") {
-                                console.log("ERROR: timestamp timeout");
-                                 $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
-                            } else {
-                            }
-                        }
-                    });
-                }
-                update();
-            });
+            }
         </script>
 
             <!-- marquee offline function: -->
