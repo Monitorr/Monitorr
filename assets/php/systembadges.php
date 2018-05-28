@@ -1,7 +1,5 @@
 <?php include ('functions.php'); ?>
 
-<link rel="stylesheet" href="assets/css/main.css">
-
 <div id="cpu" class="col-md-2 col-centered double-val-label">
   <span class="<?php echo $cpuClass; ?>">CPU</span>
   <span><?php echo $cpuPercent; ?>%</span>
