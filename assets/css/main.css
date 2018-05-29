@@ -605,7 +605,6 @@
     .pingcircle {
         display: block;
         position: relative;
-        /* background: black; */
         border-radius: 50%;
         height: 1rem;
         width: 1rem;
@@ -652,6 +651,7 @@
         color: rgb(200, 200, 200);
         word-break: keep-all;
         overflow-wrap: normal;
+        transition: all .2s ease-in-out;
     }
 
     #servicetitle:hover,
@@ -973,11 +973,13 @@
     .double-val-label>span:first-child {
         border-bottom-left-radius: 0.25em;
         border-top-left-radius: .25em;
+        transition: .4s;
     }
 
     .double-val-label>span:nth-child(2) {
         border-bottom-right-radius: 0.25em;
         border-top-right-radius: .25em;
+        transition: .4s;
         color: white;
     }
 
@@ -985,6 +987,7 @@
         background-color: #337ab7;
         border-top-left-radius: 0.25em;
         border-bottom-left-radius: 0.25em;
+        transition: .4s;
         cursor: default;
     }
 
@@ -992,6 +995,7 @@
         background-color: #5cb85c;
         border-top-left-radius: 0.25em;
         border-bottom-left-radius: 0.25em;
+        transition: .4s;
         cursor: default;
     }
 
@@ -999,6 +1003,7 @@
         background-color: #5bc0de;
         border-top-left-radius: 0.25em;
         border-bottom-left-radius: 0.25em;
+        transition: .4s;
         cursor: default;
     }
 
@@ -1006,6 +1011,7 @@
         background-color: #f0ad4e;
         border-top-left-radius: 0.25em;
         border-bottom-left-radius: 0.25em;
+        transition: .4s;
         cursor: default;
     }
 
@@ -1013,6 +1019,7 @@
         background-color: #d9534f;
         border-top-left-radius: 0.25em;
         border-bottom-left-radius: 0.25em;
+        transition: .4s;
         cursor: default;
     }
 
@@ -1132,7 +1139,8 @@
         padding-right: .4em;
         padding-left: 1em;
         font-size: 1em;
-        color: rgb(163, 163, 163);
+        /* color: rgb(163, 163, 163); */
+        color: #C8C8C8;
         text-shadow: 1px 1px black;
     }
 
@@ -1161,6 +1169,7 @@
         right: 0;
         bottom: 0;
         margin: auto;
+        /* background-color: rgba(255, 0, 0, 0.500); */
         background-color: red;
         -webkit-transition: .4s;
         transition: .4s;
@@ -1174,7 +1183,8 @@
         width: 13px;
         left: 2px;
         bottom: 2px;
-        background-color: #f2f2f2;
+        /* background-color: #f2f2f2; */
+        background: radial-gradient(circle at .1rem .1rem, white, rgba(20, 20, 20));
         -webkit-transition: .4s;
         transition: .4s;
     }
@@ -1194,7 +1204,8 @@
     }
 
     .slider.round {
-        border-radius: 22px;
+        /* border-radius: 22px; */
+        border-radius: 2rem;
         width: 100%;
     }
 
