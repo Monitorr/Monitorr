@@ -18,45 +18,92 @@
     * @param string $url URL that must be checked
     */
 
-
         $server = $_SERVER['SERVER_NAME'];
         $root = $_SERVER['DOCUMENT_ROOT'];
         $scriptpath = $_SERVER['PHP_SELF'];
         $script = basename($_SERVER['PHP_SELF']);
+        $referer = $_SERVER['HTTP_REFERER'];
 
 
-             // Global image path:
+        // echo "referer: " . $referer;
+
+        //      echo "<br>";
+
+        // echo "script: " . $script;
+
+        //      echo "<br>";
+
+        // echo "scriptpath: " . $scriptpath;
+
+        //      echo "<br>";
+
+        // echo " // SCRIPT VARs: ";
+
+        //      echo "<br>";
+
+
+             // $Apply global image path:
 
         if ($script == "loop.php"){
 
-            $scriptdir = str_replace("loop.php","",$scriptpath);
+            // $imgpath = $referer . "assets/img/"; //only works if referrer is app root path ie, if index.php is specified, will NOT work  WTF // CHANGE ME
 
-            $imgpathreplaced = str_replace("/assets/php","/assets/img",$scriptdir);
-
-            $imgpath = $imgpathreplaced;
+            $imgpath = "assets/img/";
 
             global $imgpath;
         }
 
         else {
 
-             //echo "no loop";
+            if ($script == "loopsettings.php"){
 
+                $imgpath = $referer . "/assets";
+
+                global $imgpath;
+            }
+
+            else {
+
+                $imgpath = "assets/img/";
+
+                global $imgpath;
+            };
         };
 
 
-        // if ($script == "check.php"){
-        //     echo "check script: " . $script;
-        //     echo "<br>";
-        // }
-        // else {
-        // };
+        $datafile = '../data/datadir.json';
+        $str = file_get_contents($datafile);
+        $json = json_decode( $str, true);
+        $datadir = $json['datadir'];
+        $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+        if(!is_file($jsonfileuserdata)){
+
+            $path = "../";
+
+            include_once ('../config/monitorr-data-default.php');
+        } 
+
+        else {
+
+            $datafile = '../data/datadir.json';
+
+            include_once ('../config/monitorr-data.php');
+        };
+
+
+        $timezone = $jsonusers['timezone'];
+
+        date_default_timezone_set($timezone);
+
+        $today = date("H:i");
 
 
     function url_to_domain($url) {
 
         global $v1;
         global $v2;
+        global $today;
 
         $host = parse_url($url, PHP_URL_HOST);
         $port = parse_url($url, PHP_URL_PORT);
@@ -103,13 +150,13 @@
 
     }
 
-
     function urlExists($url) {
         
         global $imgpath;
         global $v1;
         global $v2;
         global $jsonsite;
+        global $today;
 
         $handle = curl_init($url);
 
@@ -155,7 +202,7 @@
                             }
 
                             echo '<div id="pingindicator">';
-                                echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                                echo '<div id="' . $pingid . '" class="pingcircle" title="Ping response time: ' . $pingTime . ' ms"> </div>';
                             echo '</div>';
 
                         }
@@ -201,7 +248,7 @@
                             }
 
                             echo '<div id="pingindicator">';
-                                echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                                echo '<div id="' . $pingid . '" class="pingcircle" title="Ping response time: ' . $pingTime . ' ms"> </div>';
                             echo '</div>';
                         }
 
@@ -259,7 +306,7 @@
                             echo '<div class="servicetileoffline">';
 
                                 echo '<div id="serviceimg">';
-                                    echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                    echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="imgoffline" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                 echo '</div>';
                                 
                                 echo '<div id="servicetitleoffline">';
@@ -272,7 +319,7 @@
                         echo '</div>';
                     
                         $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
-                        $today = date("H:i:s");
+                        // $today = date("H:i:s e");
 
                         if(!is_file($servicefile)){
                             $fp = fopen($servicefile, 'w');
@@ -319,7 +366,7 @@
                                     echo '</div>';
                                     
                                     echo '<div id="servicetitle">';
-                                            echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
+                                        echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                                     echo '</div>'; 
 
                                     echo '<div class="btunknown">Unresponsive</div>';
@@ -363,7 +410,7 @@
                                     echo '</div>';
                                     
                                     echo '<div id="servicetitlenolink">';
-                                            echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
+                                        echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                                     echo '</div>'; 
 
                                     echo '<div class="btunknown">Unresponsive</div>';
@@ -391,6 +438,7 @@
         global $v2;
         global $imgpath;
         global $jsonsite;
+        global $today;
 
         //$pingTime = pingstat(url_to_domain($url), $pingport);
 
@@ -411,7 +459,7 @@
                     echo '<div class="servicetileoffline" style="display: default">';
 
                         echo '<div id="serviceimg" style="display: default">';
-                            echo '<div class="offline" style="cursor: default" ><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';                                         
+                            echo '<div class="offline" style="cursor: default" ><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="imgoffline" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';                                         
                         echo '</div>';
                         
                         echo '<div id="servicetitleoffline" style="cursor: default">';
@@ -424,7 +472,7 @@
                 echo '</div>';
 
                 $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
-                $today = date("H:i:s");
+                // $today = date("H:i:s");
 
                 if(!is_file($servicefile)){
                     $fp = fopen($servicefile, 'w');

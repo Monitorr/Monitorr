@@ -36,7 +36,6 @@
                 padding-bottom: 1rem;
                 /* overflow-y: scroll !important;  */
                 overflow-x: hidden !important;
-                /* color: white !important; */
                 background-color: #1F1F1F;
             }
 
@@ -93,7 +92,6 @@
             }
 
             #left {
-                /* padding-top: 5rem; */
                 padding-bottom: 1.5rem !important;
             }
 
@@ -331,7 +329,6 @@
             });
         </script>
 
-
         <div id ="settingscolumn" class="settingscolumn">
 
             <div id="settingsbrand">
@@ -468,7 +465,8 @@
         <script>
 
             $(function() {
-                $("#serviceshidden").load('assets/php/loop.php');
+                $("#serviceshidden").load('assets/php/loopsettings.php');
+                console.log('Service check START');
             });
 
         </script>

@@ -814,6 +814,7 @@ class OneFileLoginApplication
                                     "disabled": false,
                                     "hidden": false,
                                     "label": "Ping host:",
+                                    "size": 35,
                                     "helper": "URL or IP to ping for latency check. <br> (WAN DNS provider is suggested)",
                                     "hideInitValidationError": false,
                                     "focus": false,

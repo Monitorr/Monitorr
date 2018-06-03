@@ -38,7 +38,7 @@
                 margin-bottom: 1vw;
                 overflow: scroll;
                 overflow-x: hidden;
-                overflow-y: scroll !important;
+                overflow-y: auto !important;
             }
 
             :root {
@@ -339,7 +339,6 @@
             <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
 
         </div>
-
 
         <div id="headermin">
 

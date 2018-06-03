@@ -992,7 +992,7 @@ class OneFileLoginApplication
                             "postRender": function(control) {
                                 document.getElementById("modalloading").remove();
                                 console.log('Service check START');
-                                $("#serviceshidden").load('loop.php');
+                                $("#serviceshidden").load('loopsettings.php');
                                 document.getElementById("serviceshidden").remove();
                             }   
                         });
@@ -1171,7 +1171,6 @@ class OneFileLoginApplication
 
             </script>
 
-        
         <div id="footer">
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>

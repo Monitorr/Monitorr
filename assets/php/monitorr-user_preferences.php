@@ -637,6 +637,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Site URL:",
+                                        "size": 30,
                                         "helpers": ["URL of the Monitorr UI."],
                                         "hideInitValidationError": false,
                                         "focus": false,
