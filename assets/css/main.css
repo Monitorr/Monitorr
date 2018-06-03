@@ -637,6 +637,11 @@
         height: 5.5rem;
     }
 
+    .imgoffline {
+        -webkit-filter: grayscale(75%);
+        filter: grayscale(75%);
+    }
+
     #servicetitle {
         display: flex;
         flex-direction: column;
@@ -1183,7 +1188,7 @@
         width: 13px;
         left: 2px;
         bottom: 2px;
-        /* background-color: #f2f2f2; */
+        background: #f2f2f2;
         background: radial-gradient(circle at .1rem .1rem, white, rgba(20, 20, 20));
         -webkit-transition: .4s;
         transition: .4s;
@@ -1204,7 +1209,6 @@
     }
 
     .slider.round {
-        /* border-radius: 22px; */
         border-radius: 2rem;
         width: 100%;
     }
