@@ -46,8 +46,6 @@
 
         if ($script == "loop.php"){
 
-            // $imgpath = $referer . "assets/img/"; //only works if referrer is app root path ie, if index.php is specified, will NOT work  WTF // CHANGE ME
-
             $imgpath = "assets/img/";
 
             global $imgpath;
@@ -214,7 +212,7 @@
                         echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
                     
                             echo '<div id="serviceimg">';
-                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="serviceimg" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                             echo '</div>';
                             
                             echo '<div id="servicetitle">';
@@ -258,7 +256,7 @@
                         echo '<div class="servicetilenolink" style="display: block; cursor: default">';
                     
                             echo '<div id="serviceimg">';
-                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="serviceimg" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                             echo '</div>';
                             
                             echo '<div id="servicetitlenolink" style="cursor: default">';
@@ -306,7 +304,7 @@
                             echo '<div class="servicetileoffline">';
 
                                 echo '<div id="serviceimg">';
-                                    echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="imgoffline" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                    echo '<div class="offline"><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="serviceimg imgoffline" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                 echo '</div>';
                                 
                                 echo '<div id="servicetitleoffline">';
@@ -362,7 +360,7 @@
                                 echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
                             
                                     echo '<div id="serviceimg">';
-                                        echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                        echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="serviceimg" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                     echo '</div>';
                                     
                                     echo '<div id="servicetitle">';
@@ -406,7 +404,7 @@
                                 echo '<div class="servicetilenolink" style="display: block; cursor: default">';
 
                                     echo '<div id="serviceimg">';
-                                        echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                        echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="serviceimg" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                                     echo '</div>';
                                     
                                     echo '<div id="servicetitlenolink">';
@@ -459,7 +457,7 @@
                     echo '<div class="servicetileoffline" style="display: default">';
 
                         echo '<div id="serviceimg" style="display: default">';
-                            echo '<div class="offline" style="cursor: default" ><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="imgoffline" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';                                         
+                            echo '<div class="offline" style="cursor: default" ><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="serviceimg imgoffline" alt=' . strtolower($v2['serviceTitle']) . '></div>';                                         
                         echo '</div>';
                         
                         echo '<div id="servicetitleoffline" style="cursor: default">';
@@ -515,7 +513,7 @@
                         echo '<a class="servicetile" href="'. $v2['linkurl'] .'" target="_blank" style="display: block">';
 
                             echo '<div id="serviceimg">';
-                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="serviceimg" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                             echo '</div>';
                             
                             echo '<div id="servicetitle">';
@@ -561,7 +559,7 @@
                         echo '<div class="servicetilenolink" style="display: block; cursor: default">';
                     
                             echo '<div id="serviceimg">';
-                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" style="height:5.5rem" alt=' . strtolower($v2['serviceTitle']) . '></div>';
+                                echo '<div><img id="'. strtolower($v2['serviceTitle']) .'-service-img" src="' . $imgpath . strtolower($v2['image']) .'" class="serviceimg" alt=' . strtolower($v2['serviceTitle']) . '></div>';
                             echo '</div>';
                             
                             echo '<div id="servicetitlenolink" style="cursor: default">';

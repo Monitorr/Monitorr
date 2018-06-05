@@ -53,7 +53,7 @@
                 font-size: .8rem;
                 line-height: 1.5rem;
                 border-radius: .2rem;
-                box-shadow: 5px 5px 5px black !important;
+                box-shadow: 3px 3px 3px black !important;
             }
 
             legend {
@@ -154,11 +154,62 @@
             | Settings
         </title>
 
-            <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
-
-            <!-- digital clock function: -->
+             <!-- Clock functions: -->
         <script>
+
+            var nIntervId3;
+            var onload;
+
+            var serverTime = "<?php echo $serverTime;?>";
+            var timestandard = <?php echo (int) ($jsonusers['timestandard'] === "True" ? true:false);?>;
+            var timeZone = "<?php echo $timezone_suffix;?>";
+            var rftime = <?php echo $jsonsite['rftime'];?>;
+
+            function updateTime() {
+                setInterval(function() {
+                    var timeString = date.toLocaleString('en-US', {hour12: timestandard, weekday: 'short', year: 'numeric', day: '2-digit', month: 'short', hour:'2-digit', minute:'2-digit', second:'2-digit'}).toString();
+                    var res = timeString.split(",");
+                    var time = res[3];
+                    var dateString = res[0]+' | '+res[1].split(" ")[2]+" "+res[1].split(" ")[1]+'<br>'+res[2];
+                    var data = '<div class="dtg">' + time + ' ' + timeZone + '</div>';
+                    data+= '<div id="line">__________</div>';
+                    data+= '<div class="date">' + dateString + '</div>';
+                    $("#timer").html(data);
+                }, 1000);
+            }
+
+                // update UI clock with server time:
+
+            function syncServerTime() {
+                $.ajax({
+                    url: "assets/php/timestamp.php",
+                    type: "GET",
+                    timeout: 4000,
+                    success: function (response) {
+                        var response = $.parseJSON(response);
+                        serverTime = response.serverTime;
+                        timestandard = parseInt(response.timestandard);
+                        timeZone = response.timezoneSuffix;
+                        rftime = parseInt(response.rftime);
+                        date = new Date(serverTime);
+                        //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
+                        console.log('Monitorr time update START');
+                    },
+                    error: function(x, t, m) {
+                        if(t==="timeout") {
+                            console.log("ERROR: timestamp timeout");
+                            $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                        } else {
+                        }
+                    }
+                });
+            }
+
             $(document).ready(function() {
+                syncServerTime(); 
+                updateTime();
+
+                    // sync UI clock with server time:
                 function update() {
 
                     rftime =
@@ -167,41 +218,15 @@
                             echo $rftime;
                         ?>
 
-                    $.ajax({
-                    type: 'POST',
-                    url: 'assets/php/timestamp.php',
-                    timeout: 5000,
-                    success: function(data) {
-                        $("#timer").html(data);
-                        window.setTimeout(update, rftime);
-                        }
-                    });
+                    nIntervId3 = setInterval(syncServerTime, rftime); //delay is rftime
                 }
                 update();
             });
-        </script>
-
-        <script>
-
-            $timezone =
-                "<?php
-                    $timezone = $jsonusers['timezone'];
-                    echo $timezone;
-                ?>";
-
-            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
-
-            $servertimezone = "<?php echo "$timezone"; ?>";
-
-            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
-
-            var servertimezone = $servertimezone;
-
-            var servertime = $dt;
 
         </script>
 
         <script src="assets/js/clock.js" async></script>
+
 
             <!-- marquee offline function: -->
         <script>
@@ -312,7 +337,7 @@
 
         </script>
 
-         <script>
+        <script>
             $(function() {
                 document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
             });
@@ -328,6 +353,13 @@
                 $('body').removeClass('fade-out'); 
             });
         </script>
+
+        <div id="ajaxtimeout">
+
+            <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
+            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+
+        </div>
 
         <div id ="settingscolumn" class="settingscolumn">
 

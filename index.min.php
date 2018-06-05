@@ -41,6 +41,11 @@
                 overflow-y: auto !important;
             }
 
+            #canvas {
+                display: none !important;
+                visibility: hidden !important;
+            }
+
             :root {
                 font-size: 12px !important;
             }
@@ -188,6 +193,87 @@
             <?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?>
         </title>
 
+
+             <!-- Clock functions: -->
+        <script>
+
+            var nIntervId3;
+            var onload;
+
+            var serverTime = "<?php echo $serverTime;?>";
+            var timestandard = <?php echo (int) ($jsonusers['timestandard'] === "True" ? true:false);?>;
+            var timeZone = "<?php echo $timezone_suffix;?>";
+            var rftime = <?php echo $jsonsite['rftime'];?>;
+
+            function updateTime() {
+                setInterval(function() {
+                    var timeString = date.toLocaleString('en-US', {hour12: timestandard, weekday: 'short', year: 'numeric', day: 'numeric', month: 'short', hour:'2-digit', minute:'2-digit', second:'2-digit'}).toString();
+                    var res = timeString.split(",");
+                    var time = res[3];
+                    //var time = serverTime;
+                    var dateString = res[0]+' | '+res[1].split(" ")[2]+" "+res[1].split(" ")[1]+res[2];
+                    var data = '<div class="dtg">' + time + ' ' + timeZone + '</div>';
+                    data+= '<div id="line">__________</div>';
+                    data+= '<div class="date">' + dateString + '</div>';
+                    $("#timer").html(data);
+                }, 1000);
+            }
+
+                // update UI clock with server time:
+
+            function syncServerTime() {
+                $.ajax({
+                    url: "assets/php/timestamp.php",
+                    type: "GET",
+                    timeout: 4000,
+                    success: function (response) {
+                        var response = $.parseJSON(response);
+                        serverTime = response.serverTime;
+                        timestandard = parseInt(response.timestandard);
+                        timeZone = response.timezoneSuffix;
+                        rftime = parseInt(response.rftime);
+                        date = new Date(serverTime);
+                        //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
+                        console.log('Monitorr time update START');
+                    },
+                    error: function(x, t, m) {
+                        if(t==="timeout") {
+                            console.log("ERROR: timestamp timeout");
+                            $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                        } else {
+                        }
+                    }
+                });
+            }
+
+            $(document).ready(function() {
+                syncServerTime(); 
+                updateTime();
+
+                    //Stop clock update when refresh toggle is disabled:
+
+                $(":checkbox").change(function () {
+
+                    rftime =
+                        <?php
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    if ($(this).is(':checked')) {
+                        nIntervId3 = setInterval(syncServerTime, rftime); //delay is rftime
+                    } 
+                    else {
+                        clearInterval(nIntervId3);
+                    }
+                });
+            });
+
+        </script>
+
+        <script src="assets/js/clock.js" async></script>
+
+
             <!-- services status update function: -->
         <script type="text/javascript">
 
@@ -218,39 +304,6 @@
                 });
             });
 
-        </script>
-
-            <!-- digital clock function: -->
-        <script>
-            $(document).ready(function() {
-                function update() {
-
-                    rftime =
-                        <?php
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'assets/php/timestamp.php',
-                        timeout: 4000,
-                        success: function(data) {
-                            $("#timer").html(data);
-                            window.setTimeout(update, rftime);
-                        },
-                        error: function(x, t, m) {
-                            if(t==="timeout") {
-                                //alert("timestamp timeout1");
-                                console.log("ERROR: timestamp timeout");
-                                $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
-                            } else {
-                            }
-                        }
-                    });
-                }
-                update();
-            });
         </script>
 
             <!-- marquee offline function: -->
@@ -298,7 +351,6 @@
                             },
                             error: function(x, t, m) {
                                 if(t==="timeout") {
-                                    //alert("ERROR: marquee timeout");
                                     console.log("ERROR: marquee timeout");
                                     $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
                                 } else {
@@ -309,8 +361,10 @@
 
                     if ($(this).is(':checked')) {
                         nIntervId2 = setInterval(updateSummary, rfsysinfo);
+                        console.log("Auto refresh: Enabled | Interval: <?php echo $rfsysinfo; ?> ms");
                     } else {
                         clearInterval(nIntervId2);
+                        console.log("Auto refresh: Disabled");
                     }
                 });
                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
@@ -344,6 +398,7 @@
 
             <div id="left" class="Column">
                 <div id="time">
+                    <canvas id="canvas" width="120" height="120"></canvas>
                     <div class="dtg" id="timer"></div>
                 </div>
             </div>
