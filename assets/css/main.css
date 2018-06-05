@@ -1189,7 +1189,7 @@
         left: 2px;
         bottom: 2px;
         background: #f2f2f2;
-        background: radial-gradient(circle at .1rem .1rem, white, rgba(20, 20, 20));
+        background: radial-gradient(circle at .1rem .1rem, white, rgb(20, 20, 20));
         -webkit-transition: .4s;
         transition: .4s;
     }
