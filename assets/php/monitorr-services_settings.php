@@ -922,13 +922,18 @@ class OneFileLoginApplication
                                     },
                                 },
                                 "form": {
-                                    "attributes": {
-                                        "action": "post_receiver-services.php",
-                                        "method": "post",
-                                        "contentType": "application/json"
-                                    },
+                                    // BUG:  see:  https://github.com/Monitorr/Monitorr/issues/167
+                                    //   "attributes": {
+                                    //        "action": "post_receiver-services.php",
+                                    //        "method": "post",
+                                    //        "contentType": "application/json"
+                                    //    },
                                     "buttons": {
                                         "submit": {
+                                            "type": "button",
+                                            "label": "Submit",
+                                            "name": "submit",
+                                            "value": "submit",
                                             "click": function formsubmit() {
                                                 var data = $('#servicesettings').alpaca().getValue();
                                                 $.post('post_receiver-services.php', {
