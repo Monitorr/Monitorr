@@ -939,6 +939,7 @@ class OneFileLoginApplication
                                                 $.post('post_receiver-services.php', {
                                                     data,
                                                     success: function(data){
+                                                        console.log('Settings saved! Applying changes');
                                                         alert("Settings saved! Applying changes...");
                                                             // Refresh form after submit:
                                                         setTimeout(location.reload.bind(location), 1000)
@@ -958,6 +959,12 @@ class OneFileLoginApplication
                             },
                             "postRender": function(control) {
                                 document.getElementById("modalloading").remove();
+                                if (control.form) {
+                                    control.form.registerSubmitHandler(function (e) {
+                                        control.form.getButtonEl('submit').click();
+                                        return false;
+                                    });
+                                }
                             }   
                         });
                     });
