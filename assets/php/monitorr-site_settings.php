@@ -842,24 +842,24 @@ class OneFileLoginApplication
                                     }
                                 },
                                 "form": {
-                                    "attributes": {
-                                        "action": "post_receiver-site_settings.php",
-                                        "method": "post",
-                                    },
+                                   // "attributes": {
+                                   //     "action": "post_receiver-site_settings.php",
+                                   //     "method": "post",
+                                   // },
                                     "buttons": {
                                         "submit": {
                                             "type": "button",
                                             "label": "Submit",
                                             "name": "submit",
                                             "value": "submit",
-                                            click: function(){
+                                            "click": function formsubmit() {
                                                 var data = $('#sitesettings').alpaca().getValue();
                                                 $.post({
                                                     url: 'post_receiver-site_settings.php',
                                                     data: $('#sitesettings').alpaca().getValue(),
                                                     success: function(data) {
+                                                        console.log("Settings saved!");
                                                         alert("Settings saved!");
-                                                        // setTimeout(location.reload.bind(location), 500)
                                                     },
                                                     error: function(errorThrown){
                                                         console.log(errorThrown);
@@ -883,6 +883,14 @@ class OneFileLoginApplication
                                     },
                                 }
                             },
+                            "postRender": function(control) {
+                                if (control.form) {
+                                    control.form.registerSubmitHandler(function (e) {
+                                        control.form.getButtonEl('submit').click();
+                                        return false;
+                                    });
+                                }
+                            }  
                         });
 
                     });
