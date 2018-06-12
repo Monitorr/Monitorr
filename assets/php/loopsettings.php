@@ -1,7 +1,5 @@
 <?php include ('check.php') ;?>
 
-<!-- <link rel="stylesheet" href="../css/main.css"> -->
-
  <?php 
 
     $datafile = '../data/datadir.json';
@@ -69,12 +67,7 @@
 
 <?php } ?> 
 
-        <!-- Remove loading modal after page onload: -->
 
    <script type='text/javascript'>
-        //  $(document).ready(function(){
-            $('.pace-activity').addClass('hidepace');
-            $('.modalloadingindex').addClass('hidemodal');
-            console.log("Service check complete");
-        //  });
+        console.log("Service check complete");
    </script>

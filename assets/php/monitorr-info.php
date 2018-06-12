@@ -726,13 +726,13 @@ class OneFileLoginApplication
                     echo '<div id="username">';
                         echo '<label for="login_input_username"> </label> ';
                             echo '<br>';
-                        echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" pattern="^\S+$" placeholder="Username" name="user_name" autofocus required title="Enter your username" /> ';
+                        echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" pattern="^\S+$" placeholder="Username" name="user_name" autofocus required title="Enter your username" autocomplete="username" /> ';
                     echo '</div>';
                         
                     echo '<div id="password">';
                         echo '<label for="login_input_password"> </label> ';
                             echo '<br>';
-                        echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password"  placeholder="Password" name="user_password" required  title="Enter your password" /> ';
+                        echo '<i class="fa fa-fw fa-key"></i> <input id="login_input_password" type="password" placeholder="Password" name="user_password" required  title="Enter your password" autocomplete="current-password" /> ';
                             echo '<br><br>';
                     echo '</div>';
 

@@ -489,10 +489,7 @@ class OneFileLoginApplication
             .alpaca-field-object {
                 padding-top: 2rem;
                 padding-left: 2rem;
-            }
-
-            .servicedisabled {
-                /* background-color: red; */
+                padding-right: 2rem;
             }
 
             .form-control {
@@ -619,6 +616,14 @@ class OneFileLoginApplication
                                             "link": "#type_option"
                                         }
                                     },
+                                    "//ping": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-services_ping.html"
+                                        },
+                                        "bindings": {
+                                            "ping": "#ping_option"
+                                        }
+                                    },
                                     "//link": {
                                         "templates": {
                                             "control": "../css/./templates-services_link.html"
@@ -728,7 +733,7 @@ class OneFileLoginApplication
                                         },
                                         "enabled": {
                                             "type": "select",
-                                            "validate": false, // ** CHANGE ME ** change to TRUE to allow for user config propegation//
+                                            "validate": true,
                                             "showMessages": true,
                                             "disabled": false,
                                             "hidden": false,
@@ -829,6 +834,31 @@ class OneFileLoginApplication
                                                 }
                                             }
                                         },
+                                        "ping": {
+                                            "type": "select",
+                                            "validate": false,
+                                            "showMessages": true,
+                                            "disabled": false,
+                                            "hidden": false,
+                                            "label": "Ping RT:",
+                                            //"helpers": ["Attaches 'Link URL' to service tile in the UI"],
+                                            "hideInitValidationError": false,
+                                            "focus": false,
+                                            "name": "ping",
+                                            "typeahead": {},
+                                            "allowOptionalEmpty": false,
+                                            "data": {},
+                                            "autocomplete": false,
+                                            "disallowEmptySpaces": true,
+                                            "disallowOnlyEmptySpaces": false,
+                                            "removeDefaultNone": true,
+                                            "fields": {},
+                                            "events": {
+                                                "change": function() {
+                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                }
+                                            }
+                                        },
                                         "link": {
                                             "type": "select",
                                             "validate": false,
@@ -921,8 +951,7 @@ class OneFileLoginApplication
                                         }
                                     },
                                 },
-                                "form": {
-                                    // BUG:  see:  https://github.com/Monitorr/Monitorr/issues/167
+                                "form": { 
                                     //   "attributes": {
                                     //        "action": "post_receiver-services.php",
                                     //        "method": "post",
@@ -959,13 +988,17 @@ class OneFileLoginApplication
                             },
                             "postRender": function(control) {
                                 document.getElementById("modalloading").remove();
+                                console.log('Service check START');
+                                    // check service status ONCE:
+                                $("#serviceshidden").load('loopsettings.php');
+                                document.getElementById("serviceshidden").remove();
                                 if (control.form) {
                                     control.form.registerSubmitHandler(function (e) {
                                         control.form.getButtonEl('submit').click();
                                         return false;
                                     });
                                 }
-                            }   
+                            },   
                         });
                     });
                 </script>
@@ -990,6 +1023,10 @@ class OneFileLoginApplication
                                 console.log(php_script_response);
                                 $('#uploadreturn').html(php_script_response);
                                 $('#mymodal4').load(document.URL +  ' #mymodal4');
+                            },
+                            error: function(errorThrown){
+                                console.log(errorThrown);
+                                alert("POST Error: submitting data.");
                             }
                         });
                     });
@@ -1002,7 +1039,6 @@ class OneFileLoginApplication
                         var fileName = ''; 
                         fileName = $(this).val(); 
                         $('#file-selected').html(fileName.replace(/^.*\\/, ""));
-                        //$('#file-selected').html(fileName.replace(/[|&;$%@"<>()+,]/g, "").toLowerCase());
                         $('#upload').removeClass('uploadbtn');
                     })
                 });
@@ -1147,6 +1183,8 @@ class OneFileLoginApplication
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
         </div>
+
+        <div id="serviceshidden"></div>
 
     </body>
 

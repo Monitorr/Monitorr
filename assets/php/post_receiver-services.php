@@ -38,6 +38,7 @@
                             fwrite ($fp, '"'."enabled" . '"' . ':' .  '"' . $v2['enabled'] . '"'.  ",");
                             fwrite ($fp, '"'."image" . '"' . ':' .  '"' . $v2['image'] . '"'.  ",");
                             fwrite ($fp, '"'."type" . '"' . ':' .  '"' . $v2['type'] . '"'.  ",");
+                            fwrite ($fp, '"'."ping" . '"' . ':' .  '"' . $v2['ping'] . '"'.  ",");
                             fwrite ($fp, '"'."link" . '"' . ':' .  '"' . $v2['link'] . '"'.  ",");
                             fwrite ($fp, '"'."checkurl" . '"' . ':' .  '"' . $v2['checkurl'] . '"'.  ",");
                             fwrite ($fp, '"'."linkurl" . '"' . ':' .  '"' . $v2['linkurl'] . '"');
