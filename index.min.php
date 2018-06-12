@@ -156,7 +156,6 @@
 
         <script src="assets/js/jquery.min.js"></script>
 
-
             <!-- top loading bar function: -->
         <script src="assets/js/pace.js" async></script>
 
@@ -194,7 +193,7 @@
         </title>
 
 
-             <!-- Clock functions: -->
+            <!-- Clock functions: -->
         <script>
 
             var nIntervId3;
@@ -320,6 +319,8 @@
 
                     function updateSummary() {
 
+                        console.log('Service offline check START');
+
                         rfsysinfo =
                             <?php
                                 $rfsysinfo = $jsonsite['rfsysinfo'];
@@ -360,6 +361,7 @@
                     }
 
                     if ($(this).is(':checked')) {
+                        updateSummary();
                         nIntervId2 = setInterval(updateSummary, rfsysinfo);
                         console.log("Auto refresh: Enabled | Interval: <?php echo $rfsysinfo; ?> ms");
                     } else {

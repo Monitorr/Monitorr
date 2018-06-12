@@ -492,7 +492,7 @@
 
         </div>
 
-         <!-- Fire loop.php once page onload to get services status: -->
+         <!-- Fire loop.php once on page load to get services status: -->
 
         <script>
 

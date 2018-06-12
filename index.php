@@ -158,7 +158,7 @@
         </title>
 
 
-             <!-- Clock functions: -->
+            <!-- Clock functions: -->
         <script>
 
             var nIntervId3;
@@ -191,6 +191,7 @@
                     type: "GET",
                     timeout: 4000,
                     success: function (response) {
+                        console.log('Monitorr time update START');
                         var response = $.parseJSON(response);
                         serverTime = response.serverTime;
                         timestandard = parseInt(response.timestandard);
@@ -198,7 +199,6 @@
                         rftime = parseInt(response.rftime);
                         date = new Date(serverTime);
                         //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
-                        console.log('Monitorr time update START');
                     },
                     error: function(x, t, m) {
                         if(t==="timeout") {
@@ -231,7 +231,6 @@
                         clearInterval(nIntervId3);
                     }
                 });
-
             });
 
         </script>
@@ -245,9 +244,9 @@
             var onload;
 
             function statusCheck() {
+                console.log('Service check START');
                 $("#stats").load('assets/php/systembadges.php');
                 $("#statusloop").load('assets/php/loop.php');
-                console.log('Service check START');
             };
 
                 //Stop service status update when refresh toggle is disabled:
@@ -290,8 +289,11 @@
                 $(":checkbox").change(function () {
 
                     var current = -1;
+                    var onload;
 
                     function updateSummary() {
+
+                        console.log('Service offline check START');
 
                         rfsysinfo =
                             <?php
@@ -333,6 +335,7 @@
                     }
 
                     if ($(this).is(':checked')) {
+                        updateSummary();
                         nIntervId2 = setInterval(updateSummary, rfsysinfo);
                         console.log("Auto refresh: Enabled | Interval: <?php echo $rfsysinfo; ?> ms");
                     } else {
@@ -349,6 +352,7 @@
 
     <body onload="statusCheck(), showpace()">
 
+            <!-- Fade-in effect: -->
         <script>
             document.body.className += ' fade-out';
             $(function() {
@@ -360,7 +364,6 @@
         <div id="summary"></div>
 
             <!-- Ajax timeout indicator: -->
-
         <div id="ajaxtimeout">
 
             <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>

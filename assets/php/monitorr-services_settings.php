@@ -750,14 +750,6 @@ class OneFileLoginApplication
                                             "removeDefaultNone": true,
                                             "fields": {},
                                             "events": {
-                                                // "ready": function(callback) {
-                                                //     var value = this.getValue();
-                                                //     if (value == "No") {
-                                                //         $('.{{id}}').removeClass('enabledwarningchange');
-                                                //     } else {
-                                                //         $('.{{id}}').addClass('enabledwarningchange');
-                                                //     }
-                                                // },
                                                 "change": function() {
                                                     $('.alpaca-form-button-submit').addClass('buttonchange');
                                                 }
@@ -959,19 +951,24 @@ class OneFileLoginApplication
                                         }
                                     },
                                 },
-                                "form": {
-                                    "attributes": {
-                                        "action": "post_receiver-services.php",
-                                        "method": "post",
-                                        "contentType": "application/json"
-                                    },
+                                "form": { 
+                                    //   "attributes": {
+                                    //        "action": "post_receiver-services.php",
+                                    //        "method": "post",
+                                    //        "contentType": "application/json"
+                                    //    },
                                     "buttons": {
                                         "submit": {
+                                            "type": "button",
+                                            "label": "Submit",
+                                            "name": "submit",
+                                            "value": "submit",
                                             "click": function formsubmit() {
                                                 var data = $('#servicesettings').alpaca().getValue();
                                                 $.post('post_receiver-services.php', {
                                                     data,
                                                     success: function(data){
+                                                        console.log('Settings saved! Applying changes');
                                                         alert("Settings saved! Applying changes...");
                                                             // Refresh form after submit:
                                                         setTimeout(location.reload.bind(location), 1000)
@@ -992,9 +989,16 @@ class OneFileLoginApplication
                             "postRender": function(control) {
                                 document.getElementById("modalloading").remove();
                                 console.log('Service check START');
+                                    // check service status ONCE:
                                 $("#serviceshidden").load('loopsettings.php');
                                 document.getElementById("serviceshidden").remove();
-                            }   
+                                if (control.form) {
+                                    control.form.registerSubmitHandler(function (e) {
+                                        control.form.getButtonEl('submit').click();
+                                        return false;
+                                    });
+                                }
+                            },   
                         });
                     });
                 </script>
@@ -1019,6 +1023,10 @@ class OneFileLoginApplication
                                 console.log(php_script_response);
                                 $('#uploadreturn').html(php_script_response);
                                 $('#mymodal4').load(document.URL +  ' #mymodal4');
+                            },
+                            error: function(errorThrown){
+                                console.log(errorThrown);
+                                alert("POST Error: submitting data.");
                             }
                         });
                     });
@@ -1031,7 +1039,6 @@ class OneFileLoginApplication
                         var fileName = ''; 
                         fileName = $(this).val(); 
                         $('#file-selected').html(fileName.replace(/^.*\\/, ""));
-                        //$('#file-selected').html(fileName.replace(/[|&;$%@"<>()+,]/g, "").toLowerCase());
                         $('#upload').removeClass('uploadbtn');
                     })
                 });

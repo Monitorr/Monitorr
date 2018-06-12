@@ -914,10 +914,10 @@ class OneFileLoginApplication
                                     },
                                 },
                                 "form": {
-                                    "attributes": {
-                                        "action": "post_receiver-user_preferences.php",
-                                        "method": "post",
-                                    },
+                                    // "attributes": {
+                                    //     "action": "post_receiver-user_preferences.php",
+                                    //     "method": "post",
+                                    // },
                                     "buttons": {
                                         "submit": {
                                             "type": "button",
@@ -930,6 +930,7 @@ class OneFileLoginApplication
                                                     url: 'post_receiver-user_preferences.php',
                                                     data: $('#preferencesettings').alpaca().getValue(),
                                                     success: function(data) {
+                                                        console.log("Settings saved! Applying changes...");
                                                         alert("Settings saved! Applying changes...");
                                                         setTimeout(function () { window.top.location = "../../settings.php" }, 3000);
                                                     },
@@ -962,6 +963,14 @@ class OneFileLoginApplication
                                 }
                             },
                             "postRender": function(control) {
+
+                                if (control.form) {
+                                    control.form.registerSubmitHandler(function (e) {
+                                        control.form.getButtonEl('submit').click();
+                                        return false;
+                                    });
+                                };
+
                                 cssEditor = ace.edit("customCSSEditor");
                                 cssEditor.getSession().setMode("ace/mode/css");
                                 cssEditor.setTheme("ace/theme/idle_fingers");
@@ -971,7 +980,7 @@ class OneFileLoginApplication
                                 .done(function(response) {
                                     cssEditor.getSession().setValue(response);
                                 });
-                            }
+                            },
                         });
                     });
                 </script>

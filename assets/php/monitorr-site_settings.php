@@ -456,6 +456,7 @@ class OneFileLoginApplication
                     bottom: 15%;
                 }
 
+
             </style>
 
             <?php $datafile = '../data/datadir.json'; ?>
@@ -468,8 +469,8 @@ class OneFileLoginApplication
                     $title = $jsonusers['sitetitle'];
                     echo $title . PHP_EOL;
                 ?>
-            | Settings
-        </title>
+                | Settings
+            </title>
 
     </head>
 
@@ -494,8 +495,7 @@ class OneFileLoginApplication
 
             <table id="sitepreview">
                 <tr>
-                     
-                    
+
                     <td id="previewleft">
 
                         <div id="ping" class="col-md-2 col-centered double-val-label">
@@ -1271,10 +1271,10 @@ class OneFileLoginApplication
                                 }
                             },
                             "form": {
-                                "attributes": {
-                                    "action": "post_receiver-site_settings.php",
-                                    "method": "post",
-                                },
+                                // "attributes": {
+                                //     "action": "post_receiver-site_settings.php",
+                                //     "method": "post",
+                                // },
                                 "buttons": {
                                     "submit": {
                                         "type": "button",
@@ -1287,7 +1287,7 @@ class OneFileLoginApplication
                                                 url: 'post_receiver-site_settings.php',
                                                 data: $('#sitesettings').alpaca().getValue(),
                                                 success: function(data) {
-                                                    console.log("POST: Settings saved, reloading page.");
+                                                    console.log("POST: Settings saved!");
                                                     alert("Settings saved! Applying changes...");
                                                     $('.alpaca-form-button-submit').removeClass('buttonchange');
                                                     $('#sitepreview').load(document.URL + ' #sitepreview');
@@ -1312,10 +1312,17 @@ class OneFileLoginApplication
                                     //     }
                                     // }
                                 },
-                            },
+                            }
                         },
+                        "postRender": function(control) {
+                            if (control.form) {
+                                control.form.registerSubmitHandler(function (e) {
+                                    control.form.getButtonEl('submit').click();
+                                    return false;
+                                });
+                            }
+                        }, 
                     });
-
                 });
             </script>
 
@@ -1566,10 +1573,6 @@ $application = new OneFileLoginApplication();
             }
 
         </style>
-
-<!--         <script>
-             document.getElementById("mydiv").innerHTML = "<p>Something</p>";
-        </script> -->
 
     </head>
 

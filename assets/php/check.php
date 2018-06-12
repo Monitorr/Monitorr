@@ -25,23 +25,6 @@
         $referer = $_SERVER['HTTP_REFERER'];
 
 
-        // echo "referer: " . $referer;
-
-        //      echo "<br>";
-
-        // echo "script: " . $script;
-
-        //      echo "<br>";
-
-        // echo "scriptpath: " . $scriptpath;
-
-        //      echo "<br>";
-
-        // echo " // SCRIPT VARs: ";
-
-        //      echo "<br>";
-
-
              // $Apply global image path:
 
         if ($script == "loop.php"){
@@ -201,6 +184,9 @@
 
                             echo '<div id="pingindicator">';
                                 echo '<div id="' . $pingid . '" class="pingcircle" title="Ping response time: ' . $pingTime . ' ms"> </div>';
+                                    echo "<script type='text/javascript'>";
+                                        echo "console.log('" .  $v2['serviceTitle'] . " Ping time: " . $pingTime . " ms');";
+                                    echo "</script>";
                             echo '</div>';
 
                         }
@@ -247,6 +233,9 @@
 
                             echo '<div id="pingindicator">';
                                 echo '<div id="' . $pingid . '" class="pingcircle" title="Ping response time: ' . $pingTime . ' ms"> </div>';
+                                    echo "<script type='text/javascript'>";
+                                        echo "console.log('" .  $v2['serviceTitle'] . " Ping time: " . $pingTime . " ms');";
+                                    echo "</script>";
                             echo '</div>';
                         }
 
@@ -272,7 +261,7 @@
 
                 curl_close($handle);
 
-                // Remove .json file from /assets/logs dir when service comes back online
+                // Remove .json file from /assets/data/logs dir when service comes back online
 
                 $servicefile = ($v2['serviceTitle']).'.offline.json';                    
                 $fileoffline = '../data/logs/'.$servicefile;
@@ -285,7 +274,7 @@
 
             else {
 
-                $fp = fsockopen(url_to_domain($url), $timeout = 5);
+                $fp = fsockopen(url_to_domain($url), $timeout = 3);
 
                 $pingTime = pingstat(url_to_domain($url));
 
@@ -315,9 +304,12 @@
 
                             echo '</div>';
                         echo '</div>';
+
+                            echo "<script type='text/javascript'>";
+                                echo "console.log('" .  $v2['serviceTitle'] . " is OFFLINE');";
+                            echo "</script>";
                     
                         $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
-                        // $today = date("H:i:s e");
 
                         if(!is_file($servicefile)){
                             $fp = fopen($servicefile, 'w');
@@ -350,7 +342,10 @@
                                     }
 
                                     echo '<div id="pingindicator">';
-                                        echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                                        echo '<div id="' . $pingid . '" class="pingcircle" title="Ping response time: ' . $pingTime . ' ms"> </div>';
+                                            echo "<script type='text/javascript'>";
+                                                echo "console.log('" .  $v2['serviceTitle'] . " Ping time: " . $pingTime . " ms');";
+                                            echo "</script>";
                                     echo '</div>';
                                 }
 
@@ -394,7 +389,10 @@
                                     }
 
                                     echo '<div id="pingindicator">';
-                                        echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                                        echo '<div id="' . $pingid . '" class="pingcircle" title="Ping response time: ' . $pingTime . ' ms"> </div>';
+                                            echo "<script type='text/javascript'>";
+                                                echo "console.log('" .  $v2['serviceTitle'] . " Ping time: " . $pingTime . " ms');";
+                                            echo "</script>";
                                     echo '</div>';
                                 }
 
@@ -469,8 +467,11 @@
                     echo '</div>';
                 echo '</div>';
 
+                    echo "<script type='text/javascript'>";
+                        echo "console.log('" .  $v2['serviceTitle'] . " is OFFLINE');";
+                    echo "</script>";
+
                 $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
-                // $today = date("H:i:s");
 
                 if(!is_file($servicefile)){
                     $fp = fopen($servicefile, 'w');
@@ -503,7 +504,10 @@
                             }
 
                             echo '<div id="pingindicator">';
-                                echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                                echo '<div id="' . $pingid . '" class="pingcircle" title="Ping response time: ' . $pingTime . ' ms"> </div>';
+                                    echo "<script type='text/javascript'>";
+                                        echo "console.log('" .  $v2['serviceTitle'] . " Ping time: " . $pingTime . " ms');";
+                                    echo "</script>";
                             echo '</div>';
                         }
 
@@ -549,7 +553,10 @@
                             }
 
                             echo '<div id="pingindicator">';
-                                echo '<div id="' . $pingid . '" class="pingcircle" title="PING response time: ' . $pingTime . ' ms"> </div>';
+                                echo '<div id="' . $pingid . '" class="pingcircle" title="Ping response time: ' . $pingTime . ' ms"> </div>';
+                                    echo "<script type='text/javascript'>";
+                                        echo "console.log('" .  $v2['serviceTitle'] . " Ping time: " . $pingTime . " ms');";
+                                    echo "</script>";
                             echo '</div>';
                         }
 

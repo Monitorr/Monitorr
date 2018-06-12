@@ -8,6 +8,7 @@ $(document).ready(function(){
 		$.ajax({
 		   beforeSend: function(){
 			   $('#version_check').html('<img src="../img/loader.gif" width="16" height="16" />');
+			   console.log('Monitorr is checking for an application update.');
 		   },
 		   type: "POST",
 		   url: "version_check.php",
@@ -31,27 +32,32 @@ $(document).ready(function(){
 						   // check for version verification
 			  			   if(data.copy != 0){ 
 						   	   if(data.unzip == 1){ 
-							       // clear loading information
+								   // clear loading information
+								   console.log('Update Successful! Reloading Monitorr in 10 seconds...');
 						   		   $('#version_check').html("");
 							       // successful update
 									$('#version_check').html('<strong> <font color="yellow"> Update Successful! <br> Reloading Monitorr in 10 seconds... </font> <strong>');
-									//setTimeout(location.reload.bind(location), 13000);
+									//reload page after update:
 									setTimeout(function () { window.top.location = "../../settings.php" }, 13000);
 							   }else{
-								   // error during update/unzip   
-									$('#version_check').html('<strong> <font color="red"> An error occured while extracting the files. </font> </strong>');
+									// error during update/unzip
+									console.log('Monitorr update: An error occured while extracting update files.');
+									$('#version_check').html('<strong> <font color="red"> An error occured while extracting update files. </font> </strong>');
 							   }
                            } else {
-								$('#version_check').html('<strong> <font color="red"> An error occured while copying the files. </font> </strong>');
+								console.log('Monitorr update: An error occured while copying update files.');
+								$('#version_check').html('<strong> <font color="red"> An error occured while copying update files. </font> </strong>');
                            }
 					   },
 					   error: function() {
 						   // error
+						   console.log('Monitorr update: An error occured while updating your files.');
 						   $('#version_check').html('<strong><font color="red"> An error occured while updating your files. </font></strong>');
 					   }
 					});
 			   }else{
-				    // user has the latest version already installed
+					// user has the latest version already installed
+					console.log('Monitorr update: You have the latest version');
 					$('#version_check').html("");
 					$('#version_check').html('<strong> <font color="yellow">  You have the latest version </font></strong>');
 				   		//setTimeout(function () { window.top.location = "../../settings.php" }, 5000);
@@ -59,6 +65,7 @@ $(document).ready(function(){
 		   },
 		   error: function() {
 			   // error
+			   console.log('Monitorr update: An error occured while checking your Monitorr version.');
 			   $('#version_check').html('<strong> <font color="red"> An error occured while checking your Monitorr version. </font></strong>');
 		   }
 		});

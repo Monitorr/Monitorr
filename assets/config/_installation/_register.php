@@ -403,6 +403,37 @@
                             <script src="../../js/jquery.min.js"></script>
                             <script src="../../js/formValidation.js"></script>
 
+                            <script>  // Disable button if input field is invalid:
+
+                                $(document).ready(function(){
+                                    $('#datadir').each(
+                                        function(){
+                                            var val = $(this).val().trim();
+                                            if (val == ''){
+                                               $( '#datadirbtn' ).prop( 'disabled', true );
+                                            }
+                                        }
+                                    );
+                                    $('#dbfile').each(
+                                        function(){
+                                            var val = $(this).val().trim();
+                                            if (val == ''){
+                                               $( '#dbbtn' ).prop( 'disabled', true );
+                                            }
+                                        }
+                                    );
+                                    $('#login_input_password_repeat').each(
+                                        function(){
+                                            var val = $(this).val().trim();
+                                            if (val == ''){
+                                               $( '#registerbtn' ).prop( 'disabled', true );
+                                            }
+                                        }
+                                    );
+                                });
+
+                            </script>
+
                         </head>
 
                         <body>
@@ -543,15 +574,13 @@
                                             <form id="datadirform">
 
                                                 <div>
-                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
-                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                    <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
+                                                    <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-valid-func="$( '#datadirbtn' ).prop( 'disabled', false )" fv-invalid-func="$( '#datadirbtn' ).prop( 'disabled', true )" autocomplete="off" placeholder=' Data dir path' required>
                                                         <br>
                                                     <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
                                                 </div>
                                                         <br>
                                                 <div>
-                                                    <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
+                                                    <input type='input' id="datadirbtn" class="btn btn-primary"  title="Create data directory" value='Create' /> 
                                                 </div>
 
                                             </form>
@@ -627,12 +656,11 @@
                                                 <form id="dbform">
 
                                                     <div>
-                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required readonly>
+                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value=" <?php echo  $datadir = $json['datadir']; ?>"  required readonly>
                                                     </div>
                                                             <br>
                                                     <div>
-                                                        <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />
+                                                        <input type='submit' id="dbbtn" class="btn btn-primary" title="Create user database" value='Create' />
                                                     </div>
 
                                                 </form>
@@ -705,15 +733,13 @@
                                                                 <form id="datadirform">
 
                                                                     <div>
-                                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required>
-                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
+                                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-valid-func="$( '#datadirbtn' ).prop( 'disabled', false )" fv-invalid-func="$( '#datadirbtn' ).prop( 'disabled', true )" autocomplete="off" placeholder=' Data dir path' required>
                                                                             <br>
                                                                         <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current absolute path is: " . getcwd()  ?> </i>
                                                                     </div>
                                                                             <br>
                                                                     <div>
-                                                                        <input type='submit' id="datadirbtn" class="btn btn-primary" value='Create' />
+                                                                        <input type='submit' id="datadirbtn" class="btn btn-primary" title="Create data directory" value='Create'/>
                                                                     </div>
 
                                                                 </form>
@@ -749,18 +775,14 @@
                                                                 <form id="dbform">
 
                                                                     <div>
-                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfile' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfilemulti' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" value="<?php echo  $datadir = $json['datadir']; ?>"  required>
-                                                                        <!-- <?php echo  $datadir = $json['datadir']; ?> -->
+                                                                        <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='dbfilemulti' id="dbfile" fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-valid-func="$( '#dbbtn' ).prop( 'disabled', false )" fv-invalid-func="$( '#dbbtn' ).prop( 'disabled', true )" autocomplete="off" value=" <?php echo  $datadir = $json['datadir']; ?>"  required>
                                                                             <br>
                                                                         <i class="fa fa-fw fa-info-circle"> </i> <i><?php echo "The current data directory path is: " . $datadir = $json['datadir'];  ?> </i>
-                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' id="datadir" fv-func="this == '.*[\\]|'/'' ? false : 'Last character must be a backslash'"  fv-not-empty=" This field can't be empty" fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' autocomplete="off" placeholder=' Data dir path' required> -->
-                                                                        <!-- <i class='fa fa-fw fa-folder-open'> </i> <input type='text' name='datadir' pattern=".*[\\//]+$" title="Cannot contain spaces & must contain a trailing slash" fv-advanced='{"regex": "/.*[\\//]+$/", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-not-empty=" This field can't be empty" id="datadir" autocomplete="off" placeholder=' Data dir path' required>      -->
                                                                             <br>
                                                                     </div>
                                                                             <br>
                                                                     <div>
-                                                                        <input type='submit' id="dbbtn" class="btn btn-primary" value='Create' />
+                                                                        <input type='submit' id="dbbtn" class="btn btn-primary" title="Create user database" value='Create' />
                                                                     </div>
 
                                                                 </form>
@@ -850,20 +872,25 @@
 
                                                     echo '<tbody id="registrationform">';
 
-                                                        echo '<tr>';
+                                                        echo '<tr id="usernameinput">';
                                                             echo '<td><i class="fa fa-fw fa-user"> </i> <input id="login_input_username" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder=" Username" title="Enter a username" required autocomplete="off" /> </td>';
                                                             echo '<td><label for="login_input_username"><i> Letters and numbers only, 2 to 64 characters </i></label></td>';
                                                         echo '</tr>';
 
-                                                        echo '<tr>';
+                                                        echo '<tr id="useremail">';
                                                             echo "<td><i class='fa fa-fw fa-envelope'> </i> <input id='login_input_email' type='email' name='user_email' placeholder=' User e-mail' /></td>";
                                                             echo '<td><label for="login_input_email"> <i> Not required </i></label></td>';
                                                         echo ' </tr>';
 
-                                                        echo ' <tr>';
+                                                        echo '<tr id="userpassword">';
                                                             echo "<td><i class='fa fa-fw fa-key'> </i> <input id='login_input_password_new' class='login_input' type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off' placeholder=' Password' title='Enter a password' /></td>";
-                                                            echo '<td><input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" placeholder=" Repeat password" title="Repeat password" /><i> Minimum 6 characters </i></td>';
-                                                        echo ' </tr>';
+                                                            ?>
+                                                            
+                                                            <td><input id='login_input_password_repeat' class='login_input' type='password' name='user_password_repeat' pattern='.{6,}' fv-not-empty=' This field cannot be empty' fv-advanced='{"regex": "\\s", "regex_reverse": true, "message": "  Value cannot contain spaces"}' fv-valid-func='$( "#registerbtn" ).prop( "disabled", false )' fv-invalid-func='$( "#registerbtn" ).prop( "disabled", true )' required autocomplete='off' placeholder=' Repeat password' title='Repeat password' /><i> Minimum 6 characters </i></td>
+
+                                                            <?php
+                                                        
+                                                        echo '</tr>';
 
                                                     echo ' </tbody>';
 
@@ -877,7 +904,7 @@
 
                                                 echo '</div>';
 
-                                                echo ' <input type="submit" class="btn btn-primary" name="register" value="Register" />';
+                                                echo '<input id="registerbtn" type="submit" class="btn btn-primary" name="register" value="Register" />';
                                                     echo '<br>';
 
                                                 echo '<div id="loginsuccess">';
@@ -888,16 +915,14 @@
                                                         
                                                         echo '<div id="myModal" class="modalreg">';
 
-                                                                echo '<div id="mymodal2" class="modal-content">';
-                                                                
-                                                                    echo $this->feedbacksuccess;
-                                                                
-                                                                echo '</div>';
-                                                                echo '<span class="close closereg"  aria-hidden="true" title="close">&times;</span>';
+                                                            echo '<div id="mymodal2" class="modal-content">';
+                                                            
+                                                                echo $this->feedbacksuccess;
+                                                            
+                                                            echo '</div>';
+                                                            echo '<span class="close closereg"  aria-hidden="true" title="close">&times;</span>';
 
                                                          echo '</div>';
-                                
-
                                                     };
 
                                                 echo '</div>';
@@ -966,6 +991,7 @@
 
                                 ?>
                             <!-- reginfo: -->
+
 
                             <div id="footer">
                                 <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents('../../js/version/version.txt');?> </a> </p>
@@ -1162,6 +1188,9 @@
             input[type=text] {
                 color: black !important;
                 background: rgb(225, 225, 225) !important;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                padding: .2rem;
             }
 
             input[type=text]:hover {
@@ -1172,9 +1201,25 @@
             input[type=password] {
                 color: black;
                 background: rgb(225, 225, 225) !important;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                padding: .2rem;
             }
 
             input[type=password]:hover {
+                color: black !important;
+                background: white !important;
+            }
+
+            input[type=email] {
+                color: black;
+                background: rgb(225, 225, 225) !important;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                padding: .2rem;
+            }
+
+            input[type=email]:hover {
                 color: black !important;
                 background: white !important;
             }
