@@ -1340,6 +1340,14 @@
         background-color: #1F1F1F;
     }
 
+    #datadirbtn {
+        width: 5rem;
+    }
+
+    .btn-hidden {
+        visibility: hidden;
+    }
+
     #dbform {
         margin-left: auto;
         margin-right: auto;
@@ -1380,6 +1388,20 @@
     #registrationform {
         font-size: 1rem;
         cursor: default;
+    }
+
+    #usernameinput {
+        display: flex;
+        margin-bottom: 1rem;
+    }
+
+    #useremail {
+        display: flex;
+        margin-bottom: 1rem;
+    }
+
+    #userpassword {
+        display: flex;
     }
 
     #reginstructions {
@@ -1760,6 +1782,7 @@
         text-align: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.750);
+        box-shadow: .5rem .5rem 1rem rgb(15, 15, 15);
         border: 1px solid #888;
         border-radius: 4px;
         z-index: 2000;
@@ -1780,6 +1803,7 @@
         text-align: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.900);
+        box-shadow: .5rem .5rem 1rem rgb(15, 15, 15);
         border: 1px solid #888;
         border-radius: 4px;
         z-index: 2000;
@@ -2241,6 +2265,7 @@
         text-align: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.750);
+        box-shadow: .5rem .5rem 1rem rgb(15, 15, 15);
         border: 1px solid #888;
         border-radius: 4px;
         z-index: 2000;
@@ -2654,7 +2679,7 @@
         text-align: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.75);
-        border: 1px solid #888;
+        border: .2rem solid #888;
         box-shadow: 5px 5px 15px rgb(15, 15, 15);
         border-radius: 4px;
         z-index: 2000;
