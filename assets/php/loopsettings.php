@@ -42,13 +42,13 @@
 
             if($v2['type'] == " Standard") {
                 echo "<div>";
-                    urlExists($v2['checkurl']);
+	            urlExists_no_print($v2['checkurl']);
                 echo "</div>";
             }
 
             else {
                 echo "<div>";
-                    ping($v2['checkurl']);
+	            ping_no_print($v2['checkurl']);
                 echo "</div>";
             }
         }
