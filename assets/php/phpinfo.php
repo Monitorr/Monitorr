@@ -3,12 +3,34 @@
 
     <style type="text/css">
 
-        a {
-            color: black;
+        #phpinfo { 
+            font-size: .5rem !important; 
+            cursor: default;
         }
 
-        #phpinfo {
-            cursor: default;
+        table { 
+            width: 100% !important; 
+        }
+
+        tr { 
+            font-size: 1rem !important; 
+        }
+
+        hr {
+            width: 100% !important;
+        }
+
+        .v {
+            width: 50% !important;
+            max-width: 1vw !important;
+        }
+
+        h2 {
+            font-size: 1rem !important;
+        }
+
+        a {
+            color: black;
         }
         
         tbody {

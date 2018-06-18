@@ -72,13 +72,11 @@
             include_once ('../config/monitorr-data.php');
         };
 
-
         $timezone = $jsonusers['timezone'];
 
         date_default_timezone_set($timezone);
 
         $today = date("H:i");
-
 
     function url_to_domain($url) {
 
@@ -113,7 +111,7 @@
         * @param int $timeout
         * @return bool|float
         */
-   
+
 
     function pingstat($host, $timeout = 2) {
 
@@ -130,6 +128,7 @@
             return round((($end - $start) * 1000));
 
     }
+
 
     function urlExists($url) {
         
@@ -428,6 +427,62 @@
             }
     }
 
+        //Settings page service check function:
+
+    function urlExists_no_print($url) {
+        global $v2;
+        global $today;
+        $handle = curl_init($url);
+        curl_setopt($handle, CURLOPT_FRESH_CONNECT, TRUE);
+        curl_setopt($handle, CURLOPT_FORBID_REUSE, TRUE);
+        curl_setopt($handle, CURLOPT_FOLLOWLOCATION, TRUE);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($handle, CURLOPT_HEADER, TRUE);
+        curl_setopt($handle, CURLOPT_NOBODY, TRUE);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($handle, CURLOPT_TCP_FASTOPEN, TRUE);
+        curl_setopt($handle, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 10.0)");
+        curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($handle, CURLOPT_TIMEOUT, 15);
+        $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+        $curlCode = curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
+        if($httpCode >= 200 && $httpCode < 400 || $httpCode == 401 || $httpCode == 403 || $httpCode == 405 || $curlCode == 8 || $curlCode == 67 || $curlCode == 530 || $curlCode == 60 ) {
+            curl_close($handle);
+            $servicefile = ($v2['serviceTitle']).'.offline.json';
+            $fileoffline = '../data/logs/'.$servicefile;
+            if(is_file($fileoffline)){
+                rename($fileoffline, '../data/logs/offline.json.old');
+            }
+        }
+        else {
+            $fp = fsockopen(url_to_domain($url), $timeout = 3);
+            stream_context_set_default( [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                ],
+            ]);
+            if (!$fp) {
+                $servicefile = '../data/logs/'.($v2['serviceTitle']).'.offline.json';
+                if(!is_file($servicefile)){
+                    $fp = fopen($servicefile, 'w');
+                    fwrite($fp, $v2['serviceTitle'] . " is OFFLINE as of " . $today);
+                    fclose($fp);
+                }
+            }
+            else {
+                $servicefile = ($v2['serviceTitle']).'.offline.json';
+                $fileoffline = '../data/logs/'.$servicefile;
+                if(is_file($fileoffline)){
+                    rename($fileoffline, '../data/logs/offline.json.old');
+                }
+                fclose($fp);
+            }
+        }
+    }
+
+
     function ping($url) {
         
         global $v1;
@@ -589,6 +644,48 @@
 
                 fclose($fp);
             }
-    };
+    }
+
+        //Settings page service check function:
+
+    function ping_no_print($url) {
+
+        global $v1;
+        global $v2;
+        global $imgpath;
+        global $jsonsite;
+        global $today;
+
+        //$pingTime = pingstat(url_to_domain($url), $pingport);
+
+        $fp = fsockopen(url_to_domain($url), $timeout = 5);
+
+        stream_context_set_default([
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+            ],
+        ]);
+
+        if (!$fp) {
+
+            $servicefile = '../data/logs/' . ($v2['serviceTitle']) . '.offline.json';
+
+            if (!is_file($servicefile)) {
+                $fp = fopen($servicefile, 'w');
+                fwrite($fp, $v2['serviceTitle'] . " is OFFLINE as of " . $today);
+                fclose($fp);
+            }
+        } else {
+            $servicefile = ($v2['serviceTitle']) . '.offline.json';
+            $fileoffline = '../data/logs/' . $servicefile;
+
+            if (is_file($fileoffline)) {
+                rename($fileoffline, '../data/logs/offline.json.old');
+            }
+
+            fclose($fp);
+        }
+    }
 
 ?>

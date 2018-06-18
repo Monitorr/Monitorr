@@ -2226,24 +2226,51 @@
         cursor: pointer;
     }
 
+
     #blank {
         color: #3d3d3d;
         font-size: .5rem;
     }
 
-    #phpContent {
-        position: inherit;
-        background: transparent;
-    }
 
-    .phpobject {
-        position: inherit;
+    /* Info page frames: */
+
+    object {
         width: 100%;
-        height: 35rem;
+        height: 100%;
     }
 
-    .slide {
-        position: relative;
+    #infoframe {
+        position: fixed;
+        height: 50%;
+        width: 95%;
+        margin-left: .5rem;
+    }
+
+    .frametd {
+        height: 100%;
+    }
+
+    .version {
+        width: 100%;
+        height: 100%;
+        float: left;
+    }
+
+    #versioncontent {
+        width: 100%;
+        height: 100%;
+    }
+
+    .php {
+        width: 100%;
+        height: 100%;
+        float: right;
+    }
+
+    #phpcontent {
+        width: 100%;
+        height: 100%;
     }
 
     #serviceform {
@@ -2280,7 +2307,10 @@
         cursor: wait;
     }
 
-    .expand {
+
+    /* REMOVE OLD EXPAND STYLES // CHANGE ME:   */
+
+/*     .expand {
         height: 33rem;
         transition: height 0.5s;
         word-wrap: break-word;
@@ -2331,7 +2361,7 @@
         -webkit-transition: .5s;
         -moz-transition: .5s;
         transition: .5s;
-    }
+    } */
 
     #preferenceform {
         background-color: inherit;

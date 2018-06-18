@@ -382,6 +382,7 @@ class OneFileLoginApplication
 <html lang="en">
 
     <head>
+    
         <meta charset="utf-8">
         <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="../css/main.css" rel="stylesheet">
@@ -393,99 +394,96 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <!-- <script type="text/javascript" src="../js/pace.js" async></script> -->
 
-            <style>
+        <style>
 
-                body {
-                    margin: 2vw !important;
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                    background-color: #1F1F1F;
-                }
+            body {
+                margin: 2vw !important;
+                overflow-y: auto;
+                overflow-x: hidden;
+                background-color: #1F1F1F;
+            }
 
-                legend {
-                    color: white;
-                    }
+            legend {
+                color: white;
+            }
 
-                body::-webkit-scrollbar {
-                    width: 10px;
-                    background-color: #252525;
-                }
+            body::-webkit-scrollbar {
+                width: 10px;
+                background-color: #252525;
+            }
 
-                body::-webkit-scrollbar-track {
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    border-radius: 10px;
-                    background-color: #252525;
-                }
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #252525;
+            }
 
-                body::-webkit-scrollbar-thumb {
-                    border-radius: 10px;
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    background-color: #8E8B8B;
-                }
+            body::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            }
 
-                body.offline #link-bar {
-                    display: none;
-                }
+            body.offline #link-bar {
+                display: none;
+            }
 
-                body.online #link-bar {
-                    display: block;
-                }
+            body.online #link-bar {
+                display: block;
+            }
 
-                .auto-style1 {
-                    text-align: center;
-                }
+            .auto-style1 {
+                text-align: center;
+            }
+            
+            #centertext {
+                padding-bottom: 2rem !important;
+            }
+
+
+            #includedContent {
+                float: right;
+                width: 95% !important;
+            }
+
+            tbody {
+                cursor: default !important;
+            }
+
+            .links {
+                color: yellow !important;
+                font-size: 1rem !important;
+                font-weight: 500 !important;
+            }
+
+            select, input {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+            }
+
+        </style>
+
+        <?php
+
+            $file = '../data/datadir.json';
+
+            if(!is_file($file)){
+
+                $path = "../";
+
+                include_once ('../config/monitorr-data-default.php');
+            } 
+
+            else {
                 
-                #centertext {
-                    padding-bottom: 2rem !important;
-                }
+                $datafile = '../data/datadir.json';
 
-
-                #includedContent {
-                    float: right;
-                    width: 95% !important;
-                }
-
-                tbody {
-                    cursor: default !important;
-                }
-
-                .links {
-                    color: yellow !important;
-                    font-size: 1rem !important;
-                    font-weight: 500 !important;
-                }
-
-                select, input {
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    appearance: none;
-                }
-
-            </style>
-
-            <?php
-
-                $file = '../data/datadir.json';
-
-                if(!is_file($file)){
-
-                    $path = "../";
-
-                    include_once ('../config/monitorr-data-default.php');
-
-                } 
-
-                else {
-                    
-                    $datafile = '../data/datadir.json';
-
-                    include_once ('../config/monitorr-data.php');
-
-                }
-
-            ?> 
+                include_once ('../config/monitorr-data.php');
+            }
+        ?> 
 
         <title>
             <?php
@@ -518,13 +516,16 @@ class OneFileLoginApplication
 
             <table class="table">
                 <thead> <div id="blank"> . </div> </thead>
+
                 <tbody>
+
                     <tr>
                         <td><strong>Monitorr Installed Version:</strong></td>
                         <td><?php echo file_get_contents( "../js/version/version.txt" )?> <p id="version_check_auto"></p> </td>
                         <td><strong>OS / Version:</strong></td>
                         <td><?php echo php_uname(); ?></td>
                     </tr>
+
                     <tr>
                         <td><strong>Monitorr Latest Version:</strong></td>
                         <td>Master: 
@@ -598,8 +599,8 @@ class OneFileLoginApplication
                             ?>
                         
                         </td>
-                        
                     </tr>
+
                     <tr> 
                         <td><strong>Check & Execute Update:</strong></td>
                         <td>
@@ -650,18 +651,31 @@ class OneFileLoginApplication
 
         </div>
 
-        <div class="slide">
-            <input class="expandtoggle" type="checkbox" name="slidebox"  checked>
-                <!-- <label for="php" ></label> -->
-                <div id="expand" class="expand">
+        <div>
+            <table id="infoframe">
+                <tr>
+                    <td class="frametd">
+                        <div class="version">
+                            <div id ="versioncontent"> </div>
+                        </div>
+                    </td>
 
-                     <div id ="phpContent"> </div>
-
-                </div>
-            </input>
+                    <td class="frametd">
+                        <div class="php">
+                            <div id ="phpcontent"> </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
 
-        <script>document.getElementById("phpContent").innerHTML='<object type="text/html" class="phpobject" data="phpinfo.php" ></object>'</script>
+        <script>
+            document.getElementById("versioncontent").innerHTML='<object id="versionobject" type="text/html" data="../../changelog.html" ></object>'
+        </script>
+
+        <script>
+            document.getElementById("phpcontent").innerHTML='<object id="phpobject" type="text/html" data="phpinfo.php" ></object>' 
+        </script>
 
         <script src="../js/update.js" async></script>
         <script src="../js/update_auto-settings.js" async></script>

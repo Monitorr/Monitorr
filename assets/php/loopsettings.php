@@ -1,6 +1,6 @@
 <?php include ('check.php') ;?>
 
- <?php 
+<?php 
 
     $datafile = '../data/datadir.json';
     $str = file_get_contents($datafile);
@@ -34,7 +34,7 @@
 
 ?>
 
- <?php foreach ( $myServices as $v1 => $v2 ) { ?>
+<?php foreach ( $myServices as $v1 => $v2 ) { ?>
 
     <?php 
 
@@ -42,19 +42,19 @@
 
             if($v2['type'] == " Standard") {
                 echo "<div>";
-                    urlExists($v2['checkurl']);
+                    urlExists_no_print($v2['checkurl']);
                 echo "</div>";
             }
 
             else {
                 echo "<div>";
-                    ping($v2['checkurl']);
+                    ping_no_print($v2['checkurl']);
                 echo "</div>";
             }
         }
 
         else {
-                // Remove offline log file if disabled://
+                // Remove offline log file if service is disabled://
 
             $servicefile = ($v2['serviceTitle']).'.offline.json';                    
             $fileoffline = '../data/logs/'.$servicefile;

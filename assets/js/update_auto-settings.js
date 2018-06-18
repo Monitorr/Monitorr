@@ -22,13 +22,14 @@ $(document).ready(function(){
 				   var uInfo = "uid="+uid+"&version="+data.version
 				   console.log('A Monitorr update is available.');
 
-				   $('#version_check_auto').html(
+				   	$('#version_check_auto').html(
 					   '<a class="links" href = "https://github.com/Monitorr/Monitorr/releases" target = "_blank" title="Monitorr releases" style = "cursor: pointer"> <b> An update is available</b></a>'
 					);
 			   }
 			   
 			   else{
-				    // user has the latest version already installed
+					// user has the latest version already installed
+					console.log('The latest Monitorr version is already installed.');
 					$('#version_check_auto').html("");     
 			   }
 		   },
