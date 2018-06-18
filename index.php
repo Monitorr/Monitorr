@@ -13,7 +13,6 @@
     https://github.com/Monitorr/Monitorr
     -->
 
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -119,7 +118,6 @@
             <!-- top loading bar function: -->
         <script src="assets/js/pace.js"></script>
 
-
          <?php
 
             $datafile = 'assets/data/datadir.json';
@@ -147,7 +145,6 @@
 
                 $title = $jsonusers['sitetitle'];
             }
-
          ?>
 
         <title>
@@ -156,7 +153,6 @@
             ?>
             | Monitorr
         </title>
-
 
             <!-- Clock functions: -->
         <script>
@@ -186,12 +182,12 @@
                 // update UI clock with server time:
 
             function syncServerTime() {
+                console.log('Monitorr time update START | Interval: '+ rftime +' ms');
                 $.ajax({
                     url: "assets/php/timestamp.php",
                     type: "GET",
                     timeout: 4000,
                     success: function (response) {
-                        console.log('Monitorr time update START');
                         var response = $.parseJSON(response);
                         serverTime = response.serverTime;
                         timestandard = parseInt(response.timestandard);
@@ -243,8 +239,14 @@
             var nIntervId;
             var onload;
 
+            rfsysinfo =
+                <?php
+                    $rfsysinfo = $jsonsite['rfsysinfo'];
+                    echo $rfsysinfo;
+                ?>
+
             function statusCheck() {
-                console.log('Service check START');
+                console.log('Service check START | Interval: <?php echo $rfsysinfo; ?> ms');
                 $("#stats").load('assets/php/systembadges.php');
                 $("#statusloop").load('assets/php/loop.php');
             };
@@ -253,12 +255,6 @@
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
-
-                    rfsysinfo =
-                        <?php
-                            $rfsysinfo = $jsonsite['rfsysinfo'];
-                            echo $rfsysinfo;
-                        ?>
 
                     if ($(this).is(':checked')) {
                         nIntervId = setInterval(statusCheck, rfsysinfo);

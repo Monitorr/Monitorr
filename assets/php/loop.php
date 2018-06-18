@@ -1,8 +1,6 @@
 <?php include ('check.php') ;?>
 
-<!-- <link rel="stylesheet" href="../css/main.css"> -->
-
- <?php 
+<?php 
 
     $datafile = '../data/datadir.json';
     $str = file_get_contents($datafile);
@@ -36,7 +34,7 @@
 
 ?>
 
- <?php foreach ( $myServices as $v1 => $v2 ) { ?>
+<?php foreach ( $myServices as $v1 => $v2 ) { ?>
 
     <?php 
 
@@ -72,9 +70,7 @@
         <!-- Remove loading modal after page onload: -->
 
    <script type='text/javascript'>
-        //  $(document).ready(function(){
-            $('.pace-activity').addClass('hidepace');
-            $('.modalloadingindex').addClass('hidemodal');
-            console.log("Service check complete");
-        //  });
+        $('.pace-activity').addClass('hidepace');
+        $('.modalloadingindex').addClass('hidemodal');
+        console.log("Service check complete");
    </script>
