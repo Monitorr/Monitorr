@@ -192,7 +192,6 @@
             <?php $title = $jsonusers['sitetitle']; echo $title . PHP_EOL; ?>
         </title>
 
-
             <!-- Clock functions: -->
         <script>
 
@@ -221,10 +220,11 @@
                 // update UI clock with server time:
 
             function syncServerTime() {
+                console.log('Monitorr time update START | Interval: '+ rftime +' ms');
                 $.ajax({
                     url: "assets/php/timestamp.php",
                     type: "GET",
-                    timeout: 4000,
+                    timeout: 3000,
                     success: function (response) {
                         var response = $.parseJSON(response);
                         serverTime = response.serverTime;
@@ -233,7 +233,6 @@
                         rftime = parseInt(response.rftime);
                         date = new Date(serverTime);
                         //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
-                        console.log('Monitorr time update START');
                     },
                     error: function(x, t, m) {
                         if(t==="timeout") {
@@ -272,27 +271,28 @@
 
         <script src="assets/js/clock.js" async></script>
 
-
             <!-- services status update function: -->
         <script type="text/javascript">
 
             var nIntervId;
             var onload;
 
+            rfsysinfo =
+                <?php
+                    $rfsysinfo = $jsonsite['rfsysinfo'];
+                    echo $rfsysinfo;
+                ?>
+
             function statusCheck() {
+                console.log('Service check START | Interval: <?php echo $rfsysinfo; ?> ms');
                 $("#statusloop").load('assets/php/loop.php');
                 $("#stats").load('assets/php/systembadges.php');
-                console.log('Service check START');
             };
+
+                //Stop service status update when refresh toggle is disabled:
 
             $(document).ready(function () {
                 $(":checkbox").change(function () {
-
-                    rfsysinfo =
-                        <?php
-                            $rfsysinfo = $jsonsite['rfsysinfo'];
-                            echo $rfsysinfo;
-                        ?>
 
                     if ($(this).is(':checked')) {
                         nIntervId = setInterval(statusCheck, rfsysinfo);
@@ -378,6 +378,7 @@
 
     <body onload="statusCheck()">
 
+            <!-- Fade-in effect: -->
         <script>
             document.body.className += ' fade-out';
             $(function() {

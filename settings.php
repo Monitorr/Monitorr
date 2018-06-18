@@ -2,7 +2,7 @@
 <html lang="en">
 
     <!--
-         Monitorr | settings page
+         Monitorr | Settings page
     https://github.com/Monitorr/Monitorr
     -->
 
@@ -181,6 +181,7 @@
                 // update UI clock with server time:
 
             function syncServerTime() {
+                console.log('Monitorr time update START | Interval: '+ rftime +' ms');
                 $.ajax({
                     url: "assets/php/timestamp.php",
                     type: "GET",
@@ -193,7 +194,6 @@
                         rftime = parseInt(response.rftime);
                         date = new Date(serverTime);
                         //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
-                        console.log('Monitorr time update START');
                     },
                     error: function(x, t, m) {
                         if(t==="timeout") {
@@ -284,6 +284,12 @@
         </script>
 
         <script>
+            $(function() {
+                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
+            });
+        </script>
+
+        <script>
 
             var nIntervId2;
             var onload;
@@ -335,12 +341,6 @@
                 updateSummary();
             });
 
-        </script>
-
-        <script>
-            $(function() {
-                document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
-            });
         </script>
 
     </head>
@@ -497,8 +497,8 @@
         <script>
 
             $(function() {
-                $("#serviceshidden").load('assets/php/loopsettings.php');
                 console.log('Service check START');
+                $("#serviceshidden").load('assets/php/loopsettings.php');
             });
 
         </script>
