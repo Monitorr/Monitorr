@@ -156,18 +156,19 @@
 
             <!-- Clock functions: -->
         <script>
+        
 	        <?php
-	        //initial values for clock:
-	        $timezone = $jsonusers['timezone'];
-	        $dt = new DateTime("now", new DateTimeZone("$timezone"));
-	        $timeStandard = (int)($jsonusers['timestandard'] === "True" ? true : false);
-	        $timezone_suffix = '';
-	        if (!$timeStandard) {
-		        $dateTime = new DateTime();
-		        $dateTime->setTimeZone(new DateTimeZone($timezone));
-		        $timezone_suffix = $dateTime->format('T');
-	        }
-	        $serverTime = $dt->format("D d M Y H:i:s");
+                //initial values for clock:
+                $timezone = $jsonusers['timezone'];
+                $dt = new DateTime("now", new DateTimeZone("$timezone"));
+                $timeStandard = (int)($jsonusers['timestandard'] === "True" ? true : false);
+                $timezone_suffix = '';
+                if (!$timeStandard) {
+                    $dateTime = new DateTime();
+                    $dateTime->setTimeZone(new DateTimeZone($timezone));
+                    $timezone_suffix = $dateTime->format('T');
+                }
+                $serverTime = $dt->format("D d M Y H:i:s");
 	        ?>
 
             var nIntervId3;
@@ -227,7 +228,7 @@
 
                 $(":checkbox").change(function () {
 
-                    rftime =;
+                    rftime =
                         <?php
                             $rftime = $jsonsite['rftime'];
                             echo $rftime;
