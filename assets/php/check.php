@@ -120,7 +120,7 @@
         global $imgpath;
 
             $start = microtime(true);
-	    $port = isset($port) ? $port : -1;
+            $port = isset($port) ? $port : -1;
             if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
                 return "PING error";
                 // echo "error";
