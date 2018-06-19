@@ -398,7 +398,8 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/handlebars.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
+        <script type="text/javascript" src="../js/ace.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script> -->
        
             <style>
 
