@@ -702,7 +702,7 @@
         vertical-align: middle;
         justify-content: center;
         font-size: 1.5rem;
-        color: rgb(200, 200, 200);
+        color: rgb(150, 150, 150);
         word-break: keep-all;
         overflow-wrap: normal;
         cursor: default;
@@ -710,7 +710,7 @@
 
     #servicetitleoffline:hover,
     #servicetitleoffline:focus {
-        color: rgb(200, 200, 200);
+        color: rgb(150, 150, 150);
         text-decoration: none;
         outline: 0;
     }
