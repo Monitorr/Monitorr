@@ -25,7 +25,7 @@ if($copy == 1){
 		$zip->extractTo($extractPath);
 		$zip->close();
 			// copy datadir.json to safe place while we update
-			rename('../data/datadir.json', $extractPath.'datadir.json');  // ** CHANGE ME REMOVE **
+			rename('../data/datadir.json', $extractPath.'datadir.json'); 
 			// copy custom.css to safe place while we update
 	    	rename(__DIR__ . '/../data/css/custom.css', $extractPath . 'custom.css');
 		// copy files from temp to monitorr root
@@ -33,7 +33,7 @@ if($copy == 1){
 		$fullPath = $extractPath . $scanPath[2];
 		recurse_copy($fullPath,$base_path);
 			// restore datadir.json file
-			rename($extractPath.'datadir.json', '../data/datadir.json'); // ** CHANGE ME REMOVE **
+			rename($extractPath.'datadir.json', '../data/datadir.json');
 			// restore custom.css file
 	    	rename($extractPath . 'custom.css', __DIR__ . '/../data/css/custom.css');
 		// update users local version number file
