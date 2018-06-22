@@ -420,8 +420,8 @@
                 </div>
             </div>
 
-            <div id="center">
-                <div id="stats" class="container centered">
+            <div id="center" class="centermin">
+                <div id="stats" class="container centered statsmin">
                     <!-- system badges go here -->
                 </div>
             </div>
