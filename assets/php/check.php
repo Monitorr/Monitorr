@@ -121,7 +121,7 @@
 
             $start = microtime(true);
             $port = isset($port) ? $port : -1;
-            if (!fsockopen($host, $port, $errno, $errstr, $timeout)) {
+            if (!@fsockopen($host, $port, $errno, $errstr, $timeout)) {
                 return "PING error";
                 // echo "error";
             }
@@ -274,7 +274,7 @@
 
             else {
 
-                $fp = fsockopen(url_to_domain($url), $timeout = 3);
+                $fp = @fsockopen(url_to_domain($url), $timeout = 3);
 
                 $pingTime = pingstat(url_to_domain($url));
 
@@ -457,7 +457,7 @@
             }
         }
         else {
-            $fp = fsockopen(url_to_domain($url), $timeout = 3);
+            $fp = @fsockopen(url_to_domain($url), $timeout = 3);
             stream_context_set_default( [
                 'ssl' => [
                     'verify_peer' => false,
@@ -494,7 +494,7 @@
 
         //$pingTime = pingstat(url_to_domain($url), $pingport);
 
-        $fp = fsockopen(url_to_domain($url), $timeout = 5);
+        $fp = @fsockopen(url_to_domain($url), $timeout = 5);
 
             stream_context_set_default([
                 'ssl' => [
@@ -659,7 +659,7 @@
 
         //$pingTime = pingstat(url_to_domain($url), $pingport);
 
-        $fp = fsockopen(url_to_domain($url), $timeout = 5);
+        $fp = @fsockopen(url_to_domain($url), $timeout = 5);
 
         stream_context_set_default([
             'ssl' => [

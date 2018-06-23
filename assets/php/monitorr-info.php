@@ -736,7 +736,7 @@ class OneFileLoginApplication
 
             else {
 
-                echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+                echo '<form method="post" action="" name="loginform">';
                     echo '<div id="username">';
                         echo '<label for="login_input_username"> </label> ';
                             echo '<br>';
