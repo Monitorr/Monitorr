@@ -1061,6 +1061,11 @@
         filter: drop-shadow(1px 1px 2px rgb(30, 30, 30));
     }
 
+    #timer {
+        margin: auto;
+        vertical-align: middle;
+    }
+
     #time {
         display: flex;
         flex-direction: row;
@@ -1080,6 +1085,7 @@
 
     .dtg {
         margin: auto;
+        margin-bottom: -.25rem;
         color: #C8C8C8;
         text-shadow: 1px 1px black;
         font-size: .9rem;
@@ -1089,16 +1095,23 @@
     }
 
     .date {
+        margin: auto;
+        margin-top: .25rem;
         color: #C8C8C8;
         font-size: 1rem;
         font-weight: 400;
-        margin: auto;
+        text-shadow: 1px 1px black;
         text-align: center;
         cursor: default;
     }
 
+    .datemin {
+        font-size: .75rem;
+    }
+
     #line {
         cursor: default;
+        text-align: center;
         font-size: .75em;
         padding-bottom: .5em;
     }
@@ -2306,62 +2319,6 @@
         font-weight: 600;
         cursor: wait;
     }
-
-
-    /* REMOVE OLD EXPAND STYLES // CHANGE ME:   */
-
-/*     .expand {
-        height: 33rem;
-        transition: height 0.5s;
-        word-wrap: break-word;
-        width: auto;
-        padding: 0 10px 0 10px;
-    }
-
-    .expandtoggle:checked~.expand {
-        height: 20rem;
-        overflow-y: hidden;
-        overflow-x: hidden;
-    }
-
-    .expandtoggle {
-        display: block;
-        position: absolute;
-        text-align: center;
-        margin: 0;
-        right: 2.5em;
-        bottom: .5em;
-        padding-top: .5em;
-        background-color: rgba(150, 150, 150, 0.75);
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        width: 2em;
-        height: 2.2em;
-        cursor: pointer;
-        -webkit-transition: .5s;
-        -moz-transition: .5s;
-        transition: .5s;
-    }
-
-    .expandtoggle:hover {
-        background-color: rgba(255, 255, 255, 0.4);
-        background-size: 3em;
-        -webkit-transition: .3s;
-        -moz-transition: .3s;
-        transition: .3s;
-    }
-
-    .expandtoggle::before {
-        background: url(../img/toggle.png) no-repeat;
-        background-size: 2em;
-        content: "";
-        display: inline-block;
-        width: 2em;
-        height: 2em;
-        -webkit-transition: .5s;
-        -moz-transition: .5s;
-        transition: .5s;
-    } */
 
     #preferenceform {
         background-color: inherit;
