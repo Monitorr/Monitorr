@@ -296,6 +296,7 @@
 
         </script>
 
+            <!-- Load monitorr-info frame on settings page onload: -->
         <script>
             $(function() {
                 document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
@@ -360,6 +361,7 @@
 
     <body>
 
+            <!-- Fade-in effect: -->
         <script>
             document.body.className += ' fade-out';
             $(function() {
@@ -367,6 +369,7 @@
             });
         </script>
 
+            <!-- Ajax timeout indicator: -->
         <div id="ajaxtimeout">
 
             <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
@@ -384,12 +387,14 @@
                 </div>
             </div>
 
+                <!-- Append marquee alert if service is down: -->
             <div id="summary"></div>
 
             <div id="left" class="Column">
                 <div id="clock">
                     <canvas id="canvas" width="120" height="120"></canvas>
-                    <div class="dtg" id="timer"></div>
+                    <!-- <div class="dtg" id="timer"></div> -->
+                    <div id="timer"></div>
                 </div>
             </div>
 
@@ -505,8 +510,7 @@
 
         </div>
 
-         <!-- Fire loop.php once on page load to get services status: -->
-
+            <!-- Fire loop.php once on page load to get services status: -->
         <script>
 
             $(function() {

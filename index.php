@@ -184,7 +184,6 @@
                     var timeString = date.toLocaleString('en-US', {hour12: timestandard, weekday: 'short', year: 'numeric', day: '2-digit', month: 'short', hour:'2-digit', minute:'2-digit', second:'2-digit'}).toString();
                     var res = timeString.split(",");
                     var time = res[3];
-                    var dateString = res[0]+'&nbsp; | &nbsp;'+res[1].split(" ")[2]+" "+res[1].split(" ")[1]+'<br>'+res[2];
                     var dateString = res[0]+' | '+res[1].split(" ")[2]+" "+res[1].split(" ")[1]+'<br>'+res[2];
                     var data = '<div class="dtg">' + time + ' ' + timeZone + '</div>';
                     data+= '<div id="line">__________</div>';
@@ -386,7 +385,8 @@
             <div id="left" class="Column">
                 <div id="clock">
                     <canvas id="canvas" width="120" height="120"></canvas>
-                    <div class="dtg" id="timer"></div>
+                    <!-- <div class="dtg"></div> -->
+                    <div id="timer"></div>
                 </div>
             </div>
 

@@ -85,10 +85,6 @@
                 width: 60% !important;
             }
 
-            #time {
-                margin-left: 2vw !important;
-            }
-
             #center {
                 position: absolute !important;
                 height: 5rem;
@@ -222,11 +218,10 @@
                     var timeString = date.toLocaleString('en-US', {hour12: timestandard, weekday: 'short', year: 'numeric', day: 'numeric', month: 'short', hour:'2-digit', minute:'2-digit', second:'2-digit'}).toString();
                     var res = timeString.split(",");
                     var time = res[3];
-                    //var time = serverTime;
-                    var dateString = res[0]+' | '+res[1].split(" ")[2]+" "+res[1].split(" ")[1]+res[2];
+                    var dateString = res[0]+' | '+res[1].split(" ")[2]+" "+res[1].split(" ")[1];
                     var data = '<div class="dtg">' + time + ' ' + timeZone + '</div>';
                     data+= '<div id="line">__________</div>';
-                    data+= '<div class="date">' + dateString + '</div>';
+                    data+= '<div class="date datemin">' + dateString + '</div>';
                     $("#timer").html(data);
                 }, 1000);
             }
@@ -416,12 +411,13 @@
             <div id="left" class="Column">
                 <div id="time">
                     <canvas id="canvas" width="120" height="120"></canvas>
-                    <div class="dtg" id="timer"></div>
+                    <!-- <div class="dtg" id="timer"></div> -->
+                    <div id="timer"></div>
                 </div>
             </div>
 
-            <div id="center">
-                <div id="stats" class="container centered">
+            <div id="center" class="centermin">
+                <div id="stats" class="container centered statsmin">
                     <!-- system badges go here -->
                 </div>
             </div>
@@ -476,7 +472,7 @@
 
         <div id="footer">
 
-            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
+            <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> <?php echo file_get_contents( "assets/js/version/version.txt" );?> </a> </p>
 
         </div>
 

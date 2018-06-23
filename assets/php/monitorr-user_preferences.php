@@ -1045,7 +1045,7 @@ class OneFileLoginApplication
 
             else {
 
-                echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+                echo '<form method="post" action="" name="loginform">';
                     echo '<label for="login_input_username"> </label> ';
                         echo '<br>';
                     echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
@@ -1076,7 +1076,6 @@ class OneFileLoginApplication
                     echo "User database Dir: " .  $datadir;
                             echo '<br>';
                     echo "User database file: " . $dbfile;
-
                 echo "</div>";
 
             }
