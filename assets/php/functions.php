@@ -209,9 +209,13 @@ $ramPercent = round(($usedRam / $totalRam) * 100);
  ////// HD1 ///////
 
     global $disk1;
-    $disk1 = $jsonsite['disk1'];
 
-    $freeHD1 = getHDFree1();
+    if(isset($jsonsite['disk1'])) {
+
+        $disk1 = $jsonsite['disk1'];
+
+        $freeHD1 = getHDFree1();
+    }
 
 function getHDFree1() {
     
@@ -234,6 +238,8 @@ function getHDFree1() {
     $hdok = $jsonsite['hdok'];
     $hdwarn = $jsonsite['hdwarn'];
 
+    if (isset($disk1)) {
+
         if ($freeHD1 < $hdok) {
                 $hdClass1 = 'success';
         } elseif (($freeHD1 >= $hdok) && ($freeHD1 < $hdwarn)) {
@@ -241,14 +247,19 @@ function getHDFree1() {
         } else {
                 $hdClass1 = 'danger';
         }
+    }
 
 
 ////// HD2 ///////
 
     global $disk2;
-    $disk2 = $jsonsite['disk2'];
 
-    $freeHD2 = getHDFree2();
+    if(isset($jsonsite['disk2'])) {
+
+        $disk2 = $jsonsite['disk2'];
+
+        $freeHD2 = getHDFree2();
+    }
 
 function getHDFree2() {
 
@@ -272,6 +283,7 @@ function getHDFree2() {
     $hdok = $jsonsite['hdok'];
     $hdwarn = $jsonsite['hdwarn'];
 
+    if (isset($disk2)) {
 
         if ($freeHD2 < $hdok) {
                 $hdClass2 = 'success';
@@ -280,14 +292,19 @@ function getHDFree2() {
         } else {
                 $hdClass2 = 'danger';
         }
+    }
 
         
 ////// HD3 ///////
 
     global $disk3;
-    $disk3 = $jsonsite['disk3'];
 
-    $freeHD3 = getHDFree3();
+    if(isset($jsonsite['disk3'])) {
+
+        $disk3 = $jsonsite['disk3'];
+
+        $freeHD3 = getHDFree3();
+    }
 
 function getHDFree3() {
 
@@ -312,6 +329,8 @@ function getHDFree3() {
     $hdwarn = $jsonsite['hdwarn'];
 
 
+    if (isset($disk3)) {
+
         if ($freeHD3 < $hdok) {
                 $hdClass3 = 'success';
         } elseif (($freeHD3 >= $hdok) && ($freeHD3 < $hdwarn)) {
@@ -319,6 +338,7 @@ function getHDFree3() {
         } else {
                 $hdClass3 = 'danger';
         }
+    }
 
 
 //uptime
