@@ -1,10 +1,50 @@
 
 <?php
 
-   $str =  json_encode( $_POST, true );
+        // remove all offline *.json files from log dir: // CHANGE ME //
+
+        // if navigated to this page manually will write blank data to json file thus erasing all services settings.
+        // how to prevent???  // CHANGE ME
+        //  move this to it's own PHP file??
+
+    $files = glob("../data/logs/*.json");
+
+    if (!empty($files)) {
+
+        // $current = isset($_POST['current']) ? $_POST['current'] : -1;
+        // $next = array_key_exists($current + 1, $files) ? $current + 1 : 0;
+        // $next = array_key_exists($current + 1, $files) ? $current + 1 : 0;
+	    // $file = $files[$next];
+
+        // unlink($file);
+
+        foreach($files as $file){ // iterate files in logs dir
+
+            if(is_file($file)) {
+
+                //delete all files in logs dir:
+
+                if(!unlink($file)) {
+
+                    echo "<script type='text/javascript'>";
+                        echo "console.log('ERROR: Failed to remove offline log file: " . $file .  "');";
+                    echo "</script>";
+                }
+
+                else {
+
+                    echo "<script type='text/javascript'>";
+                        echo "console.log('Removed offline log file: " . $file .  "');";
+                    echo "</script>";
+                }
+            }
+        }
+    }
+
+
+    $str =  json_encode( $_POST, true );
 
     $myServices = json_decode( $str, true);
-
       
         $iterator = new RecursiveArrayIterator($myServices);
 
