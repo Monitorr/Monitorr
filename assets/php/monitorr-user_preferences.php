@@ -980,6 +980,7 @@ class OneFileLoginApplication
                                 $.when($.get("../data/css/custom.css"))
                                 .done(function(response) {
                                     cssEditor.getSession().setValue(response);
+                                    console.log('Loaded custom CSS form.');
                                 });
                             },
                         });
