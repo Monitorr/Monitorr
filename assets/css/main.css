@@ -151,16 +151,10 @@
 
     h1,
     h2,
-    h3
+    h3,
     h5 {
         font-family: 'Lato', sans-serif;
         color: transparent;
-    }
-
-    h6 {
-        font-family: 'Lato', sans-serif;
-        font-weight: 300;
-        color: white;
     }
 
     h1 {
@@ -177,6 +171,12 @@
         color: #FFFFFF;
         font-size: 20px;
         font-weight: 500;
+    }
+
+    h6 {
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        color: white;
     }
 
     #datdirerror {
@@ -203,6 +203,16 @@
     span {
         cursor: pointer;
     }
+
+    .bold {
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
     /* Links */
 
     a {
@@ -2238,7 +2248,6 @@
         cursor: pointer;
     }
 
-
     #blank {
         color: #3d3d3d;
         font-size: .5rem;
@@ -2278,7 +2287,7 @@
 
     #versionHistory {
         margin: 1rem;
-        padding-left: 0;
+        padding-left: 1rem;
         background-color: inherit;
         font-size: 1rem;
         color: white;
@@ -2286,11 +2295,9 @@
     }
 
     #releaseWrapper {
+        max-width: 100rem;
+        margin: auto;
         background-color: #3d3d3d;
-    }
-
-    .timeline-container {
-        padding-left: .25rem;
     }
 
     .releaseHeader {
@@ -2300,24 +2307,42 @@
         font-size: 2rem;
         font-weight: 700;
         text-shadow: 0.1rem 0.1rem black;
+        cursor: default;
     }
 
-    .cbp_tmtime {
+    .releaseName {
+        display: block;
+        font-size: 1.5rem;
+        color: white;
+        font-weight: 600;
+        cursor: default;
+    }
+
+    .releasetime {
         display: block;
         margin-bottom: 1rem;
         font-style: italic;
+        cursor: default;
     }
 
     .releaseBody {
         padding-left: 1rem;
-        white-space: pre-wrap;
     }
 
-    #releasehr {
+    .releasehr {
         color: #555;
         border-color: #555;
         background-color: #555;
         box-shadow: 0.05rem 0.05rem black;
+    }
+
+    .releaselink {
+        font-weight: 600;
+    }
+
+    .releaselink:hover {
+        color: #ffffff;
+        text-shadow: 0 0 1rem #FF0104;
     }
 
     .php {
@@ -2505,9 +2530,6 @@
     }
 
     #centerbottom {
-        /* width: inherit; */
-        /* position: fixed; */
-        /* left: 45%; */
         margin-top: 1rem;
         padding-left: 15%;
     }

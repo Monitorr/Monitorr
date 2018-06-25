@@ -411,24 +411,24 @@ class OneFileLoginApplication
                 color: white;
             }
 
-            body::-webkit-scrollbar {
-                width: 10px;
+/*             body::-webkit-scrollbar {
+                width: .75rem;
                 background-color: #252525;
             }
 
             body::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
                 background-color: #252525;
             }
 
             body::-webkit-scrollbar-thumb {
-                border-radius: 10px;
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
                 background-color: #8E8B8B;
-            }
+            } */
 
             body.offline #link-bar {
                 display: none;
@@ -523,7 +523,6 @@ class OneFileLoginApplication
             .pace-inactive {
                 display: block !important;
             }
-
 
         </style>
 
@@ -1317,6 +1316,25 @@ $application = new OneFileLoginApplication();
                 color: white;
             }
 
+            body::-webkit-scrollbar {
+                width: .75rem;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            }
+            
             .wrapper {
                 width: 30rem;
                 margin-left: auto;
