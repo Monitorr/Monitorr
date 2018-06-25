@@ -1,715 +1,119 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<html lang="en">
+
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Release Notes</title>
-        <meta name="description" content="Release Notes">
-        <meta name="viewport" content="width=device-width">
+        <title> Monitorr | Releases </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <link type="text/css" href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" href="assets/css/main.css" rel="stylesheet">
+        <link type="text/css" href="assets/data/css/custom.css" rel="stylesheet">
+
+        <meta name="theme-color" content="#464646" />
+        <meta name="theme_color" content="#464646" />
+
         <style>
-			body {
-				font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, 'Lucida Grande', sans-serif;;
-				line-height: 1.5em;
-				color: #333;
-				background: #eee;
-			}
 
- 			:root { 
-				font-size: .65rem !important; 
-			}
+            body {
+                margin: auto;
+                margin-top: 1rem;
+                background-color: #3d3d3d;
+                color: white;
+            }
 
-			.container {
-				margin: 0 auto;
-				width: 100%;
-			}
+            body::-webkit-scrollbar {
+                width: .75rem;
+                background-color: #252525;
+            }
 
-			.title {
-				text-align: center;
-				margin: 4em 0 4em 0;
-				background: #eee;
-			}
-			.title h1 {
-				font-size: 4em;
-				font-weight: bold;
-				margin-bottom: 0;
-				letter-spacing: -.05em;
-				margin-top: .3em;
-			}
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
+                background-color: #252525;
+            }
 
-			.author {
-				color: #74BCBC;
-			}
-			.category {
-				margin: 2em 0;
-				overflow: auto;
-			}
-			.category h2 {
-				font-size: 1.4em;
-				margin-bottom: 0em;
-			}
-			.category .date {
-				font-size: .8em;
-				color: #666;
-			}
-			.category .commit {
-				margin-top: 0em;
-			}
-			.summary {
-				margin-bottom: 0;
-			}
-			.commit {
-				padding: 1px 1em;
-				color: white;
-				background: #333;
-				margin: 2em 0;
-			}
-			.commit h2 {
-				font-size: 1em;
-			}
-			.commit pre {
-				padding-left: 2em;
-			}
+            body::-webkit-scrollbar-thumb {
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            }
+
+            .pace .pace-progress {
+                box-shadow: .1rem .1rem .2rem rgb(15, 15, 15);
+            }
+            
         </style>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/pace.js" async></script>
+
+        <script>
+            function checkGithub() {
+                console.log("Retrieving Monitorr release info from GH.");
+                $.ajax({
+                    type: "GET",
+                    url: "https://api.github.com/repos/monitorr/monitorr/releases",
+                    dataType: "json",
+                    success: function(github) {
+                        infoTabVersionHistory = $('#about').find('#versionHistory');
+                        $.each(github, function(i,v) {
+                            if(i === 0){
+                                //console.log(v.tag_name);
+                                githubVersion = v.tag_name;
+                                githubDescription = v.body;
+                                githubName = v.name;
+                            }
+                            var body = v.body.replace(/\n/g, '<br />'); //convert line breaks
+                            body = body.replace(/\*\*\*(.*)\*\*\*/g, '<em class="bold italic">$1</em>'); // convert bold italic text
+                            body = body.replace(/\*\*(.*)\*\*/g, '<em class="bold">$1</em>'); // convert bold italic text
+                            body = body.replace(/\*(.*)\*/g, '<em class="italic">$1</em>'); // convert bold italic text
+                            body = body.replace(/\[(.*)\]\((http.*)\)/g, '<a class="releaselink" href=$2 target="_blank" title="$1">$1</a>'); // convert links with titles
+                            body = body.replace(/(https:\/\/github.com\/Monitorr\/Monitorr\/issues\/(\d*))/g, '<a class="releaselink" href="$1" title="GitHub Issue" target="_blank">#$2</a>'); // convert issue links
+                            body = body.replace(/\s(https?:\/\/?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|])/g, '<a class="releaselink" href="$1" target="_blank">$1</a>'); // convert normal links
+                            $(infoTabVersionHistory).append(
+                                '<li style="display: none">' +
+                                    '<div class="github-item">' +
+                                        '<h2 class="releaseName text-uppercase">' + v.name + '</h2>' +
+                                        '<time class="github-item-time" datetime="' + v.published_at + '">' +
+                                            '<span class="releasetime">Released on: ' + v.published_at.substring(0,10) + ' at ' + v.published_at.substring(11,19) + '</span>' +
+                                        '</time>' +
+                                        '<p class="releaseBody">' + body + '</p>' +
+                                    '</div>' +
+                                    '<hr class="releasehr"\>' +
+                                '</li>'
+                            );
+                            size_li = $("#versionHistory li");
+                            x=4; //show this many releases
+                            $('#versionHistory li:lt('+x+')').show();
+                        });
+                    }
+                });
+            }
+        </script>
+
     </head>
-    <body>
-    	<div class="container" role="main">
-    		<div class="header title">
-				<h1>Release Notes</h1>
-			</div>
-			<div class="category">
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 7 Jun 2018 09:53:44 -0700</span>
-					</p>
 
-					<div class="commit">
-						<h2>Update version.txt</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 7 Jun 2018 09:48:26 -0700</span>
-					</p>
+    <body onload="checkGithub()">
 
-					<div class="commit">
-						<h2>HOTFIX: input field submit change. See: https://github.com/Monitorr/Monitorr/issues/167</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 7 Jun 2018 07:50:19 -0700</span>
-					</p>
+        <div id="releaseWrapper">
 
-					<div class="commit">
-						<h2>HOTFIX:  input field submit change</h2>
-						<pre>See https://github.com/Monitorr/Monitorr/issues/167 for more details.</pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 14 May 2018 03:28:55 -0700</span>
-					</p>
+            <h4 class="releaseHeader"><a class="releaselink" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> Monitorr Release </a>Log:</h4>
 
-					<div class="commit">
-						<h2>fix: spelling</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 14 May 2018 03:27:59 -0700</span>
-					</p>
+            <div id="about">
+                <ul id="versionHistory"></ul>
+            </div>
 
-					<div class="commit">
-						<h2>FIX: spelling</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 14 May 2018 01:32:27 -0700</span>
-					</p>
+        </div>
 
-					<div class="commit">
-						<h2>update to 1.6.1m</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 14 May 2018 01:31:13 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update to 1.6.2d</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 14 May 2018 01:04:58 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>add master target branch</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">jonfinley</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 23:48:43 -0400</span>
-					</p>
-
-					<div class="commit">
-						<h2>add unraid</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">jonfinley</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 23:48:38 -0400</span>
-					</p>
-
-					<div class="commit">
-						<h2>add pihole</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 10:43:21 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>update to 1.6.0d</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 10:39:41 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add: PW compatibility for PHP 5.x</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 10:38:31 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add: PW compatibility for PHP 5.x</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 10:37:40 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add: PW compatibility for PHP 5.x</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 10:36:02 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add: PW compatibility for PHP 5.x</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 10:34:44 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add: PW compatibility for PHP 5.x</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 10 May 2018 10:25:41 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add:  PW compatibility for PHP5.x</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Wed, 9 May 2018 03:37:38 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>update to 1.5.9d</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Wed, 9 May 2018 03:26:47 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update README.md</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:50:27 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>add: loading indicator</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:49:52 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Remove temporary code</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:49:08 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update upload.php</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:48:45 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add: Tool tips</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:48:02 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>code maintenance</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:47:18 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add: loading indicator</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:46:35 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>code maintenance</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:45:42 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>add: Loading indicators</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:44:52 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update: Pace.js to 1.0.2</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:43:58 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>change: wording</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:42:22 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Add: loading indicators</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:40:29 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>ADD: custom fields to settings form</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:39:16 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>fix: added site title max length</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 7 May 2018 10:38:30 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>FIX: added service title max length</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 3 May 2018 04:34:41 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>FIX: convert uppercase characters in file to lowercase</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 3 May 2018 04:33:56 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>FIX: convert uppercase characters in file to lowercase</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Tue, 1 May 2018 01:30:13 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>add: Image upload function</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 26 Apr 2018 21:42:44 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update settings.php</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 26 Apr 2018 21:41:43 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update index.min.php</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 26 Apr 2018 21:38:39 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update custom.css</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Thu, 26 Apr 2018 21:35:39 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update main.css</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Tue, 24 Apr 2018 15:55:57 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update monitorr-user_preferences.php</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Tue, 24 Apr 2018 15:52:42 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update monitorr-services_settings.php</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Tue, 24 Apr 2018 15:48:53 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update two-column-layout-template-user-preferences.html</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Tue, 24 Apr 2018 15:48:26 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update two-column-layout-template.html</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Tue, 24 Apr 2018 15:47:51 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update main.css</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 23 Apr 2018 19:53:56 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update monitorr-user_preferences.php</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 23 Apr 2018 19:53:27 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update monitorr-services_settings.php</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Mon, 23 Apr 2018 19:52:21 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update main.css</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Sun, 22 Apr 2018 08:02:01 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>change: label for custom css editor</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Sun, 22 Apr 2018 08:01:07 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>change: adjusted custom css editor</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Fri, 20 Apr 2018 02:29:57 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>update to 1.5.6d</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Fri, 20 Apr 2018 02:17:55 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update version.txt</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Sean Vreeland</span>
-						committed on
-						<span class="date">Fri, 20 Apr 2018 02:11:56 -0700</span>
-					</p>
-
-					<div class="commit">
-						<h2>Update user_preferences-data_default.json</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Rob Gökemeijer</span>
-						committed on
-						<span class="date">Fri, 20 Apr 2018 00:20:38 +0200</span>
-					</p>
-
-					<div class="commit">
-						<h2>Remove old location custom.css</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Rob Gökemeijer</span>
-						committed on
-						<span class="date">Fri, 20 Apr 2018 00:20:08 +0200</span>
-					</p>
-
-					<div class="commit">
-						<h2>Git ignore custom.css</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Rob Gökemeijer</span>
-						committed on
-						<span class="date">Fri, 20 Apr 2018 00:19:32 +0200</span>
-					</p>
-
-					<div class="commit">
-						<h2>Requested changes to Custom CSS</h2>
-						<pre></pre>
-					</div>
-				
-					<p class="summary">
-						<span class="author">Rob Gökemeijer</span>
-						committed on
-						<span class="date">Thu, 19 Apr 2018 01:15:40 +0200</span>
-					</p>
-
-					<div class="commit">
-						<h2>Custom CSS</h2>
-						<pre></pre>
-					</div>
-				
-			</div>
-		</div>
     </body>
+
 </html>
+
+
+
 
