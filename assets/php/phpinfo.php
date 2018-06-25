@@ -3,6 +3,25 @@
 
     <style type="text/css">
 
+            body::-webkit-scrollbar {
+                width: .75rem;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            }
+
         #phpinfo { 
             font-size: .5rem !important; 
             cursor: default;
