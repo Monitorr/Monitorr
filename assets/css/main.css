@@ -2879,11 +2879,6 @@
     #footer.settings-footer {
         left: 0;
         right: 0;
-        margin-left: -10rem;
-    }
-
-    .navbar-brand.settings-brand {
-        margin-left: -19rem;
     }
 
     .footer {
