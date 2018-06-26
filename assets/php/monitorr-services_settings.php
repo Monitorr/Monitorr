@@ -549,7 +549,7 @@ class OneFileLoginApplication
         </script>
 
         <div id="centertext">
-            <div class="navbar-brand">
+            <div class="navbar-brand settings-brand">
                 Services Configuration
             </div>
         </div>
@@ -687,7 +687,7 @@ class OneFileLoginApplication
 
                                         span.onclick = function() {
                                             modal.style.display = "none";
-                                        }
+                                        };
 
                                         window.onclick = function(event) {
                                             if (event.target == modal) {
@@ -792,14 +792,14 @@ class OneFileLoginApplication
                                             span.onclick = function() {
                                                 modal.style.display = "none";
                                                 $('#mymodal2').empty();
-                                            }
+                                            };
 
                                             window.onclick = function(event) {
                                                 if (event.target == modal) {
                                                     modal.style.display = "none";
                                                     $('#mymodal2').empty();
                                                 }
-                                            }
+                                            };
                                             $('.alpaca-form-button-submit').addClass('buttonchange');
                                         }
                                     },
@@ -974,7 +974,7 @@ class OneFileLoginApplication
                                                 error: function(errorThrown){
                                                     console.log(errorThrown);
                                                 }
-                                            },)
+                                            },);
                                             $('.alpaca-form-button-submit').removeClass('buttonchange');
                                         }
                                     },
@@ -1177,7 +1177,7 @@ class OneFileLoginApplication
 
             </script>
 
-        <div id="footer">
+        <div id="footer" class="settings-footer">
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 

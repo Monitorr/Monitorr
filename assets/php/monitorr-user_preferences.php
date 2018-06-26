@@ -471,7 +471,7 @@ class OneFileLoginApplication
         <p id="response"></p>
 
         <div id="centertext">
-            <div class="navbar-brand">
+            <div class="navbar-brand settings-brand">
                 User Preferences
             </div>
         </div>
@@ -951,8 +951,7 @@ class OneFileLoginApplication
                                         control.form.getButtonEl('submit').click();
                                         return false;
                                     });
-                                };
-
+                                }
                                 cssEditor = ace.edit("customCSSEditor");
                                 cssEditor.getSession().setMode("ace/mode/css");
                                 cssEditor.setTheme("ace/theme/idle_fingers");
@@ -970,7 +969,7 @@ class OneFileLoginApplication
 
         </div>
 
-        <div id="footer">
+        <div id="footer" class="settings-footer">
 
             <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a>
 

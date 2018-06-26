@@ -8,7 +8,7 @@ $(document).ready(function(){
 		$.ajax({
 		   beforeSend: function(){
 			   console.log('Monitorr is checking for an application update.');
-			   $('#version_check_auto').html('<img src="assets/img/loader.gif" width="16" height="16" />');
+			   $('#version_check_auto').html('<img src="assets/icons/loader.gif" width="16" height="16" />');
 		   },
 		   type: "POST",
 		   url: "assets/php/version_check.php",

@@ -7,7 +7,7 @@ $(document).ready(function(){
 		var info = "uid="+uid+"&vcheck=1";
 		$.ajax({
 		   beforeSend: function(){
-			   $('#version_check_auto').html('<img src="../img/loader.gif" width="16" height="16" />');
+			   $('#version_check_auto').html('<img src="../icons/loader.gif" width="16" height="16" />');
 			   console.log('Monitorr is checking for an application update.');
 		   },
 		   type: "POST",

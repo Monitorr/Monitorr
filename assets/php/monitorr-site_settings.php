@@ -466,7 +466,7 @@ class OneFileLoginApplication
         <p id="response"></p>
 
         <div id="centertext">
-            <div class="navbar-brand">
+            <div class="navbar-brand settings-brand">
                 Monitorr Settings
             </div>
         </div>
@@ -1380,7 +1380,7 @@ class OneFileLoginApplication
             </table>
         </div>
 
-        <div id="footer">
+        <div id="footer" class="settings-footer">
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
