@@ -28,7 +28,6 @@
 **Features in development:**
 
 - Option to choose which HD is used for system stats
-
 - Alerting
 
 
