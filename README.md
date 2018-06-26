@@ -61,12 +61,11 @@
 
 - See full configuration instructions in the WiKi: https://github.com/Monitorr/Monitorr/wiki
 
-1) Clone/download repository to your webserver
-2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
-3) Browse to <localhost\domain>/monitorr/index.php
-4) Establish data directory, and user database.
-5) Configure Monitorr
-6) Chill
+1) Clone/download the Monitorr repository to your webserver. (Docker image available here: [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) )
+2) Browse to: _[localhost\domain]/monitorr/index.php_
+3) Establish data directory, and user database via secure registration tool.
+4) Log in and configure Monitorr via secure settings UI.
+5) Chill
 
 
 ## Feature Requests:
