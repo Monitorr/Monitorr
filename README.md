@@ -44,7 +44,7 @@
 
 ### Mobile:
 
-![Monitorr Mobile SS](https://i.imgur.com/RKp2yiZ.jpg?1)
+![Monitorr Mobile SS](https://i.imgur.com/JLANkme.jpg?3)
 
 
 ## Prerequisites:
