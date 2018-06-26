@@ -5,7 +5,7 @@ if [[ ! -d /config/www/monitorr/.git ]]; then
   echo '-----------------------'
   echo '| Installing Monitorr |'
   echo '-----------------------'
-  git clone -b docker-alpha --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
+  git clone -b docker-develop --single-branch https://github.com/Monitorr/monitorr.git /config/www/monitorr
 elif [[ -d /config/www/monitorr/.git ]]; then
   echo '---------------------'
   echo '| Updating Monitorr |'
