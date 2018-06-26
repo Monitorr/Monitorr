@@ -26,13 +26,15 @@
 - User customizable system threshold colors
 
 **Features in development:**
+
 - Option to choose which HD is used for system stats
+
 - Alerting
 
 
 ## Screenshots:
 
-![](https://i.imgur.com/h8S1976.png)
+![Monitorr Screenshot](https://i.imgur.com/h8S1976.png)
 <img src="https://i.imgur.com/SwevXaG.png" width="46%"> <img src="https://i.imgur.com/eCyidGT.png" width="51%">
 <img src="https://i.imgur.com/ejNyp3j.jpg" width="32%">  <img src="https://i.imgur.com/btxGuuo.png" width="32%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="32%"> 
 
@@ -40,7 +42,7 @@
 
 ### Mobile:
 
-![](https://i.imgur.com/RKp2yiZ.jpg?1)
+![Monitorr Mobile SS](https://i.imgur.com/RKp2yiZ.jpg?1)
 
 
 ## Prerequisites:
@@ -62,6 +64,7 @@
 ## Quick Start:
 
 - See full configuration instructions in the WiKi: https://github.com/Monitorr/Monitorr/wiki
+
 1) Clone/download repository to your webserver
 2) Make sure the user account that runs your webserver has RW access to the monitorr folder (eg. for linux it's usually www-data:www-data) - this is for updates to work properly.
 3) Browse to <localhost\domain>/monitorr/index.php
