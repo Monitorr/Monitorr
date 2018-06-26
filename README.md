@@ -38,7 +38,6 @@
 <img src="https://i.imgur.com/ejNyp3j.jpg" width="32%">  <img src="https://i.imgur.com/btxGuuo.png" width="32%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="32%"> 
 
 
-
 ### Mobile:
 
 ![Monitorr Mobile SS](https://i.imgur.com/RKp2yiZ.jpg?1)
@@ -52,12 +51,6 @@
 4) [PHP PDO](http://php.net/manual/en/book.pdo.php)
 5) [SQLite](https://www.sqlite.org/index.html)
 6) [GIT](https://git-scm.com/download/win) (Recommended for Windows hosts (see wiki)
-
-## Libraries used in this project:
-
-- [Alpaca](https://github.com/gitana/alpaca/)
-- [PHP Login](https://github.com/panique/php-login-one-file)
-- [Form Validation](https://github.com/DrRoach/FormValidation)
 
 
 ## Quick Start:
@@ -91,11 +84,13 @@
 
 - Check out our sister app **Logarr**:  https://github.com/Monitorr/Logarr
 
+
 ## About Us:
 
 - [seanvree](https://github.com/seanvree) (Windows Wizard)
 - [jonfinley](https://github.com/jonfinley) (Linux Dude)
 - [wjbeckett](https://github.com/wjbeckett)
+
 
 ## Credits:
 
@@ -103,3 +98,12 @@
 - [Roxedux](https://github.com/si0972)
 - [christronyxyocum](https://github.com/christronyxyocum)
 - [rob1998](https://github.com/rob1998)
+
+
+## Libraries used in this project:
+
+- [Alpaca](https://github.com/gitana/alpaca/)
+- [PHP Login](https://github.com/panique/php-login-one-file)
+- [ACE](https://github.com/ajaxorg/ace)
+- [PACE](https://github.com/HubSpot/pace)
+- [Form Validation](https://github.com/DrRoach/FormValidation)
