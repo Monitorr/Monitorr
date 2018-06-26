@@ -12,28 +12,31 @@
 
 ## Features:
 
-**Latest major change:** Custom CSS / Image upload function.
+**Latest major change:** Multi HD display / Service ping response time display
 
 - LIVE! (w/ option to pause live updating)
-- Self-hosted
-- Monitor any app on any domain (Curl as primary check, fsockopen as fallback)
-- Responsive mobile display
-- Integrated settings page w/ authentication (NEW)
-- Host system resources display (CPU, MEM, HD, PING, Uptime)
-- Server DTG data
-- Update Monitorr via web UI / branch switching w/ update notification
-- Minimal UI for iFrame displays (See [WIKI](https://github.com/Monitorr/Monitorr/wiki/05-Integration:--Organizr))
-- User customizable system threshold colors
+- Self-hosted.
+- Monitor any app/service on any domain (Curl as primary check, fsockopen as fallback).
+- Service ping response time display. (NEW)
+- Responsive mobile display.
+- Integrated settings page w/ authentication.
+- Host system resources display (CPU, MEM, HD, PING, Uptime) (UPDATED)
+- User customizable system threshold colors.
+- Custom CSS tool. (NEW)
+- Server DTG data. (UPDATED)
+- Update tool via web UI / branch switching w/ update notification.
+- Minimal UI for iFrame displays. (See: [WIKI](https://github.com/Monitorr/Monitorr/wiki/05-Integration:--Organizr))
+
 
 **Features in development:**
 
-- Option to choose which HD is used for system stats
-- Alerting
+- Python daemon (See: [Features 160](https://github.com/Monitorr/Monitorr/issues/160))
+- Alerting (E-Mail, text, etc) (See: [Features 126](https://github.com/Monitorr/Monitorr/issues/126))
 
 
 ## Screenshots:
 
-![Monitorr Screenshot](https://i.imgur.com/h8S1976.png)
+![Monitorr Screenshot](https://i.imgur.com/2wGLfLp.png)
 <img src="https://i.imgur.com/SwevXaG.png" width="46%"> <img src="https://i.imgur.com/eCyidGT.png" width="51%">
 <img src="https://i.imgur.com/ejNyp3j.jpg" width="32%">  <img src="https://i.imgur.com/btxGuuo.png" width="32%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="32%"> 
 
