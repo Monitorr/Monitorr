@@ -38,13 +38,13 @@
 ## Screenshots:
 
 ![Monitorr Screenshot](https://i.imgur.com/2wGLfLp.png)
-<img src="https://i.imgur.com/SwevXaG.png" width="46%"> <img src="https://i.imgur.com/eCyidGT.png" width="51%">
-<img src="https://i.imgur.com/ejNyp3j.jpg" width="32%">  <img src="https://i.imgur.com/btxGuuo.png" width="32%"> <img src="https://i.imgur.com/YQV6FEJ.png" width="32%"> 
+<img src="https://i.imgur.com/UxDNcct.jpg?1" width="48%"> <img src="https://i.imgur.com/0smwRRu.jpg?1" width="50%">
+<img src="https://i.imgur.com/BpBplql.png?1" width="32%">  <img src="https://i.imgur.com/PWWpDkn.jpg?1" width="32%"> <img src="https://i.imgur.com/Mnu0QJg.png?1" width="32%"> 
 
 
 ### Mobile:
 
-![Monitorr Mobile SS](https://i.imgur.com/RKp2yiZ.jpg?1)
+![Monitorr Mobile SS](https://i.imgur.com/JLANkme.jpg?3)
 
 
 ## Prerequisites:
