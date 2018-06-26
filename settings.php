@@ -2,7 +2,7 @@
 <html lang="en">
 
     <!--
-         Monitorr | settings page
+         Monitorr | Settings page
     https://github.com/Monitorr/Monitorr
     -->
 
@@ -36,7 +36,6 @@
                 padding-bottom: 1rem;
                 /* overflow-y: scroll !important;  */
                 overflow-x: hidden !important;
-                /* color: white !important; */
                 background-color: #1F1F1F;
             }
 
@@ -46,12 +45,15 @@
             }
 
             #summary {
-                margin-top: 0rem !important;
-                width: 17rem !important;
                 position: relative !important;
+                margin: auto;
+                margin-top: 0rem !important;
                 margin-bottom: 1rem;
+                width: 16.5rem !important;
                 font-size: .8rem;
                 line-height: 1.5rem;
+                border-radius: .2rem;
+                box-shadow: 3px 3px 3px black !important;
             }
 
             legend {
@@ -59,21 +61,21 @@
             }
 
             body::-webkit-scrollbar {
-                width: 10px;
+                width: .75rem;
                 background-color: #252525;
             }
 
             body::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
                 background-color: #252525;
             }
 
             body::-webkit-scrollbar-thumb {
-                border-radius: 10px;
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
                 background-color: #8E8B8B;
             }
 
@@ -90,7 +92,6 @@
             }
 
             #left {
-                /* padding-top: 5rem; */
                 padding-bottom: 1.5rem !important;
             }
 
@@ -99,34 +100,11 @@
                 bottom: 0 !important;
             }
 
-            a:link{
+            a:link {
                 background-color: transparent !important;
             }
 
         </style>
-
-                <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
-
-            <?php
-
-                $oldfile = 'assets/config/datadir.json';
-                $newfile = 'assets/data/datadir.json';
-
-                if(!is_file($newfile)){
-
-                    if (!copy($oldfile, $newfile)) {
-                        // echo "failed to copy $oldfile...\n";
-                    }
-
-                    else {
-                        rename($oldfile, 'assets/config/datadir.json.old');
-                    }
-                }
-
-                else {
-
-                }
-            ?>
 
         <?php
 
@@ -159,7 +137,6 @@
 
                 $rftime = $jsonsite['rftime'];
             }
-
         ?>
 
         <?php
@@ -177,11 +154,76 @@
             | Settings
         </title>
 
-        <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
-
+             <!-- Clock functions: -->
         <script>
 
+	        <?php
+                //initial values for clock:
+                $timezone = $jsonusers['timezone'];
+                $dt = new DateTime("now", new DateTimeZone("$timezone"));
+                $timeStandard = (int)($jsonusers['timestandard'] === "True" ? true : false);
+                $timezone_suffix = '';
+                if (!$timeStandard) {
+                    $dateTime = new DateTime();
+                    $dateTime->setTimeZone(new DateTimeZone($timezone));
+                    $timezone_suffix = $dateTime->format('T');
+                }
+                $serverTime = $dt->format("D d M Y H:i:s");
+	        ?>
+
+            var nIntervId3;
+            var onload;
+
+            var serverTime = "<?php echo $serverTime;?>";
+            var timestandard = <?php echo $timeStandard;?>;
+            var timeZone = "<?php echo $timezone_suffix;?>";
+            var rftime = <?php echo $jsonsite['rftime'];?>;
+
+            function updateTime() {
+                setInterval(function() {
+                    var timeString = date.toLocaleString('en-US', {hour12: timestandard, weekday: 'short', year: 'numeric', day: '2-digit', month: 'short', hour:'2-digit', minute:'2-digit', second:'2-digit'}).toString();
+                    var res = timeString.split(",");
+                    var time = res[3];
+                    var dateString = res[0]+' | '+res[1].split(" ")[2]+" "+res[1].split(" ")[1]+'<br>'+res[2];
+                    var data = '<div class="dtg">' + time + ' ' + timeZone + '</div>';
+                    data+= '<div id="line">__________</div>';
+                    data+= '<div class="date">' + dateString + '</div>';
+                    $("#timer").html(data);
+                }, 1000);
+            }
+
+                // update UI clock with server time:
+
+            function syncServerTime() {
+                console.log('Monitorr time update START | Interval: '+ rftime +' ms');
+                $.ajax({
+                    url: "assets/php/timestamp.php",
+                    type: "GET",
+                    timeout: 4000,
+                    success: function (response) {
+                        var response = $.parseJSON(response);
+                        serverTime = response.serverTime;
+                        timestandard = parseInt(response.timestandard);
+                        timeZone = response.timezoneSuffix;
+                        rftime = parseInt(response.rftime);
+                        date = new Date(serverTime);
+                        //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
+                    },
+                    error: function(x, t, m) {
+                        if(t==="timeout") {
+                            console.log("ERROR: timestamp timeout");
+                            $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                        } else {
+                        }
+                    }
+                });
+            }
+
             $(document).ready(function() {
+                syncServerTime(); 
+                updateTime();
+
+                    // sync UI clock with server time:
                 function update() {
 
                     rftime =
@@ -190,110 +232,150 @@
                             echo $rftime;
                         ?>
 
-                    $.ajax({
-                    type: 'POST',
-                    url: 'assets/php/timestamp.php',
-                    timeout: 5000,
-                    success: function(data) {
-                        $("#timer").html(data);
-                        window.setTimeout(update, rftime);
-                        }
-                    });
+                    nIntervId3 = setInterval(syncServerTime, rftime); //delay is rftime
                 }
                 update();
             });
 
         </script>
 
-        <script>
-
-            $timezone =
-                "<?php
-                    $timezone = $jsonusers['timezone'];
-                    echo $timezone;
-                ?>";
-
-            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
-
-            $servertimezone = "<?php echo "$timezone"; ?>";
-
-            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
-
-            var servertimezone = $servertimezone;
-
-            var servertime = $dt;
-
-        </script>
-
         <script src="assets/js/clock.js" async></script>
-
+        
+            <!-- marquee offline function: -->
         <script>
 
-             var nIntervId2;
-             var onload;
+            var nIntervId2;
+            var onload;
+            var current = -1;
 
-            $(document).ready(function() {
+            function updateSummary() {
 
-                var current = -1;
+                 console.log('Service offline check START');
 
-                function updateSummary() {
+                rfsysinfo =
+                    <?php
+                        $rfsysinfo = $jsonsite['rfsysinfo'];
+                        echo $rfsysinfo;
+                    ?>
 
-                    rfsysinfo =
-                        <?php
-                            $rfsysinfo = $jsonsite['rfsysinfo'];
-                            echo $rfsysinfo;
-                        ?>
+                $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/marquee.php',
+                    data: {
+                        current: current
+                    },
 
-                    $.ajax({
-                        type: 'POST',
-                        url: 'assets/php/marquee.php',
-                        data: {
-                            current: current
-                        },
-
-                        timeout: 4000,
-                        success: function(data) {
-                            if(data){
-                                result = $.parseJSON(data);
-                                console.log(result);
-                                $("#summary").fadeOut(function() {
-                                    $(this).html(result[0]).fadeIn();
-                                });
-                                current = result[1];
-                            }
-
-                            else {
-                                current = -1;
-                                $("#summary").hide();
-                            }
-
-                            window.setTimeout(updateSummary, 5000);
-                            //window.setTimeout(updateSummary, rfsysinfo);
+                    timeout: 4000,
+                    success: function(data) {
+                        if(data){
+                            result = $.parseJSON(data);
+                            console.log(result);
+                            $("#summary").fadeOut(function() {
+                                $(this).html(result[0]).fadeIn();
+                            });
+                            current = result[1];
                         }
-                    });
-                }
 
-                updateSummary();
-           });
+                        else {
+                            current = -1;
+                            $("#summary").hide();
+                        }
+                        //window.setTimeout(updateSummary, 5000);
+                        window.setTimeout(updateSummary, rfsysinfo);
+                    },
+                    error: function(x, t, m) {
+                        if(t==="timeout") {
+                            //alert("ERROR: marquee timeout");
+                            console.log("ERROR: marquee timeout");
+                            $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                        } else {
+                        }
+                    }
+                });
+            }
 
         </script>
 
-         <script>
+            <!-- Load monitorr-info frame on settings page onload: -->
+        <script>
             $(function() {
                 document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
             });
+        </script>
+
+        <script>
+
+            var nIntervId2;
+            var onload;
+            var current = -1;
+            
+            function updateSummaryManual() {
+
+                console.log('Service offline check START');
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/marquee.php',
+                    data: {
+                        current: current
+                    },
+
+                    timeout: 4000,
+                    success: function(data) {
+                        if(data){
+                            result = $.parseJSON(data);
+                            console.log(result);
+                            $("#summary").fadeOut(function() {
+                                $(this).html(result[0]).fadeIn();
+                            });
+                            current = result[1];
+                        }
+
+                        else {
+                            current = -1;
+                            $("#summary").hide();
+                        }
+                    },
+                    error: function(x, t, m) {
+                        if(t==="timeout") {
+                            //alert("ERROR: marquee timeout");
+                            console.log("ERROR: marquee timeout");
+                            $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                        } else {
+                        }
+                    }
+                });
+            }
+
+        </script>
+
+        <script>
+
+            $(document).ready(function() {
+                updateSummary();
+            });
+
         </script>
 
     </head>
 
     <body>
 
+            <!-- Fade-in effect: -->
         <script>
             document.body.className += ' fade-out';
             $(function() {
                 $('body').removeClass('fade-out'); 
             });
         </script>
+
+            <!-- Ajax timeout indicator: -->
+        <div id="ajaxtimeout">
+
+            <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
+            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+
+        </div>
 
         <div id ="settingscolumn" class="settingscolumn">
 
@@ -305,12 +387,14 @@
                 </div>
             </div>
 
+                <!-- Append marquee alert if service is down: -->
             <div id="summary"></div>
 
             <div id="left" class="Column">
                 <div id="clock">
                     <canvas id="canvas" width="120" height="120"></canvas>
-                    <div class="dtg" id="timer"></div>
+                    <!-- <div class="dtg" id="timer"></div> -->
+                    <div id="timer"></div>
                 </div>
             </div>
 
@@ -399,34 +483,44 @@
             <script>
                 function load_info() {
                     document.getElementById("includedContent").innerHTML='<object  type="text/html" class="object" data="assets/php/monitorr-info.php" ></object>';
+                    updateSummaryManual();
                 }
             </script>
 
             <script>
                 function load_preferences() {
                     document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-user_preferences.php" ></object>';
-                }
-            </script>
-
-            <script>
-                function load_style() {
-                    document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-custom_style.php" ></object>';
+                    updateSummaryManual();
                 }
             </script>
 
             <script>
                 function load_settings() {
                     document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-site_settings.php" ></object>';
+                    updateSummaryManual();
                 }
             </script>
 
             <script>
                 function load_services() {
                     document.getElementById("includedContent").innerHTML='<object type="text/html" class="object" data="assets/php/monitorr-services_settings.php" ></object>';
+                    updateSummaryManual();
                 }
             </script>
 
         </div>
+
+            <!-- Fire loop.php once on page load to get services status: -->
+        <script>
+
+            $(function() {
+                console.log('Service check START');
+                $("#serviceshidden").load('assets/php/loopsettings.php');
+            });
+
+        </script>
+
+        <div id="serviceshidden"></div>
 
     </body>
 

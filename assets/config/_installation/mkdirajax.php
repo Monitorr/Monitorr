@@ -1,31 +1,30 @@
 <?php
 
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-        echo '<div class="reglog">';
-            echo '<div id="loginmessage">';
-                echo '<br>';
-            
-                print_r('Form submitted:  create data directory: ');
-                var_dump($_POST['datadir']);
-                    echo "<br>";
-                print_r('Server received: create data directory:  ');
-                var_dump($_POST['datadir']);
-                    echo "<br>";
-                print_r('Server attempting to create data directory:  ');
-                var_dump($_POST['datadir']);
+    echo '<div class="reglog">';
+        echo '<div id="loginmessage">';
+            echo '<br>';
+        
+            print_r('Form submitted:  create data directory: ');
+            var_dump($_POST['datadir']);
+                echo "<br>";
+            print_r('Server received: create data directory:  ');
+            var_dump($_POST['datadir']);
+                echo "<br>";
+            print_r('Server attempting to create data directory:  ');
+            var_dump($_POST['datadir']);
 
-            echo '</div>';
         echo '</div>';
+    echo '</div>';
 
    // $post_data = $_POST['datadir'];
 
     $fp = fopen('../../data/datadir.json', 'w');
         fwrite($fp, json_encode($_POST));
     fclose($fp);
-
 
     $filename = file_get_contents('../../data/datadir.json');
 
@@ -293,29 +292,12 @@
                         echo '</div>'; 
 
 
-                            $datafail = '../../data/datadir.fail.txt';
+                        $datafail = '../../data/datadir.fail.txt';
 
-                            if(is_file($datafail)){
+                        if(is_file($datafail)){
 
-                                unlink('../../data/datadir.fail.txt');    
-                            } 
-                        
-
-                            // Temporary OLD config file removal // CHANGE ME //
-
-                        $fileold1 = '../../config.php.sample';
-
-                        if(is_file($fileold1)){
-
-                            rename('../../config.php.sample', '../../config.php.sample.old');      
-                        } 
-
-                        $fileold2 = '../../config.php';
-
-                        if(is_file($fileold2)){
-
-                            rename('../../config.php', '../../config.php.old');      
-                        } 
+                            unlink('../../data/datadir.fail.txt');    
+                        }
 
                     }
             }

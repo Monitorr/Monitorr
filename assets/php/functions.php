@@ -203,22 +203,124 @@ $ramPercent = round(($usedRam / $totalRam) * 100);
 
 
 
-
 // getHD function
 
- $freeHD = getHDFree();
 
-function getHDFree()
-{
+ ////// HD1 ///////
+
+    global $disk1;
+
+    if(isset($jsonsite['disk1'])) {
+
+        $disk1 = $jsonsite['disk1'];
+
+        $freeHD1 = getHDFree1();
+    }
+
+function getHDFree1() {
+    
+    global $disk1;
+
+    //hdd stat
+
+    $stat['hdd_free'] = round(disk_free_space($disk1) / 1024 / 1024 / 1024, 2);
+    
+    $stat['hdd_total'] = round(disk_total_space($disk1) / 1024 / 1024/ 1024, 2);
+
+    $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
+    $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
+    $stat['hdd_percent'];
+
+    return  $stat['hdd_percent'];
+}
+    // Dynamic icon colors for badges:
+
+    $hdok = $jsonsite['hdok'];
+    $hdwarn = $jsonsite['hdwarn'];
+
+    if (isset($disk1)) {
+
+        if ($freeHD1 < $hdok) {
+                $hdClass1 = 'success';
+        } elseif (($freeHD1 >= $hdok) && ($freeHD1 < $hdwarn)) {
+                $hdClass1 = 'warning';
+        } else {
+                $hdClass1 = 'danger';
+        }
+    }
+
+
+////// HD2 ///////
+
+    global $disk2;
+
+    if(isset($jsonsite['disk2'])) {
+
+        $disk2 = $jsonsite['disk2'];
+
+        $freeHD2 = getHDFree2();
+    }
+
+function getHDFree2() {
+
+    global $disk2;
+
         //hdd stat
-        $stat['hdd_free'] = round(disk_free_space("/") / 1024 / 1024 / 1024, 2);
-        $stat['hdd_total'] = round(disk_total_space("/") / 1024 / 1024/ 1024, 2);
+
+        $stat['hdd_free'] = round(disk_free_space($disk2) / 1024 / 1024 / 1024, 2);
+        
+        $stat['hdd_total'] = round(disk_total_space($disk2) / 1024 / 1024/ 1024, 2);
+
         $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
         $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
         $stat['hdd_percent'];
 
-      return  $stat['hdd_percent'];
-    
+        return  $stat['hdd_percent'];
+}
+
+    // Dynamic icon colors for badges
+ 
+    $hdok = $jsonsite['hdok'];
+    $hdwarn = $jsonsite['hdwarn'];
+
+    if (isset($disk2)) {
+
+        if ($freeHD2 < $hdok) {
+                $hdClass2 = 'success';
+        } elseif (($freeHD2 >= $hdok) && ($freeHD2 < $hdwarn)) {
+                $hdClass2 = 'warning';
+        } else {
+                $hdClass2 = 'danger';
+        }
+    }
+
+        
+////// HD3 ///////
+
+    global $disk3;
+
+    if(isset($jsonsite['disk3'])) {
+
+        $disk3 = $jsonsite['disk3'];
+
+        $freeHD3 = getHDFree3();
+    }
+
+function getHDFree3() {
+
+    global $disk3;
+
+        //hdd stat
+
+        $stat['hdd_free'] = round(disk_free_space($disk3) / 1024 / 1024 / 1024, 2);
+        
+        $stat['hdd_total'] = round(disk_total_space($disk3) / 1024 / 1024/ 1024, 2);
+
+        $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
+        $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
+        $stat['hdd_percent'];
+
+        return  $stat['hdd_percent'];
 }
 
     // Dynamic icon colors for badges
@@ -227,28 +329,30 @@ function getHDFree()
     $hdwarn = $jsonsite['hdwarn'];
 
 
-        if ($freeHD < $hdok) {
-                $hdClass = 'success';
-        } elseif (($freeHD >= $hdok) && ($freeHD < $hdwarn)) {
-                $hdClass = 'warning';
+    if (isset($disk3)) {
+
+        if ($freeHD3 < $hdok) {
+                $hdClass3 = 'success';
+        } elseif (($freeHD3 >= $hdok) && ($freeHD3 < $hdwarn)) {
+                $hdClass3 = 'warning';
         } else {
-                $hdClass = 'danger';
+                $hdClass3 = 'danger';
         }
+    }
 
 
 //uptime
 $uptime = shell_exec("cut -d. -f1 /proc/uptime");
-$days = floor($uptime/60/60/24);
+$days = floor($uptime) / 60 / 60 / 24;
 $days_padded = sprintf("%02d", $days);
-$hours = $uptime/60/60%24;
+$hours = round($uptime) / 60 / 60 % 24;
 $hours_padded = sprintf("%02d", $hours);
-$mins = $uptime/60%60;
+$mins = round($uptime) / 60 % 60;
 $mins_padded = sprintf("%02d", $mins);
-$secs = $uptime%60;
+$secs = round($uptime) % 60;
 $secs_padded = sprintf("%02d", $secs);
 // $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
 $total_uptime = "$days_padded:$hours_padded:$mins_padded";
-
 
 // Dynamic icon colors for badges
 
@@ -266,7 +370,6 @@ if ($ramPercent < $ramok) {
 
     $cpuok = $jsonsite['cpuok'];
     $cpuwarn = $jsonsite['cpuwarn'];
-
 
 if ($cpuPercent < $cpuok) {
     $cpuClass = 'success';
@@ -286,15 +389,12 @@ if ($cpuPercent < $cpuok) {
 * @param int $timeout
 * @return bool|float
 */
-
     
     $pinghost = $jsonsite['pinghost'];
     //echo $pinghost;
 
-
     $pingport = $jsonsite['pingport'];
     // echo $pingport;
-
 
     function ping($host, $port = 53, $timeout = 1) {
         $start = microtime(true);
@@ -307,10 +407,20 @@ if ($cpuPercent < $cpuok) {
 
  $pingTime = ping($pinghost, $pingport);
 
+    $pingok = $jsonsite['pingok'];
+    $pingwarn = $jsonsite['pingwarn'];
+
+    if ($pingTime < $pingok) {
+            $pingclass = 'success';
+    } elseif (($pingTime >= $pingok) && ($pingTime < $pingwarn)) {
+            $pingclass = 'warning';
+    } else {
+            $pingclass = 'danger';
+    }
+
 
 // New version download information
 
-  
    
     $branch = $jsonusers['updateBranch'];
 

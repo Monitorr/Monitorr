@@ -1,10 +1,39 @@
 
 <?php
 
-   $str =  json_encode( $_POST, true );
+        // remove all offline *.json files from log dir: 
+
+    $files = glob("../data/logs/*.json");
+
+    if (!empty($files)) {
+
+        foreach($files as $file){ // iterate files in logs dir
+
+            if(is_file($file)) {
+
+                //delete all files in logs dir:
+
+                if(!unlink($file)) {
+
+                    echo "<script type='text/javascript'>";
+                        echo "console.log('ERROR: Failed to remove offline log file: " . $file .  "');";
+                    echo "</script>";
+                }
+
+                else {
+
+                    echo "<script type='text/javascript'>";
+                        echo "console.log('Removed offline log file: " . $file .  "');";
+                    echo "</script>";
+                }
+            }
+        }
+    }
+
+
+    $str =  json_encode( $_POST, true );
 
     $myServices = json_decode( $str, true);
-
       
         $iterator = new RecursiveArrayIterator($myServices);
 
@@ -14,54 +43,72 @@
 
         $datadir = $json['datadir'];
 
-        echo $datadir;
+        //echo $datadir;
 
         $jsonpath = $datadir . 'services_settings-data.json';
 
-        echo $jsonpath;
+        //echo $jsonpath;
 
-        $fp = fopen($jsonpath, 'w');
+        if ($_POST) {
 
-            while ($iterator->valid()) {
+            echo "POST detected.";
+                echo "<br>";
+            echo  "Writing values to json settings file.";
+                echo "<br>";
 
-                if ($iterator->hasChildren()) {
-                    // print all children
+            $fp = fopen($jsonpath, 'w');
 
-                    fwrite ($fp, "[");
+                while ($iterator->valid()) {
 
-                    foreach ($iterator as $v1) {
-                       
-                        foreach ($v1 as $v2) {
-                            fwrite ($fp, PHP_EOL);
-                            fwrite ($fp, "{");
-                            fwrite ($fp, '"'."serviceTitle" . '"' . ':' .  '"' . $v2['serviceTitle'] . '"'.  ",");
-                            fwrite ($fp, '"'."enabled" . '"' . ':' .  '"' . $v2['enabled'] . '"'.  ",");
-                            fwrite ($fp, '"'."image" . '"' . ':' .  '"' . $v2['image'] . '"'.  ",");
-                            fwrite ($fp, '"'."type" . '"' . ':' .  '"' . $v2['type'] . '"'.  ",");
-                            fwrite ($fp, '"'."link" . '"' . ':' .  '"' . $v2['link'] . '"'.  ",");
-                            fwrite ($fp, '"'."checkurl" . '"' . ':' .  '"' . $v2['checkurl'] . '"'.  ",");
-                            fwrite ($fp, '"'."linkurl" . '"' . ':' .  '"' . $v2['linkurl'] . '"');
-                            fwrite ($fp,  "}");
-                            fwrite ($fp,  ",");
-                            //fwrite ($fp, PHP_EOL);
+                    if ($iterator->hasChildren()) {
+                        // print all children
+
+                        fwrite ($fp, "[");
+
+                        foreach ($iterator as $v1) {
+                        
+                            foreach ($v1 as $v2) {
+                                fwrite ($fp, PHP_EOL);
+                                fwrite ($fp, "{");
+                                fwrite ($fp, '"'."serviceTitle" . '"' . ':' .  '"' . $v2['serviceTitle'] . '"'.  ",");
+                                fwrite ($fp, '"'."enabled" . '"' . ':' .  '"' . $v2['enabled'] . '"'.  ",");
+                                fwrite ($fp, '"'."image" . '"' . ':' .  '"' . $v2['image'] . '"'.  ",");
+                                fwrite ($fp, '"'."type" . '"' . ':' .  '"' . $v2['type'] . '"'.  ",");
+                                fwrite ($fp, '"'."ping" . '"' . ':' .  '"' . $v2['ping'] . '"'.  ",");
+                                fwrite ($fp, '"'."link" . '"' . ':' .  '"' . $v2['link'] . '"'.  ",");
+                                fwrite ($fp, '"'."checkurl" . '"' . ':' .  '"' . $v2['checkurl'] . '"'.  ",");
+                                fwrite ($fp, '"'."linkurl" . '"' . ':' .  '"' . $v2['linkurl'] . '"');
+                                fwrite ($fp,  "}");
+                                fwrite ($fp,  ",");
+                                //fwrite ($fp, PHP_EOL);
+                            }
                         }
+
+                        fwrite ($fp,  "]");
+                    } 
+                    
+                    else {
+                        echo "No children.\n";
                     }
 
-                    fwrite ($fp,  "]");
-                } 
-                
-                else {
-                    echo "No children.\n";
-                }
+                    $iterator->next();
+                };
 
-                $iterator->next();
-            };
+            fclose($fp);
+        }
 
-        fclose($fp);
+        else {
+            
+            echo "<script type='text/javascript'>";
+                echo "console.log('POST not detected. NOT writing values to json settings file.');";
+            echo "</script>";
+
+            echo "POST not detected. NOT writing values to json settings file.";
+        }
 
 ?>
 
-    <!-- "Hack" to fix alapaca bug not writing json arrays correctly // See https://github.com/gitana/alpaca/issues/605 -->
+    <!-- "Hack" to fix Alpaca bug not writing json arrays correctly // See https://github.com/gitana/alpaca/issues/605 -->
 
 <?php
 
