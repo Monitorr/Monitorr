@@ -2866,7 +2866,7 @@
 
     #footer {
         position: fixed;
-        left: 46%;
+        width: 100%;
         bottom: 2rem;
         margin: 0px;
         margin-top: 1vw;
@@ -2874,6 +2874,16 @@
         color: #555555;
         font-size: 1rem;
         z-index: -1;
+    }
+
+    #footer.settings-footer {
+        left: 0;
+        right: 0;
+        margin-left: -10rem;
+    }
+
+    .navbar-brand.settings-brand {
+        margin-left: -19rem;
     }
 
     .footer {

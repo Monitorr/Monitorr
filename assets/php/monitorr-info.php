@@ -488,7 +488,7 @@ class OneFileLoginApplication
         </script>
 
         <div id="centertext">
-            <div class="navbar-brand">
+            <div class="navbar-brand settings-brand">
                 Information
             </div>
         </div>
@@ -661,7 +661,7 @@ class OneFileLoginApplication
         <script src="../js/update.js" async></script>
         <script src="../js/update_auto-settings.js" async></script>
 
-        <div id="footer">
+        <div id="footer" class="settings-footer">
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
