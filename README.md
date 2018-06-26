@@ -16,11 +16,12 @@
 
 - LIVE! (w/ option to pause live updating)
 - Self-hosted.
-- Monitor any app/service on any domain (Curl as primary check, fsockopen as fallback).
-- Service ping response time display. (NEW)
 - Responsive mobile display.
-- Integrated settings page w/ authentication.
+- Monitor any app/service on any domain (Curl as primary check, fsockopen as fallback).
+- Enable/disable hot linking for each service.
+- Service ping response time display. (NEW)
 - Host system resources display (CPU, MEM, HD, PING, Uptime) (UPDATED)
+- Integrated settings page w/ authentication.
 - User customizable system threshold colors.
 - Custom CSS tool. (NEW)
 - Server DTG data. (UPDATED)
@@ -97,10 +98,7 @@
 
 ## Credits:
 
-- [Causefx](https://github.com/Causefx)
-- [Roxedux](https://github.com/si0972)
-- [christronyxyocum](https://github.com/christronyxyocum)
-- [rob1998](https://github.com/rob1998)
+[ - Causefx](https://github.com/Causefx) - [christronyxyocum](https://github.com/christronyxyocum) - [rob1998](https://github.com/rob1998) - [Roxedux](https://github.com/si0972) -
 
 
 ## Libraries used in this project:
