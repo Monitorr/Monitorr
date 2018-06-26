@@ -7,7 +7,7 @@ $(document).ready(function(){
 		var info = "uid="+uid+"&vcheck=1";
 		$.ajax({
 		   beforeSend: function(){
-			   $('#version_check').html('<img src="../img/loader.gif" width="16" height="16" />');
+			   $('#version_check').html('<img src="../icons/loader.gif" width="16" height="16" />');
 			   console.log('Monitorr is checking for an application update.');
 		   },
 		   type: "POST",
@@ -22,7 +22,7 @@ $(document).ready(function(){
 				   var uInfo = "uid="+uid+"&version="+data.version
 			    	$.ajax({
 					   beforeSend: function(){
-						   $('#version_check').html('<img src="../img/loader.gif" width="16" height="16" />');
+						   $('#version_check').html('<img src="../icons/loader.gif" width="16" height="16" />');
 					   },
 					   type: "POST",
 					   url: "../php/update-functions.php",
