@@ -866,7 +866,7 @@
                                                 echo '<br>';
                                             echo '</div>';
 
-                                            echo '<form id="userform" method="post" action="' . $_SERVER['SCRIPT_NAME'] . '?action=register" name="registerform">';
+                                            echo '<form id="userform" method="post" action="?action=register" name="registerform">';
 
                                                 echo '<table id="registrationtable">';
 
