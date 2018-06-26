@@ -25,6 +25,18 @@
             "default": "master",
             "properties": {}
         },
+        "registration": {
+            "type": "string",
+            "title": "registration",
+            "enum": [
+                "Enable",
+                "Disable"
+            ],
+            "required": true,
+            "pattern": {},
+            "default": "Enable",
+            "properties": {}
+        },
         "timezone": {
             "type": "string",
             "enum": [

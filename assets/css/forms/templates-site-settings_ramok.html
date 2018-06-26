@@ -1,13 +1,12 @@
 <script type="text/x-handlebars-template">
 
-    <div id="link_option">
+    <div id="ramok_input" class="form-group">
 
         {{#if options.label}}
+
         <label class="{{#if options.labelClass}}{{options.labelClass}}{{/if}} alpaca-control-label" for="{{id}}">
             
             {{{options.label}}} 
-        
-            <i class="fa fa-fw fa-question-circle input_icon" id="link_option_icon" title="Enables 'Service URL' link to be accessible  in the Monitorr UI. NOTE: This option has NO effect on the check function."> </i>
         
         </label>
 
@@ -25,3 +24,4 @@
     </div>
 
 </script>
+

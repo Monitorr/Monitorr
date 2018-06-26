@@ -18,7 +18,7 @@
             
         else {
             echo "<div id='uploaderror'>";
-                echo "ERROR: " . $rawfile .  " is not an image.";
+                echo "ERROR: " . $rawfile .  " is not an image or exceeds the webserver’s upload size limit.";
             echo "</div>";
             $uploadOk = 0;
         }

@@ -80,7 +80,7 @@ class OneFileLoginApplication
         if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             echo "Sorry, Simple PHP Login does not run on a PHP version older than 5.3.7 !";
         } elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
-            require_once("../config/_installation/vendor/password_compatibility_library.php");
+            require_once("libraries/password_compatibility_library.php");
             return true;
         } elseif (version_compare(PHP_VERSION, '5.5.0', '>=')) {
             return true;
@@ -398,7 +398,8 @@ class OneFileLoginApplication
         <script type="text/javascript" src="../js/handlebars.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/alpaca.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
+        <script type="text/javascript" src="../js/ace.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script> -->
        
             <style>
 
@@ -411,25 +412,6 @@ class OneFileLoginApplication
 
                 legend {
                     color: white;
-                    }
-
-                body::-webkit-scrollbar {
-                    width: 10px;
-                    background-color: #252525;
-                }
-
-                body::-webkit-scrollbar-track {
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                    border-radius: 10px;
-                    background-color: #252525;
-                }
-
-                body::-webkit-scrollbar-thumb {
-                    border-radius: 10px;
-                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                    background-color: #8E8B8B;
                 }
 
                 body.offline #link-bar {
@@ -456,6 +438,11 @@ class OneFileLoginApplication
                 input[type=checkbox], input[type=radio] {
                     cursor: pointer;
                 }
+
+                .alpaca-message-invalidValueOfEnum {
+                    margin-top: 1rem !important;
+                }
+
 
             </style>
 
@@ -484,7 +471,7 @@ class OneFileLoginApplication
         <p id="response"></p>
 
         <div id="centertext">
-            <div class="navbar-brand">
+            <div class="navbar-brand settings-brand">
                 User Preferences
             </div>
         </div>
@@ -533,12 +520,13 @@ class OneFileLoginApplication
                                 "layout": {
                                     "template": '../css/./two-column-layout-template-user-preferences.html',
                                     "bindings": {
-                                        "sitetitle": "leftcolumn",
-                                        "siteurl": "leftcolumn",
-                                        "updateBranch": "leftcolumn",
-                                        "language": "rightcolumn",
-                                        "timezone": "rightcolumn",
-                                        "timestandard": "rightcolumn"
+                                        "sitetitle": "leftcolumnuser",
+                                        "siteurl": "leftcolumnuser",
+                                        "updateBranch": "leftcolumnuser",
+                                        "registration": "rightcolumnuser",
+                                        // "language": "rightcolumn",
+                                        "timezone": "rightcolumnuser",
+                                        "timestandard": "rightcolumnuser"
                                     }
                                 },
                                 "fields": {
@@ -564,6 +552,14 @@ class OneFileLoginApplication
                                         },
                                         "bindings": {
                                             "updateBranch": "#updatebranch"
+                                        }
+                                    },
+                                    "/registration": {
+                                        "templates": {
+                                            "control": "../css/forms/./templates-user-preferences_registration.html"
+                                        },
+                                        "bindings": {
+                                            "registration": "#registration"
                                         }
                                     },
                                     "/timezone": {
@@ -623,6 +619,7 @@ class OneFileLoginApplication
                                         "disabled": false,
                                         "hidden": false,
                                         "label": "Site URL:",
+                                        "size": 30,
                                         "helpers": ["URL of the Monitorr UI."],
                                         "hideInitValidationError": false,
                                         "focus": false,
@@ -666,6 +663,44 @@ class OneFileLoginApplication
                                         "events": {
                                             "change": function() {
                                                 $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "registration": {
+                                        "type": "select",
+                                        "validate": true, // ** CHANGE ME ** change to TRUE to allow for user config propegation//
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Registration:",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "name": "registration",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
+                                        "events": {
+                                            "ready": function(callback) {
+                                                var value = this.getValue();
+                                                if (value == "Enable") {
+                                                    $('.registrationwarning').removeClass('registrationwarningchange');
+                                                } else {
+                                                    $('.registrationwarning').addClass('registrationwarningchange');
+                                                }
+                                            },
+                                            "change": function(callback) {
+                                                var value = this.getValue();
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                                if (value == "Enable") {
+                                                    $('.registrationwarning').removeClass('registrationwarningchange');
+                                                } else {
+                                                    $('.registrationwarning').addClass('registrationwarningchange');
+                                                }
                                             }
                                         }
                                     },
@@ -877,7 +912,7 @@ class OneFileLoginApplication
                                                     url: 'post_receiver-user_preferences.php',
                                                     data: $('#preferencesettings').alpaca().getValue(),
                                                     success: function(data) {
-                                                        console.log("Settings saved, reploading Monitorr to apply changes");
+                                                        console.log("Settings saved! Applying changes...");
                                                         alert("Settings saved! Applying changes...");
                                                         setTimeout(function () { window.top.location = "../../settings.php" }, 3000);
                                                     },
@@ -910,6 +945,7 @@ class OneFileLoginApplication
                                 }
                             },
                             "postRender": function(control) {
+
                                 if (control.form) {
                                     control.form.registerSubmitHandler(function (e) {
                                         control.form.getButtonEl('submit').click();
@@ -924,15 +960,16 @@ class OneFileLoginApplication
                                 $.when($.get("../data/css/custom.css"))
                                 .done(function(response) {
                                     cssEditor.getSession().setValue(response);
+                                    console.log('Loaded custom CSS form.');
                                 });
-                            }
+                            },
                         });
                     });
                 </script>
 
         </div>
 
-        <div id="footer">
+        <div id="footer" class="settings-footer">
 
             <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a>
 
@@ -989,7 +1026,7 @@ class OneFileLoginApplication
 
             else {
 
-                echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+                echo '<form method="post" action="" name="loginform">';
                     echo '<label for="login_input_username"> </label> ';
                         echo '<br>';
                     echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
@@ -1020,7 +1057,6 @@ class OneFileLoginApplication
                     echo "User database Dir: " .  $datadir;
                             echo '<br>';
                     echo "User database file: " . $dbfile;
-
                 echo "</div>";
 
             }
@@ -1072,13 +1108,31 @@ $application = new OneFileLoginApplication();
                 color: white;
             }
 
+            body::-webkit-scrollbar {
+                width: .75rem;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            }
+
             .navbar-brand {
                 cursor: default;
             }
 
             .wrapper {
                 width: 30rem;
-                /* margin-top: 10%; */
                 margin-left: auto;
                 margin-right: auto;
                 padding: 1rem;
