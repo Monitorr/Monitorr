@@ -3,6 +3,7 @@
     https://github.com/Monitorr/Monitorr
 
     */
+
     /* @import url(https://fonts.googleapis.com/css?family=Roboto:400); */
 
     @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
@@ -25,6 +26,7 @@
         opacity: 0;
         transition: none;
     }
+
     /*
         body::-webkit-scrollbar {
             width: 10px;
@@ -147,7 +149,8 @@
             font-size: 3px;
         }
     }
-    /* Titles */
+
+       /* Paragraph & Typographic */
 
     h1,
     h2,
@@ -178,16 +181,7 @@
         font-weight: 300;
         color: white;
     }
-
-    #datdirerror {
-        color: red;
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 500;
-        cursor: default;
-    }
-    /* Paragraph & Typographic */
-
+ 
     p {
         margin: 0
     }
@@ -315,7 +309,6 @@
         z-index: 4000;
         cursor: default;
     }
-
 
     #ajaxtimestamp {
         position: fixed;
@@ -476,6 +469,7 @@
     .col-centered {
         float: none;
     }
+
     /* Helpers */
 
     .mt {
@@ -731,9 +725,10 @@
         -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
         border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
         background-color: #42e846;
-        -webkit-box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
-        -moz-box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
-        box-shadow: 0 5px 20px rgba(66, 232, 70, .7);
+        /* box-shadow: 0 5px 20px rgba(66, 232, 70, .7); */
+        -webkit-box-shadow: 0 0.2rem 1rem rgba(66, 232, 70, .7);
+        -moz-box-shadow: 0 0.2rem 1rem rgba(66, 232, 70, .7);
+        box-shadow: 0 0.2rem 1rem rgba(66, 232, 70, .7);
         color: #FFFFFF;
         font-size: 1rem;
         font-weight: 600;
@@ -752,9 +747,9 @@
         -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
         border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
         background-color: #e84242;
-        -webkit-box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
-        -moz-box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
-        box-shadow: 0 5px 20px rgba(232, 66, 66, .7);
+        -webkit-box-shadow: 0 0.2rem 1rem rgba(232, 66, 66, .7);
+        -moz-box-shadow: 0 0.2rem 1rem rgba(232, 66, 66, .7);
+        box-shadow: 0 0.2rem 1rem rgba(232, 66, 66, .7);
         color: #ffffff;
         font-size: 1rem;
         font-weight: 600;
@@ -774,9 +769,9 @@
         -moz-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
         border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
         background-color: #ffcf4b;
-        -webkit-box-shadow: 0 5px 20px rgba(232, 188, 66, 0.7);
-        -moz-box-shadow: 0 5px 20px rgba(232, 188, 66, .7);
-        box-shadow: 0 5px 20px rgba(232, 188, 66, .7);
+        -webkit-box-shadow: 0 0.2rem 1rem rgba(232, 188, 66, 0.7);
+        -moz-box-shadow: 0 0.2rem 1rem rgba(232, 188, 66, .7);
+        box-shadow: 0 0.2rem 1rem rgba(232, 188, 66, .7);
         color: #ffffff;
         font-size: 1rem;
         font-weight: 600;
@@ -1335,6 +1330,13 @@
         cursor: default;
     }
 
+    #datdirerror {
+        color: red;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 500;
+        cursor: default;
+    }
 
     #dbcreatewrapper {
         width: 75%;
@@ -1964,7 +1966,6 @@
         cursor: pointer;
     }
 
-
     input[type="file"] {
         display: none;
     }
@@ -2553,9 +2554,7 @@
         width: 100%;
         margin: auto;
         margin-left: 25%;
-        /* margin-bottom: 3rem; */
         text-align: left;
-        /* padding-left: 10%; */
     }
 
     .Rtable {
@@ -2698,7 +2697,7 @@
         z-index: 99;
         border: none;
         outline: none;
-        background: url(../img/up-arrow.png) no-repeat center center;
+        background: url(../icons/up-arrow.png) no-repeat center center;
         background-color: rgba(126, 126, 126, 0.50);
         background-size: 3em;
         -webkit-filter: drop-shadow(3px 3px 3px #222);
