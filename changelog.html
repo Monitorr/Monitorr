@@ -43,6 +43,10 @@
                 background-color: #8E8B8B;
             }
 
+            h3 {
+                color: white;
+            }
+
             .pace .pace-progress {
                 box-shadow: .1rem .1rem .2rem rgb(15, 15, 15);
             }
@@ -72,9 +76,17 @@
                             body = body.replace(/\*\*\*(.*)\*\*\*/g, '<em class="bold italic">$1</em>'); // convert bold italic text
                             body = body.replace(/\*\*(.*)\*\*/g, '<em class="bold">$1</em>'); // convert bold italic text
                             body = body.replace(/\*(.*)\*/g, '<em class="italic">$1</em>'); // convert bold italic text
+
+                            body = body.replace(/\_(.*)\_/g, '<em class="italic">$1</em>'); // convert to italic text
+
+                            body = body.replace(/\#\#\#(.*)/g, '<h3>$1</h3>'); // convert to H3
+                            body = body.replace(/\#\#(.*)/g, '<h2>$1</h2>'); // convert to H2
+                            body = body.replace(/\#\s(.*)/g, '<h1>$1</h1>'); // convert to H1
+
                             body = body.replace(/\[(.*)\]\((http.*)\)/g, '<a class="releaselink" href=$2 target="_blank" title="$1">$1</a>'); // convert links with titles
                             body = body.replace(/(https:\/\/github.com\/Monitorr\/Monitorr\/issues\/(\d*))/g, '<a class="releaselink" href="$1" title="GitHub Issue" target="_blank">#$2</a>'); // convert issue links
                             body = body.replace(/\s(https?:\/\/?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|])/g, '<a class="releaselink" href="$1" target="_blank">$1</a>'); // convert normal links
+                            
                             $(infoTabVersionHistory).append(
                                 '<li style="display: none">' +
                                     '<div class="github-item">' +
@@ -105,7 +117,7 @@
             <h4 class="releaseHeader"><a class="releaselink" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> Monitorr Release </a>Log:</h4>
 
             <div id="about">
-                <ul id="versionHistory"></ul>
+                <ul id="versionHistory"> </ul>
             </div>
 
         </div>
