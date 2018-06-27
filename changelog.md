@@ -2,6 +2,67 @@
 
 *   <div class="github-item">
 
+    ## Develop: 1.7.1d
+
+    <time class="github-item-time" datetime="2018-06-27T04:52:58Z"><span class="releasetime">Released on: 2018-06-27 at 04:52:58</span></time>
+
+    ### - Summary:
+
+    1\. This update is a MAJOR update to Monitorr with numerous fixes and enhancements.  
+    2\. Docker image available here: [https://hub.docker.com/r/monitorr/monitorr/](https://hub.docker.com/r/monitorr/monitorr/)  
+
+    ### - Update ALERT:
+
+    If updating to version _1.7_* from ANY previous version, *_BEFORE updating backup your custom.css file_ located at: _(Monitorr install path)/assets/data/css/custom.css_ . After the update is complete, simply restore the custom.css file to the same location overwriting the custom.css file that was updated. This is due to a bug which has been resolved in version 1.7, therefore, this process will no longer be needed in future updates. See the [WiKi Update Notice](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr "WiKi Update Notice") for more information.  
+
+    ### - Configuration changes:
+
+    The following configuration changes need to be made AFTER updating to version 1.7.0 from ANY previous version. See the [WiKi Update Notice](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr "WiKi Update Notice") for more information.  
+
+    a. _User Preferences:_  
+
+    - Registration: Enable or disable access to the Registration tool. _NOTE: _This value should be changed to "Disable"_ AFTER updating._ [screenshot](https://user-images.githubusercontent.com/8906637/41943907-573ca978-795a-11e8-8f01-019c8b9eb9a4.PNG "screenshot")  
+
+    b. _Monitorr Settings:_ [screenshot](https://user-images.githubusercontent.com/8906637/41945529-8df0cbd6-7962-11e8-87cf-2a92ca7e3374.PNG "screenshot")  
+
+    - Time sync interval: Specifies how frequently (in milliseconds) the UI clock will synchronize time with the hosting webserver.  
+    - HD display: Monitorr now has the much-anticipated feature of disabling or displaying multiple volumes (up to 3) in the system resources area of the UI.  
+    - Ping color values: These values will determine the color of the ping indicators in the system resources are of the UI as well as individual service response times when enabled in "Services Configuration".  
+
+    c. _Services Configuration:_  
+
+    - Ping RT: Enables PING RT time output in the UI for each service. [screenshot](https://user-images.githubusercontent.com/8906637/41945612-dda1df8a-7962-11e8-8a59-82f31f0dc2b8.PNG "screenshot")  
+
+    ### - CHANGE LOG:
+
+    1. ADD: Ping response time for services. See: [#113](https://github.com/Monitorr/Monitorr/issues/113 "GitHub Issue")  
+    2. ADD: User-defined HD volume / multiple volumes: see: [#148](https://github.com/Monitorr/Monitorr/issues/148 "GitHub Issue")  
+    3. ADD: Monitorr release changelog. See: [#123](https://github.com/Monitorr/Monitorr/issues/123 "GitHub Issue")  
+    4. FIX: Offline time does not coincide with the set timezone. See: [#165](https://github.com/Monitorr/Monitorr/issues/165 "GitHub Issue")  
+    5. ADD: Disable browser output error if service is down. See: [#174](https://github.com/Monitorr/Monitorr/issues/174 "GitHub Issue")  
+    6. CHANGE: New JS clock  
+    7. ADD: execute single service check on settings.php load and when submit changes on Services Config settings page  
+    8. CHANGE: Move UI icons from /img dir  
+    9. FIX: Remove offline.json log files on service config settings page submit to prevent rouge offline.json files.  
+    10. FIX: Prevent null data posting to json settings files  
+    11. ADD: Offline service img and title will fade when offline.  
+    12. CHANGE: correct scroll bars on settings pages  
+    13. FIX: Uptime format on Windows  
+    14. CHANGE: Change custom css script to local from CDN.  
+    15. FIX: Update via UI will override custom CSS.  
+    16. Add: Form validation to user input on _register form.  
+    17. Add: CSS classes added to service images.  
+    18. Change: date display on min site: to NOT show year.  
+    19. Change: img upload error message / img upload modal color  
+    20. Change: Clock will not sync when auto-update toggle is disabled.  
+    21. Add: refresh marquee on settings page load.  
+    22. ADD: MAIN PING indicator to respect color values.  
+    </div>
+
+    * * *
+
+*   <div class="github-item">
+
     ## Develop: 1.6.4d
 
     <time class="github-item-time" datetime="2018-06-07T17:42:37Z"><span class="releasetime">Released on: 2018-06-07 at 17:42:37</span></time>
@@ -48,7 +109,7 @@
 
     NOTE: There are a lot of CSS changes. Please ensure to clear your browser's cache after updating.  
 
-    Docker image is available via Dockerhub with "latest" or "develop" tags:[https://hub.docker.com/r/monitorr/monitorr/tags/](https://hub.docker.com/r/monitorr/monitorr/tags/)  
+    Docker image is available via Dockerhub with "latest" or "develop" tags:[https://hub.docker.com/r/monitorr/monitorr/tags/](https://hub.docker.com/r/monitorr/monitorr/tags/)
 
     </div>
 
@@ -508,21 +569,6 @@
     ## Develop: v0.11.4d
 
     <time class="github-item-time" datetime="2017-12-30T06:35:07Z"><span class="releasetime">Released on: 2017-12-30 at 06:35:07</span></time>
-
-    - Added auto-refresh toggle switches  
-    - CSS code clean-up  
-
-    _After updating always ensure to clear browser cache_
-
-    </div>
-
-    * * *
-
-*   <div class="github-item">
-
-    ## Develop: v0.11.3d
-
-    <time class="github-item-time" datetime="2017-12-28T23:26:16Z"><span class="releasetime">Released on: 2017-12-28 at 23:26:16</span></time>
 
     - Added auto-refresh toggle switches  
     - CSS code clean-up  
