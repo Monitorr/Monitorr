@@ -211,7 +211,6 @@
                     url: "assets/php/timestamp.php",
                     type: "GET",
                     timeout: 4000,
-                    timeout: 15,
                     success: function (response) {
                         var response = $.parseJSON(response);
                         serverTime = response.serverTime;
