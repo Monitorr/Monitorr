@@ -56,6 +56,16 @@
                 box-shadow: 3px 3px 3px black !important;
             }
 
+            #ajaxmarquee {
+                margin-top: 1rem;
+                margin-left: 0;
+            }
+
+            #ajaxtimestamp {
+                margin-top: 1rem;
+                margin-left: -1rem;
+            }
+
             legend {
                 color: white;
             }
@@ -175,6 +185,7 @@
             var onload;
 
             var serverTime = "<?php echo $serverTime;?>";
+            var date = new Date(serverTime); 
             var timestandard = <?php echo $timeStandard;?>;
             var timeZone = "<?php echo $timezone_suffix;?>";
             var rftime = <?php echo $jsonsite['rftime'];?>;
@@ -195,11 +206,12 @@
                 // update UI clock with server time:
 
             function syncServerTime() {
-                console.log('Monitorr time update START | Interval: '+ rftime +' ms');
+                console.log('Monitorr time sync START | Interval: '+ rftime +' ms');
                 $.ajax({
                     url: "assets/php/timestamp.php",
                     type: "GET",
                     timeout: 4000,
+                    timeout: 15,
                     success: function (response) {
                         var response = $.parseJSON(response);
                         serverTime = response.serverTime;
@@ -207,13 +219,15 @@
                         timeZone = response.timezoneSuffix;
                         rftime = parseInt(response.rftime);
                         date = new Date(serverTime);
-                        //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
+                        $('#ajaxtimestamp').fadeOut();
                     },
                     error: function(x, t, m) {
                         if(t==="timeout") {
-                            console.log("ERROR: timestamp timeout");
-                            $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                            console.log("ERROR: Time sync timeout");
+                            $('#ajaxtimestamp').fadeIn();
                         } else {
+                            console.log("ERROR: timestamp failed");
+                            $('#ajaxtimestamp').fadeIn();
                         }
                     }
                 });
@@ -238,8 +252,6 @@
             });
 
         </script>
-
-        <script src="assets/js/clock.js" async></script>
         
             <!-- marquee offline function: -->
         <script>
@@ -264,8 +276,7 @@
                     data: {
                         current: current
                     },
-
-                    timeout: 4000,
+                    timeout: 5000,
                     success: function(data) {
                         if(data){
                             result = $.parseJSON(data);
@@ -275,20 +286,21 @@
                             });
                             current = result[1];
                         }
-
                         else {
                             current = -1;
                             $("#summary").hide();
                         }
-                        //window.setTimeout(updateSummary, 5000);
+                        $('#ajaxmarquee').fadeOut();
                         window.setTimeout(updateSummary, rfsysinfo);
                     },
                     error: function(x, t, m) {
                         if(t==="timeout") {
                             //alert("ERROR: marquee timeout");
                             console.log("ERROR: marquee timeout");
-                            $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                            $('#ajaxmarquee').fadeIn();
                         } else {
+                            console.log("ERROR: marquee failed");
+                            $('#ajaxmarquee').fadeIn();
                         }
                     }
                 });
@@ -319,8 +331,7 @@
                     data: {
                         current: current
                     },
-
-                    timeout: 4000,
+                    timeout: 3000,
                     success: function(data) {
                         if(data){
                             result = $.parseJSON(data);
@@ -335,13 +346,16 @@
                             current = -1;
                             $("#summary").hide();
                         }
+                        $('#ajaxmarquee').fadeOut();
                     },
                     error: function(x, t, m) {
                         if(t==="timeout") {
                             //alert("ERROR: marquee timeout");
                             console.log("ERROR: marquee timeout");
-                            $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                            $('#ajaxmarquee').fadeIn();
                         } else {
+                            console.log("ERROR: marquee failed");
+                            $('#ajaxmarquee').fadeIn();
                         }
                     }
                 });
@@ -357,6 +371,9 @@
 
         </script>
 
+            <!-- Load analog clock: -->
+        <script src="assets/js/clock.js" async></script>
+
     </head>
 
     <body>
@@ -369,13 +386,15 @@
             });
         </script>
 
-            <!-- Ajax timeout indicator: -->
         <div id="ajaxtimeout">
-
-            <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
-            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
-
+            <div id="ajaxtimestamp" title="Time sync timeout. Refresh page." style="display: none;">
+                <i class="fa fa-fw fa-exclamation-triangle"></i>
+            </div>
+            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page." style="display: none;">
+                <i class="fa fa-fw fa-exclamation-triangle"></i>
+            </div>
         </div>
+
 
         <div id ="settingscolumn" class="settingscolumn">
 

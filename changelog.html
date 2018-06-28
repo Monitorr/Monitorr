@@ -11,6 +11,9 @@
         <link type="text/css" href="assets/css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="assets/css/main.css" rel="stylesheet">
         <link type="text/css" href="assets/data/css/custom.css" rel="stylesheet">
+        <link type="text/css" href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="assets/js/monitorr.main.js"></script>
 
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
@@ -64,7 +67,7 @@
                     url: "https://api.github.com/repos/monitorr/monitorr/releases",
                     dataType: "json",
                     success: function(github) {
-                        infoTabVersionHistory = $('#about').find('#versionHistory');
+                        let infoTabVersionHistory = $('#about').find('#versionHistory');
                         $.each(github, function(i,v) {
                             if(i === 0){
                                 //console.log(v.tag_name);
@@ -72,36 +75,23 @@
                                 githubDescription = v.body;
                                 githubName = v.name;
                             }
-                            var body = v.body.replace(/\n/g, '<br />'); //convert line breaks
-                            body = body.replace(/\*\*\*(.*)\*\*\*/g, '<em class="bold italic">$1</em>'); // convert bold italic text
-                            body = body.replace(/\*\*(.*)\*\*/g, '<em class="bold">$1</em>'); // convert bold italic text
-                            body = body.replace(/\*(.*)\*/g, '<em class="italic">$1</em>'); // convert bold italic text
 
-                            body = body.replace(/\_(.*)\_/g, '<em class="italic">$1</em>'); // convert to italic text
-
-                            body = body.replace(/\#\#\#(.*)/g, '<h3>$1</h3>'); // convert to H3
-                            body = body.replace(/\#\#(.*)/g, '<h2>$1</h2>'); // convert to H2
-                            body = body.replace(/\#\s(.*)/g, '<h1>$1</h1>'); // convert to H1
-
-                            body = body.replace(/\[(.*)\]\((http.*)\)/g, '<a class="releaselink" href=$2 target="_blank" title="$1">$1</a>'); // convert links with titles
-                            body = body.replace(/(https:\/\/github.com\/Monitorr\/Monitorr\/issues\/(\d*))/g, '<a class="releaselink" href="$1" title="GitHub Issue" target="_blank">#$2</a>'); // convert issue links
-                            body = body.replace(/\s(https?:\/\/?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|])/g, '<a class="releaselink" href="$1" target="_blank">$1</a>'); // convert normal links
-                            
-                            $(infoTabVersionHistory).append(
+                            var body = parseGithubToHTML(v.body);
+                            infoTabVersionHistory.append(
                                 '<li style="display: none">' +
                                     '<div class="github-item">' +
                                         '<h2 class="releaseName text-uppercase">' + v.name + '</h2>' +
                                         '<time class="github-item-time" datetime="' + v.published_at + '">' +
                                             '<span class="releasetime">Released on: ' + v.published_at.substring(0,10) + ' at ' + v.published_at.substring(11,19) + '</span>' +
                                         '</time>' +
-                                        '<p class="releaseBody">' + body + '</p>' +
+                                '<div class="releaseBody">' + body + '</div>' +
                                     '</div>' +
                                     '<hr class="releasehr"\>' +
                                 '</li>'
                             );
-                            size_li = $("#versionHistory li");
-                            x=4; //show this many releases
-                            $('#versionHistory li:lt('+x+')').show();
+                            let size_li = $("#versionHistory > li");
+                            let x = 4; //show this many releases
+                            $('#versionHistory > li:lt(' + x + ')').show();
                         });
                     }
                 });
@@ -114,7 +104,12 @@
 
         <div id="releaseWrapper">
 
-            <h4 class="releaseHeader"><a class="releaselink" href="https://github.com/Monitorr/Monitorr/releases" target="_blank" title="Monitorr Releases"> Monitorr Release </a>Log:</h4>
+            <h4 class="releaseHeader">
+                <a class="releaselink" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"
+                   title="Monitorr Releases">
+                    Monitorr Release Log:
+                </a>
+            </h4>
 
             <div id="about">
                 <ul id="versionHistory"> </ul>
