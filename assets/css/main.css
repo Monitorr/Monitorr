@@ -12,7 +12,6 @@
         opacity: 1;
         transition: 2s opacity;
         background-color: #1F1F1F;
-        /* font-family: 'Lato', sans-serif; */
         font-family: 'Roboto:400', sans-serif;
         color: #555;
         align-items: center;
@@ -765,7 +764,7 @@
         cursor: default;
     }
 
-    .btunknown {
+    .btnunknown {
         margin-left: 1rem;
         margin-right: 1rem;
         -webkit-border-radius: 23px 22px 22px 23px/23px 23px 22px 22px;
@@ -782,7 +781,7 @@
         text-decoration: none;
     }
 
-    .btunknown:hover {
+    .btnunknown:hover {
         text-decoration: none;
     }
 
