@@ -173,8 +173,9 @@
 
             var nIntervId3;
             var onload;
-
+            
             var serverTime = "<?php echo $serverTime;?>";
+            var date = new Date(serverTime); 
             var timestandard = <?php echo $timeStandard;?>;
             var timeZone = "<?php echo $timezone_suffix;?>";
             var rftime = <?php echo $jsonsite['rftime'];?>;
@@ -195,11 +196,11 @@
                 // update UI clock with server time:
 
             function syncServerTime() {
-                console.log('Monitorr time update START | Interval: '+ rftime +' ms');
+                console.log('Monitorr time sync START | Interval: '+ rftime +' ms');
                 $.ajax({
                     url: "assets/php/timestamp.php",
                     type: "GET",
-                    timeout: 4000,
+                    timeout: 6000,
                     success: function (response) {
                         var response = $.parseJSON(response);
                         serverTime = response.serverTime;
@@ -208,12 +209,15 @@
                         rftime = parseInt(response.rftime);
                         date = new Date(serverTime);
                         //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
+                        $('#ajaxtimestamp').fadeOut();
                     },
                     error: function(x, t, m) {
                         if(t==="timeout") {
-                            console.log("ERROR: timestamp timeout");
-                            $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                            console.log("ERROR: Time sync timeout");
+                            $('#ajaxtimestamp').fadeIn();
                         } else {
+                            console.log("ERROR: timestamp failed");
+                            $('#ajaxtimestamp').fadeIn();
                         }
                     }
                 });
@@ -243,8 +247,6 @@
             });
 
         </script>
-
-        <script src="assets/js/clock.js" async></script>
 
             <!-- services status update function: -->
         <script type="text/javascript">
@@ -316,7 +318,6 @@
                             data: {
                                 current: current
                             },
-
                             timeout: 7000,
                             success: function(data) {
                                 if(data){
@@ -327,17 +328,19 @@
                                     });
                                     current = result[1];
                                 }
-
                                 else {
                                     current = -1;
                                     $("#summary").hide();
                                 }
+                                $('#ajaxmarquee').fadeOut();
                             },
                             error: function(x, t, m) {
                                 if(t==="timeout") {
                                     console.log("ERROR: marquee timeout");
-                                    $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                                    $('#ajaxmarquee').fadeIn();
                                 } else {
+                                    console.log("ERROR: marquee failed");
+                                    $('#ajaxmarquee').fadeIn();
                                 }
                             }
                         });
@@ -357,6 +360,9 @@
 
         </script>
 
+            <!-- Load analog clock: -->
+        <script src="assets/js/clock.js" async></script>
+
     </head>
 
     <body onload="statusCheck(), showpace()">
@@ -374,10 +380,12 @@
 
             <!-- Ajax timeout indicator: -->
         <div id="ajaxtimeout">
-
-            <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
-            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
-
+            <div id="ajaxtimestamp" title="Time sync timeout. Refresh page." style="display: none;">
+                <i class="fa fa-fw fa-exclamation-triangle"></i>
+            </div>
+            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page." style="display: none;">
+                <i class="fa fa-fw fa-exclamation-triangle"></i>
+            </div>
         </div>
 
         <div id="header">
@@ -385,7 +393,6 @@
             <div id="left" class="Column">
                 <div id="clock">
                     <canvas id="canvas" width="120" height="120"></canvas>
-                    <!-- <div class="dtg"></div> -->
                     <div id="timer"></div>
                 </div>
             </div>
