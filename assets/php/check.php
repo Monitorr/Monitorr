@@ -362,7 +362,7 @@
                                         echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                                     echo '</div>'; 
 
-                                    echo '<div class="btunknown">Unresponsive</div>';
+                                    echo '<div class="btnunknown">Unresponsive</div>';
                                     
                                 echo '</a>'; 
                             echo '</div>'; 
@@ -409,7 +409,7 @@
                                         echo '<div>'. ucfirst($v2['serviceTitle']) .'</div>';
                                     echo '</div>'; 
 
-                                    echo '<div class="btunknown">Unresponsive</div>';
+                                    echo '<div class="btnunknown">Unresponsive</div>';
                                     
                                 echo '</div>'; 
                             echo '</div>'; 
