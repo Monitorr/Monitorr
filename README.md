@@ -10,7 +10,7 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
 
-**NOTICE (27 June 18)**: If updating to version **1.7** from ANY previous version, **BEFORE updating backup your custom.css file** located at: _[Monitorr install path]/assets/data/css/custom.css_ . After the update is complete, simply restore the custom.css file to the same location overwriting the custom.css file that was updated. This is due to a bug which has been resolved in version 1.7 therefore this process will no longer be needed in future updates. See the [WiKi Update Notice](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for more information.
+**NOTICE (27 June 18)**: If updating to version **1.7** from ANY previous version, **BEFORE updating backup your custom.css file** located at: _`[Monitorr install path]/assets/data/css/custom.css`_ . After the update is complete, simply restore the custom.css file to the same location overwriting the custom.css file that was updated. This is due to a bug which has been resolved in version 1.7 therefore this process will no longer be needed in future updates. See the [WiKi Update Notice](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for more information.
 
 
 ## Features:
@@ -65,7 +65,7 @@
 - See full configuration instructions in the WiKi: https://github.com/Monitorr/Monitorr/wiki
 
 1) Clone/download the Monitorr repository to your webserver. (Docker image available here: [![Docker build](https://img.shields.io/docker/build/monitorr/monitorr.svg?maxAge=2592000)](https://hub.docker.com/r/monitorr/monitorr/) )
-2) Browse to: _[localhost\domain]/monitorr/index.php_
+2) Browse to: _`[localhost\domain]/monitorr/index.php`_
 3) Establish data directory, and user database via secure registration tool.
 4) Log in and configure Monitorr via secure settings UI.
 5) Chill
