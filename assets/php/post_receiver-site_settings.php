@@ -6,11 +6,14 @@
 
     $datadir = $json['datadir'];
 
-    //echo $datadir;
+        //echo $datadir;
 
     $jsonpath = $datadir . 'site_settings-data.json';
 
-    //echo $jsonpath;
+        //echo $jsonpath;
+
+        // Fail-safe to ensure blank data is NOT written to .json data file.
+        // Will NOT write data to .json data file unless POST is made from "Monitorr Settings" settings page:
 
     if (isset($_POST["rfsysinfo"])) {
 
@@ -19,8 +22,12 @@
         echo  "rfsysinfo is set. Writing values to json settings file.";
             echo "<br>";
 
+        echo "<script type='text/javascript'>";
+            echo "console.log('POST detected. Writing values to json settings file.');";
+        echo "</script>";
+
         $fp = fopen($jsonpath, 'w');
-            fwrite($fp, json_encode($_POST));
+            fwrite($fp, json_encode($_POST, JSON_PRETTY_PRINT));
         fclose($fp);
     }
     
