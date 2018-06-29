@@ -860,7 +860,7 @@ class OneFileLoginApplication
                                     "allowOptionalEmpty": false,
                                     "data": {},
                                     "autocomplete": false,
-                                    "disallowEmptySpaces": true,
+                                    "disallowEmptySpaces": false,
                                     "disallowOnlyEmptySpaces": false,
                                     "removeDefaultNone": true,
                                     "fields": {},
@@ -906,7 +906,7 @@ class OneFileLoginApplication
                                         "disk1enable": ["Enable"]
                                     },
                                     "type": "select",
-                                    "validate": false,
+                                    "validate": true,
                                     "showMessages": true,
                                     "disabled": false,
                                     "hidden": false,
@@ -933,7 +933,7 @@ class OneFileLoginApplication
                                         "disk2enable": ["Enable"]
                                     },
                                     "type": "text",
-                                    "validate": false,
+                                    "validate": true,
                                     "showMessages": true,
                                     "disabled": false,
                                     "hidden": false,
@@ -964,7 +964,7 @@ class OneFileLoginApplication
                                         "disk2enable": ["Enable"]
                                     },
                                     "type": "select",
-                                    "validate": false,
+                                    "validate": true,
                                     "showMessages": true,
                                     "disabled": false,
                                     "hidden": false,
@@ -991,7 +991,7 @@ class OneFileLoginApplication
                                         "disk3enable": ["Enable"]
                                     },
                                     "type": "text",
-                                    "validate": false,
+                                    "validate": true,
                                     "showMessages": true,
                                     "disabled": false,
                                     "hidden": false,
