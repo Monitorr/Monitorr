@@ -6,7 +6,6 @@
     "disk1enable": "Enable",
     "disk1": "\/",
     "disk2enable": "Disable",
-    "disk3enable": "Disable",
     "cpuok": "75",
     "cpuwarn": "90",
     "ramok": "75",
