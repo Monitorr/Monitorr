@@ -56,14 +56,14 @@
                 "Enable",
                 "Disable"
             ],
-            "required": true,
+            "required": false,
             "pattern": {},
             "default": "Disable",
             "properties": {}
         },
         "disk2": {
             "type": "string",
-            "required": false,
+            "required": true,
             "default": "",
             "properties": {}
         },
@@ -74,14 +74,14 @@
                 "Enable",
                 "Disable"
             ],
-            "required": true,
+            "required": false,
             "pattern": {},
             "default": "Disable",
             "properties": {}
         },
         "disk3": {
             "type": "string",
-            "required": false,
+            "required": true,
             "default": "",
             "properties": {}
         },
