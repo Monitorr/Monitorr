@@ -22,7 +22,8 @@ $(document).ready(function(){
 				   var uInfo = "uid="+uid+"&version="+data.version
 			    	$.ajax({
 					   beforeSend: function(){
-						   $('#version_check').html('<img src="../icons/loader.gif" width="16" height="16" />');
+							console.log('Updating Monitorr...');
+							$('#version_check').html('<img src="../icons/loader.gif" width="16" height="16" />');
 					   },
 					   type: "POST",
 					   url: "../php/update-functions.php",
