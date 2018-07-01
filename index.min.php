@@ -125,8 +125,8 @@
             }
 
             #textslider {
-                padding-top: .50rem !important;
-                padding-bottom: .50rem !important;
+                padding-top: .7rem !important;
+                padding-bottom: .7rem !important;
             }
 
             #hd {
