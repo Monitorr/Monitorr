@@ -249,7 +249,7 @@ $ramPercent = round(($usedRam / $totalRam) * 100);
     $hdwarn = $jsonsite['hdwarn'];
 
 
-     ////// HD1 ///////
+    ////// HD1 ///////
 
     global $disk1;
 
