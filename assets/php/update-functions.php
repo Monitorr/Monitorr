@@ -1,6 +1,68 @@
 <?php
 
-require("functions.php");
+	//require("functions.php");
+
+		// Remove "warning messages" for file overwrite, etc.
+
+	ini_set('error_reporting', E_ERROR | E_PARSE);
+
+        // Load user preferences:
+
+    $datafile = '../data/datadir.json';
+    $str = file_get_contents($datafile);
+    $json = json_decode( $str, true);
+    $datadir = $json['datadir'];
+    $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+    if(!is_file($jsonfileuserdata)){    
+
+        $path = "../";
+
+        include_once ('../config/monitorr-data-default.php');
+    } 
+
+    else {
+
+        $datafile = '../data/datadir.json';
+
+        include_once ('../config/monitorr-data.php');
+    }
+
+        // New version download information:
+   
+    $branch = $jsonusers['updateBranch'];
+
+    // location to download new version zip
+    $remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/' . $branch . '';
+    // rename version location/name
+	$local_file = '../../tmp/monitorr-' . $branch . '.zip'; #example: version/new-version.zip
+	
+
+	function recurse_copy($src,$dst) {
+        $dir = opendir($src);
+        @mkdir($dst);
+        while(false !== ( $file = readdir($dir)) ) {
+            if (( $file != '.' ) && ( $file != '..' )) {
+                if ( is_dir($src . '/' . $file) ) {
+                    recurse_copy($src . '/' . $file,$dst . '/' . $file);
+                }
+                else {
+                    copy($src . '/' . $file,$dst . '/' . $file);
+                }
+            }
+        }
+        closedir($dir);
+    }
+
+    function delTree($dir) {
+        $files = array_diff(scandir($dir), array('.','..'));
+        foreach ($files as $file) {
+            (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
+        }
+        return rmdir($dir);
+	}
+	
+
 // copy the file from source server
 mkdir('../../tmp');
 $copy = copy($remote_file_url, $local_file);

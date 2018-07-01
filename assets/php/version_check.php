@@ -1,6 +1,40 @@
 <?php
-	// check current version number
-	require("functions.php");
+
+	//require("functions.php");
+
+		// Load user preferences:
+
+	$datafile = '../data/datadir.json';
+	$str = file_get_contents($datafile);
+	$json = json_decode( $str, true);
+	$datadir = $json['datadir'];
+	$jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+	if(!is_file($jsonfileuserdata)){    
+
+		$path = "../";
+
+		include_once ('../config/monitorr-data-default.php');
+
+	} 
+
+	else {
+
+		$datafile = '../data/datadir.json';
+
+		include_once ('../config/monitorr-data.php');
+	}
+	
+		// New version download information:
+
+	$branch = $jsonusers['updateBranch'];
+
+	$ext_version_loc = 'https://raw.githubusercontent.com/Monitorr/Monitorr/' . $branch . '/assets/js/version/version.txt';
+		
+		// users local version number:
+    $vnum_loc = "../js/version/version.txt";
+
+
 	// open version file on external server
 	$file = fopen ($ext_version_loc, "r");
 	$vnum = fgets($file);    
