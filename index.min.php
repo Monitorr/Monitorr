@@ -215,14 +215,22 @@
             var rftime = <?php echo $jsonsite['rftime'];?>;
 
             function updateTime() {
-                setInterval(function() {
-                    var timeString = date.toLocaleString('en-US', {hour12: timestandard, weekday: 'short', year: 'numeric', day: 'numeric', month: 'short', hour:'2-digit', minute:'2-digit', second:'2-digit'}).toString();
-                    var res = timeString.split(",");
-                    var time = res[3];
-                    var dateString = res[0]+' | '+res[1].split(" ")[2]+" "+res[1].split(" ")[1];
+                setInterval(function () {
+                    var res = date.toString().split(" ");
+                    var time = res[4];
+                    var timeSplit = time.split(":");
+                    if(timestandard) {
+                        time = parseInt((timeSplit[0] > 12) ? (timeSplit[0] - 12) : timeSplit[0]) + ":" + timeSplit[1] + ":" + timeSplit[2];
+                        if(timeSplit[0] >= 12) {
+                            time += " PM";
+                        } else {
+                            time += " AM";
+                        }
+                    }
+                    var dateString = res[0] + ' | ' + res[2] + " " + res[1];
                     var data = '<div class="dtg">' + time + ' ' + timeZone + '</div>';
-                    data+= '<div id="line">__________</div>';
-                    data+= '<div class="date datemin">' + dateString + '</div>';
+                    data += '<div id="line">__________</div>';
+                    data += '<div class="date datemin">' + dateString + '</div>';
                     $("#timer").html(data);
                 }, 1000);
             }
