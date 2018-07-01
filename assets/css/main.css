@@ -1034,7 +1034,6 @@
         cursor: default;
     }
 
-
     /* CLOCK */
 
     #clock {
@@ -2300,7 +2299,7 @@
     #releaseWrapper {
         max-width: 100rem;
         margin: auto;
-        background-color: #3d3d3d;
+        /* background-color: #3d3d3d; */
     }
 
     .releaseHeader {
