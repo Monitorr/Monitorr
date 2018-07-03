@@ -13,7 +13,6 @@
     https://github.com/Monitorr/Monitorr
     -->
 
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,21 +44,21 @@
             }
 
             body::-webkit-scrollbar {
-                width: 10px;
+                width: .75rem;
                 background-color: #252525;
             }
 
             body::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
                 background-color: #252525;
             }
 
             body::-webkit-scrollbar-thumb {
-                border-radius: 10px;
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
                 background-color: #8E8B8B;
             }
 
@@ -81,6 +80,10 @@
 
             #header {
                 margin-top: 2.5rem !important;
+            }
+
+            #hd {
+                grid-column: 1/ span 2;
             }
 
             #services {
@@ -112,28 +115,6 @@
 
         <script src="assets/js/jquery.min.js"></script>
 
-            <!-- // temporary  CHANGE ME // Check if datadir.json file exists in OLD /config location, if true copy to /data directory -->
-
-            <?php
-
-                $oldfile = 'assets/config/datadir.json';
-                $newfile = 'assets/data/datadir.json';
-
-                if(!is_file($newfile)){
-
-                    if (!copy($oldfile, $newfile)) {
-                        // echo "failed to copy $oldfile...\n";
-                    }
-
-                    else {
-                        rename($oldfile, 'assets/config/datadir.json.old');
-                    }
-                }
-
-                else {
-                }
-            ?>
-
             <!-- top loading bar function: -->
         <script src="assets/js/pace.js"></script>
 
@@ -164,10 +145,7 @@
 
                 $title = $jsonusers['sitetitle'];
             }
-
          ?>
-
-        <!-- <?php include ('assets/php/gitinfo.php'); ?> -->
 
         <title>
             <?php
@@ -176,28 +154,107 @@
             | Monitorr
         </title>
 
-             <!-- analog clock function: -->
+            <!-- Clock functions: -->
         <script>
+        
+	        <?php
+                //initial values for clock:
+                $timezone = $jsonusers['timezone'];
+                $dt = new DateTime("now", new DateTimeZone("$timezone"));
+                $timeStandard = (int)($jsonusers['timestandard'] === "True" ? true : false);
+                $timezone_suffix = '';
+                if (!$timeStandard) {
+                    $dateTime = new DateTime();
+                    $dateTime->setTimeZone(new DateTimeZone($timezone));
+                    $timezone_suffix = $dateTime->format('T');
+                }
+                $serverTime = $dt->format("D d M Y H:i:s");
+	        ?>
 
-            $timezone =
-                "<?php
-                    $timezone = $jsonusers['timezone'];
-                    echo $timezone;
-                ?>";
+            var nIntervId3;
+            var onload;
+            
+            var serverTime = "<?php echo $serverTime;?>";
+            var date = new Date(serverTime); 
+            var timestandard = <?php echo $timeStandard;?>;
+            var timeZone = "<?php echo $timezone_suffix;?>";
+            var rftime = <?php echo $jsonsite['rftime'];?>;
 
-            <?php $dt = new DateTime("now", new DateTimeZone("$timezone")); ?> ;
+            function updateTime() {
+                setInterval(function () {
+                    var res = date.toString().split(" ");
+                    var time = res[4];
+                    var timeSplit = time.split(":");
+                    if(timestandard) {
+                        time = parseInt((timeSplit[0] > 12) ? (timeSplit[0] - 12) : timeSplit[0]) + ":" + timeSplit[1] + ":" + timeSplit[2];
+                        if(timeSplit[0] >= 12) {
+                            time += " PM";
+                        } else {
+                            time += " AM";
+                        }
+                    }
+                    var dateString = res[0] + ' | ' + res[2] + " " + res[1] + "<br>" + res[3];
+                    var data = '<div class="dtg">' + time + ' ' + timeZone + '</div>';
+                    data += '<div id="line">__________</div>';
+                    data += '<div class="date">' + dateString + '</div>';
+                    $("#timer").html(data);
+                }, 1000);
+            }
 
-            $servertimezone = "<?php echo "$timezone"; ?>";
+                // update UI clock with server time:
 
-            $dt = "<?php echo $dt->format("D M d Y H:i:s"); ?>";
+            function syncServerTime() {
+                console.log('Monitorr time sync START | Interval: '+ rftime +' ms');
+                $.ajax({
+                    url: "assets/php/timestamp.php",
+                    type: "GET",
+                    timeout: 6000,
+                    success: function (response) {
+                        var response = $.parseJSON(response);
+                        serverTime = response.serverTime;
+                        timestandard = parseInt(response.timestandard);
+                        timeZone = response.timezoneSuffix;
+                        rftime = parseInt(response.rftime);
+                        date = new Date(serverTime);
+                        //setTimeout(function() {syncServerTime()}, rftime); //delay is rftime
+                        $('#ajaxtimestamp').fadeOut();
+                    },
+                    error: function(x, t, m) {
+                        if(t==="timeout") {
+                            console.log("ERROR: Time sync timeout");
+                            $('#ajaxtimestamp').fadeIn();
+                        } else {
+                            console.log("ERROR: timestamp failed");
+                            $('#ajaxtimestamp').fadeIn();
+                        }
+                    }
+                });
+            }
 
-            var servertimezone = $servertimezone;
+            $(document).ready(function() {
+                syncServerTime(); 
+                updateTime();
 
-            var servertime = $dt;
+                    //Stop clock update when refresh toggle is disabled:
+
+                $(":checkbox").change(function () {
+
+                    rftime =
+                        <?php
+                            $rftime = $jsonsite['rftime'];
+                            echo $rftime;
+                        ?>
+
+                    if ($(this).is(':checked')) {
+                        nIntervId3 = setInterval(syncServerTime, rftime); //delay is rftime
+                    } 
+                    else {
+                        clearInterval(nIntervId3);
+                    }
+                });
+            });
 
         </script>
-
-        <script src="assets/js/clock.js" async></script>
 
             <!-- services status update function: -->
         <script type="text/javascript">
@@ -205,19 +262,22 @@
             var nIntervId;
             var onload;
 
+            rfsysinfo =
+                <?php
+                    $rfsysinfo = $jsonsite['rfsysinfo'];
+                    echo $rfsysinfo;
+                ?>
+
             function statusCheck() {
+                console.log('Service check START | Interval: <?php echo $rfsysinfo; ?> ms');
                 $("#stats").load('assets/php/systembadges.php');
                 $("#statusloop").load('assets/php/loop.php');
             };
 
+                //Stop service status update when refresh toggle is disabled:
+
             $(document).ready(function () {
                 $(":checkbox").change(function () {
-
-                    rfsysinfo =
-                        <?php
-                            $rfsysinfo = $jsonsite['rfsysinfo'];
-                            echo $rfsysinfo;
-                        ?>
 
                     if ($(this).is(':checked')) {
                         nIntervId = setInterval(statusCheck, rfsysinfo);
@@ -234,39 +294,7 @@
         <script>
             function showpace() {
                 $('.pace-activity').addClass('showpace');
-            };
-        </script>
-
-            <!-- digital clock function: -->
-        <script>
-            $(document).ready(function() {
-                function update() {
-
-                    rftime =
-                        <?php
-                            $rftime = $jsonsite['rftime'];
-                            echo $rftime;
-                        ?>
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'assets/php/timestamp.php',
-                        timeout: 5000,
-                        success: function(data) {
-                            $("#timer").html(data);
-                            window.setTimeout(update, rftime);
-                        },
-                        error: function(x, t, m) {
-                            if(t==="timeout") {
-                                console.log("ERROR: timestamp timeout");
-                                 $('#ajaxtimestamp').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
-                            } else {
-                            }
-                        }
-                    });
-                }
-                update();
-            });
+            }
         </script>
 
             <!-- marquee offline function: -->
@@ -280,8 +308,11 @@
                 $(":checkbox").change(function () {
 
                     var current = -1;
+                    var onload;
 
                     function updateSummary() {
+
+                        console.log('Service offline check START');
 
                         rfsysinfo =
                             <?php
@@ -295,7 +326,6 @@
                             data: {
                                 current: current
                             },
-
                             timeout: 7000,
                             success: function(data) {
                                 if(data){
@@ -306,27 +336,31 @@
                                     });
                                     current = result[1];
                                 }
-
                                 else {
                                     current = -1;
                                     $("#summary").hide();
                                 }
+                                $('#ajaxmarquee').fadeOut();
                             },
                             error: function(x, t, m) {
                                 if(t==="timeout") {
-                                    //alert("ERROR: marquee timeout");
                                     console.log("ERROR: marquee timeout");
-                                    $('#ajaxmarquee').html('<i class="fa fa-fw fa-exclamation-triangle"></i>');
+                                    $('#ajaxmarquee').fadeIn();
                                 } else {
+                                    console.log("ERROR: marquee failed");
+                                    $('#ajaxmarquee').fadeIn();
                                 }
                             }
                         });
                     }
 
                     if ($(this).is(':checked')) {
+                        updateSummary();
                         nIntervId2 = setInterval(updateSummary, rfsysinfo);
+                        console.log("Auto refresh: Enabled | Interval: <?php echo $rfsysinfo; ?> ms");
                     } else {
                         clearInterval(nIntervId2);
+                        console.log("Auto refresh: Disabled");
                     }
                 });
                 $('#buttonStart :checkbox').attr('checked', 'checked').change();
@@ -334,10 +368,14 @@
 
         </script>
 
+            <!-- Load analog clock: -->
+        <script src="assets/js/clock.js" async></script>
+
     </head>
 
     <body onload="statusCheck(), showpace()">
 
+            <!-- Fade-in effect: -->
         <script>
             document.body.className += ' fade-out';
             $(function() {
@@ -345,19 +383,25 @@
             });
         </script>
 
-            <!-- Append alert if service is down: -->
+            <!-- Append marquee alert if service is down: -->
         <div id="summary"></div>
 
             <!-- Ajax timeout indicator: -->
-        <div id="ajaxtimestamp" title="Analog clock timeout. Refresh page."></div>
-        <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page."></div>
+        <div id="ajaxtimeout">
+            <div id="ajaxtimestamp" title="Time sync timeout. Refresh page." style="display: none;">
+                <i class="fa fa-fw fa-exclamation-triangle"></i>
+            </div>
+            <div id="ajaxmarquee" title="Offline marquee timeout. Refresh page." style="display: none;">
+                <i class="fa fa-fw fa-exclamation-triangle"></i>
+            </div>
+        </div>
 
         <div id="header">
 
             <div id="left" class="Column">
                 <div id="clock">
                     <canvas id="canvas" width="120" height="120"></canvas>
-                    <div class="dtg" id="timer"></div>
+                    <div id="timer"></div>
                 </div>
             </div>
 

@@ -411,24 +411,24 @@ class OneFileLoginApplication
                 color: white;
             }
 
-            body::-webkit-scrollbar {
-                width: 10px;
+/*             body::-webkit-scrollbar {
+                width: .75rem;
                 background-color: #252525;
             }
 
             body::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
                 background-color: #252525;
             }
 
             body::-webkit-scrollbar-thumb {
-                border-radius: 10px;
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-                box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
                 background-color: #8E8B8B;
-            }
+            } */
 
             body.offline #link-bar {
                 display: none;
@@ -489,10 +489,7 @@ class OneFileLoginApplication
             .alpaca-field-object {
                 padding-top: 2rem;
                 padding-left: 2rem;
-            }
-
-            .servicedisabled {
-                /* background-color: red; */
+                padding-right: 2rem;
             }
 
             .form-control {
@@ -527,7 +524,6 @@ class OneFileLoginApplication
                 display: block !important;
             }
 
-
         </style>
 
         <?php $datafile = '../data/datadir.json'; ?>
@@ -553,7 +549,7 @@ class OneFileLoginApplication
         </script>
 
         <div id="centertext">
-            <div class="navbar-brand">
+            <div class="navbar-brand settings-brand">
                 Services Configuration
             </div>
         </div>
@@ -578,397 +574,433 @@ class OneFileLoginApplication
         <div id="serviceform">
             <div id="servicesettings"></div>
 
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        Alpaca.registerConnectorClass("custom");
-                        $("#servicesettings").alpaca({
-                            "connector": "custom",
-                            "dataSource": "./post_receiver-services_load.php",
-                            "schemaSource": "../config/services-schema.json?a=1",
-                            "view": {
-                                "fields": {
-                                    "//serviceTitle": {
-                                        "templates": {
-                                            "control": "../css/./templates-services_title.html"
-                                        },
-                                        "bindings": {
-                                            "serviceTitle": "#title_input"
-                                        }
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    Alpaca.registerConnectorClass("custom");
+                    $("#servicesettings").alpaca({
+                        "connector": "custom",
+                        "dataSource": "./post_receiver-services_load.php",
+                        "schemaSource": "../config/services-schema.json?a=1",
+                        "view": {
+                            "fields": {
+                                "//serviceTitle": {
+                                    "templates": {
+                                        "control": "../css/./templates-services_title.html"
                                     },
-                                    "//enabled": {
-                                        "templates": {
-                                            "control": "../css/./templates-services_enabled.html"
-                                        },
-                                        "bindings": {
-                                            "enabled": "#enabled_option"
-                                        }
+                                    "bindings": {
+                                        "serviceTitle": "#title_input"
+                                    }
+                                },
+                                "//enabled": {
+                                    "templates": {
+                                        "control": "../css/./templates-services_enabled.html"
                                     },
-                                    "//image": {
-                                        "templates": {
-                                            "control": "../css/./templates-services_image.html"
-                                        },
-                                        "bindings": {
-                                            "image": "#image_option"
-                                        }
+                                    "bindings": {
+                                        "enabled": "#enabled_option"
+                                    }
+                                },
+                                "//image": {
+                                    "templates": {
+                                        "control": "../css/./templates-services_image.html"
                                     },
-                                    "//type": {
-                                        "templates": {
-                                            "control": "../css/./templates-services_type.html"
-                                        },
-                                        "bindings": {
-                                            "link": "#type_option"
-                                        }
+                                    "bindings": {
+                                        "image": "#image_option"
+                                    }
+                                },
+                                "//type": {
+                                    "templates": {
+                                        "control": "../css/./templates-services_type.html"
                                     },
-                                    "//link": {
-                                        "templates": {
-                                            "control": "../css/./templates-services_link.html"
-                                        },
-                                        "bindings": {
-                                            "link": "#link_option"
-                                        }
+                                    "bindings": {
+                                        "link": "#type_option"
+                                    }
+                                },
+                                "//ping": {
+                                    "templates": {
+                                        "control": "../css/forms/./templates-services_ping.html"
                                     },
-                                    "//checkurl": {
-                                        "templates": {
-                                            "control": "../css/./templates-checkurl-control.html"
-                                        }
+                                    "bindings": {
+                                        "ping": "#ping_option"
+                                    }
+                                },
+                                "//link": {
+                                    "templates": {
+                                        "control": "../css/./templates-services_link.html"
                                     },
-                                    "//linkurl": {
-                                        "templates": {
-                                            "control": "../css/./templates-linkurl-control.html"
-                                        }
+                                    "bindings": {
+                                        "link": "#link_option"
+                                    }
+                                },
+                                "//checkurl": {
+                                    "templates": {
+                                        "control": "../css/./templates-checkurl-control.html"
+                                    }
+                                },
+                                "//linkurl": {
+                                    "templates": {
+                                        "control": "../css/./templates-linkurl-control.html"
                                     }
                                 }
-                            },
-                            "options": {
-                                "toolbarSticky": true,
-                                "focus": false,
-                                "collapsible": true,
-                                "focus": false,
-                                "actionbar": {
-                                    "showLabels": true,
-                                    "actions": [{
-                                        "label": "Add Service",
-                                        "action": "add",
-                                        "iconClass": "fa fa-plus"
-                                    }, {
-                                        "label": "Remove Service",
-                                        "action": "remove",
-                                        "iconClass": "fa fa-minus"
-                                    }, {
-                                        "label": "Move Up",
-                                        "action": "up",
-                                        "iconClass": "fa fa-arrow-up",
-                                        "enabled": true
-                                    }, {
-                                        "label": "Move Down",
-                                        "action": "down",
-                                        "iconClass": "fa fa-arrow-down",
-                                        "enabled": true
-                                    }, {
-                                        "label": "Clear",
-                                        "action": "clear",
-                                        "iconClass": "fa fa-trash",
-                                        "click": function(key, action, itemIndex) {
-                                            var item = this.children[itemIndex];
-                                            item.setValue("");
+                            }
+                        },
+                        "options": {
+                            "toolbarSticky": true,
+                            "focus": false,
+                            "collapsible": true,
+                            "focus": false,
+                            "actionbar": {
+                                "showLabels": true,
+                                "actions": [{
+                                    "label": "Add Service",
+                                    "action": "add",
+                                    "iconClass": "fa fa-plus"
+                                }, {
+                                    "label": "Remove Service",
+                                    "action": "remove",
+                                    "iconClass": "fa fa-minus"
+                                }, {
+                                    "label": "Move Up",
+                                    "action": "up",
+                                    "iconClass": "fa fa-arrow-up",
+                                    "enabled": true
+                                }, {
+                                    "label": "Move Down",
+                                    "action": "down",
+                                    "iconClass": "fa fa-arrow-down",
+                                    "enabled": true
+                                }, {
+                                    "label": "Clear",
+                                    "action": "clear",
+                                    "iconClass": "fa fa-trash",
+                                    "click": function(key, action, itemIndex) {
+                                        var item = this.children[itemIndex];
+                                        item.setValue("");
+                                    }
+                                }, {
+                                    "label": "Images",
+                                    "action": "",
+                                    "iconClass": "fa fa-image",
+                                    "click": function() {
+                                        var modal = document.getElementById('myModal3');
+                                        var span = document.getElementsByClassName("closeimg")[0];
+                                        modal.style.display = "block";
+
+                                        span.onclick = function() {
+                                            modal.style.display = "none";
+                                        };
+
+                                        window.onclick = function(event) {
+                                            if (event.target == modal) {
+                                                modal.style.display = "none";
+                                            }
                                         }
-                                    }, {
-                                        "label": "Images",
-                                        "action": "",
-                                        "iconClass": "fa fa-image",
-                                        "click": function() {
-                                            var modal = document.getElementById('myModal3');
-                                            var span = document.getElementsByClassName("closeimg")[0];
+                                    }
+                                }]
+                            },
+                            "items": {
+                                "fields": {
+                                    "serviceTitle": {
+                                        "type": "text",
+                                        "validate": false,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Service Title:",
+                                        "constrainMaxLength": true,
+                                        "showMaxLengthIndicator": true,
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "serviceTitle",
+                                        "size": 20,
+                                        "placeholder": "Service Name",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "enabled": {
+                                        "type": "select",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Enabled:",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "name": "enabled",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "image": {
+                                        "type": "image",
+                                        "validate": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Service Image:",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "size": 20,
+                                        "name": "image",
+                                        "styled": true,
+                                        "placeholder": "../img/monitorr.png",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": true,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "onFieldChange": function(e) {
+
+                                            // Window/modal will appear with image when user inputs path into "service Image" text field and clicks out of field:"
+                                            var value = this.getValue();
+                                            if (value) {
+                                                var img = $("<img src='../img/" + value + "' style='width:7rem' alt=' image not found'>");
+                                                $("#mymodal2").append(img);
+                                            }
+
+                                            var modal = document.getElementById('myModal');
+                                            var span = document.getElementsByClassName("modal")[0];
                                             modal.style.display = "block";
 
                                             span.onclick = function() {
                                                 modal.style.display = "none";
-                                            }
+                                                $('#mymodal2').empty();
+                                            };
 
                                             window.onclick = function(event) {
                                                 if (event.target == modal) {
                                                     modal.style.display = "none";
-                                                }
-                                            }
-                                        }
-                                    }
-                                    ]
-                                },
-                                "items": {
-                                    "fields": {
-                                        "serviceTitle": {
-                                            "type": "text",
-                                            "validate": false,
-                                            "showMessages": true,
-                                            "disabled": false,
-                                            "hidden": false,
-                                            "label": "Service Title:",
-                                            "constrainMaxLength": true,
-                                            "showMaxLengthIndicator": true,
-                                            "hideInitValidationError": false,
-                                            "focus": false,
-                                            "optionLabels": [],
-                                            "name": "serviceTitle",
-                                            "size": 20,
-                                            "placeholder": "Service Name",
-                                            "typeahead": {},
-                                            "allowOptionalEmpty": false,
-                                            "data": {},
-                                            "autocomplete": false,
-                                            "disallowEmptySpaces": false,
-                                            "disallowOnlyEmptySpaces": false,
-                                            "fields": {},
-                                            "renderButtons": true,
-                                            "attributes": {},
-                                            "events": {
-                                                "change": function() {
-                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
-                                                }
-                                            }
-                                        },
-                                        "enabled": {
-                                            "type": "select",
-                                            "validate": false, // ** CHANGE ME ** change to TRUE to allow for user config propegation//
-                                            "showMessages": true,
-                                            "disabled": false,
-                                            "hidden": false,
-                                            "label": "Enabled:",
-                                            "hideInitValidationError": false,
-                                            "focus": false,
-                                            "name": "enabled",
-                                            "typeahead": {},
-                                            "allowOptionalEmpty": false,
-                                            "data": {},
-                                            "autocomplete": false,
-                                            "disallowEmptySpaces": true,
-                                            "disallowOnlyEmptySpaces": false,
-                                            "removeDefaultNone": true,
-                                            "fields": {},
-                                            "events": {
-                                                "change": function() {
-                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
-                                                }
-                                            }
-                                        },
-                                        "image": {
-                                            "type": "image",
-                                            "validate": true,
-                                            "showMessages": true,
-                                            "disabled": false,
-                                            "hidden": false,
-                                            "label": "Service Image:",
-                                            "hideInitValidationError": false,
-                                            "focus": false,
-                                            "optionLabels": [],
-                                            "size": 20,
-                                            "name": "image",
-                                            "styled": true,
-                                            "placeholder": "../img/monitorr.png",
-                                            "typeahead": {},
-                                            "allowOptionalEmpty": false,
-                                            "data": {},
-                                            "autocomplete": false,
-                                            "disallowEmptySpaces": true,
-                                            "disallowOnlyEmptySpaces": true,
-                                            "fields": {},
-                                            "renderButtons": true,
-                                            "attributes": {},
-                                            "onFieldChange": function(e) {
-
-                                                // Window/modal will appear with image when user inputs path into "service Image" text field and clicks out of field:"
-                                                var value = this.getValue();
-                                                if (value) {
-                                                    var img = $("<img src='../img/" + value + "' style='width:7rem' alt=' image not found'>");
-                                                    $("#mymodal2").append(img);
-                                                }
-
-                                                var modal = document.getElementById('myModal');
-                                                var span = document.getElementsByClassName("modal")[0];
-                                                modal.style.display = "block";
-
-                                                span.onclick = function() {
-                                                    modal.style.display = "none";
                                                     $('#mymodal2').empty();
                                                 }
-
-                                                window.onclick = function(event) {
-                                                    if (event.target == modal) {
-                                                        modal.style.display = "none";
-                                                        $('#mymodal2').empty();
-                                                    }
-                                                }
+                                            };
+                                            $('.alpaca-form-button-submit').addClass('buttonchange');
+                                        }
+                                    },
+                                    "type": {
+                                        "type": "select",
+                                        "validate": true,
+                                        //"optionLabels": [" Standard", " Ping Only"],
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Check Type:",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "name": "checktype",
+                                        "typeahead": {},
+                                        "styled": true,
+                                        "allowOptionalEmpty": false,
+                                        "hideNone": true,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
                                                 $('.alpaca-form-button-submit').addClass('buttonchange');
-                                            }
-                                        },
-                                        "type": {
-                                            "type": "select",
-                                            "validate": true,
-                                            //"optionLabels": [" Standard", " Ping Only"],
-                                            "showMessages": true,
-                                            "disabled": false,
-                                            "hidden": false,
-                                            "label": "Check Type:",
-                                            "hideInitValidationError": false,
-                                            "focus": false,
-                                            "name": "checktype",
-                                            "typeahead": {},
-                                            "styled": true,
-                                            "allowOptionalEmpty": false,
-                                            "hideNone": true,
-                                            "data": {},
-                                            "autocomplete": false,
-                                            "disallowEmptySpaces": true,
-                                            "disallowOnlyEmptySpaces": false,
-                                            "removeDefaultNone": true,
-                                            "fields": {},
-                                            "renderButtons": true,
-                                            "attributes": {},
-                                            "events": {
-                                                "change": function() {
-                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
-                                                }
-                                            }
-                                        },
-                                        "link": {
-                                            "type": "select",
-                                            "validate": false,
-                                            "showMessages": true,
-                                            "disabled": false,
-                                            "hidden": false,
-                                            "label": "Link Enabled:",
-                                            //"helpers": ["Attaches 'Link URL' to service tile in the UI"],
-                                            "hideInitValidationError": false,
-                                            "focus": false,
-                                            "name": "link",
-                                            "typeahead": {},
-                                            "allowOptionalEmpty": false,
-                                            "data": {},
-                                            "autocomplete": false,
-                                            "disallowEmptySpaces": true,
-                                            "disallowOnlyEmptySpaces": false,
-                                            "removeDefaultNone": true,
-                                            "fields": {},
-                                            "events": {
-                                                "change": function() {
-                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
-                                                }
-                                            }
-                                        },
-                                        "checkurl": {
-                                            "type": "url",
-                                            "validate": true,
-                                            "allowIntranet": true,
-                                            "showMessages": true,
-                                            "disabled": false,
-                                            "hidden": false,
-                                            "label": "Check URL:",
-                                            "size": 30,
-                                            //"helpers": ["URL to check status"],
-                                            //"helper": "URL to check service status. (Port is required!)",
-                                            "hideInitValidationError": false,
-                                            "focus": false,
-                                            "optionLabels": [],
-                                            "name": "checkurl",
-                                            "placeholder": "http://localhost:80",
-                                            "typeahead": {},
-                                            "allowOptionalEmpty": false,
-                                            "data": {},
-                                            "autocomplete": false,
-                                            "disallowEmptySpaces": true,
-                                            "disallowOnlyEmptySpaces": true,
-                                            "fields": {},
-                                            "renderButtons": true,
-                                            "attributes": {},
-                                            "events": {
-                                                "change": function() {
-                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
-                                                }
-                                            }
-                                        },
-                                        "linkurl": {
-                                            "dependencies": {
-                                                "link": ["Yes"]
-                                            },
-                                            "type": "url",
-                                            "validate": false,
-                                            "allowIntranet": true,
-                                            "showMessages": true,
-                                            "disabled": false,
-                                            "hidden": false,
-                                            "label": "Service URL:",
-                                            "size": 30,
-                                            //"helpers": ["URL that will be linked to service"],
-                                            //"helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
-                                            "hideInitValidationError": false,
-                                            "focus": false,
-                                            "optionLabels": [],
-                                            "name": "linkurl",
-                                            "placeholder": "http://localhost:80",
-                                            "typeahead": {},
-                                            "allowOptionalEmpty": false,
-                                            "data": {},
-                                            "autocomplete": false,
-                                            "disallowEmptySpaces": false,
-                                            "disallowOnlyEmptySpaces": false,
-                                            "fields": {},
-                                            "renderButtons": true,
-                                            "attributes": {},
-                                            "events": {
-                                                "change": function() {
-                                                    $('.alpaca-form-button-submit').addClass('buttonchange');
-                                                }
                                             }
                                         }
                                     },
-                                },
-                                "form": {
-                                    // BUG:  see:  https://github.com/Monitorr/Monitorr/issues/167
-                                    //   "attributes": {
-                                    //        "action": "post_receiver-services.php",
-                                    //        "method": "post",
-                                    //        "contentType": "application/json"
-                                    //    },
-                                    "buttons": {
-                                        "submit": {
-                                            "type": "button",
-                                            "label": "Submit",
-                                            "name": "submit",
-                                            "value": "submit",
-                                            "click": function formsubmit() {
-                                                var data = $('#servicesettings').alpaca().getValue();
-                                                $.post('post_receiver-services.php', {
-                                                    data,
-                                                    success: function(data){
-                                                        console.log('Settings saved! Applying changes');
-                                                        alert("Settings saved! Applying changes...");
-                                                            // Refresh form after submit:
-                                                        setTimeout(location.reload.bind(location), 1000)
-                                                    },
-                                                    error: function(errorThrown){
-                                                        console.log(errorThrown);
-                                                    }
-                                                },)
-                                                $('.alpaca-form-button-submit').removeClass('buttonchange');
+                                    "ping": {
+                                        "type": "select",
+                                        "validate": false,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Ping RT:",
+                                        //"helpers": ["Attaches 'Link URL' to service tile in the UI"],
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "name": "ping",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
                                             }
+                                        }
+                                    },
+                                    "link": {
+                                        "type": "select",
+                                        "validate": false,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Link Enabled:",
+                                        //"helpers": ["Attaches 'Link URL' to service tile in the UI"],
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "name": "link",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "removeDefaultNone": true,
+                                        "fields": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "checkurl": {
+                                        "type": "url",
+                                        "validate": true,
+                                        "allowIntranet": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Check URL:",
+                                        "size": 30,
+                                        //"helpers": ["URL to check status"],
+                                        //"helper": "URL to check service status. (Port is required!)",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "checkurl",
+                                        "placeholder": "http://localhost:80",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": true,
+                                        "disallowOnlyEmptySpaces": true,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
+                                        }
+                                    },
+                                    "linkurl": {
+                                        "dependencies": {
+                                            "link": ["Yes"]
                                         },
-                                        "reset":{
-                                            "label": "Clear Values"
+                                        "type": "url",
+                                        "validate": false,
+                                        "allowIntranet": true,
+                                        "showMessages": true,
+                                        "disabled": false,
+                                        "hidden": false,
+                                        "label": "Service URL:",
+                                        "size": 30,
+                                        //"helpers": ["URL that will be linked to service"],
+                                        //"helper": "URL that will be linked to service from the UI. ('Link URL' field value is not applied if using 'ping only' option)",
+                                        "hideInitValidationError": false,
+                                        "focus": false,
+                                        "optionLabels": [],
+                                        "name": "linkurl",
+                                        "placeholder": "http://localhost:80",
+                                        "typeahead": {},
+                                        "allowOptionalEmpty": false,
+                                        "data": {},
+                                        "autocomplete": false,
+                                        "disallowEmptySpaces": false,
+                                        "disallowOnlyEmptySpaces": false,
+                                        "fields": {},
+                                        "renderButtons": true,
+                                        "attributes": {},
+                                        "events": {
+                                            "change": function() {
+                                                $('.alpaca-form-button-submit').addClass('buttonchange');
+                                            }
                                         }
                                     }
-                                }
+                                },
                             },
-                            "postRender": function(control) {
-                                document.getElementById("modalloading").remove();
-                                if (control.form) {
-                                    control.form.registerSubmitHandler(function (e) {
-                                        control.form.getButtonEl('submit').click();
-                                        return false;
-                                    });
+                            "form": { 
+                                //   "attributes": {
+                                //        "action": "post_receiver-services.php",
+                                //        "method": "post",
+                                //        "contentType": "application/json"
+                                //    },
+                                "buttons": {
+                                    "submit": {
+                                        "type": "button",
+                                        "label": "Submit",
+                                        "name": "submit",
+                                        "value": "submit",
+                                        "click": function formsubmit() {
+                                            var data = $('#servicesettings').alpaca().getValue();
+                                            $.post('post_receiver-services.php', {
+                                                data,
+                                                success: function(data){
+                                                    console.log('Settings saved! Applying changes');
+                                                    alert("Settings saved! Applying changes...");
+                                                        // Refresh form after submit:
+                                                    setTimeout(location.reload.bind(location), 1000)
+                                                },
+                                                error: function(errorThrown){
+                                                    console.log(errorThrown);
+                                                }
+                                            },);
+                                            $('.alpaca-form-button-submit').removeClass('buttonchange');
+                                        }
+                                    },
+                                    "reset":{
+                                        "label": "Clear Values"
+                                    }
                                 }
-                            }   
-                        });
+                            }
+                        },
+                        "postRender": function(control) {
+                            document.getElementById("modalloading").remove();
+                                // check service status ONCE:
+                            console.log('Service check START');
+                            $("#serviceshidden").load('loopsettings.php');
+                            document.getElementById("serviceshidden").remove();
+                            if (control.form) {
+                                control.form.registerSubmitHandler(function (e) {
+                                    control.form.getButtonEl('submit').click();
+                                    return false;
+                                });
+                            }
+                        },   
                     });
-                </script>
+                });
+            </script>
+            
         </div>
 
             <script>
@@ -990,6 +1022,10 @@ class OneFileLoginApplication
                                 console.log(php_script_response);
                                 $('#uploadreturn').html(php_script_response);
                                 $('#mymodal4').load(document.URL +  ' #mymodal4');
+                            },
+                            error: function(errorThrown){
+                                console.log(errorThrown);
+                                alert("POST Error: submitting data.");
                             }
                         });
                     });
@@ -1002,7 +1038,6 @@ class OneFileLoginApplication
                         var fileName = ''; 
                         fileName = $(this).val(); 
                         $('#file-selected').html(fileName.replace(/^.*\\/, ""));
-                        //$('#file-selected').html(fileName.replace(/[|&;$%@"<>()+,]/g, "").toLowerCase());
                         $('#upload').removeClass('uploadbtn');
                     })
                 });
@@ -1142,11 +1177,13 @@ class OneFileLoginApplication
 
             </script>
 
-        <div id="footer">
+        <div id="footer" class="settings-footer">
 
             <p> <a class="footer a" href="https://github.com/monitorr/Monitorr" target="_blank" title="Monitorr Repo"> Monitorr </a> | <a class="footer a" href="https://github.com/Monitorr/Monitorr/releases" target="_blank"> <?php echo file_get_contents( "../js/version/version.txt" );?> </a> </p>
 
         </div>
+
+        <div id="serviceshidden"></div>
 
     </body>
 
@@ -1196,7 +1233,7 @@ class OneFileLoginApplication
 
             else {
 
-                echo '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '" name="loginform">';
+                echo '<form method="post" action="" name="loginform">';
                     echo '<label for="login_input_username"> </label> ';
                         echo '<br>';
                     echo '<i class="fa fa-fw fa-user"></i> <input id="login_input_username" type="text" placeholder="Username" name="user_name" autofocus required /> ';
@@ -1223,11 +1260,11 @@ class OneFileLoginApplication
                 echo '</form>';
                     echo '<br><br>';
 
-                    echo "<div id='reginfo'>";
-                        echo "User database Dir: " .  $datadir;
-                                echo '<br>';
-                        echo "User database file: " . $dbfile;
-                    echo "</div>";
+                echo "<div id='reginfo'>";
+                    echo "User database Dir: " .  $datadir;
+                            echo '<br>';
+                    echo "User database file: " . $dbfile;
+                echo "</div>";
 
             }
 
@@ -1279,6 +1316,25 @@ $application = new OneFileLoginApplication();
                 color: white;
             }
 
+            body::-webkit-scrollbar {
+                width: .75rem;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, 0.3);
+                border-radius: .75rem;
+                background-color: #252525;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                border-radius: .75rem;
+                -webkit-box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                box-shadow: inset 0 0 .25rem rgba(0, 0, 0, .3);
+                background-color: #8E8B8B;
+            }
+            
             .wrapper {
                 width: 30rem;
                 margin-left: auto;
