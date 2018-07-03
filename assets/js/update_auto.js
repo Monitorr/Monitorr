@@ -7,7 +7,8 @@ $(document).ready(function(){
 		var info = "uid="+uid+"&vcheck=1";
 		$.ajax({
 		   beforeSend: function(){
-			   $('#version_check_auto').html('<img src="assets/img/loader.gif" width="16" height="16" />');
+			   console.log('Monitorr is checking for an application update.');
+			   $('#version_check_auto').html('<img src="assets/icons/loader.gif" width="16" height="16" />');
 		   },
 		   type: "POST",
 		   url: "assets/php/version_check.php",
@@ -19,6 +20,7 @@ $(document).ready(function(){
 			   // check for version verification
 			   if(data.version != 0){
 				   var uInfo = "uid="+uid+"&version="+data.version
+				   console.log('A Monitorr update is available.');
 
 				   $('#version_check_auto').html(
 					   '<a class="footer a" href = "https://github.com/Monitorr/Monitorr/releases" target = "_blank" style = "cursor: pointer"> <b> An update is available</b></a>'
@@ -32,6 +34,7 @@ $(document).ready(function(){
 		   },
 		   error: function() {
 			   // error
+			   console.log('An error occured while checking your Monitorr version.');
 			   $('#version_check_auto').html('<strong> An error occured while checking your Monitorr version </strong>');
 		   }
 		});

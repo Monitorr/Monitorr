@@ -1,76 +1,67 @@
 
 <?php
 
-   $str =  json_encode( $_POST, true );
+        // remove all offline *.json files from log dir when changes made to "Services Configuration" settings page: 
 
-    $myServices = json_decode( $str, true);
+    $files = glob("../data/logs/*.json");
 
-      
-        $iterator = new RecursiveArrayIterator($myServices);
+    if (!empty($files)) {
 
-        $str2 = file_get_contents( "../data/datadir.json" );
+        foreach($files as $file){ // iterate files in logs dir
 
-        $json = json_decode( $str2, true);
+            if(is_file($file)) {
 
-        $datadir = $json['datadir'];
+                //delete all files in logs dir:
 
-        echo $datadir;
+                if(!unlink($file)) {
 
-        $jsonpath = $datadir . 'services_settings-data.json';
-
-        echo $jsonpath;
-
-        $fp = fopen($jsonpath, 'w');
-
-            while ($iterator->valid()) {
-
-                if ($iterator->hasChildren()) {
-                    // print all children
-
-                    fwrite ($fp, "[");
-
-                    foreach ($iterator as $v1) {
-                       
-                        foreach ($v1 as $v2) {
-                            fwrite ($fp, PHP_EOL);
-                            fwrite ($fp, "{");
-                            fwrite ($fp, '"'."serviceTitle" . '"' . ':' .  '"' . $v2['serviceTitle'] . '"'.  ",");
-                            fwrite ($fp, '"'."enabled" . '"' . ':' .  '"' . $v2['enabled'] . '"'.  ",");
-                            fwrite ($fp, '"'."image" . '"' . ':' .  '"' . $v2['image'] . '"'.  ",");
-                            fwrite ($fp, '"'."type" . '"' . ':' .  '"' . $v2['type'] . '"'.  ",");
-                            fwrite ($fp, '"'."link" . '"' . ':' .  '"' . $v2['link'] . '"'.  ",");
-                            fwrite ($fp, '"'."checkurl" . '"' . ':' .  '"' . $v2['checkurl'] . '"'.  ",");
-                            fwrite ($fp, '"'."linkurl" . '"' . ':' .  '"' . $v2['linkurl'] . '"');
-                            fwrite ($fp,  "}");
-                            fwrite ($fp,  ",");
-                            //fwrite ($fp, PHP_EOL);
-                        }
-                    }
-
-                    fwrite ($fp,  "]");
-                } 
-                
-                else {
-                    echo "No children.\n";
+                    echo "<script type='text/javascript'>";
+                        echo "console.log('ERROR: Failed to remove offline log file: " . $file .  "');";
+                    echo "</script>";
                 }
 
-                $iterator->next();
-            };
+                else {
 
-        fclose($fp);
+                    echo "<script type='text/javascript'>";
+                        echo "console.log('Removed offline log file: " . $file .  "');";
+                    echo "</script>";
+                }
+            }
+        }
+    }
 
-?>
+    $str2 = file_get_contents( "../data/datadir.json" );
 
-    <!-- "Hack" to fix alapaca bug not writing json arrays correctly // See https://github.com/gitana/alpaca/issues/605 -->
+    $json = json_decode( $str2, true);
 
-<?php
+    $datadir = $json['datadir'];
 
-    $fp = $jsonpath;
+    //echo $datadir;
 
-    $file_contents = file_get_contents($fp);
+    $jsonpath = $datadir . 'services_settings-data.json';
 
-    $file_contents = str_replace(",]","]",$file_contents);
+    //echo $jsonpath;
 
-    file_put_contents($fp,$file_contents);
+        // Fail-safe to ensure blank data is NOT written to .json data file.
+        // Will NOT write data to .json data file unless POST is made from "Services Configuration" settings page:
+
+    if (isset($_POST['data']) && !empty($_POST['data'])) {
+
+        echo "POST detected.";
+            echo "<br>";
+        echo  "Writing values to json settings file.";
+            echo "<br>";
+
+        file_put_contents($jsonpath, json_encode($_POST['data'], JSON_PRETTY_PRINT));
+    }
+
+    else {
+        
+        echo "<script type='text/javascript'>";
+            echo "console.log('POST not detected. NOT writing values to json settings file.');";
+        echo "</script>";
+
+        echo "POST not detected. NOT writing values to json settings file.";
+    }
 
 ?>

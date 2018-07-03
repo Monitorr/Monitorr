@@ -1,26 +1,67 @@
 <?php
 
+        // Load user preferences:
+
+    $datafile = '../data/datadir.json';
+    $str = file_get_contents($datafile);
+    $json = json_decode( $str, true);
+    $datadir = $json['datadir'];
+    $jsonfileuserdata = $datadir . 'user_preferences-data.json';
+
+    if(!is_file($jsonfileuserdata)){    
+
+        $path = "../";
+
+        include_once ('../config/monitorr-data-default.php');
+    } 
+
+    else {
 
         $datafile = '../data/datadir.json';
-        $str = file_get_contents($datafile);
-        $json = json_decode( $str, true);
-        $datadir = $json['datadir'];
-        $jsonfileuserdata = $datadir . 'user_preferences-data.json';
 
-        if(!is_file($jsonfileuserdata)){    
+        include_once ('../config/monitorr-data.php');
+    }
 
-            $path = "../";
+        // New version download information:
+   
+    $branch = $jsonusers['updateBranch'];
 
-            include_once ('../config/monitorr-data-default.php');
+    // location to download new version zip
+    $remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/' . $branch . '';
+    // rename version location/name
+    $local_file = '../../tmp/monitorr-' . $branch . '.zip'; #example: version/new-version.zip
+    //
+    // version check information
+    //
+    // url to external verification of version number as a .TXT file
+    $ext_version_loc = 'https://raw.githubusercontent.com/Monitorr/Monitorr/' . $branch . '/assets/js/version/version.txt';
+    
+    // users local version number:
+    $vnum_loc = "../js/version/version.txt"; 
 
-        } 
-
-        else {
-
-            $datafile = '../data/datadir.json';
-
-            include_once ('../config/monitorr-data.php');
+    function recurse_copy($src,$dst) {
+        $dir = opendir($src);
+        @mkdir($dst);
+        while(false !== ( $file = readdir($dir)) ) {
+            if (( $file != '.' ) && ( $file != '..' )) {
+                if ( is_dir($src . '/' . $file) ) {
+                    recurse_copy($src . '/' . $file,$dst . '/' . $file);
+                }
+                else {
+                    copy($src . '/' . $file,$dst . '/' . $file);
+                }
+            }
         }
+        closedir($dir);
+    }
+
+    function delTree($dir) {
+        $files = array_diff(scandir($dir), array('.','..'));
+        foreach ($files as $file) {
+            (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
+        }
+        return rmdir($dir);
+    }
 
 
 // get CPUload function
@@ -127,7 +168,6 @@ $cpuLoad = getServerLoad();
 $cpuPercent = round($cpuLoad, 2);
 
 
-
 // getRAM function
 
 function getRamTotal()
@@ -202,53 +242,173 @@ $usedRam = $totalRam - $freeRam;
 $ramPercent = round(($usedRam / $totalRam) * 100);
 
 
-
-
 // getHD function
 
- $freeHD = getHDFree();
-
-function getHDFree()
-{
-        //hdd stat
-        $stat['hdd_free'] = round(disk_free_space("/") / 1024 / 1024 / 1024, 2);
-        $stat['hdd_total'] = round(disk_total_space("/") / 1024 / 1024/ 1024, 2);
-        $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
-        $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
-        $stat['hdd_percent'];
-
-      return  $stat['hdd_percent'];
-    
-}
-
-    // Dynamic icon colors for badges
- 
+        // Dynamic icon colors for badges:
     $hdok = $jsonsite['hdok'];
     $hdwarn = $jsonsite['hdwarn'];
 
 
-        if ($freeHD < $hdok) {
-                $hdClass = 'success';
-        } elseif (($freeHD >= $hdok) && ($freeHD < $hdwarn)) {
-                $hdClass = 'warning';
-        } else {
-                $hdClass = 'danger';
+    ////// HD1 ///////
+
+    global $disk1;
+
+    if(isset($jsonsite['disk1'])) {
+
+        $disk1 = $jsonsite['disk1'];
+
+        if (!getHDFree1($disk1)){
+
+            echo "<script type='text/javascript'>";
+                echo "console.log('ERROR reading stats for HD " . $disk1 . "');";
+            echo "</script>";
+
+            $hdClass1 = 'danger';
+
+            $freeHD1 = "<i class='fa fa-fw fa-exclamation-triangle' title='ERROR reading stats for HD " . $disk1 . "' style='color: red; cursor: help;'></i>";
         }
 
+        else {
+
+            $freeHD1 = getHDFree1();
+
+            if ($freeHD1 < $hdok) {
+                    $hdClass1 = 'success';
+            } elseif (($freeHD1 >= $hdok) && ($freeHD1 < $hdwarn)) {
+                    $hdClass1 = 'warning';
+            } else {
+                    $hdClass1 = 'danger';
+            }
+        }
+    }
+
+    function getHDFree1() {
+
+        global $disk1;
+
+        //hdd stat
+
+        $stat['hdd_free'] = round(disk_free_space($disk1) / 1024 / 1024 / 1024, 2);
+
+        $stat['hdd_total'] = round(disk_total_space($disk1) / 1024 / 1024/ 1024, 2);
+
+        $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
+        $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
+        $stat['hdd_percent'];
+
+        return  $stat['hdd_percent'];
+    }
+
+
+    ////// HD2 ///////
+
+    global $disk2;
+
+    if(isset($jsonsite['disk2'])) {
+
+        $disk2 = $jsonsite['disk2'];
+
+        if (!getHDFree2($disk2)){
+
+            echo "<script type='text/javascript'>";
+                echo "console.log('ERROR reading stats for HD " . $disk2 . "');";
+            echo "</script>";
+
+            $hdClass2 = 'danger';
+
+            $freeHD2 = "<i class='fa fa-fw fa-exclamation-triangle' title='ERROR reading stats for HD " . $disk2 . "' style='color: red; cursor: help;'></i>";
+        }
+
+        else {
+
+            $freeHD2 = getHDFree2();
+
+            if ($freeHD2 < $hdok) {
+                    $hdClass2 = 'success';
+            } elseif (($freeHD2 >= $hdok) && ($freeHD2 < $hdwarn)) {
+                    $hdClass2 = 'warning';
+            } else {
+                    $hdClass2 = 'danger';
+            }
+        }
+    }
+
+    function getHDFree2() {
+
+        global $disk2;
+
+        $stat['hdd_free'] = round(disk_free_space($disk2) / 1024 / 1024 / 1024, 2);
+
+        $stat['hdd_total'] = round(disk_total_space($disk2) / 1024 / 1024/ 1024, 2);
+
+        $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
+        $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
+        $stat['hdd_percent'];
+
+        return  $stat['hdd_percent'];
+    }
+
+
+    ////// HD3 ///////
+
+    global $disk3;
+
+    if(isset($jsonsite['disk3'])) {
+
+        $disk3 = $jsonsite['disk3'];
+
+        if (!getHDFree3($disk3)){
+
+            echo "<script type='text/javascript'>";
+                echo "console.log('ERROR reading stats for HD " . $disk3 . "');";
+            echo "</script>";
+
+            $hdClass3 = 'danger';
+
+            $freeHD3 = "<i class='fa fa-fw fa-exclamation-triangle' title='ERROR reading stats for HD " . $disk3 . "' style='color: red; cursor: help;'></i>";
+        }
+
+        else {
+
+            $freeHD3 = getHDFree3();
+
+            if ($freeHD3 < $hdok) {
+                    $hdClass3 = 'success';
+            } elseif (($freeHD3 >= $hdok) && ($freeHD3 < $hdwarn)) {
+                    $hdClass3 = 'warning';
+            } else {
+                    $hdClass3 = 'danger';
+            }
+        }
+    }
+
+    function getHDFree3() {
+
+        global $disk3;
+
+        $stat['hdd_free'] = round(disk_free_space($disk3) / 1024 / 1024 / 1024, 2);
+
+        $stat['hdd_total'] = round(disk_total_space($disk3) / 1024 / 1024/ 1024, 2);
+
+        $stat['hdd_used'] = $stat['hdd_total'] - $stat['hdd_free'];
+        $stat['hdd_percent'] = round(sprintf('%.1f',($stat['hdd_used'] / $stat['hdd_total']) * 100), 2);
+        $stat['hdd_percent'];
+
+        return  $stat['hdd_percent'];
+    }
 
 //uptime
 $uptime = shell_exec("cut -d. -f1 /proc/uptime");
-$days = floor($uptime/60/60/24);
+$days = floor($uptime) / 60 / 60 / 24;
 $days_padded = sprintf("%02d", $days);
-$hours = $uptime/60/60%24;
+$hours = round($uptime) / 60 / 60 % 24;
 $hours_padded = sprintf("%02d", $hours);
-$mins = $uptime/60%60;
+$mins = round($uptime) / 60 % 60;
 $mins_padded = sprintf("%02d", $mins);
-$secs = $uptime%60;
+$secs = round($uptime) % 60;
 $secs_padded = sprintf("%02d", $secs);
 // $total_uptime = "$days_padded:$hours_padded:$mins_padded:$secs_padded";
 $total_uptime = "$days_padded:$hours_padded:$mins_padded";
-
 
 // Dynamic icon colors for badges
 
@@ -266,7 +426,6 @@ if ($ramPercent < $ramok) {
 
     $cpuok = $jsonsite['cpuok'];
     $cpuwarn = $jsonsite['cpuwarn'];
-
 
 if ($cpuPercent < $cpuok) {
     $cpuClass = 'success';
@@ -286,15 +445,12 @@ if ($cpuPercent < $cpuok) {
 * @param int $timeout
 * @return bool|float
 */
-
     
     $pinghost = $jsonsite['pinghost'];
     //echo $pinghost;
 
-
     $pingport = $jsonsite['pingport'];
     // echo $pingport;
-
 
     function ping($host, $port = 53, $timeout = 1) {
         $start = microtime(true);
@@ -307,51 +463,15 @@ if ($cpuPercent < $cpuok) {
 
  $pingTime = ping($pinghost, $pingport);
 
+    $pingok = $jsonsite['pingok'];
+    $pingwarn = $jsonsite['pingwarn'];
 
-// New version download information
-
-  
-   
-    $branch = $jsonusers['updateBranch'];
-
-
-// location to download new version zip
-$remote_file_url = 'https://github.com/Monitorr/Monitorr/zipball/' . $branch . '';
-// rename version location/name
-$local_file = '../../tmp/monitorr-' . $branch . '.zip'; #example: version/new-version.zip
-//
-// version check information
-//
-// url to external verification of version number as a .TXT file
-$ext_version_loc = 'https://raw.githubusercontent.com/Monitorr/Monitorr/' . $branch . '/assets/js/version/version.txt';
-// users local version number
-// added the 'uid' just to show that you can verify from an external server the
-// users information. But it can be replaced with something more simple
-$vnum_loc = "../js/version/version.txt"; #example: version/vnum_1.txt
-
-
-function recurse_copy($src,$dst) {
-    $dir = opendir($src);
-    @mkdir($dst);
-    while(false !== ( $file = readdir($dir)) ) {
-        if (( $file != '.' ) && ( $file != '..' )) {
-            if ( is_dir($src . '/' . $file) ) {
-                recurse_copy($src . '/' . $file,$dst . '/' . $file);
-            }
-            else {
-                copy($src . '/' . $file,$dst . '/' . $file);
-            }
-        }
+    if ($pingTime < $pingok) {
+            $pingclass = 'success';
+    } elseif (($pingTime >= $pingok) && ($pingTime < $pingwarn)) {
+            $pingclass = 'warning';
+    } else {
+            $pingclass = 'danger';
     }
-    closedir($dir);
-}
-
-function delTree($dir) {
-   $files = array_diff(scandir($dir), array('.','..'));
-    foreach ($files as $file) {
-      (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
-    }
-    return rmdir($dir);
-  }
 
 ?>

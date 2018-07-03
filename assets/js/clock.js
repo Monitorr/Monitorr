@@ -1,8 +1,3 @@
-var servertime
-var servertimezone;
-
-date = servertime;
-
 // inner variables:
 
 var canvas, ctx;
@@ -17,18 +12,18 @@ function clear() { // clear canvas function
 
 // Parse time from index.php:
 
-var date = new Date(servertime);
+var date = new Date(serverTime);
 
 function drawScene() { // main drawScene function
     clear(); // clear canvas
 
     // get current time:
 
-date.setSeconds(date.getSeconds() + 1);
+    date.setSeconds(date.getSeconds() + 1);
 
-var hours = date.getHours(); 
-var minutes = date.getMinutes(); 
-var seconds = date.getSeconds();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
 
 
     hours = hours > 12 ? hours - 12 : hours;

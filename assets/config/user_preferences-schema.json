@@ -25,6 +25,18 @@
             "default": "master",
             "properties": {}
         },
+        "registration": {
+            "type": "string",
+            "title": "registration",
+            "enum": [
+                "Enable",
+                "Disable"
+            ],
+            "required": true,
+            "pattern": {},
+            "default": "Enable",
+            "properties": {}
+        },
         "timezone": {
             "type": "string",
             "enum": [
@@ -49,7 +61,7 @@
                 "America/Santiago",
                 "Canada/Newfoundland",
                 "America/Buenos_Aires",
-                "Greenland",
+                "America/Godthab",
                 "Atlantic/Stanley",
                 "Atlantic/Azores",
                 "Atlantic/Cape_Verde",

@@ -39,6 +39,18 @@
 				"default": " Standard",
 				"properties": {}
 			},
+			"ping": {
+				"type": "string",
+				"title": "ping",
+				"enum": [
+					"Enabled",
+					"Disabled"
+				],
+				"required": true,
+				"pattern": {},
+				"default": "Disabled",
+				"properties": {}
+			},
 			"link": {
 				"type": "string",
 				"title": "link",

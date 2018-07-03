@@ -169,7 +169,7 @@ $(document).ready(function() {
 
                 func = func.replace('this', '"' + val + '"');
 
-                var resp = eval(func);
+                var resp = Function('"use strict";return(' + func + ')')();
                 if (resp === true) {
                     addSuccess(this);
                 } else {
@@ -187,6 +187,13 @@ $(document).ready(function() {
      */
     function addError(self, message) {
         self.error = true;
+
+        // If fv-valid-func exists then run the JS method
+        if ($(self).attr('fv-invalid-func') != "undefined") {
+            var func = $(self).attr('fv-invalid-func');
+
+            Function('"use strict";return(' + func + ')')();
+        }
 
         message = message || '';
         var id = $(self).attr('data-fvid');
@@ -211,6 +218,13 @@ $(document).ready(function() {
      */
     function addSuccess(self) {
         if (!self.error | self.validations == 1) {
+            // If fv-valid-func exists then run the JS method
+            if ($(self).attr('fv-valid-func') != "undefined") {
+                var func = $(self).attr('fv-valid-func');
+
+                Function('"use strict";return(' + func + ')')();
+            }
+
             $(self).removeClass('fv-error').addClass('fv-success');
             if($(self).siblings('.fv-error-message').length > 0) {
                 var id = $(self).attr('data-fvid');
