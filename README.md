@@ -9,6 +9,8 @@
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/monitorr/monitorr/all.svg)](https://github.com/monitorr/monitorr/releases) [DEVELOP]
 
+**NOTICE (_29 June 18_)**: Monitorr version 1.7 will soon be released on/around 01 July 18 (It has already been released in the DEVELOP branch) If updating to version **1.7** from ANY previous version, **BEFORE updating backup your custom.css file** located at: _`[Monitorr install path]/assets/data/css/custom.css`_ . After the update is complete, simply restore the custom.css file to the same location overwriting the custom.css file that was updated. This is due to a bug which has been resolved in version 1.7 therefore this process will no longer be needed in future updates. See the [WiKi Update Notice](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for more information.
+
 
 **NOTICE (27 June 18)**: If updating to version **1.7** from ANY previous version, **BEFORE updating backup your custom.css file** located at: _`[Monitorr install path]/assets/data/css/custom.css`_ . After the update is complete, simply restore the custom.css file to the same location overwriting the custom.css file that was updated. This is due to a bug which has been resolved in version 1.7 therefore this process will no longer be needed in future updates. See the [WiKi Update Notice](https://github.com/Monitorr/Monitorr/wiki/NOTICE:-Updating-Monitorr) for more information.
 
