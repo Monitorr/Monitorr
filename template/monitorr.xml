@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Container>
-	<TemplateURL>https://raw.githubusercontent.com/si0972/unraid-templates/master/monitorr.xml</TemplateURL>
+	<TemplateURL>https://raw.githubusercontent.com/Monitorr/Monitorr/unraid/template/monitorr.xml</TemplateURL>
 	<Name>monitorr</Name>
 	<Repository>monitorr/monitorr</Repository>
 	<Registry>https://hub.docker.com/r/monitorr/monitorr/~/dockerfile/</Registry>
