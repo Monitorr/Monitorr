@@ -167,6 +167,11 @@ function getServerLoad()
 $cpuLoad = getServerLoad();
 $cpuPercent = round($cpuLoad, 2);
 
+if (is_null($cpuLoad)) {
+    echo "<script type='text/javascript'>";
+    echo "console.log('ERROR reading stats for CPU');";
+    echo "</script>";
+}
 
 // getRAM function
 
