@@ -10,11 +10,10 @@ server {
 		try_files $uri $uri/ /index.html /index.php?$args =404;
 		location ~ \.php$ {
 			fastcgi_split_path_info ^(.+\.php)(/.+)$;
-			# With php7-cgi alone:
-			fastcgi_pass 127.0.0.1:9000;
 			# With php7-fpm:
-			#fastcgi_pass unix:/var/run/php7-fpm.sock;
+			fastcgi_pass unix:/var/run/php7-fpm.sock;
 			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 			include /etc/nginx/fastcgi_params;
 		}
 	}
@@ -23,11 +22,10 @@ server {
 		root /config/www;
 		location ~ \.php$ {
 			fastcgi_split_path_info ^(.+\.php)(/.+)$;
-			# With php7-cgi alone:
-			fastcgi_pass 127.0.0.1:9000;
 			# With php7-fpm:
-			#fastcgi_pass unix:/var/run/php7-fpm.sock;
+			fastcgi_pass unix:/var/run/php7-fpm.sock;
 			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 			include /etc/nginx/fastcgi_params;
 		}
 	}

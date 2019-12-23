@@ -1,0 +1,36 @@
+#!/usr/bin/with-contenv bash
+
+# Backup the www.conf file for PHP-FPM if it exists
+# & copy in www.conf for PHP-FPM
+if [ ! -f /etc/php7/php-fpm.d/www.conf.original ]; then
+  echo '--------------------------------------'
+  echo '|      Backing up www.conf file      |'
+  echo '--------------------------------------'
+  mv /etc/php7/php-fpm.d/www.conf /etc/php7/php-fpm.d/www.conf.original
+  echo '--------------------------------------'
+  echo '|       Copying www.conf file        |'
+  echo '--------------------------------------'
+  cp /defaults/www.conf /etc/php7/php-fpm.d/www.conf
+elif [[ ! -f /config/php/www.conf ]]; then
+  cp /defaults/www.conf /etc/php7/php-fpm.d/www.conf
+fi
+
+# Copy over modified default site file
+# to use PHP-FPM
+if [ ! -f /config/nginx/site-confs/.default.original ]; then
+  echo '--------------------------------------'
+  echo '|      Backing up default file       |'
+  echo '--------------------------------------'
+  mv /config/nginx/site-confs/default /config/nginx/site-confs/.default.original
+  echo '--------------------------------------'
+  echo '|      Copying default site file     |'
+  echo '--------------------------------------'
+  cp /defaults/default /config/nginx/site-confs/default
+fi
+
+# Copy over Docker.txt file for Organizr check
+#cp /defaults/Docker.txt /config/www/Dashboard/Docker.txt
+
+# Triple-checking permissions are correct
+# Set Permissions
+chown -R abc:abc /config
