@@ -1,25 +1,31 @@
-FROM organizrtools/base-alpine-nginx
+FROM python:2.7.17-slim
 
-# Set version label
-ARG BUILD_DATE
+LABEL maintainer="jonfinley"
+
 ARG VERSION
-LABEL build_version="Monitorr version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="Monitorr"
+ARG BRANCH
 
-# Install packages
+ENV MONITORR_DOCKER=True
+ENV TZ=UTC
+
+WORKDIR /app
+
 RUN \
- apk add --no-cache \
-         curl \
-         php7-curl \
-         php7-zip \
-         php7-sqlite3 \
-         php7-pdo_sqlite \
-         php7-fpm \
-         git
+apt-get -q -y update --no-install-recommends && \
+apt-get install -q -y --no-install-recommends \
+  curl && \
+rm -rf /var/lib/apt/lists/* && \
+pip install --no-cache-dir --upgrade pip && \
+pip install --no-cache-dir --upgrade \
+  pycryptodomex \
+  pyopenssl && \
+echo ${VERSION} > /app/version.txt && \
+echo ${BRANCH} > /app/branch.txt
 
-# Add local files
-COPY root/ /
+COPY . /app
 
-# Port and volumes
-EXPOSE 80
-VOLUME /app /config
+CMD [ "python", "Monitorr.py", "--datadir", "/config" ]
+
+VOLUME /config /plex_logs
+EXPOSE 7769
+HEALTHCHECK  --start-period=90s CMD curl -ILfSs http://localhost:7769/status > /dev/null || curl -ILfkSs https://localhost:7769/status > /dev/null || exit 1
