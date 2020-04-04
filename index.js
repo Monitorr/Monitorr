@@ -3,12 +3,18 @@ import axios from 'axios';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import Influx from 'influx';
+import passport from 'passport';
+import passportLocal from 'passport-local';
+import passportJwt from 'passport-jwt';
+import jwt from 'jsonwebtoken';
 
 import { get as settings, add as addSettings, update as updateSettings, del as deleteSettings } from './settings.js';
 import { influx } from './db.js';
+import * as users from './model/user.js';
 
 export const app = express();
 
+app.use(passport.initialize());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -45,6 +51,80 @@ const timed = () => {
 }
 
 setInterval(timed, 60000);
+passport.use('register', new passportLocal.Strategy({
+  usernameField: 'username',
+  passwordField: 'password',
+}, (username, password, done) => {
+  try {
+    users.find(username).then((user) => {
+      if (user != null) {
+        return done(null, false, { message: 'Username already taken' });
+      } else {
+        const user = users.add(username, password);
+        return done(null, user);
+      }
+    });
+  } catch (err) {
+    return done(err);
+  }
+}));
+
+passport.use('login', new passportLocal.Strategy({
+  usernameField: 'username',
+  passwordField: 'password',
+  session: false,
+}, (username, password, done) => {
+  try {
+    users.find(username).then((user) => {
+      if (user === null) {
+        return done(null, false, { message: 'bad username' });
+      } else {
+        if (!user.validatePassword(password)) {
+          return done(null, false, { message: 'bad password' });
+        }
+        return done(null, user);
+      }
+    })
+  } catch (err) {
+    return done(err);
+  }
+}));
+const secret = 'thisIsTheMonitorrApplicationSecret';
+
+passport.use('jwt', new passportJwt.Strategy(
+  {
+    jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderWithScheme('JWT'),
+    secretOrKey: secret,
+  },
+  (payload, done) => {
+    try {
+      users.findById(payload.id).then((user) => {
+        if (user === null) {
+          return done(null, false, { message: 'bad user' });
+        }
+        return done(null, user);
+      });
+    } catch (err) {
+      return done(err);
+    }
+  }
+));
+
+app.get('/login', (req, res, next) => {
+  passport.authenticate('login', (err, user, info) => {
+    if (err) console.error(err);
+    if (info) res.send(info);
+    req.logIn(user, (err) => {
+      users.find(user.username).then((user => {
+        const token = jwt.sign({ id: user.id }, secret);
+        res.status(200).send({
+          auth: true,
+          token: token,
+        });
+      }))
+    })
+  })(req, res, next);
+});
 
 app.get('/', (req, res) => {
   const r = [];
@@ -78,11 +158,12 @@ app.post('/config', (req, res, next) => {
   res.json(a);
 });
 
-app.put('/config', (req, res) => {
+app.put('/config', (req, res, next) => {
   let { name, url, link, icon, id } = req.body;
   if (!id) return next(new Error('ID not provided'));
 
   const original = settings(id);
+  if (!original) return next(new Error('ID not found'));
   if (!name) name = original.name;
   if (!url) url = original.url;
   if (!link) link = original.link;
@@ -99,7 +180,7 @@ app.delete('/config/:id', (req, res) => {
   res.json({});
 });
 
-app.get('/:id', (req, res, next) => {  
+app.get('/:id', (req, res, next) => {
   influx.query(`
   select * from ping
   where id = ${Influx.escape.stringLit(req.params.id)}
@@ -107,10 +188,10 @@ app.get('/:id', (req, res, next) => {
   order by time desc
 `).then(result => {
     result.forEach((item, idx) => { delete result[idx].id; delete result[idx].url; })
-    res.json({ 
+    res.json({
       ...settings(req.params.id),
       last_ping: result[0].ping,
-      avg_ping: result.reduce((a,b) => a + b, 0) / result.length,
+      avg_ping: result.reduce((a, b) => a + b, 0) / result.length,
       history: result,
     });
   }).catch(err => {
