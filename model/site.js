@@ -7,8 +7,8 @@ const write = () => {
     fs.writeFileSync('./sites.json', JSON.stringify(set, null, 2));
 };
 
-export const add = ({ name, url, link, icon }) => {
-    const n = { name, url, link, icon, id: uuid.v4() };
+export const add = ({ name, url, link, icon, owner }) => {
+    const n = { name, url, link, icon, id: uuid.v4(), owner };
     set = [...set, n];
     write();
     return n;
@@ -16,7 +16,7 @@ export const add = ({ name, url, link, icon }) => {
 
 export const update = ({ name, url, link, icon, id }) => {
     const idx = set.findIndex(n => n.id === id);
-    set[idx] = { name, url, link, icon, id };
+    set[idx] = { name, url, link, icon, id, owner: set[idx].owner };
     write();
     return set[idx];
 };
