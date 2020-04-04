@@ -2,8 +2,10 @@ import express from 'express';
 import axios from 'axios';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import Influx from 'influx';
 
 import { get as settings, add as addSettings, update as updateSettings, del as deleteSettings } from './settings.js';
+import { influx } from './db.js';
 
 export const app = express();
 
@@ -14,7 +16,7 @@ app.set('json spaces', 2);
 
 const ping = ({ url, options }) => {
   const start = new Date();
-  return axios({ url, method: 'GET', timeout: 2000, ...options })
+  return axios({ url, method: 'GET', timeout: 10000, ...options })
     .then((res) => {
       const end = new Date() - start;
       return end;
@@ -22,6 +24,27 @@ const ping = ({ url, options }) => {
       return -1;
     });
 }
+
+const timed = () => {
+  settings().forEach((site) => {
+    ping(site).then((ping) => {
+      const entry = {
+        measurement: "ping",
+        tags: {
+          id: site.id,
+          url: site.url
+        },
+        fields: {
+          ping,
+          online: (ping !== -1),
+        }
+      };
+      influx.writePoints([entry]).catch((err) => { console.error('db not connected'); });
+    });
+  });
+}
+
+setInterval(timed, 60000);
 
 app.get('/', (req, res) => {
   const r = [];
@@ -74,6 +97,25 @@ app.delete('/config/:id', (req, res) => {
   if (!id) return next(new Error('ID not provided'));
   deleteSettings({ id });
   res.json({});
+});
+
+app.get('/:id', (req, res, next) => {  
+  influx.query(`
+  select * from ping
+  where id = ${Influx.escape.stringLit(req.params.id)}
+  and time >= now() - 30d
+  order by time desc
+`).then(result => {
+    result.forEach((item, idx) => { delete result[idx].id; delete result[idx].url; })
+    res.json({ 
+      ...settings(req.params.id),
+      last_ping: result[0].ping,
+      avg_ping: result.reduce((a,b) => a + b, 0) / result.length,
+      history: result,
+    });
+  }).catch(err => {
+    return next(err);
+  });
 });
 
 app.use((err, req, res, next) => {
