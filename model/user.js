@@ -10,6 +10,21 @@ const write = () => {
   fs.writeFileSync('./users.json', JSON.stringify(users, null, 2));
 };
 
+const setPassword = (user) => {
+  return (password) => {
+    user.salt = crypto.randomBytes(16).toString('hex');
+    user.hash = crypto.pbkdf2Sync(password, user.salt, 10000, 512, 'sha512').toString('hex');
+    write();
+  };
+};
+
+const validatePassword = (user) => {
+  return (password) => {
+    const hash = crypto.pbkdf2Sync(password, user.salt, 10000, 512, 'sha512').toString('hex');
+    return user.hash === hash;
+  };
+};
+
 export const add = (username, password) => {
   const user = {
     id: uuid.v4(),
@@ -31,29 +46,15 @@ export const find = (username) => {
     if (!user) resolve(null);
     user.setPassword = setPassword(user);
     user.validatePassword = validatePassword(user);
-    resolve(user);  
+    resolve(user);
   });
 };
 
 export const findById = (id) => {
-  const user = users.find(u => u.id === id);
-  user.setPassword = setPassword(user);
-  user.validatePassword = validatePassword(user);
-  return user;
-}
-
-const setPassword = (user) => {
-  return (password) => {
-    user.salt = crypto.randomBytes(16).toString('hex');
-    user.hash = crypto.pbkdf2Sync(password, user.salt, 10000, 512, 'sha512').toString('hex');
-    write();
-  };
+  return new Promise((resolve, reject) => {
+    const user = users.find(u => u.id === id);
+    user.setPassword = setPassword(user);
+    user.validatePassword = validatePassword(user);
+    resolve(user);
+  });
 };
-
-const validatePassword = (user) => {
-  return (password) => {
-    const hash = crypto.pbkdf2Sync(password, user.salt, 10000, 512, 'sha512').toString('hex');
-    return user.hash === hash;
-  };
-};
-

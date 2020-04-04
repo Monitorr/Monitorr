@@ -8,7 +8,7 @@ import passportLocal from 'passport-local';
 import passportJwt from 'passport-jwt';
 import jwt from 'jsonwebtoken';
 
-import { get as settings, add as addSettings, update as updateSettings, del as deleteSettings } from './settings.js';
+import * as sites from './model/site.js';
 import { influx } from './db.js';
 import * as users from './model/user.js';
 
@@ -32,7 +32,7 @@ const ping = ({ url, options }) => {
 }
 
 const timed = () => {
-  settings().forEach((site) => {
+  sites.get().forEach((site) => {
     ping(site).then((ping) => {
       const entry = {
         measurement: "ping",
@@ -51,6 +51,7 @@ const timed = () => {
 }
 
 setInterval(timed, 60000);
+
 passport.use('register', new passportLocal.Strategy({
   usernameField: 'username',
   passwordField: 'password',
@@ -129,7 +130,7 @@ app.get('/login', (req, res, next) => {
 app.get('/', (req, res) => {
   const r = [];
   const promises = [];
-  settings().forEach((site) => {
+  sites.get().forEach((site) => {
     promises.push(ping(site).then((time) => {
       const online = (time !== -1);
       r.push({ ...site, time, online });
@@ -141,11 +142,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/config', (req, res) => {
-  res.json(settings());
+  res.json(sites.get());
 });
 
 app.get('/config/:id', (req, res) => {
-  res.json(settings(req.params.id));
+  res.json(sites.get(req.params.id));
 });
 
 app.post('/config', (req, res, next) => {
@@ -154,7 +155,7 @@ app.post('/config', (req, res, next) => {
   if (!url) return next(new Error('URL not provided'));
   if (!link) return next(new Error('Link not provided'));
   if (!icon) return next(new Error('Icon not provided'));
-  const a = addSettings({ name, url, link, icon });
+  const a = sites.add({ name, url, link, icon });
   res.json(a);
 });
 
@@ -162,21 +163,21 @@ app.put('/config', (req, res, next) => {
   let { name, url, link, icon, id } = req.body;
   if (!id) return next(new Error('ID not provided'));
 
-  const original = settings(id);
+  const original = sites.get(id);
   if (!original) return next(new Error('ID not found'));
   if (!name) name = original.name;
   if (!url) url = original.url;
   if (!link) link = original.link;
   if (!icon) icon = original.icon;
 
-  const a = updateSettings({ name, url, link, icon, id });
+  const a = sites.update({ name, url, link, icon, id });
   res.json(a);
 });
 
 app.delete('/config/:id', (req, res) => {
   const id = req.params.id;
   if (!id) return next(new Error('ID not provided'));
-  deleteSettings({ id });
+  sites.del({ id });
   res.json({});
 });
 
