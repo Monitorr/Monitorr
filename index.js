@@ -112,6 +112,12 @@ passport.use('jwt', new passportJwt.Strategy(
   }
 ));
 
+const ensureOwner = (req, res, next) => {
+  const site = sites.get(req.body.id);
+  if (req.user.id !== site.owner) return res.sendStatus(401);
+  return next();
+}
+
 app.get('/login', (req, res, next) => {
   passport.authenticate('login', (err, user, info) => {
     if (err) console.error(err);
@@ -184,7 +190,7 @@ app.post('/config', passport.authenticate('jwt', { session: false }), (req, res,
   res.json(a);
 });
 
-app.put('/config', (req, res, next) => {
+app.put('/config', passport.authenticate('jwt', { session: false }), ensureOwner, (req, res, next) => {
   let { name, url, link, icon, id } = req.body;
   if (!id) return next(new Error('ID not provided'));
 
@@ -199,7 +205,7 @@ app.put('/config', (req, res, next) => {
   res.json(a);
 });
 
-app.delete('/config/:id', (req, res) => {
+app.delete('/config/:id', passport.authenticate('jwt', { session: false }), ensureOwner, (req, res) => {
   const id = req.params.id;
   if (!id) return next(new Error('ID not provided'));
   sites.del({ id });
