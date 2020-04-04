@@ -61,7 +61,7 @@ passport.use('register', new passportLocal.Strategy({
       if (user != null) {
         return done(null, false, { message: 'Username already taken' });
       } else {
-        const user = users.add(username, password);
+        const user = users.add({ username, password });
         return done(null, user);
       }
     });
@@ -114,16 +114,37 @@ passport.use('jwt', new passportJwt.Strategy(
 app.get('/login', (req, res, next) => {
   passport.authenticate('login', (err, user, info) => {
     if (err) console.error(err);
-    if (info) res.send(info);
+    if (info) res.json(info);
     req.logIn(user, (err) => {
       users.find(user.username).then((user => {
         const token = jwt.sign({ id: user.id }, secret);
-        res.status(200).send({
+        res.status(200).json({
           auth: true,
           token: token,
         });
       }))
     })
+  })(req, res, next);
+});
+
+app.post('/register', (req, res, next) => {
+  passport.authenticate('register', (err, user, info) => {
+    if (err) {
+      console.log(err);
+    }
+    if (info != undefined) {
+      res.json(info);
+    } else {
+      req.logIn(user, err => {
+        const data = {
+          username: user.username,
+          password: req.body.password,
+        };
+        users.find(data.username).then(user => {
+          if (user) res.status(200).json({ message: 'user created' });
+        });
+      });
+    }
   })(req, res, next);
 });
 
@@ -190,7 +211,7 @@ app.get('/:id', (req, res, next) => {
 `).then(result => {
     result.forEach((item, idx) => { delete result[idx].id; delete result[idx].url; })
     res.json({
-      ...settings(req.params.id),
+      ...sites.get(req.params.id),
       last_ping: result[0].ping,
       avg_ping: result.reduce((a, b) => a + b, 0) / result.length,
       history: result,

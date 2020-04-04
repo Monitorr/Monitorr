@@ -4,8 +4,6 @@ import fs from 'fs';
 
 const users = JSON.parse(fs.readFileSync('./users.json')) || [];
 
-if (users.length === 0) add('admin', 'admin');
-
 const write = () => {
   fs.writeFileSync('./users.json', JSON.stringify(users, null, 2));
 };
@@ -25,7 +23,7 @@ const validatePassword = (user) => {
   };
 };
 
-export const add = (username, password) => {
+export const add = ({ username, password }) => {
   const user = {
     id: uuid.v4(),
     username,
@@ -53,8 +51,11 @@ export const find = (username) => {
 export const findById = (id) => {
   return new Promise((resolve, reject) => {
     const user = users.find(u => u.id === id);
+    if (!user) resolve(null);
     user.setPassword = setPassword(user);
     user.validatePassword = validatePassword(user);
     resolve(user);
   });
 };
+
+if (users.length === 0) add({ username: 'admin', password: 'admin' });
