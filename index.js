@@ -117,11 +117,13 @@ app.get('/login', (req, res, next) => {
     if (info) res.json(info);
     req.logIn(user, (err) => {
       users.find(user.username).then((user => {
-        const token = jwt.sign({ id: user.id }, secret);
-        res.status(200).json({
-          auth: true,
-          token: token,
-        });
+        if (user) {
+          const token = jwt.sign({ id: user.id }, secret);
+          res.status(200).json({
+            auth: true,
+            token: token,
+          });
+        }
       }))
     })
   })(req, res, next);
