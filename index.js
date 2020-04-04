@@ -90,11 +90,12 @@ passport.use('login', new passportLocal.Strategy({
     return done(err);
   }
 }));
+
 const secret = 'thisIsTheMonitorrApplicationSecret';
 
 passport.use('jwt', new passportJwt.Strategy(
   {
-    jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderWithScheme('JWT'),
+    jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
     secretOrKey: secret,
   },
   (payload, done) => {
@@ -172,13 +173,14 @@ app.get('/config/:id', (req, res) => {
   res.json(sites.get(req.params.id));
 });
 
-app.post('/config', (req, res, next) => {
+app.post('/config', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   const { name, url, link, icon } = req.body;
+  const owner = req.user.id;
   if (!name) return next(new Error('Name not provided'));
   if (!url) return next(new Error('URL not provided'));
   if (!link) return next(new Error('Link not provided'));
   if (!icon) return next(new Error('Icon not provided'));
-  const a = sites.add({ name, url, link, icon });
+  const a = sites.add({ name, url, link, icon, owner });
   res.json(a);
 });
 
