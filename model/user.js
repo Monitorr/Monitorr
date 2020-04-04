@@ -2,10 +2,10 @@ import crypto from 'crypto';
 import uuid from 'uuid';
 import fs from 'fs';
 
-const users = JSON.parse(fs.readFileSync('./users.json')) || [];
+const users = JSON.parse(fs.readFileSync('./config/users.json')) || [];
 
 const write = () => {
-  fs.writeFileSync('./users.json', JSON.stringify(users, null, 2));
+  fs.writeFileSync('./config/users.json', JSON.stringify(users, null, 2));
 };
 
 const setPassword = (user) => {

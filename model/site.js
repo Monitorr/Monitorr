@@ -1,10 +1,10 @@
 import fs from 'fs';
 import uuid from 'uuid';
 
-let set = JSON.parse(fs.readFileSync('./sites.json'));
+let set = JSON.parse(fs.readFileSync('./config/sites.json'));
 
 const write = () => {
-    fs.writeFileSync('./sites.json', JSON.stringify(set, null, 2));
+    fs.writeFileSync('./config/sites.json', JSON.stringify(set, null, 2));
 };
 
 export const add = ({ name, url, link, icon, owner }) => {
