@@ -6,9 +6,9 @@ const transporter = nodemailer.createTransport(mailSettings);
 
 export const enabled = mailSettings.enabled;
 
-export const sendMail({ subject, text }) {
+export const sendMail = ({ subject, text }) => {
     const sendOpts = { from: mailSettings.from, to: mailSettings.to, subject, text };
-    transporter.sendMail(mailOptions, (err, info) => {
+    transporter.sendMail(sendOpts, (err, info) => {
         if (err) console.error(err);
         else console.log('Mail Sent %s', info.response);
     });
