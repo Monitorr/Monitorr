@@ -16,7 +16,7 @@ export const ping = ({ url, options }) => {
 };
 
 const timed = () => {
-  sites.get().forEach((site) => {
+  sites.get().forEach((site, idx) => {
     ping(site).then((ping) => {
       const entry = {
         measurement: "ping",
@@ -30,6 +30,9 @@ const timed = () => {
         }
       };
       influx.writePoints([entry]).catch((err) => { console.error('db not connected'); });
+      if (site.online && !entry.online) {
+        // Site has gone offline, time to send some notifications
+      }
     });
   });
 };
