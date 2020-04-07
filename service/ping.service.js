@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import * as sites from '../model/site.model.js';
 import { influx } from './db.service.js';
-
+import { sendMail, enabled as mailEnabled } from './mail.service.js';
 
 export const ping = ({ url, options }) => {
   const start = new Date();
@@ -30,9 +30,27 @@ const timed = () => {
         }
       };
       influx.writePoints([entry]).catch((err) => { console.error('db not connected'); });
-      if (site.online && !entry.online) {
-        // Site has gone offline, time to send some notifications
+      if (site.online != entry.online) {
+        if (mailEnabled) {
+          if (entry.online) {
+            // site has gone offline, send email
+            const opt = {
+              subject: `${site.name} has gone offline.`,
+              text: 'Site has gone offline, please check it\'s status'
+            }
+            sendMail(opt);
+          } else {
+            const opt = {
+              subject: `${site.name} has come back online.`,
+              text: 'Site has come back online. Have a nice day'
+            }
+            sendMail(opt);
+            // site has come back online, send email
+          }
+          // Site has gone offline, time to send some notifications
+        }
       }
+      sites[idx].online = (ping !== -1);
     });
   });
 };
