@@ -1,4 +1,4 @@
-import * as Influx from 'influx';
+import Influx from 'influx';
 
 export const influx = new Influx.InfluxDB({
   host: "localhost",
