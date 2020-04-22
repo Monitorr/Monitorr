@@ -6,10 +6,16 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env NODE_ENV=test jest"
   },
   "author": "Monitorr",
   "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
@@ -17,9 +23,19 @@
     "express": "^4.17.1",
     "influx": "^5.5.1",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.4.6",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "cross-env": "^7.0.2",
+    "jest": "^25.2.7",
+    "supertest": "^4.0.2"
   }
 }

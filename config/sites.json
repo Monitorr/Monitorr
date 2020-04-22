@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Google",
+    "enabled": true,
+    "url": "https://www.google.com/",
+    "link": "https://www.google.com/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
+    "id": "043031a6-5673-4333-a660-ecd750012690",
+    "owner": "dce38ca1-7508-43cf-9255-dcdbb72d7851"
+  },
+  {
+    "name": "Facebook",
+    "enabled": true,
+    "url": "https://www.facebook.com/",
+    "link": "https://www.facebook.com/",
+    "icon": "https://www.facebook.com/images/fb_icon_325x325.png",
+    "id": "c6cdbbb4-0ef6-4dd2-85ef-aeae73f3bf24",
+    "owner": "dce38ca1-7508-43cf-9255-dcdbb72d7851"
+  },
+  {
+    "name": "LinkedIn",
+    "enabled": true,
+    "url": "https://www.linkedin.com/",
+    "link": "https://www.linkedin.com/",
+    "icon": "https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca",
+    "id": "732fb8ad-fccf-4938-b4e5-22bf102b9228",
+    "owner": "dce38ca1-7508-43cf-9255-dcdbb72d7851"
+  }
+]
