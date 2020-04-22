@@ -1,6 +1,7 @@
 [
   {
     "name": "Google",
+    "enabled": true,
     "url": "https://www.google.com/",
     "link": "https://www.google.com/",
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
@@ -9,6 +10,7 @@
   },
   {
     "name": "Facebook",
+    "enabled": true,
     "url": "https://www.facebook.com/",
     "link": "https://www.facebook.com/",
     "icon": "https://www.facebook.com/images/fb_icon_325x325.png",
@@ -17,6 +19,7 @@
   },
   {
     "name": "LinkedIn",
+    "enabled": true,
     "url": "https://www.linkedin.com/",
     "link": "https://www.linkedin.com/",
     "icon": "https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca",

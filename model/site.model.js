@@ -8,7 +8,7 @@ const write = () => {
 };
 
 export const add = ({ name, url, link, icon, owner }) => {
-    const n = { name, url, link, icon, id: uuid.v4(), owner };
+    const n = { name, enabled: true, url, link, icon, id: uuid.v4(), owner };
     set = [...set, n];
     write();
     return n;
@@ -30,3 +30,5 @@ export const get = (id = null) => {
     if (id) return set.find(n => n.id === id);
     return set;
 };
+
+export default { get, add, update, del }
