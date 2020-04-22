@@ -4,13 +4,29 @@ import * as sites from '../model/site.model.js';
 import { influx } from './db.service.js';
 import { sendMail, enabled as mailEnabled } from './mail.service.js';
 
+axios.interceptors.request.use((cfg) => {
+  cfg.metadata = { startTime: new Date() };
+  return cfg;
+}, (err) => {
+  return Promise.reject(err);
+});
+
+axios.interceptors.response.use((res) => {
+  res.config.metadata.endTime = new Date();
+  res.duration = res.config.metadata.endTime - res.config.metadata.startTime;
+  return res;
+}, (err) => {
+  err.config.metadata.endTime = new Date();
+  err.duration = err.config.metadata.endTime - err.config.metadata.startTime;
+  return Promise.reject(err);
+});
+
 export const ping = ({ url, options }) => {
-  const start = new Date();
   return axios({ url, method: 'GET', timeout: 10000, ...options })
     .then((res) => {
-      const end = new Date() - start;
-      return end;
+      return res.duration;
     }).catch((err) => {
+      console.log(err);
       return -1;
     });
 };
@@ -56,4 +72,3 @@ const timed = () => {
 };
 
 setInterval(timed, 60000);
-
