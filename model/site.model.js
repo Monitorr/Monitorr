@@ -14,9 +14,9 @@ export const add = ({ name, url, link, icon, owner }) => {
     return n;
 };
 
-export const update = ({ name, url, link, icon, id }) => {
+export const update = ({ name, url, link, icon, id, enabled }) => {
     const idx = set.findIndex(n => n.id === id);
-    set[idx] = { name, url, link, icon, id, owner: set[idx].owner };
+    set[idx] = { name, enabled, url, link, icon, id, owner: set[idx].owner };
     write();
     return set[idx];
 };
