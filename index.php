@@ -32,7 +32,6 @@
 
         <!-- Custom styles -->
         <link href="assets/css/main.css" rel="stylesheet">
-        <link href="assets/data/css/custom.css" rel="stylesheet">
 
         <style>
 
@@ -114,7 +113,7 @@
         </style>
 
         <script src="assets/js/jquery.min.js"></script>
-
+		<script src="assets/js/custom/custom.js"></script>
             <!-- top loading bar function: -->
         <script src="assets/js/pace.js"></script>
 

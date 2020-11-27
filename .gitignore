@@ -10,3 +10,4 @@ ehthumbs.db
 Thumbs.db
 .travis.yml
 assets/data/css/custom.css
+tmp/
