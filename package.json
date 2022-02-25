@@ -16,6 +16,10 @@
       "/node_modules/"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monitorr/monitorr"
+  },
   "dependencies": {
     "axios": "^0.26.0",
     "body-parser": "^1.19.2",
