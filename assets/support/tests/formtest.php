@@ -7,7 +7,7 @@
     <link type="text/css" href="../../css/bootstrap.min.css" rel="stylesheet" >
     <link type="text/css" href="../../css/main.css" rel="stylesheet">
     <link type="text/css" href="../../css/formValidation.css" rel="stylesheet" />
-    <script src="../../js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="../../js/formValidation.js"></script>
      <script src="../../js/jquery.validate.min.js"></script>
 

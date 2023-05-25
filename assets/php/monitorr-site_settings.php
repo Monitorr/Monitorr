@@ -392,7 +392,7 @@ class OneFileLoginApplication
         <meta name="theme-color" content="#464646" />
         <meta name="theme_color" content="#464646" />
 
-        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         <!-- <script type="text/javascript" src="../js/pace.js" async></script> -->
         <script type="text/javascript" src="../js/handlebars.js"></script>
         <script type="text/javascript" src="../js/bootstrap.min.js"></script>
@@ -1509,7 +1509,7 @@ $application = new OneFileLoginApplication();
         <link type="text/css" href="../css/main.css" rel="stylesheet">
         <link type="text/css" href="../data/css/custom.css" rel="stylesheet">
         <script type="text/javascript" src="../js/pace.js" async></script>
-        <!-- <script src="../js/jquery.min.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> -->
 
         <style type="text/css">
 
